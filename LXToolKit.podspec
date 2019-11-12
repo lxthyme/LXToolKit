@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXToolKit'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Give some useful category and extensions.'
 
 # This description is used to generate tags and improve search results.
@@ -31,12 +31,7 @@ This library contains some useful category and extension kits
   s.ios.deployment_target = '10.0'
   s.swift_versions = '4.2'
 
-
-
-  # s.source_files = 'LXToolKit/LXToolKit/**/*.swift'
-  s.source_files = 'LXToolKit/LXToolKit2/**/*.swift'
-  # s.source_files = 'LXToolKit/LXToolSwift/**/*.swift'
-  # s.source_files = 'LXToolKit/Classes/*.swift'
+  s.source_files = 'LXToolKit/LXToolKit/**/*.swift'
 
   # s.resource_bundles = {
   #   'LXToolKit' => ['LXToolKit/Assets/*.png']
