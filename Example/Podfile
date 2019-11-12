@@ -1,11 +1,8 @@
+inhibit_all_warnings!
 use_frameworks!
+platform:ios, '10.0'
 
 target 'LXToolKit_Example' do
   pod 'LXToolKit', :path => '../'
-
-  target 'LXToolKit_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  
 end
