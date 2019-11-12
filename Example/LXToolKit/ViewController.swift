@@ -7,14 +7,17 @@
 //
 
 import UIKit
-//import LXToolKit
+import Alamofire
 import LXToolKit
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let _ = LXBaseVC()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let _ = LXBaseVC()
+        let identifier = self.xl_typeName
+        print("identifier: \(identifier)")
     }
 
     override func didReceiveMemoryWarning() {
