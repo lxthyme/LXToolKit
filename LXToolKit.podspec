@@ -31,7 +31,7 @@ This library contains some useful category and extension kits
   s.ios.deployment_target = '10.0'
   s.swift_versions = '4.2'
 
-  s.source_files = 'LXToolKit/LXToolKit/**/*.swift'
+  s.source_files = "LXToolKit/LXToolKit/**/*.{swift,h,m}"
 
   # s.resource_bundles = {
   #   'LXToolKit' => ['LXToolKit/Assets/*.png']
