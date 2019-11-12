@@ -8,7 +8,7 @@
 
 import UIKit
 import LXToolKit
-class ViewController: UIViewController {
+class ViewController: LXBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
