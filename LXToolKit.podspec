@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXToolKit'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'Give some useful category and extensions.'
 
 # This description is used to generate tags and improve search results.
@@ -29,7 +29,7 @@ This library contains some useful category and extension kits
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
-  s.swift_versions = '4.2'
+  s.swift_versions = '5.1'
 
   s.source_files = "LXToolKit/LXToolKit/**/*.{swift,h,m}"
 
@@ -40,11 +40,12 @@ This library contains some useful category and extension kits
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'Alamofire', '~>4.9.1'
-  s.dependency 'Moya', '~>12.0.1'
-  s.dependency 'RxSwift', '~>4.5'
-  s.dependency 'HandyJSON', '~>4.2'
-  s.dependency 'SnapKit', '~>4.2'
-  s.dependency 'CryptoSwift', '~>0.15.0'
+  # s.dependency 'Alamofire', '~> 5.0.0-rc.3'
+ s.dependency 'Moya', '~> 13'
+  s.dependency 'RxSwift', '~> 5'
+  s.dependency 'HandyJSON', '~> 5'
+  s.dependency 'SnapKit', '~> 5'
+  s.dependency 'CryptoSwift'
+#  s.dependency 'CryptoSwift', '~>1.2.0'
 
 end

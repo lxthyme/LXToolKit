@@ -261,7 +261,7 @@ extension URLSessionSample {
         securityError = SecPKCS12Import(PKCS12Data, opts as CFDictionary, &items)
 
         if securityError == errSecSuccess {
-            let certItems: CFArray = items as CFArray!
+            let certItems: CFArray = items as! CFArray
             let certItemsArray = certItems as Array
             let dict = certItemsArray.first
             if let certEntry = dict as? [String: AnyObject] {

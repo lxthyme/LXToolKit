@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "LXPlatformInfo.h"
 
 FOUNDATION_EXPORT double LXToolKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char LXToolKitVersionString[];

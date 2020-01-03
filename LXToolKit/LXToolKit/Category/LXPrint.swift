@@ -12,16 +12,16 @@ import Moya
 /// DEBUG 打印
 public func print(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
 //    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
-//    Swift.print("")
+    Swift.print("print")
 }
 public func printIn(_ items: Any..., separator: String = " ", terminator: String = "\t", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
 //    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
-//    Swift.print("")
+    Swift.print("printIn")
 }
 public func print<T>(_ message: T..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function,
               line: Int = #line, column: Int = #column) {
 //    dlog(message, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
-//    Swift.print("")
+    Swift.print("print<T>")
 }
 public func dlog(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
     #if DEBUG
