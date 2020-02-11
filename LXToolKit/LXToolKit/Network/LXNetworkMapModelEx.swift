@@ -34,6 +34,7 @@ extension Response {
         guard let baseModel = JSONDeserializer<LXBaseModel<T>>.deserializeFrom(json: jsonString) else { throw NetWorkError.jsonError }
         
         guard baseModel.code == kLXSuccessCode else { throw NetWorkError.others(resultCode: baseModel.code, resultMsg: baseModel.msg) }
+//        guard baseModel.code == kLXSuccessCode else { throw RxSwiftMoyaError.RxSwiftMoyaBizError(resultCode: baseModel.code, resultMsg: baseModel.msg) }
         
         guard baseModel.data != nil else { throw NetWorkError.noData }
         
@@ -48,6 +49,7 @@ extension Response {
         guard let baseModel = JSONDeserializer<LXBaseModel<LXBaseListModel<T>>>.deserializeFrom(json: jsonString) else { throw NetWorkError.jsonError }
         dlog(baseModel)
         guard baseModel.code == kLXSuccessCode else { throw NetWorkError.others(resultCode: baseModel.code, resultMsg: baseModel.msg) }
+//        guard baseModel.code == kLXSuccessCode else { throw RxSwiftMoyaError.RxSwiftMoyaBizError(resultCode: baseModel.code, resultMsg: baseModel.msg) }
         
         guard let list = baseModel.data?.list, list.count > 0 else { throw NetWorkError.noData }
         
