@@ -21,17 +21,17 @@ enum RxMoyaError: Error {
     case invalidJSON
 }
 
-typealias APIParameter = (String?, [String: Any]?)
-protocol APIService: TargetType {
+public typealias APIParameter = (String?, [String: Any]?)
+public protocol APIService: TargetType {
     var params: APIParameter? { get }
 }
 
-protocol APIService2: TargetType {
+public protocol APIService2: TargetType {
 //    associatedtype ResultType: SomeJSONDecodableProtocolConformance
     var params: [String: Any]? { get }
 }
 
-extension APIService {
+public extension APIService {
     var baseURL: URL { return URL(string: LX_Base_URL)! }
     var method: Moya.Method { return .post }
     var sampleData: Data { return "{\"code\":233,\"data\":{\"a\":1,\"b\":\"2\",\"c\":3}}".data(using: .utf8)! }
@@ -40,7 +40,7 @@ extension APIService {
     var headers: [String : String]? { return ["Content-type": "application/json"] }
 }
 
-extension APIService2 {
+public extension APIService2 {
     var baseURL: URL { return URL(string: "")! }
     var headers: [String : String]? { return ["Content-type": "application/json"] }
     var method: Moya.Method { return .post }
@@ -49,7 +49,7 @@ extension APIService2 {
 }
 
 // MARK: - <#Title...#>
-extension MoyaProvider {
+public extension MoyaProvider {
     func req(target: TargetType,
              callbackQueue: DispatchQueue? = DispatchQueue.init(label: LX_Request_Queue_label),
              progress: ProgressBlock? = nil,

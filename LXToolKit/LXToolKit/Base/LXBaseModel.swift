@@ -26,12 +26,29 @@ public enum NetWorkError: Error {
     case networkError
 }
 
-open class LXBaseModel<T: HandyJSON>: NSObject, HandyJSON {
+open class LXAnyModel: NSObject, HandyJSON {
+    required public override init() {}
+
+    /// override var debugDescription: String { return "" }
+}
+
+open class BaseModel: LXAnyModel {
+    var code: Int?
+    var msg: String?
+    var tips: String?
+    var data: [String: Any]?
+    required public init() {}
+
+    /// override var debugDescription: String { return "" }
+}
+
+open class LXBaseModel<T: HandyJSON>: LXAnyModel {
     deinit {
         dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
     }
     var code: Int?
     var msg: String?
+    var tips: String?
     var data: T?
     var fullJsonString: String?
     required public override init() {}
@@ -39,9 +56,11 @@ open class LXBaseModel<T: HandyJSON>: NSObject, HandyJSON {
     public func mapping(mapper: HelpingMapper) {
         mapper >>> self.fullJsonString
     }
+
+    /// override var debugDescription: String { return "" }
 }
 
-open class LXBaseListModel<T: HandyJSON>: NSObject, HandyJSON {
+open class LXBaseListModel<T: HandyJSON>: LXAnyModel {
     deinit {
         dlog("---------- >>>ModelList: \(self.xl_typeName)\t\tdeinit <<<----------")
     }

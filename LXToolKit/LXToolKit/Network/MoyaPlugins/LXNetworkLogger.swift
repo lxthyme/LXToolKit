@@ -16,7 +16,7 @@ func networkLogger(_ separator: String, terminator: String, items: Any...) {
     }
 }
 
-let networkPlugin = LXNetworkLogger(
+public let networkPlugin = LXNetworkLogger(
 //let networkPlugin = NetworkLoggerPlugin(
     verbose: true,
     cURL: true,

@@ -12,7 +12,7 @@ import RxSwift
 import HandyJSON
 
 // MARK: - <#Title...#>
-extension ObservableType where Element == Response {
+public extension ObservableType where Element == Response {
 //    func mapModelArray<T: HandyJSON>(_ type: T.Type, hud: Bool = false) ->Observable<[T]> {
 //        return flatMap { response -> Observable<[T]> in
 //            return Observable.just(try response.mapModel(T.self))
@@ -26,12 +26,14 @@ extension ObservableType where Element == Response {
     func mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
         return flatMap { response -> Observable<LXBaseModel<T>> in
             return Observable.just(try response.mapModel(T.self))
+//            return Observable.just(try response.mapBaseModel(T.self))
         }
     }
 
     func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<LXBaseListModel<T>>> {
         return flatMap { response -> Observable<LXBaseModel<LXBaseListModel<T>>> in
             return Observable.just(try response.mapModelArray(T.self))
+//            return Observable.just(try response.mapBaseModelArray(T.self))
         }
     }
 }

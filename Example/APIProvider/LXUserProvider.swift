@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LXToolKit
 
 enum LXUserProvider: APIService {
     case newUserFloat
