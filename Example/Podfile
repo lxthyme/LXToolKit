@@ -4,6 +4,9 @@ platform:ios, '10.0'
 
 target 'LXToolKit_Example' do
   pod 'LXToolKit', :path => '../'
+
+#  pod 'RxSwift'
+#pod 'Moya/RxSwift', '~> 13.0'
   
 end
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Result
+//import Result
 
 public class LXFileManager: NSObject {
     public static let instance = LXFileManager()
@@ -39,8 +39,8 @@ public extension LXFileManager {
     static func directory(_ type: FileManager.SearchPathDirectory) -> String {
         return NSSearchPathForDirectoriesInDomains(type, .userDomainMask, true).first!
     }
-    func run(after: TimeInterval, done: @escaping (Result<Timer, NoError>) -> Void ) {
-    }
+//    func run(after: TimeInterval, done: @escaping (Result<Timer, NoError>) -> Void ) {
+//    }
     static func removeItem(atPath path: String, completion: ((Result<Bool, LXError>) ->Void)?) {
         do {
             try fm.removeItem(atPath: path)

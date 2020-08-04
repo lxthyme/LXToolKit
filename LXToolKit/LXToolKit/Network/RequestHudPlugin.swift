@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-import Result
+//import Result
 
 final class RequestHudPlugin: PluginType {
     private let vc: UIViewController

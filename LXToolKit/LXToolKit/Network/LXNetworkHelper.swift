@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import enum Result.Result
+//import enum Result.Result
 import Moya
 
 //let LXNetworkHelper_Base_URL = "http://local.api.vaffle.com"
@@ -32,7 +32,7 @@ let failureEndpointClosure = { (target: LXService) ->Endpoint in
     return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: sampleResponseClosure, method: target.method, task: target.task, httpHeaderFields: target.headers)
 }
 
-let requestClosure = { (endpoint: Endpoint, closure: (Result<URLRequest, MoyaError>) ->Void) ->Void in
+let requestClosure = { (endpoint: Endpoint, closure: @escaping (Result<URLRequest, MoyaError>) ->Void) ->Void in
     do {
         let urlRequest = try endpoint.urlRequest()
         closure(.success(urlRequest))
@@ -45,15 +45,16 @@ let requestClosure = { (endpoint: Endpoint, closure: (Result<URLRequest, MoyaErr
     }
 }
 
-let manager = { () -> SessionManager in
+let manager = { () -> Alamofire.Session in
     let configuration = URLSessionConfiguration.default
-    configuration.httpAdditionalHeaders = Alamofire.SessionManager.defaultHTTPHeaders
+    configuration.headers = .default
     configuration.timeoutIntervalForRequest = 30 // as seconds, you can set your request timeout
     configuration.timeoutIntervalForResource = 30 // as seconds, you can set your resource timeout
     configuration.requestCachePolicy = .useProtocolCachePolicy
     
-    let manager = Alamofire.SessionManager(configuration: configuration)
-    manager.startRequestsImmediately = false
+    let manager = Alamofire.Session(configuration: configuration)
+//    manager.startRequestsImmediately = false
+//    manager.startRequestsImmediately
     return manager
 }()
 
@@ -81,12 +82,20 @@ let multiTargetEndpointClosure = { (target: MultiTarget) ->Endpoint in
     let defaultEndPoint: Endpoint = MoyaProvider.defaultEndpointMapping(for: target)
     return defaultEndPoint
 }
+//let provider = MoyaProvider(
+//    endpointClosure: <#T##MoyaProvider<_>.EndpointClosure##MoyaProvider<_>.EndpointClosure##(_) -> Endpoint#>,
+//    requestClosure: <#T##MoyaProvider<_>.RequestClosure##MoyaProvider<_>.RequestClosure##(Endpoint, @escaping MoyaProvider<_>.RequestResultClosure) -> Void#>,
+//    stubClosure: <#T##MoyaProvider<_>.StubClosure##MoyaProvider<_>.StubClosure##(_) -> StubBehavior#>,
+//    callbackQueue: <#T##DispatchQueue?#>,
+//    session: <#T##Session#>,
+//    plugins: <#T##[PluginType]#>,
+//    trackInflights: <#T##Bool#>)
 let provider = MoyaProvider<MultiTarget>(
     endpointClosure: multiTargetEndpointClosure,
     requestClosure: requestClosure,
     stubClosure: MoyaProvider.neverStub,
     callbackQueue: nil,
-    manager: manager,
+    session: manager,
     plugins: [
         AuthPlugin(tokenClosure: { return source.token })
     ], trackInflights: false)

@@ -24,29 +24,28 @@ public class LXNetworkReachabilityManager: NSObject {
 
 public extension LXNetworkReachabilityManager {
     /// 监听网络状态
-    func monitorNetworkStatus() {
-        let manager = NetworkReachabilityManager(host: "http://baidu.com")
-
-        manager?.listener = {[weak self] status in
-            guard let `self` = self else { return }
-            switch status {
-            case .unknown:
-                dlog("当前网络：未知")
-            case .notReachable:
-                dlog("当前网络：无网络")
-            case .reachable(.wwan):
-                dlog("当前网络：蜂窝网络")
-            case .reachable(.ethernetOrWiFi):
-                dlog("当前网络：无线网络")
-            }
-
-            if self.networkReachabilityStatus != status {
-                self.networkReachabilityStatus = status
-                /// 网络改变通知
-                NotificationCenter.default.post(name: .networkReachabilityDidChanged, object: status)
-            }
-        }
-
-        manager?.startListening()
-    }
+//    func monitorNetworkStatus() {
+//        let manager = NetworkReachabilityManager(host: "http://baidu.com")
+//        manager?.listener = {[weak self] status in
+//            guard let `self` = self else { return }
+//            switch status {
+//            case .unknown:
+//                dlog("当前网络：未知")
+//            case .notReachable:
+//                dlog("当前网络：无网络")
+//            case .reachable(.wwan):
+//                dlog("当前网络：蜂窝网络")
+//            case .reachable(.ethernetOrWiFi):
+//                dlog("当前网络：无线网络")
+//            }
+//
+//            if self.networkReachabilityStatus != status {
+//                self.networkReachabilityStatus = status
+//                /// 网络改变通知
+//                NotificationCenter.default.post(name: .networkReachabilityDidChanged, object: status)
+//            }
+//        }
+//
+//        manager?.startListening()
+//    }
 }

@@ -13,6 +13,23 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		879B56C0593324DB17146FA0 /* Pods_LXToolKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */; };
+		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
+		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
+		BEC818AE249859700002576B /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818AD249859700002576B /* API.swift */; };
+		BEC818B024985E300002576B /* LXApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818AF24985E300002576B /* LXApiProvider.swift */; };
+		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
+		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
+		BEC818B92499BAA90002576B /* LXBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B82499BAA90002576B /* LXBaseModel.swift */; };
+		BEC818BB2499C2F90002576B /* LXBaseApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818BA2499C2F90002576B /* LXBaseApiProvider.swift */; };
+		BEC818BE2499C3760002576B /* LXNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818BD2499C3760002576B /* LXNetworkLogger.swift */; };
+		BEC818C02499C3A50002576B /* LXEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818BF2499C3A50002576B /* LXEndpoint.swift */; };
+		BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C22499C43B0002576B /* LXMainProvider.swift */; };
+		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
+		BEC818C72499ED3F0002576B /* LXCredentialsPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C62499ED3F0002576B /* LXCredentialsPlugin.swift */; };
+		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
+		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
+		BEC818CE249A33E80002576B /* LXLXBaseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CD249A33E80002576B /* LXLXBaseListModel.swift */; };
+		BEC818D0249B2F0D0002576B /* ObservableType + mapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CF249B2F0D0002576B /* ObservableType + mapModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +46,23 @@
 		8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNewUserFloat.swift; sourceTree = "<group>"; };
+		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
+		BEC818AD249859700002576B /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BEC818AF24985E300002576B /* LXApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiProvider.swift; sourceTree = "<group>"; };
+		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
+		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
+		BEC818B82499BAA90002576B /* LXBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseModel.swift; sourceTree = "<group>"; };
+		BEC818BA2499C2F90002576B /* LXBaseApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseApiProvider.swift; sourceTree = "<group>"; };
+		BEC818BD2499C3760002576B /* LXNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNetworkLogger.swift; sourceTree = "<group>"; };
+		BEC818BF2499C3A50002576B /* LXEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEndpoint.swift; sourceTree = "<group>"; };
+		BEC818C22499C43B0002576B /* LXMainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMainProvider.swift; sourceTree = "<group>"; };
+		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
+		BEC818C62499ED3F0002576B /* LXCredentialsPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCredentialsPlugin.swift; sourceTree = "<group>"; };
+		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
+		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
+		BEC818CD249A33E80002576B /* LXLXBaseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLXBaseListModel.swift; sourceTree = "<group>"; };
+		BEC818CF249B2F0D0002576B /* ObservableType + mapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType + mapModel.swift"; sourceTree = "<group>"; };
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -49,6 +83,10 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				BEC818CA2499F5D40002576B /* Model */,
+				BEC818C12499C4270002576B /* APIProvider */,
+				BEC818AC249859360002576B /* API */,
+				BEC818B12498686F0002576B /* ApiTest */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for LXToolKit */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -108,6 +146,59 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BEC818AC249859360002576B /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BEC818BC2499C35E0002576B /* MoyaPlugins */,
+				BEC818AD249859700002576B /* API.swift */,
+				BEC818C42499C6D00002576B /* API_ENV.swift */,
+				BEC818AF24985E300002576B /* LXApiProvider.swift */,
+				BEC818B82499BAA90002576B /* LXBaseModel.swift */,
+				BEC818CD249A33E80002576B /* LXLXBaseListModel.swift */,
+				BEC818BA2499C2F90002576B /* LXBaseApiProvider.swift */,
+				BEC818CF249B2F0D0002576B /* ObservableType + mapModel.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		BEC818B12498686F0002576B /* ApiTest */ = {
+			isa = PBXGroup;
+			children = (
+				BEC818B4249868AD0002576B /* LXApiTestVC.swift */,
+			);
+			path = ApiTest;
+			sourceTree = "<group>";
+		};
+		BEC818BC2499C35E0002576B /* MoyaPlugins */ = {
+			isa = PBXGroup;
+			children = (
+				BEC818BD2499C3760002576B /* LXNetworkLogger.swift */,
+				BEC818BF2499C3A50002576B /* LXEndpoint.swift */,
+				BEC818C62499ED3F0002576B /* LXCredentialsPlugin.swift */,
+			);
+			path = MoyaPlugins;
+			sourceTree = "<group>";
+		};
+		BEC818C12499C4270002576B /* APIProvider */ = {
+			isa = PBXGroup;
+			children = (
+				BEC818C22499C43B0002576B /* LXMainProvider.swift */,
+				BEC818C82499F5130002576B /* LXUserProvider.swift */,
+			);
+			path = APIProvider;
+			sourceTree = "<group>";
+		};
+		BEC818CA2499F5D40002576B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEC818B62499BA870002576B /* LXZenModel.swift */,
+				BEC818CB2499F6350002576B /* LXUserModel.swift */,
+				BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */,
+				BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +236,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LX;
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = CocoaPods;
@@ -222,7 +314,6 @@
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
@@ -233,7 +324,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -249,8 +339,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC818C72499ED3F0002576B /* LXCredentialsPlugin.swift in Sources */,
+				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
+				BEC818CE249A33E80002576B /* LXLXBaseListModel.swift in Sources */,
+				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				BEC818AE249859700002576B /* API.swift in Sources */,
+				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
+				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
+				BEC818D0249B2F0D0002576B /* ObservableType + mapModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BEC818B024985E300002576B /* LXApiProvider.swift in Sources */,
+				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
+				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
+				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
+				BEC818BB2499C2F90002576B /* LXBaseApiProvider.swift in Sources */,
+				BEC818B92499BAA90002576B /* LXBaseModel.swift in Sources */,
+				BEC818C02499C3A50002576B /* LXEndpoint.swift in Sources */,
+				BEC818BE2499C3760002576B /* LXNetworkLogger.swift in Sources */,
+				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

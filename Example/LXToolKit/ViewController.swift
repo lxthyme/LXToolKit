@@ -11,16 +11,23 @@ import LXToolKit
 
 class ViewController: LXBaseVC {
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let vc = LXApiTestVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let _ = LXBaseVC()
-        let identifier = self.xl_typeName
-        dlog("identifier: \(identifier)")
+//        let _ = LXBaseVC()
+//        let identifier = self.xl_typeName
+//        dlog("identifier: \(identifier)")
 
 //        testArray()
-        testDictionary()
+//        testDictionary()
     }
 }
 

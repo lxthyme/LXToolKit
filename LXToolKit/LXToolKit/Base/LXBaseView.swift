@@ -9,6 +9,9 @@
 import UIKit
 
 open class LXBaseView: UIView {
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     deinit {
         dlog("---------- >>>View: \(self.xl_typeName)\t\tdeinit <<<----------")
     }

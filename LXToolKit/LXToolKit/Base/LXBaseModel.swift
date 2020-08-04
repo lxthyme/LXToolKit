@@ -9,6 +9,15 @@
 import Foundation
 import HandyJSON
 
+enum RxSwiftMoyaError: Error {
+    case RxSwiftMoyaNoRepresentor
+    case RxSwiftMoyaNotSuccessfulHTTP
+    case RxSwiftMoyaNoData
+    case RxSwiftMoyaCouldNotMakeObjectError
+    case RxSwiftMoyaBizError(resultCode: Int?, resultMsg: String?)
+    case RXSwiftMoyaNoNetwork
+}
+
 public enum NetWorkError: Error {
     case errorCode
     case noData
@@ -40,6 +49,10 @@ open class LXBaseListModel<T: HandyJSON>: NSObject, HandyJSON {
     var total_page: UInt?
 
     var list: [T]?
+
+    /// v4.0.5
+    /// 帮助中心问题列表【POST】
+    var officialUuid: String?
 
     required public override init() {}
 

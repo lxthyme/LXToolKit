@@ -10,10 +10,18 @@ import UIKit
 
 // 是否是iPhone X系列
 public let XL_IS_iPhoneX: Bool = (
-    (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode)) ? __CGSizeEqualToSize(CGSize(width: 375, height:812), UIScreen.main.bounds.size) : false) ||
-        (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode)) ? __CGSizeEqualToSize(CGSize(width: 812, height:375), UIScreen.main.bounds.size) : false) ||
-        (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode)) ? __CGSizeEqualToSize(CGSize(width: 414, height:896), UIScreen.main.bounds.size) : false) ||
-        (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode)) ? __CGSizeEqualToSize(CGSize(width: 896, height:414), UIScreen.main.bounds.size) : false))
+    (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode))
+        ? __CGSizeEqualToSize(CGSize(width: 375, height:812), UIScreen.main.bounds.size)
+        : false)
+        || (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode))
+            ? __CGSizeEqualToSize(CGSize(width: 812, height:375), UIScreen.main.bounds.size)
+            : false)
+        || (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode))
+            ? __CGSizeEqualToSize(CGSize(width: 414, height:896), UIScreen.main.bounds.size)
+            : false)
+        || (UIScreen.instancesRespond(to: #selector(getter: UIScreen.main.currentMode))
+            ? __CGSizeEqualToSize(CGSize(width: 896, height:414), UIScreen.main.bounds.size)
+            : false))
 
 // 导航栏+状态栏高度
 public let XL_NavBar_Height: CGFloat = XL_IS_iPhoneX ? 88.0 : 64.0
