@@ -1,6 +1,0 @@
-framework module Pods_LXToolKit_Example {
-  umbrella header "Pods-LXToolKit_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
