@@ -249,7 +249,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				83A38D828BEF1C0AEF58ADC7 /* [CP] Embed Pods Frameworks */,
-				BEA9379B24E110120048D644 /* ShellScript */,
+				BEA9379B24E110120048D644 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -364,7 +364,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BEA9379B24E110120048D644 /* ShellScript */ = {
+		BEA9379B24E110120048D644 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -373,13 +373,14 @@
 			);
 			inputPaths = (
 			);
+			name = Swiftlint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint > /dev/null; then\n        swiftlint\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint to lint!\"\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
