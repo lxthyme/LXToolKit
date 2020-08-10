@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		247A457CCC2FC61FA5CEE7BD /* LXRequiredVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247A44B7C5B918EC0E0D3B28 /* LXRequiredVC.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		1555570000192478D0FB3DF7 /* Pods-LXToolKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		247A44B7C5B918EC0E0D3B28 /* LXRequiredVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXRequiredVC.swift; sourceTree = "<group>"; };
 		3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LXToolKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXToolKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */,
 				BEA9379724E0E9620048D644 /* LXRequiredVC1.h */,
 				BEA9379824E0E9620048D644 /* LXRequiredVC1.m */,
+				247A44B7C5B918EC0E0D3B28 /* LXRequiredVC.swift */,
 			);
 			path = "08-10-LiftCycle_required";
 			sourceTree = "<group>";
@@ -246,7 +249,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				83A38D828BEF1C0AEF58ADC7 /* [CP] Embed Pods Frameworks */,
-				BEA9379A24E0EC7E0048D644 /* ShellScript */,
+				BEA9379B24E110120048D644 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -361,7 +364,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BEA9379A24E0EC7E0048D644 /* ShellScript */ = {
+		BEA9379B24E110120048D644 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -404,6 +407,7 @@
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */,
 				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
+				247A457CCC2FC61FA5CEE7BD /* LXRequiredVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
