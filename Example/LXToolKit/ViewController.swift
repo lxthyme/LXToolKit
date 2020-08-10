@@ -18,7 +18,8 @@ class ViewController: LXBaseVC {
 
 //        let vc = LXMultiRequestTestVC()
 //        let vc = LXOffScreenVC()
-        let vc = LXResolveIMPVC()
+//        let vc = LXResolveIMPVC()
+        let vc = LXRequiredVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
