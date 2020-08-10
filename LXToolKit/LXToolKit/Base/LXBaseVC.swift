@@ -70,7 +70,7 @@ extension LXBaseVC {}
 
 // MARK: - UITableView init
 private extension LXBaseVC {
-    func lazyTableView(style: UITableView.Style) ->UITableView {
+    func lazyTableView(style: UITableView.Style) -> UITableView {
         let t = UITableView(frame: .zero, style: style)
         t.rowHeight = UITableView.automaticDimension
         t.estimatedRowHeight = UITableView.automaticDimension
@@ -86,7 +86,7 @@ private extension LXBaseVC {
 
         return t
     }
-    func lazyLayout() ->UICollectionViewFlowLayout {
+    func lazyLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -105,7 +105,7 @@ private extension LXBaseVC {
 
         return layout
     }
-    func lazyCollectionView(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()) ->UICollectionView {
+    func lazyCollectionView(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()) -> UICollectionView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 //        cv.dataSource = self
 //        cv.delegate = self

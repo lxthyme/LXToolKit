@@ -132,7 +132,6 @@ extension URLSessionSample: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) { }
 }
 
-
 // MARK: - URLSessionTaskDelegate[8] - 任务总代理
 extension URLSessionSample: URLSessionTaskDelegate {
     /*
@@ -247,7 +246,7 @@ extension URLSessionSample {
     }
 
     /// 获取客户端证书相关信息
-    func extractIdentity() ->IdentityAndTrust {
+    func extractIdentity() -> IdentityAndTrust {
         var identityAndTrust: IdentityAndTrust!
         var securityError: OSStatus = errSecSuccess
 
@@ -291,7 +290,6 @@ extension URLSessionSample: URLSessionDownloadDelegate {
         try? fileManager.moveItem(at: location, to: self.locationURL)
     }
 
-
     /// 监听下载任务进度
     ///
     /// - Parameters:
@@ -306,7 +304,6 @@ extension URLSessionSample: URLSessionDownloadDelegate {
         let expected = CGFloat(totalBytesExpectedToWrite)
         dlog(written, total, expected)
     }
-
 
     /*
      你可以通过 [session downloadTaskWithResumeData：resumeData]之类的方法来重新恢复一个下载任务

@@ -12,7 +12,6 @@ import RxSwift
 //import HandyJSON
 import LXToolKit
 
-
 let apiProvider = MoyaProvider<MultiTarget>(
 //    endpointClosure: MoyaProvider.defaultEndpointMapping,
 //    endpointClosure: endpointClosure,
@@ -37,7 +36,7 @@ extension LXApiProvider2: APIService2 {
             return ""
         }
     }
-    var params: [String : Any]? {
+    var params: [String: Any]? {
         switch self {
             case .zen:
                 return [:]

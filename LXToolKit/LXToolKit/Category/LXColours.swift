@@ -21,7 +21,7 @@ public extension UIColor {
     /// 给出适宜的颜色值域
     /// 0 ~ 1: 不转换格式
     /// 1 ~ 255: x / 255.0
-    private static func flex(_ f: CGFloat) ->CGFloat {
+    private static func flex(_ f: CGFloat) -> CGFloat {
         guard f > 1.0 else {
             return max(f, 0.0)
         }
@@ -31,7 +31,7 @@ public extension UIColor {
     /// 根据指定rgba, 生成相应颜色
     /// 0 ~ 1: 不转换格式
     /// 1 ~ 255: x / 255.0
-    static func rgba(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) ->UIColor {
+    static func rgba(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
         return UIColor(red: flex(red),
                        green: flex(green),
                        blue: flex(blue),
@@ -57,11 +57,11 @@ public extension UIColor {
     }
 
     convenience init(hex: String) {
-        var red:   CGFloat = 0.0
+        var red: CGFloat = 0.0
         var green: CGFloat = 0.0
-        var blue:  CGFloat = 0.0
+        var blue: CGFloat = 0.0
         var alpha: CGFloat = 1.0
-        var hex:   String = hex
+        var hex: String = hex
 
         if hex.hasPrefix("#") {
             let index = hex.index(hex.startIndex, offsetBy: 1)
@@ -71,7 +71,7 @@ public extension UIColor {
         let scanner = Scanner(string: hex)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexInt64(&hexValue) {
-            switch (hex.count) {
+            switch hex.count {
             case 3:
                 red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
                 green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
@@ -96,6 +96,6 @@ public extension UIColor {
         } else {
             print("Scan hex error")
         }
-        self.init(red:red, green:green, blue:blue, alpha:alpha)
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
 }

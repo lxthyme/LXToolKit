@@ -16,13 +16,13 @@ let LXNetworkHelper_Base_URL = "https://apitest.vaffle.com"
 
 typealias LXRequestApi = LXService
 let shouldTimeout: Bool = false
-let endpointClosure = { (target: LXRequestApi) ->Endpoint in
+let endpointClosure = { (target: LXRequestApi) -> Endpoint in
     let URL = target.baseURL.appendingPathComponent(target.path).absoluteString
     let defaultEndPoint: Endpoint = MoyaProvider.defaultEndpointMapping(for: target)
     return defaultEndPoint
 }
-let failureEndpointClosure = { (target: LXService) ->Endpoint in
-    let sampleResponseClosure = { () ->EndpointSampleResponse in
+let failureEndpointClosure = { (target: LXService) -> Endpoint in
+    let sampleResponseClosure = { () -> EndpointSampleResponse in
         if shouldTimeout {
             return .networkError(NSError())
         } else {
@@ -32,7 +32,7 @@ let failureEndpointClosure = { (target: LXService) ->Endpoint in
     return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: sampleResponseClosure, method: target.method, task: target.task, httpHeaderFields: target.headers)
 }
 
-let requestClosure = { (endpoint: Endpoint, closure: @escaping (Result<URLRequest, MoyaError>) ->Void) ->Void in
+let requestClosure = { (endpoint: Endpoint, closure: @escaping (Result<URLRequest, MoyaError>) -> Void) ->Void in
     do {
         let urlRequest = try endpoint.urlRequest()
         closure(.success(urlRequest))
@@ -51,7 +51,7 @@ let manager = { () -> Alamofire.Session in
     configuration.timeoutIntervalForRequest = 30 // as seconds, you can set your request timeout
     configuration.timeoutIntervalForResource = 30 // as seconds, you can set your resource timeout
     configuration.requestCachePolicy = .useProtocolCachePolicy
-    
+
     let manager = Alamofire.Session(configuration: configuration)
 //    manager.startRequestsImmediately = false
 //    manager.startRequestsImmediately
@@ -77,7 +77,7 @@ let source = TokenSource()
 //    /// 是否要跟踪重复网络请求
 //    trackInflights: false
 //)
-let multiTargetEndpointClosure = { (target: MultiTarget) ->Endpoint in
+let multiTargetEndpointClosure = { (target: MultiTarget) -> Endpoint in
     let URL = target.baseURL.appendingPathComponent(target.path).absoluteString
     let defaultEndPoint: Endpoint = MoyaProvider.defaultEndpointMapping(for: target)
     return defaultEndPoint
@@ -100,7 +100,6 @@ let provider = MoyaProvider<MultiTarget>(
         AuthPlugin(tokenClosure: { return source.token })
     ], trackInflights: false)
 
-
 enum LXService {
     case example
     case example2(id: Int)
@@ -109,7 +108,7 @@ enum LXService {
 
 extension LXService: TargetType {
     var baseURL: URL { return URL(string: LXNetworkHelper_Base_URL)! }
-    
+
     var path: String {
         switch self {
         case .example:
@@ -120,18 +119,18 @@ extension LXService: TargetType {
             return "example3/\(id)"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .example:
             return .get
-        case .example2(_):
+        case .example2:
             return .post
-        case .example3(_):
+        case .example3:
             return .post
         }
     }
-    
+
     var task: Task {
         switch self {
         case .example:
@@ -142,7 +141,7 @@ extension LXService: TargetType {
             return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
         }
     }
-    
+
     var sampleData: Data {
         switch self {
         case .example:
@@ -153,14 +152,13 @@ extension LXService: TargetType {
             return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".data(using: .utf8)!
         }
     }
-    
-    var headers: [String : String]? {
+
+    var headers: [String: String]? {
         return [
             "Content-Type": "application/json"
         ]
     }
-    
-    
+
 }
 
 private extension String {
@@ -171,12 +169,12 @@ private extension String {
 
 final class RequestAlertPlugin: PluginType {
     private let viewController: UIViewController
-    
+
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
+
     func willSend(_ request: RequestType, target: TargetType) { }
-    
+
 //    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) { }
 }

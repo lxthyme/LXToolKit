@@ -11,7 +11,7 @@ import LXToolKit
 
 // MARK: - <#Title...#>
 extension UIView {
-    func findSuperView() ->[UIView] {
+    func findSuperView() -> [UIView] {
         var arr: [UIView] = []
         var sv = self.superview
         while let tmp = sv {
@@ -20,7 +20,7 @@ extension UIView {
         }
         return arr
     }
-    func findCommonSuperView(view1: UIView, view2: UIView) ->[UIView] {
+    func findCommonSuperView(view1: UIView, view2: UIView) -> [UIView] {
         let v1Superviews = view1.findSuperView()
         let v2Superviews = view2.findSuperView()
         var commonSuperview: [UIView] = []

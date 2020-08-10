@@ -19,7 +19,7 @@ protocol AuthorizedTargetType: TargetType {
 }
 
 struct AuthPlugin: PluginType {
-    let tokenClosure: () ->String?
+    let tokenClosure: () -> String?
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         guard let t = target as? AuthorizedTargetType,
             t.needAuth,

@@ -17,7 +17,7 @@ public extension UIView {
         self.opacityAnimation(from: 0, to: 1, duration: duration, timingFunction: timingFunction, key: key)
         self.scaleAnimation(from: 0, to: 1, duration: duration, timingFunction: timingFunction, key: key)
     }
-    func flipFromBottomAnimation(from: Float, to: Float,duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.flipFromBottomAnimation") {
+    func flipFromBottomAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.flipFromBottomAnimation") {
         let anim = CABasicAnimation(keyPath: "position.y")
         anim.fromValue = from
         anim.toValue = to
@@ -27,7 +27,7 @@ public extension UIView {
         anim.timingFunction = CAMediaTimingFunction(name: timingFunction)
         self.layer.add(anim, forKey: key)
     }
-    func opacityAnimation(from: Float, to: Float,duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.opacity") {
+    func opacityAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.opacity") {
         let anim = CABasicAnimation(keyPath: "opacity")
         anim.fromValue = from
         anim.toValue = to
@@ -37,7 +37,7 @@ public extension UIView {
         anim.timingFunction = CAMediaTimingFunction(name: timingFunction)
         self.layer.add(anim, forKey: key)
     }
-    func scaleAnimation(from: Float, to: Float,duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.transform.scale") {
+    func scaleAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.transform.scale") {
         let anim = CABasicAnimation(keyPath: "transform.scale")
         anim.fromValue = from
         anim.toValue = to

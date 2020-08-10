@@ -56,7 +56,7 @@ extension PasswordRule.CharacterClass: CustomStringConvertible {
 @available(iOS 12.0, *)
 public extension UITextInputPasswordRules {
     convenience init(rules: [PasswordRule]) {
-        let descriptor = rules.map{ $0.description }
+        let descriptor = rules.map { $0.description }
             .joined(separator: "; ")
 
         self.init(descriptor: descriptor)

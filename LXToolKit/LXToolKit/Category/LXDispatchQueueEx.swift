@@ -20,7 +20,7 @@ extension DispatchQueue {
     }
 
     private static var _onceTracker = [String]()
-    public class func lx_once(_ token: String, block:()->Void) {
+    public class func lx_once(_ token: String, block:() -> Void) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
 

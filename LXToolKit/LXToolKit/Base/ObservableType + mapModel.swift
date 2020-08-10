@@ -44,7 +44,7 @@ extension Response {
         guard (200..<300) ~= statusCode else {
             throw RxMoyaError.badService
         }
-        
+
         guard let json = try mapJSON() as? [String: Any],
             let model = LXBaseModel<T>.deserialize(from: json) else {
                 throw RxMoyaError.invalidJSON
@@ -70,7 +70,6 @@ extension Response {
             let model = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json) else {
                 throw RxMoyaError.invalidJSON
         }
-
 
         guard model.code != 10000 else {
             throw RxMoyaError.codeInvalid(code: model.code,

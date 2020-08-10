@@ -41,7 +41,7 @@ public extension LXFileManager {
     }
 //    func run(after: TimeInterval, done: @escaping (Result<Timer, NoError>) -> Void ) {
 //    }
-    static func removeItem(atPath path: String, completion: ((Result<Bool, LXError>) ->Void)?) {
+    static func removeItem(atPath path: String, completion: ((Result<Bool, LXError>) -> Void)?) {
         do {
             try fm.removeItem(atPath: path)
             completion?(.success(true))

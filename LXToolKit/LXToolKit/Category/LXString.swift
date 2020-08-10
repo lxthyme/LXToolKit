@@ -9,14 +9,14 @@ import UIKit
 
 public extension String {
     /// 从字符串初始化一个 VC 实例
-    func getVCInstance<T: UIViewController>() ->T? {
+    func getVCInstance<T: UIViewController>() -> T? {
         return self.getObjcInstance()
     }
-    func getInstance<T>() ->T? {
+    func getInstance<T>() -> T? {
         return self.getObjcInstance() as? T
     }
     /// 从字符串初始化一个 NSObject 实例
-    func getObjcInstance<T: NSObject>() ->T? {
+    func getObjcInstance<T: NSObject>() -> T? {
         guard let nameSpace = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String,
             let cls = NSClassFromString(nameSpace + "." + self),
             let objType = cls as? T.Type else { return nil }
@@ -43,7 +43,7 @@ public extension String {
         let merge = zip(self.unicodeName, self.unicodeValue).map { $0 }
         return (length: (self as NSString).length, count: self.count, utf8: self.utf8.count, utf16: self.utf16.count, unicode: merge)
     }
-    func unicodeEqual(to r: String) ->UnicodeEqualInfo {
+    func unicodeEqual(to r: String) -> UnicodeEqualInfo {
         let e0 = self == r
         let e1 = (self as NSString) == (r as NSString)
         let e2 = self.elementsEqual(r)
@@ -51,7 +51,7 @@ public extension String {
         let e4 = self.utf16.elementsEqual(r.utf16)
         return (e0, nsstring: e1, equal: e2, utf8: e3, utf16: e4)
     }
-    func unicodeEqual(l: String, r: String) ->UnicodeEqualInfo {
+    func unicodeEqual(l: String, r: String) -> UnicodeEqualInfo {
         return l.unicodeEqual(to: r)
     }
 }
@@ -70,7 +70,7 @@ public extension Unicode.Scalar {
 }
 
 public extension String {
-    func wrapped(after: Int = 70) ->String {
+    func wrapped(after: Int = 70) -> String {
         var i = 0
         let lines = self.split(omittingEmptySubsequences: false) { char in
             switch char {
@@ -87,7 +87,7 @@ public extension String {
     }
 }
 public extension Collection where Element: Equatable {
-    func split<S: Sequence>(separators: S) ->[SubSequence] where Element == S.Element {
+    func split<S: Sequence>(separators: S) -> [SubSequence] where Element == S.Element {
         return split { separators.contains($0) }
     }
 }

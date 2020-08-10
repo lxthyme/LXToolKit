@@ -10,7 +10,7 @@ import Foundation
 
 public extension UIView {
     /// 通过view获取控制器
-    func findVC() ->UIViewController? {
+    func findVC() -> UIViewController? {
         var target: UIResponder? = self as UIResponder
         while target != nil {
             target = target?.next
@@ -20,10 +20,10 @@ public extension UIView {
     }
 
     /// 获取当前控制器
-    static func findVC() ->UIViewController? {
+    static func findVC() -> UIViewController? {
         guard let window = UIApplication.shared.windows.first else { return nil}
 
-        var tempView: UIView? = nil
+        var tempView: UIView?
         for subView in window.subviews {
             if subView.classForCoder.description() == "UILayoutContainerView" {
                 tempView = subView

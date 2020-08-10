@@ -25,7 +25,7 @@ class ViewController: LXBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
 //        let _ = LXBaseVC()
 //        let identifier = self.xl_typeName
 //        dlog("identifier: \(identifier)")
@@ -205,7 +205,7 @@ extension ViewController {
 }
 
 extension String {
-    func versionToInt() ->[Int] {
+    func versionToInt() -> [Int] {
         return self.components(separatedBy: ".")
             .map { Int($0) ?? 0 }
     }

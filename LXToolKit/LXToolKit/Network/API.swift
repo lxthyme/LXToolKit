@@ -37,12 +37,12 @@ public extension APIService {
     var sampleData: Data { return "{\"code\":233,\"data\":{\"a\":1,\"b\":\"2\",\"c\":3}}".data(using: .utf8)! }
     var path: String { return params?.0 ?? "" }
     var task: Task { return .requestParameters(parameters: params?.1 ?? [:], encoding: JSONEncoding.default) }
-    var headers: [String : String]? { return ["Content-type": "application/json"] }
+    var headers: [String: String]? { return ["Content-type": "application/json"] }
 }
 
 public extension APIService2 {
     var baseURL: URL { return URL(string: "")! }
-    var headers: [String : String]? { return ["Content-type": "application/json"] }
+    var headers: [String: String]? { return ["Content-type": "application/json"] }
     var method: Moya.Method { return .post }
     var task: Task { return .requestParameters(parameters: params ?? [:], encoding: JSONEncoding.default) }
     var sampleData: Data { return "{}".data(using: .utf8)! }

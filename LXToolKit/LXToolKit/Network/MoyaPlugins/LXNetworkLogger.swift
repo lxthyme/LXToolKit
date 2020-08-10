@@ -25,7 +25,6 @@ public let networkPlugin = LXNetworkLogger(
     requestDataFormatter: nil,
     responseDataFormatter: nil)
 
-
 /// Logs network activity (outgoing requests and incoming responses).
 public final class LXNetworkLogger: PluginType {
     fileprivate let loggerId = "Moya_Logger"

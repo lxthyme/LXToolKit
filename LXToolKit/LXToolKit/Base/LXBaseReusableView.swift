@@ -18,7 +18,7 @@ open class LXBaseReusableView: UICollectionReusableView {
         super.init(frame: frame)
 //        dlog("---------->>>CollectionReusableView \(self.xl_typeName)\t\tinit ----------")
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

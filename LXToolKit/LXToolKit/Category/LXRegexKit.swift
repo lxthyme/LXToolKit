@@ -28,13 +28,13 @@ public extension LXRegexKit {
 }
 
 public extension LXRegexKit {
-    static func evaluate(_ string: String, regex: String) ->Bool {
+    static func evaluate(_ string: String, regex: String) -> Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
 
         return predicate.evaluate(with: string)
     }
 
-    static func iss(_ string: String, _ regex: LXRegexKit.Validator) ->Bool {
+    static func iss(_ string: String, _ regex: LXRegexKit.Validator) -> Bool {
         guard !string.isEmpty, !string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             return false
         }
@@ -45,27 +45,27 @@ public extension LXRegexKit {
 
 public extension LXRegexKit {
     /// 验证是否是纯数字
-    static func isAllNumber(string: String, regex: LXRegexKit.Validator = .number) ->Bool {
+    static func isAllNumber(string: String, regex: LXRegexKit.Validator = .number) -> Bool {
         return iss(string, regex)
     }
     /// 验证手机号码
-    static func isTel(string: String, regex: LXRegexKit.Validator = .tel) ->Bool {
+    static func isTel(string: String, regex: LXRegexKit.Validator = .tel) -> Bool {
         return iss(string, regex)
     }
     /// 验证身份证号码
-    static func isIdCard(string: String, regex: LXRegexKit.Validator = .idCard) ->Bool {
+    static func isIdCard(string: String, regex: LXRegexKit.Validator = .idCard) -> Bool {
         return iss(string, regex)
     }
     /// 验证香港身份证号码
-    static func isHKIdCard(string: String, regex: LXRegexKit.Validator = .hkIdCard) ->Bool {
+    static func isHKIdCard(string: String, regex: LXRegexKit.Validator = .hkIdCard) -> Bool {
         return iss(string, regex)
     }
     /// 验证是否护照
-    static func isPassport(string: String, regex: LXRegexKit.Validator = .passport) ->Bool {
+    static func isPassport(string: String, regex: LXRegexKit.Validator = .passport) -> Bool {
         return iss(string, regex)
     }
     /// 验证密码格式（包含大写、小写、数字）
-    static func validatePassword(string: String, regex: LXRegexKit.Validator = .password) ->Bool {
+    static func validatePassword(string: String, regex: LXRegexKit.Validator = .password) -> Bool {
         return iss(string, regex)
     }
 }

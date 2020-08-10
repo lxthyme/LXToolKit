@@ -1,4 +1,3 @@
-
 //
 //  UIImage + cornerRadius.swift
 //  Alamofire
@@ -10,7 +9,7 @@ import Foundation
 
 // MARK: - <#Title...#>
 public extension UIImage {
-    func scale(with newSize: CGSize) ->UIImage? {
+    func scale(with newSize: CGSize) -> UIImage? {
         var width = self.size.width
         var height = self.size.height
         let scale = newSize.width / newSize.height
@@ -27,7 +26,7 @@ public extension UIImage {
         let img = UIImage(cgImage: imgRef2)
         return img
     }
-    func xl_cornerRadius(cornerRadius: CGSize, roundingCorners: UIRectCorner, newSize: CGSize) ->UIImage? {
+    func xl_cornerRadius(cornerRadius: CGSize, roundingCorners: UIRectCorner, newSize: CGSize) -> UIImage? {
         let originImg = scale(with: newSize)
         let bounds = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
         UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
@@ -44,10 +43,9 @@ public extension UIImage {
     }
 }
 
-
 // MARK: - <#Title...#>
 public extension UIImage {
-    func xl_corner(newSize: CGSize) ->CALayer {
+    func xl_corner(newSize: CGSize) -> CALayer {
         let layer = CALayer()
         layer.frame = CGRect(origin: .zero, size: newSize)
         layer.contentsCenter = CGRect(x: 0.5, y: 0.5, width: 0, height: 0)
@@ -57,7 +55,6 @@ public extension UIImage {
 
     }
 }
-
 
 // MARK: - <#Title...#>
 public extension UIImageView {
@@ -87,7 +84,7 @@ public enum XLScaleMode: Int {
     case aspectFill = 2
 }
 
-func XLCGRectFitWithScaleMode(rect: CGRect, size: CGSize, scaleMode: XLScaleMode) ->CGRect {
+func XLCGRectFitWithScaleMode(rect: CGRect, size: CGSize, scaleMode: XLScaleMode) -> CGRect {
     var newRect = rect.standardized
     var newSize = size
     newSize.width = newSize.width < 0 ? -newSize.width : newSize.width
@@ -131,7 +128,7 @@ func XLCGRectFitWithScaleMode(rect: CGRect, size: CGSize, scaleMode: XLScaleMode
 
 // MARK: - <#Title...#>
 public extension UIImage {
-    func xl_drawInRect(rect: CGRect,  context: CGContext, scaleMode: XLScaleMode, clipsToBounds: Bool) {
+    func xl_drawInRect(rect: CGRect, context: CGContext, scaleMode: XLScaleMode, clipsToBounds: Bool) {
         let drawRect = XLCGRectFitWithScaleMode(rect: rect, size: self.size, scaleMode: scaleMode)
         if drawRect.size.width == 0 || drawRect.size.height == 0 {
             return
@@ -147,7 +144,7 @@ public extension UIImage {
             self.draw(in: drawRect)
         }
     }
-    func xl_resizeImage(with newSize: CGSize, scaleMode: XLScaleMode) ->UIImage? {
+    func xl_resizeImage(with newSize: CGSize, scaleMode: XLScaleMode) -> UIImage? {
         if newSize.width <= 0 || newSize.height <= 0 { return nil }
 
         let uiformat = UIGraphicsImageRendererFormat()
@@ -175,7 +172,7 @@ public extension UIImage {
 //            return
 //        }
     }
-    func xl_imageByRoundCornerRadius(radius: CGFloat, corner: UIRectCorner, borderWidth: CGFloat, borderColor: UIColor? = nil, borderLineJoin: CGLineJoin) ->UIImage? {
+    func xl_imageByRoundCornerRadius(radius: CGFloat, corner: UIRectCorner, borderWidth: CGFloat, borderColor: UIColor? = nil, borderLineJoin: CGLineJoin) -> UIImage? {
         var rectCorner: UIRectCorner = corner
 //        var masked = CACornerMask()
         if !corner.contains(.allCorners) {
@@ -218,7 +215,7 @@ public extension UIImage {
                                     byRoundingCorners: rectCorner,
                                     cornerRadii: CGSize(width: strokeRadius, height: borderWidth))
             path.close()
-            
+
             path.lineWidth = borderWidth
             path.lineJoinStyle = borderLineJoin
             borderColor?.setStroke()

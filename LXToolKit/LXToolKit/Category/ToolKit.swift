@@ -13,7 +13,7 @@ import UIKit
 /// remove switch case warning temporary
 ///
 /// - Returns: Never
-public func unimplemented() ->Never {
+public func unimplemented() -> Never {
     fatalError("TODO")
 }
 
@@ -24,7 +24,7 @@ public extension Array {
     /// eg: array[guarded: 5] ?? 0
     ///
     /// - Parameter idx: idx
-    subscript(guarded idx: Int) ->Element? {
+    subscript(guarded idx: Int) -> Element? {
         guard (startIndex..<endIndex).contains(idx) else {
             return nil
         }
