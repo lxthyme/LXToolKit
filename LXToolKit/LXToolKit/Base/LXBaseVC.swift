@@ -21,14 +21,14 @@ open class LXBaseVC: UIViewController {
 //        return ds
 //    }()
     // MARK: - initialize
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-//        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
-    }
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-//        dlog("---------- \(self.xl_typeName)\t\tinit ----------")
-    }
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+////        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
+//    }
+//    public required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+////        dlog("---------- \(self.xl_typeName)\t\tinit ----------")
+//    }
     // MARK: - Life Cycle
     //    override func viewWillAppear(_ animated: Bool) {
     //        super.viewWillAppear(animated)

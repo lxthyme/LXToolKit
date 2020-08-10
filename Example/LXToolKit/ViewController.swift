@@ -14,7 +14,11 @@ class ViewController: LXBaseVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let vc = LXApiTestVC()
+//        let vc = LXApiTestVC()
+
+//        let vc = LXMultiRequestTestVC()
+//        let vc = LXOffScreenVC()
+        let vc = LXResolveIMPVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

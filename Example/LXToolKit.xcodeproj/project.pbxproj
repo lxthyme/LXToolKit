@@ -14,8 +14,16 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		879B56C0593324DB17146FA0 /* Pods_LXToolKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */; };
 		BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622424D964EF00F9C6AC /* LXApiProvider.swift */; };
+		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
+		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
 		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
 		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
+		BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */; };
+		BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */; };
+		BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378B24DD3D370048D644 /* LXResolveTestObj.m */; };
+		BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378E24DD409B0048D644 /* LXPerson.m */; };
+		BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */; };
+		BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379824E0E9620048D644 /* LXRequiredVC1.m */; };
 		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
 		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
 		BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C22499C43B0002576B /* LXMainProvider.swift */; };
@@ -39,8 +47,21 @@
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BE80622424D964EF00F9C6AC /* LXApiProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXApiProvider.swift; sourceTree = "<group>"; };
+		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
+		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
 		BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNewUserFloat.swift; sourceTree = "<group>"; };
 		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
+		BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOffScreenVC.swift; sourceTree = "<group>"; };
+		BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXResolveIMPVC.swift; sourceTree = "<group>"; };
+		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEA9378A24DD3D370048D644 /* LXResolveTestObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXResolveTestObj.h; sourceTree = "<group>"; };
+		BEA9378B24DD3D370048D644 /* LXResolveTestObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXResolveTestObj.m; sourceTree = "<group>"; };
+		BEA9378D24DD409B0048D644 /* LXPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPerson.h; sourceTree = "<group>"; };
+		BEA9378E24DD409B0048D644 /* LXPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXPerson.m; sourceTree = "<group>"; };
+		BEA9379124E0E90A0048D644 /* LXBaseRequiredVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBaseRequiredVC.h; sourceTree = "<group>"; };
+		BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseRequiredVC.m; sourceTree = "<group>"; };
+		BEA9379724E0E9620048D644 /* LXRequiredVC1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRequiredVC1.h; sourceTree = "<group>"; };
+		BEA9379824E0E9620048D644 /* LXRequiredVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRequiredVC1.m; sourceTree = "<group>"; };
 		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
 		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
 		BEC818C22499C43B0002576B /* LXMainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMainProvider.swift; sourceTree = "<group>"; };
@@ -67,6 +88,9 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */,
+				BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */,
+				BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */,
 				BEC818CA2499F5D40002576B /* Model */,
 				BEC818C12499C4270002576B /* APIProvider */,
 				BEC818AC249859360002576B /* API */,
@@ -130,6 +154,40 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */ = {
+			isa = PBXGroup;
+			children = (
+				BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */,
+				BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */,
+				BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */,
+			);
+			path = "08-05请求依赖";
+			sourceTree = "<group>";
+		};
+		BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */,
+				BEA9378A24DD3D370048D644 /* LXResolveTestObj.h */,
+				BEA9378B24DD3D370048D644 /* LXResolveTestObj.m */,
+				BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */,
+				BEA9378D24DD409B0048D644 /* LXPerson.h */,
+				BEA9378E24DD409B0048D644 /* LXPerson.m */,
+			);
+			path = "08-07-消息转发";
+			sourceTree = "<group>";
+		};
+		BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9379124E0E90A0048D644 /* LXBaseRequiredVC.h */,
+				BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */,
+				BEA9379724E0E9620048D644 /* LXRequiredVC1.h */,
+				BEA9379824E0E9620048D644 /* LXRequiredVC1.m */,
+			);
+			path = "08-10-LiftCycle_required";
+			sourceTree = "<group>";
+		};
 		BEC818AC249859360002576B /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +246,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				83A38D828BEF1C0AEF58ADC7 /* [CP] Embed Pods Frameworks */,
+				BEA9379A24E0EC7E0048D644 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -212,7 +271,7 @@
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = NPZ3HL8S7P;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1160;
 					};
 				};
 			};
@@ -283,6 +342,7 @@
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -293,12 +353,30 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BEA9379A24E0EC7E0048D644 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -307,17 +385,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */,
+				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
+				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
+				BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
+				BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
+				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */,
+				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +541,7 @@
 			baseConfigurationReference = 837456649B2F9DC9C12B5090 /* Pods-LXToolKit_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = NPZ3HL8S7P;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -462,6 +549,8 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "08-07-消息转发/LXToolKit_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -472,6 +561,7 @@
 			baseConfigurationReference = 3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = NPZ3HL8S7P;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -479,6 +569,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "08-07-消息转发/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
