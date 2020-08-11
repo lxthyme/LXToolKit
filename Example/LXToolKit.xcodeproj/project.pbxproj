@@ -31,7 +31,6 @@
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
 		BECD638624E13B8B009DC206 /* LXRequiredVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD638524E13B8B009DC206 /* LXRequiredVC.swift */; };
-		BEEFACF924E15B64005381EB /* LXPost2 in Resources */ = {isa = PBXBuildFile; fileRef = BEEFACF824E15B64005381EB /* LXPost2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,7 +70,6 @@
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
 		BECD638524E13B8B009DC206 /* LXRequiredVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXRequiredVC.swift; sourceTree = "<group>"; };
-		BEEFACF824E15B64005381EB /* LXPost2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LXPost2; sourceTree = "<group>"; };
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 				BEA9379724E0E9620048D644 /* LXRequiredVC1.h */,
 				BEA9379824E0E9620048D644 /* LXRequiredVC1.m */,
 				BECD638524E13B8B009DC206 /* LXRequiredVC.swift */,
-				BEEFACF824E15B64005381EB /* LXPost2 */,
 			);
 			path = "08-10-LiftCycle_required";
 			sourceTree = "<group>";
@@ -307,7 +304,6 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				BEEFACF924E15B64005381EB /* LXPost2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
