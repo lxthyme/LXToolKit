@@ -3,3 +3,4 @@
 //
 
 #import "LXResolveTestObj.h"
+#import "LXTestStringVC.h"

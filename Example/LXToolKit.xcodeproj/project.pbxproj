@@ -13,6 +13,13 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		879B56C0593324DB17146FA0 /* Pods_LXToolKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */; };
+		BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402024E2684F00A2F841 /* LXLightedVC.swift */; };
+		BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402724E26DC300A2F841 /* LXListItemCell.swift */; };
+		BE0F402B24E26DF300A2F841 /* LXLightedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402A24E26DF300A2F841 /* LXLightedDataSource.swift */; };
+		BE0F402F24E2743A00A2F841 /* LXListItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402E24E2743A00A2F841 /* LXListItemModel.swift */; };
+		BE0F403124E2764000A2F841 /* photodata.bin in Resources */ = {isa = PBXBuildFile; fileRef = BE0F403024E2764000A2F841 /* photodata.bin */; };
+		BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12160B24E5137D007BE91E /* LXTransitionVC.swift */; };
+		BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12161824E66222007BE91E /* LXProxyTestVC.swift */; };
 		BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622424D964EF00F9C6AC /* LXApiProvider.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
@@ -24,6 +31,7 @@
 		BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378E24DD409B0048D644 /* LXPerson.m */; };
 		BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */; };
 		BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379824E0E9620048D644 /* LXRequiredVC1.m */; };
+		BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */; };
 		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
 		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
 		BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C22499C43B0002576B /* LXMainProvider.swift */; };
@@ -47,6 +55,13 @@
 		8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE0F402024E2684F00A2F841 /* LXLightedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLightedVC.swift; sourceTree = "<group>"; };
+		BE0F402724E26DC300A2F841 /* LXListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXListItemCell.swift; sourceTree = "<group>"; };
+		BE0F402A24E26DF300A2F841 /* LXLightedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLightedDataSource.swift; sourceTree = "<group>"; };
+		BE0F402E24E2743A00A2F841 /* LXListItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXListItemModel.swift; sourceTree = "<group>"; };
+		BE0F403024E2764000A2F841 /* photodata.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = photodata.bin; sourceTree = "<group>"; };
+		BE12160B24E5137D007BE91E /* LXTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTransitionVC.swift; sourceTree = "<group>"; };
+		BE12161824E66222007BE91E /* LXProxyTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXProxyTestVC.swift; sourceTree = "<group>"; };
 		BE80622424D964EF00F9C6AC /* LXApiProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXApiProvider.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
@@ -63,6 +78,8 @@
 		BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseRequiredVC.m; sourceTree = "<group>"; };
 		BEA9379724E0E9620048D644 /* LXRequiredVC1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRequiredVC1.h; sourceTree = "<group>"; };
 		BEA9379824E0E9620048D644 /* LXRequiredVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRequiredVC1.m; sourceTree = "<group>"; };
+		BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestStringVC.h; sourceTree = "<group>"; };
+		BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestStringVC.m; sourceTree = "<group>"; };
 		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
 		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
 		BEC818C22499C43B0002576B /* LXMainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMainProvider.swift; sourceTree = "<group>"; };
@@ -90,6 +107,10 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				BEC0A25724F74A0100ABD23F /* 08-27 */,
+				BE12160D24E660EC007BE91E /* 08-14-NSProxy */,
+				BE12160A24E51354007BE91E /* 08-13-Transition */,
+				BE0F401F24E2683300A2F841 /* lighted controller */,
 				BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */,
 				BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */,
 				BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */,
@@ -116,6 +137,7 @@
 		607FACD21AFB9204008FA782 /* Example for LXToolKit */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -156,6 +178,50 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE0F401F24E2683300A2F841 /* lighted controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE0F402924E26DDA00A2F841 /* Model */,
+				BE0F402624E26DA600A2F841 /* Cell */,
+				BE0F402024E2684F00A2F841 /* LXLightedVC.swift */,
+			);
+			path = "lighted controller";
+			sourceTree = "<group>";
+		};
+		BE0F402624E26DA600A2F841 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE0F402724E26DC300A2F841 /* LXListItemCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BE0F402924E26DDA00A2F841 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE0F403024E2764000A2F841 /* photodata.bin */,
+				BE0F402A24E26DF300A2F841 /* LXLightedDataSource.swift */,
+				BE0F402E24E2743A00A2F841 /* LXListItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE12160A24E51354007BE91E /* 08-13-Transition */ = {
+			isa = PBXGroup;
+			children = (
+				BE12160B24E5137D007BE91E /* LXTransitionVC.swift */,
+			);
+			path = "08-13-Transition";
+			sourceTree = "<group>";
+		};
+		BE12160D24E660EC007BE91E /* 08-14-NSProxy */ = {
+			isa = PBXGroup;
+			children = (
+				BE12161824E66222007BE91E /* LXProxyTestVC.swift */,
+			);
+			path = "08-14-NSProxy";
+			sourceTree = "<group>";
+		};
 		BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +238,6 @@
 				BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */,
 				BEA9378A24DD3D370048D644 /* LXResolveTestObj.h */,
 				BEA9378B24DD3D370048D644 /* LXResolveTestObj.m */,
-				BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */,
 				BEA9378D24DD409B0048D644 /* LXPerson.h */,
 				BEA9378E24DD409B0048D644 /* LXPerson.m */,
 			);
@@ -189,6 +254,15 @@
 				BECD638524E13B8B009DC206 /* LXRequiredVC.swift */,
 			);
 			path = "08-10-LiftCycle_required";
+			sourceTree = "<group>";
+		};
+		BEC0A25724F74A0100ABD23F /* 08-27 */ = {
+			isa = PBXGroup;
+			children = (
+				BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */,
+				BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */,
+			);
+			path = "08-27";
 			sourceTree = "<group>";
 		};
 		BEC818AC249859360002576B /* API */ = {
@@ -301,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0F403124E2764000A2F841 /* photodata.bin in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -390,11 +465,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */,
+				BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */,
 				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
+				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
+				BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */,
 				BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */,
+				BE0F402F24E2743A00A2F841 /* LXListItemModel.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
@@ -404,6 +483,9 @@
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
+				BE0F402B24E26DF300A2F841 /* LXLightedDataSource.swift in Sources */,
+				BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */,
+				BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */,
 				BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
@@ -554,7 +636,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "08-07-消息转发/LXToolKit_Example-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -574,7 +656,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "08-07-消息转发/LXToolKit_Example-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
