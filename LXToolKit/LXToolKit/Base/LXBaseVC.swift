@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 open class LXBaseVC: UIViewController {
     deinit {
@@ -20,6 +21,7 @@ open class LXBaseVC: UIViewController {
 //        let ds = Array(repeating: "", count: 20)
 //        return ds
 //    }()
+    var disposeBag = DisposeBag()
     // MARK: - initialize
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,8 +54,13 @@ open class LXBaseVC: UIViewController {
     //    }
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-//        self.edgesForExtendedLayout = []
+        self.edgesForExtendedLayout = []
+        self.automaticallyAdjustsScrollViewInsets = true
+//        if #available(iOS 11.0, *) {
+//            tableView.contentInsetAdjustmentBehavior = .never
+//        } else {
+//            self.automaticallyAdjustsScrollViewInsets = false
+//        }
     }
     override open func value(forUndefinedKey key: String) -> Any? {
         dlog("value:forUndefinedKey:::: \(key))")

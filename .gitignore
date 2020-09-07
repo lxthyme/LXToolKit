@@ -34,4 +34,18 @@ Carthage/Build
 # Note: if you ignore the Pods directory, make sure to uncomment
 # `pod install` in .travis.yml
 #
-# Pods/
+Pods/
+
+
+# App Code
+.idea
+# LXToolKit_Example.xml
+# .name
+# Example.iml
+# misc.xml
+# modules.xml
+# vcs.xml
+# xcode.xml
+
+# Swift Lint
+.swiftlint.yml

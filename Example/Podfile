@@ -6,10 +6,11 @@ target 'LXToolKit_Example' do
   pod 'LXToolKit', :path => '../'
 
 
-  pod 'SwiftLint'
+#  pod 'SwiftLint'
 #  pod 'RxSwift'
-#pod 'Moya/RxSwift', '~> 13.0'
-pod 'SDWebImage'
+#  pod 'Moya/RxSwift', '~> 13.0'
+  pod 'SDWebImage'
+  pod 'HandyJSON'
   
 end
 

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+public var dateFormatter: DateFormatter = {
+    let df = DateFormatter()
+    df.timeStyle = .medium
+    df.dateStyle = .medium
+    return df
+}()
+

@@ -1,5 +1,5 @@
 //
-//  UIViewController + ex.swift
+//  UIViewController + checkViewIsVisible.swift
 //  Alamofire
 //
 //  Created by LXThyme Jason on 2020/8/10.

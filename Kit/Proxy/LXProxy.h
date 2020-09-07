@@ -9,7 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXProxy : NSProxy
+@interface LXProxy : NSProxy {
+
+}
+/** weak target */
+@property(nonatomic,weak)id target;
+
+- (instancetype)initWithTarget:(id)target;
++ (instancetype)weakProxyWithTarget:(id)target;
 
 @end
 

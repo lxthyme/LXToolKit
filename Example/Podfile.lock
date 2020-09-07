@@ -1,24 +1,27 @@
 PODS:
-  - Alamofire (4.9.1)
-  - CryptoSwift (1.3.0)
-  - HandyJSON (5.0.1)
+  - Alamofire (5.2.2)
+  - CryptoSwift (1.3.1)
+  - HandyJSON (5.0.2)
   - LXToolKit (0.0.5):
     - CryptoSwift
     - HandyJSON (~> 5)
-    - Moya (~> 13)
-    - RxSwift (~> 5)
+    - Moya
+    - RxSwift
     - SnapKit (~> 5)
-  - Moya (13.0.1):
-    - Moya/Core (= 13.0.1)
-  - Moya/Core (13.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 4.1)
-  - Result (4.1.0)
-  - RxSwift (5.0.1)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - RxSwift (5.1.1)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - HandyJSON
   - LXToolKit (from `../`)
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
@@ -26,8 +29,8 @@ SPEC REPOS:
     - CryptoSwift
     - HandyJSON
     - Moya
-    - Result
     - RxSwift
+    - SDWebImage
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -35,15 +38,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  CryptoSwift: 1283821600233bdbeb96d7b389c3288c3bf77211
-  HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
-  LXToolKit: 4cd2d01d121badf69322d30fcfb721d55af58ebb
-  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  LXToolKit: cfc2861b4e3478e592eea8f4b924b7c6ba122805
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 4c079feb3ec0d902f00f5a20528a9561b5726036
+PODFILE CHECKSUM: 041f6a96580ea25ec911eae40ce5fb1c9f4b9b4c
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
