@@ -9,5 +9,5 @@
 import Foundation
 
 extension StringProtocol {
-    var asciiValues: [UInt8] { compactMap(\.asciiValue) }
+    var xl_asciiValues: [UInt8] { compactMap(\.asciiValue) }
 }

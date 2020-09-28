@@ -45,11 +45,11 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    NSArray<UIView *> *array = @[<#table#>];
-    [array enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.view addSubview:obj];
-    }];
-    [self masonry];
+//    NSArray<UIView *> *array = @[<#table#>];
+//    [array enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [self.view addSubview:obj];
+//    }];
+//    [self masonry];
 }
 - (void)masonry {}
 

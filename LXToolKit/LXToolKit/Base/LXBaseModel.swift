@@ -27,30 +27,20 @@ public enum NetWorkError: Error {
 }
 
 open class LXAnyModel: NSObject, HandyJSON {
+    deinit {
+        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
+    }
     required public override init() {}
 
     /// override var debugDescription: String { return "" }
 }
 
-open class BaseModel: LXAnyModel {
-    var code: Int?
-    var msg: String?
-    var tips: String?
-    var data: [String: Any]?
-    required public init() {}
-
-    /// override var debugDescription: String { return "" }
-}
-
 open class LXBaseModel<T: HandyJSON>: LXAnyModel {
-    deinit {
-        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
-    }
-    var code: Int?
-    var msg: String?
-    var tips: String?
-    var data: T?
-    var fullJsonString: String?
+    public var code: Int?
+    public var msg: String?
+    public var tips: String?
+    public var data: T?
+    public var fullJsonString: String?
     required public override init() {}
 
     public func mapping(mapper: HelpingMapper) {
@@ -61,21 +51,11 @@ open class LXBaseModel<T: HandyJSON>: LXAnyModel {
 }
 
 open class LXBaseListModel<T: HandyJSON>: LXAnyModel {
-    deinit {
-        dlog("---------- >>>ModelList: \(self.xl_typeName)\t\tdeinit <<<----------")
-    }
-    var page: UInt?
-    var total_page: UInt?
-
-    var list: [T]?
-
-    /// v4.0.5
-    /// 帮助中心问题列表【POST】
-    var officialUuid: String?
+    public var page: UInt?
+    public var total_page: UInt?
+    public var list: [T]?
 
     required public override init() {}
 
-    public func mapping(mapper: HelpingMapper) {
-//        mapper <<< self.list <-- "data.list"
-    }
+    /// override var debugDescription: String { return "" }
 }

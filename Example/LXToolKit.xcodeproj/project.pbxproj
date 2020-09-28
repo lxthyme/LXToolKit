@@ -20,9 +20,34 @@
 		BE0F403124E2764000A2F841 /* photodata.bin in Resources */ = {isa = PBXBuildFile; fileRef = BE0F403024E2764000A2F841 /* photodata.bin */; };
 		BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12160B24E5137D007BE91E /* LXTransitionVC.swift */; };
 		BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12161824E66222007BE91E /* LXProxyTestVC.swift */; };
+		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
+		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
+		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
+		BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299462518776700CFCF53 /* LXPresentVC.swift */; };
+		BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299482518796900CFCF53 /* LXTestVC.swift */; };
+		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
+		BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */; };
 		BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622424D964EF00F9C6AC /* LXApiProvider.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
+		BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */; };
+		BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */; };
+		BE97A952251D9B680061254B /* LXWikipediaImageSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94F251D9B680061254B /* LXWikipediaImageSearchView.swift */; };
+		BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A956251D9BE30061254B /* LXSearchResultViewModel.swift */; };
+		BE97A95A251D9C920061254B /* WikipediaSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A959251D9C920061254B /* WikipediaSearchResult.swift */; };
+		BE97A95C251D9D8D0061254B /* WikipediaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A95B251D9D8D0061254B /* WikipediaAPI.swift */; };
+		BE97A95E251D9E190061254B /* WikipediaPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A95D251D9E190061254B /* WikipediaPage.swift */; };
+		BE97A960251D9F640061254B /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A95F251D9F640061254B /* Dependencies.swift */; };
+		BE97A963251DA0270061254B /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A962251DA0270061254B /* Wireframe.swift */; };
+		BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A964251DB4050061254B /* HtmlParsing.swift */; };
+		BE97A967251DB7020061254B /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A966251DB7020061254B /* ImageService.swift */; };
+		BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A968251DB7510061254B /* ReachabilityService.swift */; };
+		BE97A96B251DB7690061254B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A96A251DB7690061254B /* Reachability.swift */; };
+		BE97A96D251DCF4E0061254B /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A96C251DCF4E0061254B /* DownloadableImage.swift */; };
+		BE97A96F251DD13F0061254B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A96E251DD13F0061254B /* ActivityIndicator.swift */; };
+		BE97A972251DD3CF0061254B /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A971251DD3CF0061254B /* Macro.swift */; };
+		BE97A976251DD47E0061254B /* LXKeyInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A975251DD47E0061254B /* LXKeyInstance.swift */; };
+		BE97A97B251DD69D0061254B /* UIImage + forceLazyDecompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A97A251DD69D0061254B /* UIImage + forceLazyDecompression.swift */; };
 		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
 		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
 		BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */; };
@@ -32,6 +57,21 @@
 		BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */; };
 		BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379824E0E9620048D644 /* LXRequiredVC1.m */; };
 		BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */; };
+		BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */; };
+		BEC2D2A3252080C5004C91B6 /* UIImageView + DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A2252080C5004C91B6 /* UIImageView + DownloadableImage.swift */; };
+		BEC2D2A5252082E1004C91B6 /* LXWikipediaSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A4252082E1004C91B6 /* LXWikipediaSearchCell.swift */; };
+		BEC2D2B525208CAB004C91B6 /* UIApplication + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2B425208CAB004C91B6 /* UIApplication + ex.swift */; };
+		BEC2D2F925218D74004C91B6 /* temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2F825218D74004C91B6 /* temp.swift */; };
+		BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3772521DC31004C91B6 /* API + ex.swift */; };
+		BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D37A2521DE20004C91B6 /* LXBaseViewModel.swift */; };
+		BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D37C2521DF44004C91B6 /* APIManager.swift */; };
+		BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3842521E187004C91B6 /* LXMVVMSampleVC.swift */; };
+		BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3862521E187004C91B6 /* LXMVVMSampleDataSource.swift */; };
+		BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3872521E187004C91B6 /* LXMVVMSampleModel.swift */; };
+		BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3892521E187004C91B6 /* LXMVVMSampleView.swift */; };
+		BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */; };
+		BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3952521E289004C91B6 /* LXResultModel.swift */; };
+		BEC2D3982521E32F004C91B6 /* XLBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3972521E32F004C91B6 /* XLBaseModel.swift */; };
 		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
 		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
 		BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C22499C43B0002576B /* LXMainProvider.swift */; };
@@ -62,9 +102,34 @@
 		BE0F403024E2764000A2F841 /* photodata.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = photodata.bin; sourceTree = "<group>"; };
 		BE12160B24E5137D007BE91E /* LXTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTransitionVC.swift; sourceTree = "<group>"; };
 		BE12161824E66222007BE91E /* LXProxyTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXProxyTestVC.swift; sourceTree = "<group>"; };
+		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
+		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
+		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
+		BE4299462518776700CFCF53 /* LXPresentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPresentVC.swift; sourceTree = "<group>"; };
+		BE4299482518796900CFCF53 /* LXTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTestVC.swift; sourceTree = "<group>"; };
+		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
+		BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + customSpacing.swift"; sourceTree = "<group>"; };
 		BE80622424D964EF00F9C6AC /* LXApiProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXApiProvider.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
+		BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchVC.swift; sourceTree = "<group>"; };
+		BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchViewModel.swift; sourceTree = "<group>"; };
+		BE97A94F251D9B680061254B /* LXWikipediaImageSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchView.swift; sourceTree = "<group>"; };
+		BE97A956251D9BE30061254B /* LXSearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSearchResultViewModel.swift; sourceTree = "<group>"; };
+		BE97A959251D9C920061254B /* WikipediaSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaSearchResult.swift; sourceTree = "<group>"; };
+		BE97A95B251D9D8D0061254B /* WikipediaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaAPI.swift; sourceTree = "<group>"; };
+		BE97A95D251D9E190061254B /* WikipediaPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaPage.swift; sourceTree = "<group>"; };
+		BE97A95F251D9F640061254B /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		BE97A962251DA0270061254B /* Wireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
+		BE97A964251DB4050061254B /* HtmlParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlParsing.swift; sourceTree = "<group>"; };
+		BE97A966251DB7020061254B /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		BE97A968251DB7510061254B /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
+		BE97A96A251DB7690061254B /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		BE97A96C251DCF4E0061254B /* DownloadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadableImage.swift; sourceTree = "<group>"; };
+		BE97A96E251DD13F0061254B /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		BE97A971251DD3CF0061254B /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		BE97A975251DD47E0061254B /* LXKeyInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXKeyInstance.swift; sourceTree = "<group>"; };
+		BE97A97A251DD69D0061254B /* UIImage + forceLazyDecompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + forceLazyDecompression.swift"; sourceTree = "<group>"; };
 		BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNewUserFloat.swift; sourceTree = "<group>"; };
 		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
 		BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOffScreenVC.swift; sourceTree = "<group>"; };
@@ -80,6 +145,21 @@
 		BEA9379824E0E9620048D644 /* LXRequiredVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRequiredVC1.m; sourceTree = "<group>"; };
 		BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestStringVC.h; sourceTree = "<group>"; };
 		BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestStringVC.m; sourceTree = "<group>"; };
+		BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSingleImageCell.swift; sourceTree = "<group>"; };
+		BEC2D2A2252080C5004C91B6 /* UIImageView + DownloadableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + DownloadableImage.swift"; sourceTree = "<group>"; };
+		BEC2D2A4252082E1004C91B6 /* LXWikipediaSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXWikipediaSearchCell.swift; sourceTree = "<group>"; };
+		BEC2D2B425208CAB004C91B6 /* UIApplication + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + ex.swift"; sourceTree = "<group>"; };
+		BEC2D2F825218D74004C91B6 /* temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temp.swift; sourceTree = "<group>"; };
+		BEC2D3772521DC31004C91B6 /* API + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "API + ex.swift"; path = "../Base/API + ex.swift"; sourceTree = "<group>"; };
+		BEC2D37A2521DE20004C91B6 /* LXBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseViewModel.swift; sourceTree = "<group>"; };
+		BEC2D37C2521DF44004C91B6 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		BEC2D3842521E187004C91B6 /* LXMVVMSampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleVC.swift; sourceTree = "<group>"; };
+		BEC2D3862521E187004C91B6 /* LXMVVMSampleDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleDataSource.swift; sourceTree = "<group>"; };
+		BEC2D3872521E187004C91B6 /* LXMVVMSampleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleModel.swift; sourceTree = "<group>"; };
+		BEC2D3892521E187004C91B6 /* LXMVVMSampleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleView.swift; sourceTree = "<group>"; };
+		BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleVM.swift; sourceTree = "<group>"; };
+		BEC2D3952521E289004C91B6 /* LXResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXResultModel.swift; sourceTree = "<group>"; };
+		BEC2D3972521E32F004C91B6 /* XLBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseModel.swift; sourceTree = "<group>"; };
 		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
 		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
 		BEC818C22499C43B0002576B /* LXMainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMainProvider.swift; sourceTree = "<group>"; };
@@ -107,13 +187,10 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				BEC0A25724F74A0100ABD23F /* 08-27 */,
-				BE12160D24E660EC007BE91E /* 08-14-NSProxy */,
-				BE12160A24E51354007BE91E /* 08-13-Transition */,
-				BE0F401F24E2683300A2F841 /* lighted controller */,
-				BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */,
-				BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */,
-				BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */,
+				BEC2D3812521E187004C91B6 /* LXMVVMSample */,
+				BEC2D3752521DC0B004C91B6 /* MVVM */,
+				BE258D8D25189837008E2777 /* Kit */,
+				BE4299442518770200CFCF53 /* Daily */,
 				BEC818CA2499F5D40002576B /* Model */,
 				BEC818C12499C4270002576B /* APIProvider */,
 				BEC818AC249859360002576B /* API */,
@@ -222,6 +299,99 @@
 			path = "08-14-NSProxy";
 			sourceTree = "<group>";
 		};
+		BE258D8D25189837008E2777 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BE258D8E2518983D008E2777 /* VC */,
+				BE258D8F25189841008E2777 /* View */,
+				BE258D9025189847008E2777 /* Model */,
+				BE258D9225189856008E2777 /* Network */,
+				BE258D912518984D008E2777 /* extension */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		BE258D8E2518983D008E2777 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BE258D8F25189841008E2777 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE258D9025189847008E2777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE258D912518984D008E2777 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		BE258D9225189856008E2777 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BE258DA32518BB4C008E2777 /* Model */,
+				BE258D9D2518A059008E2777 /* Moya + load.swift */,
+				BE258D9F2518A07B008E2777 /* LxNetworkError.swift */,
+				BE258DA12518A10A008E2777 /* LXTargetType.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BE258DA32518BB4C008E2777 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE4299442518770200CFCF53 /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A948251D9B680061254B /* 09-25-LXWikipediaImageSearch */,
+				BE7F5D21251B2F9E00813E0B /* 09-23 */,
+				BE4299452518771400CFCF53 /* 09-21 */,
+				BEC0A25724F74A0100ABD23F /* 08-27 */,
+				BE12160D24E660EC007BE91E /* 08-14-NSProxy */,
+				BE12160A24E51354007BE91E /* 08-13-Transition */,
+				BE0F401F24E2683300A2F841 /* lighted controller */,
+				BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */,
+				BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */,
+				BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */,
+			);
+			path = Daily;
+			sourceTree = "<group>";
+		};
+		BE4299452518771400CFCF53 /* 09-21 */ = {
+			isa = PBXGroup;
+			children = (
+				BE4299462518776700CFCF53 /* LXPresentVC.swift */,
+				BE4299482518796900CFCF53 /* LXTestVC.swift */,
+			);
+			path = "09-21";
+			sourceTree = "<group>";
+		};
+		BE7F5D21251B2F9E00813E0B /* 09-23 */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */,
+			);
+			path = "09-23";
+			sourceTree = "<group>";
+		};
 		BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +400,101 @@
 				BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */,
 			);
 			path = "08-05请求依赖";
+			sourceTree = "<group>";
+		};
+		BE97A948251D9B680061254B /* 09-25-LXWikipediaImageSearch */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D2A625208562004C91B6 /* Base */,
+				BE97A970251DD3C10061254B /* Kit */,
+				BE97A961251DA0040061254B /* Services */,
+				BE97A958251D9C6E0061254B /* WikipediaAPI */,
+				BE97A953251D9B790061254B /* ViewModel */,
+				BE97A949251D9B680061254B /* Cell */,
+				BE97A94A251D9B680061254B /* VC */,
+				BE97A94C251D9B680061254B /* Model */,
+				BE97A94E251D9B680061254B /* View */,
+			);
+			path = "09-25-LXWikipediaImageSearch";
+			sourceTree = "<group>";
+		};
+		BE97A949251D9B680061254B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */,
+				BEC2D2A4252082E1004C91B6 /* LXWikipediaSearchCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BE97A94A251D9B680061254B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */,
+				BEC2D2F825218D74004C91B6 /* temp.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BE97A94C251D9B680061254B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE97A94E251D9B680061254B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A94F251D9B680061254B /* LXWikipediaImageSearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE97A953251D9B790061254B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A956251D9BE30061254B /* LXSearchResultViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BE97A958251D9C6E0061254B /* WikipediaAPI */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A959251D9C920061254B /* WikipediaSearchResult.swift */,
+				BE97A95B251D9D8D0061254B /* WikipediaAPI.swift */,
+				BE97A95D251D9E190061254B /* WikipediaPage.swift */,
+				BE97A95F251D9F640061254B /* Dependencies.swift */,
+			);
+			path = WikipediaAPI;
+			sourceTree = "<group>";
+		};
+		BE97A961251DA0040061254B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A962251DA0270061254B /* Wireframe.swift */,
+				BE97A964251DB4050061254B /* HtmlParsing.swift */,
+				BE97A966251DB7020061254B /* ImageService.swift */,
+				BE97A968251DB7510061254B /* ReachabilityService.swift */,
+				BE97A96A251DB7690061254B /* Reachability.swift */,
+				BE97A96C251DCF4E0061254B /* DownloadableImage.swift */,
+				BE97A96E251DD13F0061254B /* ActivityIndicator.swift */,
+				BEC2D2A2252080C5004C91B6 /* UIImageView + DownloadableImage.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BE97A970251DD3C10061254B /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BE97A971251DD3CF0061254B /* Macro.swift */,
+				BE97A975251DD47E0061254B /* LXKeyInstance.swift */,
+				BE97A97A251DD69D0061254B /* UIImage + forceLazyDecompression.swift */,
+				BEC2D2B425208CAB004C91B6 /* UIApplication + ex.swift */,
+			);
+			path = Kit;
 			sourceTree = "<group>";
 		};
 		BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */ = {
@@ -263,6 +528,93 @@
 				BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */,
 			);
 			path = "08-27";
+			sourceTree = "<group>";
+		};
+		BEC2D2A625208562004C91B6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BEC2D3752521DC0B004C91B6 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3792521DC36004C91B6 /* Kit */,
+				BEC2D3762521DC18004C91B6 /* Base */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		BEC2D3762521DC18004C91B6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3972521E32F004C91B6 /* XLBaseModel.swift */,
+				BEC2D37A2521DE20004C91B6 /* LXBaseViewModel.swift */,
+				BEC2D37C2521DF44004C91B6 /* APIManager.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BEC2D3792521DC36004C91B6 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3772521DC31004C91B6 /* API + ex.swift */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		BEC2D3812521E187004C91B6 /* LXMVVMSample */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D38E2521E18F004C91B6 /* ViewModel */,
+				BEC2D3822521E187004C91B6 /* Cell */,
+				BEC2D3832521E187004C91B6 /* VC */,
+				BEC2D3852521E187004C91B6 /* Model */,
+				BEC2D3882521E187004C91B6 /* View */,
+			);
+			path = LXMVVMSample;
+			sourceTree = "<group>";
+		};
+		BEC2D3822521E187004C91B6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEC2D3832521E187004C91B6 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3842521E187004C91B6 /* LXMVVMSampleVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BEC2D3852521E187004C91B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3862521E187004C91B6 /* LXMVVMSampleDataSource.swift */,
+				BEC2D3872521E187004C91B6 /* LXMVVMSampleModel.swift */,
+				BEC2D3952521E289004C91B6 /* LXResultModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEC2D3882521E187004C91B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D3892521E187004C91B6 /* LXMVVMSampleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEC2D38E2521E18F004C91B6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BEC818AC249859360002576B /* API */ = {
@@ -419,6 +771,8 @@
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -430,6 +784,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -464,33 +820,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE97A960251D9F640061254B /* Dependencies.swift in Sources */,
+				BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */,
+				BE97A95A251D9C920061254B /* WikipediaSearchResult.swift in Sources */,
 				BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */,
+				BEC2D3982521E32F004C91B6 /* XLBaseModel.swift in Sources */,
+				BE97A952251D9B680061254B /* LXWikipediaImageSearchView.swift in Sources */,
 				BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */,
+				BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */,
+				BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */,
+				BE97A97B251DD69D0061254B /* UIImage + forceLazyDecompression.swift in Sources */,
+				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
+				BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */,
 				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
+				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
+				BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */,
 				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
 				BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */,
 				BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */,
 				BE0F402F24E2743A00A2F841 /* LXListItemModel.swift in Sources */,
+				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				BE97A96F251DD13F0061254B /* ActivityIndicator.swift in Sources */,
+				BE97A95E251D9E190061254B /* WikipediaPage.swift in Sources */,
+				BEC2D2A3252080C5004C91B6 /* UIImageView + DownloadableImage.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
+				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
+				BEC2D2F925218D74004C91B6 /* temp.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE97A972251DD3CF0061254B /* Macro.swift in Sources */,
 				BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */,
 				BECD638624E13B8B009DC206 /* LXRequiredVC.swift in Sources */,
+				BE97A95C251D9D8D0061254B /* WikipediaAPI.swift in Sources */,
+				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
+				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
 				BE0F402B24E26DF300A2F841 /* LXLightedDataSource.swift in Sources */,
 				BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */,
+				BEC2D2B525208CAB004C91B6 /* UIApplication + ex.swift in Sources */,
+				BE97A963251DA0270061254B /* Wireframe.swift in Sources */,
 				BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */,
+				BE97A976251DD47E0061254B /* LXKeyInstance.swift in Sources */,
+				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
+				BE97A96D251DCF4E0061254B /* DownloadableImage.swift in Sources */,
+				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
+				BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */,
 				BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */,
+				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
+				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
+				BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */,
+				BE97A96B251DB7690061254B /* Reachability.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
+				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
+				BE97A967251DB7020061254B /* ImageService.swift in Sources */,
+				BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */,
+				BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
+				BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */,
 				BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */,
 				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
+				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
+				BEC2D2A5252082E1004C91B6 /* LXWikipediaSearchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ open class LXBaseVC: UIViewController {
 //        let ds = Array(repeating: "", count: 20)
 //        return ds
 //    }()
-    var disposeBag = DisposeBag()
+    public var disposeBag = DisposeBag()
     // MARK: - initialize
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 //        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -62,18 +62,19 @@ open class LXBaseVC: UIViewController {
 //            self.automaticallyAdjustsScrollViewInsets = false
 //        }
     }
+}
+
+extension LXBaseVC {
     override open func value(forUndefinedKey key: String) -> Any? {
-        dlog("value:forUndefinedKey:::: \(key))")
+        dlog("-->value:forUndefinedKey:::: \(key))")
         return nil
     }
     override open func setValue(_ value: Any?, forUndefinedKey key: String) {
         super.setValue(value, forUndefinedKey: key)
 
-        dlog("setValue:forUndefinedKey:::: (\(key): \(value ?? ""))")
+        dlog("-->setValue:forUndefinedKey:::: (\(key): \(value ?? ""))")
     }
 }
-
-extension LXBaseVC {}
 
 // MARK: - UITableView init
 private extension LXBaseVC {

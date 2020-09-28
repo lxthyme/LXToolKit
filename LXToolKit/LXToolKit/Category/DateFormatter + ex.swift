@@ -7,10 +7,13 @@
 
 import Foundation
 
-public var dateFormatter: DateFormatter = {
-    let df = DateFormatter()
-    df.timeStyle = .medium
-    df.dateStyle = .medium
-    return df
-}()
+// MARK: - 👀
+public extension DateFormatter {
+    static var formatter: DateFormatter = {
+        let df = DateFormatter()
+        df.timeStyle = .medium
+        df.dateStyle = .medium
+        return df
+    }()
+}
 

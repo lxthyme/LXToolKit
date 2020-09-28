@@ -1,59 +1,61 @@
 //
-//  LXProxyTestVC.swift
+//  LXMVVMSampleVC.swift
 //  LXToolKit_Example
 //
-//  Created by LXThyme Jason on 2020/8/14.
+//  Created by LXThyme Jason on 2020/9/28.
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import LXToolKit
 
-private class MyView: UIView {
-    // MARK: UI
-    // MARK: Vaiables
+private class MyView: LXBaseView {
+    // MARK: 📌UI
+    // MARK: 🔗Vaiables
+    private weak var vc: LXMVVMSampleVC?
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    convenience init(vc: LXMVVMSampleVC) {
+        self.init(frame: .zero)
+
+        self.vc = vc
 
         prepareUI()
     }
 
 }
 
-// MARK: LoadData
+// MARK: 🌎LoadData
 extension MyView {}
 
-// MARK: Public Actions
+// MARK: 👀Public Actions
 extension MyView {}
 
-// MARK: Private Actions
+// MARK: 🔐Private Actions
 private extension MyView {}
 
-// MARK: - UI Prepare & Masonry
+// MARK: - 🍺UI Prepare & Masonryry
 private extension MyView {
     func prepareUI() {
         self.backgroundColor = .white
-        // [<#table#>].forEach(self.addSubview)
+        //[<#table#>].forEach(self.addSubview)
         masonry()
     }
 
     func masonry() {}
 }
 
-class LXProxyTestVC: LXBaseVC {
-    private typealias CustomView = MyView
-    // MARK: UI
+class LXMVVMSampleVC: LXBaseVC {
+    // MARK: 📌UI
     private lazy var myView: CustomView = {
-        return CustomView()
+        let cv = CustomView(vc: self)
+        return cv
     }()
-    deinit {
-        timer?.invalidate()
-        timer = nil
-    }
-    // MARK: Vaiables
-    var timer: Timer?
-    // MARK: Life Cycle
+    // MARK: 🔗Vaiables
+    private typealias CustomView = MyView
+    // MARK: 🛠Life Cycle
     override func loadView() {
         view = myView
     }
@@ -74,32 +76,21 @@ class LXProxyTestVC: LXBaseVC {
 
         // Do any additional setup after loading the view.
         prepareUI()
-        prepareTimer()
     }
 
 }
 
-// MARK: LoadData
-extension LXProxyTestVC {}
+// MARK: 🌎LoadData
+extension LXMVVMSampleVC {}
 
-// MARK: Public Actions
-extension LXProxyTestVC {}
+// MARK: 👀Public Actions
+extension LXMVVMSampleVC {}
 
-// MARK: Private Actions
-private extension LXProxyTestVC {
-    @objc func timeAction(userInfo: Any) {
-        dlog("date-[\(userInfo)]: ", dateFormatter.string(from: Date()))
-    }
-}
+// MARK: 🔐Private Actions
+private extension LXMVVMSampleVC {}
 
-// MARK: - UI Prepare & Masonry
-private extension LXProxyTestVC {
-    func prepareTimer() {
-        timer = Timer(timeInterval: 1, target: LXProxy(target: self), selector: #selector(timeAction(userInfo:)), userInfo: "233", repeats: true)
-        if let t = timer {
-            RunLoop.current.add(t, forMode: .common)
-        }
-    }
+// MARK: - 🍺UI Prepare & Masonryry
+private extension LXMVVMSampleVC {
     func prepareUI() {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()

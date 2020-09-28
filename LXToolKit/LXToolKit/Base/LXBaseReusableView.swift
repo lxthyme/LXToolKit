@@ -22,7 +22,7 @@ open class LXBaseReusableView: UICollectionReusableView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override open func prepareForReuse() {
+    open override func prepareForReuse() {
         super.prepareForReuse()
     }
 }

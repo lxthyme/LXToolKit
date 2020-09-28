@@ -11,10 +11,11 @@ import LXToolKit
 
 class ViewController: LXBaseVC {
 
+    private var testVC = LXTestVC()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let vc =
+        let vc = 
 //            LXApiTestVC()
 
 //            LXMultiRequestTestVC()
@@ -23,8 +24,14 @@ class ViewController: LXBaseVC {
 //            LXRequiredVC()
 //            LXLightedVC()
 //            LXProxyTestVC()
-            LXTestStringVC()
+//            LXTestStringVC()
+//            LXPresentVC()
+//            LXTestVC()
+//            LXStackViewVC()
+            LXWikipediaImageSearchVC()
+        
         self.navigationController?.pushViewController(vc, animated: true)
+//        self.present(testVC, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
