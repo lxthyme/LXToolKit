@@ -72,6 +72,7 @@
 		BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */; };
 		BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3952521E289004C91B6 /* LXResultModel.swift */; };
 		BEC2D3982521E32F004C91B6 /* XLBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3972521E32F004C91B6 /* XLBaseModel.swift */; };
+		BEC2D3CB25231D34004C91B6 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3CA25231D34004C91B6 /* SampleNotificationDelegate.swift */; };
 		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
 		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
 		BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C22499C43B0002576B /* LXMainProvider.swift */; };
@@ -160,6 +161,7 @@
 		BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleVM.swift; sourceTree = "<group>"; };
 		BEC2D3952521E289004C91B6 /* LXResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXResultModel.swift; sourceTree = "<group>"; };
 		BEC2D3972521E32F004C91B6 /* XLBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseModel.swift; sourceTree = "<group>"; };
+		BEC2D3CA25231D34004C91B6 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleNotificationDelegate.swift; sourceTree = "<group>"; };
 		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
 		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
 		BEC818C22499C43B0002576B /* LXMainProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMainProvider.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				BEC2D3CA25231D34004C91B6 /* SampleNotificationDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -693,14 +696,15 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LX;
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 8UCCBQBSN8;
 						LastSwiftMigration = 1160;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -878,6 +882,7 @@
 				BE97A96B251DB7690061254B /* Reachability.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
+				BEC2D3CB25231D34004C91B6 /* SampleNotificationDelegate.swift in Sources */,
 				BE97A967251DB7020061254B /* ImageService.swift in Sources */,
 				BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */,
 				BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */,
@@ -1025,13 +1030,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UCCBQBSN8;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1045,13 +1054,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8UCCBQBSN8;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
