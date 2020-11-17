@@ -26,6 +26,3 @@ public let XL_IS_iPhoneX: Bool = (
 // 导航栏+状态栏高度
 public let XL_NavBar_Height: CGFloat = XL_IS_iPhoneX ? 88.0 : 64.0
 
-public let LX_Base_URL = "http://172.100.13.250:3003"
-public let LX_Response_Logger_Max_Count = 200
-public let LX_Request_Queue_label = Bundle.main.bundleIdentifier ?? "com.hg.lx"
