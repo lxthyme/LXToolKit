@@ -23,6 +23,7 @@
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
+		BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3907BF2563766B0052A5E9 /* LXDaily1117VC.swift */; };
 		BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299462518776700CFCF53 /* LXPresentVC.swift */; };
 		BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299482518796900CFCF53 /* LXTestVC.swift */; };
 		BE461180253D9A9600E93AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */; };
@@ -162,6 +163,7 @@
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
+		BE3907BF2563766B0052A5E9 /* LXDaily1117VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDaily1117VC.swift; sourceTree = "<group>"; };
 		BE4299462518776700CFCF53 /* LXPresentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPresentVC.swift; sourceTree = "<group>"; };
 		BE4299482518796900CFCF53 /* LXTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTestVC.swift; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +474,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE4D8C782563727A005EE687 /* 11-17 */,
 				BE910628254944F3002BBD85 /* 10-28 */,
 				BE9F6984253D39CD00C0F1A5 /* 10-19 */,
 				BE87F5F725315B2A0066E47F /* 10-10 */,
@@ -506,6 +509,14 @@
 				BE461187253D9A9600E93AB4 /* Info.plist */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		BE4D8C782563727A005EE687 /* 11-17 */ = {
+			isa = PBXGroup;
+			children = (
+				BE3907BF2563766B0052A5E9 /* LXDaily1117VC.swift */,
+			);
+			path = "11-17";
 			sourceTree = "<group>";
 		};
 		BE51ADBF25370943005D0F10 /* Content */ = {
@@ -1100,6 +1111,7 @@
 				BE97A97B251DD69D0061254B /* UIImage + forceLazyDecompression.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
+				BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */,
 				BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */,
 				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,

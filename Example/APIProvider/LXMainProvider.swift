@@ -8,19 +8,23 @@
 
 import UIKit
 import LXToolKit
-
+public let LX_Base_URL = "http://172.100.13.250:3003"
 enum LXMainProvider: APIService {
     case zen
     case newUserFloat
     case platformInfo
-    var params: APIParameter? {
+    var baseURL: String {
+        return LX_Base_URL
+    }
+    var params: APIParameter {
         switch self {
             case .zen:
-                return ("/api/zen", ["zen": 233])
+//                return ("/api/zen", ["zen": 233])
+                return APIParameter(path: "/api/zen", params: ["zen": 233])
             case .newUserFloat:
-                return ("/api/newuser/float", ["user": 234])
+                return APIParameter(path: "/api/newuser/float", params: ["user": 234])
             case .platformInfo:
-                return ("/api/platform/info", [:])
+                return APIParameter(path: "/api/platform/info", params: [:])
         }
     }
 }
