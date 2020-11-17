@@ -39,6 +39,9 @@ private extension MyView {}
 // MARK: - 🍺UI Prepare & Masonryry
 private extension MyView {
     func prepareUI() {
+        var a = [1, 2, 3, 4, 5]
+        let b = a[1...3]
+        let c = Array(b)
         self.backgroundColor = .white
         //[<#table#>].forEach(self.addSubview)
         masonry()

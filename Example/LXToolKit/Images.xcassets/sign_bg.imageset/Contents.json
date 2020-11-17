@@ -1,0 +1,50 @@
+{
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "sign_bg@2x.png",
+      "idiom" : "iphone",
+      "resizing" : {
+        "cap-insets" : {
+          "bottom" : 711,
+          "left" : 333,
+          "right" : 387,
+          "top" : 253
+        },
+        "center" : {
+          "height" : 30,
+          "mode" : "tile",
+          "width" : 30
+        },
+        "mode" : "9-part"
+      },
+      "scale" : "2x"
+    },
+    {
+      "filename" : "sign_bg@3x.png",
+      "idiom" : "iphone",
+      "resizing" : {
+        "cap-insets" : {
+          "bottom" : 1042,
+          "left" : 536,
+          "right" : 559,
+          "top" : 419
+        },
+        "center" : {
+          "height" : 30,
+          "mode" : "tile",
+          "width" : 30
+        },
+        "mode" : "9-part"
+      },
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

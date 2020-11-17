@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "LXToolKit_Example.app"
-               BlueprintName = "LXToolKit_Example"
+               BuildableName = "LXToolKit_Exam-233.app"
+               BlueprintName = "LXToolKit_Exam"
                ReferencedContainer = "container:LXToolKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Example.app"
-            BlueprintName = "LXToolKit_Example"
+            BuildableName = "LXToolKit_Exam-233.app"
+            BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,8 +78,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Example.app"
-            BlueprintName = "LXToolKit_Example"
+            BuildableName = "LXToolKit_Exam-233.app"
+            BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Example.app"
-            BlueprintName = "LXToolKit_Example"
+            BuildableName = "LXToolKit_Exam-233.app"
+            BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

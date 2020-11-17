@@ -28,7 +28,9 @@ class ViewController: LXBaseVC {
 //            LXPresentVC()
 //            LXTestVC()
 //            LXStackViewVC()
-            LXWikipediaImageSearchVC()
+//            LXWikipediaImageSearchVC()
+//            LXStackTestVC()
+            LXImageTestVC()
         
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)

@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.2.2)
-  - CryptoSwift (1.3.1)
+  - CryptoSwift (1.3.2)
   - HandyJSON (5.0.2)
   - LXToolKit (0.0.5):
     - CryptoSwift
@@ -12,15 +12,22 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - SDWebImage (5.8.4):
-    - SDWebImage/Core (= 5.8.4)
-  - SDWebImage/Core (5.8.4)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - HandyJSON
   - LXToolKit (from `../`)
+  - RxCocoa
+  - RxSwift
   - SDWebImage
 
 SPEC REPOS:
@@ -29,6 +36,8 @@ SPEC REPOS:
     - CryptoSwift
     - HandyJSON
     - Moya
+    - RxCocoa
+    - RxRelay
     - RxSwift
     - SDWebImage
     - SnapKit
@@ -39,14 +48,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
+  CryptoSwift: 093499be1a94b0cae36e6c26b70870668cb56060
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   LXToolKit: cfc2861b4e3478e592eea8f4b924b7c6ba122805
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 041f6a96580ea25ec911eae40ce5fb1c9f4b9b4c
+PODFILE CHECKSUM: 02f870f73fff462da778de4dbe2d018cefe5da21
 
 COCOAPODS: 1.9.3
