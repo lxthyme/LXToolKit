@@ -15,9 +15,10 @@ import HandyJSON
 enum RxMoyaError: Error {
     case unknown
     case error(error: Error)
-    case badService
+    case invalidHTTPCode(code: Int)
     case unReachable
-    case codeInvalid(code: Int?, data: HandyJSON?, tips: String?, msg: String?)
+//    case codeInvalid(code: Int?, data: HandyJSON?, tips: String?, msg: String?)
+    case codeInvalid(code: Int?, base: BaseModel)
     case invalidJSON
 }
 // MARK: - 🔥Endpoint
@@ -93,7 +94,7 @@ func getProvider<T: TargetType>(with target: T) ->MoyaProvider<T> {
         trackInflights: true
     )
 }
-let provider = MoyaProvider<MultiTarget>(
+public let apiProvider = MoyaProvider<MultiTarget>(
     endpointClosure: multiTargetEndpointClosure,
     requestClosure: requestClosure,
     stubClosure: MoyaProvider.neverStub,

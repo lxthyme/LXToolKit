@@ -16,6 +16,13 @@ open class LXBaseCollectionCell: UICollectionViewCell {
 //        dlog("---------- >>>TableViewCell: \(self.xl_typeName)\t\tinit <<<----------")
     }
     // MARK: 🔗Vaiables
+    public var baseModel: LXAnyModel? {
+        didSet {
+            if let m = baseModel {
+                dataFill(model: m)
+            }
+        }
+    }
     override public init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -23,20 +30,7 @@ open class LXBaseCollectionCell: UICollectionViewCell {
         super.prepareForReuse()
     }
 }
-
-open class LXBaseGenericCollectionCell<T>: LXBaseCollectionCell {
-    public var baseModel: T? {
-        willSet {
-            if let nv = newValue {
-                dataFill(model: nv)
-            }
-        }
-//        didSet {
-//            if let ov = oldValue {
-//                dataFill(model: ov)
-//            }
-//        }
-    }
-    public func dataFill(model: T) { }
-
+// MARK: - 👀dataFill
+public extension LXBaseCollectionCell {
+    func dataFill(model: LXAnyModel) { }
 }

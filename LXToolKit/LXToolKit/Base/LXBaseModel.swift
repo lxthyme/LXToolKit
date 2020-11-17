@@ -9,23 +9,6 @@
 import Foundation
 import HandyJSON
 
-enum RxSwiftMoyaError: Error {
-    case RxSwiftMoyaNoRepresentor
-    case RxSwiftMoyaNotSuccessfulHTTP
-    case RxSwiftMoyaNoData
-    case RxSwiftMoyaCouldNotMakeObjectError
-    case RxSwiftMoyaBizError(resultCode: Int?, resultMsg: String?)
-    case RXSwiftMoyaNoNetwork
-}
-
-public enum NetWorkError: Error {
-    case errorCode
-    case noData
-    case jsonError
-    case others(resultCode: Int?, resultMsg: String?)
-    case networkError
-}
-
 open class LXAnyModel: NSObject, HandyJSON {
     deinit {
         dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
@@ -34,12 +17,10 @@ open class LXAnyModel: NSObject, HandyJSON {
 
     /// override var debugDescription: String { return "" }
 }
-
-open class LXBaseModel<T: HandyJSON>: LXAnyModel {
+open class BaseModel: LXAnyModel {
     public var code: Int?
     public var msg: String?
     public var tips: String?
-    public var data: T?
     public var fullJsonString: String?
     required public override init() {}
 
@@ -49,8 +30,16 @@ open class LXBaseModel<T: HandyJSON>: LXAnyModel {
 
     /// override var debugDescription: String { return "" }
 }
+open class LXBaseModel<T: HandyJSON>: BaseModel {
+    public var data: T?
+    required public override init() {}
 
-open class LXBaseListModel<T: HandyJSON>: LXAnyModel {
+//    public func mapping(mapper: HelpingMapper) {}
+
+    /// override var debugDescription: String { return "" }
+}
+
+open class LXBaseListModel<T: HandyJSON>: BaseModel {
     public var page: UInt?
     public var total_page: UInt?
     public var list: [T]?

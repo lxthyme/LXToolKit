@@ -31,6 +31,7 @@ class LXDaily1117VC: UIViewController {
 
         // Do any additional setup after loading the view.
         prepareUI()
+        test02()
     }
 
 }
@@ -51,6 +52,15 @@ private extension LXDaily1117VC {
 //        _ = APIParameter(path: "", params: [:])
 //        _ = APIParameter(path: "", params: nil)
 //        _ = APIParameter(path: "", params: nil, headers: [:], mockObj: [:])
+    }
+    func test02() {
+        let cell = LXBaseTableViewCell(style: .default, reuseIdentifier: LXBaseTableViewCell.xl_identifier)
+        dlog("1.")
+        cell.baseModel = LXAnyModel()
+        dlog("2.")
+        cell.baseModel = nil
+        dlog("3.")
+        cell.baseModel = LXAnyModel()
     }
 }
 

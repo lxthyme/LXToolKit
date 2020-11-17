@@ -23,35 +23,30 @@ open class LXBaseVC: UIViewController {
 //    }()
     public var disposeBag = DisposeBag()
     // MARK: - initialize
-//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-////        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
-//    }
-//    public required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-////        dlog("---------- \(self.xl_typeName)\t\tinit ----------")
-//    }
+    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
+    }
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+    }
     // MARK: - Life Cycle
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        dlog("")
-    //    }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        super.viewDidAppear(animated)
-    //        dlog("")
-    //    }
-    //    override func viewDidLoad() {
-    //        super.viewDidLoad()
-    //        dlog("")
-    //    }
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        super.viewWillDisappear(animated)
-    //        dlog("")
-    //    }
-    //    override func viewDidDisappear(_ animated: Bool) {
-    //        super.viewDidDisappear(animated)
-    //        dlog("")
-    //    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//    }
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
@@ -64,17 +59,17 @@ open class LXBaseVC: UIViewController {
     }
 }
 
-extension LXBaseVC {
-    override open func value(forUndefinedKey key: String) -> Any? {
-        dlog("-->value:forUndefinedKey:::: \(key))")
-        return nil
-    }
-    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
-        super.setValue(value, forUndefinedKey: key)
-
-        dlog("-->setValue:forUndefinedKey:::: (\(key): \(value ?? ""))")
-    }
-}
+//extension LXBaseVC {
+//    override open func value(forUndefinedKey key: String) -> Any? {
+//        dlog("-->value:forUndefinedKey:::: \(key))")
+//        return nil
+//    }
+//    override open func setValue(_ value: Any?, forUndefinedKey key: String) {
+//        super.setValue(value, forUndefinedKey: key)
+//
+//        dlog("-->setValue:forUndefinedKey:::: (\(key): \(value ?? ""))")
+//    }
+//}
 
 // MARK: - UITableView init
 private extension LXBaseVC {
@@ -101,7 +96,7 @@ private extension LXBaseVC {
         layout.itemSize = .zero
         layout.estimatedItemSize = .zero
 //        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.headerReferenceSize = .zero
         layout.footerReferenceSize = .zero
         layout.sectionInset = .zero
@@ -115,6 +110,7 @@ private extension LXBaseVC {
     }
     func lazyCollectionView(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()) -> UICollectionView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .white
 //        cv.dataSource = self
 //        cv.delegate = self
 //        cv.prefetchDataSource

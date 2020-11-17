@@ -37,7 +37,6 @@
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
 		BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */; };
-		BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622424D964EF00F9C6AC /* LXApiProvider.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
 		BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F5FA25315B620066E47F /* LXStackTestVC.swift */; };
@@ -179,7 +178,6 @@
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
 		BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + customSpacing.swift"; sourceTree = "<group>"; };
-		BE80622424D964EF00F9C6AC /* LXApiProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXApiProvider.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
 		BE87F5FA25315B620066E47F /* LXStackTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
@@ -817,7 +815,6 @@
 			children = (
 				BEC818C22499C43B0002576B /* LXMainProvider.swift */,
 				BEC818C82499F5130002576B /* LXUserProvider.swift */,
-				BE80622424D964EF00F9C6AC /* LXApiProvider.swift */,
 			);
 			path = APIProvider;
 			sourceTree = "<group>";
@@ -1167,7 +1164,6 @@
 				BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */,
-				BE80622524D964EF00F9C6AC /* LXApiProvider.swift in Sources */,
 				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
 				BEC2D2A5252082E1004C91B6 /* LXWikipediaSearchCell.swift in Sources */,
