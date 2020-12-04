@@ -26,7 +26,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor(hex: "#555")
+        label.textColor = UIColor.xl.hex("#555")
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

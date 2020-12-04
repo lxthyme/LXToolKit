@@ -15,6 +15,7 @@ class LXStackTestVC: UIViewController {
         let v = UIStackView()
         v.axis = .vertical
         v.alignment = .fill
+        v.backgroundColor = .red
         return v
     }()
     private lazy var table: UITableView = {
@@ -43,7 +44,7 @@ class LXStackTestVC: UIViewController {
         btn.setTitleColor(.white, for: .normal)
 
 //        btn.setBackgroundColor(.hex("#0092fe"), forState: .normal)
-        btn.backgroundColor = .hex("#0092fe")
+        btn.backgroundColor = UIColor.xl.hex("#0092fe")
 
 //        btn.titleLabel?.font = UIFont.systemFont(ofSize: <#T##CGFloat#>)
         btn.layer.masksToBounds = true

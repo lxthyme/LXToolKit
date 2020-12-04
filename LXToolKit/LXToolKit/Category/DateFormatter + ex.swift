@@ -9,7 +9,11 @@ import Foundation
 
 // MARK: - 👀
 public extension DateFormatter {
-    static var formatter: DateFormatter = {
+    public static var xl = DateFormatterProxy.proxy
+}
+public struct DateFormatterProxy {
+    fileprivate static var proxy = DateFormatterProxy()
+    public lazy var formatter: DateFormatter = {
         let df = DateFormatter()
         df.timeStyle = .medium
         df.dateStyle = .medium

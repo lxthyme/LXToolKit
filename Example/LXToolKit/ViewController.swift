@@ -31,7 +31,9 @@ class ViewController: LXBaseVC {
 //            LXWikipediaImageSearchVC()
 //            LXStackTestVC()
 //            LXImageTestVC()
-            LXDaily1117VC()
+//            LXDaily1117VC()
+//            LXStackTestVC()
+            LXStackMessageVC()
         
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)

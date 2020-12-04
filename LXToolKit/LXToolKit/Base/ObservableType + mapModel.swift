@@ -51,14 +51,10 @@ extension Response {
         }
 
         guard statusCode != kLXSuccessCode else {
-            throw RxMoyaError.codeInvalid(code: model.code, base: model)
+            throw RxMoyaError.codeInvalid(code: baseModel.code, base: baseModel)
         }
 
-        guard baseModel.data != nil else {
-            throw RxMoyaError.noData
-        }
-
-        baseModel.fullJsonString = jsonString
+        baseModel.fullJsonString = try? mapString()
         return baseModel
     }
     func mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<LXBaseListModel<T>> {
@@ -74,14 +70,10 @@ extension Response {
         }
 
         guard baseModel.code != kLXSuccessCode else {
-            throw RxMoyaError.codeInvalid(code: model.code, base: model)
+            throw RxMoyaError.codeInvalid(code: baseModel.code, base: baseModel)
         }
 
-        guard baseModel.data != nil else {
-            throw RxMoyaError.noData
-        }
-
-        baseModel.fullJsonString = jsonString
+        baseModel.fullJsonString = try? mapString()
         return baseModel
 
     }

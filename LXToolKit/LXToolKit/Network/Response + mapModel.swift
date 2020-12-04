@@ -13,18 +13,18 @@ import HandyJSON
 import Alamofire
 
 public extension ObservableType where E == Response {
-    func mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
-        return flatMap { response ->Observable<LXBaseModel<T>> in
-            let ele: LXBaseModel<T> = try response.mapBaseModel(T.self)
-            return Observable.just(ele)
-        }
-    }
-
-    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<LXBaseListModel<T>>> {
-        return flatMap { response ->Observable<LXBaseModel<LXBaseListModel<T>>> in
-            return Observable.just(try response.mapBaseModelArray(T.self))
-        }
-    }
+//    func mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
+//        return flatMap { response ->Observable<LXBaseModel<T>> in
+//            let ele: LXBaseModel<T> = try response.mapBaseModel(T.self)
+//            return Observable.just(ele)
+//        }
+//    }
+//
+//    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<LXBaseListModel<T>>> {
+//        return flatMap { response ->Observable<LXBaseModel<LXBaseListModel<T>>> in
+//            return Observable.just(try response.mapBaseModelArray(T.self))
+//        }
+//    }
 }
 
 extension Response {

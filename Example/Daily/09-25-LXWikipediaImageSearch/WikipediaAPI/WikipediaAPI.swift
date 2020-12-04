@@ -38,7 +38,7 @@ class DefaultWikipediaAPI: WikipediaAPI {
 
     /// Example wikipedia response http://en.wikipedia.org/w/api.php?action=opensearch&search=Rx
     func getSearchResults(_ query: String) -> Observable<[WikipediaSearchResult]> {
-        let escapedQuery = query.xl_urlEscaped
+        let escapedQuery = query.xl.urlEscaped
         let urlContent =
             "http://en.wikipedia.org/w/api.php?action=opensearch&search=\(escapedQuery)"
 //            "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=\(escapedQuery)"
@@ -60,7 +60,7 @@ class DefaultWikipediaAPI: WikipediaAPI {
 
     /// http://en.wikipedia.org/w/api.php?action=parse&page=rx&format=json
     func articleContent(_ searchResult: WikipediaSearchResult) -> Observable<WikipediaPage> {
-        let escapedPage = searchResult.title.xl_urlEscaped
+        let escapedPage = searchResult.title.xl.urlEscaped
         guard let url = URL(string: "http://en.wikipedia.org/w/api.php?action=parse&page=\(escapedPage)&format=json") else {
             return Observable.error(apiError("Can't create url!"))
         }

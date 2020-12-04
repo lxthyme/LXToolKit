@@ -16,7 +16,6 @@ class LXSingleImageCell: LXBaseVMCollectionCell {
     // MARK: 📌UI
     private lazy var imgView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "")
         iv.contentMode = .scaleAspectFit
         return iv
     }()

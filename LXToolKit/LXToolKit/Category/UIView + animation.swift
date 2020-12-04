@@ -1,5 +1,5 @@
 //
-//  LXAnimationEx.swift
+//  UIView + animation.swift
 //  Vaffle_demo
 //
 //  Created by LXThyme on 2018/11/16.
@@ -8,7 +8,9 @@
 import UIKit
 import Foundation
 
-public extension UIView {
+//extension UIView: NamespaceWrappable {}
+//public extension TypeWrapperProtocol where WrappedType == UIView {
+public extension Swifty where Base: UIView {
     func dismissAnimation(duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.dismissAnimation") {
         self.opacityAnimation(from: 1, to: 0, duration: duration, timingFunction: timingFunction, key: key)
         self.scaleAnimation(from: 1, to: 0, duration: duration, timingFunction: timingFunction, key: key)
@@ -25,7 +27,7 @@ public extension UIView {
 //        anim.fillMode = .forwards
 //        anim.isRemovedOnCompletion = false
         anim.timingFunction = CAMediaTimingFunction(name: timingFunction)
-        self.layer.add(anim, forKey: key)
+        base.layer.add(anim, forKey: key)
     }
     func opacityAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.opacity") {
         let anim = CABasicAnimation(keyPath: "opacity")
@@ -35,7 +37,7 @@ public extension UIView {
 //        anim.fillMode = .forwards
 //        anim.isRemovedOnCompletion = true
         anim.timingFunction = CAMediaTimingFunction(name: timingFunction)
-        self.layer.add(anim, forKey: key)
+        base.layer.add(anim, forKey: key)
     }
     func scaleAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.transform.scale") {
         let anim = CABasicAnimation(keyPath: "transform.scale")
@@ -45,6 +47,6 @@ public extension UIView {
         anim.fillMode = .forwards
         anim.isRemovedOnCompletion = false
         anim.timingFunction = CAMediaTimingFunction(name: timingFunction)
-        self.layer.add(anim, forKey: key)
+        base.layer.add(anim, forKey: key)
     }
 }

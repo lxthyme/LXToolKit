@@ -27,7 +27,7 @@ extension UIWindow {
             bgView.tag = kMaskView_Tag
         }
         bgView.frame = UIScreen.main.bounds
-        bgView.backgroundColor = UIColor(hex: "#000")
+        bgView.backgroundColor = UIColor.xl.hex("#000")
         bgView.layer.opacity = 0.5
         return bgView
     }

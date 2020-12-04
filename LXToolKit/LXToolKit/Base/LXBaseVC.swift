@@ -23,14 +23,14 @@ open class LXBaseVC: UIViewController {
 //    }()
     public var disposeBag = DisposeBag()
     // MARK: - initialize
-    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
-    }
-    public init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+//    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+//        dlog("---------- \(self.xl_typeName).Xib\t\tinit ----------")
+//    }
+//    public init() {
+//        super.init(nibName: nil, bundle: nil)
+//    }
     // MARK: - Life Cycle
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)

@@ -8,10 +8,8 @@
 
 import Foundation
 
-extension DispatchQueue {
-    public static var xl = DispatchQueueProxy.self
-}
-public class DispatchQueueProxy: DispatchQueue {
+private var _onceTracker: [String] = []
+extension Swifty where Base: DispatchQueue {
     public static var `default`: DispatchQueue { return DispatchQueue.global(qos: .`default`) }
     public static var userInteractive: DispatchQueue { return DispatchQueue.global(qos: .userInteractive) }
     public static var userInitiated: DispatchQueue { return DispatchQueue.global(qos: .userInitiated) }
@@ -19,11 +17,10 @@ public class DispatchQueueProxy: DispatchQueue {
     public static var background: DispatchQueue { return DispatchQueue.global(qos: .background) }
 
     public func after(_ delay: TimeInterval, execute closure: @escaping () -> Void) {
-        asyncAfter(deadline: .now() + delay, execute: closure)
+        base.asyncAfter(deadline: .now() + delay, execute: closure)
     }
 
-    private static var _onceTracker = [String]()
-    public class func once(_ token: String, block:() -> Void) {
+    public func once(_ token: String, block:() -> Void) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
 
@@ -32,5 +29,18 @@ public class DispatchQueueProxy: DispatchQueue {
         }
         _onceTracker.append(token)
         block()
+    }
+}
+
+public extension TypeWrapperProtocol where WrappedType == DispatchQueue {
+    // This method will dispatch the `block` to self.
+    // If `self` is the main queue, and current thread is main thread, the block
+    // will be invoked immediately instead of being dispatched.
+    func safeAsync(_ block: @escaping ()->Void) {
+        if wrappedValue === DispatchQueue.main && Thread.isMainThread {
+            block()
+        } else {
+            wrappedValue.async { block() }
+        }
     }
 }

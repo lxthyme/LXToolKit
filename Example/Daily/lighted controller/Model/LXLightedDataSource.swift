@@ -47,7 +47,7 @@ extension LXLightedDataSource: UITableViewDataSource {
         let item = dataList[indexPath.row]
         cell.textLabel?.text = item.name
         if let d = item.creationDate {
-            cell.detailTextLabel?.text = DateFormatter.formatter.string(from: d)
+            cell.detailTextLabel?.text = DateFormatter.xl.formatter.string(from: d)
         }
         return cell
     }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: - <#Title...#>
 public extension UIViewController {
     func getCurrentVC() ->UIViewController? {

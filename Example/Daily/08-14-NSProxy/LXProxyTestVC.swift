@@ -88,7 +88,7 @@ extension LXProxyTestVC {}
 // MARK: Private Actions
 private extension LXProxyTestVC {
     @objc func timeAction(userInfo: Any) {
-        dlog("date-[\(userInfo)]: ", DateFormatter.formatter.string(from: Date()))
+        dlog("date-[\(userInfo)]: ", DateFormatter.xl.formatter.string(from: Date()))
     }
 }
 

@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import LXToolKit
+import SnapKit
 
 class LXDaily1117VC: UIViewController {
     // MARK: 📌UI
@@ -61,6 +62,17 @@ private extension LXDaily1117VC {
         cell.baseModel = nil
         dlog("3.")
         cell.baseModel = LXAnyModel()
+    }
+
+    func test03() {
+        _ = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        _ = UIColor.xl.rgba(red: 1, green: 1, blue: 1, alpha: 1)
+        _ = UIColor.xl.random
+        self.view.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+//        DispatchQueue.xl.lx
+        _ = DispatchQueue.xl.background
     }
 }
 

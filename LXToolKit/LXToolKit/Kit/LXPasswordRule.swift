@@ -1,5 +1,5 @@
 //
-//  PasswordRule.swift
+//  LXPasswordRule.swift
 //  SwiftPro
 //
 //  Created by DamonJow on 2018/11/7.
@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-public enum PasswordRule {
+public enum LXPasswordRule {
     public enum CharacterClass {
         case upper, lower, digits, special, asciiPrintable, unicode
         case custom(Set<Character>)
@@ -21,7 +21,7 @@ public enum PasswordRule {
     case maxLength(UInt)
 }
 
-extension PasswordRule: CustomStringConvertible {
+extension LXPasswordRule: CustomStringConvertible {
     public var description: String {
         switch self {
         case .required(let characterClass):
@@ -38,7 +38,7 @@ extension PasswordRule: CustomStringConvertible {
     }
 }
 
-extension PasswordRule.CharacterClass: CustomStringConvertible {
+extension LXPasswordRule.CharacterClass: CustomStringConvertible {
     public var description: String {
         switch self {
         case .upper: return "upper"
@@ -55,7 +55,7 @@ extension PasswordRule.CharacterClass: CustomStringConvertible {
 
 @available(iOS 12.0, *)
 public extension UITextInputPasswordRules {
-    convenience init(rules: [PasswordRule]) {
+    convenience init(rules: [LXPasswordRule]) {
         let descriptor = rules.map { $0.description }
             .joined(separator: "; ")
 
