@@ -8,15 +8,15 @@
 import UIKit
 import Foundation
 
-public extension UIView {
-    var xl_safeAreaInsets: UIEdgeInsets {
+public extension TypeWrapperProtocol where WrappedType == UIView {
+    var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return self.safeAreaInsets
         } else {
             return .zero
         }
     }
-    var xl_safeAreaLayoutGuide: UILayoutGuide {
+    var safeAreaLayoutGuide: UILayoutGuide {
         if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide
         } else {

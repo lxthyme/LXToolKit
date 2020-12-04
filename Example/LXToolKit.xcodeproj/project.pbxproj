@@ -20,12 +20,15 @@
 		BE0F403124E2764000A2F841 /* photodata.bin in Resources */ = {isa = PBXBuildFile; fileRef = BE0F403024E2764000A2F841 /* photodata.bin */; };
 		BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12160B24E5137D007BE91E /* LXTransitionVC.swift */; };
 		BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE12161824E66222007BE91E /* LXProxyTestVC.swift */; };
+		BE0784B22578780800767FEE /* LXKingfisherVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0784B12578780800767FEE /* LXKingfisherVC.m */; };
+		BE0784B82578957000767FEE /* UIImage + emoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0784B72578957000767FEE /* UIImage + emoticon.swift */; };
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
 		BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3907BF2563766B0052A5E9 /* LXDaily1117VC.swift */; };
 		BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299462518776700CFCF53 /* LXPresentVC.swift */; };
 		BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4299482518796900CFCF53 /* LXTestVC.swift */; };
+		BE263503257A116D0047CF89 /* LXSwiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE263502257A116D0047CF89 /* LXSwiftView.swift */; };
 		BE461180253D9A9600E93AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */; };
 		BE461183253D9A9600E93AB4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE461182253D9A9600E93AB4 /* TodayViewController.swift */; };
 		BE461186253D9A9600E93AB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE461184253D9A9600E93AB4 /* MainInterface.storyboard */; };
@@ -36,6 +39,11 @@
 		BE51ADC425370944005D0F10 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE51ADC225370944005D0F10 /* MainInterface.storyboard */; };
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
+		BE63471425760885001C6958 /* LXStackMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63471225760885001C6958 /* LXStackMessageVC.swift */; };
+		BE634720257608B6001C6958 /* LXMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63471E257608B6001C6958 /* LXMessageCell.swift */; };
+		BE634721257608B6001C6958 /* LXMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE63471F257608B6001C6958 /* LXMessageCell.xib */; };
+		BE63473F25761C68001C6958 /* LXMessageTestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE63473D25761C68001C6958 /* LXMessageTestCell.swift */; };
+		BE63474025761C68001C6958 /* LXMessageTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE63473E25761C68001C6958 /* LXMessageTestCell.xib */; };
 		BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
@@ -142,6 +150,7 @@
 		1555570000192478D0FB3DF7 /* Pods-LXToolKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LXToolKit_Exam-233.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* LXToolKit_Example-233.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LXToolKit_Example-233.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,12 +168,16 @@
 		BE0F403024E2764000A2F841 /* photodata.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = photodata.bin; sourceTree = "<group>"; };
 		BE12160B24E5137D007BE91E /* LXTransitionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTransitionVC.swift; sourceTree = "<group>"; };
 		BE12161824E66222007BE91E /* LXProxyTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXProxyTestVC.swift; sourceTree = "<group>"; };
+		BE0784B02578780800767FEE /* LXKingfisherVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXKingfisherVC.h; sourceTree = "<group>"; };
+		BE0784B12578780800767FEE /* LXKingfisherVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXKingfisherVC.m; sourceTree = "<group>"; };
+		BE0784B72578957000767FEE /* UIImage + emoticon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + emoticon.swift"; sourceTree = "<group>"; };
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
 		BE3907BF2563766B0052A5E9 /* LXDaily1117VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDaily1117VC.swift; sourceTree = "<group>"; };
 		BE4299462518776700CFCF53 /* LXPresentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPresentVC.swift; sourceTree = "<group>"; };
 		BE4299482518796900CFCF53 /* LXTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTestVC.swift; sourceTree = "<group>"; };
+		BE263502257A116D0047CF89 /* LXSwiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftView.swift; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		BE461182253D9A9600E93AB4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +190,11 @@
 		BE51ADC325370944005D0F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
+		BE63471225760885001C6958 /* LXStackMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackMessageVC.swift; sourceTree = "<group>"; };
+		BE63471E257608B6001C6958 /* LXMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMessageCell.swift; sourceTree = "<group>"; };
+		BE63471F257608B6001C6958 /* LXMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LXMessageCell.xib; sourceTree = "<group>"; };
+		BE63473D25761C68001C6958 /* LXMessageTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMessageTestCell.swift; sourceTree = "<group>"; };
+		BE63473E25761C68001C6958 /* LXMessageTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LXMessageTestCell.xib; sourceTree = "<group>"; };
 		BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + customSpacing.swift"; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
@@ -312,7 +330,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */,
+				607FACD01AFB9204008FA782 /* LXToolKit_Example-233.app */,
 				BE8A94BF2524275000E20F14 /* Service.appex */,
 				BE51ADBA25370943005D0F10 /* Content.appex */,
 				BE46117E253D9A9600E93AB4 /* Today.appex */,
@@ -486,6 +504,7 @@
 				BEA9379024E0E8D60048D644 /* 08-10-LiftCycle_required */,
 				BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */,
 				BE80622824DA7BEF00F9C6AC /* 08-05请求依赖 */,
+				BE63470D25760864001C6958 /* 12-01 */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -528,6 +547,7 @@
 			sourceTree = "<group>";
 		};
 		BE7F5D21251B2F9E00813E0B /* 09-23 */ = {
+		BE63470D25760864001C6958 /* 12-01 */ = {
 			isa = PBXGroup;
 			children = (
 				BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */,
@@ -552,6 +572,17 @@
 				BE87F5FB25315B620066E47F /* LXStackTestVC.xib */,
 			);
 			path = "10-10";
+				BE63471225760885001C6958 /* LXStackMessageVC.swift */,
+				BE63471E257608B6001C6958 /* LXMessageCell.swift */,
+				BE63471F257608B6001C6958 /* LXMessageCell.xib */,
+				BE63473D25761C68001C6958 /* LXMessageTestCell.swift */,
+				BE63473E25761C68001C6958 /* LXMessageTestCell.xib */,
+				BE0784B02578780800767FEE /* LXKingfisherVC.h */,
+				BE0784B12578780800767FEE /* LXKingfisherVC.m */,
+				BE0784B72578957000767FEE /* UIImage + emoticon.swift */,
+				BE263502257A116D0047CF89 /* LXSwiftView.swift */,
+			);
+			path = "12-01";
 			sourceTree = "<group>";
 		};
 		BE8A94C02524275000E20F14 /* Service */ = {
@@ -845,9 +876,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* LXToolKit_Exam */ = {
+		607FACCF1AFB9204008FA782 /* LXToolKit_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "LXToolKit_Exam" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "LXToolKit_Example" */;
 			buildPhases = (
 				4452A872326A03DDEDA29AF1 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
@@ -864,9 +895,9 @@
 				BE51ADC725370944005D0F10 /* PBXTargetDependency */,
 				BE461189253D9A9600E93AB4 /* PBXTargetDependency */,
 			);
-			name = LXToolKit_Exam;
+			name = LXToolKit_Example;
 			productName = LXToolKit;
-			productReference = 607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */;
+			productReference = 607FACD01AFB9204008FA782 /* LXToolKit_Example-233.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BE46117D253D9A9600E93AB4 /* Today */ = {
@@ -966,7 +997,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* LXToolKit_Exam */,
+				607FACCF1AFB9204008FA782 /* LXToolKit_Example */,
 				BE8A94BE2524275000E20F14 /* Service */,
 				BE51ADB925370943005D0F10 /* Content */,
 				BE46117D253D9A9600E93AB4 /* Today */,
@@ -980,9 +1011,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE0F403124E2764000A2F841 /* photodata.bin in Resources */,
+				BE63474025761C68001C6958 /* LXMessageTestCell.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				BE87F5FD25315B620066E47F /* LXStackTestVC.xib in Resources */,
+				BE634721257608B6001C6958 /* LXMessageCell.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,7 +1078,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
@@ -1058,7 +1093,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",

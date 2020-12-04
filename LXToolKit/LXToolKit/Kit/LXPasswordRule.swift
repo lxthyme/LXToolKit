@@ -1,5 +1,5 @@
 //
-//  LXPasswordRules.swift
+//  PasswordRule.swift
 //  SwiftPro
 //
 //  Created by DamonJow on 2018/11/7.
