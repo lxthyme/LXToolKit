@@ -30,8 +30,10 @@ public extension ObservableType where Element == Response {
         }
     }
 
-    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<LXBaseListModel<T>>> {
-        return flatMap { response -> Observable<LXBaseModel<LXBaseListModel<T>>> in
+    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseListModel<T>> {
+        return flatMap { response -> Observable<LXBaseListModel<T>> in
+//        return flatMap { response -> Observable<LXBaseListModel<T>> in
+//            let a = try response.mapModelArray(T.self)
             return Observable.just(try response.mapModelArray(T.self))
 //            return Observable.just(try response.mapBaseModelArray(T.self))
         }
@@ -39,7 +41,7 @@ public extension ObservableType where Element == Response {
 }
 
 // MARK: - <#Title...#>
-extension Response {
+public extension Response {
     func mapModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
         guard (200..<300) ~= statusCode else {
             throw RxMoyaError.invalidHTTPCode(code: statusCode)
@@ -57,7 +59,7 @@ extension Response {
         baseModel.fullJsonString = try? mapString()
         return baseModel
     }
-    func mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<LXBaseListModel<T>> {
+    func mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T> {
         guard (200..<300) ~= statusCode else {
             throw RxMoyaError.invalidHTTPCode(code: statusCode)
         }
@@ -65,7 +67,8 @@ extension Response {
         let json1 = try mapJSON() as? [String: Any]
         let model1 = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json1)
         guard let json = try mapJSON() as? [String: Any],
-            let baseModel = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json) else {
+            let baseModel = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json),
+            let listModel = baseModel.data else {
                 throw RxMoyaError.invalidJSON
         }
 
@@ -74,7 +77,7 @@ extension Response {
         }
 
         baseModel.fullJsonString = try? mapString()
-        return baseModel
+        return listModel
 
     }
 }

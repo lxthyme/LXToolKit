@@ -43,7 +43,7 @@ extension Response {
         return baseModel
     }
 
-    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<LXBaseListModel<T>> {
+    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T>? {
 
         let jsonString = String(data: data, encoding: .utf8)
 
@@ -56,6 +56,6 @@ extension Response {
         }
 
         baseModel.fullJsonString = jsonString
-        return baseModel
+        return baseModel.data
     }
 }

@@ -32,15 +32,16 @@ extension Swifty where Base: DispatchQueue {
     }
 }
 
-public extension TypeWrapperProtocol where WrappedType == DispatchQueue {
+//public extension TypeWrapperProtocol where WrappedType == DispatchQueue {
+public extension Swifty where Base: DispatchQueue {
     // This method will dispatch the `block` to self.
     // If `self` is the main queue, and current thread is main thread, the block
     // will be invoked immediately instead of being dispatched.
     func safeAsync(_ block: @escaping ()->Void) {
-        if wrappedValue === DispatchQueue.main && Thread.isMainThread {
+        if base === DispatchQueue.main && Thread.isMainThread {
             block()
         } else {
-            wrappedValue.async { block() }
+            base.async { block() }
         }
     }
 }

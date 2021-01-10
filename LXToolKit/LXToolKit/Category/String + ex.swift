@@ -9,6 +9,7 @@ import UIKit
 
 extension String: NamespaceWrappable {}
 public extension TypeWrapperProtocol where WrappedType == String {
+//public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     func getVCInstance<T: UIViewController>() -> T? {
         return self.getObjcInstance()
@@ -27,6 +28,7 @@ public extension TypeWrapperProtocol where WrappedType == String {
 }
 extension Int64: NamespaceWrappable {}
 public extension TypeWrapperProtocol where WrappedType == Int64 {
+//public extension Swifty where Base: Int64 {
     /// 根据字节大小返回文件大小字符KB、MB
     var fileSize: String {
         return ByteCountFormatter.string(fromByteCount: wrappedValue, countStyle: .file)
@@ -36,6 +38,7 @@ public extension TypeWrapperProtocol where WrappedType == Int64 {
 public typealias UnicodeEqualInfo = (Bool, nsstring: Bool, equal: Bool, utf8: Bool, utf16: Bool)
 
 public extension TypeWrapperProtocol where WrappedType == String {
+//public extension Swifty where Base: String {
     var unicodeName: [String] {
         return wrappedValue.unicodeScalars.lazy.map { $0.xl.unicodeName }
     }
@@ -44,7 +47,11 @@ public extension TypeWrapperProtocol where WrappedType == String {
     }
     var unicodeInfo: (length: Int, count: Int, utf8: Int, utf16: Int, unicode: [(name: String, code: String)]) {
         let merge = zip(self.unicodeName, self.unicodeValue).map { $0 }
-        return (length: (wrappedValue as NSString).length, count: wrappedValue.count, utf8: wrappedValue.utf8.count, utf16: wrappedValue.utf16.count, unicode: merge)
+        return (length: (wrappedValue as NSString).length,
+                count: wrappedValue.count,
+                utf8: wrappedValue.utf8.count,
+                utf16: wrappedValue.utf16.count,
+                unicode: merge)
     }
     func unicodeEqual(to r: String) -> UnicodeEqualInfo {
         let e0 = wrappedValue == r
@@ -52,7 +59,11 @@ public extension TypeWrapperProtocol where WrappedType == String {
         let e2 = wrappedValue.elementsEqual(r)
         let e3 = wrappedValue.utf8.elementsEqual(r.utf8)
         let e4 = wrappedValue.utf16.elementsEqual(r.utf16)
-        return (e0, nsstring: e1, equal: e2, utf8: e3, utf16: e4)
+        return (e0,
+                nsstring: e1,
+                equal: e2,
+                utf8: e3,
+                utf16: e4)
     }
     func unicodeEqual(l: String, r: String) -> UnicodeEqualInfo {
         return l.xl.unicodeEqual(to: r)
@@ -66,6 +77,7 @@ public extension TypeWrapperProtocol where WrappedType == StringTransform {
 }
 extension Unicode.Scalar: NamespaceWrappable {}
 public extension TypeWrapperProtocol where WrappedType == Unicode.Scalar {
+//public extension Swifty where Base == Unicode.Scalar {
     var unicodeName: String {
         let name = String(wrappedValue).applyingTransform(.toUnicodeName, reverse: false)!
         let prefixPattern = "\\N{"
@@ -77,6 +89,7 @@ public extension TypeWrapperProtocol where WrappedType == Unicode.Scalar {
 }
 
 public extension TypeWrapperProtocol where WrappedType == String {
+//public extension Swifty where Base == String {
     func wrapped(after: Int = 70) -> String {
         var i = 0
         let lines = wrappedValue.split(omittingEmptySubsequences: false) { char in
@@ -100,6 +113,7 @@ public extension Collection where Element: Equatable {
 }
 
 public extension TypeWrapperProtocol where WrappedType == String {
+//public extension Swifty where Base: String {
     var urlEscaped: String? {
         return wrappedValue.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
@@ -107,6 +121,7 @@ public extension TypeWrapperProtocol where WrappedType == String {
 
 // MARK: - 👀
 public extension TypeWrapperProtocol where WrappedType == String {
+//public extension Swifty where Base: String {
     func toFloat() ->Float? {
         let numberFormatter = NumberFormatter()
         return numberFormatter.number(from: wrappedValue)?.floatValue

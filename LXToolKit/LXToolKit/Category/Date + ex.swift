@@ -10,6 +10,7 @@ import struct Foundation.Date
 
 extension Date: NamespaceWrappable {}
 public extension TypeWrapperProtocol where WrappedType == Date {
+//public extension Swifty where Base == Date {
     static var now: Date {
         return Date()
     }

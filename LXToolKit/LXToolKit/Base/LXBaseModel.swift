@@ -14,6 +14,9 @@ open class LXAnyModel: NSObject, HandyJSON {
         dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
     }
     required public override init() {}
+    open override var debugDescription: String {
+        return toJSONString(prettyPrint: true) ?? "NaN"
+    }
 
     /// override var debugDescription: String { return "" }
 }

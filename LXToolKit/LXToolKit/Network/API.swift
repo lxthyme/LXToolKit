@@ -12,15 +12,6 @@ import RxSwift
 import Alamofire
 import HandyJSON
 
-enum RxMoyaError: Error {
-    case unknown
-    case error(error: Error)
-    case invalidHTTPCode(code: Int)
-    case unReachable
-//    case codeInvalid(code: Int?, data: HandyJSON?, tips: String?, msg: String?)
-    case codeInvalid(code: Int?, base: BaseModel)
-    case invalidJSON
-}
 // MARK: - 🔥Endpoint
 func makeEndpointClosure<T: TargetType>(with target: T) -> (T) -> Endpoint {
     return { (target: T) -> Endpoint in

@@ -8,20 +8,25 @@
 import UIKit
 import Foundation
 
-public extension TypeWrapperProtocol where WrappedType == UIView {
+//public extension TypeWrapperProtocol where WrappedType == UIView {
+public extension Swifty where Base: UIView {
     var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
-            return self.safeAreaInsets
+            return self.base.safeAreaInsets
         } else {
             return .zero
         }
     }
     var safeAreaLayoutGuide: UILayoutGuide {
         if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide
+            return self.base.safeAreaLayoutGuide
         } else {
             return UILayoutGuide()
         }
+    }
+
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach(self.base.addSubview)
     }
 }
 
