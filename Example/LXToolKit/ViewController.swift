@@ -11,13 +11,25 @@ import LXToolKit
 
 class ViewController: LXBaseVC {
 
+    private lazy var btnTest: UIButton = {
+        let btn = UIButton(type: .custom)
+
+        btn.setTitle("Test", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 4
+
+        btn.addTarget(self, action: #selector(btnTestAction(sender:)), for: .touchUpInside)
+        return btn
+    }()
     private var testVC = LXTestVC()
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let vc = 
+        let vc =
 //            LXApiTestVC()
-
 //            LXMultiRequestTestVC()
 //            LXOffScreenVC()
 //            LXResolveIMPVC()
@@ -33,8 +45,10 @@ class ViewController: LXBaseVC {
 //            LXImageTestVC()
 //            LXDaily1117VC()
 //            LXStackTestVC()
-            LXStackMessageVC()
-        
+//            LXStackMessageVC()
+//            LXMusicVC()
+            LXSongVC()
+
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
     }
@@ -42,6 +56,7 @@ class ViewController: LXBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        prepareUI()
 
 //        let _ = LXBaseVC()
 //        let identifier = self.xl_typeName
@@ -49,6 +64,14 @@ class ViewController: LXBaseVC {
 
 //        testArray()
 //        testDictionary()
+    }
+}
+
+// MARK: - 🔐Private Actions
+private extension ViewController {
+    @objc func btnTestAction(sender: UIButton) {
+        let vc = LXSongVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -232,5 +255,18 @@ extension Sequence where Element: Hashable {
     var frequencies: [Element: Int] {
         let frequencyPairs = self.map { ($0, 1) }
         return Dictionary(frequencyPairs, uniquingKeysWith: +)
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+private extension ViewController {
+    func prepareUI() {
+        [btnTest].forEach(self.view.addSubview)
+        masonry()
+    }
+    func masonry() {
+        btnTest.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
     }
 }

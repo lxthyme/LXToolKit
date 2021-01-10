@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E878754FE0291C2AD807604 /* Pods_LXToolKit_Exam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		879B56C0593324DB17146FA0 /* Pods_LXToolKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */; };
+		BE078E972583653D0053ABE5 /* LXTTTTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE078E962583653D0053ABE5 /* LXTTTTT.swift */; };
 		BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402024E2684F00A2F841 /* LXLightedVC.swift */; };
 		BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402724E26DC300A2F841 /* LXListItemCell.swift */; };
 		BE0F402B24E26DF300A2F841 /* LXLightedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F402A24E26DF300A2F841 /* LXLightedDataSource.swift */; };
@@ -43,10 +44,34 @@
 		BE51ADC125370944005D0F10 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51ADC025370944005D0F10 /* NotificationViewController.swift */; };
 		BE51ADC425370944005D0F10 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE51ADC225370944005D0F10 /* MainInterface.storyboard */; };
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE6505E425AAD8BC00052688 /* LXEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6505E325AAD8BC00052688 /* LXEmptyCell.swift */; };
+		BE68ACFA2599CB260068057C /* LXSongRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68ACF92599CB260068057C /* LXSongRecordModel.swift */; };
+		BE68AD042599CB4A0068057C /* LXSongCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD032599CB4A0068057C /* LXSongCellVM.swift */; };
+		BE68AD0A2599CF720068057C /* LXSongVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD092599CF720068057C /* LXSongVM.swift */; };
+		BE68AD272599D1510068057C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD262599D1510068057C /* Service.swift */; };
+		BE68AD2D2599D3090068057C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD2C2599D3090068057C /* API.swift */; };
+		BE68AD332599D4350068057C /* Observable + HandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD322599D4350068057C /* Observable + HandyJSON.swift */; };
+		BE68AD552599D9460068057C /* HUD + Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD542599D9460068057C /* HUD + Observable.swift */; };
+		BE68AD5B2599DA190068057C /* UIViewController + topVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD5A2599DA190068057C /* UIViewController + topVC.swift */; };
+		BE68AD8E2599F05A0068057C /* Action + checkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68AD8D2599F05A0068057C /* Action + checkError.swift */; };
+		BE6AA602259AB92900526193 /* LXSongVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6AA601259AB92900526193 /* LXSongVC.swift */; };
+		BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA60B259ABB9B00526193 /* RxSwift.framework */; };
+		BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA612259ABBA100526193 /* RxCocoa.framework */; };
+		BE6AA646259AC3E200526193 /* UIScrollView + refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6AA645259AC3E200526193 /* UIScrollView + refresh.swift */; };
 		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
-		BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
+		BE83807E25A9DA4B002CA245 /* RxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83807D25A9DA4B002CA245 /* RxVC.swift */; };
+		BE83808825A9DFEB002CA245 /* @_exported.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808725A9DFEB002CA245 /* @_exported.swift */; };
+		BE83808E25A9E284002CA245 /* NSObject + Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808D25A9E284002CA245 /* NSObject + Rx.swift */; };
+		BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */; };
+		BE83809A25A9E632002CA245 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83809925A9E632002CA245 /* RetryView.swift */; };
+		BE8380A125A9E6B7002CA245 /* UIFont + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380A025A9E6B7002CA245 /* UIFont + ex.swift */; };
+		BE8380AF25A9E8C8002CA245 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380AE25A9E8C8002CA245 /* Theme.swift */; };
+		BE8380DF25AA0345002CA245 /* LXSongRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380DE25AA0345002CA245 /* LXSongRecordCell.swift */; };
+		BE8380E525AA0704002CA245 /* UIImageView + Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */; };
+		BE8380EC25AA0BA4002CA245 /* LXMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380EB25AA0BA4002CA245 /* LXMacro.swift */; };
+		BE83E31C2583400A00563491 /* LXLockTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE83E31B2583400A00563491 /* LXLockTestVC.m */; };
 		BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F5FA25315B620066E47F /* LXStackTestVC.swift */; };
 		BE87F5FD25315B620066E47F /* LXStackTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F5FB25315B620066E47F /* LXStackTestVC.xib */; };
 		BE8A94C22524275000E20F14 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94C12524275000E20F14 /* NotificationService.swift */; };
@@ -75,6 +100,10 @@
 		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
 		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
 		BE9F6986253D39E100C0F1A5 /* LXButtonTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9F6985253D39E100C0F1A5 /* LXButtonTestVC.swift */; };
+		BEA1A1032589F5E100E03DA3 /* LXMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1A1022589F5E100E03DA3 /* LXMusicModel.swift */; };
+		BEA1A10D2589F64400E03DA3 /* LXMusicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1A10C2589F64400E03DA3 /* LXMusicVM.swift */; };
+		BEA1A1132589FD2E00E03DA3 /* LXMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA1A1122589FD2E00E03DA3 /* LXMusicVC.swift */; };
+		BEA1A124258A02EC00E03DA3 /* LXToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */; };
 		BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */; };
 		BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */; };
 		BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378B24DD3D370048D644 /* LXResolveTestObj.m */; };
@@ -149,17 +178,19 @@
 /* Begin PBXFileReference section */
 		1555570000192478D0FB3DF7 /* Pods-LXToolKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example.release.xcconfig"; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LXToolKit_Exam-233.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* LXToolKit_Exam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXToolKit_Exam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		67680947A3671A5582625F82 /* Pods-LXToolKit_Exam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Exam.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam.debug.xcconfig"; sourceTree = "<group>"; };
 		837456649B2F9DC9C12B5090 /* Pods-LXToolKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Exam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE078E962583653D0053ABE5 /* LXTTTTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTTTTT.swift; sourceTree = "<group>"; };
 		BE0F402024E2684F00A2F841 /* LXLightedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLightedVC.swift; sourceTree = "<group>"; };
 		BE0F402724E26DC300A2F841 /* LXListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXListItemCell.swift; sourceTree = "<group>"; };
 		BE0F402A24E26DF300A2F841 /* LXLightedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLightedDataSource.swift; sourceTree = "<group>"; };
@@ -193,10 +224,35 @@
 		BE51ADC025370944005D0F10 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		BE51ADC325370944005D0F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE6505E325AAD8BC00052688 /* LXEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEmptyCell.swift; sourceTree = "<group>"; };
+		BE68ACF92599CB260068057C /* LXSongRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongRecordModel.swift; sourceTree = "<group>"; };
+		BE68AD032599CB4A0068057C /* LXSongCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongCellVM.swift; sourceTree = "<group>"; };
+		BE68AD092599CF720068057C /* LXSongVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongVM.swift; sourceTree = "<group>"; };
+		BE68AD262599D1510068057C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BE68AD2C2599D3090068057C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BE68AD322599D4350068057C /* Observable + HandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable + HandyJSON.swift"; sourceTree = "<group>"; };
+		BE68AD542599D9460068057C /* HUD + Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HUD + Observable.swift"; sourceTree = "<group>"; };
+		BE68AD5A2599DA190068057C /* UIViewController + topVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + topVC.swift"; sourceTree = "<group>"; };
+		BE68AD8D2599F05A0068057C /* Action + checkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action + checkError.swift"; sourceTree = "<group>"; };
+		BE6AA601259AB92900526193 /* LXSongVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongVC.swift; sourceTree = "<group>"; };
+		BE6AA60B259ABB9B00526193 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6AA612259ABBA100526193 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6AA645259AC3E200526193 /* UIScrollView + refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + refresh.swift"; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
-		BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + customSpacing.swift"; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
+		BE83807D25A9DA4B002CA245 /* RxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxVC.swift; sourceTree = "<group>"; };
+		BE83808725A9DFEB002CA245 /* @_exported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "@_exported.swift"; sourceTree = "<group>"; };
+		BE83808D25A9E284002CA245 /* NSObject + Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Rx.swift"; sourceTree = "<group>"; };
+		BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + RetryView.swift"; sourceTree = "<group>"; };
+		BE83809925A9E632002CA245 /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
+		BE8380A025A9E6B7002CA245 /* UIFont + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + ex.swift"; sourceTree = "<group>"; };
+		BE8380AE25A9E8C8002CA245 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BE8380DE25AA0345002CA245 /* LXSongRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongRecordCell.swift; sourceTree = "<group>"; };
+		BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Reactive.swift"; sourceTree = "<group>"; };
+		BE8380EB25AA0BA4002CA245 /* LXMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMacro.swift; sourceTree = "<group>"; };
+		BE83E31A2583400A00563491 /* LXLockTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLockTestVC.h; sourceTree = "<group>"; };
+		BE83E31B2583400A00563491 /* LXLockTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLockTestVC.m; sourceTree = "<group>"; };
 		BE87F5FA25315B620066E47F /* LXStackTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
 		BE87F5FB25315B620066E47F /* LXStackTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LXStackTestVC.xib; sourceTree = "<group>"; };
 		BE8A94BF2524275000E20F14 /* Service.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Service.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +282,11 @@
 		BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNewUserFloat.swift; sourceTree = "<group>"; };
 		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
 		BE9F6985253D39E100C0F1A5 /* LXButtonTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXButtonTestVC.swift; sourceTree = "<group>"; };
+		BEA1A1022589F5E100E03DA3 /* LXMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMusicModel.swift; sourceTree = "<group>"; };
+		BEA1A10C2589F64400E03DA3 /* LXMusicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMusicVM.swift; sourceTree = "<group>"; };
+		BEA1A1122589FD2E00E03DA3 /* LXMusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMusicVC.swift; sourceTree = "<group>"; };
+		BEA1A118258A023900E03DA3 /* LXToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LXToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LXToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOffScreenVC.swift; sourceTree = "<group>"; };
 		BEA9378524DD3D030048D644 /* LXResolveIMPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXResolveIMPVC.swift; sourceTree = "<group>"; };
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -265,6 +326,7 @@
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FA25203AA42BABA07D551950 /* Pods-LXToolKit_Exam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Exam.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,7 +334,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				879B56C0593324DB17146FA0 /* Pods_LXToolKit_Example.framework in Frameworks */,
+				BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */,
+				BEA1A124258A02EC00E03DA3 /* LXToolKit.framework in Frameworks */,
+				5E878754FE0291C2AD807604 /* Pods_LXToolKit_Exam.framework in Frameworks */,
+				BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +394,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */,
+				607FACD01AFB9204008FA782 /* LXToolKit_Exam.app */,
 				BE8A94BF2524275000E20F14 /* Service.appex */,
 				BE51ADBA25370943005D0F10 /* Content.appex */,
 				BE46117E253D9A9600E93AB4 /* Today.appex */,
@@ -379,6 +444,8 @@
 				3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */,
 				1555570000192478D0FB3DF7 /* Pods-LXToolKit_Tests.debug.xcconfig */,
 				AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */,
+				67680947A3671A5582625F82 /* Pods-LXToolKit_Exam.debug.xcconfig */,
+				FA25203AA42BABA07D551950 /* Pods-LXToolKit_Exam.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -463,7 +530,6 @@
 		BE258D912518984D008E2777 /* extension */ = {
 			isa = PBXGroup;
 			children = (
-				BE7F5D24251B312F00813E0B /* UIStackView + customSpacing.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -505,6 +571,9 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE68ACF82599CB060068057C /* 12-28 */,
+				BEA1A0FD2589F59A00E03DA3 /* 12-16 */,
+				BE83E2E6258321E100563491 /* 12-11 */,
 				BE272FD6257A2A28005D614E /* 12-01 */,
 				BE4D8C782563727A005EE687 /* 11-17 */,
 				BE910628254944F3002BBD85 /* 10-28 */,
@@ -561,6 +630,40 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
+		BE68ACF82599CB060068057C /* 12-28 */ = {
+			isa = PBXGroup;
+			children = (
+				BE8380EA25AA0B9C002CA245 /* Macro */,
+				BE83809F25A9E6A9002CA245 /* Extension */,
+				BE83807C25A9DA2C002CA245 /* Base */,
+				BE68AD252599D13F0068057C /* Service */,
+				BE68ACF92599CB260068057C /* LXSongRecordModel.swift */,
+				BE68AD032599CB4A0068057C /* LXSongCellVM.swift */,
+				BE6AA601259AB92900526193 /* LXSongVC.swift */,
+				BE8380DE25AA0345002CA245 /* LXSongRecordCell.swift */,
+				BE68AD092599CF720068057C /* LXSongVM.swift */,
+				BE6505E325AAD8BC00052688 /* LXEmptyCell.swift */,
+			);
+			path = "12-28";
+			sourceTree = "<group>";
+		};
+		BE68AD252599D13F0068057C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BE68AD262599D1510068057C /* Service.swift */,
+				BE68AD2C2599D3090068057C /* API.swift */,
+				BE68AD322599D4350068057C /* Observable + HandyJSON.swift */,
+				BE68AD542599D9460068057C /* HUD + Observable.swift */,
+				BE68AD5A2599DA190068057C /* UIViewController + topVC.swift */,
+				BE68AD8D2599F05A0068057C /* Action + checkError.swift */,
+				BE6AA645259AC3E200526193 /* UIScrollView + refresh.swift */,
+				BE83808D25A9E284002CA245 /* NSObject + Rx.swift */,
+				BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */,
+				BE83809925A9E632002CA245 /* RetryView.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		BE7F5D21251B2F9E00813E0B /* 09-23 */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,6 +680,43 @@
 				BEA9378224DBD5710048D644 /* LXOffScreenVC.swift */,
 			);
 			path = "08-05请求依赖";
+			sourceTree = "<group>";
+		};
+		BE83807C25A9DA2C002CA245 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BE83807D25A9DA4B002CA245 /* RxVC.swift */,
+				BE83808725A9DFEB002CA245 /* @_exported.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BE83809F25A9E6A9002CA245 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE8380A025A9E6B7002CA245 /* UIFont + ex.swift */,
+				BE8380AE25A9E8C8002CA245 /* Theme.swift */,
+				BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE8380EA25AA0B9C002CA245 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				BE8380EB25AA0BA4002CA245 /* LXMacro.swift */,
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		BE83E2E6258321E100563491 /* 12-11 */ = {
+			isa = PBXGroup;
+			children = (
+				BE83E31A2583400A00563491 /* LXLockTestVC.h */,
+				BE83E31B2583400A00563491 /* LXLockTestVC.m */,
+				BE078E962583653D0053ABE5 /* LXTTTTT.swift */,
+			);
+			path = "12-11";
 			sourceTree = "<group>";
 		};
 		BE87F5F725315B2A0066E47F /* 10-10 */ = {
@@ -706,6 +846,16 @@
 				BE9F6985253D39E100C0F1A5 /* LXButtonTestVC.swift */,
 			);
 			path = "10-19";
+			sourceTree = "<group>";
+		};
+		BEA1A0FD2589F59A00E03DA3 /* 12-16 */ = {
+			isa = PBXGroup;
+			children = (
+				BEA1A1022589F5E100E03DA3 /* LXMusicModel.swift */,
+				BEA1A10C2589F64400E03DA3 /* LXMusicVM.swift */,
+				BEA1A1122589FD2E00E03DA3 /* LXMusicVC.swift */,
+			);
+			path = "12-16";
 			sourceTree = "<group>";
 		};
 		BEA9378424DD3CEC0048D644 /* 08-07-消息转发 */ = {
@@ -867,11 +1017,15 @@
 		DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8857FE94C0E135B83BC63E11 /* Pods_LXToolKit_Example.framework */,
+				BE6AA612259ABBA100526193 /* RxCocoa.framework */,
+				BE6AA60B259ABB9B00526193 /* RxSwift.framework */,
+				BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */,
+				BEA1A118258A023900E03DA3 /* LXToolKit.framework */,
 				E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */,
 				BE51ADBB25370943005D0F10 /* UserNotifications.framework */,
 				BE51ADBD25370943005D0F10 /* UserNotificationsUI.framework */,
 				BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */,
+				9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -900,7 +1054,7 @@
 			);
 			name = LXToolKit_Exam;
 			productName = LXToolKit;
-			productReference = 607FACD01AFB9204008FA782 /* LXToolKit_Exam-233.app */;
+			productReference = 607FACD01AFB9204008FA782 /* LXToolKit_Exam.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BE46117D253D9A9600E93AB4 /* Today */ = {
@@ -1064,7 +1218,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LXToolKit_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LXToolKit_Exam-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1077,34 +1231,50 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
+				"${BUILT_PRODUCTS_DIR}/M80AttributedLabel/M80AttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M80AttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Example/Pods-LXToolKit_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BEA9379B24E110120048D644 /* Swiftlint */ = {
@@ -1132,27 +1302,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE6AA602259AB92900526193 /* LXSongVC.swift in Sources */,
+				BE078E972583653D0053ABE5 /* LXTTTTT.swift in Sources */,
 				BE97A960251D9F640061254B /* Dependencies.swift in Sources */,
 				BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BE97A95A251D9C920061254B /* WikipediaSearchResult.swift in Sources */,
 				BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */,
+				BE68AD5B2599DA190068057C /* UIViewController + topVC.swift in Sources */,
+				BEA1A1132589FD2E00E03DA3 /* LXMusicVC.swift in Sources */,
 				BEC2D3982521E32F004C91B6 /* XLBaseModel.swift in Sources */,
 				BE97A952251D9B680061254B /* LXWikipediaImageSearchView.swift in Sources */,
 				BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */,
 				BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */,
 				BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */,
+				BE6AA646259AC3E200526193 /* UIScrollView + refresh.swift in Sources */,
 				BE97A97B251DD69D0061254B /* UIImage + forceLazyDecompression.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
 				BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */,
 				BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */,
+				BEA1A1032589F5E100E03DA3 /* LXMusicModel.swift in Sources */,
+				BE68AD042599CB4A0068057C /* LXSongCellVM.swift in Sources */,
 				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
+				BE8380EC25AA0BA4002CA245 /* LXMacro.swift in Sources */,
+				BE68AD0A2599CF720068057C /* LXSongVM.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
+				BE68AD2D2599D3090068057C /* API.swift in Sources */,
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
 				BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */,
+				BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */,
+				BE83807E25A9DA4B002CA245 /* RxVC.swift in Sources */,
 				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
 				BE272FE3257A2A28005D614E /* LXKingfisherVC.m in Sources */,
+				BE68AD332599D4350068057C /* Observable + HandyJSON.swift in Sources */,
 				BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */,
 				BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */,
 				BE272FE5257A2A28005D614E /* LXMessageTestCell.swift in Sources */,
@@ -1168,10 +1351,14 @@
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
 				BEC2D2F925218D74004C91B6 /* temp.swift in Sources */,
+				BE68AD272599D1510068057C /* Service.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE83E31C2583400A00563491 /* LXLockTestVC.m in Sources */,
 				BE97A972251DD3CF0061254B /* Macro.swift in Sources */,
 				BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */,
 				BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */,
+				BE83808825A9DFEB002CA245 /* @_exported.swift in Sources */,
+				BE68AD552599D9460068057C /* HUD + Observable.swift in Sources */,
 				BE272FE1257A2A28005D614E /* LXSwiftView.swift in Sources */,
 				BECD638624E13B8B009DC206 /* LXRequiredVC.swift in Sources */,
 				BE97A95C251D9D8D0061254B /* WikipediaAPI.swift in Sources */,
@@ -1181,13 +1368,20 @@
 				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
 				BE0F402B24E26DF300A2F841 /* LXLightedDataSource.swift in Sources */,
+				BE8380DF25AA0345002CA245 /* LXSongRecordCell.swift in Sources */,
 				BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */,
 				BEC2D2B525208CAB004C91B6 /* UIApplication + ex.swift in Sources */,
 				BE97A963251DA0270061254B /* Wireframe.swift in Sources */,
+				BE8380A125A9E6B7002CA245 /* UIFont + ex.swift in Sources */,
+				BE68ACFA2599CB260068057C /* LXSongRecordModel.swift in Sources */,
 				BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */,
+				BE68AD8E2599F05A0068057C /* Action + checkError.swift in Sources */,
 				BE97A976251DD47E0061254B /* LXKeyInstance.swift in Sources */,
+				BE6505E425AAD8BC00052688 /* LXEmptyCell.swift in Sources */,
 				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
+				BEA1A10D2589F64400E03DA3 /* LXMusicVM.swift in Sources */,
 				BE97A96D251DCF4E0061254B /* DownloadableImage.swift in Sources */,
+				BE83809A25A9E632002CA245 /* RetryView.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
 				BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */,
 				BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */,
@@ -1195,20 +1389,22 @@
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
 				BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */,
 				BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */,
+				BE8380E525AA0704002CA245 /* UIImageView + Reactive.swift in Sources */,
 				BE97A96B251DB7690061254B /* Reachability.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
+				BE83808E25A9E284002CA245 /* NSObject + Rx.swift in Sources */,
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
 				BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */,
 				BE272FE2257A2A28005D614E /* LXStackMessageVC.swift in Sources */,
 				BE97A967251DB7020061254B /* ImageService.swift in Sources */,
 				BE91062A25494513002BBD85 /* LXImageTestVC.swift in Sources */,
 				BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */,
-				BE7F5D25251B312F00813E0B /* UIStackView + customSpacing.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */,
 				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
 				BEC2D2A5252082E1004C91B6 /* LXWikipediaSearchCell.swift in Sources */,
+				BE8380AF25A9E8C8002CA245 /* Theme.swift in Sources */,
 				BE9F6986253D39E100C0F1A5 /* LXButtonTestVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1402,9 +1598,9 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 837456649B2F9DC9C12B5090 /* Pods-LXToolKit_Example.debug.xcconfig */;
+			baseConfigurationReference = 67680947A3671A5582625F82 /* Pods-LXToolKit_Exam.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
@@ -1414,7 +1610,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx;
-				PRODUCT_NAME = "$(TARGET_NAME)-233";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -1424,9 +1620,9 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EF2C3929A0F7638F469C5C0 /* Pods-LXToolKit_Example.release.xcconfig */;
+			baseConfigurationReference = FA25203AA42BABA07D551950 /* Pods-LXToolKit_Exam.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
@@ -1436,7 +1632,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx;
-				PRODUCT_NAME = "$(TARGET_NAME)-233";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -1461,7 +1657,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lxToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1486,7 +1682,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lxToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hg.lx.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

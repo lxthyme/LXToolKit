@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "LXToolKit_Exam-233.app"
+               BuildableName = "LXToolKit_Exam.app"
                BlueprintName = "LXToolKit_Exam"
                ReferencedContainer = "container:LXToolKit.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Exam-233.app"
+            BuildableName = "LXToolKit_Exam.app"
             BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>
@@ -67,6 +67,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      disableMainThreadChecker = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -78,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Exam-233.app"
+            BuildableName = "LXToolKit_Exam.app"
             BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>
@@ -95,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "LXToolKit_Exam-233.app"
+            BuildableName = "LXToolKit_Exam.app"
             BlueprintName = "LXToolKit_Exam"
             ReferencedContainer = "container:LXToolKit.xcodeproj">
          </BuildableReference>

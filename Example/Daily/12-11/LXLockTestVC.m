@@ -1,26 +1,25 @@
 //
-//  LXKingfisherVC.m
-//  LXToolKit_Example
+//  LXLockTestVC.m
+//  LXToolKit_Exam
 //
-//  Created by LXThyme Jason on 2020/12/3.
+//  Created by LXThyme Jason on 2020/12/11.
 //  Copyright © 2020 CocoaPods. All rights reserved.
 //
 
-#import "LXKingfisherVC.h"
-#import <SDWebImage.h>
-#import <LXToolKit-Swift.h>
-#import <LXToolKit_Exam-Swift.h>
+#import "LXLockTestVC.h"
 
-@interface LXKingfisherVC () {
+@interface LXLockTestVC() {
 }
 
 @end
 
-@implementation LXKingfisherVC
-
+@implementation LXLockTestVC
 - (void)dealloc {
     NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
 }
+
+#pragma mark -
+#pragma mark - 🛠Life Cycle
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
@@ -45,33 +44,25 @@
 
     [self prepareUI];
 }
-- (void)test123 {
-    NSURL *url = [NSURL URLWithString:@""];
-    NSLog(@"URL: %@", url);
-//    LXTest *test = [[LXTest alloc]init];
-//    LXEm
-//    url.ca
-}
+
+#pragma mark -
+#pragma mark - 🌎LoadData
+
+#pragma mark -
+#pragma mark - 👀Public Actions
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+
+#pragma mark -
+#pragma mark - 🍺UI Prepare & Masonry
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-//    NSArray<UIView *> *array = @[<#table#>];
-//    [array enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        [self.view addSubview:obj];
-//    }];
+//    [self.view addSubview:table]
     [self masonry];
 }
 - (void)masonry {}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
