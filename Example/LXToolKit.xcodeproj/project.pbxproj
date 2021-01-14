@@ -61,7 +61,6 @@
 		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
 		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
 		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
-		BE83807E25A9DA4B002CA245 /* RxVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83807D25A9DA4B002CA245 /* RxVC.swift */; };
 		BE83808825A9DFEB002CA245 /* @_exported.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808725A9DFEB002CA245 /* @_exported.swift */; };
 		BE83808E25A9E284002CA245 /* NSObject + Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808D25A9E284002CA245 /* NSObject + Rx.swift */; };
 		BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */; };
@@ -241,7 +240,6 @@
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
-		BE83807D25A9DA4B002CA245 /* RxVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxVC.swift; sourceTree = "<group>"; };
 		BE83808725A9DFEB002CA245 /* @_exported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "@_exported.swift"; sourceTree = "<group>"; };
 		BE83808D25A9E284002CA245 /* NSObject + Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Rx.swift"; sourceTree = "<group>"; };
 		BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + RetryView.swift"; sourceTree = "<group>"; };
@@ -685,7 +683,6 @@
 		BE83807C25A9DA2C002CA245 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				BE83807D25A9DA4B002CA245 /* RxVC.swift */,
 				BE83808725A9DFEB002CA245 /* @_exported.swift */,
 			);
 			path = Base;
@@ -1332,7 +1329,6 @@
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
 				BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */,
 				BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */,
-				BE83807E25A9DA4B002CA245 /* RxVC.swift in Sources */,
 				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
 				BE272FE3257A2A28005D614E /* LXKingfisherVC.m in Sources */,
 				BE68AD332599D4350068057C /* Observable + HandyJSON.swift in Sources */,

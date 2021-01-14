@@ -131,21 +131,31 @@ private extension LXSongVC {
         self.collectionView.rx.footerRefresh.asDriver()
             .drive(vm.input.footerRefresh)
             .disposed(by: rx.disposeBag)
-//        self.collectionView.rx.retry.bind(to: viewModel.input.retry).disposed(by: dispose)
+        self.collectionView.rx.retry
+            .bind(to: vm.input.retry)
+            .disposed(by: disposeBag)
         vm.output.footerState
             .asDriver(onErrorJustReturn: (current: 0, pageSize: 18))
             .drive(self.collectionView.rx.footerEndRefreshWithNoMoreDataByPageSize)
             .disposed(by: rx.disposeBag)
-//        viewModel.output.emptyData.asDriver(onErrorJustReturn: .Success).drive(self.collectionView.rx.isShowRetryView).disposed(by: rx.disposeBag)
+        vm.output.emptyData
+            .asDriver(onErrorJustReturn: .success)
+            .drive(self.collectionView.rx.isShowRetryView)
+            .disposed(by: rx.disposeBag)
+
         return self
     }
     @discardableResult
     func aimingOutput() -> LXSongVC {
         vm.output.dataSource
+//            .subscribe({ (<#Event<[LXSongCellVM]>#>) in
+//                <#code#>
+//            })
+//            .subscribe(onNext: <#T##(([LXSongCellVM]) -> Void)?##(([LXSongCellVM]) -> Void)?##([LXSongCellVM]) -> Void#>, onError: <#T##((Error) -> Void)?##((Error) -> Void)?##(Error) -> Void#>, onCompleted: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>, onDisposed: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
             .subscribeNext(weak: self) { (vc) -> ([LXSongCellVM]) -> Void in
                 return { _ in
                     vc.collectionView.rx.beginReloadData.onNext(())
-//                    collectionView.rx.isShowRetryView.onNext(emptyStatu)
+                    vc.collectionView.rx.isShowRetryView.onNext(.success)
                 }
             }
             .disposed(by: rx.disposeBag)

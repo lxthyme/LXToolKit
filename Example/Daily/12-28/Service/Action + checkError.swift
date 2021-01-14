@@ -13,12 +13,12 @@ import LXToolKit
 
 // MARK: - 👀
 extension Action {
-    var checkError: Observable<RxMoyaError> {
-        return errors.map { error -> RxMoyaError in
+    var checkError: Observable<LXEmptyType> {
+        return errors.map { error -> LXEmptyType in
             switch error {
-                case .notEnabled: return .unknown
+                case .notEnabled: return .server
                 case .underlyingError(let error):
-                    return error.toRxMoyaError
+                    return error.toEmptyType
             }
         }
     }
@@ -26,69 +26,26 @@ extension Action {
 
 // MARK: - 👀
 extension Error {
-    var toRxMoyaError: RxMoyaError {
+    var toEmptyType: LXEmptyType {
         switch (self as NSError).code {
-            case NSURLErrorTimedOut: return .timeout
-            case NSURLErrorUnknown: return .unknown
-            case NSURLErrorCancelled: return .cancelled
-            case NSURLErrorZeroByteResource,
-                 NSURLErrorCannotDecodeRawData,
-                 NSURLErrorCannotDecodeContentData: return .noData
-            case NSURLErrorCannotParseResponse: return .invalidJSON
+            /// -1001（请求超时）
+            case NSURLErrorTimedOut:
+                return .timeout
+            /// -1000（请求的URL错误，无法启动请求）
             case NSURLErrorBadURL,
+                 ///-1003（URL的host名称无法解析，即DNS有问题）
                  NSURLErrorCannotFindHost,
+                 ///-1003（URL的host名称无法解析，即DNS有问题）
+                 NSURLErrorCannotFindHost,
+                 ///-1004（连接host失败）
                  NSURLErrorCannotConnectToHost,
-                 NSURLErrorNotConnectedToInternet,
-                 NSURLErrorUnsupportedURL,
-                 NSURLErrorNetworkConnectionLost,
-                 NSURLErrorDNSLookupFailed,
-                 NSURLErrorHTTPTooManyRedirects,
-                 NSURLErrorResourceUnavailable,
-                 NSURLErrorRedirectToNonExistentLocation,
-                 NSURLErrorBadServerResponse,
-                 NSURLErrorUserCancelledAuthentication,
-                 NSURLErrorUserAuthenticationRequired,
-                 NSURLErrorAppTransportSecurityRequiresSecureConnection,
-                 NSURLErrorFileDoesNotExist,
-                 NSURLErrorFileIsDirectory,
-                 NSURLErrorNoPermissionsToReadFile,
-                 NSURLErrorDataLengthExceedsMaximum,
-//                 NSURLErrorFileOutsideSafeArea,
-                 /// SSL errors
-                 NSURLErrorSecureConnectionFailed,
-                 NSURLErrorServerCertificateHasBadDate,
-                 NSURLErrorServerCertificateUntrusted,
-                 NSURLErrorServerCertificateHasUnknownRoot,
-                 NSURLErrorServerCertificateNotYetValid,
-                 NSURLErrorClientCertificateRejected,
-                 NSURLErrorClientCertificateRequired,
-                 NSURLErrorCannotLoadFromNetwork: return .unReachable
-            // Download and file I/O errors
-            case NSURLErrorCannotCreateFile,
-            NSURLErrorCannotOpenFile,
-            NSURLErrorCannotCloseFile,
-            NSURLErrorCannotWriteToFile,
-            NSURLErrorCannotRemoveFile,
-            NSURLErrorCannotMoveFile,
-            NSURLErrorDownloadDecodingFailedMidStream,
-            NSURLErrorDownloadDecodingFailedToComplete: return .unReachable
-
-//            @available(iOS 3.0, *)
-            case NSURLErrorInternationalRoamingOff: return .unReachable
-//            @available(iOS 3.0, *)
-            case NSURLErrorCallIsActive: return .unReachable
-//            @available(iOS 3.0, *)
-            case NSURLErrorDataNotAllowed: return .unReachable
-//            @available(iOS 3.0, *)
-            case NSURLErrorRequestBodyStreamExhausted:return .unReachable
-
-//            @available(iOS 8.0, *)
-            case NSURLErrorBackgroundSessionRequiresSharedContainer: return .unReachable
-//            @available(iOS 8.0, *)
-            case NSURLErrorBackgroundSessionInUseByAnotherProcess: return .unReachable
-//            @available(iOS 8.0, *)
-            case NSURLErrorBackgroundSessionWasDisconnected: return .unReachable
-            default: return .unknown
+                 ///-1003（URL的host名称无法解析，即DNS有问题）
+                 NSURLErrorCannotFindHost,
+                 ///-1009（断网状态）
+                 NSURLErrorNotConnectedToInternet:
+                return .server
+            default:
+                return .server
         }
     }
 }

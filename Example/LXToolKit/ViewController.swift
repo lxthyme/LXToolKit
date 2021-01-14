@@ -76,6 +76,13 @@ private extension ViewController {
 }
 
 extension ViewController {
+    func test2() {
+        let params: [String: Any]? = [:]
+        let json = params?.keys.sorted()
+            .reduce("", { $0 + $1 + (params?[$1].debugDescription ?? "") }) ?? ""
+        JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
+        dlog("json: \(json)")
+    }
     func testArray() {
         let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         ({

@@ -40,11 +40,9 @@ extension ObservableType {
     }
     func hideLoading() ->Observable<Element> {
         `do` { _ in
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-                if let vc = UIViewController.getTopVC() {
-                    vc.view.endEditing(true)
-                }
+            SVProgressHUD.dismiss()
+            if let vc = UIViewController.getTopVC() {
+                vc.view.endEditing(true)
             }
         }
     }

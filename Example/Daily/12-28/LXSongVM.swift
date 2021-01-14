@@ -39,8 +39,8 @@ class LXSongVM: NSObject {
     }
     struct Output {
         let dataSource = BehaviorSubject<[LXSongCellVM]>(value: [])
-        lazy var emptyData = BehaviorSubject<RxMoyaError>(value: .unknown)
-        lazy var footerState = PublishSubject<(Int, Int)>()
+        lazy var emptyData = BehaviorSubject<LXEmptyType>(value: .success)
+        lazy var footerState = PublishSubject<(current: Int, pageSize: Int)>()
     }
     // MARK: 🔗Vaiables
     var input = Input()
@@ -50,11 +50,12 @@ class LXSongVM: NSObject {
         service = apiService
 
         let page = BehaviorSubject(value: 1)
-        service.getRecordList.elements
+        /// 请求数据 + 翻页 + 数组自增
+        let d = service.getRecordList.elements
+            .observeOn(MainScheduler.instance)
             .hideLoading()
             .map { item -> [LXSongCellVM] in
-                let list = item.list?.compactMap { LXSongCellVM($0, pageStatus: pageStatus) }
-                return list ?? []
+                return item.list?.compactMap { LXSongCellVM($0, pageStatus: pageStatus) } ?? []
             }
             .do(onNext: { (_) in
                 page.onNext(try page.value() + 1)
@@ -63,21 +64,20 @@ class LXSongVM: NSObject {
             .scan([], accumulator: {
                 return (try page.value() == 1) ? $1 : $0 + $1
             })
-//            .scan([]) { (list, vmList) -> [LXSongCellVM] in
-//                return (try page.value() == 1) ? (list + vmList) : list
-//            }
             .bind(to: output.dataSource)
             .disposed(by: disposeBag)
 
+        /// 返回底部刷新状态
         service.getRecordList.elements
-            .map { ($0.list?.count ?? 0, 18) }
+            .map { (current: $0.list?.count ?? 0, pageSize: 18) }
             .bind(to: output.footerState)
             .disposed(by: disposeBag)
 
+        /// 返回值 + 当前页面 返回空数据视图状态展示
         Observable
             .combineLatest(service.getRecordList.elements, page)
             .asObservable()
-            .map { (model, page) -> RxMoyaError in
+            .map { (model, page) -> LXEmptyType in
                 if model.list?.count == 0, page == 1 {
                     return .noData
                 }
@@ -86,11 +86,13 @@ class LXSongVM: NSObject {
             .bind(to: output.emptyData)
             .disposed(by: disposeBag)
 
+        /// 底部刷新 合并 页码 绑定请求
         input.footerRefresh
             .withLatestFrom(page)
             .bind(to: service.getRecordList.inputs)
             .disposed(by: disposeBag)
 
+        /// 请求错误 + 页码 返回空数据视图展示
         Observable
             .combineLatest(service.getRecordList.checkError, page)
             .asObservable()
@@ -98,11 +100,13 @@ class LXSongVM: NSObject {
             .bind(to: output.emptyData)
             .disposed(by: disposeBag)
 
+        /// 请求错误 返回底部刷新状态
         service.getRecordList.checkError.hideLoading()
             .map { _ in (0, 0) }
             .bind(to: output.footerState)
             .disposed(by: disposeBag)
 
+        /// 头部刷新 更新页面 绑定请求
         input.headerRefresh.showLoading()
             .map { _ in
                 page.onNext(1)
@@ -112,6 +116,7 @@ class LXSongVM: NSObject {
             .bind(to: service.getRecordList.inputs)
             .disposed(by: disposeBag)
 
+        /// 重试事件
         input.retry.withLatestFrom(page)
             .bind(to: service.getRecordList.inputs)
             .disposed(by: disposeBag)

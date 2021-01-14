@@ -77,7 +77,7 @@ extension Reactive where Base: UIScrollView {
             }
         }
     }
-    var footerEndRefreshWithNoMoreDataByPageSize: Binder<(Int, Int)> {
+    var footerEndRefreshWithNoMoreDataByPageSize: Binder<(current: Int, pageSize: Int)> {
         return Binder(base) { (tmp, value) in
             let tuple = value as (current: Int, pageSize: Int)
             if tuple.current > 0 && tuple.current < tuple.pageSize {

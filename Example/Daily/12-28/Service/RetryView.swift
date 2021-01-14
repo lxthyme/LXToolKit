@@ -75,7 +75,7 @@ class RetryView: UIView {
                     title = ""
                     content = ""
                     btnRetryTitle = ""
-                case .timeout:
+                case .timeout, .unReachability:
                     imgLogoName = ""
                     title = "再给我一次机会，试试看刷新页面~"
                     content = "网速居然这么慢"
