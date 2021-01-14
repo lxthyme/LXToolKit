@@ -8,6 +8,13 @@
 import UIKit
 import Foundation
 
+// MARK: - 👀XL
+//public extension UIColor {
+//    static var xl: Swifty<UIColor>.Type {
+//        return UIColor.xl
+//    }
+//}
+
 // MARK: - 👀lx
 //extension UIColor: NamespaceWrappable {}
 //public extension TypeWrapperProtocol where WrappedType == UIColor {
