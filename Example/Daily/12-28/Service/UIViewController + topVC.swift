@@ -10,6 +10,9 @@ import Foundation
 
 // MARK: - 👀
 extension UIViewController {
+    @objc static func topViewController() -> UIViewController? {
+        return getTopVC()
+    }
     // MARK: - 查找顶层控制器、
     // 获取顶层控制器 根据window
     @objc  static func getTopVC() -> UIViewController? {

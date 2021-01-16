@@ -79,6 +79,8 @@ class LXSongVC: LXBaseVC {
     }()
     // MARK: 🔗Vaiables
     var vm: LXSongVM!
+    lazy var cell = LXSongRecordCell()
+    var publish = PublishSubject<String>()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -142,7 +144,7 @@ private extension LXSongVC {
             .asDriver(onErrorJustReturn: .success)
             .drive(self.collectionView.rx.isShowRetryView)
             .disposed(by: rx.disposeBag)
-
+//        publish.bind(to: self.vm.output.con)
         return self
     }
     @discardableResult
@@ -193,6 +195,7 @@ extension LXSongVC: UICollectionViewDataSource {
         }
         // swiftlint:disable:next force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.xl_identifier, for: indexPath) as! LXSongRecordCell
+        self.cell = cell
         // swiftlint:disable:previous force_cast
         if let d = try? self.vm.output.dataSource.value()[indexPath.row] {
             cell.bindResult(d)
@@ -213,6 +216,14 @@ extension LXSongVC: UICollectionViewDelegate {
 //    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        let cell = collectionView.cellForItem(at: indexPath) as? LXSongRecordCell
+//
+        if let vm = cell?.vm {
+            Observable.just(vm).map { tmp in
+                tmp
+            }
+        self.cell.detaObservable.onNext(vm)
+        }
     }
 }
 // MARK: - ✈️UICollectionViewDelegateFlowLayout

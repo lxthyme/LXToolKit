@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import RxCocoa
+import RxSwift
 enum LXSongRecordStatus {
     case record
     case square
@@ -65,12 +66,16 @@ class LXSongRecordCell: LXBaseCollectionCell {
         label.textAlignment = .center
         return label
     }()
+
+    lazy var detaObservable = PublishSubject<LXSongCellVM>()
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     // MARK: 🔗Vaiables
+    var vm: LXSongCellVM?
     var disposeBag = DisposeBag()
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        detaObservable.bind(to: cellModelHandle).disposed(by: rx.disposeBag)
         prepareUI()
     }
     open override func prepareForReuse() {
@@ -80,6 +85,13 @@ class LXSongRecordCell: LXBaseCollectionCell {
 
 // MARK: 👀Public Actions
 extension LXSongRecordCell {
+
+
+    var cellModelHandle: Binder<LXSongCellVM>{
+        return Binder(self){ cell, model in
+
+        }
+    }
     func bindResult(_ vm: LXSongCellVM) {
 //        if let url = try? vm.output.contentImage.value() {
 //            imgViewSong.sd_setImage(
@@ -108,6 +120,7 @@ extension LXSongRecordCell {
         vm.output.songCoverIsHidden
             .bind(to: self.coverView.rx.isHidden)
             .disposed(by: rx.disposeBag)
+        self.vm = vm
     }
 }
 

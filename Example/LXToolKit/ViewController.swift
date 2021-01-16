@@ -47,7 +47,9 @@ class ViewController: LXBaseVC {
 //            LXStackTestVC()
 //            LXStackMessageVC()
 //            LXMusicVC()
-            LXSongVC()
+//            LXSongVC()
+//            LX0114VC()
+            LXPickerVC()
 
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
@@ -80,7 +82,11 @@ extension ViewController {
         let params: [String: Any]? = [:]
         let json = params?.keys.sorted()
             .reduce("", { $0 + $1 + (params?[$1].debugDescription ?? "") }) ?? ""
-        JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
+        if #available(iOS 11.0, *) {
+            let _ = try? JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
+        } else {
+            // Fallback on earlier versions
+        }
         dlog("json: \(json)")
     }
     func testArray() {
