@@ -20,15 +20,17 @@ public extension Swifty where Base: UITableViewCell {
 }
 
 // MARK: - 👀
-public extension Swifty where Base == Array<UICollectionViewCell.Type> {
+//public extension Swifty where Base == Array<UICollectionViewCell.Type> {
+public extension TypeWrapperProtocol where BaseValue == [UICollectionViewCell.Type] {
     func register(_ collectionView: UICollectionView) {
-        base.forEach { $0.xl.register(collectionView) }
+        baseValue.forEach { $0.xl.register(collectionView) }
     }
 }
 
 // MARK: - 👀
-public extension Swifty where Base == Array<UITableViewCell.Type> {
+//public extension Swifty where Base == Array<UITableViewCell.Type> {
+public extension TypeWrapperProtocol where BaseValue == [UITableViewCell.Type] {
     func register(_ tableView: UITableView) {
-        base.forEach { $0.xl.register(tableView) }
+        baseValue.forEach { $0.xl.register(tableView) }
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-//public extension TypeWrapperProtocol where WrappedType == UIView {
+//public extension TypeWrapperProtocol where BaseType == UIView {
 public extension Swifty where Base: UIView {
     var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {

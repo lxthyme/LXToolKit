@@ -10,7 +10,7 @@ import Foundation
 //public extension Swifty where Base: Array<Any>, Base.Element: Equatabledo {
 //    typealias Element = Base.Element
 //}
-//extension Array: NamespaceWrappable {}
+
 //public extension TypeWrapperProtocol where WrappedType: Array {}
 // MARK: - 👀
 extension Array where Element: Equatable {

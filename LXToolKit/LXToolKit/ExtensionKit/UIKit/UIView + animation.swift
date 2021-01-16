@@ -8,8 +8,7 @@
 import UIKit
 import Foundation
 
-//extension UIView: NamespaceWrappable {}
-//public extension TypeWrapperProtocol where WrappedType == UIView {
+//public extension TypeWrapperProtocol where BaseType == UIView {
 public extension Swifty where Base: UIView {
     func dismissAnimation(duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.dismissAnimation") {
         self.opacityAnimation(from: 1, to: 0, duration: duration, timingFunction: timingFunction, key: key)

@@ -6,12 +6,14 @@
 //
 
 import Foundation
-
+// WrapperType = BaseType
+// WrappedType = BaseValue
+// wrappedValue = baseValue
 // MARK: - 🔥NamespaceWrappable
 public protocol NamespaceWrappable {
-    associatedtype WrapperType
-    var xl: WrapperType { get }
-    static var xl: WrapperType.Type { get }
+    associatedtype BaseType
+    var xl: BaseType { get }
+    static var xl: BaseType.Type { get }
 }
 
 public extension NamespaceWrappable {
@@ -25,15 +27,15 @@ public extension NamespaceWrappable {
 }
 
 public protocol TypeWrapperProtocol {
-    associatedtype WrappedType
-    var wrappedValue: WrappedType { get }
-    init(value: WrappedType)
+    associatedtype BaseValue
+    var baseValue: BaseValue { get }
+    init(value: BaseValue)
 }
 
 public struct NamespaceWrapper<T>: TypeWrapperProtocol {
-    public let wrappedValue: T
+    public let baseValue: T
     public init(value: T) {
-        self.wrappedValue = value
+        self.baseValue = value
     }
 }
 

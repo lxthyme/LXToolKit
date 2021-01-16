@@ -7,8 +7,7 @@
 //
 import UIKit
 
-extension String: NamespaceWrappable {}
-public extension TypeWrapperProtocol where WrappedType == String {
+public extension TypeWrapperProtocol where BaseValue == String {
 //public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     func getVCInstance<T: UIViewController>() -> T? {
@@ -20,45 +19,45 @@ public extension TypeWrapperProtocol where WrappedType == String {
     /// 从字符串初始化一个 NSObject 实例
     func getObjcInstance<T: NSObject>() -> T? {
         guard let nameSpace = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String,
-            let cls = NSClassFromString(nameSpace + "." + wrappedValue),
+            let cls = NSClassFromString(nameSpace + "." + baseValue),
             let objType = cls as? T.Type else { return nil }
         let instance = objType.init()
         return instance
     }
 }
-extension Int64: NamespaceWrappable {}
-public extension TypeWrapperProtocol where WrappedType == Int64 {
+
+public extension TypeWrapperProtocol where BaseValue == Int64 {
 //public extension Swifty where Base: Int64 {
     /// 根据字节大小返回文件大小字符KB、MB
     var fileSize: String {
-        return ByteCountFormatter.string(fromByteCount: wrappedValue, countStyle: .file)
+        return ByteCountFormatter.string(fromByteCount: baseValue, countStyle: .file)
     }
 }
 
 public typealias UnicodeEqualInfo = (Bool, nsstring: Bool, equal: Bool, utf8: Bool, utf16: Bool)
 
-public extension TypeWrapperProtocol where WrappedType == String {
+public extension TypeWrapperProtocol where BaseValue == String {
 //public extension Swifty where Base: String {
     var unicodeName: [String] {
-        return wrappedValue.unicodeScalars.lazy.map { $0.xl.unicodeName }
+        return baseValue.unicodeScalars.lazy.map { $0.xl.unicodeName }
     }
     var unicodeValue: [String] {
-        return wrappedValue.unicodeScalars.lazy.map { "\\u{\(String($0.value, radix: 16, uppercase: true))}" }
+        return baseValue.unicodeScalars.lazy.map { "\\u{\(String($0.value, radix: 16, uppercase: true))}" }
     }
     var unicodeInfo: (length: Int, count: Int, utf8: Int, utf16: Int, unicode: [(name: String, code: String)]) {
         let merge = zip(self.unicodeName, self.unicodeValue).map { $0 }
-        return (length: (wrappedValue as NSString).length,
-                count: wrappedValue.count,
-                utf8: wrappedValue.utf8.count,
-                utf16: wrappedValue.utf16.count,
+        return (length: (baseValue as NSString).length,
+                count: baseValue.count,
+                utf8: baseValue.utf8.count,
+                utf16: baseValue.utf16.count,
                 unicode: merge)
     }
     func unicodeEqual(to r: String) -> UnicodeEqualInfo {
-        let e0 = wrappedValue == r
-        let e1 = (wrappedValue as NSString) == (r as NSString)
-        let e2 = wrappedValue.elementsEqual(r)
-        let e3 = wrappedValue.utf8.elementsEqual(r.utf8)
-        let e4 = wrappedValue.utf16.elementsEqual(r.utf16)
+        let e0 = baseValue == r
+        let e1 = (baseValue as NSString) == (r as NSString)
+        let e2 = baseValue.elementsEqual(r)
+        let e3 = baseValue.utf8.elementsEqual(r.utf8)
+        let e4 = baseValue.utf16.elementsEqual(r.utf16)
         return (e0,
                 nsstring: e1,
                 equal: e2,
@@ -69,17 +68,17 @@ public extension TypeWrapperProtocol where WrappedType == String {
         return l.xl.unicodeEqual(to: r)
     }
 }
-extension StringTransform: NamespaceWrappable {}
-public extension TypeWrapperProtocol where WrappedType == StringTransform {
+
+public extension TypeWrapperProtocol where BaseValue == StringTransform {
     var toUnicodeName: StringTransform {
         return StringTransform(rawValue: "Any-Name")
     }
 }
-extension Unicode.Scalar: NamespaceWrappable {}
-public extension TypeWrapperProtocol where WrappedType == Unicode.Scalar {
+
+public extension TypeWrapperProtocol where BaseValue == Unicode.Scalar {
 //public extension Swifty where Base == Unicode.Scalar {
     var unicodeName: String {
-        let name = String(wrappedValue).applyingTransform(.toUnicodeName, reverse: false)!
+        let name = String(baseValue).applyingTransform(.toUnicodeName, reverse: false)!
         let prefixPattern = "\\N{"
         let suffixPattern = "}"
         let prefixLength = name.hasPrefix(prefixPattern) ? prefixPattern.count : 0
@@ -88,11 +87,11 @@ public extension TypeWrapperProtocol where WrappedType == Unicode.Scalar {
     }
 }
 
-public extension TypeWrapperProtocol where WrappedType == String {
+public extension TypeWrapperProtocol where BaseValue == String {
 //public extension Swifty where Base == String {
     func wrapped(after: Int = 70) -> String {
         var i = 0
-        let lines = wrappedValue.split(omittingEmptySubsequences: false) { char in
+        let lines = baseValue.split(omittingEmptySubsequences: false) { char in
             switch char {
             case "\n",
                  " " where i >= after:
@@ -112,22 +111,22 @@ public extension Collection where Element: Equatable {
     }
 }
 
-public extension TypeWrapperProtocol where WrappedType == String {
+public extension TypeWrapperProtocol where BaseValue == String {
 //public extension Swifty where Base: String {
     var urlEscaped: String? {
-        return wrappedValue.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        return baseValue.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
 }
 
 // MARK: - 👀
-public extension TypeWrapperProtocol where WrappedType == String {
+public extension TypeWrapperProtocol where BaseValue == String {
 //public extension Swifty where Base: String {
     func toFloat() ->Float? {
         let numberFormatter = NumberFormatter()
-        return numberFormatter.number(from: wrappedValue)?.floatValue
+        return numberFormatter.number(from: baseValue)?.floatValue
     }
     func toDouble() ->Double? {
         let numberFormatter = NumberFormatter()
-        return numberFormatter.number(from: wrappedValue)?.doubleValue
+        return numberFormatter.number(from: baseValue)?.doubleValue
     }
 }
