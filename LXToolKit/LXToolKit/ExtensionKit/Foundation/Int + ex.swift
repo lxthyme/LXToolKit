@@ -8,8 +8,9 @@
 import Foundation
 
 // MARK: - 👀
-public extension Swifty where Base == Int {
-    init(xl_bool bool: Bool) {
-        base = bool ? 1 : 0
+//public extension Swifty where Base == Int {
+public extension TypeWrapperProtocol where BaseValue == Int {
+    static func toInt(from bool: Bool) ->Int {
+        return bool ? 1 : 0
     }
 }

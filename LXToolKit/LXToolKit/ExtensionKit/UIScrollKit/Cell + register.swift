@@ -8,6 +8,7 @@
 import Foundation
 
 public extension Swifty where Base: UICollectionViewCell {
+//public extension TypeWrapperProtocol where BaseValue == UICollectionViewCell {
     static func register(_ collectionView: UICollectionView) {
         collectionView.register(Base.self, forCellWithReuseIdentifier: Base.xl_identifier)
     }

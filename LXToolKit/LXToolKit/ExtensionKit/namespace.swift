@@ -33,34 +33,34 @@ public protocol TypeWrapperProtocol {
 }
 
 public struct NamespaceWrapper<T>: TypeWrapperProtocol {
-    public let baseValue: T
+    public var baseValue: T
     public init(value: T) {
         self.baseValue = value
     }
 }
 
 // MARK: - 🔥XLWrapper
-public final class XLWrapper<Base> {
-    public let base: Base
-    public init(_ base: Base) {
-        self.base = base
-    }
-}
-
-public protocol XLProtocol {
-    associatedtype XLType
-    var xl: XLType { get }
-    static var xl: XLType.Type { get }
-}
-// MARK: - 👀
-public extension XLProtocol {
-    public var xl: XLWrapper<Self> {
-        return XLWrapper(self)
-    }
-    public static var xl: XLWrapper<Self>.Type {
-        return XLWrapper<Self>.self
-    }
-}
+//public final class XLWrapper<Base> {
+//    public let base: Base
+//    public init(_ base: Base) {
+//        self.base = base
+//    }
+//}
+//
+//public protocol XLProtocol {
+//    associatedtype XLType
+//    var xl: XLType { get }
+//    static var xl: XLType.Type { get }
+//}
+//// MARK: - 👀
+//public extension XLProtocol {
+//    public var xl: XLWrapper<Self> {
+//        return XLWrapper(self)
+//    }
+//    public static var xl: XLWrapper<Self>.Type {
+//        return XLWrapper<Self>.self
+//    }
+//}
 
 // MARK: - 🔥Swifty
 public struct Swifty<Base> {
