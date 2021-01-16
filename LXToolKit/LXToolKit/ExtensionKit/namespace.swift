@@ -62,7 +62,7 @@ public extension XLProtocol {
 
 // MARK: - 🔥Swifty
 public struct Swifty<Base> {
-    public let base: Base
+    public var base: Base
     public init(_ base: Base) {
         self.base = base
     }

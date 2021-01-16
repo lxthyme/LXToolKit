@@ -31,7 +31,5 @@ enum LXUIKit {
 enum FactoryKit {}
 
 extension FactoryKit {
-    func kit() {
-
-    }
+    func kit() {}
 }
