@@ -38,9 +38,13 @@ class LXAlbumListModel: NSObject {
 // MARK: - 👀
 extension LXAlbumListModel {
     func refetchPhotos() {
-        let models = ZLPhotoManager.fetchPhoto(in: self.result, ascending: ZLPhotoConfiguration.default().sortAscending, allowSelectImage: ZLPhotoConfiguration.default().allowSelectImage, allowSelectVideo:  ZLPhotoConfiguration.default().allowSelectVideo)
-        self.models.removeAll()
-        self.models.append(contentsOf: models)
+//        let models = ZLPhotoManager
+//            .fetchPhoto(in: self.result,
+//                        ascending: ZLPhotoConfiguration.default().sortAscending,
+//                        allowSelectImage: ZLPhotoConfiguration.default().allowSelectImage,
+//                        allowSelectVideo: ZLPhotoConfiguration.default().allowSelectVideo)
+//        self.models.removeAll()
+//        self.models.append(contentsOf: models)
     }
 
     func refreshResult() {

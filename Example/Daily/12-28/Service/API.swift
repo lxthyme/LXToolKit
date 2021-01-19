@@ -14,7 +14,9 @@ enum SongService: APIService {
     /// 音乐广场
     case musicCenter
     ///我的录制
-     case myRecord
+    case myRecord
+    ///成长值充值记录
+    case growthRecord(page: Int, lastYearMonth: String, last_id: String)
     var baseURL: String {
         return "http://api.com:3003/api/uu"
     }
@@ -34,6 +36,12 @@ enum SongService: APIService {
                 return APIParameter(path: "kidsong/song-api/get-list", params: p)
             case .musicCenter: return APIParameter(path: "kidsong/song-api/kidsong-square", params: [:])
             case .myRecord: return APIParameter(path: "kidsong/song-api/get-user-list", params: [:])
+            case .growthRecord(let page, let lastYearMonth, let last_id):
+                return APIParameter(path: "/account/growth/record", params: [
+                    "page": page,
+                    "lastYearMonth": lastYearMonth,
+                    "last_id": last_id
+                ])
         }
     }
 }
