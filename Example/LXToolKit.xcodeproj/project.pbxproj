@@ -121,6 +121,14 @@
 		BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9378E24DD409B0048D644 /* LXPerson.m */; };
 		BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */; };
 		BEA9379924E0E9620048D644 /* LXRequiredVC1.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9379824E0E9620048D644 /* LXRequiredVC1.m */; };
+		BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */; };
+		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
+		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
+		BEAF2CA325BE8FA30054AE3D /* handle + comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CA225BE8FA30054AE3D /* handle + comments.swift */; };
+		BEAF2CAA25BE8FCA0054AE3D /* LXMaJia + classPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CA925BE8FCA0054AE3D /* LXMaJia + classPrefix.swift */; };
+		BEAF2CB125BE901F0054AE3D /* handle + project.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CB025BE901F0054AE3D /* handle + project.swift */; };
+		BEAF2CB825BE90850054AE3D /* handle + SampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */; };
+		BEAF2CBF25BE94CC0054AE3D /* LXMaJia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */; };
 		BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB52C4025B01309006C5C34 /* LX0114VC.swift */; };
 		BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */; };
 		BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */; };
@@ -172,6 +180,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		BEAF2C8C25BE6FCE0054AE3D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		BEC2D4F725233A02004C91B6 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,6 +338,15 @@
 		BEA9379224E0E90A0048D644 /* LXBaseRequiredVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseRequiredVC.m; sourceTree = "<group>"; };
 		BEA9379724E0E9620048D644 /* LXRequiredVC1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRequiredVC1.h; sourceTree = "<group>"; };
 		BEA9379824E0E9620048D644 /* LXRequiredVC1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRequiredVC1.m; sourceTree = "<group>"; };
+		BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
+		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEAF2C9025BE6FCE0054AE3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + assets.swift"; sourceTree = "<group>"; };
+		BEAF2CA225BE8FA30054AE3D /* handle + comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + comments.swift"; sourceTree = "<group>"; };
+		BEAF2CA925BE8FCA0054AE3D /* LXMaJia + classPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LXMaJia + classPrefix.swift"; sourceTree = "<group>"; };
+		BEAF2CB025BE901F0054AE3D /* handle + project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + project.swift"; sourceTree = "<group>"; };
+		BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + SampleCode.swift"; sourceTree = "<group>"; };
+		BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMaJia.swift; sourceTree = "<group>"; };
 		BEB52C4025B01309006C5C34 /* LX0114VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
 		BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestStringVC.h; sourceTree = "<group>"; };
 		BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestStringVC.m; sourceTree = "<group>"; };
@@ -389,6 +415,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEAF2C8B25BE6FCE0054AE3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -410,6 +443,7 @@
 				BE8A94C02524275000E20F14 /* Service */,
 				BE51ADBF25370943005D0F10 /* Content */,
 				BE461181253D9A9600E93AB4 /* Today */,
+				BEAF2C8F25BE6FCE0054AE3D /* MaJia */,
 				607FACD11AFB9204008FA782 /* Products */,
 				6108659FF0E2B751C6BC6B11 /* Pods */,
 				DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */,
@@ -423,6 +457,7 @@
 				BE8A94BF2524275000E20F14 /* Service.appex */,
 				BE51ADBA25370943005D0F10 /* Content.appex */,
 				BE46117E253D9A9600E93AB4 /* Today.appex */,
+				BEAF2C8E25BE6FCE0054AE3D /* MaJia */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -596,6 +631,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEAF2C7625BE6AAB0054AE3D /* 01-25 */,
 				BE66CCE625B3DE9300F6B7C8 /* 01-17 */,
 				BE60317E25B1F5830045117C /* 01-16 */,
 				BEB52C3725B012F6006C5C34 /* 01-14 */,
@@ -989,6 +1025,28 @@
 			path = "08-10-LiftCycle_required";
 			sourceTree = "<group>";
 		};
+		BEAF2C7625BE6AAB0054AE3D /* 01-25 */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */,
+			);
+			path = "01-25";
+			sourceTree = "<group>";
+		};
+		BEAF2C8F25BE6FCE0054AE3D /* MaJia */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF2C9025BE6FCE0054AE3D /* main.swift */,
+				BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */,
+				BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */,
+				BEAF2CA225BE8FA30054AE3D /* handle + comments.swift */,
+				BEAF2CA925BE8FCA0054AE3D /* LXMaJia + classPrefix.swift */,
+				BEAF2CB025BE901F0054AE3D /* handle + project.swift */,
+				BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */,
+			);
+			path = MaJia;
+			sourceTree = "<group>";
+		};
 		BEB52C3725B012F6006C5C34 /* 01-14 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1224,6 +1282,23 @@
 			productReference = BE8A94BF2524275000E20F14 /* Service.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		BEAF2C8D25BE6FCE0054AE3D /* MaJia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEAF2C9225BE6FCE0054AE3D /* Build configuration list for PBXNativeTarget "MaJia" */;
+			buildPhases = (
+				BEAF2C8A25BE6FCE0054AE3D /* Sources */,
+				BEAF2C8B25BE6FCE0054AE3D /* Frameworks */,
+				BEAF2C8C25BE6FCE0054AE3D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MaJia;
+			productName = MaJia;
+			productReference = BEAF2C8E25BE6FCE0054AE3D /* MaJia */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1231,7 +1306,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LX;
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -1255,6 +1330,11 @@
 						DevelopmentTeam = 8UCCBQBSN8;
 						ProvisioningStyle = Automatic;
 					};
+					BEAF2C8D25BE6FCE0054AE3D = {
+						CreatedOnToolsVersion = 12.3;
+						DevelopmentTeam = NPZ3HL8S7P;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "LXToolKit" */;
@@ -1274,6 +1354,7 @@
 				BE8A94BE2524275000E20F14 /* Service */,
 				BE51ADB925370943005D0F10 /* Content */,
 				BE46117D253D9A9600E93AB4 /* Today */,
+				BEAF2C8D25BE6FCE0054AE3D /* MaJia */,
 			);
 		};
 /* End PBXProject section */
@@ -1358,6 +1439,7 @@
 				"${BUILT_PRODUCTS_DIR}/M80AttributedLabel/M80AttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
@@ -1367,6 +1449,7 @@
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
+				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/ZLPhotoBrowser/ZLPhotoBrowser.framework",
@@ -1383,6 +1466,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M80AttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
@@ -1392,6 +1476,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLPhotoBrowser.framework",
@@ -1532,6 +1617,7 @@
 				BE97A967251DB7020061254B /* ImageService.swift in Sources */,
 				BE91062A25494513002BBD85 /* LXImageTestVC.swift in Sources */,
 				BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */,
+				BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */,
 				BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */,
@@ -1566,6 +1652,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8A94C22524275000E20F14 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEAF2C8A25BE6FCE0054AE3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEAF2CAA25BE8FCA0054AE3D /* LXMaJia + classPrefix.swift in Sources */,
+				BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */,
+				BEAF2CBF25BE94CC0054AE3D /* LXMaJia.swift in Sources */,
+				BEAF2CB825BE90850054AE3D /* handle + SampleCode.swift in Sources */,
+				BEAF2CB125BE901F0054AE3D /* handle + project.swift in Sources */,
+				BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */,
+				BEAF2CA325BE8FA30054AE3D /* handle + comments.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1737,6 +1837,7 @@
 			baseConfigurationReference = 67680947A3671A5582625F82 /* Pods-LXToolKit_Exam.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
@@ -1759,6 +1860,7 @@
 			baseConfigurationReference = FA25203AA42BABA07D551950 /* Pods-LXToolKit_Exam.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
@@ -1930,6 +2032,53 @@
 			};
 			name = Release;
 		};
+		BEAF2C9325BE6FCE0054AE3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BEAF2C9425BE6FCE0054AE3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1974,6 +2123,15 @@
 			buildConfigurations = (
 				BE8A94C82524275000E20F14 /* Debug */,
 				BE8A94C92524275000E20F14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEAF2C9225BE6FCE0054AE3D /* Build configuration list for PBXNativeTarget "MaJia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEAF2C9325BE6FCE0054AE3D /* Debug */,
+				BEAF2C9425BE6FCE0054AE3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
