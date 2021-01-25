@@ -9,35 +9,60 @@
 import Foundation
 
 // MARK: - 👀
-extension LXMaJia {
-    static func modifyFileName(sourceDir: String, oldClassPrefix: String, newClassPrefiix: String) {
-        guard let allFiles = try? fm.contentsOfDirectory(atPath: sourceDir) else { return }
-        var isDirectory: ObjCBool = true
-        for path in allFiles {
-            let filePath = (sourceDir as NSString).appendingPathComponent(path)
-            guard fm.fileExists(atPath: filePath, isDirectory: &isDirectory),
-                  isDirectory.boolValue else {
-                modifyFileName(sourceDir: filePath, oldClassPrefix: oldClassPrefix, newClassPrefiix: newClassPrefiix)
-                continue
-            }
-            let fileName = (filePath as NSString).lastPathComponent
-            print("fileName: \(fileName)")
-        }
-    }
-
-    static func modifyClassPrefix(xcodeprojContent: inout String, pwd: String, oldPrefix: String, newPrefix: String, excludeDir: [String]) {
-        guard var allFiles = try? fm.contentsOfDirectory(atPath: pwd) else {
-            return
-        }
-        var isDirectory: ObjCBool = false
-        for filePath in allFiles {
-            let path = pwd.appending(filePath)
-            if fm.fileExists(atPath: path, isDirectory: &isDirectory),
-               isDirectory.boolValue {
-            }
-        }
-    }
-}
+//extension LXMaJia {
+//    static func modifyFileName(sourceDir: String, oldClassPrefix: String, newClassPrefiix: String) {
+//        guard let allFiles = try? fm.contentsOfDirectory(atPath: sourceDir) else { return }
+//        var isDirectory: ObjCBool = true
+//        for path in allFiles {
+//            let filePath = (sourceDir as NSString).appendingPathComponent(path)
+//            guard fm.fileExists(atPath: filePath, isDirectory: &isDirectory),
+//                  isDirectory.boolValue else {
+//                modifyFileName(sourceDir: filePath, oldClassPrefix: oldClassPrefix, newClassPrefiix: newClassPrefiix)
+//                continue
+//            }
+//            let fileName = (filePath as NSString).lastPathComponent
+//            print("fileName: \(fileName)")
+//        }
+//    }
+//
+//    static func modifyClassPrefix(xcodeprojContent: inout String, pwd: String, oldPrefix: String, newPrefix: String, excludeDir: [String]) {
+//        guard var allFiles = try? fm.contentsOfDirectory(atPath: pwd) else {
+//            return
+//        }
+//        /// 遍历源代码文件 h 与 m 配对，swift
+//        var isDirectory: ObjCBool = false
+//        for filePath in allFiles {
+//            let path = pwd.appending(filePath)
+//            if fm.fileExists(atPath: path, isDirectory: &isDirectory),
+//               isDirectory.boolValue {
+//                if !excludeDir.contains(filePath) {
+//                    modifyClassPrefix(xcodeprojContent: &xcodeprojContent, pwd: pwd, oldPrefix: oldPrefix, newPrefix: newPrefix, excludeDir: excludeDir)
+//                }
+//                continue
+//            }
+//
+//            let fileName = filePath.toNSString
+//                .lastPathComponent.toNSString
+//                .deletingPathExtension
+//            let fileExtension = filePath.toNSString.pathExtension
+//            var newClassName: String
+//            if fileName.hasPrefix(oldPrefix) {
+//                newClassName = newPrefix.toNSString.appending(fileName.toNSString.substring(from: oldPrefix.count))
+//            } else {
+//                let oldNamePlus = "+\(oldPrefix)"
+//                if fileName.contains(oldNamePlus) {
+//                    newClassName = fileName.replacingOccurrences(of: oldNamePlus, with: "+\(newPrefix)")
+//                } else {
+//                    newClassName = newPrefix.appending(fileName)
+//                }
+//            }
+//
+//            if fileExtension == "h" {
+////                let mFileName = fileName.str
+//            }
+//        }
+//    }
+//}
 
 //#pragma mark - 修改类名前缀
 

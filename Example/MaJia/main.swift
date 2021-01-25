@@ -76,7 +76,7 @@ func main() {
        var xcodeprojContent = try? String(contentsOfFile: LXConfig.xcodeprojPath, encoding: .utf8) {
         // FIXME: 修改工程名
         print("修改类名前缀完成!")
-        LXMaJia.modifyClassPrefix(xcodeprojContent: &xcodeprojContent, pwd: LXConfig.pwd, oldPrefix: LXConfig.oldClsPrefix, newPrefix: LXConfig.newClsPrefix, excludeDir: LXConfig.excludeDir)
+//        LXMaJia.modifyClassPrefix(xcodeprojContent: &xcodeprojContent, pwd: LXConfig.pwd, oldPrefix: LXConfig.oldClsPrefix, newPrefix: LXConfig.newClsPrefix, excludeDir: LXConfig.excludeDir)
         
     } else {
         print("修改类名前缀 skipping!")

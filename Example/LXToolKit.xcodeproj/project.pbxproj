@@ -129,6 +129,7 @@
 		BEAF2CB125BE901F0054AE3D /* handle + project.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CB025BE901F0054AE3D /* handle + project.swift */; };
 		BEAF2CB825BE90850054AE3D /* handle + SampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */; };
 		BEAF2CBF25BE94CC0054AE3D /* LXMaJia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */; };
+		BEAF2D3825BE9E2E0054AE3D /* String + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2D3725BE9E2E0054AE3D /* String + ex.swift */; };
 		BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB52C4025B01309006C5C34 /* LX0114VC.swift */; };
 		BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */; };
 		BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */; };
@@ -347,6 +348,7 @@
 		BEAF2CB025BE901F0054AE3D /* handle + project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + project.swift"; sourceTree = "<group>"; };
 		BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + SampleCode.swift"; sourceTree = "<group>"; };
 		BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMaJia.swift; sourceTree = "<group>"; };
+		BEAF2D3725BE9E2E0054AE3D /* String + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ex.swift"; sourceTree = "<group>"; };
 		BEB52C4025B01309006C5C34 /* LX0114VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
 		BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestStringVC.h; sourceTree = "<group>"; };
 		BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestStringVC.m; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 		BEAF2C8F25BE6FCE0054AE3D /* MaJia */ = {
 			isa = PBXGroup;
 			children = (
+				BEAF2D3625BE9E210054AE3D /* Extension */,
 				BEAF2C9025BE6FCE0054AE3D /* main.swift */,
 				BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */,
 				BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */,
@@ -1045,6 +1048,14 @@
 				BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */,
 			);
 			path = MaJia;
+			sourceTree = "<group>";
+		};
+		BEAF2D3625BE9E210054AE3D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF2D3725BE9E2E0054AE3D /* String + ex.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		BEB52C3725B012F6006C5C34 /* 01-14 */ = {
@@ -1662,6 +1673,7 @@
 				BEAF2CAA25BE8FCA0054AE3D /* LXMaJia + classPrefix.swift in Sources */,
 				BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */,
 				BEAF2CBF25BE94CC0054AE3D /* LXMaJia.swift in Sources */,
+				BEAF2D3825BE9E2E0054AE3D /* String + ex.swift in Sources */,
 				BEAF2CB825BE90850054AE3D /* handle + SampleCode.swift in Sources */,
 				BEAF2CB125BE901F0054AE3D /* handle + project.swift in Sources */,
 				BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */,
@@ -2040,7 +2052,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2065,7 +2077,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NPZ3HL8S7P;
