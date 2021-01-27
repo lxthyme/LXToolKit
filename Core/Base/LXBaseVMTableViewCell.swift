@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import RxSwift
 
 open class LXBaseVMTableViewCell: LXBaseTableViewCell {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    public var disposeBag: DisposeBag? = DisposeBag()
 }

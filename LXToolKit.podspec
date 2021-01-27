@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LXToolKit'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'Give some useful category and extensions.'
 
 # This description is used to generate tags and improve search results.
@@ -24,12 +24,13 @@ This library contains some useful category and extension kits
   s.homepage         = 'https://github.com/LX314/LXToolKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'LX314' => '1094426094@qq.com' }
-  s.source           = { :git => 'https://github.com/LX314/LXToolKit.git', :tag => "v#{s.version.to_s}" }
+  s.author           = { 'lxthyme' => '1094426094@qq.com' }
+  s.source           = { :git => 'https://github.com/lxthyme/LXToolKit.git', :tag => "v#{s.version.to_s}" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  s.default_subspec = "Core"
   s.ios.deployment_target = '10.0'
   s.swift_versions = '5.1'
+  s.cocoapods_version = '>= 1.4.0'
 
   s.source_files = "LXToolKit/LXToolKit/**/*.{swift,h,m}"
 
@@ -47,5 +48,35 @@ This library contains some useful category and extension kits
   s.dependency 'SnapKit', '~> 5'
   s.dependency 'CryptoSwift'
 #  s.dependency 'CryptoSwift', '~>1.2.0'
+
+ s.subspec "Core" do |ss|
+    ss.source_files  = "LXToolKit/Core",
+                      "LXToolKit/Core/Base",
+                      "LXToolKit/Core/ExtensionKit",
+                      "LXToolKit/Error",
+                      "LXToolKit/Kit"
+    ss.framework  = "Foundation"
+ end
+
+ s.subspec "RxSwift" do |ss|
+    ss.source_files  = "LXToolKit/RxSwift"
+    ss.dependency "RxSwift", "~> 5.0"
+    ss.framework  = "Foundation"
+ end
+
+ s.subspec "HandyJSON" do |ss|
+    ss.source_files  = "LXToolKit/HandyJSON"
+    ss.dependency "HandyJSON", "~> 5.0"
+    ss.framework  = "Foundation"
+ end
+
+ s.subspec "Network" do |ss|
+    ss.source_files  = "LXToolKit/Network"
+    ss.framework  = "Foundation"
+    ss.dependency "Alamofire", "~> 5.0"
+    ss.dependency "Moya", '~>13.0'
+    ss.dependency "RxSwift", '~>5.0'
+    ss.dependency "HandyJSON", '~>5.0'
+ end
 
 end

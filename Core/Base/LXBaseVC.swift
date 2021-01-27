@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 
 open class LXBaseVC: UIViewController {
     deinit {
@@ -21,7 +20,6 @@ open class LXBaseVC: UIViewController {
 //        let ds = Array(repeating: "", count: 20)
 //        return ds
 //    }()
-    public var disposeBag = DisposeBag()
     // MARK: - initialize
 //    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 //    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

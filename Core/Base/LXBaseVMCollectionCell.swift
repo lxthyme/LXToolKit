@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import RxSwift
 
 open class LXBaseVMCollectionCell: LXBaseCollectionCell {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    public var disposeBag = DisposeBag()
 }
