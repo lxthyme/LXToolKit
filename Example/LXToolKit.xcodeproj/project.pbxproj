@@ -130,6 +130,14 @@
 		BEAF2CB825BE90850054AE3D /* handle + SampleCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */; };
 		BEAF2CBF25BE94CC0054AE3D /* LXMaJia.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */; };
 		BEAF2D3825BE9E2E0054AE3D /* String + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2D3725BE9E2E0054AE3D /* String + ex.swift */; };
+		BEAF2DA125BEA3290054AE3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2DA025BEA3290054AE3D /* main.m */; };
+		BEAF2DAD25BEA3840054AE3D /* LXMaJia.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2DAC25BEA3840054AE3D /* LXMaJia.m */; };
+		BEAF2DB725BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2DB625BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.m */; };
+		BEAF2E0725BEA40A0054AE3D /* LXMaJia+modifyProjectName.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E0625BEA40A0054AE3D /* LXMaJia+modifyProjectName.m */; };
+		BEAF2E1025BEA41E0054AE3D /* LXMaJia+delComment.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E0F25BEA41E0054AE3D /* LXMaJia+delComment.m */; };
+		BEAF2E1925BEA4310054AE3D /* LXMaJia+dealAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E1825BEA4310054AE3D /* LXMaJia+dealAssets.m */; };
+		BEAF2E2225BEA4500054AE3D /* LXMaJia+insertSampleCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */; };
+		BEAF2F2125BEAD3F0054AE3D /* LXMaJia+common.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */; };
 		BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB52C4025B01309006C5C34 /* LX0114VC.swift */; };
 		BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */; };
 		BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D2A025207FE8004C91B6 /* LXSingleImageCell.swift */; };
@@ -182,6 +190,15 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BEAF2C8C25BE6FCE0054AE3D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		BEAF2D9C25BEA3290054AE3D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -349,6 +366,22 @@
 		BEAF2CB725BE90850054AE3D /* handle + SampleCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + SampleCode.swift"; sourceTree = "<group>"; };
 		BEAF2CBE25BE94CC0054AE3D /* LXMaJia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMaJia.swift; sourceTree = "<group>"; };
 		BEAF2D3725BE9E2E0054AE3D /* String + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ex.swift"; sourceTree = "<group>"; };
+		BEAF2D9E25BEA3290054AE3D /* LXMaJiaObjc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LXMaJiaObjc; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEAF2DA025BEA3290054AE3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BEAF2DAB25BEA3840054AE3D /* LXMaJia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMaJia.h; sourceTree = "<group>"; };
+		BEAF2DAC25BEA3840054AE3D /* LXMaJia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMaJia.m; sourceTree = "<group>"; };
+		BEAF2DB525BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+modifyClassPrefix.h"; sourceTree = "<group>"; };
+		BEAF2DB625BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+modifyClassPrefix.m"; sourceTree = "<group>"; };
+		BEAF2E0525BEA40A0054AE3D /* LXMaJia+modifyProjectName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+modifyProjectName.h"; sourceTree = "<group>"; };
+		BEAF2E0625BEA40A0054AE3D /* LXMaJia+modifyProjectName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+modifyProjectName.m"; sourceTree = "<group>"; };
+		BEAF2E0E25BEA41E0054AE3D /* LXMaJia+delComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+delComment.h"; sourceTree = "<group>"; };
+		BEAF2E0F25BEA41E0054AE3D /* LXMaJia+delComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+delComment.m"; sourceTree = "<group>"; };
+		BEAF2E1725BEA4310054AE3D /* LXMaJia+dealAssets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+dealAssets.h"; sourceTree = "<group>"; };
+		BEAF2E1825BEA4310054AE3D /* LXMaJia+dealAssets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+dealAssets.m"; sourceTree = "<group>"; };
+		BEAF2E2025BEA4500054AE3D /* LXMaJia+insertSampleCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+insertSampleCode.h"; sourceTree = "<group>"; };
+		BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+insertSampleCode.m"; sourceTree = "<group>"; };
+		BEAF2F1F25BEAD3F0054AE3D /* LXMaJia+common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+common.h"; sourceTree = "<group>"; };
+		BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+common.m"; sourceTree = "<group>"; };
 		BEB52C4025B01309006C5C34 /* LX0114VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
 		BEC0A25824F74A2200ABD23F /* LXTestStringVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestStringVC.h; sourceTree = "<group>"; };
 		BEC0A25924F74A2200ABD23F /* LXTestStringVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestStringVC.m; sourceTree = "<group>"; };
@@ -424,6 +457,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BEAF2D9B25BEA3290054AE3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -446,6 +486,7 @@
 				BE51ADBF25370943005D0F10 /* Content */,
 				BE461181253D9A9600E93AB4 /* Today */,
 				BEAF2C8F25BE6FCE0054AE3D /* MaJia */,
+				BEAF2D9F25BEA3290054AE3D /* LXMaJiaObjc */,
 				607FACD11AFB9204008FA782 /* Products */,
 				6108659FF0E2B751C6BC6B11 /* Pods */,
 				DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */,
@@ -460,6 +501,7 @@
 				BE51ADBA25370943005D0F10 /* Content.appex */,
 				BE46117E253D9A9600E93AB4 /* Today.appex */,
 				BEAF2C8E25BE6FCE0054AE3D /* MaJia */,
+				BEAF2D9E25BEA3290054AE3D /* LXMaJiaObjc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1058,6 +1100,36 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		BEAF2D9F25BEA3290054AE3D /* LXMaJiaObjc */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF2DA025BEA3290054AE3D /* main.m */,
+				BEAF2DAB25BEA3840054AE3D /* LXMaJia.h */,
+				BEAF2DAC25BEA3840054AE3D /* LXMaJia.m */,
+				BEAF2DB425BEA38F0054AE3D /* Category */,
+			);
+			path = LXMaJiaObjc;
+			sourceTree = "<group>";
+		};
+		BEAF2DB425BEA38F0054AE3D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				BEAF2DB525BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.h */,
+				BEAF2DB625BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.m */,
+				BEAF2E0525BEA40A0054AE3D /* LXMaJia+modifyProjectName.h */,
+				BEAF2E0625BEA40A0054AE3D /* LXMaJia+modifyProjectName.m */,
+				BEAF2E0E25BEA41E0054AE3D /* LXMaJia+delComment.h */,
+				BEAF2E0F25BEA41E0054AE3D /* LXMaJia+delComment.m */,
+				BEAF2E1725BEA4310054AE3D /* LXMaJia+dealAssets.h */,
+				BEAF2E1825BEA4310054AE3D /* LXMaJia+dealAssets.m */,
+				BEAF2E2025BEA4500054AE3D /* LXMaJia+insertSampleCode.h */,
+				BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */,
+				BEAF2F1F25BEAD3F0054AE3D /* LXMaJia+common.h */,
+				BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		BEB52C3725B012F6006C5C34 /* 01-14 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1310,6 +1382,23 @@
 			productReference = BEAF2C8E25BE6FCE0054AE3D /* MaJia */;
 			productType = "com.apple.product-type.tool";
 		};
+		BEAF2D9D25BEA3290054AE3D /* LXMaJiaObjc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEAF2DA225BEA3290054AE3D /* Build configuration list for PBXNativeTarget "LXMaJiaObjc" */;
+			buildPhases = (
+				BEAF2D9A25BEA3290054AE3D /* Sources */,
+				BEAF2D9B25BEA3290054AE3D /* Frameworks */,
+				BEAF2D9C25BEA3290054AE3D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LXMaJiaObjc;
+			productName = LXMaJiaObjc;
+			productReference = BEAF2D9E25BEA3290054AE3D /* LXMaJiaObjc */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1346,6 +1435,11 @@
 						DevelopmentTeam = NPZ3HL8S7P;
 						ProvisioningStyle = Automatic;
 					};
+					BEAF2D9D25BEA3290054AE3D = {
+						CreatedOnToolsVersion = 12.3;
+						DevelopmentTeam = NPZ3HL8S7P;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "LXToolKit" */;
@@ -1366,6 +1460,7 @@
 				BE51ADB925370943005D0F10 /* Content */,
 				BE46117D253D9A9600E93AB4 /* Today */,
 				BEAF2C8D25BE6FCE0054AE3D /* MaJia */,
+				BEAF2D9D25BEA3290054AE3D /* LXMaJiaObjc */,
 			);
 		};
 /* End PBXProject section */
@@ -1678,6 +1773,21 @@
 				BEAF2CB125BE901F0054AE3D /* handle + project.swift in Sources */,
 				BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */,
 				BEAF2CA325BE8FA30054AE3D /* handle + comments.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEAF2D9A25BEA3290054AE3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEAF2E2225BEA4500054AE3D /* LXMaJia+insertSampleCode.m in Sources */,
+				BEAF2DB725BEA3B40054AE3D /* LXMaJia+modifyClassPrefix.m in Sources */,
+				BEAF2E1025BEA41E0054AE3D /* LXMaJia+delComment.m in Sources */,
+				BEAF2DAD25BEA3840054AE3D /* LXMaJia.m in Sources */,
+				BEAF2DA125BEA3290054AE3D /* main.m in Sources */,
+				BEAF2F2125BEAD3F0054AE3D /* LXMaJia+common.m in Sources */,
+				BEAF2E0725BEA40A0054AE3D /* LXMaJia+modifyProjectName.m in Sources */,
+				BEAF2E1925BEA4310054AE3D /* LXMaJia+dealAssets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2091,6 +2201,50 @@
 			};
 			name = Release;
 		};
+		BEAF2DA325BEA3290054AE3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BEAF2DA425BEA3290054AE3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2144,6 +2298,15 @@
 			buildConfigurations = (
 				BEAF2C9325BE6FCE0054AE3D /* Debug */,
 				BEAF2C9425BE6FCE0054AE3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEAF2DA225BEA3290054AE3D /* Build configuration list for PBXNativeTarget "LXMaJiaObjc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEAF2DA325BEA3290054AE3D /* Debug */,
+				BEAF2DA425BEA3290054AE3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
