@@ -50,30 +50,29 @@ This library contains some useful category and extension kits
 #  s.dependency 'CryptoSwift', '~>1.2.0'
 
  s.subspec "Core" do |ss|
-    ss.source_files  = "LXToolKit/Core",
-                      "LXToolKit/Core/Base",
-                      "LXToolKit/Core/ExtensionKit",
-                      "LXToolKit/Error",
-                      "LXToolKit/Kit"
+    ss.source_files  = "LXToolKit/Core/", "LXToolKit/Core/Base/", "LXToolKit/Core/ExtensionKit/", "LXToolKit/Error/", "LXToolKit/Kit/"
     ss.framework  = "Foundation"
  end
 
  s.subspec "RxSwift" do |ss|
     ss.source_files  = "LXToolKit/RxSwift"
-    ss.dependency "RxSwift", "~> 5.0"
+    ss.dependency "LXToolKit/Core"
     ss.framework  = "Foundation"
+    ss.dependency "RxSwift", "~> 5.0"
  end
 
  s.subspec "HandyJSON" do |ss|
     ss.source_files  = "LXToolKit/HandyJSON"
-    ss.dependency "HandyJSON", "~> 5.0"
+    ss.dependency "LXToolKit/Core"
     ss.framework  = "Foundation"
+    ss.dependency "HandyJSON", "~> 5.0"
  end
 
  s.subspec "Network" do |ss|
     ss.source_files  = "LXToolKit/Network"
+    ss.dependency "LXToolKit/Core"
     ss.framework  = "Foundation"
-    ss.dependency "Alamofire", "~> 5.0"
+    ss.dependency "Alamofire", "~> 4.0"
     ss.dependency "Moya", '~>13.0'
     ss.dependency "RxSwift", '~>5.0'
     ss.dependency "HandyJSON", '~>5.0'

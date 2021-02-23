@@ -8,7 +8,8 @@
 
 import Foundation
 
-public extension NSProxy {
+// MARK: - 👀
+public extension Swifty where Base: NSProxy {
     // Instance Level
     var xl_typeName: String {
         let type_t = type(of: self)
@@ -20,11 +21,12 @@ public extension NSProxy {
     }
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
-    class var xl_identifier: String {
+    static var xl_identifier: String {
         return String(format: "%@_identifier", self.xl_typeName)
     }
 }
-public extension NSObject {
+// MARK: - 👀
+public extension Swifty where Base: NSObject {
     // Instance Level
     var xl_typeName: String {
         let type_t = type(of: self)
@@ -36,8 +38,18 @@ public extension NSObject {
     }
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
-    class var xl_identifier: String {
+    static var xl_identifier: String {
         return String(format: "%@_identifier", self.xl_typeName)
     }
 
+}
+
+// MARK: - 👀
+public extension Swifty where Base: NSObject {
+    func getAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer) -> T? {
+        return objc_getAssociatedObject(object, key) as? T
+    }
+    func setRetainedAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer, _ value: T) {
+        objc_setAssociatedObject(object, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
 }

@@ -7,15 +7,16 @@
 
 import Foundation
 
-// MARK: - <#Title...#>
-extension UIView {
+// MARK: - 👀
+public extension Swifty where Base: UIView {
     static func nib() -> UINib {
-        return UINib(nibName: NSStringFromClass(self), bundle: Bundle.main)
+        return UINib(nibName: NSStringFromClass(Base.self), bundle: Bundle.main)
     }
 }
 
-extension UIViewController {
+// MARK: - 👀
+public extension Swifty where Base: UIViewController {
     static func nib() -> UINib {
-        return UINib(nibName: NSStringFromClass(self), bundle: Bundle.main)
+        return UINib(nibName: NSStringFromClass(Base.self), bundle: Bundle.main)
     }
 }

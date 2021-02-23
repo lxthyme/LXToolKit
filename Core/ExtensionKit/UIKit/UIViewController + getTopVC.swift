@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - <#Title...#>
-public extension UIViewController {
+// MARK: - 👀
+public extension Swifty where Base: UIViewController {
     func getCurrentVC() ->UIViewController? {
         let rootVC = UIApplication.shared.keyWindow?.rootViewController
         return getCurrentVCFrom(rootVC: rootVC)

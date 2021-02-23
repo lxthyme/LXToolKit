@@ -9,7 +9,7 @@ import UIKit
 
 open class LXBaseObject: NSObject {
     deinit {
-        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables

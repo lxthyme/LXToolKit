@@ -10,7 +10,7 @@ import UIKit
 
 open class LXBaseVC: UIViewController {
     deinit {
-        dlog("---------- >>>VC: \(self.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: - lazy vars
     public lazy var table: UITableView = {

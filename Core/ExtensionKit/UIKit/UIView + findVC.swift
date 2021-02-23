@@ -8,10 +8,11 @@
 import UIKit
 import Foundation
 
-public extension UIView {
+public extension Swifty where Base: UIView {
+//public extension UIView {
     /// 通过view获取控制器
     func findVC() -> UIViewController? {
-        var target: UIResponder? = self as UIResponder
+        var target: UIResponder? = base as UIResponder
         while target != nil {
             target = target?.next
             guard let _ = target else { break }

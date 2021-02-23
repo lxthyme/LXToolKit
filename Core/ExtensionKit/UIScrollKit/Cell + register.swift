@@ -10,13 +10,13 @@ import Foundation
 public extension Swifty where Base: UICollectionViewCell {
 //public extension TypeWrapperProtocol where BaseValue == UICollectionViewCell {
     static func register(_ collectionView: UICollectionView) {
-        collectionView.register(Base.self, forCellWithReuseIdentifier: Base.xl_identifier)
+        collectionView.register(Base.self, forCellWithReuseIdentifier: Base.xl.xl_identifier)
     }
 }
 
 public extension Swifty where Base: UITableViewCell {
     static func register(_ tableView: UITableView) {
-        tableView.register(Base.self, forCellReuseIdentifier: Base.xl_identifier)
+        tableView.register(Base.self, forCellReuseIdentifier: Base.xl.xl_identifier)
     }
 }
 

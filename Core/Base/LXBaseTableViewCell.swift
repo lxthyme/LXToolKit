@@ -10,7 +10,7 @@ import UIKit
 
 open class LXBaseTableViewCell: UITableViewCell {
     deinit {
-        dlog("---------- >>>TableViewCell: \(self.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>TableViewCell: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     public var baseModel: LXAnyModel? {
         didSet {

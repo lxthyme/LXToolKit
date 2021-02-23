@@ -11,7 +11,7 @@ import Foundation
 private let kMaskView_Tag = 1233212334
 
 // MARK: - 👀common maskView
-extension UIWindow {
+public extension Swifty where Base: UIWindow {
     static func getCurrentMaskView() ->UIView? {
         return UIApplication
             .shared

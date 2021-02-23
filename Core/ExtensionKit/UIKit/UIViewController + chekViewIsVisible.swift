@@ -7,15 +7,15 @@
 
 import Foundation
 
-// MARK: - 检测 ViewController 是否可见
-public extension UIViewController {
+// MARK: - 👀检测 ViewController 是否可见
+public extension Swifty where Base: UIViewController {
     /// 检测 ViewController 是否可见
     /// - Returns: boolean
     func checkViewIsVisible() ->Bool {
         if #available(iOS 7, *) {
-            return self.isViewLoaded && self.view.window != nil
+            return base.isViewLoaded && base.view.window != nil
         } else {
-            return self.viewIfLoaded?.window != nil
+            return base.viewIfLoaded?.window != nil
         }
     }
 }

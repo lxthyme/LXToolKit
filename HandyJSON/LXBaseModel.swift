@@ -11,7 +11,7 @@ import HandyJSON
 
 open class LXAnyModel: NSObject, HandyJSON {
     deinit {
-        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     required public override init() {}
     open override var debugDescription: String {
