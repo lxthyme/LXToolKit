@@ -76,7 +76,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         //            })
         //            v.mj_footer = footer
 
-        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.xl_identifier)
+        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.xl.xl_identifier)
         return v
     }()
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -101,7 +101,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
 //            .disposed(by: disposeBag)
 //            self.disposeBag = disposeBag
 
-            let disposeBag = DisposeBag()
+            var disposeBag = DisposeBag()
 
             guard let viewModel = viewModel else {
                 return
@@ -116,12 +116,13 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
 
             let reachabilityService = Dependencies.shared.reachabilityService
             viewModel.imageURLs
-                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.xl_identifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
+                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.xl.xl_identifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
                     cell.downloadableImage = self?.imageService.imageFromURL(url, reachabilityService: reachabilityService) ?? Observable.empty()
                 }
                 .disposed(by: disposeBag)
 
-            self.disposeBag = disposeBag
+            // FIXME: 111
+//            self.disposeBag = disposeBag
         }
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -136,7 +137,6 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.viewModel = nil
-        self.disposeBag = nil
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

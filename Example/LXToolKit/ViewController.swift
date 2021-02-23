@@ -50,7 +50,8 @@ class ViewController: LXBaseVC {
 //            LXSongVC()
 //            LX0114VC()
 //            LXPickerVC()
-            LX0117VC()
+//            LX0117VC()
+            LXCubeVC()
 
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)

@@ -28,7 +28,7 @@ class LXMusicVC: UIViewController {
 //        t.delegate = self
 //        t.dataSource = self
 
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl_identifier)
+        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
 
         return t
     }()
@@ -93,10 +93,10 @@ private extension LXMusicVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXMusicVC {
     func prepareVM() {
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
         self.musicVM
             .dataList
-            .bind(to: table.rx.items(cellIdentifier: UITableViewCell.xl_identifier)) { _, model, cell in
+            .bind(to: table.rx.items(cellIdentifier: UITableViewCell.xl.xl_identifier)) { _, model, cell in
                 cell.textLabel?.text = model?.name
                 cell.detailTextLabel?.text = model?.singer
             }

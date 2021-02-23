@@ -161,18 +161,18 @@ extension LXPhotoAlbumVC: UICollectionViewDataSource {
         guard indexPath.row < dataList.count else {
             if indexPath.row == dataList.count {
                 // swiftlint:disable:next force_cast
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.AddPhoto.xl_identifier, for: indexPath) as! LXPhotoCell.AddPhoto
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.AddPhoto.xl.xl_identifier, for: indexPath) as! LXPhotoCell.AddPhoto
                 // swiftlint:disable:previous force_cast
                 return cell
             } else {
                 // swiftlint:disable:next force_cast
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.CameraCell.xl_identifier, for: indexPath) as! LXPhotoCell.CameraCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.CameraCell.xl.xl_identifier, for: indexPath) as! LXPhotoCell.CameraCell
                 // swiftlint:disable:previous force_cast
                 return cell
             }
         }
         // swiftlint:disable:next force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.Photo.xl_identifier, for: indexPath) as! LXPhotoCell.Photo
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.Photo.xl.xl_identifier, for: indexPath) as! LXPhotoCell.Photo
         // swiftlint:disable:previous force_cast
         return cell
     }

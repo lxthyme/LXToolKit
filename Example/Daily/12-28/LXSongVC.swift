@@ -73,8 +73,8 @@ class LXSongVC: LXBaseVC {
         edgesForExtendedLayout = []
         automaticallyAdjustsScrollViewInsets = true
 
-        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.xl_identifier)
-        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.xl_identifier)
+        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.xl.xl_identifier)
+        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.xl.xl_identifier)
         return v
     }()
     // MARK: 🔗Vaiables
@@ -188,13 +188,13 @@ extension LXSongVC: UICollectionViewDataSource {
         guard let count = try? self.vm.output.dataSource.value().count,
               count > 0 else {
             // swiftlint:disable:next force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.xl_identifier, for: indexPath) as! LXEmptyCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.xl.xl_identifier, for: indexPath) as! LXEmptyCell
             // swiftlint:disable:previous force_cast
             cell.retryType = .noData
             return cell
         }
         // swiftlint:disable:next force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.xl_identifier, for: indexPath) as! LXSongRecordCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.xl.xl_identifier, for: indexPath) as! LXSongRecordCell
         self.cell = cell
         // swiftlint:disable:previous force_cast
         if let d = try? self.vm.output.dataSource.value()[indexPath.row] {

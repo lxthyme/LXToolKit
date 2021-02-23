@@ -26,7 +26,7 @@ private class MyView: UIView {
 //        t.delegate = self
 //        t.dataSource = self
 
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl_identifier)
+        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
 
         return t
     }()
