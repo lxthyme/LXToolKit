@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Moya
 
 /// DEBUG 打印
 public func print(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
