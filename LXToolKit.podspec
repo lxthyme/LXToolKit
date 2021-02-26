@@ -41,43 +41,45 @@ This library contains some useful category and extension kits
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  # s.dependency 'Alamofire', '~> 5.0.0-rc.3'
-#  s.dependency 'Moya'#, '~> 13'
-#  s.dependency 'RxSwift'#, '~> 5'
-#  s.dependency 'HandyJSON', '~> 5'
-  s.dependency 'SnapKit', '~> 5.0'
-  s.dependency 'CryptoSwift'
+#   s.dependency 'Alamofire', '~> 5.0.0-rc.3'
+    s.dependency "Alamofire", "~> 4.0"
+    s.dependency 'Moya'#, '~> 13'
+    s.dependency 'RxSwift'#, '~> 5'
+    s.dependency 'HandyJSON', '~> 5'
+    s.dependency 'SnapKit', '~> 5.0'
+    s.dependency 'CryptoSwift'
 #  s.dependency 'CryptoSwift', '~>1.2.0'
+    s.source_files  = "LXToolKit/**/*.swift"
 
- s.subspec "Core" do |ss|
-#    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Base/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"
-    ss.source_files  = "LXToolKit/**/*.swift"
-    ss.framework  = "Foundation"
- end
+# s.subspec "Core" do |ss|
+##    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Base/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"
+#    ss.source_files  = "LXToolKit/**/*.swift"
+#    ss.framework  = "Foundation"
+# end
 
- s.subspec "RxSwift" do |ss|
-    ss.source_files  = "LXToolKit/RxSwift"
-    ss.dependency "LXToolKit/**/*.swift"
-    ss.framework  = "Foundation"
-    ss.dependency "RxSwift", "~> 5.0"
- end
+# s.subspec "RxSwift" do |ss|
+#    ss.source_files  = "LXToolKit/RxSwift"
+#    ss.dependency "LXToolKit/**/*.swift"
+#    ss.framework  = "Foundation"
+#    ss.dependency "RxSwift", "~> 5.0"
+# end
 
- s.subspec "HandyJSON" do |ss|
-    ss.source_files  = "LXToolKit/HandyJSON"
-    ss.dependency "LXToolKit/**/*.swift"
-    ss.framework  = "Foundation"
-    ss.dependency "HandyJSON", "~> 5.0"
- end
+# s.subspec "HandyJSON" do |ss|
+#    ss.source_files  = "LXToolKit/HandyJSON"
+#    ss.dependency "LXToolKit/**/*.swift"
+#    ss.framework  = "Foundation"
+#    ss.dependency "HandyJSON", "~> 5.0"
+# end
 
- s.subspec "Network" do |ss|
-    ss.source_files  = "LXToolKit/Network"
-    ss.dependency "LXToolKit/**/*.swift"
-    ss.framework  = "Foundation"
-    ss.dependency "Alamofire", "~> 4.0"
-    ss.dependency "Moya", '~>13.0'
-    ss.dependency "RxSwift", '~>5.0'
-    ss.dependency "HandyJSON", '~>5.0'
- end
+# s.subspec "Network" do |ss|
+#    ss.source_files  = "LXToolKit/Network"
+#    ss.dependency "LXToolKit/**/*.swift"
+#    ss.framework  = "Foundation"
+#    ss.dependency "Alamofire", "~> 4.0"
+#    ss.dependency "Moya", '~>13.0'
+#    ss.dependency "RxSwift", '~>5.0'
+#    ss.dependency "HandyJSON", '~>5.0'
+# end
 
 end
 
