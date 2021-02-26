@@ -32,7 +32,7 @@ This library contains some useful category and extension kits
   s.swift_versions = '5.1'
   s.cocoapods_version = '>= 1.4.0'
 
-  s.source_files = "LXToolKit/LXToolKit/**/*.{swift,h,m}"
+  s.source_files = "LXToolKit/**/*.{swift,h,m}"
 
   # s.resource_bundles = {
   #   'LXToolKit' => ['LXToolKit/Assets/*.png']
@@ -49,10 +49,10 @@ This library contains some useful category and extension kits
     s.dependency 'SnapKit', '~> 5.0'
     s.dependency 'CryptoSwift'
 #  s.dependency 'CryptoSwift', '~>1.2.0'
-    s.source_files  = "LXToolKit/**/*.swift"
+#    s.source_files  = "LXToolKit/**/*.swift"
 
 # s.subspec "Core" do |ss|
-##    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Base/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"
+##    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Bwase/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"
 #    ss.source_files  = "LXToolKit/**/*.swift"
 #    ss.framework  = "Foundation"
 # end
