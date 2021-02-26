@@ -227,3 +227,14 @@ public extension UIImage {
         return img
     }
 }
+
+
+// MARK: - 👀
+public extension Swifty where Base: UIView {
+    func addStretchableImage(image: UIImage, withContentCenter rect: CGRect) {
+        /// set image
+        base.layer.contents = image.cgImage
+        /// set contentsCenter
+        base.layer.contentsCenter = rect
+    }
+}
