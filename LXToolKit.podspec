@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 This library contains some useful category and extension kits
                        DESC
 
-  s.homepage         = 'https://github.com/LX314/LXToolKit'
+  s.homepage         = 'https://github.com/lxthyme/LXToolKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'lxthyme' => '1094426094@qq.com' }
