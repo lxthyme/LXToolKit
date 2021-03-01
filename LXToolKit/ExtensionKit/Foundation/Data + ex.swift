@@ -10,7 +10,7 @@ import Foundation
 
 public extension Data {
     var hexString: String {
-        return withUnsafeBytes {(bytes: UnsafePointer<UInt8>) -> String in
+        withUnsafeBytes { (bytes: UnsafePointer<UInt8>) -> String in
             let buffer = UnsafeBufferPointer(start: bytes, count: count)
             return buffer.map {String(format: "%02hhx", $0)}.reduce("", { $0 + $1 })
         }

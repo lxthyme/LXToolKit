@@ -27,8 +27,10 @@ public struct APIParameter {
         self.mockObj = mockObj
         if let data = try? JSONSerialization.data(withJSONObject: self.mockObj, options: .prettyPrinted) {
             self.mockData = data
+        } else if let data = "{\"code\":233,\"data\":{}}".data(using: .utf8){
+            self.mockData = data
         } else {
-            self.mockData = "{\"code\":233,\"data\":{}}".data(using: .utf8) as! Data
+            self.mockData = Data()
         }
     }
 }

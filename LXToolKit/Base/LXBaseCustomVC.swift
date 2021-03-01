@@ -13,7 +13,7 @@ public protocol LXCustomView {
 
 // MARK: - LXCustomView
 public extension LXCustomView where Self: UIViewController {
-    public var customView: CustomView {
+    var customView: CustomView {
         guard let v = view as? CustomView else {
             fatalError("Expected view to be of type \(CustomView.self) but got \(type(of: view)) instead")
         }

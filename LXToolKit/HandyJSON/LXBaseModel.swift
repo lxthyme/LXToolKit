@@ -25,7 +25,10 @@ open class BaseModel: LXAnyModel {
     public var msg: String?
     public var tips: String?
     public var fullJsonString: String?
-    required public override init() {}
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init() {
+        super.init()
+    }
 
     public func mapping(mapper: HelpingMapper) {
         mapper >>> self.fullJsonString
@@ -35,7 +38,10 @@ open class BaseModel: LXAnyModel {
 }
 open class LXBaseModel<T: HandyJSON>: BaseModel {
     public var data: T?
-    required public override init() {}
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init() {
+        super.init()
+    }
 
 //    public func mapping(mapper: HelpingMapper) {}
 
@@ -46,8 +52,10 @@ open class LXBaseListModel<T: HandyJSON>: BaseModel {
     public var page: UInt?
     public var total_page: UInt?
     public var list: [T]?
-
-    required public override init() {}
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init() {
+        super.init()
+    }
 
     /// override var debugDescription: String { return "" }
 }

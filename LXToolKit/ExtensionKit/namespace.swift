@@ -77,13 +77,13 @@ public protocol SwiftyCompatible {
 }
 // MARK: - 👀
 public extension SwiftyCompatible {
-    public static var xl: Swifty<Self>.Type {
+    static var xl: Swifty<Self>.Type {
         get {
             return Swifty<Self>.self
         }
         set { }
     }
-    public var xl: Swifty<Self> {
+    var xl: Swifty<Self> {
         get {
             return Swifty(self)
         }

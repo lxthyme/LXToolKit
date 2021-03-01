@@ -23,18 +23,18 @@ public extension ObservableType where Element == Response {
 //            return Observable.just(try response.mapModel(T.self))
 //        }
 //    }
-    func mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
+    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
         return flatMap { response -> Observable<LXBaseModel<T>> in
-            return Observable.just(try response.mapModel(T.self))
+            return Observable.just(try response.xl_mapModel(T.self))
 //            return Observable.just(try response.mapBaseModel(T.self))
         }
     }
 
-    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseListModel<T>> {
+    func xl_mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseListModel<T>> {
         return flatMap { response -> Observable<LXBaseListModel<T>> in
 //        return flatMap { response -> Observable<LXBaseListModel<T>> in
 //            let a = try response.mapModelArray(T.self)
-            return Observable.just(try response.mapModelArray(T.self))
+            return Observable.just(try response.xl_mapModelArray(T.self))
 //            return Observable.just(try response.mapBaseModelArray(T.self))
         }
     }
@@ -42,7 +42,7 @@ public extension ObservableType where Element == Response {
 
 // MARK: - <#Title...#>
 public extension Response {
-    func mapModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
+    func xl_mapModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
         guard (200..<300) ~= statusCode else {
             throw RxMoyaError.invalidHTTPCode(code: statusCode)
         }
@@ -59,13 +59,11 @@ public extension Response {
         baseModel.fullJsonString = try? mapString()
         return baseModel
     }
-    func mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T> {
+    func xl_mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T> {
         guard (200..<300) ~= statusCode else {
             throw RxMoyaError.invalidHTTPCode(code: statusCode)
         }
 
-        let json1 = try mapJSON() as? [String: Any]
-        let model1 = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json1)
         guard let json = try mapJSON() as? [String: Any],
             let baseModel = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json),
             let listModel = baseModel.data else {

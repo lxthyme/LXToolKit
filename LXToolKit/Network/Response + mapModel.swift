@@ -12,7 +12,7 @@ import RxSwift
 import HandyJSON
 import Alamofire
 
-public extension ObservableType where E == Response {
+public extension ObservableType where Element == Response {
 //    func mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
 //        return flatMap { response ->Observable<LXBaseModel<T>> in
 //            let ele: LXBaseModel<T> = try response.mapBaseModel(T.self)
@@ -28,7 +28,7 @@ public extension ObservableType where E == Response {
 }
 
 extension Response {
-    func mapBaseModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
+    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
         let jsonString = String(data: data, encoding: .utf8)
 
         guard let baseModel = JSONDeserializer<LXBaseModel<T>>.deserializeFrom(json: jsonString) else {
@@ -43,7 +43,7 @@ extension Response {
         return baseModel
     }
 
-    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T>? {
+    func xl_mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T>? {
 
         let jsonString = String(data: data, encoding: .utf8)
 

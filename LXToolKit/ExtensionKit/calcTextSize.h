@@ -6,8 +6,8 @@
 //  Copyright © 2020 LXThyme Jason. All rights reserved.
 //
 
-#ifndef calcTextSize_h
-#define calcTextSize_h
+#ifndef xl_calcTextSize_h
+#define xl_calcTextSize_h
 
 /// 计算简单文本或者属性字符串的自适应尺寸
 /// @param fitsSize 指定限制的尺寸，参考UILabel中的sizeThatFits中的参数的意义。
@@ -19,7 +19,7 @@
 /// @param minimumScaleFactor 指定文本的最小缩放因子，默认填写0。这个参数用于那些定宽时可以自动缩小文字字体来自适应显示的场景。
 /// @param shadowOffset 指定阴影的偏移位置，需要注意的是这个偏移位置是同时指定了阴影颜色和偏移位置才有效。如果不考虑阴影则请传递CGSizeZero，否则阴影会参与尺寸计算。
 /// @return 返回自适应的最合适尺寸
-CGSize calcTextSize(CGSize fitsSize,
+CGSize xl_calcTextSize2(CGSize fitsSize,
                     id text,
                     NSInteger numberOfLines,
                     UIFont *font,
@@ -142,8 +142,8 @@ CGSize calcTextSize(CGSize fitsSize,
 }
 
 //上述方法的精简版本
-NS_INLINE CGSize calcTextSizeV2(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *font) {
-    return calcTextSize(fitsSize, text, numberOfLines, font, NSTextAlignmentNatural, NSLineBreakByTruncatingTail,0.0, CGSizeZero);
+NS_INLINE CGSize xl_calcTextSizeV2(CGSize fitsSize, id text, NSInteger numberOfLines, UIFont *font) {
+    return xl_calcTextSize2(fitsSize, text, numberOfLines, font, NSTextAlignmentNatural, NSLineBreakByTruncatingTail,0.0, CGSizeZero);
 }
 
 #endif /* calcTextSize_h */

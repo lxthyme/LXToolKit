@@ -8,8 +8,8 @@
 #ifndef LXToolKit_h
 #define LXToolKit_h
 
-#import "LXProxy.h"
-#import "calcTextSize.h"
-#import "LXPlatformInfo.h"
+//#import "LXProxy.h"
+//#import "LXCalcTextSize.h"
+//#import "LXPlatformInfo.h"
 
 #endif /* LXToolKit_h */

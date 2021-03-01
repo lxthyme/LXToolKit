@@ -19,7 +19,7 @@ public extension Swifty where Base: UIView {
         self.scaleAnimation(from: 0, to: 1, duration: duration, timingFunction: timingFunction, key: key)
     }
     func flipFromBottomAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.flipFromBottomAnimation") {
-        if let tmp = base.layer.animation(forKey: key) {
+        if let _ = base.layer.animation(forKey: key) {
             base.layer.removeAnimation(forKey: key)
         }
         let anim = CABasicAnimation(keyPath: "position.y")
@@ -35,7 +35,7 @@ public extension Swifty where Base: UIView {
         }
     }
     func opacityAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.opacity") {
-        if let tmp = base.layer.animation(forKey: key) {
+        if let _ = base.layer.animation(forKey: key) {
             base.layer.removeAnimation(forKey: key)
         }
         let anim = CABasicAnimation(keyPath: "opacity")
@@ -51,7 +51,7 @@ public extension Swifty where Base: UIView {
         }
     }
     func scaleAnimation(from: Float, to: Float, duration: CFTimeInterval = 0.2, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "key.transform.scale") {
-        if let tmp = base.layer.animation(forKey: key) {
+        if let _ = base.layer.animation(forKey: key) {
             base.layer.removeAnimation(forKey: key)
         }
         let anim = CABasicAnimation(keyPath: "transform.scale")
@@ -73,7 +73,7 @@ public extension Swifty where Base: UIView {
     ///   - timingFunction: <#timingFunction description#>
     ///   - key: <#key description#>
     func rotationAnimation(angle: CGFloat, duration: TimeInterval = 0.25, timingFunction: CAMediaTimingFunctionName = .easeInEaseOut, key: String = "transform.rotation.z") {
-        if let tmp = base.layer.animation(forKey: key) {
+        if let _ = base.layer.animation(forKey: key) {
             base.layer.removeAnimation(forKey: key)
         }
         let anim = CABasicAnimation(keyPath: "transform.rotation.z")

@@ -15,7 +15,7 @@ import HandyJSON
 // MARK: - 🔥Endpoint
 func makeEndpointClosure<T: TargetType>(with target: T) -> (T) -> Endpoint {
     return { (target: T) -> Endpoint in
-        let defaultEndPoint: Endpoint = MoyaProvider.defaultEndpointMapping(for: target)
+        let defaultEndPoint = MoyaProvider.defaultEndpointMapping(for: target)
 //        return defaultEndPoint
         return Endpoint(
             url: URL(target: target).absoluteString,

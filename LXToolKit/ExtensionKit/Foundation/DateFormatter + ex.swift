@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - 👀
 public extension DateFormatter {
-    public static var xl = DateFormatterProxy.proxy
+    static var xl = DateFormatterProxy.proxy
 }
 public struct DateFormatterProxy {
     fileprivate static var proxy = DateFormatterProxy()
