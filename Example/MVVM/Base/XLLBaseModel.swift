@@ -8,7 +8,7 @@
 import Foundation
 import HandyJSON
 
-class XLBaseModel: NSObject, HandyJSON {
+class XLLBaseModel: NSObject, HandyJSON {
     var code: Int?
     var msg: String?
     required override init() {}
