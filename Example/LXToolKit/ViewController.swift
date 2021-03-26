@@ -52,8 +52,9 @@ class ViewController: LXBaseVC {
 //            LXPickerVC()
 //            LX0117VC()
             LXCubeVC()
+//            LXRx0225VC()
 
-        self.navigationController?.pushViewController(vc, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
     }
 
@@ -73,9 +74,20 @@ class ViewController: LXBaseVC {
 
 // MARK: - 🔐Private Actions
 private extension ViewController {
+    func goRouter() {
+        let navigator = XLNavigator()
+        if let user = User.currentUser() {
+//            let provider = GithubNetworking.stubbingNetworking()
+            let provider = GithubNetworking.defaultNetworking()
+            let restApi = RestApi(with: provider)
+            let vm = XLEventsVM(with: .user(user: user), provider: restApi)
+            navigator.show(segue: .events(vm: vm), sender: self)
+        }
+    }
     @objc func btnTestAction(sender: UIButton) {
-        let vc = LXSongVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = LXSongVC()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        goRouter()
     }
 }
 

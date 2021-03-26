@@ -6,7 +6,8 @@
 	<string>development</string>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.hg.lx.NotificationService</string>
+		<string>group.com.mt.co.apollo</string>
+		<string>group.com.lx.hg</string>
 	</array>
 </dict>
 </plist>
