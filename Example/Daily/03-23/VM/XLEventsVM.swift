@@ -10,10 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import HandyJSON
 
 enum XLEventsMode {
-    case repository(repository: Repository)
-    case user(user: User)
+    case repository(repository: XLRepositoryModel)
+    case user(user: XLUserModel)
 }
 
 // MARK: - 👀
@@ -44,52 +45,37 @@ extension XLEventsVM: XLViewModelType {
             .flatMapLatest {[weak self] _ -> Observable<[XLEventCellVM]> in
                 guard let `self` = self else { return Observable.just([]) }
                 self.page = 1
-                do {
-                return try self.request()
+                return self.request()
                     .trackActivity(self.headerLoading)
-                } catch {
-                    Logger.error("\(error)")
-                }
-                return Observable.just([])
             }
-//            .subscribe(onNext: {[weak self] items in
-//                guard let `self` = self else { return }
-//                Logger.debug("🛠1. onNext - headerRefresh: \(items)")
-//                elems.accept(items)
-//            })
-            .subscribe {[weak self] items in
-                guard let `self` = self else { return }
+            .deal([], error)
+            .subscribe(onNext: { items in
                 Logger.debug("🛠1. onNext - headerRefresh: \(items)")
                 elems.accept(items)
-            } onError: {[weak self] error in
-                guard let `self` = self else { return }
-                dlog("🛠1. onError: \(error)")
-            } onCompleted: {
-                dlog("🛠2. onCompleted")
-            } onDisposed: {
-                dlog("🛠3. onDisposed")
-            }
+            })
             .disposed(by: rx.disposeBag)
 
         input.footerRefresh
             .flatMapLatest {[weak self] _ -> Observable<[XLEventCellVM]> in
                 guard let `self` = self else { return Observable.just([]) }
                 self.page += 1
-                do {
-                return try self.request()
+                return self.request()
                     .trackActivity(self.footerLoading)
-                } catch {
-                    Logger.error("\(error)")
-                }
-                return Observable.just([])
             }
-            .subscribe(onNext: {[weak self] items in
-                guard let `self` = self else { return }
+            .deal([], error)
+            .subscribe(onNext: { items in
                 Logger.debug("🛠1. onNext - footerRefresh: \(items)")
                 elems.accept(elems.value + items)
             })
             .disposed(by: rx.disposeBag)
-
+        elems
+            .subscribe(onNext: {[weak self] list in
+                guard let `self` = self else { return }
+                if list.count <= 0 {
+                    self.error.onError(ApiError.nocontent(response: nil))
+                }
+            })
+            .disposed(by: rx.disposeBag)
 //        let userDetails = userSelected
 //            .asDriver(onErrorJustReturn: User())
 //            .map { Userv}
@@ -106,22 +92,22 @@ extension XLEventsVM: XLViewModelType {
 
         let imgURL = mode.map { mode -> URL? in
             switch mode {
-                case .repository(let repo):
-                    return repo.owner?.avatarUrl?.url
-                case .user(let user):
-                    return user.avatarUrl?.url
+            case .repository(let repo):
+                return repo.owner?.avatarUrl?.url
+            case .user(let user):
+                return user.avatarUrl?.url
             }
         }
         .asDriver(onErrorJustReturn: nil)
 
         let hidesSegment = mode.map { mode -> Bool in
             switch mode {
-                case .repository: return true
-                case .user(let user):
-                    switch user.type {
-                        case .user: return false
-                        case .organization: return true
-                    }
+            case .repository: return true
+            case .user(let user):
+                switch user.type {
+                case .user: return false
+                case .organization: return true
+                }
             }
         }
         .asDriver(onErrorJustReturn: false)
@@ -138,7 +124,8 @@ class XLEventsVM: XLBaseVM {
     // MARK: 🔗Vaiables
     let mode: BehaviorRelay<XLEventsMode>
     let segment = BehaviorRelay<EventSegments>(value: .received)
-    let userSelected = PublishSubject<User>()
+    let userSelected = PublishSubject<XLUserModel>()
+    var isNoMore = BehaviorRelay<Bool>(value: false)
     init(with mode: XLEventsMode, provider: XLAPI) {
         self.mode = BehaviorRelay(value: mode)
         super.init(provider: provider)
@@ -160,76 +147,40 @@ extension XLEventsVM {}
 
 // MARK: 🔐Private Actions
 private extension XLEventsVM {
-    func request() throws -> Observable<[XLEventCellVM]> {
-        var request: Single<XLBaseModel<XLBaseListModel<XLEventsModel>>>
+    func request() -> Observable<[XLEventCellVM]> {
+        var request: Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>>
         switch mode.value {
-            case .repository(let repo):
+        case .repository(let repo):
 //                request = provider.repositoryEvents(owner: repo.owner?.login ?? "", repo: repo.name ?? "", page: page)
-                request = try provider.userReceivedEvents2(username: "", page: page)
-            case .user(let user):
-                switch user.type {
-                    case .user:
-                        switch segment.value {
-                            case .performed:
+            request = provider.userReceivedEvents2(username: "", page: page)
+        case .user(let user):
+            switch user.type {
+            case .user:
+                switch segment.value {
+                case .performed:
 //                                request = provider.userPerformedEvents(username: user.login ?? "", page: page)
-                                request = try provider.userReceivedEvents2(username: user.login ?? "", page: page)
-                            case .received:
-                                request = try provider.userReceivedEvents2(username: user.login ?? "", page: page)
-                            break
-                        }
-                    case .organization:
-//                        request = provider.organizationEvents(username: user.login ?? "", page: page)
-                        request = try provider.userReceivedEvents2(username: user.login ?? "", page: page)
-                    break
+                    request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
+                case .received:
+                    request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
                 }
+            case .organization:
+//                        request = provider.organizationEvents(username: user.login ?? "", page: page)
+                request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
+            }
         }
         return request
             .trackActivity(loading)
-            .trackError(error)
-            .map({ baseModel -> [XLEventCellVM] in
-                baseModel.data.list.map { m in
-                    let vm = XLEventCellVM(event: m)
+            .map { baseModel in
+                self.isNoMore.accept((baseModel.data?.totalPage ?? 0) <= 0)
+                return (baseModel.data?.list ?? []).map({ event -> XLEventCellVM in
+                    let vm = XLEventCellVM(with: event)
                     vm.userSelected
                         .bind(to: self.userSelected)
                         .disposed(by: self.rx.disposeBag)
                     return vm
-                }
-            })
-//            .map { $0.map({ event -> XLEventCellVM in
-//                let vm = XLEventCellVM(with: event)
-//                vm.userSelected
-//                    .bind(to: self.userSelected)
-//                    .disposed(by: self.rx.disposeBag)
-//                return vm
-//            })}
-    }
-    func request2() -> Observable<[XLEventCellVM]> {
-        var request: Single<[Event]>
-        switch mode.value {
-            case .repository(let repo):
-                request = provider.repositoryEvents(owner: repo.owner?.login ?? "", repo: repo.name ?? "", page: page)
-            case .user(let user):
-                switch user.type {
-                    case .user:
-                        switch segment.value {
-                            case .performed:
-                                request = provider.userPerformedEvents(username: user.login ?? "", page: page)
-                            case .received:
-                                request = provider.userReceivedEvents(username: user.login ?? "", page: page)
-                        }
-                    case .organization:
-                        request = provider.organizationEvents(username: user.login ?? "", page: page)
-                }
-        }
-        return request
-            .trackActivity(loading)
-            .trackError(error)
-            .map { $0.map({ event -> XLEventCellVM in
-                let vm = XLEventCellVM(with: event)
-                vm.userSelected
-                    .bind(to: self.userSelected)
-                    .disposed(by: self.rx.disposeBag)
-                return vm
-            })}
+                })
+            }
+            .deal([], error)
     }
 }
+

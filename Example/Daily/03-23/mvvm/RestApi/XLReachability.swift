@@ -8,11 +8,12 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import Alamofire
 import Moya
 
 // An observable that completes when the app gets online (possibly completes immediately).
-func connectedToInternet() -> Observable<Bool> {
+func connectedToInternet() -> BehaviorRelay<Bool> {
     return XLReachabilityManager.shared.reach
 }
 
@@ -20,9 +21,9 @@ private class XLReachabilityManager: NSObject {
 
     static let shared = XLReachabilityManager()
 
-    let reachSubject = ReplaySubject<Bool>.create(bufferSize: 1)
-    var reach: Observable<Bool> {
-        return reachSubject.asObservable()
+    let reachSubject = BehaviorRelay<Bool>(value: true)
+    var reach: BehaviorRelay<Bool> {
+        return reachSubject
     }
 
     override init() {
@@ -32,11 +33,11 @@ private class XLReachabilityManager: NSObject {
             Logger.warn("🛠: network status changed: \(status)")
             switch status {
             case .notReachable:
-                self.reachSubject.onNext(false)
+                self.reachSubject.accept(false)
             case .reachable:
-                self.reachSubject.onNext(true)
+                self.reachSubject.accept(true)
             case .unknown:
-                self.reachSubject.onNext(false)
+                self.reachSubject.accept(false)
             }
         })
     }

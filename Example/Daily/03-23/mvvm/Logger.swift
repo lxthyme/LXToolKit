@@ -25,8 +25,33 @@ extension Logger {
     static func warn(_ msg: @autoclosure () -> String) {
         DDLogWarn(msg())
     }
-    static func error(_ msg: @autoclosure () -> String) {
-        DDLogError(msg())
+//    DDLogError(_ message: @autoclosure () -> Any,
+//                           level: DDLogLevel = DDDefaultLogLevel,
+//                           context: Int = 0,
+//                           file: StaticString = #file,
+//                           function: StaticString = #function,
+//                           line: UInt = #line,
+//                           tag: Any? = nil,
+//                           asynchronous async: Bool = false,
+//                           ddlog: DDLog = .sharedInstance)
+    static func error(_ msg: @autoclosure () -> String,
+                      level: DDLogLevel = .error,
+                      context: Int = 0,
+                      file: StaticString = #file,
+                      function: StaticString = #function,
+                      line: UInt = #line,
+                      tag: Any? = nil,
+                      asynchronous async: Bool = false,
+                      ddlog: DDLog = .sharedInstance) {
+        DDLogError("❗\(msg())",
+                   level: .error,
+                   context: 0,
+                   file: file,
+                   function: function,
+                   line: line,
+                   tag: tag,
+                   asynchronous: async,
+                   ddlog: ddlog)
     }
     static func resourcesCount() {
         #if DEBUG

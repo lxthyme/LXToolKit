@@ -65,7 +65,8 @@ class XLEventCell: XLBaseTableViewCell {
     lazy var textsStackView: UIStackView = {
         let views: [UIView] = [self.titleLabel, self.detailLabel, self.secondDetailLabel, self.attributedDetailLabel]
         let view = UIStackView(arrangedSubviews: views)
-        view.spacing = 2
+        view.axis = .vertical
+        view.spacing = 8
         return view
     }()
 
@@ -174,14 +175,20 @@ private extension XLEventCell {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension XLEventCell {
     func prepareUI() {
-//        [leftImageView, textsStackView, rightImageView].forEach(middleStackView.addSubview)
-        [leftImageView, badgeImageView,
-         titleLabel, detailLabel, secondDetailLabel,
-         attributedDetailLabel, textsStackView,
-         rightImageView].forEach(self.contentView.addSubview)
+        contentStackView.axis = .horizontal
+        contentStackView.alignment = .center
+        contentStackView.spacing = 8
+        rightImageView.tintColor = .gray
+        [titleLabel, detailLabel, secondDetailLabel, attributedDetailLabel].forEach(textsStackView.addArrangedSubview)
+        [badgeImageView].forEach(leftImageView.addSubview)
+        [leftImageView, textsStackView, rightImageView].forEach(contentStackView.addArrangedSubview)
         masonry()
     }
     func masonry() {
+        contentStackView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
+                .inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
+        }
         leftImageView.snp.makeConstraints({ (make) in
             make.size.equalTo(50)
         })

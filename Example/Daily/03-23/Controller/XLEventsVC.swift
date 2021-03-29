@@ -13,7 +13,7 @@ import RxDataSources
 import ImageSlideshow
 import HMSegmentedControl
 
-enum EventSegments: Int {
+enum EventSegments: Int, HandyJSONEnum {
     case received, performed
 
     var title: String {
@@ -121,6 +121,22 @@ extension XLEventsVC {
             .disposed(by: rx.disposeBag)
 //        output.userSelected
 //        output.repoSelected
+        vm.isNoMore
+            .bind {[weak self] isNoMore in
+                guard let `self` = self else { return }
+                if isNoMore {
+                    self.table.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No More")
+                } else {
+                    self.table.footRefreshControl.resumeRefreshAvailable()
+                }
+            }
+            .disposed(by: rx.disposeBag)
+        vm.emptyDataSet
+            .subscribe(onNext: {[weak self] _ in
+                guard let `self` = self else { return }
+                self.table.reloadEmptyDataSet()
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
 

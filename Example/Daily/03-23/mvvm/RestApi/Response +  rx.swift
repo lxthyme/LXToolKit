@@ -8,35 +8,47 @@
 
 import Foundation
 import Moya
-import ObjectMapper
+import HandyJSON
 import RxSwift
 
 // MARK: - 👀
 extension ObservableType where Element == Moya.Response {
-    func xlmapModel<T: BaseMappable>(_ type: T.Type) throws -> Observable<T> {
-        return flatMap { response -> Observable<T> in
-            guard (200...209) ~= response.statusCode else {
-                throw ApiError.serverError(response: ErrorResponse(response: response))
-            }
-            guard let json = String(data: response.data, encoding: .utf8),
-                  let model = Mapper<T>().map(JSONString: json) else {
-                throw ApiError.serializeError(response: ErrorResponse(response: response))
-            }
-            return Observable.just(model)
+    func xlmapModel<T: HandyJSON>(_ type: T.Type) -> Observable<T> {
+        return flatMap { return Observable.just(try $0.xlmapModel(T.self).0) }
+    }
+    func mapBaseModel<T: HandyJSON>(_ type: T.Type) -> Observable<XLBaseModel<T>> {
+        return flatMap { Observable.just(try $0.mapBaseModel(T.self)) }
+    }
+    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) -> Observable<XLBaseModel<XLBaseListModel<T>>> {
+        return flatMap { Observable.just(try $0.mapBaseModelArray(T.self))
         }
     }
-    func mapBaseModel<T: BaseMappable>(_ type: T.Type) throws -> Observable<XLBaseModel<T>> {
-        return try xlmapModel(XLBaseModel<T>.self)
-            .map { model -> XLBaseModel<T> in
-                switch model.code {
-                    case 10000:
-                    return model
-                    default:
-                    throw ApiError.invalidStatusCode(statusCode: model.code, msg: model.msg, tips: model.tips)
-                }
-            }
+}
+
+// MARK: - 👀
+extension Moya.Response {
+    func xlmapModel<T: HandyJSON>(_ type: T.Type) throws -> (T, String) {
+        guard (200...209) ~= statusCode else {
+            throw ApiError.serverError(response: self)
+        }
+        guard let json = String(data: data, encoding: .utf8),
+              let model = T.deserialize(from: json) else {
+            throw ApiError.serializeError(response: self, error: nil)
+        }
+        return (model, json)
     }
-    func mapBaseModelArray<T: BaseMappable>(_ type: T.Type) throws -> Observable<XLBaseModel<XLBaseListModel<T>>> {
+    func mapBaseModel<T: HandyJSON>(_ type: T.Type) throws -> XLBaseModel<T> {
+        let result = try xlmapModel(XLBaseModel<T>.self)
+        let model = result.0
+        model.origin_json = result.1
+        switch model.code {
+        case 10000:
+        return model
+        default:
+        throw ApiError.invalidStatusCode(statusCode: model.code, msg: model.msg, tips: model.tips)
+        }
+    }
+    func mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws -> XLBaseModel<XLBaseListModel<T>> {
         return try mapBaseModel(XLBaseListModel<T>.self)
     }
 }

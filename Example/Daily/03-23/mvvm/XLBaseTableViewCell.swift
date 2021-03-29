@@ -12,16 +12,12 @@ import RxCocoa
 import Rswift
 import SwifterSwift
 
-//protocol XLMVVMConfig {
-//    func bind(to viewModel: XLBaseVM)
-//}
-
 open class XLBaseTableViewCell: UITableViewCell {
     // MARK: 📌UI
     lazy var contentStackView: UIStackView = {
         let v = UIStackView()
         v.axis = .vertical
-        v.alignment = .fill
+        v.alignment = .center
         return v
     }()
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

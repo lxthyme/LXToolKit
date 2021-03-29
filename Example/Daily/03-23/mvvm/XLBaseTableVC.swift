@@ -16,7 +16,7 @@ class XLBaseTableVC: XLBaseVC {
     lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .plain)
         t.rowHeight = UITableView.automaticDimension
-        t.estimatedRowHeight = 0
+        t.estimatedRowHeight = UITableView.automaticDimension
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0

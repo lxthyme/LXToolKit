@@ -76,7 +76,7 @@ class ViewController: LXBaseVC {
 private extension ViewController {
     func goRouter() {
         let navigator = XLNavigator()
-        if let user = User.currentUser() {
+        if let user = XLUserModel.currentUser() {
 //            let provider = GithubNetworking.stubbingNetworking()
             let provider = GithubNetworking.defaultNetworking()
             let restApi = RestApi(with: provider)

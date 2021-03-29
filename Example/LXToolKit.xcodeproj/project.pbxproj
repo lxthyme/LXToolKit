@@ -81,26 +81,6 @@
 		BE827D5E260A09F7009D18D0 /* Kingfisher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5A260A09F7009D18D0 /* Kingfisher+Rx.swift */; };
 		BE827D5F260A09F7009D18D0 /* Observable+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5B260A09F7009D18D0 /* Observable+Logging.swift */; };
 		BE827D60260A09F7009D18D0 /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5C260A09F7009D18D0 /* Observable+Operators.swift */; };
-		BE827D7C260A0C85009D18D0 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D68260A0C83009D18D0 /* Token.swift */; };
-		BE827D7D260A0C85009D18D0 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D69260A0C83009D18D0 /* Milestone.swift */; };
-		BE827D7E260A0C85009D18D0 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6A260A0C83009D18D0 /* Commit.swift */; };
-		BE827D7F260A0C85009D18D0 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6B260A0C83009D18D0 /* Contact.swift */; };
-		BE827D80260A0C85009D18D0 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6C260A0C83009D18D0 /* PullRequest.swift */; };
-		BE827D81260A0C85009D18D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6D260A0C83009D18D0 /* User.swift */; };
-		BE827D82260A0C85009D18D0 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6E260A0C83009D18D0 /* Repository.swift */; };
-		BE827D83260A0C85009D18D0 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D6F260A0C83009D18D0 /* Language.swift */; };
-		BE827D84260A0C85009D18D0 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D70260A0C84009D18D0 /* Notification.swift */; };
-		BE827D85260A0C85009D18D0 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D71260A0C84009D18D0 /* SectionType.swift */; };
-		BE827D86260A0C85009D18D0 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D72260A0C84009D18D0 /* Content.swift */; };
-		BE827D87260A0C85009D18D0 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D73260A0C84009D18D0 /* Committer.swift */; };
-		BE827D88260A0C85009D18D0 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D74260A0C84009D18D0 /* License.swift */; };
-		BE827D89260A0C85009D18D0 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D75260A0C84009D18D0 /* Issue.swift */; };
-		BE827D8A260A0C85009D18D0 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D76260A0C84009D18D0 /* Release.swift */; };
-		BE827D8B260A0C85009D18D0 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D77260A0C84009D18D0 /* Branch.swift */; };
-		BE827D8C260A0C85009D18D0 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D78260A0C85009D18D0 /* State.swift */; };
-		BE827D8D260A0C85009D18D0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D79260A0C85009D18D0 /* Event.swift */; };
-		BE827D8E260A0C85009D18D0 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D7A260A0C85009D18D0 /* ISO8601DateTransform.swift */; };
-		BE827D8F260A0C85009D18D0 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D7B260A0C85009D18D0 /* Comment.swift */; };
 		BE827D97260A0E6D009D18D0 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D96260A0E6D009D18D0 /* GlobalConfig.swift */; };
 		BE827D9F260A0F77009D18D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D9E260A0F77009D18D0 /* Logger.swift */; };
 		BE827DA7260A136E009D18D0 /* XLEventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DA6260A136E009D18D0 /* XLEventsVM.swift */; };
@@ -188,8 +168,26 @@
 		BE8CD25D260D7BF100CC90A5 /* LX0324EventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD25C260D7BF100CC90A5 /* LX0324EventsVM.swift */; };
 		BE8CD2A3260D846B00CC90A5 /* Response +  rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2A2260D846B00CC90A5 /* Response +  rx.swift */; };
 		BE8CD2AB260D879300CC90A5 /* XLBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2AA260D879300CC90A5 /* XLBaseModel.swift */; };
-		BE8CD2B9260DAA5D00CC90A5 /* XLEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2B8260DAA5D00CC90A5 /* XLEventsModel.swift */; };
 		BE8CD2CD260DAD0400CC90A5 /* XLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2CC260DAD0300CC90A5 /* XLAPI.swift */; };
+		BE8CD2DC260DD35C00CC90A5 /* XLEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */; };
+		BE8CD2EA260DD46D00CC90A5 /* XLUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */; };
+		BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */; };
+		BE8CD300260DDE2D00CC90A5 /* XLLanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */; };
+		BE8CD308260DDEBB00CC90A5 /* XLLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */; };
+		BE8CD310260DDF1A00CC90A5 /* XLCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */; };
+		BE8CD318260DDF4500CC90A5 /* XLBranchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */; };
+		BE8CD320260DDF6C00CC90A5 /* XLCommitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */; };
+		BE8CD328260DDFB900CC90A5 /* XLCommitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */; };
+		BE8CD330260DDFD900CC90A5 /* XLContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */; };
+		BE8CD338260DE00700CC90A5 /* XLContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD337260DE00700CC90A5 /* XLContentModel.swift */; };
+		BE8CD340260DE02A00CC90A5 /* XLIssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */; };
+		BE8CD348260DE06100CC90A5 /* XLMilestoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */; };
+		BE8CD350260DE07E00CC90A5 /* XLNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */; };
+		BE8CD358260DE0D000CC90A5 /* XLPullRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */; };
+		BE8CD360260DE0E800CC90A5 /* XLReleaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */; };
+		BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD367260DE12400CC90A5 /* XLSectionType.swift */; };
+		BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */; };
+		BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */; };
 		BE91062A25494513002BBD85 /* LXImageTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE91062925494513002BBD85 /* LXImageTestVC.swift */; };
 		BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */; };
 		BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */; };
@@ -409,26 +407,6 @@
 		BE827D5A260A09F7009D18D0 /* Kingfisher+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Rx.swift"; sourceTree = "<group>"; };
 		BE827D5B260A09F7009D18D0 /* Observable+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Logging.swift"; sourceTree = "<group>"; };
 		BE827D5C260A09F7009D18D0 /* Observable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
-		BE827D68260A0C83009D18D0 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		BE827D69260A0C83009D18D0 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
-		BE827D6A260A0C83009D18D0 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
-		BE827D6B260A0C83009D18D0 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		BE827D6C260A0C83009D18D0 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
-		BE827D6D260A0C83009D18D0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BE827D6E260A0C83009D18D0 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		BE827D6F260A0C83009D18D0 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		BE827D70260A0C84009D18D0 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		BE827D71260A0C84009D18D0 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
-		BE827D72260A0C84009D18D0 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		BE827D73260A0C84009D18D0 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
-		BE827D74260A0C84009D18D0 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
-		BE827D75260A0C84009D18D0 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		BE827D76260A0C84009D18D0 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
-		BE827D77260A0C84009D18D0 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
-		BE827D78260A0C85009D18D0 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		BE827D79260A0C85009D18D0 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BE827D7A260A0C85009D18D0 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
-		BE827D7B260A0C85009D18D0 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		BE827D96260A0E6D009D18D0 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
 		BE827D9E260A0F77009D18D0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		BE827DA6260A136E009D18D0 /* XLEventsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsVM.swift; sourceTree = "<group>"; };
@@ -519,8 +497,26 @@
 		BE8CD25C260D7BF100CC90A5 /* LX0324EventsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0324EventsVM.swift; sourceTree = "<group>"; };
 		BE8CD2A2260D846B00CC90A5 /* Response +  rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response +  rx.swift"; sourceTree = "<group>"; };
 		BE8CD2AA260D879300CC90A5 /* XLBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseModel.swift; sourceTree = "<group>"; };
-		BE8CD2B8260DAA5D00CC90A5 /* XLEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsModel.swift; sourceTree = "<group>"; };
 		BE8CD2CC260DAD0300CC90A5 /* XLAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLAPI.swift; sourceTree = "<group>"; };
+		BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsModel.swift; sourceTree = "<group>"; };
+		BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLUserModel.swift; sourceTree = "<group>"; };
+		BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLRepositoryModel.swift; sourceTree = "<group>"; };
+		BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLLanguageModel.swift; sourceTree = "<group>"; };
+		BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLLicenseModel.swift; sourceTree = "<group>"; };
+		BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommentModel.swift; sourceTree = "<group>"; };
+		BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBranchModel.swift; sourceTree = "<group>"; };
+		BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommitModel.swift; sourceTree = "<group>"; };
+		BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommitterModel.swift; sourceTree = "<group>"; };
+		BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLContactModel.swift; sourceTree = "<group>"; };
+		BE8CD337260DE00700CC90A5 /* XLContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLContentModel.swift; sourceTree = "<group>"; };
+		BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIssueModel.swift; sourceTree = "<group>"; };
+		BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLMilestoneModel.swift; sourceTree = "<group>"; };
+		BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLNotificationModel.swift; sourceTree = "<group>"; };
+		BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPullRequestModel.swift; sourceTree = "<group>"; };
+		BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLReleaseModel.swift; sourceTree = "<group>"; };
+		BE8CD367260DE12400CC90A5 /* XLSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLSectionType.swift; sourceTree = "<group>"; };
+		BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLStateModel.swift; sourceTree = "<group>"; };
+		BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLTokenModel.swift; sourceTree = "<group>"; };
 		BE91062925494513002BBD85 /* LXImageTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXImageTestVC.swift; sourceTree = "<group>"; };
 		BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchVC.swift; sourceTree = "<group>"; };
 		BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchViewModel.swift; sourceTree = "<group>"; };
@@ -1077,34 +1073,6 @@
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
-		BE827D67260A0C75009D18D0 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				BE827D77260A0C84009D18D0 /* Branch.swift */,
-				BE827D7B260A0C85009D18D0 /* Comment.swift */,
-				BE827D6A260A0C83009D18D0 /* Commit.swift */,
-				BE827D73260A0C84009D18D0 /* Committer.swift */,
-				BE827D6B260A0C83009D18D0 /* Contact.swift */,
-				BE827D72260A0C84009D18D0 /* Content.swift */,
-				BE827D79260A0C85009D18D0 /* Event.swift */,
-				BE8CD2B8260DAA5D00CC90A5 /* XLEventsModel.swift */,
-				BE827D7A260A0C85009D18D0 /* ISO8601DateTransform.swift */,
-				BE827D75260A0C84009D18D0 /* Issue.swift */,
-				BE827D6F260A0C83009D18D0 /* Language.swift */,
-				BE827D74260A0C84009D18D0 /* License.swift */,
-				BE827D69260A0C83009D18D0 /* Milestone.swift */,
-				BE827D70260A0C84009D18D0 /* Notification.swift */,
-				BE827D6C260A0C83009D18D0 /* PullRequest.swift */,
-				BE827D76260A0C84009D18D0 /* Release.swift */,
-				BE827D6E260A0C83009D18D0 /* Repository.swift */,
-				BE827D71260A0C84009D18D0 /* SectionType.swift */,
-				BE827D78260A0C85009D18D0 /* State.swift */,
-				BE827D68260A0C83009D18D0 /* Token.swift */,
-				BE827D6D260A0C83009D18D0 /* User.swift */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		BE827DC4260A1A2F009D18D0 /* RxErrorTracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1274,32 @@
 			path = VM;
 			sourceTree = "<group>";
 		};
+		BE8CD2DA260DD34500CC90A5 /* HandyJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */,
+				BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */,
+				BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */,
+				BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */,
+				BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */,
+				BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */,
+				BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */,
+				BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */,
+				BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */,
+				BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */,
+				BE8CD337260DE00700CC90A5 /* XLContentModel.swift */,
+				BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */,
+				BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */,
+				BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */,
+				BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */,
+				BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */,
+				BE8CD367260DE12400CC90A5 /* XLSectionType.swift */,
+				BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */,
+				BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */,
+			);
+			path = HandyJSONModel;
+			sourceTree = "<group>";
+		};
 		BE910628254944F3002BBD85 /* 10-28 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1317,7 +1311,7 @@
 		BE93ECF62609DC0D00B21A42 /* 03-23 */ = {
 			isa = PBXGroup;
 			children = (
-				BE827D67260A0C75009D18D0 /* model */,
+				BE8CD2DA260DD34500CC90A5 /* HandyJSONModel */,
 				BE93ED062609DE2000B21A42 /* Controller */,
 				BE93ED052609DE1B00B21A42 /* View */,
 				BE93ED042609DE1600B21A42 /* VM */,
@@ -2236,35 +2230,30 @@
 				BE6AA602259AB92900526193 /* LXSongVC.swift in Sources */,
 				BE078E972583653D0053ABE5 /* LXTTTTT.swift in Sources */,
 				BE8CD2CD260DAD0400CC90A5 /* XLAPI.swift in Sources */,
-				BE8CD2B9260DAA5D00CC90A5 /* XLEventsModel.swift in Sources */,
 				BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */,
+				BE8CD350260DE07E00CC90A5 /* XLNotificationModel.swift in Sources */,
 				BE827C3F2609E771009D18D0 /* XLEventCell.swift in Sources */,
 				BE827D5D260A09F7009D18D0 /* KafkaRefresh+Rx.swift in Sources */,
-				BE827D8C260A0C85009D18D0 /* State.swift in Sources */,
 				BE97A960251D9F640061254B /* Dependencies.swift in Sources */,
 				BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */,
-				BE827D7C260A0C85009D18D0 /* Token.swift in Sources */,
 				BE97A95A251D9C920061254B /* WikipediaSearchResult.swift in Sources */,
 				BE8970E525E4B50000101247 /* @__exported.swift in Sources */,
 				BE673DF225B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA9379324E0E90A0048D644 /* LXBaseRequiredVC.m in Sources */,
-				BE827D82260A0C85009D18D0 /* Repository.swift in Sources */,
 				BE68AD5B2599DA190068057C /* UIViewController + topVC.swift in Sources */,
 				BE8A9759260B276300A32116 /* XLGithubAPI.swift in Sources */,
 				BEA1A1132589FD2E00E03DA3 /* LXMusicVC.swift in Sources */,
-				BE827D8D260A0C85009D18D0 /* Event.swift in Sources */,
 				BE827DC9260A1A2F009D18D0 /* RxActivityIndicator.swift in Sources */,
 				BEC2D3982521E32F004C91B6 /* XLLBaseModel.swift in Sources */,
 				BE97A952251D9B680061254B /* LXWikipediaImageSearchView.swift in Sources */,
 				BEC0A25A24F74A2200ABD23F /* LXTestStringVC.m in Sources */,
 				BE89708B25E4903600101247 /* LXCubeFaceView.swift in Sources */,
 				BE7BE97F260C40E30031B4F7 /* LibraryManager.swift in Sources */,
-				BE827D7D260A0C85009D18D0 /* Milestone.swift in Sources */,
 				BE4299492518796900CFCF53 /* LXTestVC.swift in Sources */,
-				BE827D83260A0C85009D18D0 /* Language.swift in Sources */,
 				BEC2D2A125207FE8004C91B6 /* LXSingleImageCell.swift in Sources */,
 				BE6AA646259AC3E200526193 /* UIScrollView + refresh.swift in Sources */,
 				BE827D60260A09F7009D18D0 /* Observable+Operators.swift in Sources */,
+				BE8CD2EA260DD46D00CC90A5 /* XLUserModel.swift in Sources */,
 				BE827C2B2609E322009D18D0 /* XLBaseVM.swift in Sources */,
 				BE66CCE825B3DED300F6B7C8 /* LX0117VC.swift in Sources */,
 				BE827DA7260A136E009D18D0 /* XLEventsVM.swift in Sources */,
@@ -2272,31 +2261,31 @@
 				BE827DC8260A1A2F009D18D0 /* ErrorTracker.swift in Sources */,
 				BE8A39EE25B2B9690062E388 /* LXPhotoAlbumVC.swift in Sources */,
 				BE97A97B251DD69D0061254B /* UIImage + forceLazyDecompression.swift in Sources */,
+				BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BE89708325E489A100101247 /* LXCubeVC.swift in Sources */,
-				BE827D7E260A0C85009D18D0 /* Commit.swift in Sources */,
 				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
+				BE8CD300260DDE2D00CC90A5 /* XLLanguageModel.swift in Sources */,
 				BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */,
-				BE827D80260A0C85009D18D0 /* PullRequest.swift in Sources */,
 				BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */,
 				BEA1A1032589F5E100E03DA3 /* LXMusicModel.swift in Sources */,
 				BE68AD042599CB4A0068057C /* LXSongCellVM.swift in Sources */,
 				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
 				BE8380EC25AA0BA4002CA245 /* LXMacro.swift in Sources */,
 				BE68AD0A2599CF720068057C /* LXSongVM.swift in Sources */,
-				BE827D88260A0C85009D18D0 /* License.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */,
 				BE8A3A6325B2E6950062E388 /* LXAlbumListModel.swift in Sources */,
-				BE827D84260A0C85009D18D0 /* Notification.swift in Sources */,
+				BE8CD358260DE0D000CC90A5 /* XLPullRequestModel.swift in Sources */,
 				BE8A9743260B260C00A32116 /* Networking.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BE68AD2D2599D3090068057C /* API.swift in Sources */,
-				BE827D86260A0C85009D18D0 /* Content.swift in Sources */,
+				BE8CD2DC260DD35C00CC90A5 /* XLEventsModel.swift in Sources */,
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
 				BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */,
-				BE827D8A260A0C85009D18D0 /* Release.swift in Sources */,
+				BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */,
 				BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */,
+				BE8CD340260DE02A00CC90A5 /* XLIssueModel.swift in Sources */,
 				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
 				BE272FE3257A2A28005D614E /* LXKingfisherVC.m in Sources */,
 				BE68AD332599D4350068057C /* Observable + HandyJSON.swift in Sources */,
@@ -2310,6 +2299,7 @@
 				BE0F402F24E2743A00A2F841 /* LXListItemModel.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
 				BE272FE4257A2A28005D614E /* UIImage + emoticon.swift in Sources */,
+				BE8CD330260DDFD900CC90A5 /* XLContactModel.swift in Sources */,
 				BE272FE7257A2A28005D614E /* LXMessageCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BE97A96F251DD13F0061254B /* ActivityIndicator.swift in Sources */,
@@ -2335,7 +2325,6 @@
 				BE83808825A9DFEB002CA245 /* @_exported.swift in Sources */,
 				BE68AD552599D9460068057C /* HUD + Observable.swift in Sources */,
 				BE272FE1257A2A28005D614E /* LXSwiftView.swift in Sources */,
-				BE827D8F260A0C85009D18D0 /* Comment.swift in Sources */,
 				BECD638624E13B8B009DC206 /* LXRequiredVC.swift in Sources */,
 				BE97A95C251D9D8D0061254B /* WikipediaAPI.swift in Sources */,
 				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
@@ -2348,34 +2337,36 @@
 				BE8380DF25AA0345002CA245 /* LXSongRecordCell.swift in Sources */,
 				BE12161924E66222007BE91E /* LXProxyTestVC.swift in Sources */,
 				BE60318A25B1F5DA0045117C /* LXPickerVC.swift in Sources */,
+				BE8CD348260DE06100CC90A5 /* XLMilestoneModel.swift in Sources */,
 				BE8CD2AB260D879300CC90A5 /* XLBaseModel.swift in Sources */,
 				BEC2D2B525208CAB004C91B6 /* UIApplication + ex.swift in Sources */,
 				BE97A963251DA0270061254B /* Wireframe.swift in Sources */,
 				BE8380A125A9E6B7002CA245 /* UIFont + ex.swift in Sources */,
 				BE68ACFA2599CB260068057C /* LXSongRecordModel.swift in Sources */,
-				BE827D81260A0C85009D18D0 /* User.swift in Sources */,
+				BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */,
 				BE12160C24E5137D007BE91E /* LXTransitionVC.swift in Sources */,
 				BE8A97E2260B396900A32116 /* XLBaseVC.swift in Sources */,
 				BE72697725B3E9DE00E155F6 /* LXEmptyView.swift in Sources */,
-				BE827D8B260A0C85009D18D0 /* Branch.swift in Sources */,
 				BE68AD8E2599F05A0068057C /* Action + checkError.swift in Sources */,
 				BE97A976251DD47E0061254B /* LXKeyInstance.swift in Sources */,
 				BE72699E25B3EBFF00E155F6 /* LX0117Model.swift in Sources */,
 				BE6505E425AAD8BC00052688 /* LXEmptyCell.swift in Sources */,
 				BE8A39E425B2B7820062E388 /* LXPhotoCell.swift in Sources */,
+				BE8CD318260DDF4500CC90A5 /* XLBranchModel.swift in Sources */,
 				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
 				BEA1A10D2589F64400E03DA3 /* LXMusicVM.swift in Sources */,
-				BE827D7F260A0C85009D18D0 /* Contact.swift in Sources */,
 				BE97A96D251DCF4E0061254B /* DownloadableImage.swift in Sources */,
 				BE83809A25A9E632002CA245 /* RetryView.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
-				BE827D8E260A0C85009D18D0 /* ISO8601DateTransform.swift in Sources */,
 				BE4299472518776700CFCF53 /* LXPresentVC.swift in Sources */,
+				BE8CD338260DE00700CC90A5 /* XLContentModel.swift in Sources */,
 				BEA9378C24DD3D370048D644 /* LXResolveTestObj.m in Sources */,
 				BE8A973B260B253900A32116 /* ErrorResponse.swift in Sources */,
 				BE827C68260A0382009D18D0 /* XLEventCellVM.swift in Sources */,
+				BE8CD320260DDF6C00CC90A5 /* XLCommitModel.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
+				BE8CD360260DE0E800CC90A5 /* XLReleaseModel.swift in Sources */,
 				BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */,
 				BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */,
 				BE8380E525AA0704002CA245 /* UIImageView + Reactive.swift in Sources */,
@@ -2387,17 +2378,18 @@
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
 				BE8A9767260B2E5000A32116 /* XLEventsVC.swift in Sources */,
 				BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */,
+				BE8CD310260DDF1A00CC90A5 /* XLCommentModel.swift in Sources */,
+				BE8CD308260DDEBB00CC90A5 /* XLLicenseModel.swift in Sources */,
 				BE272FE2257A2A28005D614E /* LXStackMessageVC.swift in Sources */,
 				BE97A967251DB7020061254B /* ImageService.swift in Sources */,
-				BE827D87260A0C85009D18D0 /* Committer.swift in Sources */,
 				BE8CD2A3260D846B00CC90A5 /* Response +  rx.swift in Sources */,
 				BE91062A25494513002BBD85 /* LXImageTestVC.swift in Sources */,
 				BE97A957251D9BE30061254B /* LXSearchResultViewModel.swift in Sources */,
 				BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */,
 				BEA9378F24DD409B0048D644 /* LXPerson.m in Sources */,
 				BE97A965251DB4050061254B /* HtmlParsing.swift in Sources */,
+				BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */,
 				BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */,
-				BE827D85260A0C85009D18D0 /* SectionType.swift in Sources */,
 				BEA9378624DD3D030048D644 /* LXResolveIMPVC.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
 				BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */,
@@ -2406,7 +2398,7 @@
 				BE9F6986253D39E100C0F1A5 /* LXButtonTestVC.swift in Sources */,
 				BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */,
 				BE72698925B3EB6600E155F6 /* LX0117VM.swift in Sources */,
-				BE827D89260A0C85009D18D0 /* Issue.swift in Sources */,
+				BE8CD328260DDFB900CC90A5 /* XLCommitterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

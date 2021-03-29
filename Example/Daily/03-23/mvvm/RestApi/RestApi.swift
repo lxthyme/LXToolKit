@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import ObjectMapper
+import HandyJSON
 import Moya
 import Moya_ObjectMapper
 import Alamofire
@@ -18,38 +18,38 @@ typealias MoyaError = Moya.MoyaError
 
 enum ApiError: Error {
     case offline
-    case serverError(response: Moya.Response)
+    case serverError(response: Moya.Response?)
     case serializeError(response: Moya.Response?, error: Swift.Error?)
-    case nocontent(response: ErrorResponse)
+    case nocontent(response: ErrorResponse?)
     case invalidStatusCode(statusCode: Int, msg: String, tips: String)
 
     var title: String {
         switch self {
-            case .offline: return "无网络连接"
-            case .serverError:
-                return ""
-            case .serializeError:
-                return ""
-            case .nocontent(response: let response):
-                return response.message ?? ""
-            case .invalidStatusCode(_, let msg, _):
-                return msg
+        case .offline: return "无网络连接"
+        case .serverError:
+            return ""
+        case .serializeError:
+            return ""
+        case .nocontent(let response):
+            return response?.message ?? ""
+        case .invalidStatusCode(_, let msg, _):
+            return msg
         }
     }
 
     var description: String {
         switch self {
-            case .offline: return "您的网络开小差了, 请检查网络后重试~"
-            case .serverError(let response):
-                return response.debugDescription
-            case .serializeError(let response, let error):
-                return """
+        case .offline: return "您的网络开小差了, 请检查网络后重试~"
+        case .serverError(let response):
+            return response.debugDescription
+        case .serializeError(let response, let error):
+            return """
 error: \(error.debugDescription)
 response: \(response?.debugDescription ?? "")
 """
-            case .nocontent(let response):
-                return response.detail()
-            case .invalidStatusCode: return ""
+        case .nocontent(let response):
+            return response?.detail() ?? ""
+        case .invalidStatusCode: return ""
         }
     }
 }
@@ -63,27 +63,31 @@ class RestApi: XLAPI {
 
 // MARK: - 👀
 extension RestApi {
-    func events(page: Int) -> Single<[Event]> {
-        return requestArray(.events(page: page), type: Event.self)
+    func events(page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return requestArray(.events(page: page), type: XLEventsModel.self)
     }
-    func repositoryEvents(owner: String, repo: String, page: Int) -> Single<[Event]> {
-        return requestArray(.repositoryEvents(owner: owner, repo: repo, page: page), type: Event.self)
+    func repositoryEvents(owner: String, repo: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return requestArray(.repositoryEvents(owner: owner, repo: repo, page: page), type: XLEventsModel.self)
     }
-    func userReceivedEvents(username: String, page: Int) -> Single<[Event]> {
-        return requestArray(.userReceivedEvents(username: username, page: page), type: Event.self)
+    func userReceivedEvents(username: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return requestArray(.userReceivedEvents(username: username, page: page), type: XLEventsModel.self)
     }
-    func userReceivedEvents2(username: String, page: Int) throws -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
-        return try githubProvider
+    func userReceivedEvents2(username: String, page: Int) -> Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return githubProvider
             .request2(.userReceivedEvents(username: username, page: page))
             .mapBaseModelArray(XLEventsModel.self)
             .observeOn(MainScheduler.instance)
-            .asSingle()
+//            .catchError { error -> Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>> in
+//                Logger.error("\(error)")
+//                return Observable.just(XLBaseModel())
+//            }
+//            .asSingle()
     }
-    func userPerformedEvents(username: String, page: Int) -> Single<[Event]> {
-        return requestArray(.userPerformedEvents(username: username, page: page), type: Event.self)
+    func userPerformedEvents(username: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return requestArray(.userPerformedEvents(username: username, page: page), type: XLEventsModel.self)
     }
-    func organizationEvents(username: String, page: Int) -> Single<[Event]> {
-        return requestArray(.organizationEvents(username: username, page: page), type: Event.self)
+    func organizationEvents(username: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+        return requestArray(.organizationEvents(username: username, page: page), type: XLEventsModel.self)
     }
 }
 
@@ -103,17 +107,17 @@ private extension RestApi {
             .observeOn(MainScheduler.instance)
             .asSingle()
     }
-    func requestObject<T: BaseMappable>(_ target: XLGithubAPI, type: T.Type) -> Single<T> {
+    func requestObject<T: HandyJSON>(_ target: XLGithubAPI, type: T.Type) -> Single<XLBaseModel<T>> {
         return githubProvider
             .request(target)
-            .mapObject(T.self)
+            .mapBaseModel(T.self)
             .observeOn(MainScheduler.instance)
             .asSingle()
     }
-    func requestArray<T: BaseMappable>(_ target: XLGithubAPI, type: T.Type) -> Single<[T]> {
+    func requestArray<T: HandyJSON>(_ target: XLGithubAPI, type: T.Type) -> Single<XLBaseModel<XLBaseListModel<T>>> {
         return githubProvider
             .request(target)
-            .mapArray(T.self)
+            .mapBaseModelArray(T.self)
             .observeOn(MainScheduler.instance)
             .asSingle()
     }

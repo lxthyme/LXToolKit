@@ -7,43 +7,30 @@
 //
 
 import UIKit
-import ObjectMapper
+import HandyJSON
 
-struct XLBaseModel<T: BaseMappable>: ImmutableMappable {
+class XLBaseModel<T: HandyJSON>: HandyJSON {
     // MARK: 🔗Vaiables
-    let code: Int
-    let msg: String
-    let tips: String
-    let data: T
+    var code: Int = 0
+    var msg: String = ""
+    var tips: String = ""
+    var data: T?
+    var origin_json: String = ""
     // MARK: 🛠Life Cycle
-    init(map: Map) throws {
-        code = try map.value("code")
-        msg = try map.value("msg")
-        tips = try map.value("tips")
-        data = try map.value("data")
-    }
-    func mapping(map: Map) {
-        code >>> map["code"]
-        msg >>> map["msg"]
-        tips >>> map["tips"]
-        data >>> map["data"]
+    required init() {}
+    func mapping(mapper: HelpingMapper) {
+        mapper >>> origin_json
     }
 }
 
-struct XLBaseListModel<T: BaseMappable>: ImmutableMappable {
+class XLBaseListModel<T: HandyJSON>: HandyJSON {
     // MARK: 🔗Vaiables
-    let page: Int
-    let totalPage: Int
-    let list: [T]
+    var page: Int = 1
+    var totalPage: Int = 0
+    var list: [T] = []
     // MARK: 🛠Life Cycle
-    init(map: Map) throws {
-        page = try map.value("page")
-        totalPage = try map.value("totalPage")
-        list = try map.value("list")
-    }
-    func mapping(map: Map) {
-        page >>> map["page"]
-        totalPage >>> map["totalPage"]
-        list >>> map["list"]
+    required init() {}
+    func mapping(mapper: HelpingMapper) {
+        mapper <<< totalPage <-- "total_page"
     }
 }

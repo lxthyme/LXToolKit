@@ -9,13 +9,14 @@
 import Foundation
 import Moya
 import RxSwift
+import RxCocoa
 import Alamofire
 import ObjectMapper
 
 //class OnlineProvider<Target> where Target: Moya.TargetType {
 class OnlineProvider<Target> where Target: Moya.TargetType {
 //    fileprivate
-    let online: Observable<Bool>
+    let online: BehaviorRelay<Bool>
 //    fileprivate
     let provider: MoyaProvider<Target>
 
@@ -25,14 +26,12 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
          session: Session = MoyaProvider<Target>.defaultAlamofireSession(),
          plugins: [PluginType] = [],
          trackInflights: Bool = false,
-         online: Observable<Bool> = connectedToInternet()) {
+         online: BehaviorRelay<Bool> = connectedToInternet()) {
         self.online = online
         self.provider = MoyaProvider(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, session: session, plugins: plugins, trackInflights: trackInflights)
     }
 
     func request(_ token: Target) -> Observable<Moya.Response> {
-//    func request(_ token: Target, completion: @escaping (_ result: Result<Moya.Response, MoyaError>) -> Void) -> Cancellable {
-//        let actualRequest = provider.request(token, completion: completion)
         let actualRequest = provider.rx.request(token)
         return online
 //            .ignore(value: false)  // Wait until we're online
@@ -42,32 +41,6 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                     .filterSuccessfulStatusCodes()
 //                    .do { response in
 //                        dlog("🛠1. onSuccess: ", response)
-//                    } afterSuccess: { response in
-//                        dlog("🛠2. afterSuccess: ", response)
-////                        completion(
-//                    } onError: { error in
-//                        dlog("🛠1. onError: ", error)
-//                        if let error = error as? MoyaError {
-//                            switch error {
-//                            case .statusCode(let response):
-//                                if response.statusCode == 401 {
-//                                    // Unauthorized
-//        //                                    if AuthManager.shared.hasValidToken {
-//        //                                        AuthManager.removeToken()
-//        //                                        Application.shared.presentInitialScreen(in: Application.shared.window)
-//        //                                    }
-//                                }
-//                            default: break
-//                            }
-//                        }
-//                    } afterError: { error in
-//                        dlog("🛠2. afterError: ", error)
-//                    } onSubscribe: {
-//                        dlog("🛠3. onSubscribe: ")
-//                    } onSubscribed: {
-//                        dlog("🛠4. onSubscribed: ")
-//                    } onDispose: {
-//                        dlog("🛠5. onDispose: ")
 //                    }
             }
     }
@@ -90,7 +63,11 @@ struct GithubNetworking: NetworkingType {
     }
 
     static func stubbingNetworking() -> Self {
-        return GithubNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(), requestClosure: GithubNetworking.endpointResolver(), stubClosure: MoyaProvider.immediatelyStub, online: .just(true)))
+        return GithubNetworking(
+            provider: OnlineProvider(endpointClosure: endpointsClosure(),
+                                     requestClosure: GithubNetworking.endpointResolver(),
+                                     stubClosure: MoyaProvider.immediatelyStub,
+                                     online: BehaviorRelay(value: false)))
     }
 
     func request(_ token: T) -> Observable<Moya.Response> {
@@ -124,17 +101,19 @@ class XLResponse: NSObject, NSKeyedArchiverDelegate, NSKeyedUnarchiverDelegate, 
     }
 }
 extension GithubNetworking {
-    func request3(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Result<Moya.Response, ApiError>> {
+    func request3(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Moya.Response> {
         let actualRequest = request2(token, fromCache: fromCache, needCache: needCache)
         return provider.online
 //            .ignore(value: false)
             .take(1)
-            .flatMap { isOnline -> Observable<Result<Moya.Response, ApiError>> in
+            .flatMap { isOnline -> Observable<Moya.Response> in
                 Logger.debug("isOnline: \(isOnline)")
+                if !isOnline {
+                }
                 return actualRequest
             }
     }
-    func request2(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Result<Moya.Response, ApiError>> {
+    func request2(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Moya.Response> {
 //        let actualRequest = self.provider.request(token)
 //        return actualRequest
         return Observable.create { observer -> Disposable in
@@ -142,36 +121,22 @@ extension GithubNetworking {
             if fromCache,
                let data = GlobalConfig.yyCache?.object(forKey: cachedkey) as? XLResponse {
                 let cachedResponse = Response(statusCode: data.statusCode, data: data.data ?? Data(), request: data.request, response: data.response)
-                observer.onNext(.success(cachedResponse))
+                observer.onNext(cachedResponse)
                 observer.onCompleted()
+            }
+            if !provider.online.value {
+                observer.onError(NSError(domain: "似乎已断开与互联网的连接", code: 999, userInfo: nil))
             }
             let cancelableToken = self.provider.provider.request(token) { result in
                 switch result {
-                    case .success(let response):
-                        if needCache {
-                            let obj = XLResponse(statusCode: response.statusCode, data: response.data, request: response.request, response: response.response)
-                            GlobalConfig.yyCache?.setObject(obj, forKey: cachedkey, with: nil)
-                        }
-                        observer.onNext(.success(response))
-                    case .failure(let error):
-                        switch error {
-                            case .imageMapping(let response),
-                                 .jsonMapping(let response),
-                                 .stringMapping(let response):
-                                observer.onNext(.failure(.serializeError(response: response, error: nil)))
-                            case .encodableMapping(let error):
-                                observer.onNext(.failure(.serializeError(response: nil, error: error)))
-                            case .statusCode(let response):
-                                observer.onNext(.failure(.invalidStatusCode(statusCode: response.statusCode, msg: "", tips: "")))
-                            case .objectMapping(let error, let response):
-                                observer.onNext(.failure(.serializeError(response: response, error: error)))
-                            case .underlying(let error, let response):
-                                observer.onNext(.failure(.serializeError(response: response, error: error)))
-                            case .requestMapping(let string):
-                                observer.onNext(.failure(.serializeError(response: nil, error: NSError(domain: string, code: 999, userInfo: nil) as Error)))
-                            case .parameterEncoding(let error):
-                                observer.onNext(.failure(.serializeError(response: nil, error: error)))
-                        }
+                case .success(let response):
+                    if needCache {
+                        let obj = XLResponse(statusCode: response.statusCode, data: response.data, request: response.request, response: response.response)
+                        GlobalConfig.yyCache?.setObject(obj, forKey: cachedkey, with: nil)
+                    }
+                    observer.onNext(response)
+                case .failure(let error):
+                    observer.onError(error)
                 }
                 observer.onCompleted()
             }

@@ -133,9 +133,9 @@ class XLBaseVC: UIViewController, XLNavigatable, NVActivityIndicatorViewable {
         vm?.loading.asObservable()
             .bind(to: isLoading)
             .disposed(by: rx.disposeBag)
-        vm?.parsedError.asObservable()
-            .bind(to: error)
-            .disposed(by: rx.disposeBag)
+//        vm?.parsedError.asObservable()
+//            .bind(to: error)
+//            .disposed(by: rx.disposeBag)
 
         languageChanged
             .subscribe(onNext: {[weak self] _ in
@@ -307,16 +307,18 @@ extension Reactive where Base: XLBaseVC {
 // MARK: - ✈️DZNEmptyDataSetSource
 extension XLBaseVC: DZNEmptyDataSetSource {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: emptyDataSet.title)
+        let title = vm?.emptyDataSet.value?.title ?? ""
+        return NSAttributedString(string: title)
     }
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: emptyDataSet.description)
+        let desc = vm?.emptyDataSet.value?.description ?? ""
+        return NSAttributedString(string: desc)
     }
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return emptyDataSet.img
+        return vm?.emptyDataSet.value?.img ?? UIImage()
     }
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return emptyDataSet.imgTintColor.value
+        return vm?.emptyDataSet.value?.imgTintColor.value ?? .blue
     }
     func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return .clear
