@@ -66,3 +66,11 @@ public extension Swifty where Base: UIView {
         base.layer.addSublayer(borderLayer)
     }
 }
+
+// MARK: - 👀
+public extension UIView {
+    func setPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
+        self.setContentHuggingPriority(priority, for: axis)
+        self.setContentCompressionResistancePriority(priority, for: axis)
+    }
+}

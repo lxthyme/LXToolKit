@@ -45,6 +45,7 @@ This library contains some useful category and extension kits
     s.dependency "Alamofire", "~> 5.0"
     s.dependency 'Moya'#, '~> 13'
     s.dependency 'RxSwift'#, '~> 5'
+    s.dependency 'RxCocoa'
     s.dependency 'HandyJSON', '~> 5'
     s.dependency 'SnapKit', '~> 5.0'
     s.dependency 'CryptoSwift'

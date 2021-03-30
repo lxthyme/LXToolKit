@@ -59,3 +59,8 @@ open class LXBaseListModel<T: HandyJSON>: BaseModel {
 
     /// override var debugDescription: String { return "" }
 }
+
+// MARK: - 👀
+public extension HandyJSON {
+    var debugDescription: String { return toJSONString(prettyPrint: true) ?? "---" }
+}
