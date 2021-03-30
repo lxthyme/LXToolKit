@@ -8,8 +8,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
-import ObjectMapper
 
 protocol XLViewModelType {
     associatedtype Input
@@ -72,27 +70,32 @@ class XLBaseVM: NSObject {
                 Logger.error("🛠1. onNext: \(error)")
                 var emptySet = XLEmptyDataSet(title: "", description: "", img: nil, imgTintColor: BehaviorRelay<UIColor?>(value: .red))
                 if let apiError = error as? ApiError {
+                    emptySet.identifier = apiError.identifier
                     switch apiError {
                     case .offline:
-                        emptySet.title = "「1」没有网络!"
+                        emptySet.title = "没有网络!"
                         emptySet.description = "「1」检测到设备没有联网, 请确认后重试~"
                     case .serverError(response: let response):
-                        emptySet.title = "「2」服务器错误!"
+                        emptySet.title = "服务器错误!"
                         emptySet.description = "「2」服务器错误, 请稍后重试~"
                     case .serializeError(response: let response, error: let error):
-                        emptySet.title = "「3」序列化错误!"
-                        emptySet.title = "「3」序列化错误, 请稍后重试~"
+                        emptySet.title = "序列化错误!"
+                        emptySet.description = "「3」序列化错误, 请稍后重试~"
                     case .nocontent(response: let response):
-                        emptySet.title  = "「4」没有内容!"
-                        emptySet.title = "「4」暂时没有更多内容, 请稍后重试~"
+                        emptySet.title  = "没有内容!"
+                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~"
                     case .invalidStatusCode(statusCode: let statusCode, msg: let msg, tips: let tips):
-                        emptySet.title = "「5」code 错误[\(statusCode)"
-                        emptySet.title = "「5」序列化错误~"
+                        emptySet.title = "code 错误[\(statusCode)"
+                        emptySet.description = "「5」code 错误~"
                     }
                 } else if let moyaError = error as? MoyaError {
+                    emptySet.identifier = "\(moyaError.errorCode)"
                     emptySet.title = "\(moyaError.failureReason ?? "")"
                     emptySet.description = "「moya」\(moyaError.errorDescription ?? "")"
                 } else {
+                    let error = error as NSError
+                    emptySet.identifier = "\(error.code)"
+                    emptySet.title = "「else」\(error.domain)"
                     emptySet.description = error.localizedDescription
                 }
                 self.emptyDataSet.accept(emptySet)
@@ -105,7 +108,10 @@ class XLBaseVM: NSObject {
 extension Observable {
     func deal(_ element: Element, _ errorTracker: ErrorTracker)
         -> Observable<Element> {
-        return catchErrorJustReturn(element)
+        return catchError({ error -> Observable<Element> in
+            Logger.error("deal: \(error)")
+            return Observable.just(element)
+        })
             .trackError(errorTracker)
     }
 }

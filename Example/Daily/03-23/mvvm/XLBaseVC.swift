@@ -14,12 +14,17 @@ import NVActivityIndicatorView
 import Hero
 import Localize_Swift
 
-struct XLEmptyDataSet {
-    let btnTap = PublishSubject<Void>()
+struct XLEmptyDataSet: Equatable {
+    var identifier = "233"
+    var btnTap = PublishSubject<Void>()
     var title = R.string.localizabled.commonNoResults()
     var description = ""
     var img = R.image.image_no_result()
     var imgTintColor = BehaviorRelay<UIColor?>(value: nil)
+
+    static func == (lhs: XLEmptyDataSet, rhs: XLEmptyDataSet) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 }
 
 class XLBaseVC: UIViewController, XLNavigatable, NVActivityIndicatorViewable {
@@ -315,7 +320,7 @@ extension XLBaseVC: DZNEmptyDataSetSource {
         return NSAttributedString(string: desc)
     }
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return vm?.emptyDataSet.value?.img ?? UIImage()
+        return vm?.emptyDataSet.value?.img ?? R.image.empty_placeholde_image()
     }
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return vm?.emptyDataSet.value?.imgTintColor.value ?? .blue

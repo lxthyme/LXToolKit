@@ -11,7 +11,6 @@ import Moya
 import RxSwift
 import RxCocoa
 import Alamofire
-import ObjectMapper
 
 //class OnlineProvider<Target> where Target: Moya.TargetType {
 class OnlineProvider<Target> where Target: Moya.TargetType {
@@ -125,7 +124,7 @@ extension GithubNetworking {
                 observer.onCompleted()
             }
             if !provider.online.value {
-                observer.onError(NSError(domain: "似乎已断开与互联网的连接", code: 999, userInfo: nil))
+                observer.onError(ApiError.offline)
             }
             let cancelableToken = self.provider.provider.request(token) { result in
                 switch result {

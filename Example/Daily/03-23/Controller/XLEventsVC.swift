@@ -132,6 +132,8 @@ extension XLEventsVC {
             }
             .disposed(by: rx.disposeBag)
         vm.emptyDataSet
+            .skip(1)
+            .distinctUntilChanged()
             .subscribe(onNext: {[weak self] _ in
                 guard let `self` = self else { return }
                 self.table.reloadEmptyDataSet()

@@ -7,23 +7,17 @@
 //
 
 import Foundation
-import ObjectMapper
 import Moya
-struct ErrorResponse: Mappable {
+import HandyJSON
+
+struct ErrorResponse: HandyJSON {
     var message: String?
     var errors: [ErrorModel] = []
     var documentationUrl: String?
     var response: Moya.Response?
 
-    init?(map: Map) {}
-    init(response: Moya.Response?) {
-        self.response = response
-    }
-
-    mutating func mapping(map: Map) {
-        message <- map["message"]
-        errors <- map["errors"]
-        documentationUrl <- map["documentation_url"]
+    mutating func mapping(mapper: HelpingMapper) {
+        mapper <<< documentationUrl <-- "documentation_url"
     }
 
     func detail() -> String {
@@ -32,19 +26,9 @@ struct ErrorResponse: Mappable {
     }
 }
 
-struct ErrorModel: Mappable {
+struct ErrorModel: HandyJSON {
     var code: String?
     var message: String?
     var field: String?
     var resource: String?
-
-    init?(map: Map) {}
-    init() {}
-
-    mutating func mapping(map: Map) {
-        code <- map["code"]
-        message <- map["message"]
-        field <- map["field"]
-        resource <- map["resource"]
-    }
 }

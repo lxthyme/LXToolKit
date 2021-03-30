@@ -41,40 +41,47 @@ extension XLEventsVM: XLViewModelType {
             .bind(to: segment)
             .disposed(by: rx.disposeBag)
 
-        input.headerRefresh
-            .flatMapLatest {[weak self] _ -> Observable<[XLEventCellVM]> in
-                guard let `self` = self else { return Observable.just([]) }
+        let loadHeaderData = input.headerRefresh
+            .flatMapLatest {[weak self] _ -> Observable<(Bool, [XLEventCellVM])> in
+                guard let `self` = self else { return Observable.just((true, [])) }
                 self.page = 1
-                return self.request()
+                let req = self.request()
                     .trackActivity(self.headerLoading)
+                return Observable.zip(Observable.just(true), req)
             }
-            .deal([], error)
-            .subscribe(onNext: { items in
-                Logger.debug("🛠1. onNext - headerRefresh: \(items)")
-                elems.accept(items)
-            })
-            .disposed(by: rx.disposeBag)
-
-        input.footerRefresh
-            .flatMapLatest {[weak self] _ -> Observable<[XLEventCellVM]> in
-                guard let `self` = self else { return Observable.just([]) }
+        let loadFooterData = input.footerRefresh
+            .flatMapLatest {[weak self] _ -> Observable<(Bool, [XLEventCellVM])> in
+                guard let `self` = self else { return Observable.just((false, [])) }
                 self.page += 1
-                return self.request()
+                let req = self.request()
                     .trackActivity(self.footerLoading)
+                return Observable.zip(Observable.just(false), req)
             }
-            .deal([], error)
-            .subscribe(onNext: { items in
-                Logger.debug("🛠1. onNext - footerRefresh: \(items)")
-                elems.accept(elems.value + items)
+        Observable
+            .merge(loadHeaderData, loadFooterData)
+            .catchError({ error in
+                Logger.error("refresh: \(error)")
+                self.error.onError(error)
+                return Observable.just((isRefresh: true, list:[]))
             })
-            .disposed(by: rx.disposeBag)
-        elems
-            .subscribe(onNext: {[weak self] list in
+            .subscribe {[weak self] (isRefresh, list) in
+                Logger.debug("🛠1. onNext - headerRefresh: \(list)")
                 guard let `self` = self else { return }
-                if list.count <= 0 {
+                if isRefresh {
+                    elems.accept(list)
+                } else {
+                    elems.accept(elems.value + list)
+                }
+                if self.emptyDataSet.value == nil, elems.value.count <= 0 {
                     self.error.onError(ApiError.nocontent(response: nil))
                 }
-            })
+            } onError: { error in
+                dlog("🛠1. onError: \(error)")
+            } onCompleted: {
+                dlog("🛠2. onCompleted")
+            } onDisposed: {
+                dlog("🛠3. onDisposed")
+            }
             .disposed(by: rx.disposeBag)
 //        let userDetails = userSelected
 //            .asDriver(onErrorJustReturn: User())
@@ -170,6 +177,10 @@ private extension XLEventsVM {
         }
         return request
             .trackActivity(loading)
+            .do(onNext: {[weak self] baseModal in
+                guard let `self` = self else { return }
+                self.emptyDataSet.accept(nil)
+            })
             .map { baseModel in
                 self.isNoMore.accept((baseModel.data?.totalPage ?? 0) <= 0)
                 return (baseModel.data?.list ?? []).map({ event -> XLEventCellVM in
@@ -180,7 +191,11 @@ private extension XLEventsVM {
                     return vm
                 })
             }
-            .deal([], error)
+            .trackError(error)
+            .catchError({ error in
+                Logger.error("request: \(error)")
+                return Observable.just([])
+            })
+//            .deal([], error)
     }
 }
-

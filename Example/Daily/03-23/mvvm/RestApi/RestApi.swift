@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import HandyJSON
 import Moya
-import Moya_ObjectMapper
 import Alamofire
 
 typealias MoyaError = Moya.MoyaError
@@ -23,6 +22,16 @@ enum ApiError: Error {
     case nocontent(response: ErrorResponse?)
     case invalidStatusCode(statusCode: Int, msg: String, tips: String)
 
+    var identifier: String {
+        switch self {
+        case .offline: return "offline"
+        case .serverError: return "serverError"
+        case .serializeError: return "serializeError"
+        case .nocontent: return "nocontent"
+        case .invalidStatusCode(let statusCode, let msg, let tips):
+            return "\(statusCode): \(msg)<->\(tips)"
+        }
+    }
     var title: String {
         switch self {
         case .offline: return "无网络连接"
