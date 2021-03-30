@@ -18,8 +18,8 @@ enum EventSegments: Int, HandyJSONEnum {
 
     var title: String {
         switch self {
-            case .received: return R.string.localizabled.eventsReceivedSegmentTitle()
-            case .performed: return R.string.localizabled.eventsPerformedSegmentTitle()
+        case .received: return R.string.localizabled.eventsReceivedSegmentTitle()
+        case .performed: return R.string.localizabled.eventsPerformedSegmentTitle()
         }
     }
 }
