@@ -23,18 +23,14 @@ class XLBaseVM: NSObject {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    let provider: XLAPI
-
-    var page = 1
-
     let loading = RxActivityIndicator()
     let headerLoading = RxActivityIndicator()
     let footerLoading = RxActivityIndicator()
-
-    let error = ErrorTracker()
+    var page = 1
     let emptyDataSet = BehaviorRelay<XLEmptyDataSet?>(value: nil)
-//    let serverError = PublishSubject<Error>()
-//    let parsedError = PublishSubject<ApiError>()
+
+    let provider: XLAPI
+    let error = ErrorTracker()
 
     init(provider: XLAPI) {
         self.provider = provider

@@ -69,6 +69,9 @@ class XLBaseTableVC: XLBaseVC {
         // Do any additional setup after loading the view.
         baseTableSetupTableView()
         baseTablePrepareUI()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.table.headRefreshControl.beginRefreshing()
+        }
     }
 
 }
@@ -136,7 +139,6 @@ private extension XLBaseTableVC {
             .disposed(by: rx.disposeBag)
 
         table.footRefreshControl.autoRefreshOnFoot = true
-
         error
             .subscribe(onNext: {[weak self] error in
                 guard let `self` = self else { return }

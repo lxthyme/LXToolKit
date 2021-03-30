@@ -82,8 +82,7 @@ extension XLEventsVC {
             .of(segmentSelection.map({ EventSegments(rawValue: $0) }).filterNil())
             .merge()
         let refresh = Observable
-            .of(Observable.just(()),
-                headerRefreshTrigger,
+            .of(headerRefreshTrigger,
                 segmentSelected.mapToVoid().skip(1))
             .merge()
         let input = XLEventsVM.Input(headerRefresh: refresh,

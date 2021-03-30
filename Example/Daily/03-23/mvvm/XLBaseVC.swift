@@ -317,7 +317,7 @@ extension XLBaseVC: DZNEmptyDataSetSource {
         return NSAttributedString(string: desc)
     }
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return vm?.emptyDataSet.value?.img ?? R.image.empty_placeholde_image()
+        return vm?.emptyDataSet.value?.img
     }
     func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return vm?.emptyDataSet.value?.imgTintColor.value ?? .blue
