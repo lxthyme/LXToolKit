@@ -78,18 +78,14 @@ extension RestApi {
     func repositoryEvents(owner: String, repo: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
         return requestArray(.repositoryEvents(owner: owner, repo: repo, page: page), type: XLEventsModel.self)
     }
+//    func userReceivedEvents(username: String, page: Int) -> Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
+//        return requestArray(.userReceivedEvents(username: username, page: page), type: XLEventsModel.self)
+//    }
     func userReceivedEvents(username: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
-        return requestArray(.userReceivedEvents(username: username, page: page), type: XLEventsModel.self)
-    }
-    func userReceivedEvents2(username: String, page: Int) -> Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
         return githubProvider
             .request2(.userReceivedEvents(username: username, page: page))
             .mapBaseModelArray(XLEventsModel.self)
             .observeOn(MainScheduler.instance)
-//            .catchError { error -> Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>> in
-//                Logger.error("\(error)")
-//                return Observable.just(XLBaseModel())
-//            }
 //            .asSingle()
     }
     func userPerformedEvents(username: String, page: Int) -> Single<XLBaseModel<XLBaseListModel<XLEventsModel>>> {
@@ -102,32 +98,30 @@ extension RestApi {
 
 // MARK: - 🔐
 private extension RestApi {
-    func request(_ target: XLGithubAPI) -> Single<Any> {
+    func request(_ target: XLGithubAPI) -> Single<XLAnyModel> {
         return githubProvider
-            .request(target)
-            .mapJSON()
+            .request2(target)
+            .mapModel(XLAnyModel.self)
             .observeOn(MainScheduler.instance)
-            .asSingle()
 
     }
     func requestWithoutMapping(_ target: XLGithubAPI) -> Single<Moya.Response> {
         return githubProvider
-            .request(target)
+            .request2(target)
             .observeOn(MainScheduler.instance)
-            .asSingle()
     }
     func requestObject<T: HandyJSON>(_ target: XLGithubAPI, type: T.Type) -> Single<XLBaseModel<T>> {
         return githubProvider
-            .request(target)
+            .request2(target)
             .mapBaseModel(T.self)
             .observeOn(MainScheduler.instance)
-            .asSingle()
+//            .asSingle()
     }
     func requestArray<T: HandyJSON>(_ target: XLGithubAPI, type: T.Type) -> Single<XLBaseModel<XLBaseListModel<T>>> {
         return githubProvider
-            .request(target)
+            .request2(target)
             .mapBaseModelArray(T.self)
             .observeOn(MainScheduler.instance)
-            .asSingle()
+//            .asSingle()
     }
 }

@@ -100,31 +100,32 @@ class XLResponse: NSObject, NSKeyedArchiverDelegate, NSKeyedUnarchiverDelegate, 
     }
 }
 extension GithubNetworking {
-    func request3(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Moya.Response> {
+    func request3(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Single<Moya.Response> {
         let actualRequest = request2(token, fromCache: fromCache, needCache: needCache)
         return provider.online
 //            .ignore(value: false)
             .take(1)
-            .flatMap { isOnline -> Observable<Moya.Response> in
+            .flatMap { isOnline -> Single<Moya.Response> in
                 Logger.debug("isOnline: \(isOnline)")
                 if !isOnline {
                 }
                 return actualRequest
             }
+            .asSingle()
+
     }
-    func request2(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Observable<Moya.Response> {
+    func request2(_ token: T, fromCache: Bool = false, needCache: Bool = true) -> Single<Moya.Response> {
 //        let actualRequest = self.provider.request(token)
 //        return actualRequest
-        return Observable.create { observer -> Disposable in
+        return Single<Moya.Response>.create { single -> Disposable in
             let cachedkey = token.cachedKey
             if fromCache,
                let data = GlobalConfig.yyCache?.object(forKey: cachedkey) as? XLResponse {
                 let cachedResponse = Response(statusCode: data.statusCode, data: data.data ?? Data(), request: data.request, response: data.response)
-                observer.onNext(cachedResponse)
-                observer.onCompleted()
+                single(.success(cachedResponse))
             }
             if !provider.online.value {
-                observer.onError(ApiError.offline)
+                single(.error(ApiError.offline))
             }
             let cancelableToken = self.provider.provider.request(token) { result in
                 switch result {
@@ -133,11 +134,10 @@ extension GithubNetworking {
                         let obj = XLResponse(statusCode: response.statusCode, data: response.data, request: response.request, response: response.response)
                         GlobalConfig.yyCache?.setObject(obj, forKey: cachedkey, with: nil)
                     }
-                    observer.onNext(response)
+                    single(.success(response))
                 case .failure(let error):
-                    observer.onError(error)
+                    single(.error(error))
                 }
-                observer.onCompleted()
             }
             return Disposables.create {
                 cancelableToken.cancel()

@@ -9,6 +9,10 @@
 import UIKit
 import HandyJSON
 
+class XLAnyModel: HandyJSON {
+    // MARK: 🔗Vaiables
+    required init() {}
+}
 class XLBaseModel<T: HandyJSON>: HandyJSON {
     // MARK: 🔗Vaiables
     var code: Int = 0

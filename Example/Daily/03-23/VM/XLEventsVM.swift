@@ -59,11 +59,6 @@ extension XLEventsVM: XLViewModelType {
             }
         Observable
             .merge(loadHeaderData, loadFooterData)
-            .catchError({ error in
-                Logger.error("refresh: \(error)")
-                self.error.onError(error)
-                return Observable.just((isRefresh: true, list:[]))
-            })
             .subscribe {[weak self] (isRefresh, list) in
                 Logger.debug("🛠1. onNext - headerRefresh: \(list)")
                 guard let `self` = self else { return }
@@ -75,12 +70,6 @@ extension XLEventsVM: XLViewModelType {
                 if self.emptyDataSet.value == nil, elems.value.count <= 0 {
                     self.error.onError(ApiError.nocontent(response: nil))
                 }
-            } onError: { error in
-                dlog("🛠1. onError: \(error)")
-            } onCompleted: {
-                dlog("🛠2. onCompleted")
-            } onDisposed: {
-                dlog("🛠3. onDisposed")
             }
             .disposed(by: rx.disposeBag)
 //        let userDetails = userSelected
@@ -154,25 +143,22 @@ extension XLEventsVM {}
 
 // MARK: 🔐Private Actions
 private extension XLEventsVM {
-    func request() -> Observable<[XLEventCellVM]> {
-        var request: Observable<XLBaseModel<XLBaseListModel<XLEventsModel>>>
+    func request() -> Single<[XLEventCellVM]> {
+        var request: Single<XLBaseModel<XLBaseListModel<XLEventsModel>>>
         switch mode.value {
         case .repository(let repo):
-//                request = provider.repositoryEvents(owner: repo.owner?.login ?? "", repo: repo.name ?? "", page: page)
-            request = provider.userReceivedEvents2(username: "", page: page)
+            request = provider.repositoryEvents(owner: repo.owner?.login ?? "", repo: repo.name ?? "", page: page)
         case .user(let user):
             switch user.type {
             case .user:
                 switch segment.value {
                 case .performed:
-//                                request = provider.userPerformedEvents(username: user.login ?? "", page: page)
-                    request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
+                    request = provider.userPerformedEvents(username: user.login ?? "", page: page)
                 case .received:
-                    request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
+                    request = provider.userReceivedEvents(username: user.login ?? "", page: page)
                 }
             case .organization:
-//                        request = provider.organizationEvents(username: user.login ?? "", page: page)
-                request = provider.userReceivedEvents2(username: user.login ?? "", page: page)
+                request = provider.organizationEvents(username: user.login ?? "", page: page)
             }
         }
         return request
@@ -181,7 +167,7 @@ private extension XLEventsVM {
                 guard let `self` = self else { return }
                 self.emptyDataSet.accept(nil)
             })
-            .map { baseModel in
+            .map { baseModel -> [XLEventCellVM] in
                 self.isNoMore.accept((baseModel.data?.totalPage ?? 0) <= 0)
                 return (baseModel.data?.list ?? []).map({ event -> XLEventCellVM in
                     let vm = XLEventCellVM(with: event)
@@ -196,6 +182,7 @@ private extension XLEventsVM {
                 Logger.error("request: \(error)")
                 return Observable.just([])
             })
+            .asSingle()
 //            .deal([], error)
     }
 }
