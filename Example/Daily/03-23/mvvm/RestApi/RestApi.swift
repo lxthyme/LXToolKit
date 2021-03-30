@@ -17,8 +17,8 @@ typealias MoyaError = Moya.MoyaError
 
 enum ApiError: Error {
     case offline
-    case serverError(response: Moya.Response?)
-    case serializeError(response: Moya.Response?, error: Swift.Error?)
+    case serverError(response: Moya.Response)
+    case serializeError(response: Moya.Response)
     case nocontent(response: ErrorResponse?)
     case invalidStatusCode(statusCode: Int, msg: String, tips: String)
 
@@ -36,9 +36,9 @@ enum ApiError: Error {
         switch self {
         case .offline: return "无网络连接"
         case .serverError:
-            return ""
+            return "serverError"
         case .serializeError:
-            return ""
+            return "serverError"
         case .nocontent(let response):
             return response?.message ?? ""
         case .invalidStatusCode(_, let msg, _):
@@ -51,11 +51,8 @@ enum ApiError: Error {
         case .offline: return "您的网络开小差了, 请检查网络后重试~"
         case .serverError(let response):
             return response.debugDescription
-        case .serializeError(let response, let error):
-            return """
-error: \(error.debugDescription)
-response: \(response?.debugDescription ?? "")
-"""
+        case .serializeError(let response):
+            return response.debugDescription
         case .nocontent(let response):
             return response?.detail() ?? ""
         case .invalidStatusCode: return ""

@@ -40,29 +40,6 @@ class XLBaseVM: NSObject {
         self.provider = provider
         super.init()
 
-//        serverError
-//            .asObserver()
-//            .map { error -> ApiError? in
-//                do {
-//                    let errorResponse = error as? MoyaError
-//                    if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
-//                       let errorResponse = Mapper<ErrorResponse>().map(JSON: body) {
-//                        return ApiError.serverError(response: errorResponse.response)
-//                    }
-//                } catch {
-//                    Logger.error("🛠serverError: \(error)")
-//                }
-//                return nil
-//            }
-//            .filterNil()
-//            .bind(to: parsedError)
-//            .disposed(by: rx.disposeBag)
-
-//        parsedError
-//            .subscribe(onNext: { error in
-//                Logger.error("🛠1. onNext - parsedError: \(error)")
-//            })
-//            .disposed(by: rx.disposeBag)
         error
             .asDriver()
             .drive(onNext: {[weak self] error in
@@ -75,18 +52,18 @@ class XLBaseVM: NSObject {
                     case .offline:
                         emptySet.title = "没有网络!"
                         emptySet.description = "「1」检测到设备没有联网, 请确认后重试~"
-                    case .serverError(response: let response):
+                    case .serverError(let response):
                         emptySet.title = "服务器错误!"
-                        emptySet.description = "「2」服务器错误, 请稍后重试~"
-                    case .serializeError(response: let response, error: let error):
+                        emptySet.description = "「2」服务器错误, 请稍后重试~ -->\(response.debugDescription)"
+                    case .serializeError(let response):
                         emptySet.title = "序列化错误!"
-                        emptySet.description = "「3」序列化错误, 请稍后重试~"
-                    case .nocontent(response: let response):
+                        emptySet.description = "「3」序列化错误, 请稍后重试~ -->\(response.debugDescription)"
+                    case .nocontent(let response):
                         emptySet.title  = "没有内容!"
-                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~"
-                    case .invalidStatusCode(statusCode: let statusCode, msg: let msg, tips: let tips):
+                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~ -->\(response.debugDescription)"
+                    case .invalidStatusCode(let statusCode, let msg, let tips):
                         emptySet.title = "code 错误[\(statusCode)"
-                        emptySet.description = "「5」code 错误~"
+                        emptySet.description = "「5」code 错误~ \(msg) <-> \(tips)"
                     }
                 } else if let moyaError = error as? MoyaError {
                     emptySet.identifier = "\(moyaError.errorCode)"

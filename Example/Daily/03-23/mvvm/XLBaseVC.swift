@@ -138,9 +138,6 @@ class XLBaseVC: UIViewController, XLNavigatable, NVActivityIndicatorViewable {
         vm?.loading.asObservable()
             .bind(to: isLoading)
             .disposed(by: rx.disposeBag)
-//        vm?.parsedError.asObservable()
-//            .bind(to: error)
-//            .disposed(by: rx.disposeBag)
 
         languageChanged
             .subscribe(onNext: {[weak self] _ in

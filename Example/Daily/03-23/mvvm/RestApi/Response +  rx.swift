@@ -32,7 +32,7 @@ extension Moya.Response {
         }
         guard let json = String(data: data, encoding: .utf8),
               let model = T.deserialize(from: json) else {
-            return .error(ApiError.serializeError(response: self, error: nil))
+            return .error(ApiError.serializeError(response: self))
         }
         return .just((model, json))
     }
