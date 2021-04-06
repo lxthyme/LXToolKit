@@ -188,6 +188,7 @@
 		BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD367260DE12400CC90A5 /* XLSectionType.swift */; };
 		BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */; };
 		BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */; };
+		BE90CA5D26131C0100DF0C07 /* LXCustomLoggerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */; };
 		BE91062A25494513002BBD85 /* LXImageTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE91062925494513002BBD85 /* LXImageTestVC.swift */; };
 		BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */; };
 		BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */; };
@@ -517,6 +518,7 @@
 		BE8CD367260DE12400CC90A5 /* XLSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLSectionType.swift; sourceTree = "<group>"; };
 		BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLStateModel.swift; sourceTree = "<group>"; };
 		BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLTokenModel.swift; sourceTree = "<group>"; };
+		BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCustomLoggerFormatter.swift; sourceTree = "<group>"; };
 		BE91062925494513002BBD85 /* LXImageTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXImageTestVC.swift; sourceTree = "<group>"; };
 		BE97A94B251D9B680061254B /* LXWikipediaImageSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchVC.swift; sourceTree = "<group>"; };
 		BE97A94D251D9B680061254B /* LXWikipediaImageSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXWikipediaImageSearchViewModel.swift; sourceTree = "<group>"; };
@@ -1337,6 +1339,7 @@
 				BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */,
 				BE827DC6260A1A2F009D18D0 /* RxActivityIndicator */,
 				BE827DC4260A1A2F009D18D0 /* RxErrorTracker */,
+				BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */,
 			);
 			path = mvvm;
 			sourceTree = "<group>";
@@ -2174,7 +2177,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/$PRODUCT_NAME/R.generated.swift",
+				$SRCROOT/$PRODUCT_NAME/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2292,6 +2295,7 @@
 				BE272FE5257A2A28005D614E /* LXMessageTestCell.swift in Sources */,
 				BE8A97EA260B399200A32116 /* XLNavigator.swift in Sources */,
 				BE8A972D260B24B100A32116 /* RestApi.swift in Sources */,
+				BE90CA5D26131C0100DF0C07 /* LXCustomLoggerFormatter.swift in Sources */,
 				BE0F402F24E2743A00A2F841 /* LXListItemModel.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
 				BE272FE4257A2A28005D614E /* UIImage + emoticon.swift in Sources */,
