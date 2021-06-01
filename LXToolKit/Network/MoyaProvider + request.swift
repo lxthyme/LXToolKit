@@ -18,12 +18,12 @@ public extension MoyaProvider {
              completion: Completion? = nil) ->Observable<Moya.Response> {
         return Observable.create { [weak self]observer -> Disposable in
             guard let `self` = self else {
-                observer.onError(RxMoyaError.unknown)
+                observer.onError(ApiError.serverError(response: nil, error: nil))
                 observer.onCompleted()
                 return Disposables.create()
             }
             guard let isReachable = NetworkReachabilityManager()?.isReachable, isReachable else {
-                observer.onError(RxMoyaError.unReachable)
+                observer.onError(ApiError.offline)
                 observer.onCompleted()
                 return Disposables.create()
             }
@@ -38,7 +38,7 @@ public extension MoyaProvider {
                             observer.onCompleted()
                         case .failure(let error):
                             if let isReachable = NetworkReachabilityManager()?.isReachable, !isReachable {
-                                observer.onError(RxMoyaError.unReachable)
+                                observer.onError(ApiError.offline)
                             } else {
                                 observer.onError(RxMoyaError.error(error: error))
                         }

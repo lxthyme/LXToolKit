@@ -5,7 +5,6 @@
 //  Created by LXThyme Jason on 2020/11/17.
 //
 
-import Foundation
 // WrapperType = BaseType
 // WrappedType = BaseValue
 // wrappedValue = baseValue
@@ -62,32 +61,69 @@ public struct NamespaceWrapper<T>: TypeWrapperProtocol {
 //    }
 //}
 
+/**
+ Use `Swifty` proxy as customization point for constrained protocol extensions.
+
+ General pattern would be:
+
+ // 1. Extend Swifty protocol with constrain on Base
+ // Read as: Swifty Extension where Base is a SomeType
+ extension Swifty where Base: SomeType {
+ // 2. Put any specific swifty extension for SomeType here
+ }
+
+ With this approach we can have more specialized methods and properties using
+ `Base` and not just specialized on common base type.
+
+ */
+
 // MARK: - 🔥Swifty
 public struct Swifty<Base> {
+    /// Base object to extend.
     public var base: Base
+
+    /// Creates extensions with base object.
+    ///
+    /// - parameter base: Base object.
     public init(_ base: Base) {
         self.base = base
     }
 }
+
+/// A type that has swifty extensions.
 public protocol SwiftyCompatible {
+    /// Extended type
     associatedtype SwiftyeBase
 
+    /// Swifty extensions.
     static var xl: Swifty<SwiftyeBase>.Type { get set }
+
+    /// Swifty extensions.
     var xl: Swifty<SwiftyeBase> { get set }
 }
 // MARK: - 👀
 public extension SwiftyCompatible {
+    /// Swifty extensions.
     static var xl: Swifty<Self>.Type {
         get {
             return Swifty<Self>.self
         }
-        set { }
+        // swiftlint:disable:next unused_setter_value
+        set {
+            // this enables using Swifty to "mutate" base type
+        }
     }
+
+    /// Swifty extensions.
     var xl: Swifty<Self> {
         get {
             return Swifty(self)
         }
-        set { }
+        // swiftlint:disable:next unused_setter_value
+        set {
+            // this enables using Swifty to "mutate" base object
+        }
     }
 }
+import class Foundation.NSObject
 extension NSObject: SwiftyCompatible {}

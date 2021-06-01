@@ -32,11 +32,11 @@ extension Response {
         let jsonString = String(data: data, encoding: .utf8)
 
         guard let baseModel = JSONDeserializer<LXBaseModel<T>>.deserializeFrom(json: jsonString) else {
-            throw RxMoyaError.invalidJSON
+            throw ApiError.serializeError(response: nil, error: nil)
         }
 
         guard baseModel.code == kLXSuccessCode else {
-            throw RxMoyaError.codeInvalid(code: baseModel.code, base: baseModel)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
         }
 
         baseModel.fullJsonString = jsonString
@@ -48,11 +48,11 @@ extension Response {
         let jsonString = String(data: data, encoding: .utf8)
 
         guard let baseModel = JSONDeserializer<LXBaseModel<LXBaseListModel<T>>>.deserializeFrom(json: jsonString) else {
-            throw RxMoyaError.invalidJSON
+            throw ApiError.serializeError(response: nil, error: nil)
         }
 
         guard baseModel.code == kLXSuccessCode else {
-            throw RxMoyaError.codeInvalid(code: baseModel.code, base: baseModel)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
         }
 
         baseModel.fullJsonString = jsonString

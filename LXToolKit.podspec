@@ -49,6 +49,7 @@ This library contains some useful category and extension kits
     s.dependency 'HandyJSON', '~> 5'
     s.dependency 'SnapKit', '~> 5.0'
     s.dependency 'CryptoSwift'
+    s.dependency 'SDWebImage'
 #  s.dependency 'CryptoSwift', '~>1.2.0'
 #    s.source_files  = "LXToolKit/**/*.swift"
 

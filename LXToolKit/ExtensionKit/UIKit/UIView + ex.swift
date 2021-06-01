@@ -68,9 +68,9 @@ public extension Swifty where Base: UIView {
 }
 
 // MARK: - 👀
-public extension UIView {
+public extension Swifty where Base: UIView {
     func setPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
-        self.setContentHuggingPriority(priority, for: axis)
-        self.setContentCompressionResistancePriority(priority, for: axis)
+        self.base.setContentHuggingPriority(priority, for: axis)
+        self.base.setContentCompressionResistancePriority(priority, for: axis)
     }
 }
