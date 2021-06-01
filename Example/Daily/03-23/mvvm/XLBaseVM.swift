@@ -48,18 +48,26 @@ class XLBaseVM: NSObject {
                     case .offline:
                         emptySet.title = "没有网络!"
                         emptySet.description = "「1」检测到设备没有联网, 请确认后重试~"
-                    case .serverError(let response):
+                    case .serverError(let response, let error):
                         emptySet.title = "服务器错误!"
-                        emptySet.description = "「2」服务器错误, 请稍后重试~ -->\(response.debugDescription)"
-                    case .serializeError(let response):
+                        emptySet.description = """
+「2」服务器错误, 请稍后重试~
+    -->response: \(response.debugDescription)
+    -->error: \(error.debugDescription)
+"""
+                    case .serializeError(let response, let error):
                         emptySet.title = "序列化错误!"
-                        emptySet.description = "「3」序列化错误, 请稍后重试~ -->\(response.debugDescription)"
-                    case .nocontent(let response):
+                        emptySet.description = """
+「3」序列化错误, 请稍后重试~
+    -->response: \(response.debugDescription)
+    -->error: \(error.debugDescription)
+"""
+                    case .nocontent:
                         emptySet.title  = "没有内容!"
-                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~ -->\(response.debugDescription)"
-                    case .invalidStatusCode(let statusCode, let msg, let tips):
-                        emptySet.title = "code 错误[\(statusCode)"
-                        emptySet.description = "「5」code 错误~ \(msg) <-> \(tips)"
+                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~"
+                    case .invalidStatusCode(let statusCode, let tips):
+                        emptySet.title = "code 错误[\(statusCode ?? 999)"
+                        emptySet.description = "「5」code 错误~ -> \(tips ?? "--")"
                     }
                 } else if let moyaError = error as? MoyaError {
                     emptySet.identifier = "\(moyaError.errorCode)"

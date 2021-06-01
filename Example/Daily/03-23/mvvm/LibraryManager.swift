@@ -49,6 +49,7 @@ private extension LibraryManager {
         let fileLogger: DDFileLogger = DDFileLogger() // File Logger
         fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        
         DDLog.add(fileLogger)
     }
     func setupToast() {

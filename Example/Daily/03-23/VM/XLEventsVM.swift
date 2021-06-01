@@ -68,7 +68,7 @@ extension XLEventsVM: XLViewModelType {
                     elems.accept(elems.value + list)
                 }
                 if self.emptyDataSet.value == nil, elems.value.count <= 0 {
-                    self.error.onError(ApiError.nocontent(response: nil))
+                    self.error.onError(ApiError.nocontent)
                 }
             }
             .disposed(by: rx.disposeBag)

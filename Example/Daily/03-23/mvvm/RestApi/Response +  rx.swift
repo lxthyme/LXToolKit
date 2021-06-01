@@ -28,11 +28,11 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Moya.Response
 extension Moya.Response {
     func xlmapModel<T: HandyJSON>(_ type: T.Type) -> Single<(T, String)> {
         guard (200...209) ~= statusCode else {
-            return .error(ApiError.serverError(response: self))
+            return .error(ApiError.serverError(response: self, error: nil))
         }
         guard let json = String(data: data, encoding: .utf8),
               let model = T.deserialize(from: json) else {
-            return .error(ApiError.serializeError(response: self))
+            return .error(ApiError.serializeError(response: self, error: nil))
         }
         return .just((model, json))
     }
@@ -45,7 +45,7 @@ extension Moya.Response {
                 case 10000:
                     return .just(model)
                 default:
-                    return .error(ApiError.invalidStatusCode(statusCode: model.code, msg: model.msg, tips: model.tips))
+                    return .error(ApiError.invalidStatusCode(statusCode: model.code, tips: model.tips))
                 }
             }
 

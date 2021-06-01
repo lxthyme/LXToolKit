@@ -46,7 +46,7 @@ class XLEventCell: XLBaseTableViewCell {
     lazy var detailLabel: UILabel = {
         let view = UILabel()
         view.font = view.font.withSize(12)
-        view.setPriority(UILayoutPriority.defaultLow, for: NSLayoutConstraint.Axis.vertical)
+        view.xl.setPriority(UILayoutPriority.defaultLow, for: NSLayoutConstraint.Axis.vertical)
         return view
     }()
 
@@ -139,9 +139,9 @@ extension XLEventCell {
             .drive(badgeImageView.rx.isHidden)
             .disposed(by: rx.disposeBag)
 
-        vm.badgeColor.asDriver()
-            .drive(badgeImageView.rx.tintColor)
-            .disposed(by: rx.disposeBag)
+//        vm.badgeColor.asDriver()
+//            .drive(badgeImageView.rx.tintColor)
+//            .disposed(by: rx.disposeBag)
 
         vm.hideDisclosure.asDriver()
             .drive(rightImageView.rx.isHidden)

@@ -15,50 +15,50 @@ import Alamofire
 
 typealias MoyaError = Moya.MoyaError
 
-enum ApiError: Error {
-    case offline
-    case serverError(response: Moya.Response)
-    case serializeError(response: Moya.Response)
-    case nocontent(response: ErrorResponse?)
-    case invalidStatusCode(statusCode: Int, msg: String, tips: String)
-
-    var identifier: String {
-        switch self {
-        case .offline: return "offline"
-        case .serverError: return "serverError"
-        case .serializeError: return "serializeError"
-        case .nocontent: return "nocontent"
-        case .invalidStatusCode(let statusCode, let msg, let tips):
-            return "\(statusCode): \(msg)<->\(tips)"
-        }
-    }
-    var title: String {
-        switch self {
-        case .offline: return "无网络连接"
-        case .serverError:
-            return "serverError"
-        case .serializeError:
-            return "serverError"
-        case .nocontent(let response):
-            return response?.message ?? ""
-        case .invalidStatusCode(_, let msg, _):
-            return msg
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .offline: return "您的网络开小差了, 请检查网络后重试~"
-        case .serverError(let response):
-            return response.debugDescription
-        case .serializeError(let response):
-            return response.debugDescription
-        case .nocontent(let response):
-            return response?.detail() ?? ""
-        case .invalidStatusCode: return ""
-        }
-    }
-}
+//enum ApiError: Error {
+//    case offline
+//    case serverError(response: Moya.Response)
+//    case serializeError(response: Moya.Response)
+//    case nocontent(response: ErrorResponse?)
+//    case invalidStatusCode(statusCode: Int, msg: String, tips: String)
+//
+//    var identifier: String {
+//        switch self {
+//        case .offline: return "offline"
+//        case .serverError: return "serverError"
+//        case .serializeError: return "serializeError"
+//        case .nocontent: return "nocontent"
+//        case .invalidStatusCode(let statusCode, let msg, let tips):
+//            return "\(statusCode): \(msg)<->\(tips)"
+//        }
+//    }
+//    var title: String {
+//        switch self {
+//        case .offline: return "无网络连接"
+//        case .serverError:
+//            return "serverError"
+//        case .serializeError:
+//            return "serverError"
+//        case .nocontent(let response):
+//            return response?.message ?? ""
+//        case .invalidStatusCode(_, let msg, _):
+//            return msg
+//        }
+//    }
+//
+//    var description: String {
+//        switch self {
+//        case .offline: return "您的网络开小差了, 请检查网络后重试~"
+//        case .serverError(let response):
+//            return response.debugDescription
+//        case .serializeError(let response):
+//            return response.debugDescription
+//        case .nocontent(let response):
+//            return response?.detail() ?? ""
+//        case .invalidStatusCode: return ""
+//        }
+//    }
+//}
 
 class RestApi: XLAPI {
     let githubProvider: GithubNetworking
