@@ -129,6 +129,17 @@ pod 'MJRefresh'
 pod 'YYCache'
 #pod "RxErrorTracker" # https://github.com/brunomorgado/RxErrorTracker
 
+#### Reactive
+#pod 'ReactiveCocoa'
+#pod 'ReactiveSwift'
+#pod 'ReactiveObjC'
+
+#pod 'PromiseKit'
+
+pod 'PromisesObjC'
+#pod 'PromisesSwift'
+pod 'FunctionalObjC'
+
 end
 
 post_install do |installer|
