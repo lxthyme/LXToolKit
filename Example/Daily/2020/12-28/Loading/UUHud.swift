@@ -10,7 +10,7 @@ import UIKit
 
 public class UUHud: UIView {
     
-    private var animatImageV:YYAnimatedImageView?
+//    private var animatImageV:YYAnimatedImageView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,18 +23,18 @@ public class UUHud: UIView {
     
     func createSubview() {
         
-        let image = YYImage(named: "loading")
-        animatImageV = YYAnimatedImageView(image: image)
-        animatImageV?.alpha = 0
-        addSubview(animatImageV!)
+//        let image = YYImage(named: "loading")
+//        animatImageV = YYAnimatedImageView(image: image)
+//        animatImageV?.alpha = 0
+//        addSubview(animatImageV!)
     }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        animatImageV?.snp.makeConstraints({ (snp) in
-            snp.width.height.equalTo(150)
-            snp.center.equalTo(self.snp.center)
-        })
+//        animatImageV?.snp.makeConstraints({ (snp) in
+//            snp.width.height.equalTo(150)
+//            snp.center.equalTo(self.snp.center)
+//        })
     }
     
     /// show in window
@@ -53,12 +53,12 @@ public class UUHud: UIView {
         let hud = UUHud()
         hud.frame = inView.bounds
         inView.addSubview(hud)
-        hud.animatImageV?.transform = CGAffineTransform(scaleX: CGFloat(0.3), y: CGFloat(0.3))
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: UIView.AnimationOptions.curveEaseOut, animations: {
-            hud.animatImageV?.alpha = 1
-            hud.animatImageV?.transform = CGAffineTransform.identity
-            
-        }, completion: nil)
+//        hud.animatImageV?.transform = CGAffineTransform(scaleX: CGFloat(0.3), y: CGFloat(0.3))
+//        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: UIView.AnimationOptions.curveEaseOut, animations: {
+//            hud.animatImageV?.alpha = 1
+//            hud.animatImageV?.transform = CGAffineTransform.identity
+//            
+//        }, completion: nil)
         
     }
     
