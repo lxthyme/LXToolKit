@@ -4,3 +4,6 @@
 
 #import "LXResolveTestObj.h"
 #import "LXTestStringVC.h"
+
+#import "LXGitHubTestModel.h"
+#import "LXMJExtensionTestModel.h"

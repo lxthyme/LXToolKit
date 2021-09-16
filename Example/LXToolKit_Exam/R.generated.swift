@@ -110,8 +110,7 @@ struct R: Rswift.Validatable {
     static let apsEnvironment = infoPlistString(path: [], key: "aps-environment") ?? "development"
 
     struct comAppleSecurityApplicationGroups {
-      static let groupComLxHg = infoPlistString(path: ["com.apple.security.application-groups"], key: "group.com.lx.hg") ?? "group.com.lx.hg"
-      static let groupComMtCoApollo = infoPlistString(path: ["com.apple.security.application-groups"], key: "group.com.mt.co.apollo") ?? "group.com.mt.co.apollo"
+      static let groupComLxBl = infoPlistString(path: ["com.apple.security.application-groups"], key: "group.com.lx.bl") ?? "group.com.lx.bl"
 
       fileprivate init() {}
     }
@@ -119,7 +118,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 43 files.
+  /// This `R.file` struct is generated, and contains static references to 44 files.
   struct file {
     /// Resource file `EmptyArray.json`.
     static let emptyArrayJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EmptyArray", pathExtension: "json")
@@ -205,6 +204,8 @@ struct R: Rswift.Validatable {
     static let userSearchJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserSearch", pathExtension: "json")
     /// Resource file `UserTrendings.json`.
     static let userTrendingsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserTrendings", pathExtension: "json")
+    /// Resource file `loading.gif`.
+    static let loadingGif = Rswift.FileResource(bundle: R.hostingBundle, name: "loading", pathExtension: "gif")
     /// Resource file `photodata.bin`.
     static let photodataBin = Rswift.FileResource(bundle: R.hostingBundle, name: "photodata", pathExtension: "bin")
 
@@ -460,6 +461,12 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "loading", withExtension: "gif")`
+    static func loadingGif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.loadingGif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "photodata", withExtension: "bin")`
     static func photodataBin(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.photodataBin
@@ -469,7 +476,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 126 images.
+  /// This `R.image` struct is generated, and contains static references to 127 images.
   struct image {
     /// Image `egsong_video`.
     static let egsong_video = Rswift.ImageResource(bundle: R.hostingBundle, name: "egsong_video")
@@ -635,6 +642,8 @@ struct R: Rswift.Validatable {
     static let image_no_result = Rswift.ImageResource(bundle: R.hostingBundle, name: "image_no_result")
     /// Image `launch_image`.
     static let launch_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_image")
+    /// Image `loading.gif`.
+    static let loadingGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "loading.gif")
     /// Image `new`.
     static let new = Rswift.ImageResource(bundle: R.hostingBundle, name: "new")
     /// Image `option`.
@@ -1295,6 +1304,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "launch_image", bundle: ..., traitCollection: ...)`
     static func launch_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.launch_image, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "loading.gif", bundle: ..., traitCollection: ...)`
+    static func loadingGif(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.loadingGif, compatibleWith: traitCollection)
     }
     #endif
 

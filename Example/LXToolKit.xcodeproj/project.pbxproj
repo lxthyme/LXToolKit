@@ -231,6 +231,7 @@
 		BEA2461326F335290098707A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245BF26F335290098707A /* Reachability.swift */; };
 		BEA2461426F335290098707A /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245C026F335290098707A /* DownloadableImage.swift */; };
 		BEA2461826F335350098707A /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461726F335340098707A /* LXGitHubTestModel.m */; };
+		BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */; };
 		BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */; };
 		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
 		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
@@ -571,6 +572,8 @@
 		BEA245C026F335290098707A /* DownloadableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadableImage.swift; sourceTree = "<group>"; };
 		BEA2461626F335340098707A /* LXGitHubTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGitHubTestModel.h; sourceTree = "<group>"; };
 		BEA2461726F335340098707A /* LXGitHubTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGitHubTestModel.m; sourceTree = "<group>"; };
+		BEA2461A26F33F7A0098707A /* LXMJExtensionTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMJExtensionTestModel.h; sourceTree = "<group>"; };
+		BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMJExtensionTestModel.m; sourceTree = "<group>"; };
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
 		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1543,10 +1546,20 @@
 		BEA2461526F335340098707A /* 09-16 */ = {
 			isa = PBXGroup;
 			children = (
-				BEA2461626F335340098707A /* LXGitHubTestModel.h */,
-				BEA2461726F335340098707A /* LXGitHubTestModel.m */,
+				BEA2461926F33F680098707A /* Model */,
 			);
 			path = "09-16";
+			sourceTree = "<group>";
+		};
+		BEA2461926F33F680098707A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEA2461626F335340098707A /* LXGitHubTestModel.h */,
+				BEA2461726F335340098707A /* LXGitHubTestModel.m */,
+				BEA2461A26F33F7A0098707A /* LXMJExtensionTestModel.h */,
+				BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BEAF2C7625BE6AAB0054AE3D /* 01-25 */ = {
@@ -1884,27 +1897,27 @@
 					};
 					BE46117D253D9A9600E93AB4 = {
 						CreatedOnToolsVersion = 11.6;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 6C6JHMW46K;
 						ProvisioningStyle = Automatic;
 					};
 					BE51ADB925370943005D0F10 = {
 						CreatedOnToolsVersion = 11.6;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 6C6JHMW46K;
 						ProvisioningStyle = Automatic;
 					};
 					BE8A94BE2524275000E20F14 = {
 						CreatedOnToolsVersion = 11.6;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 6C6JHMW46K;
 						ProvisioningStyle = Automatic;
 					};
 					BEAF2C8D25BE6FCE0054AE3D = {
 						CreatedOnToolsVersion = 12.3;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 6C6JHMW46K;
 						ProvisioningStyle = Automatic;
 					};
 					BEAF2D9D25BEA3290054AE3D = {
 						CreatedOnToolsVersion = 12.3;
-						DevelopmentTeam = NPZ3HL8S7P;
+						DevelopmentTeam = 6C6JHMW46K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2082,6 +2095,7 @@
 				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/M80AttributedLabel/M80AttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
@@ -2154,6 +2168,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M80AttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
@@ -2334,6 +2349,7 @@
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
 				BE8A972D260B24B100A32116 /* RestApi.swift in Sources */,
+				BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */,
 				BE90CA5D26131C0100DF0C07 /* LXCustomLoggerFormatter.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
 				BEA245D426F335290098707A /* findCommonSuperview.swift in Sources */,
@@ -2678,7 +2694,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
@@ -2705,7 +2721,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
@@ -2726,14 +2742,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2752,13 +2768,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Today/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Today;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2777,14 +2793,14 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Content/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Content;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Content;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2803,13 +2819,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Content/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Content;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Content;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2829,14 +2845,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Service/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Service;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Service;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2856,13 +2872,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Service/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.hg.Service;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl.Service;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2882,7 +2898,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
@@ -2906,7 +2922,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "$(inherited)";
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
@@ -2929,7 +2945,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;
@@ -2951,7 +2967,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NPZ3HL8S7P;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 11.1;

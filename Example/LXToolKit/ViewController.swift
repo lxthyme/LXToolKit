@@ -69,6 +69,8 @@ class ViewController: LXBaseVC {
 
 //        testArray()
 //        testDictionary()
+
+        testModel()
     }
 }
 
@@ -92,6 +94,10 @@ private extension ViewController {
 }
 
 extension ViewController {
+    func testModel() {
+//        LXGitHubTestModel.test()
+        LXMJExtensionTestModel.test()
+    }
     func test2() {
         let params: [String: Any]? = [:]
         let json = params?.keys.sorted()
