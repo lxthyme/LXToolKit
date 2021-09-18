@@ -30,6 +30,9 @@ pod 'M80AttributedLabel'
 
 pod 'Action'
 
+pod 'Mantle'
+pod 'MJExtension'
+
 end
 
 #pre_install do |installer|
