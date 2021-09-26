@@ -12,8 +12,8 @@ class LXNestedTableVC: UIViewController {
     // MARK: 📌UI
     private lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .plain)
-        t.rowHeight = 100
-        t.estimatedRowHeight = 100
+        t.rowHeight = 120
+        t.estimatedRowHeight = 120
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0
@@ -31,7 +31,7 @@ class LXNestedTableVC: UIViewController {
         t.delegate = self
         t.dataSource = self
 
-        t.register(LXNestedCell.self, forCellReuseIdentifier: LXNestedCell.xl_identifier)
+        t.register(LXNestedCell.self, forCellReuseIdentifier: "LXNestedCell")
 
         return t
     }()
@@ -77,7 +77,7 @@ extension LXNestedTableVC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LXNestedCell.xl_identifier, for: indexPath) as! LXNestedCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LXNestedCell", for: indexPath)
         return cell
     }
 }
@@ -93,14 +93,14 @@ private extension LXNestedTableVC {
     func prepareUI() {
         self.view.backgroundColor = UIColor.white
         // self.title = "<#title#>"
-
+        table.frame = self.view.frame
         [table].forEach(self.view.addSubview)
         masonry()
     }
 
     func masonry() {
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+//        table.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
     }
 }
