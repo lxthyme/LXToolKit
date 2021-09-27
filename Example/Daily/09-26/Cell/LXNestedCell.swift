@@ -116,12 +116,13 @@ extension LXNestedCell: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXNestedCell {
     func prepareUI() {
-        var frame = self.contentView.frame
-        frame.size.height = 120
-        collectionView.frame = frame
         [collectionView].forEach(self.contentView.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    func masonry() {
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
