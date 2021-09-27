@@ -33,7 +33,7 @@ private extension LXNestedCollectionCell {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXNestedCollectionCell {
     func prepareUI() {
-        self.contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .cyan
         //[<#table#>].forEach(self.contentView.addSubview)
         masonry()
     }

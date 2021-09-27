@@ -58,6 +58,7 @@ PODS:
   - FLAnimatedImage (1.0.15)
   - FLEX (4.4.0)
   - FloatingPanel (1.7.6)
+  - FunctionalObjC (1.0.2)
   - GoogleAppMeasurement (7.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -152,11 +153,15 @@ PODS:
     - SDWebImage
     - SnapKit (~> 5.0)
   - M80AttributedLabel (1.9.9)
+  - Mantle (2.1.6):
+    - Mantle/extobjc (= 2.1.6)
+  - Mantle/extobjc (2.1.6)
   - MessageKit (3.1.0):
     - InputBarAccessoryView (~> 4.3.0)
   - Mixpanel-swift (2.9.0):
     - Mixpanel-swift/Complete (= 2.9.0)
   - Mixpanel-swift/Complete (2.9.0)
+  - MJExtension (3.3.0)
   - MJRefresh (3.5.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -271,6 +276,7 @@ DEPENDENCIES:
   - FLAnimatedImage
   - FLEX (~> 4.0)
   - FloatingPanel (~> 1.0)
+  - FunctionalObjC
   - HandyJSON
   - Hero (~> 1.6)
   - Highlightr (~> 2.0)
@@ -283,14 +289,17 @@ DEPENDENCIES:
   - Localize-Swift (~> 3.0)
   - LXToolKit (from `../`)
   - M80AttributedLabel
+  - Mantle
   - MessageKit (~> 3.0)
   - Mixpanel-swift (~> 2.0)
+  - MJExtension
   - MJRefresh
   - Moya/RxSwift
   - MultiProgressView (~> 1.0)
   - "NSObject+Rx (~> 5.0)"
   - NVActivityIndicatorView (~> 4.0)
   - PKHUD
+  - PromisesObjC
   - R.swift (~> 5.0)
   - RAMAnimatedTabBarController (~> 5.0)
   - RxDataSources (~> 4.0)
@@ -334,6 +343,7 @@ SPEC REPOS:
     - FLAnimatedImage
     - FLEX
     - FloatingPanel
+    - FunctionalObjC
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -349,8 +359,10 @@ SPEC REPOS:
     - Kingfisher
     - Localize-Swift
     - M80AttributedLabel
+    - Mantle
     - MessageKit
     - Mixpanel-swift
+    - MJExtension
     - MJRefresh
     - Moya
     - MultiProgressView
@@ -411,6 +423,7 @@ SPEC CHECKSUMS:
   FLAnimatedImage: dd3db277b17e909ec3c7fd41adfce79b321d960e
   FLEX: 0592c011c6dfbfdb94a5e24f2d4a9dbff0c6026d
   FloatingPanel: 9016eac88f21ca9fce53f5709e1f49485c0c355e
+  FunctionalObjC: bd6aaa4b69abea0a5ac0e860a052c1ebebd5311c
   GoogleAppMeasurement: dccff6095ea1cd8972a8b96d0ee38b9e6d67acbb
   GoogleDataTransport: b006084b73915a42c28a3466961a4edda3065da6
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
@@ -427,8 +440,10 @@ SPEC CHECKSUMS:
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
   LXToolKit: 4c5f4d4e1419c4ae3604a9689fe4acf4840dd948
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
+  Mantle: 4c0ed6ce47c96eccc4dc3bb071deb3def0e2c3be
   MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   Mixpanel-swift: a6832b31ddd3880aebe803ae783708d35f28c256
+  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   MultiProgressView: 65e5bb8181687099ade56d16d85d245a92fafa96
@@ -464,6 +479,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: 559062abac47b41ef140cff6ea2370e73623b05f
 
-PODFILE CHECKSUM: daa83a44bb6d18896bce0e66ac971902574e0303
+PODFILE CHECKSUM: 938711a4e9bc68140d1c4c60206c3c35ba129301
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

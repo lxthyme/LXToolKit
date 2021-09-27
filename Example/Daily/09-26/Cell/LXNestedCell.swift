@@ -11,8 +11,8 @@ class LXNestedCell: UITableViewCell {
     // MARK: 📌UI
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
 
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 120, height: 120)
@@ -116,12 +116,13 @@ extension LXNestedCell: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXNestedCell {
     func prepareUI() {
-        var frame = self.contentView.frame
-        frame.size.height = 120
-        collectionView.frame = frame
         [collectionView].forEach(self.contentView.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    func masonry() {
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }

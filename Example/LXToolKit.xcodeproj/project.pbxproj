@@ -35,24 +35,9 @@
 		BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72698125B3EA8200E155F6 /* LXBaseVMVC2.swift */; };
 		BE72698925B3EB6600E155F6 /* LX0117VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72698825B3EB6600E155F6 /* LX0117VM.swift */; };
 		BE72699E25B3EBFF00E155F6 /* LX0117Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */; };
-<<<<<<< HEAD
-		BE75497727015F8D00739312 /* LXNestedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75497627015F8D00739312 /* LXNestedCollectionCell.swift */; };
-		BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */; };
-		BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */; };
-		BE80622C24DA913900F9C6AC /* findCommonSuperview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */; };
-		BE83808825A9DFEB002CA245 /* @_exported.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808725A9DFEB002CA245 /* @_exported.swift */; };
-		BE83808E25A9E284002CA245 /* NSObject + Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83808D25A9E284002CA245 /* NSObject + Rx.swift */; };
-		BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */; };
-		BE83809A25A9E632002CA245 /* RetryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE83809925A9E632002CA245 /* RetryView.swift */; };
-		BE8380A125A9E6B7002CA245 /* UIFont + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380A025A9E6B7002CA245 /* UIFont + ex.swift */; };
-		BE8380AF25A9E8C8002CA245 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380AE25A9E8C8002CA245 /* Theme.swift */; };
-		BE8380DF25AA0345002CA245 /* LXSongRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380DE25AA0345002CA245 /* LXSongRecordCell.swift */; };
-		BE8380E525AA0704002CA245 /* UIImageView + Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */; };
-		BE8380EC25AA0BA4002CA245 /* LXMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8380EB25AA0BA4002CA245 /* LXMacro.swift */; };
-		BE83E31C2583400A00563491 /* LXLockTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE83E31B2583400A00563491 /* LXLockTestVC.m */; };
-		BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87F5FA25315B620066E47F /* LXStackTestVC.swift */; };
-		BE87F5FD25315B620066E47F /* LXStackTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE87F5FB25315B620066E47F /* LXStackTestVC.xib */; };
-=======
+		BE754985270176A200739312 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754982270176A200739312 /* LXNestedCell.swift */; };
+		BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754983270176A200739312 /* LXNestedCollectionCell.swift */; };
+		BE754987270176A200739312 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754984270176A200739312 /* LXNestedTableVC.swift */; };
 		BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */; };
 		BE7BE97F260C40E30031B4F7 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */; };
 		BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */; };
@@ -71,7 +56,6 @@
 		BE827DAF260A13CB009D18D0 /* XLBaseTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */; };
 		BE827DC8260A1A2F009D18D0 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DC5260A1A2F009D18D0 /* ErrorTracker.swift */; };
 		BE827DC9260A1A2F009D18D0 /* RxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DC7260A1A2F009D18D0 /* RxActivityIndicator.swift */; };
->>>>>>> v0.8.1
 		BE89708325E489A100101247 /* LXCubeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89708225E489A100101247 /* LXCubeVC.swift */; };
 		BE89708B25E4903600101247 /* LXCubeFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89708A25E4903600101247 /* LXCubeFaceView.swift */; };
 		BE8A389325B282DE0062E388 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A389225B282DE0062E388 /* ExampleViewController.swift */; };
@@ -284,12 +268,6 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
-<<<<<<< HEAD
-		BECD638624E13B8B009DC206 /* LXRequiredVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECD638524E13B8B009DC206 /* LXRequiredVC.swift */; };
-		BEE3D4302700733800117188 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D42F2700733800117188 /* LXNestedTableVC.swift */; };
-		BEE3D4332700819300117188 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3D4322700819300117188 /* LXNestedCell.swift */; };
-=======
->>>>>>> v0.8.1
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,27 +367,13 @@
 		BE72698125B3EA8200E155F6 /* LXBaseVMVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseVMVC2.swift; sourceTree = "<group>"; };
 		BE72698825B3EB6600E155F6 /* LX0117VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0117VM.swift; sourceTree = "<group>"; };
 		BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0117Model.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		BE75497627015F8D00739312 /* LXNestedCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionCell.swift; sourceTree = "<group>"; };
-		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
-		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
-		BE80622B24DA913900F9C6AC /* findCommonSuperview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findCommonSuperview.swift; sourceTree = "<group>"; };
-		BE83808725A9DFEB002CA245 /* @_exported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "@_exported.swift"; sourceTree = "<group>"; };
-		BE83808D25A9E284002CA245 /* NSObject + Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject + Rx.swift"; sourceTree = "<group>"; };
-		BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + RetryView.swift"; sourceTree = "<group>"; };
-		BE83809925A9E632002CA245 /* RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryView.swift; sourceTree = "<group>"; };
-		BE8380A025A9E6B7002CA245 /* UIFont + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + ex.swift"; sourceTree = "<group>"; };
-		BE8380AE25A9E8C8002CA245 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		BE8380DE25AA0345002CA245 /* LXSongRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSongRecordCell.swift; sourceTree = "<group>"; };
-		BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Reactive.swift"; sourceTree = "<group>"; };
-		BE8380EB25AA0BA4002CA245 /* LXMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMacro.swift; sourceTree = "<group>"; };
-		BE83E31A2583400A00563491 /* LXLockTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLockTestVC.h; sourceTree = "<group>"; };
-		BE83E31B2583400A00563491 /* LXLockTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLockTestVC.m; sourceTree = "<group>"; };
-		BE87F5FA25315B620066E47F /* LXStackTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
-		BE87F5FB25315B620066E47F /* LXStackTestVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LXStackTestVC.xib; sourceTree = "<group>"; };
-=======
+		BE754982270176A200739312 /* LXNestedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCell.swift; sourceTree = "<group>"; };
+		BE754983270176A200739312 /* LXNestedCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionCell.swift; sourceTree = "<group>"; };
+		BE754984270176A200739312 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
 		BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableVC.swift; sourceTree = "<group>"; };
 		BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
+		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
+		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
 		BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCell.swift; sourceTree = "<group>"; };
 		BE827C2A2609E322009D18D0 /* XLBaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseVM.swift; sourceTree = "<group>"; };
 		BE827C3E2609E771009D18D0 /* XLEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventCell.swift; sourceTree = "<group>"; };
@@ -426,7 +390,10 @@
 		BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCellVM.swift; sourceTree = "<group>"; };
 		BE827DC5260A1A2F009D18D0 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		BE827DC7260A1A2F009D18D0 /* RxActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxActivityIndicator.swift; sourceTree = "<group>"; };
->>>>>>> v0.8.1
+		BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + RetryView.swift"; sourceTree = "<group>"; };
+		BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Reactive.swift"; sourceTree = "<group>"; };
+		BE8380EB25AA0BA4002CA245 /* LXMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMacro.swift; sourceTree = "<group>"; };
+		BE87F5FA25315B620066E47F /* LXStackTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
 		BE89708225E489A100101247 /* LXCubeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCubeVC.swift; sourceTree = "<group>"; };
 		BE89708A25E4903600101247 /* LXCubeFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCubeFaceView.swift; sourceTree = "<group>"; };
 		BE8A389225B282DE0062E388 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
@@ -662,12 +629,6 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		BECD638524E13B8B009DC206 /* LXRequiredVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXRequiredVC.swift; sourceTree = "<group>"; };
-		BEE3D42F2700733800117188 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
-		BEE3D4322700819300117188 /* LXNestedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNestedCell.swift; sourceTree = "<group>"; };
-=======
->>>>>>> v0.8.1
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -750,6 +711,7 @@
 				607FACD11AFB9204008FA782 /* Products */,
 				6108659FF0E2B751C6BC6B11 /* Pods */,
 				DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */,
+				BE754980270174F100739312 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -878,20 +840,17 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				BEE3D42B2700730E00117188 /* 09-26 */,
-=======
-				BEA2461526F335340098707A /* 09-16 */,
 				BEA2454426F335290098707A /* 2020 */,
-				BE8CD23D260D7A7300CC90A5 /* 03-24 */,
-				BE93ECF62609DC0D00B21A42 /* 03-23 */,
-				BE702A3B25E7373E0017C9D0 /* 02-25 */,
->>>>>>> v0.8.1
-				BE89707B25E4892000101247 /* 02-23 */,
-				BEAF2C7625BE6AAB0054AE3D /* 01-25 */,
-				BE66CCE625B3DE9300F6B7C8 /* 01-17 */,
-				BE60317E25B1F5830045117C /* 01-16 */,
 				BEB52C3725B012F6006C5C34 /* 01-14 */,
+				BE60317E25B1F5830045117C /* 01-16 */,
+				BE66CCE625B3DE9300F6B7C8 /* 01-17 */,
+				BEAF2C7625BE6AAB0054AE3D /* 01-25 */,
+				BE89707B25E4892000101247 /* 02-23 */,
+				BE702A3B25E7373E0017C9D0 /* 02-25 */,
+				BE93ECF62609DC0D00B21A42 /* 03-23 */,
+				BE8CD23D260D7A7300CC90A5 /* 03-24 */,
+				BEA2461526F335340098707A /* 09-16 */,
+				BEE3D42B2700730E00117188 /* 09-26 */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -971,6 +930,28 @@
 				BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BE754980270174F100739312 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				BE8380EB25AA0BA4002CA245 /* LXMacro.swift */,
+				BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */,
+				BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */,
+				BE87F5FA25315B620066E47F /* LXStackTestVC.swift */,
+				BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */,
+				BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		BE754981270176A200739312 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE754982270176A200739312 /* LXNestedCell.swift */,
+				BE754983270176A200739312 /* LXNestedCollectionCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		BE827D57260A09B5009D18D0 /* extension */ = {
@@ -1236,24 +1217,24 @@
 		BEA2454426F335290098707A /* 2020 */ = {
 			isa = PBXGroup;
 			children = (
-				BEA2454526F335290098707A /* 10-19 */,
-				BEA2454726F335290098707A /* 10-10 */,
-				BEA2454A26F335290098707A /* 10-28 */,
+				BEA2456426F335290098707A /* 08-05请求依赖 */,
+				BEA2455026F335290098707A /* 08-07-消息转发 */,
+				BEA2456B26F335290098707A /* 08-10-LiftCycle_required */,
 				BEA2454C26F335290098707A /* 08-13-Transition */,
 				BEA2454E26F335290098707A /* 08-14-NSProxy */,
-				BEA2455026F335290098707A /* 08-07-消息转发 */,
-				BEA2455626F335290098707A /* 12-01 */,
-				BEA2456026F335290098707A /* 09-23 */,
-				BEA2456226F335290098707A /* 11-17 */,
-				BEA2456426F335290098707A /* 08-05请求依赖 */,
 				BEA2456826F335290098707A /* 08-27 */,
-				BEA2456B26F335290098707A /* 08-10-LiftCycle_required */,
 				BEA2457126F335290098707A /* 09-21 */,
-				BEA2457426F335290098707A /* 12-16 */,
-				BEA2457826F335290098707A /* 12-11 */,
-				BEA2457C26F335290098707A /* lighted controller */,
-				BEA2458426F335290098707A /* 12-28 */,
+				BEA2456026F335290098707A /* 09-23 */,
 				BEA245A126F335290098707A /* 09-25-LXWikipediaImageSearch */,
+				BEA2454726F335290098707A /* 10-10 */,
+				BEA2454526F335290098707A /* 10-19 */,
+				BEA2454A26F335290098707A /* 10-28 */,
+				BEA2456226F335290098707A /* 11-17 */,
+				BEA2455626F335290098707A /* 12-01 */,
+				BEA2457826F335290098707A /* 12-11 */,
+				BEA2457426F335290098707A /* 12-16 */,
+				BEA2458426F335290098707A /* 12-28 */,
+				BEA2457C26F335290098707A /* lighted controller */,
 			);
 			path = 2020;
 			sourceTree = "<group>";
@@ -1803,19 +1784,10 @@
 		BEE3D42B2700730E00117188 /* 09-26 */ = {
 			isa = PBXGroup;
 			children = (
-				BEE3D4312700735600117188 /* Cell */,
-				BEE3D42F2700733800117188 /* LXNestedTableVC.swift */,
+				BE754981270176A200739312 /* Cell */,
+				BE754984270176A200739312 /* LXNestedTableVC.swift */,
 			);
 			path = "09-26";
-			sourceTree = "<group>";
-		};
-		BEE3D4312700735600117188 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BE75497627015F8D00739312 /* LXNestedCollectionCell.swift */,
-				BEE3D4322700819300117188 /* LXNestedCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */ = {
@@ -2343,13 +2315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-				BE6AA602259AB92900526193 /* LXSongVC.swift in Sources */,
-				BE078E972583653D0053ABE5 /* LXTTTTT.swift in Sources */,
-				BE97A960251D9F640061254B /* Dependencies.swift in Sources */,
-				BE97A951251D9B680061254B /* LXWikipediaImageSearchViewModel.swift in Sources */,
-				BE97A95A251D9C920061254B /* WikipediaSearchResult.swift in Sources */,
-=======
 				BEA245F126F335290098707A /* LXSongVC.swift in Sources */,
 				BEA245DD26F335290098707A /* LXMusicVC.swift in Sources */,
 				BE8CD2CD260DAD0400CC90A5 /* XLAPI.swift in Sources */,
@@ -2357,8 +2322,6 @@
 				BE8CD350260DE07E00CC90A5 /* XLNotificationModel.swift in Sources */,
 				BE827C3F2609E771009D18D0 /* XLEventCell.swift in Sources */,
 				BE827D5D260A09F7009D18D0 /* KafkaRefresh+Rx.swift in Sources */,
-				BE8970E525E4B50000101247 /* @__exported.swift in Sources */,
->>>>>>> v0.8.1
 				BE673DF225B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA2460926F335290098707A /* temp.swift in Sources */,
 				BEA245EC26F335290098707A /* LXEmptyCell.swift in Sources */,
@@ -2388,28 +2351,18 @@
 				BEA2460426F335290098707A /* UIImage + forceLazyDecompression.swift in Sources */,
 				BEA245E226F335290098707A /* LXListItemCell.swift in Sources */,
 				BEA245CF26F335290098707A /* LXMessageTestCell.swift in Sources */,
+				BE754985270176A200739312 /* LXNestedCell.swift in Sources */,
 				BEA245EE26F335290098707A /* LXSongCellVM.swift in Sources */,
 				BE8A39EE25B2B9690062E388 /* LXPhotoAlbumVC.swift in Sources */,
+				BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */,
 				BEA2460E26F335290098707A /* ReachabilityService.swift in Sources */,
 				BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
 				BE89708325E489A100101247 /* LXCubeVC.swift in Sources */,
-<<<<<<< HEAD
-				BEA9378324DBD5710048D644 /* LXOffScreenVC.swift in Sources */,
-				BE3907C02563766B0052A5E9 /* LXDaily1117VC.swift in Sources */,
-				BEE3D4332700819300117188 /* LXNestedCell.swift in Sources */,
-				BE97A969251DB7510061254B /* ReachabilityService.swift in Sources */,
-				BEA1A1032589F5E100E03DA3 /* LXMusicModel.swift in Sources */,
-				BE68AD042599CB4A0068057C /* LXSongCellVM.swift in Sources */,
-				BE0F402824E26DC300A2F841 /* LXListItemCell.swift in Sources */,
-				BE8380EC25AA0BA4002CA245 /* LXMacro.swift in Sources */,
-				BE68AD0A2599CF720068057C /* LXSongVM.swift in Sources */,
-=======
 				BEA2460826F335290098707A /* LXWikipediaSearchCell.swift in Sources */,
 				BE8CD300260DDE2D00CC90A5 /* XLLanguageModel.swift in Sources */,
 				BEA2460026F335290098707A /* WikipediaAPI.swift in Sources */,
->>>>>>> v0.8.1
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */,
 				BEA2460C26F335290098707A /* LXWikipediaImageSearchView.swift in Sources */,
@@ -2423,15 +2376,6 @@
 				BE8CD2DC260DD35C00CC90A5 /* XLEventsModel.swift in Sources */,
 				BEA245D326F335290098707A /* LXDaily1117VC.swift in Sources */,
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
-<<<<<<< HEAD
-				BE97A950251D9B680061254B /* LXWikipediaImageSearchVC.swift in Sources */,
-				BE83809425A9E5A9002CA245 /* Reactive + RetryView.swift in Sources */,
-				BE80622A24DA7C2300F9C6AC /* LXMultiRequestTestVC.swift in Sources */,
-				BE272FE3257A2A28005D614E /* LXKingfisherVC.m in Sources */,
-				BEE3D4302700733800117188 /* LXNestedTableVC.swift in Sources */,
-				BE68AD332599D4350068057C /* Observable + HandyJSON.swift in Sources */,
-				BE0F402124E2684F00A2F841 /* LXLightedVC.swift in Sources */,
-=======
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
 				BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
@@ -2440,7 +2384,6 @@
 				BEA245E126F335290098707A /* LXLockTestVC.m in Sources */,
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
->>>>>>> v0.8.1
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
 				BE8CD23F260D7A9000CC90A5 /* LX0324EventsVC.swift in Sources */,
 				BEA245DB26F335290098707A /* LXPresentVC.swift in Sources */,
@@ -2464,6 +2407,7 @@
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BE827D5F260A09F7009D18D0 /* Observable+Logging.swift in Sources */,
+				BE754987270176A200739312 /* LXNestedTableVC.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
@@ -2519,16 +2463,8 @@
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
-<<<<<<< HEAD
-				BE75497727015F8D00739312 /* LXNestedCollectionCell.swift in Sources */,
-				BE87F5FC25315B620066E47F /* LXStackTestVC.swift in Sources */,
-				BE7F5D23251B2FBA00813E0B /* LXStackViewVC.swift in Sources */,
-				BE8380E525AA0704002CA245 /* UIImageView + Reactive.swift in Sources */,
-				BE97A96B251DB7690061254B /* Reachability.swift in Sources */,
-=======
 				BE8CD360260DE0E800CC90A5 /* XLReleaseModel.swift in Sources */,
 				BEA2461326F335290098707A /* Reachability.swift in Sources */,
->>>>>>> v0.8.1
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
 				BE827DAF260A13CB009D18D0 /* XLBaseTableViewCellVM.swift in Sources */,
 				BEA245FC26F335290098707A /* LXSongRecordModel.swift in Sources */,
@@ -2795,11 +2731,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
-<<<<<<< HEAD
-=======
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
->>>>>>> v0.8.1
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2825,11 +2758,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = LXToolKit_Example.entitlements;
-<<<<<<< HEAD
-=======
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
->>>>>>> v0.8.1
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				INFOPLIST_FILE = LXToolKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
