@@ -8,7 +8,7 @@
 import Foundation
 import HandyJSON
 
-class LXResultModel: XLBaseModel {
+class LXResultModel: XLLBaseModel {
     class ResultModel: NSObject, HandyJSON {
         var author:String?
         var content:String?
