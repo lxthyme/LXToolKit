@@ -65,27 +65,27 @@ private extension LXApiTestVC {
 //        apiProvider.req(target: LXMainProvider.zen, callbackQueue: nil, progress: nil) { (result) in
 //            print("result: ", result)
 //        }
-        apiProvider
-            .req(target: LXMainProvider.newUserFloat)
-            .mapBaseModel(LXNewUserFloatModel.self)
-            .subscribe(onNext: { model in
-                print("1. Model: ", model)
-            }, onError: { error in
-                print("2. Error: ", error)
-            }, onCompleted: {
-                print("3. completed")
-            }, onDisposed: nil)
+//        apiProvider
+//            .req(target: LXMainProvider.newUserFloat)
+//            .mapBaseModel(LXNewUserFloatModel.self)
+//            .subscribe(onNext: { model in
+//                print("1. Model: ", model)
+//            }, onError: { error in
+//                print("2. Error: ", error)
+//            }, onCompleted: {
+//                print("3. completed")
+//            }, onDisposed: nil)
     }
     func loadData3() {
-        apiProvider.req(target: LXMainProvider.platformInfo)
-            .mapBaseModel(LXDashboardListModel.self)
-            .subscribe(onNext: { model in
-                print("1. Model: ", model)
-            }, onError: { error in
-                print("2. Error: ", error)
-            }, onCompleted: {
-                print("3. completed")
-            }, onDisposed: nil)
+//        apiProvider.req(target: LXMainProvider.platformInfo)
+//            .mapBaseModel(LXDashboardListModel.self)
+//            .subscribe(onNext: { model in
+//                print("1. Model: ", model)
+//            }, onError: { error in
+//                print("2. Error: ", error)
+//            }, onCompleted: {
+//                print("3. completed")
+//            }, onDisposed: nil)
     }
 }
 
