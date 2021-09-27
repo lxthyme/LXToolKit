@@ -93,13 +93,14 @@ private extension LXNestedTableVC {
     func prepareUI() {
         self.view.backgroundColor = UIColor.white
         // self.title = "<#title#>"
+        table.frame = self.view.frame
         [table].forEach(self.view.addSubview)
         masonry()
     }
 
     func masonry() {
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+//        table.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
     }
 }

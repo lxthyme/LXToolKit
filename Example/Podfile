@@ -142,6 +142,9 @@ pod 'PromisesObjC'
 #pod 'PromisesSwift'
 pod 'FunctionalObjC'
 
+pod 'Mantle'
+pod 'MJExtension'
+
 end
 
 post_install do |installer|
