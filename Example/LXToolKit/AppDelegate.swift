@@ -20,4 +20,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        configureNotification()
         return true
     }
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        dlog("-->shouldRestoreApplicationState")
+        return true
+    }
+    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+        dlog("-->shouldRestoreSecureApplicationState")
+        return true
+    }
+    func application(_ application: UIApplication, didDecodeRestorableStateWith coder: NSCoder) {
+        dlog("-->didDecodeRestorableStateWith")
+    }
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        dlog("-->restorationHandler")
+        return true
+    }
+    func application(_ application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
+        dlog("-->viewControllerWithRestorationIdentifierPath")
+        return UIViewController()
+    }
+    // MARK: 📌Save UI State
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        dlog("shouldSaveApplicationState")
+        return true
+    }
+    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+        dlog("shouldSaveSecureApplicationState")
+        return true
+    }
+    func application(_ application: UIApplication, willEncodeRestorableStateWith coder: NSCoder) {
+        dlog("-->willEncodeRestorableStateWith")
+    }
 }

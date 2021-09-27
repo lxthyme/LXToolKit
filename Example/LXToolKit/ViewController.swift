@@ -74,7 +74,8 @@ class ViewController: LXBaseVC {
 // MARK: - 🔐Private Actions
 private extension ViewController {
     @objc func btnTestAction(sender: UIButton) {
-        let vc = LXSongVC()
+//        let vc = LXSongVC()
+        let vc = LXNestedTableVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
