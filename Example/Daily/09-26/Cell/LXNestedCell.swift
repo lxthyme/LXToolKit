@@ -15,8 +15,8 @@ class LXNestedCell: UITableViewCell {
         layout.minimumInteritemSpacing = 1
 
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.itemSize = CGSize(width: 239, height: 239)
+        layout.estimatedItemSize = CGSize(width: 239, height: 239)
         layout.headerReferenceSize = .zero
         layout.footerReferenceSize = .zero
         layout.sectionInset = .zero
@@ -27,8 +27,8 @@ class LXNestedCell: UITableViewCell {
         }
         return layout
     }()
-    private lazy var collectionView: UICollectionView = {
-        let v = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private lazy var collectionView: LXNestedCollectionView = {
+        let v = LXNestedCollectionView(frame: .zero, collectionViewLayout: flowLayout)
 
         v.delegate = self
         v.dataSource = self

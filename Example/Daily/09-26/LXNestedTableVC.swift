@@ -10,10 +10,10 @@ import UIKit
 
 class LXNestedTableVC: UIViewController {
     // MARK: 📌UI
-    private lazy var table: UITableView = {
-        let t = UITableView(frame: .zero, style: .plain)
-        t.rowHeight = 120
-        t.estimatedRowHeight = 120
+    private lazy var table: LXNestedTableView = {
+        let t = LXNestedTableView(frame: .zero, style: .plain)
+        t.rowHeight = 240
+        t.estimatedRowHeight = 240
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0

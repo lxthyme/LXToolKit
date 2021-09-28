@@ -38,6 +38,8 @@
 		BE754985270176A200739312 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754982270176A200739312 /* LXNestedCell.swift */; };
 		BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754983270176A200739312 /* LXNestedCollectionCell.swift */; };
 		BE754987270176A200739312 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754984270176A200739312 /* LXNestedTableVC.swift */; };
+		BE75498A27018C5700739312 /* LXNestedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75498927018C5700739312 /* LXNestedTableView.swift */; };
+		BE75498C27018C9E00739312 /* LXNestedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE75498B27018C9E00739312 /* LXNestedCollectionView.swift */; };
 		BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */; };
 		BE7BE97F260C40E30031B4F7 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */; };
 		BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */; };
@@ -370,6 +372,8 @@
 		BE754982270176A200739312 /* LXNestedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCell.swift; sourceTree = "<group>"; };
 		BE754983270176A200739312 /* LXNestedCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionCell.swift; sourceTree = "<group>"; };
 		BE754984270176A200739312 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
+		BE75498927018C5700739312 /* LXNestedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNestedTableView.swift; sourceTree = "<group>"; };
+		BE75498B27018C9E00739312 /* LXNestedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionView.swift; sourceTree = "<group>"; };
 		BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableVC.swift; sourceTree = "<group>"; };
 		BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
@@ -952,6 +956,15 @@
 				BE754983270176A200739312 /* LXNestedCollectionCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		BE75498827018C3C00739312 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE75498927018C5700739312 /* LXNestedTableView.swift */,
+				BE75498B27018C9E00739312 /* LXNestedCollectionView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BE827D57260A09B5009D18D0 /* extension */ = {
@@ -1784,6 +1797,7 @@
 		BEE3D42B2700730E00117188 /* 09-26 */ = {
 			isa = PBXGroup;
 			children = (
+				BE75498827018C3C00739312 /* View */,
 				BE754981270176A200739312 /* Cell */,
 				BE754984270176A200739312 /* LXNestedTableVC.swift */,
 			);
@@ -2356,6 +2370,7 @@
 				BE8A39EE25B2B9690062E388 /* LXPhotoAlbumVC.swift in Sources */,
 				BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */,
 				BEA2460E26F335290098707A /* ReachabilityService.swift in Sources */,
+				BE75498C27018C9E00739312 /* LXNestedCollectionView.swift in Sources */,
 				BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
@@ -2487,6 +2502,7 @@
 				BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */,
 				BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
+				BE75498A27018C5700739312 /* LXNestedTableView.swift in Sources */,
 				BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */,
 				BEA2460126F335290098707A /* WikipediaSearchResult.swift in Sources */,
 				BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */,
