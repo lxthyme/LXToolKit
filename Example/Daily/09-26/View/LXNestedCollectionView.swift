@@ -11,8 +11,8 @@ import UIKit
 class LXNestedCollectionView: UICollectionView {}
 
 // MARK: - ✈️UIGestureRecognizerDelegate
-//extension LXNestedCollectionView: UIGestureRecognizerDelegate {
+// extension LXNestedCollectionView: UIGestureRecognizerDelegate {
 //    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 //        return true
 //    }
-//}
+// }

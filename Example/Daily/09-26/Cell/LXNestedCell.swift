@@ -32,17 +32,17 @@ class LXNestedCell: UITableViewCell {
 
         v.delegate = self
         v.dataSource = self
-            //v.prefetchDataSource = self
-            //v.dragDelegate = self
-            //v.dropDelegate = self
-            //v.isPrefetchingEnabled = true
+        // v.prefetchDataSource = self
+        // v.dragDelegate = self
+        // v.dropDelegate = self
+        // v.isPrefetchingEnabled = true
 
         v.backgroundColor = .white
-            //v.showsHorizontalScrollIndicator = true
-            //v.showsVerticalScrollIndicator = true
-            //v.alwaysBounceVertical = true
-            //v.alwaysBounceHorizontal = true
-            //v.allowsMultipleSelection = true
+        // v.showsHorizontalScrollIndicator = true
+        // v.showsVerticalScrollIndicator = true
+        // v.alwaysBounceVertical = true
+        // v.alwaysBounceHorizontal = true
+        // v.allowsMultipleSelection = true
 
             //let header =  VPLoadingHeader.init(refreshingBlock: {
             //    [weak self] in
@@ -111,6 +111,16 @@ extension LXNestedCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+}
+
+extension LXNestedCell: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView == collectionView {
+//            dlog("-collectionView")
+//        } else {
+//            dlog("-ELSE")
+//        }
+//    }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
