@@ -44,18 +44,18 @@ class LXNestedCell: UITableViewCell {
         // v.alwaysBounceHorizontal = true
         // v.allowsMultipleSelection = true
 
-            //let header =  VPLoadingHeader.init(refreshingBlock: {
-            //    [weak self] in
-            //    guard let `self` = self else { return }
-            //    //self.loadData(true)
-            //})
-            //v.mj_header = header
-            //let footer = VPAutoLoadingFooter.init(refreshingBlock: {
-            //    [weak self] in
-            //    guard let `self` = self else { return }
-            //    //self.loadData(false)
-            //})
-            //v.mj_footer = footer
+        // let header =  VPLoadingHeader.init(refreshingBlock: {
+        //    [weak self] in
+        //    guard let `self` = self else { return }
+        //    //self.loadData(true)
+        // })
+        // v.mj_header = header
+        // let footer = VPAutoLoadingFooter.init(refreshingBlock: {
+        //    [weak self] in
+        //    guard let `self` = self else { return }
+        //    //self.loadData(false)
+        // })
+        // v.mj_footer = footer
 
         v.register(LXNestedCollectionCell.self, forCellWithReuseIdentifier: "LXNestedCollectionCell")
         return v
