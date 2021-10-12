@@ -270,6 +270,8 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
+		BECEACCE2715785B008AFE36 /* LXTableTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BECEACCD2715785B008AFE36 /* LXTableTestVC.m */; };
+		BECEACD227157BE2008AFE36 /* LXSectionHeaderTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECEACD127157BE2008AFE36 /* LXSectionHeaderTestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -633,6 +635,10 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
+		BECEACCC2715785B008AFE36 /* LXTableTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTableTestVC.h; sourceTree = "<group>"; };
+		BECEACCD2715785B008AFE36 /* LXTableTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTableTestVC.m; sourceTree = "<group>"; };
+		BECEACD027157BE2008AFE36 /* LXSectionHeaderTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSectionHeaderTestView.h; sourceTree = "<group>"; };
+		BECEACD127157BE2008AFE36 /* LXSectionHeaderTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSectionHeaderTestView.m; sourceTree = "<group>"; };
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -844,6 +850,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BECEACCB27157836008AFE36 /* 10-12 */,
 				BEA2454426F335290098707A /* 2020 */,
 				BEB52C3725B012F6006C5C34 /* 01-14 */,
 				BE60317E25B1F5830045117C /* 01-16 */,
@@ -1794,6 +1801,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BECEACCB27157836008AFE36 /* 10-12 */ = {
+			isa = PBXGroup;
+			children = (
+				BECEACCF27157BCB008AFE36 /* View */,
+				BECEACCC2715785B008AFE36 /* LXTableTestVC.h */,
+				BECEACCD2715785B008AFE36 /* LXTableTestVC.m */,
+			);
+			path = "10-12";
+			sourceTree = "<group>";
+		};
+		BECEACCF27157BCB008AFE36 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BECEACD027157BE2008AFE36 /* LXSectionHeaderTestView.h */,
+				BECEACD127157BE2008AFE36 /* LXSectionHeaderTestView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BEE3D42B2700730E00117188 /* 09-26 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2154,6 +2180,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -2227,6 +2254,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -2414,6 +2442,7 @@
 				BEA245CC26F335290098707A /* LXStackMessageVC.swift in Sources */,
 				BEA2460726F335290098707A /* LXSingleImageCell.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
+				BECEACD227157BE2008AFE36 /* LXSectionHeaderTestView.m in Sources */,
 				BEA245E526F335290098707A /* LXListItemModel.swift in Sources */,
 				BE8CD330260DDFD900CC90A5 /* XLContactModel.swift in Sources */,
 				BEA245FF26F335290098707A /* Dependencies.swift in Sources */,
@@ -2451,6 +2480,7 @@
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
 				BE827D9F260A0F77009D18D0 /* Logger.swift in Sources */,
 				BE60318A25B1F5DA0045117C /* LXPickerVC.swift in Sources */,
+				BECEACCE2715785B008AFE36 /* LXTableTestVC.m in Sources */,
 				BE8CD348260DE06100CC90A5 /* XLMilestoneModel.swift in Sources */,
 				BE8CD2AB260D879300CC90A5 /* XLBaseModel.swift in Sources */,
 				BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */,
