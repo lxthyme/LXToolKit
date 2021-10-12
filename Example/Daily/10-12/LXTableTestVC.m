@@ -143,16 +143,12 @@
     NSLog(@"frame: %@ - %@", NSStringFromCGRect(frame), NSStringFromCGRect(rect));
     static NSInteger currentSectionType = 1;
     if(rect.origin.y >= 20.f && currentSectionType == 1) {
-        // _sectionHeight = 70.f;
         currentSectionType = 2;
         [self.sectionHeader changeType:2];
-        // [self.table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 
     } else if(rect.origin.y < 20.f && currentSectionType == 2) {
-        // _sectionHeight = 50.f;
         currentSectionType = 1;
         [self.sectionHeader changeType:1];
-        // [self.table reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
