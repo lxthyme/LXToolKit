@@ -89,7 +89,8 @@ private extension ViewController {
     @objc func btnTestAction(sender: UIButton) {
 //        let vc = LXSongVC()
         // let vc = LXNestedTableVC()
-        let vc = LXTableTestVC()
+        // let vc = LXTableTestVC()
+        let vc = LX1019TestVC()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.navigationController?.pushViewController(vc, animated: true)

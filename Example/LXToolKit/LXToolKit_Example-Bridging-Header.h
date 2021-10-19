@@ -8,3 +8,4 @@
 #import "LXGitHubTestModel.h"
 #import "LXMJExtensionTestModel.h"
 #import "LXTableTestVC.h"
+#import "LX1019TestVC.h"
