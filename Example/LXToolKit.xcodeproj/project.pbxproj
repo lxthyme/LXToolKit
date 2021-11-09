@@ -68,7 +68,6 @@
 		BE8A3A6325B2E6950062E388 /* LXAlbumListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A3A6225B2E6950062E388 /* LXAlbumListModel.swift */; };
 		BE8A94C22524275000E20F14 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94C12524275000E20F14 /* NotificationService.swift */; };
 		BE8A94C62524275000E20F14 /* Service.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE8A94BF2524275000E20F14 /* Service.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */; };
 		BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */; };
 		BE8A972D260B24B100A32116 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A972C260B24B100A32116 /* RestApi.swift */; };
 		BE8A973B260B253900A32116 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A973A260B253900A32116 /* ErrorResponse.swift */; };
@@ -238,6 +237,7 @@
 		BEA2461826F335350098707A /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461726F335340098707A /* LXGitHubTestModel.m */; };
 		BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */; };
 		BEA9784D273A731300675B13 /* LXHugTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9784C273A731300675B13 /* LXHugTestVC.m */; };
+		BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */; };
 		BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */; };
 		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
 		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
@@ -414,7 +414,6 @@
 		BE8A94BF2524275000E20F14 /* Service.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Service.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A94C12524275000E20F14 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		BE8A94C32524275000E20F14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleNotificationDelegate.swift; path = "../../../framework/CustomNotification-Swift/NotificationSample/NotificationSample/SampleNotificationDelegate.swift"; sourceTree = "<group>"; };
 		BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Notification.swift"; sourceTree = "<group>"; };
 		BE8A972C260B24B100A32116 /* RestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
 		BE8A973A260B253900A32116 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
@@ -597,6 +596,7 @@
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEA9784B273A731300675B13 /* LXHugTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHugTestVC.h; sourceTree = "<group>"; };
 		BEA9784C273A731300675B13 /* LXHugTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHugTestVC.m; sourceTree = "<group>"; };
+		BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleNotificationDelegate.swift; sourceTree = "<group>"; };
 		BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
 		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAF2C9025BE6FCE0054AE3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -752,7 +752,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				BE8A97D3260B35A700A32116 /* Localizabled.strings */,
 				BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */,
-				BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */,
+				BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -2485,6 +2485,7 @@
 				BEA245F826F335290098707A /* Observable + HandyJSON.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				BE8CD25D260D7BF100CC90A5 /* LX0324EventsVM.swift in Sources */,
+				BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */,
 				BEA245D926F335290098707A /* LXBaseRequiredVC.m in Sources */,
 				BEA245E626F335290098707A /* LXLightedDataSource.swift in Sources */,
 				BE8A974B260B26B300A32116 /* XLReachability.swift in Sources */,
@@ -2545,7 +2546,6 @@
 				BE827D5E260A09F7009D18D0 /* Kingfisher+Rx.swift in Sources */,
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
 				BE8A9767260B2E5000A32116 /* XLEventsVC.swift in Sources */,
-				BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */,
 				BEA245D626F335290098707A /* LXOffScreenVC.swift in Sources */,
 				BE8CD310260DDF1A00CC90A5 /* XLCommentModel.swift in Sources */,
 				BE8CD308260DDEBB00CC90A5 /* XLLicenseModel.swift in Sources */,
