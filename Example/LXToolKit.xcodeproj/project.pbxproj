@@ -237,6 +237,7 @@
 		BEA2461426F335290098707A /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245C026F335290098707A /* DownloadableImage.swift */; };
 		BEA2461826F335350098707A /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461726F335340098707A /* LXGitHubTestModel.m */; };
 		BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */; };
+		BEA9784D273A731300675B13 /* LXHugTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9784C273A731300675B13 /* LXHugTestVC.m */; };
 		BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */; };
 		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
 		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
@@ -594,6 +595,8 @@
 		BEA2461A26F33F7A0098707A /* LXMJExtensionTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMJExtensionTestModel.h; sourceTree = "<group>"; };
 		BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMJExtensionTestModel.m; sourceTree = "<group>"; };
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEA9784B273A731300675B13 /* LXHugTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHugTestVC.h; sourceTree = "<group>"; };
+		BEA9784C273A731300675B13 /* LXHugTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHugTestVC.m; sourceTree = "<group>"; };
 		BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
 		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAF2C9025BE6FCE0054AE3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -853,6 +856,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEA9784A273A72FF00675B13 /* 11-09 */,
 				BE6B7703271E9C33009E8B84 /* 10-19 */,
 				BECEACCB27157836008AFE36 /* 10-12 */,
 				BEA2454426F335290098707A /* 2020 */,
@@ -1626,6 +1630,15 @@
 				BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BEA9784A273A72FF00675B13 /* 11-09 */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9784B273A731300675B13 /* LXHugTestVC.h */,
+				BEA9784C273A731300675B13 /* LXHugTestVC.m */,
+			);
+			path = "11-09";
 			sourceTree = "<group>";
 		};
 		BEAF2C7625BE6AAB0054AE3D /* 01-25 */ = {
@@ -2483,6 +2496,7 @@
 				BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */,
 				BE8CD24F260D7ABF00CC90A5 /* Refreshable.swift in Sources */,
 				BE8A97F2260B410F00A32116 /* LXBaseNavController.swift in Sources */,
+				BEA9784D273A731300675B13 /* LXHugTestVC.m in Sources */,
 				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
 				BEA245FD26F335290098707A /* @_exported.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
