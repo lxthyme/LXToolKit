@@ -13,6 +13,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		BE11D83D275DFCFF003DBF36 /* LXStack1206VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE11D83C275DFCFF003DBF36 /* LXStack1206VC.m */; };
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
@@ -349,6 +350,8 @@
 		9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Exam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE11D83B275DFCFF003DBF36 /* LXStack1206VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStack1206VC.h; sourceTree = "<group>"; };
+		BE11D83C275DFCFF003DBF36 /* LXStack1206VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStack1206VC.m; sourceTree = "<group>"; };
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
@@ -795,6 +798,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE11D83A275DFCE5003DBF36 /* 2021-12-06 */ = {
+			isa = PBXGroup;
+			children = (
+				BE11D83B275DFCFF003DBF36 /* LXStack1206VC.h */,
+				BE11D83C275DFCFF003DBF36 /* LXStack1206VC.m */,
+			);
+			path = "2021-12-06";
+			sourceTree = "<group>";
+		};
 		BE258D8D25189837008E2777 /* Kit */ = {
 			isa = PBXGroup;
 			children = (
@@ -856,6 +868,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE11D83A275DFCE5003DBF36 /* 2021-12-06 */,
 				BEA9784A273A72FF00675B13 /* 11-09 */,
 				BE6B7703271E9C33009E8B84 /* 10-19 */,
 				BECEACCB27157836008AFE36 /* 10-12 */,
@@ -2499,6 +2512,7 @@
 				BE8A97F2260B410F00A32116 /* LXBaseNavController.swift in Sources */,
 				BEA9784D273A731300675B13 /* LXHugTestVC.m in Sources */,
 				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
+				BE11D83D275DFCFF003DBF36 /* LXStack1206VC.m in Sources */,
 				BEA245FD26F335290098707A /* @_exported.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEA245E326F335290098707A /* LXLightedVC.swift in Sources */,

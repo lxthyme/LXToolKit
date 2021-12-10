@@ -10,3 +10,4 @@
 #import "LXTableTestVC.h"
 #import "LX1019TestVC.h"
 #import "LXHugTestVC.h"
+#import "LXStack1206VC.h"
