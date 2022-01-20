@@ -94,7 +94,7 @@ private extension MyView {
     }
     func prepareTableDataSource() {
         table.rowHeight = 194
-        table.hideEmptyCells()
+        table.xl.hideEmptyCells()
 
         guard let disposeBag = self.vc?.disposeBag else { return }
         let table = self.table

@@ -182,6 +182,7 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - ObjectMapper (4.2.0)
   - PKHUD (5.3.0)
   - PromisesObjC (1.2.12)
   - PryntTrimmerView (4.0.2)
@@ -300,6 +301,7 @@ DEPENDENCIES:
   - MultiProgressView (~> 1.0)
   - "NSObject+Rx (~> 5.0)"
   - NVActivityIndicatorView (~> 4.0)
+  - ObjectMapper
   - PKHUD
   - PromisesObjC
   - R.swift (~> 5.0)
@@ -372,6 +374,7 @@ SPEC REPOS:
     - nanopb
     - "NSObject+Rx"
     - NVActivityIndicatorView
+    - ObjectMapper
     - PKHUD
     - PromisesObjC
     - PryntTrimmerView
@@ -454,6 +457,7 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
@@ -483,6 +487,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: 559062abac47b41ef140cff6ea2370e73623b05f
 
-PODFILE CHECKSUM: 0f17af126d47a3652f524b2ec371b8f46a79b6aa
+PODFILE CHECKSUM: ac55e24de373cf5fbed32d93f17aeaaf65302395
 
 COCOAPODS: 1.11.2

@@ -20,6 +20,7 @@ target 'LXToolKit_Exam' do
 #  pod 'Moya/RxSwift', '~> 13.0'
 pod 'SDWebImage', '~>5.10'
 pod 'HandyJSON'
+pod 'ObjectMapper'
 #pod 'Kingfisher', '~>5.15'
 #pod 'RxCocoa'
 #pod 'MJRefresh'

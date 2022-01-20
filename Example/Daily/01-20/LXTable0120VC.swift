@@ -5,6 +5,9 @@
 //  Created by lxthyme on 2022/1/20.
 //  Copyright © 2022 CocoaPods. All rights reserved.
 //
+/// 测试 sectionHeaderTopPadding 偏移的场景
+///     1. `.plain`
+///     2. 有 section title
 
 import UIKit
 import LXToolKit
@@ -31,7 +34,7 @@ class LXTable0120VC: UIViewController {
 
         t.delegate = self
         t.dataSource = self
-        // t.xl.adapter(withParentVC: self)
+        t.xl.adapter(withParentVC: self)
 
         t.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
 
@@ -75,17 +78,26 @@ private extension LXTable0120VC {}
 
 // MARK: - ✈️UITableViewDataSource
 extension LXTable0120VC: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell") as! UITableViewCell
-        cell.textLabel?.text = "\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")!
+        cell.textLabel?.text = "\(indexPath.section) - \(indexPath.row)"
         return cell
     }
 }
 // MARK: - ✈️UITableViewDelegate
 extension LXTable0120VC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Section - \(section)"
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -94,7 +106,8 @@ extension LXTable0120VC: UITableViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXTable0120VC {
     func prepareUI() {
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = .cyan
+        self.table.backgroundColor = .random
 
         [self.table].forEach(self.view.addSubview)
 

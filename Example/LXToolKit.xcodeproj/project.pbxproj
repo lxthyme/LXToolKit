@@ -196,26 +196,6 @@
 		BEF15C632799455500D26B02 /* XLEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBB2799455300D26B02 /* XLEventsVC.swift */; };
 		BEF15C642799455500D26B02 /* XLEventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBD2799455300D26B02 /* XLEventsVM.swift */; };
 		BEF15C652799455500D26B02 /* XLEventCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */; };
-		BEF15C662799455500D26B02 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC02799455300D26B02 /* PullRequest.swift */; };
-		BEF15C672799455500D26B02 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC12799455300D26B02 /* Language.swift */; };
-		BEF15C682799455500D26B02 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC22799455300D26B02 /* Event.swift */; };
-		BEF15C692799455500D26B02 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC32799455300D26B02 /* Branch.swift */; };
-		BEF15C6A2799455500D26B02 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC42799455300D26B02 /* Comment.swift */; };
-		BEF15C6B2799455500D26B02 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC52799455300D26B02 /* Milestone.swift */; };
-		BEF15C6C2799455500D26B02 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */; };
-		BEF15C6D2799455500D26B02 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC72799455300D26B02 /* Commit.swift */; };
-		BEF15C6E2799455500D26B02 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC82799455300D26B02 /* State.swift */; };
-		BEF15C6F2799455500D26B02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC92799455300D26B02 /* User.swift */; };
-		BEF15C702799455500D26B02 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCA2799455300D26B02 /* SectionType.swift */; };
-		BEF15C712799455500D26B02 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCB2799455300D26B02 /* License.swift */; };
-		BEF15C722799455500D26B02 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCC2799455300D26B02 /* Issue.swift */; };
-		BEF15C732799455500D26B02 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCD2799455300D26B02 /* Repository.swift */; };
-		BEF15C742799455500D26B02 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCE2799455300D26B02 /* Notification.swift */; };
-		BEF15C752799455500D26B02 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCF2799455300D26B02 /* Content.swift */; };
-		BEF15C762799455500D26B02 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD02799455300D26B02 /* Release.swift */; };
-		BEF15C772799455500D26B02 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD12799455300D26B02 /* Committer.swift */; };
-		BEF15C782799455500D26B02 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD22799455300D26B02 /* Token.swift */; };
-		BEF15C792799455500D26B02 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD32799455300D26B02 /* Contact.swift */; };
 		BEF15C7A2799455500D26B02 /* XLEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD52799455300D26B02 /* XLEventCell.swift */; };
 		BEF15C7B2799455500D26B02 /* XLBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD72799455300D26B02 /* XLBaseTableVC.swift */; };
 		BEF15C7C2799455500D26B02 /* KafkaRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDA2799455300D26B02 /* KafkaRefresh+Rx.swift */; };
@@ -586,26 +566,6 @@
 		BEF15BBB2799455300D26B02 /* XLEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventsVC.swift; sourceTree = "<group>"; };
 		BEF15BBD2799455300D26B02 /* XLEventsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventsVM.swift; sourceTree = "<group>"; };
 		BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventCellVM.swift; sourceTree = "<group>"; };
-		BEF15BC02799455300D26B02 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
-		BEF15BC12799455300D26B02 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		BEF15BC22799455300D26B02 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BEF15BC32799455300D26B02 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
-		BEF15BC42799455300D26B02 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		BEF15BC52799455300D26B02 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
-		BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
-		BEF15BC72799455300D26B02 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
-		BEF15BC82799455300D26B02 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		BEF15BC92799455300D26B02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BEF15BCA2799455300D26B02 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
-		BEF15BCB2799455300D26B02 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
-		BEF15BCC2799455300D26B02 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		BEF15BCD2799455300D26B02 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		BEF15BCE2799455300D26B02 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		BEF15BCF2799455300D26B02 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		BEF15BD02799455300D26B02 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
-		BEF15BD12799455300D26B02 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
-		BEF15BD22799455300D26B02 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		BEF15BD32799455300D26B02 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		BEF15BD52799455300D26B02 /* XLEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventCell.swift; sourceTree = "<group>"; };
 		BEF15BD72799455300D26B02 /* XLBaseTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseTableVC.swift; sourceTree = "<group>"; };
 		BEF15BDA2799455300D26B02 /* KafkaRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KafkaRefresh+Rx.swift"; sourceTree = "<group>"; };
@@ -849,7 +809,6 @@
 				BE258D8F25189841008E2777 /* View */,
 				BE258D9025189847008E2777 /* Model */,
 				BE258D9225189856008E2777 /* Network */,
-				BE258D912518984D008E2777 /* extension */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -873,13 +832,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		BE258D912518984D008E2777 /* extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = extension;
 			sourceTree = "<group>";
 		};
 		BE258D9225189856008E2777 /* Network */ = {
@@ -1653,7 +1605,6 @@
 				BEF15BA62799455300D26B02 /* HandyJSONModel */,
 				BEF15BBA2799455300D26B02 /* Controller */,
 				BEF15BBC2799455300D26B02 /* VM */,
-				BEF15BBF2799455300D26B02 /* model */,
 				BEF15BD42799455300D26B02 /* View */,
 				BEF15BD62799455300D26B02 /* mvvm */,
 			);
@@ -1701,33 +1652,6 @@
 				BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */,
 			);
 			path = VM;
-			sourceTree = "<group>";
-		};
-		BEF15BBF2799455300D26B02 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				BEF15BC02799455300D26B02 /* PullRequest.swift */,
-				BEF15BC12799455300D26B02 /* Language.swift */,
-				BEF15BC22799455300D26B02 /* Event.swift */,
-				BEF15BC32799455300D26B02 /* Branch.swift */,
-				BEF15BC42799455300D26B02 /* Comment.swift */,
-				BEF15BC52799455300D26B02 /* Milestone.swift */,
-				BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */,
-				BEF15BC72799455300D26B02 /* Commit.swift */,
-				BEF15BC82799455300D26B02 /* State.swift */,
-				BEF15BC92799455300D26B02 /* User.swift */,
-				BEF15BCA2799455300D26B02 /* SectionType.swift */,
-				BEF15BCB2799455300D26B02 /* License.swift */,
-				BEF15BCC2799455300D26B02 /* Issue.swift */,
-				BEF15BCD2799455300D26B02 /* Repository.swift */,
-				BEF15BCE2799455300D26B02 /* Notification.swift */,
-				BEF15BCF2799455300D26B02 /* Content.swift */,
-				BEF15BD02799455300D26B02 /* Release.swift */,
-				BEF15BD12799455300D26B02 /* Committer.swift */,
-				BEF15BD22799455300D26B02 /* Token.swift */,
-				BEF15BD32799455300D26B02 /* Contact.swift */,
-			);
-			path = model;
 			sourceTree = "<group>";
 		};
 		BEF15BD42799455300D26B02 /* View */ = {
@@ -2317,6 +2241,7 @@
 				"${BUILT_PRODUCTS_DIR}/MultiProgressView/MultiProgressView.framework",
 				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
@@ -2391,6 +2316,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MultiProgressView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
@@ -2508,8 +2434,6 @@
 				BEF15C852799455500D26B02 /* XLBaseTableViewCellVM.swift in Sources */,
 				BEA245F526F335290098707A /* UIScrollView + refresh.swift in Sources */,
 				BEA245E926F335290098707A /* Theme.swift in Sources */,
-				BEF15C722799455500D26B02 /* Issue.swift in Sources */,
-				BEF15C6D2799455500D26B02 /* Commit.swift in Sources */,
 				BEA245E026F335290098707A /* LXTTTTT.swift in Sources */,
 				BEA245C726F335290098707A /* LXResolveTestObj.m in Sources */,
 				BEA245E826F335290098707A /* UIImageView + Reactive.swift in Sources */,
@@ -2527,17 +2451,13 @@
 				BEA245EE26F335290098707A /* LXSongCellVM.swift in Sources */,
 				BEF15C7B2799455500D26B02 /* XLBaseTableVC.swift in Sources */,
 				BEA2460E26F335290098707A /* ReachabilityService.swift in Sources */,
-				BEF15C762799455500D26B02 /* Release.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
 				BEA2460826F335290098707A /* LXWikipediaSearchCell.swift in Sources */,
-				BEF15C662799455500D26B02 /* PullRequest.swift in Sources */,
 				BEA2460026F335290098707A /* WikipediaAPI.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEA2460C26F335290098707A /* LXWikipediaImageSearchView.swift in Sources */,
-				BEF15C6E2799455500D26B02 /* State.swift in Sources */,
 				BEA245ED26F335290098707A /* LXSongVM.swift in Sources */,
-				BEF15C6A2799455500D26B02 /* Comment.swift in Sources */,
 				BEA245F026F335290098707A /* LXMacro.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BEA245F226F335290098707A /* UIViewController + topVC.swift in Sources */,
@@ -2547,7 +2467,6 @@
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
 				BEF15C5F2799455400D26B02 /* XLNotificationModel.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
-				BEF15C692799455500D26B02 /* Branch.swift in Sources */,
 				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,
 				BEF15CB32799455500D26B02 /* Networking.swift in Sources */,
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
@@ -2557,7 +2476,6 @@
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
-				BEF15C772799455500D26B02 /* Committer.swift in Sources */,
 				BEF15C7A2799455500D26B02 /* XLEventCell.swift in Sources */,
 				BEA245DB26F335290098707A /* LXPresentVC.swift in Sources */,
 				BEF15C402799455400D26B02 /* LXPickerVC.swift in Sources */,
@@ -2566,12 +2484,10 @@
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
 				BEF15C602799455400D26B02 /* XLBranchModel.swift in Sources */,
-				BEF15C782799455500D26B02 /* Token.swift in Sources */,
 				BEF15C5D2799455400D26B02 /* XLContentModel.swift in Sources */,
 				BEA245D426F335290098707A /* findCommonSuperview.swift in Sources */,
 				BEA245CC26F335290098707A /* LXStackMessageVC.swift in Sources */,
 				BEA2460726F335290098707A /* LXSingleImageCell.swift in Sources */,
-				BEF15C6F2799455500D26B02 /* User.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
 				BEA245E526F335290098707A /* LXListItemModel.swift in Sources */,
 				BEA245FF26F335290098707A /* Dependencies.swift in Sources */,
@@ -2579,9 +2495,7 @@
 				BEF15C522799455400D26B02 /* XLCommitterModel.swift in Sources */,
 				BEF15C7C2799455500D26B02 /* KafkaRefresh+Rx.swift in Sources */,
 				BEF15C5B2799455400D26B02 /* XLLicenseModel.swift in Sources */,
-				BEF15C742799455500D26B02 /* Notification.swift in Sources */,
 				BEF15CC52799455600D26B02 /* LXMJExtensionTestModel.m in Sources */,
-				BEF15C792799455500D26B02 /* Contact.swift in Sources */,
 				BEA245EB26F335290098707A /* UUHud.swift in Sources */,
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
 				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
@@ -2589,7 +2503,6 @@
 				BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
-				BEF15C672799455500D26B02 /* Language.swift in Sources */,
 				BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
 				BEF15C812799455500D26B02 /* Logger.swift in Sources */,
@@ -2621,7 +2534,6 @@
 				BEA2460A26F335290098707A /* LXWikipediaImageSearchVC.swift in Sources */,
 				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
 				BEF15C502799455400D26B02 /* XLStateModel.swift in Sources */,
-				BEF15C702799455500D26B02 /* SectionType.swift in Sources */,
 				BEF15C442799455400D26B02 /* LXEmptyView.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
 				BEF15C582799455400D26B02 /* XLIssueModel.swift in Sources */,
@@ -2629,7 +2541,6 @@
 				BEA245C226F335290098707A /* LXStackTestVC.swift in Sources */,
 				BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */,
 				BEF15C642799455500D26B02 /* XLEventsVM.swift in Sources */,
-				BEF15C6B2799455500D26B02 /* Milestone.swift in Sources */,
 				BEA2460226F335290098707A /* WikipediaPage.swift in Sources */,
 				BEA245DF26F335290098707A /* LXMusicVM.swift in Sources */,
 				BEF15C5E2799455400D26B02 /* XLLanguageModel.swift in Sources */,
@@ -2642,7 +2553,6 @@
 				BEF15CB52799455600D26B02 /* XLAPI.swift in Sources */,
 				BEF15C862799455500D26B02 /* ErrorTracker.swift in Sources */,
 				BEF15C472799455400D26B02 /* LX0117Model.swift in Sources */,
-				BEF15C712799455500D26B02 /* License.swift in Sources */,
 				BEA2460F26F335290098707A /* Wireframe.swift in Sources */,
 				BEF15C872799455500D26B02 /* XLReachability.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
@@ -2654,8 +2564,6 @@
 				BEF15C652799455500D26B02 /* XLEventCellVM.swift in Sources */,
 				BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */,
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
-				BEF15C6C2799455500D26B02 /* ISO8601DateTransform.swift in Sources */,
-				BEF15C682799455500D26B02 /* Event.swift in Sources */,
 				BEF15CBD2799455600D26B02 /* XLBaseTableViewCell.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
@@ -2670,12 +2578,10 @@
 				BEF15CC12799455600D26B02 /* LXNestedCollectionCell.swift in Sources */,
 				BEA245FC26F335290098707A /* LXSongRecordModel.swift in Sources */,
 				BEA245D126F335290098707A /* LXMessageCell.swift in Sources */,
-				BEF15C752799455500D26B02 /* Content.swift in Sources */,
 				BEF15CBB2799455600D26B02 /* XLBaseVM.swift in Sources */,
 				BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */,
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
 				BEF15C4F2799455400D26B02 /* LX0324EventsVC.swift in Sources */,
-				BEF15C732799455500D26B02 /* Repository.swift in Sources */,
 				BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */,
 				BEA245D626F335290098707A /* LXOffScreenVC.swift in Sources */,
 				BEA245E726F335290098707A /* UIFont + ex.swift in Sources */,
