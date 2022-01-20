@@ -142,7 +142,7 @@ pod 'PromisesObjC'
 #pod 'PromisesSwift'
 pod 'FunctionalObjC'
 
-
+pod 'Masonry'
 pod 'Mantle'
 pod 'MJExtension'
 

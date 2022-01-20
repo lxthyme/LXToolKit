@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import LXToolKit
 
 class LXNestedTableVC: UIViewController {
     // MARK: 📌UI
-    private lazy var table: UITableView = {
-        let t = UITableView(frame: .zero, style: .plain)
-        t.rowHeight = 120
-        t.estimatedRowHeight = 120
+    private lazy var table: LXNestedTableView = {
+        let t = LXNestedTableView(frame: .zero, style: .plain)
+        t.rowHeight = 240
+        t.estimatedRowHeight = 240
         t.estimatedSectionHeaderHeight = 0
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0
         t.sectionFooterHeight = 0
+//        t.delaysContentTouches = false
+//        t.canCancelContentTouches = false
 
         t.backgroundColor = .white
         t.separatorStyle = .none
@@ -40,6 +43,7 @@ class LXNestedTableVC: UIViewController {
         return ds
     }()
     // MARK: 🔗Vaiables
+    private var previousContentOffset: CGPoint = .zero
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -86,6 +90,23 @@ extension LXNestedTableVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - ✈️UIScrollViewDelegate
+extension LXNestedTableVC: UIScrollViewDelegate {
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        if scrollView == table {
+//            previousContentOffset = scrollView.contentOffset
+//        }
+//    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView == table {
+//            dlog("---table")
+//
+//        } else {
+//            dlog("---ELSE")
+//        }
+//    }
 }
 
 // MARK: - 🍺UI Prepare & Masonry

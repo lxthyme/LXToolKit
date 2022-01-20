@@ -25,126 +25,15 @@
 		BE51ADC125370944005D0F10 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51ADC025370944005D0F10 /* NotificationViewController.swift */; };
 		BE51ADC425370944005D0F10 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE51ADC225370944005D0F10 /* MainInterface.storyboard */; };
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE60318A25B1F5DA0045117C /* LXPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE60318925B1F5DA0045117C /* LXPickerVC.swift */; };
-		BE66CCE825B3DED300F6B7C8 /* LX0117VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE66CCE725B3DED300F6B7C8 /* LX0117VC.swift */; };
-		BE673DF225B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE673DF125B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift */; };
 		BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA60B259ABB9B00526193 /* RxSwift.framework */; };
 		BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA612259ABBA100526193 /* RxCocoa.framework */; };
-		BE702A3D25E737550017C9D0 /* LXRx0225VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE702A3C25E737550017C9D0 /* LXRx0225VC.swift */; };
-		BE72697725B3E9DE00E155F6 /* LXEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72697625B3E9DE00E155F6 /* LXEmptyView.swift */; };
-		BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72698125B3EA8200E155F6 /* LXBaseVMVC2.swift */; };
-		BE72698925B3EB6600E155F6 /* LX0117VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72698825B3EB6600E155F6 /* LX0117VM.swift */; };
-		BE72699E25B3EBFF00E155F6 /* LX0117Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */; };
-		BE754985270176A200739312 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754982270176A200739312 /* LXNestedCell.swift */; };
-		BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754983270176A200739312 /* LXNestedCollectionCell.swift */; };
-		BE754987270176A200739312 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE754984270176A200739312 /* LXNestedTableVC.swift */; };
-		BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */; };
-		BE7BE97F260C40E30031B4F7 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */; };
-		BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */; };
-		BE827C2B2609E322009D18D0 /* XLBaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C2A2609E322009D18D0 /* XLBaseVM.swift */; };
-		BE827C3F2609E771009D18D0 /* XLEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C3E2609E771009D18D0 /* XLEventCell.swift */; };
 		BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C4D2609EC24009D18D0 /* R.generated.swift */; };
 		BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE827C552609ECBA009D18D0 /* Icons.xcassets */; };
-		BE827C68260A0382009D18D0 /* XLEventCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C67260A0382009D18D0 /* XLEventCellVM.swift */; };
-		BE827D5D260A09F7009D18D0 /* KafkaRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D59260A09F7009D18D0 /* KafkaRefresh+Rx.swift */; };
-		BE827D5E260A09F7009D18D0 /* Kingfisher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5A260A09F7009D18D0 /* Kingfisher+Rx.swift */; };
-		BE827D5F260A09F7009D18D0 /* Observable+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5B260A09F7009D18D0 /* Observable+Logging.swift */; };
-		BE827D60260A09F7009D18D0 /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D5C260A09F7009D18D0 /* Observable+Operators.swift */; };
-		BE827D97260A0E6D009D18D0 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D96260A0E6D009D18D0 /* GlobalConfig.swift */; };
-		BE827D9F260A0F77009D18D0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827D9E260A0F77009D18D0 /* Logger.swift */; };
-		BE827DA7260A136E009D18D0 /* XLEventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DA6260A136E009D18D0 /* XLEventsVM.swift */; };
-		BE827DAF260A13CB009D18D0 /* XLBaseTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */; };
-		BE827DC8260A1A2F009D18D0 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DC5260A1A2F009D18D0 /* ErrorTracker.swift */; };
-		BE827DC9260A1A2F009D18D0 /* RxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827DC7260A1A2F009D18D0 /* RxActivityIndicator.swift */; };
-		BE89708325E489A100101247 /* LXCubeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89708225E489A100101247 /* LXCubeVC.swift */; };
-		BE89708B25E4903600101247 /* LXCubeFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89708A25E4903600101247 /* LXCubeFaceView.swift */; };
-		BE8A389325B282DE0062E388 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A389225B282DE0062E388 /* ExampleViewController.swift */; };
 		BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A39CE25B2B3920062E388 /* Macro.swift */; };
-		BE8A39E425B2B7820062E388 /* LXPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A39E325B2B7820062E388 /* LXPhotoCell.swift */; };
-		BE8A39EE25B2B9690062E388 /* LXPhotoAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A39ED25B2B9690062E388 /* LXPhotoAlbumVC.swift */; };
-		BE8A3A6325B2E6950062E388 /* LXAlbumListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A3A6225B2E6950062E388 /* LXAlbumListModel.swift */; };
 		BE8A94C22524275000E20F14 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94C12524275000E20F14 /* NotificationService.swift */; };
 		BE8A94C62524275000E20F14 /* Service.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE8A94BF2524275000E20F14 /* Service.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */; };
 		BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */; };
-		BE8A972D260B24B100A32116 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A972C260B24B100A32116 /* RestApi.swift */; };
-		BE8A973B260B253900A32116 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A973A260B253900A32116 /* ErrorResponse.swift */; };
-		BE8A9743260B260C00A32116 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9742260B260C00A32116 /* Networking.swift */; };
-		BE8A974B260B26B300A32116 /* XLReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A974A260B26B300A32116 /* XLReachability.swift */; };
-		BE8A9759260B276300A32116 /* XLGithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9758260B276300A32116 /* XLGithubAPI.swift */; };
-		BE8A9767260B2E5000A32116 /* XLEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A9766260B2E5000A32116 /* XLEventsVC.swift */; };
-		BE8A9799260B321400A32116 /* RepositorySearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A976F260B321300A32116 /* RepositorySearch.json */; };
-		BE8A979A260B321400A32116 /* RepositoryTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9770260B321300A32116 /* RepositoryTrendings.json */; };
-		BE8A979B260B321400A32116 /* RepositoryPullRequests.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9771260B321300A32116 /* RepositoryPullRequests.json */; };
-		BE8A979C260B321400A32116 /* EventsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9772260B321300A32116 /* EventsRepository.json */; };
-		BE8A979D260B321400A32116 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9773260B321300A32116 /* Languages.json */; };
-		BE8A979E260B321400A32116 /* UserRepositories.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9774260B321300A32116 /* UserRepositories.json */; };
-		BE8A979F260B321400A32116 /* RepositoryRelease.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9775260B321300A32116 /* RepositoryRelease.json */; };
-		BE8A97A0260B321400A32116 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9776260B321300A32116 /* Events.json */; };
-		BE8A97A1260B321400A32116 /* RepositoryIssue.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9777260B321300A32116 /* RepositoryIssue.json */; };
-		BE8A97A2260B321400A32116 /* RepositoryBranch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9778260B321300A32116 /* RepositoryBranch.json */; };
-		BE8A97A3260B321400A32116 /* RepositoryPullRequestComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9779260B321300A32116 /* RepositoryPullRequestComments.json */; };
-		BE8A97A4260B321400A32116 /* RepositoryContributors.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977A260B321300A32116 /* RepositoryContributors.json */; };
-		BE8A97A5260B321400A32116 /* Repository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977B260B321300A32116 /* Repository.json */; };
-		BE8A97A6260B321400A32116 /* RepositoryStargazers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977C260B321300A32116 /* RepositoryStargazers.json */; };
-		BE8A97A7260B321400A32116 /* UserTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977D260B321300A32116 /* UserTrendings.json */; };
-		BE8A97A8260B321400A32116 /* UserRepositoriesStarred.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977E260B321300A32116 /* UserRepositoriesStarred.json */; };
-		BE8A97A9260B321400A32116 /* EmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A977F260B321300A32116 /* EmptyArray.json */; };
-		BE8A97AA260B321400A32116 /* EventsUserReceived.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9780260B321300A32116 /* EventsUserReceived.json */; };
-		BE8A97AB260B321400A32116 /* UserRepositoriesWatching.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9781260B321300A32116 /* UserRepositoriesWatching.json */; };
-		BE8A97AC260B321400A32116 /* UserSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9782260B321300A32116 /* UserSearch.json */; };
-		BE8A97AD260B321400A32116 /* UserFollowers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9783260B321300A32116 /* UserFollowers.json */; };
-		BE8A97AE260B321400A32116 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9784260B321300A32116 /* User.json */; };
-		BE8A97AF260B321400A32116 /* EventsUserPerformed.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9785260B321300A32116 /* EventsUserPerformed.json */; };
-		BE8A97B0260B321400A32116 /* RepositoryIssues.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9786260B321400A32116 /* RepositoryIssues.json */; };
-		BE8A97B1260B321400A32116 /* Notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9787260B321400A32116 /* Notifications.json */; };
-		BE8A97B2260B321400A32116 /* RepositoryNumberOfLines.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9788260B321400A32116 /* RepositoryNumberOfLines.json */; };
-		BE8A97B3260B321400A32116 /* RepositoryIssueComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9789260B321400A32116 /* RepositoryIssueComments.json */; };
-		BE8A97B4260B321400A32116 /* Organization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978A260B321400A32116 /* Organization.json */; };
-		BE8A97B5260B321400A32116 /* RepositoryReadme.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978B260B321400A32116 /* RepositoryReadme.json */; };
-		BE8A97B6260B321400A32116 /* EmptyObject.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978C260B321400A32116 /* EmptyObject.json */; };
-		BE8A97B7260B321400A32116 /* RepositoryCommit.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978D260B321400A32116 /* RepositoryCommit.json */; };
-		BE8A97B8260B321400A32116 /* UserFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978E260B321400A32116 /* UserFollowing.json */; };
-		BE8A97B9260B321400A32116 /* RepositoryCommits.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A978F260B321400A32116 /* RepositoryCommits.json */; };
-		BE8A97BA260B321400A32116 /* NotificationsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9790260B321400A32116 /* NotificationsRepository.json */; };
-		BE8A97BB260B321400A32116 /* RepositoryContents.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9791260B321400A32116 /* RepositoryContents.json */; };
-		BE8A97BC260B321400A32116 /* RepositoryForks.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9792260B321400A32116 /* RepositoryForks.json */; };
-		BE8A97BD260B321400A32116 /* RepositoryBranches.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9793260B321400A32116 /* RepositoryBranches.json */; };
-		BE8A97BE260B321400A32116 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9794260B321400A32116 /* Profile.json */; };
-		BE8A97BF260B321400A32116 /* RepositoryReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9795260B321400A32116 /* RepositoryReleases.json */; };
-		BE8A97C0260B321400A32116 /* RepositoryPullRequest.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9796260B321400A32116 /* RepositoryPullRequest.json */; };
-		BE8A97C1260B321400A32116 /* RepositoryWatchers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9797260B321400A32116 /* RepositoryWatchers.json */; };
-		BE8A97C2260B321400A32116 /* EventsOrganization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE8A9798260B321400A32116 /* EventsOrganization.json */; };
 		BE8A97D1260B35A700A32116 /* Localizabled.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE8A97D3260B35A700A32116 /* Localizabled.strings */; };
-		BE8A97E2260B396900A32116 /* XLBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A97E1260B396900A32116 /* XLBaseVC.swift */; };
-		BE8A97EA260B399200A32116 /* XLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A97E9260B399200A32116 /* XLNavigator.swift */; };
-		BE8A97F2260B410F00A32116 /* LXBaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A97F1260B410F00A32116 /* LXBaseNavController.swift */; };
-		BE8CD23F260D7A9000CC90A5 /* LX0324EventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD23E260D7A9000CC90A5 /* LX0324EventsVC.swift */; };
-		BE8CD24F260D7ABF00CC90A5 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD24E260D7ABF00CC90A5 /* Refreshable.swift */; };
-		BE8CD25D260D7BF100CC90A5 /* LX0324EventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD25C260D7BF100CC90A5 /* LX0324EventsVM.swift */; };
-		BE8CD2A3260D846B00CC90A5 /* Response +  rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2A2260D846B00CC90A5 /* Response +  rx.swift */; };
-		BE8CD2AB260D879300CC90A5 /* XLBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2AA260D879300CC90A5 /* XLBaseModel.swift */; };
-		BE8CD2CD260DAD0400CC90A5 /* XLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2CC260DAD0300CC90A5 /* XLAPI.swift */; };
-		BE8CD2DC260DD35C00CC90A5 /* XLEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */; };
-		BE8CD2EA260DD46D00CC90A5 /* XLUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */; };
-		BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */; };
-		BE8CD300260DDE2D00CC90A5 /* XLLanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */; };
-		BE8CD308260DDEBB00CC90A5 /* XLLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */; };
-		BE8CD310260DDF1A00CC90A5 /* XLCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */; };
-		BE8CD318260DDF4500CC90A5 /* XLBranchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */; };
-		BE8CD320260DDF6C00CC90A5 /* XLCommitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */; };
-		BE8CD328260DDFB900CC90A5 /* XLCommitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */; };
-		BE8CD330260DDFD900CC90A5 /* XLContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */; };
-		BE8CD338260DE00700CC90A5 /* XLContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD337260DE00700CC90A5 /* XLContentModel.swift */; };
-		BE8CD340260DE02A00CC90A5 /* XLIssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */; };
-		BE8CD348260DE06100CC90A5 /* XLMilestoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */; };
-		BE8CD350260DE07E00CC90A5 /* XLNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */; };
-		BE8CD358260DE0D000CC90A5 /* XLPullRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */; };
-		BE8CD360260DE0E800CC90A5 /* XLReleaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */; };
-		BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD367260DE12400CC90A5 /* XLSectionType.swift */; };
-		BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */; };
-		BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */; };
-		BE90CA5D26131C0100DF0C07 /* LXCustomLoggerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */; };
 		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
 		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
 		BEA1A124258A02EC00E03DA3 /* LXToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */; };
@@ -232,9 +121,7 @@
 		BEA2461226F335290098707A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245BE26F335290098707A /* ActivityIndicator.swift */; };
 		BEA2461326F335290098707A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245BF26F335290098707A /* Reachability.swift */; };
 		BEA2461426F335290098707A /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245C026F335290098707A /* DownloadableImage.swift */; };
-		BEA2461826F335350098707A /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461726F335340098707A /* LXGitHubTestModel.m */; };
-		BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */; };
-		BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */; };
+		BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */; };
 		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
 		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
 		BEAF2CA325BE8FA30054AE3D /* handle + comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CA225BE8FA30054AE3D /* handle + comments.swift */; };
@@ -251,7 +138,6 @@
 		BEAF2E1925BEA4310054AE3D /* LXMaJia+dealAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E1825BEA4310054AE3D /* LXMaJia+dealAssets.m */; };
 		BEAF2E2225BEA4500054AE3D /* LXMaJia+insertSampleCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */; };
 		BEAF2F2125BEAD3F0054AE3D /* LXMaJia+common.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */; };
-		BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB52C4025B01309006C5C34 /* LX0114VC.swift */; };
 		BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3772521DC31004C91B6 /* API + ex.swift */; };
 		BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D37A2521DE20004C91B6 /* LXBaseViewModel.swift */; };
 		BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D37C2521DF44004C91B6 /* APIManager.swift */; };
@@ -268,6 +154,149 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
+		BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */; };
+		BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B842799455300D26B02 /* LX1019TestVC.m */; };
+		BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B862799455300D26B02 /* ExampleViewController.swift */; };
+		BEF15C3F2799455400D26B02 /* LXPhotoAlbumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B872799455300D26B02 /* LXPhotoAlbumVC.swift */; };
+		BEF15C402799455400D26B02 /* LXPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B882799455300D26B02 /* LXPickerVC.swift */; };
+		BEF15C412799455400D26B02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEF15B892799455300D26B02 /* Localizable.strings */; };
+		BEF15C422799455400D26B02 /* LXPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B8B2799455300D26B02 /* LXPhotoCell.swift */; };
+		BEF15C432799455400D26B02 /* LXAlbumListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B8D2799455300D26B02 /* LXAlbumListModel.swift */; };
+		BEF15C442799455400D26B02 /* LXEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B8F2799455300D26B02 /* LXEmptyView.swift */; };
+		BEF15C452799455400D26B02 /* LX0117VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B912799455300D26B02 /* LX0117VM.swift */; };
+		BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B922799455300D26B02 /* LX0117VC.swift */; };
+		BEF15C472799455400D26B02 /* LX0117Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B942799455300D26B02 /* LX0117Model.swift */; };
+		BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B962799455300D26B02 /* LXBaseVMVC2.swift */; };
+		BEF15C492799455400D26B02 /* LXStack1206VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B982799455300D26B02 /* LXStack1206VC.m */; };
+		BEF15C4A2799455400D26B02 /* LXCubeFaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B9B2799455300D26B02 /* LXCubeFaceView.swift */; };
+		BEF15C4B2799455400D26B02 /* LXCubeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B9C2799455300D26B02 /* LXCubeVC.swift */; };
+		BEF15C4C2799455400D26B02 /* LXRx0225VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B9E2799455300D26B02 /* LXRx0225VC.swift */; };
+		BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA02799455300D26B02 /* Refreshable.swift */; };
+		BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA22799455300D26B02 /* LX0324EventsVM.swift */; };
+		BEF15C4F2799455400D26B02 /* LX0324EventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA42799455300D26B02 /* LX0324EventsVC.swift */; };
+		BEF15C502799455400D26B02 /* XLStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA72799455300D26B02 /* XLStateModel.swift */; };
+		BEF15C512799455400D26B02 /* XLTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA82799455300D26B02 /* XLTokenModel.swift */; };
+		BEF15C522799455400D26B02 /* XLCommitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA92799455300D26B02 /* XLCommitterModel.swift */; };
+		BEF15C532799455400D26B02 /* XLCommitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAA2799455300D26B02 /* XLCommitModel.swift */; };
+		BEF15C542799455400D26B02 /* XLUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAB2799455300D26B02 /* XLUserModel.swift */; };
+		BEF15C552799455400D26B02 /* XLEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAC2799455300D26B02 /* XLEventsModel.swift */; };
+		BEF15C562799455400D26B02 /* XLReleaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAD2799455300D26B02 /* XLReleaseModel.swift */; };
+		BEF15C572799455400D26B02 /* XLPullRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAE2799455300D26B02 /* XLPullRequestModel.swift */; };
+		BEF15C582799455400D26B02 /* XLIssueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BAF2799455300D26B02 /* XLIssueModel.swift */; };
+		BEF15C592799455400D26B02 /* XLRepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB02799455300D26B02 /* XLRepositoryModel.swift */; };
+		BEF15C5A2799455400D26B02 /* XLMilestoneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB12799455300D26B02 /* XLMilestoneModel.swift */; };
+		BEF15C5B2799455400D26B02 /* XLLicenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB22799455300D26B02 /* XLLicenseModel.swift */; };
+		BEF15C5C2799455400D26B02 /* XLCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB32799455300D26B02 /* XLCommentModel.swift */; };
+		BEF15C5D2799455400D26B02 /* XLContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB42799455300D26B02 /* XLContentModel.swift */; };
+		BEF15C5E2799455400D26B02 /* XLLanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB52799455300D26B02 /* XLLanguageModel.swift */; };
+		BEF15C5F2799455400D26B02 /* XLNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB62799455300D26B02 /* XLNotificationModel.swift */; };
+		BEF15C602799455400D26B02 /* XLBranchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB72799455300D26B02 /* XLBranchModel.swift */; };
+		BEF15C612799455400D26B02 /* XLContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB82799455300D26B02 /* XLContactModel.swift */; };
+		BEF15C622799455400D26B02 /* XLSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BB92799455300D26B02 /* XLSectionType.swift */; };
+		BEF15C632799455500D26B02 /* XLEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBB2799455300D26B02 /* XLEventsVC.swift */; };
+		BEF15C642799455500D26B02 /* XLEventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBD2799455300D26B02 /* XLEventsVM.swift */; };
+		BEF15C652799455500D26B02 /* XLEventCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */; };
+		BEF15C662799455500D26B02 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC02799455300D26B02 /* PullRequest.swift */; };
+		BEF15C672799455500D26B02 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC12799455300D26B02 /* Language.swift */; };
+		BEF15C682799455500D26B02 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC22799455300D26B02 /* Event.swift */; };
+		BEF15C692799455500D26B02 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC32799455300D26B02 /* Branch.swift */; };
+		BEF15C6A2799455500D26B02 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC42799455300D26B02 /* Comment.swift */; };
+		BEF15C6B2799455500D26B02 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC52799455300D26B02 /* Milestone.swift */; };
+		BEF15C6C2799455500D26B02 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */; };
+		BEF15C6D2799455500D26B02 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC72799455300D26B02 /* Commit.swift */; };
+		BEF15C6E2799455500D26B02 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC82799455300D26B02 /* State.swift */; };
+		BEF15C6F2799455500D26B02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BC92799455300D26B02 /* User.swift */; };
+		BEF15C702799455500D26B02 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCA2799455300D26B02 /* SectionType.swift */; };
+		BEF15C712799455500D26B02 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCB2799455300D26B02 /* License.swift */; };
+		BEF15C722799455500D26B02 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCC2799455300D26B02 /* Issue.swift */; };
+		BEF15C732799455500D26B02 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCD2799455300D26B02 /* Repository.swift */; };
+		BEF15C742799455500D26B02 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCE2799455300D26B02 /* Notification.swift */; };
+		BEF15C752799455500D26B02 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BCF2799455300D26B02 /* Content.swift */; };
+		BEF15C762799455500D26B02 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD02799455300D26B02 /* Release.swift */; };
+		BEF15C772799455500D26B02 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD12799455300D26B02 /* Committer.swift */; };
+		BEF15C782799455500D26B02 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD22799455300D26B02 /* Token.swift */; };
+		BEF15C792799455500D26B02 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD32799455300D26B02 /* Contact.swift */; };
+		BEF15C7A2799455500D26B02 /* XLEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD52799455300D26B02 /* XLEventCell.swift */; };
+		BEF15C7B2799455500D26B02 /* XLBaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BD72799455300D26B02 /* XLBaseTableVC.swift */; };
+		BEF15C7C2799455500D26B02 /* KafkaRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDA2799455300D26B02 /* KafkaRefresh+Rx.swift */; };
+		BEF15C7D2799455500D26B02 /* Kingfisher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDB2799455300D26B02 /* Kingfisher+Rx.swift */; };
+		BEF15C7E2799455500D26B02 /* Observable+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDC2799455300D26B02 /* Observable+Logging.swift */; };
+		BEF15C7F2799455500D26B02 /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDD2799455300D26B02 /* Observable+Operators.swift */; };
+		BEF15C802799455500D26B02 /* XLBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDE2799455300D26B02 /* XLBaseVC.swift */; };
+		BEF15C812799455500D26B02 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDF2799455300D26B02 /* Logger.swift */; };
+		BEF15C822799455500D26B02 /* XLNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE02799455300D26B02 /* XLNavigator.swift */; };
+		BEF15C832799455500D26B02 /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE12799455300D26B02 /* LibraryManager.swift */; };
+		BEF15C842799455500D26B02 /* LXCustomLoggerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */; };
+		BEF15C852799455500D26B02 /* XLBaseTableViewCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE32799455300D26B02 /* XLBaseTableViewCellVM.swift */; };
+		BEF15C862799455500D26B02 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE52799455300D26B02 /* ErrorTracker.swift */; };
+		BEF15C872799455500D26B02 /* XLReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE72799455300D26B02 /* XLReachability.swift */; };
+		BEF15C882799455500D26B02 /* RepositorySearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BE92799455300D26B02 /* RepositorySearch.json */; };
+		BEF15C892799455500D26B02 /* RepositoryTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BEA2799455300D26B02 /* RepositoryTrendings.json */; };
+		BEF15C8A2799455500D26B02 /* RepositoryPullRequests.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BEB2799455300D26B02 /* RepositoryPullRequests.json */; };
+		BEF15C8B2799455500D26B02 /* EventsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BEC2799455300D26B02 /* EventsRepository.json */; };
+		BEF15C8C2799455500D26B02 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BED2799455300D26B02 /* Languages.json */; };
+		BEF15C8D2799455500D26B02 /* UserRepositories.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BEE2799455300D26B02 /* UserRepositories.json */; };
+		BEF15C8E2799455500D26B02 /* RepositoryRelease.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BEF2799455300D26B02 /* RepositoryRelease.json */; };
+		BEF15C8F2799455500D26B02 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF02799455300D26B02 /* Events.json */; };
+		BEF15C902799455500D26B02 /* RepositoryIssue.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF12799455300D26B02 /* RepositoryIssue.json */; };
+		BEF15C912799455500D26B02 /* RepositoryBranch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF22799455300D26B02 /* RepositoryBranch.json */; };
+		BEF15C922799455500D26B02 /* RepositoryPullRequestComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF32799455300D26B02 /* RepositoryPullRequestComments.json */; };
+		BEF15C932799455500D26B02 /* RepositoryContributors.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF42799455300D26B02 /* RepositoryContributors.json */; };
+		BEF15C942799455500D26B02 /* Repository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF52799455300D26B02 /* Repository.json */; };
+		BEF15C952799455500D26B02 /* RepositoryStargazers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF62799455300D26B02 /* RepositoryStargazers.json */; };
+		BEF15C962799455500D26B02 /* UserTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF72799455300D26B02 /* UserTrendings.json */; };
+		BEF15C972799455500D26B02 /* UserRepositoriesStarred.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF82799455300D26B02 /* UserRepositoriesStarred.json */; };
+		BEF15C982799455500D26B02 /* EmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BF92799455300D26B02 /* EmptyArray.json */; };
+		BEF15C992799455500D26B02 /* EventsUserReceived.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFA2799455300D26B02 /* EventsUserReceived.json */; };
+		BEF15C9A2799455500D26B02 /* UserRepositoriesWatching.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFB2799455300D26B02 /* UserRepositoriesWatching.json */; };
+		BEF15C9B2799455500D26B02 /* UserSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFC2799455300D26B02 /* UserSearch.json */; };
+		BEF15C9C2799455500D26B02 /* UserFollowers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFD2799455300D26B02 /* UserFollowers.json */; };
+		BEF15C9D2799455500D26B02 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFE2799455300D26B02 /* User.json */; };
+		BEF15C9E2799455500D26B02 /* EventsUserPerformed.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15BFF2799455300D26B02 /* EventsUserPerformed.json */; };
+		BEF15C9F2799455500D26B02 /* RepositoryIssues.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C002799455300D26B02 /* RepositoryIssues.json */; };
+		BEF15CA02799455500D26B02 /* Notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C012799455300D26B02 /* Notifications.json */; };
+		BEF15CA12799455500D26B02 /* RepositoryNumberOfLines.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C022799455300D26B02 /* RepositoryNumberOfLines.json */; };
+		BEF15CA22799455500D26B02 /* RepositoryIssueComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C032799455300D26B02 /* RepositoryIssueComments.json */; };
+		BEF15CA32799455500D26B02 /* Organization.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C042799455300D26B02 /* Organization.json */; };
+		BEF15CA42799455500D26B02 /* RepositoryReadme.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C052799455300D26B02 /* RepositoryReadme.json */; };
+		BEF15CA52799455500D26B02 /* EmptyObject.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C062799455300D26B02 /* EmptyObject.json */; };
+		BEF15CA62799455500D26B02 /* RepositoryCommit.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C072799455300D26B02 /* RepositoryCommit.json */; };
+		BEF15CA72799455500D26B02 /* UserFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C082799455300D26B02 /* UserFollowing.json */; };
+		BEF15CA82799455500D26B02 /* RepositoryCommits.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C092799455300D26B02 /* RepositoryCommits.json */; };
+		BEF15CA92799455500D26B02 /* NotificationsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0A2799455300D26B02 /* NotificationsRepository.json */; };
+		BEF15CAA2799455500D26B02 /* RepositoryContents.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0B2799455300D26B02 /* RepositoryContents.json */; };
+		BEF15CAB2799455500D26B02 /* RepositoryForks.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0C2799455300D26B02 /* RepositoryForks.json */; };
+		BEF15CAC2799455500D26B02 /* RepositoryBranches.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0D2799455300D26B02 /* RepositoryBranches.json */; };
+		BEF15CAD2799455500D26B02 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0E2799455300D26B02 /* Profile.json */; };
+		BEF15CAE2799455500D26B02 /* RepositoryReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C0F2799455300D26B02 /* RepositoryReleases.json */; };
+		BEF15CAF2799455500D26B02 /* RepositoryPullRequest.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C102799455300D26B02 /* RepositoryPullRequest.json */; };
+		BEF15CB02799455500D26B02 /* RepositoryWatchers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C112799455300D26B02 /* RepositoryWatchers.json */; };
+		BEF15CB12799455500D26B02 /* EventsOrganization.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF15C122799455300D26B02 /* EventsOrganization.json */; };
+		BEF15CB22799455500D26B02 /* XLBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C132799455400D26B02 /* XLBaseModel.swift */; };
+		BEF15CB32799455500D26B02 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C142799455400D26B02 /* Networking.swift */; };
+		BEF15CB42799455600D26B02 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C152799455400D26B02 /* RestApi.swift */; };
+		BEF15CB52799455600D26B02 /* XLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C162799455400D26B02 /* XLAPI.swift */; };
+		BEF15CB62799455600D26B02 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C172799455400D26B02 /* ErrorResponse.swift */; };
+		BEF15CB72799455600D26B02 /* Response +  rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C182799455400D26B02 /* Response +  rx.swift */; };
+		BEF15CB82799455600D26B02 /* XLGithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C192799455400D26B02 /* XLGithubAPI.swift */; };
+		BEF15CB92799455600D26B02 /* GlobalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C1A2799455400D26B02 /* GlobalConfig.swift */; };
+		BEF15CBA2799455600D26B02 /* RxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C1C2799455400D26B02 /* RxActivityIndicator.swift */; };
+		BEF15CBB2799455600D26B02 /* XLBaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C1D2799455400D26B02 /* XLBaseVM.swift */; };
+		BEF15CBC2799455600D26B02 /* LXBaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C1E2799455400D26B02 /* LXBaseNavController.swift */; };
+		BEF15CBD2799455600D26B02 /* XLBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C1F2799455400D26B02 /* XLBaseTableViewCell.swift */; };
+		BEF15CBE2799455600D26B02 /* LXSectionHeaderTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C232799455400D26B02 /* LXSectionHeaderTestView.m */; };
+		BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C252799455400D26B02 /* LXTableTestVC.m */; };
+		BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C282799455400D26B02 /* LXNestedCell.swift */; };
+		BEF15CC12799455600D26B02 /* LXNestedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C292799455400D26B02 /* LXNestedCollectionCell.swift */; };
+		BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2B2799455400D26B02 /* LXNestedTableView.swift */; };
+		BEF15CC32799455600D26B02 /* LXNestedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2C2799455400D26B02 /* LXNestedCollectionView.swift */; };
+		BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2D2799455400D26B02 /* LXNestedTableVC.swift */; };
+		BEF15CC52799455600D26B02 /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */; };
+		BEF15CC62799455600D26B02 /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C322799455400D26B02 /* LXGitHubTestModel.m */; };
+		BEF15CC72799455600D26B02 /* PHPhotoLibrary + requestAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C352799455400D26B02 /* PHPhotoLibrary + requestAuthorization.swift */; };
+		BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C362799455400D26B02 /* LX0114VC.swift */; };
+		BEF15CC92799455600D26B02 /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C382799455400D26B02 /* LXClsListVC.swift */; };
+		BEF15CCA2799455600D26B02 /* LXHugTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C3B2799455400D26B02 /* LXHugTestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,134 +386,23 @@
 		BE51ADC025370944005D0F10 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		BE51ADC325370944005D0F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE60318925B1F5DA0045117C /* LXPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPickerVC.swift; sourceTree = "<group>"; };
-		BE66CCE725B3DED300F6B7C8 /* LX0117VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0117VC.swift; sourceTree = "<group>"; };
-		BE673DF125B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary + requestAuthorization.swift"; sourceTree = "<group>"; };
 		BE6AA60B259ABB9B00526193 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6AA612259ABBA100526193 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE702A3C25E737550017C9D0 /* LXRx0225VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXRx0225VC.swift; sourceTree = "<group>"; };
-		BE72697625B3E9DE00E155F6 /* LXEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEmptyView.swift; sourceTree = "<group>"; };
-		BE72698125B3EA8200E155F6 /* LXBaseVMVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseVMVC2.swift; sourceTree = "<group>"; };
-		BE72698825B3EB6600E155F6 /* LX0117VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0117VM.swift; sourceTree = "<group>"; };
-		BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0117Model.swift; sourceTree = "<group>"; };
-		BE754982270176A200739312 /* LXNestedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCell.swift; sourceTree = "<group>"; };
-		BE754983270176A200739312 /* LXNestedCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionCell.swift; sourceTree = "<group>"; };
-		BE754984270176A200739312 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
-		BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableVC.swift; sourceTree = "<group>"; };
-		BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
-		BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCell.swift; sourceTree = "<group>"; };
-		BE827C2A2609E322009D18D0 /* XLBaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseVM.swift; sourceTree = "<group>"; };
-		BE827C3E2609E771009D18D0 /* XLEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventCell.swift; sourceTree = "<group>"; };
 		BE827C4D2609EC24009D18D0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = LXToolKit_Exam/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BE827C552609ECBA009D18D0 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
-		BE827C67260A0382009D18D0 /* XLEventCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventCellVM.swift; sourceTree = "<group>"; };
-		BE827D59260A09F7009D18D0 /* KafkaRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KafkaRefresh+Rx.swift"; sourceTree = "<group>"; };
-		BE827D5A260A09F7009D18D0 /* Kingfisher+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Rx.swift"; sourceTree = "<group>"; };
-		BE827D5B260A09F7009D18D0 /* Observable+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Logging.swift"; sourceTree = "<group>"; };
-		BE827D5C260A09F7009D18D0 /* Observable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
-		BE827D96260A0E6D009D18D0 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
-		BE827D9E260A0F77009D18D0 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		BE827DA6260A136E009D18D0 /* XLEventsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsVM.swift; sourceTree = "<group>"; };
-		BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCellVM.swift; sourceTree = "<group>"; };
-		BE827DC5260A1A2F009D18D0 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
-		BE827DC7260A1A2F009D18D0 /* RxActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxActivityIndicator.swift; sourceTree = "<group>"; };
 		BE83809325A9E5A9002CA245 /* Reactive + RetryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive + RetryView.swift"; sourceTree = "<group>"; };
 		BE8380E425AA0704002CA245 /* UIImageView + Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Reactive.swift"; sourceTree = "<group>"; };
 		BE8380EB25AA0BA4002CA245 /* LXMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMacro.swift; sourceTree = "<group>"; };
 		BE87F5FA25315B620066E47F /* LXStackTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
-		BE89708225E489A100101247 /* LXCubeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCubeVC.swift; sourceTree = "<group>"; };
-		BE89708A25E4903600101247 /* LXCubeFaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCubeFaceView.swift; sourceTree = "<group>"; };
-		BE8A389225B282DE0062E388 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		BE8A39CE25B2B3920062E388 /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
-		BE8A39E325B2B7820062E388 /* LXPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPhotoCell.swift; sourceTree = "<group>"; };
-		BE8A39ED25B2B9690062E388 /* LXPhotoAlbumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXPhotoAlbumVC.swift; sourceTree = "<group>"; };
-		BE8A3A6225B2E6950062E388 /* LXAlbumListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAlbumListModel.swift; sourceTree = "<group>"; };
 		BE8A94BF2524275000E20F14 /* Service.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Service.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A94C12524275000E20F14 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		BE8A94C32524275000E20F14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SampleNotificationDelegate.swift; path = "../../../framework/CustomNotification-Swift/NotificationSample/NotificationSample/SampleNotificationDelegate.swift"; sourceTree = "<group>"; };
 		BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate + Notification.swift"; sourceTree = "<group>"; };
-		BE8A972C260B24B100A32116 /* RestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
-		BE8A973A260B253900A32116 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		BE8A9742260B260C00A32116 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		BE8A974A260B26B300A32116 /* XLReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLReachability.swift; sourceTree = "<group>"; };
-		BE8A9758260B276300A32116 /* XLGithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLGithubAPI.swift; sourceTree = "<group>"; };
-		BE8A9766260B2E5000A32116 /* XLEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsVC.swift; sourceTree = "<group>"; };
-		BE8A976F260B321300A32116 /* RepositorySearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositorySearch.json; sourceTree = "<group>"; };
-		BE8A9770260B321300A32116 /* RepositoryTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryTrendings.json; sourceTree = "<group>"; };
-		BE8A9771260B321300A32116 /* RepositoryPullRequests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequests.json; sourceTree = "<group>"; };
-		BE8A9772260B321300A32116 /* EventsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsRepository.json; sourceTree = "<group>"; };
-		BE8A9773260B321300A32116 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
-		BE8A9774260B321300A32116 /* UserRepositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositories.json; sourceTree = "<group>"; };
-		BE8A9775260B321300A32116 /* RepositoryRelease.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryRelease.json; sourceTree = "<group>"; };
-		BE8A9776260B321300A32116 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
-		BE8A9777260B321300A32116 /* RepositoryIssue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssue.json; sourceTree = "<group>"; };
-		BE8A9778260B321300A32116 /* RepositoryBranch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranch.json; sourceTree = "<group>"; };
-		BE8A9779260B321300A32116 /* RepositoryPullRequestComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequestComments.json; sourceTree = "<group>"; };
-		BE8A977A260B321300A32116 /* RepositoryContributors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContributors.json; sourceTree = "<group>"; };
-		BE8A977B260B321300A32116 /* Repository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Repository.json; sourceTree = "<group>"; };
-		BE8A977C260B321300A32116 /* RepositoryStargazers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryStargazers.json; sourceTree = "<group>"; };
-		BE8A977D260B321300A32116 /* UserTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTrendings.json; sourceTree = "<group>"; };
-		BE8A977E260B321300A32116 /* UserRepositoriesStarred.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesStarred.json; sourceTree = "<group>"; };
-		BE8A977F260B321300A32116 /* EmptyArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyArray.json; sourceTree = "<group>"; };
-		BE8A9780260B321300A32116 /* EventsUserReceived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserReceived.json; sourceTree = "<group>"; };
-		BE8A9781260B321300A32116 /* UserRepositoriesWatching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesWatching.json; sourceTree = "<group>"; };
-		BE8A9782260B321300A32116 /* UserSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserSearch.json; sourceTree = "<group>"; };
-		BE8A9783260B321300A32116 /* UserFollowers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowers.json; sourceTree = "<group>"; };
-		BE8A9784260B321300A32116 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
-		BE8A9785260B321300A32116 /* EventsUserPerformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserPerformed.json; sourceTree = "<group>"; };
-		BE8A9786260B321400A32116 /* RepositoryIssues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssues.json; sourceTree = "<group>"; };
-		BE8A9787260B321400A32116 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
-		BE8A9788260B321400A32116 /* RepositoryNumberOfLines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryNumberOfLines.json; sourceTree = "<group>"; };
-		BE8A9789260B321400A32116 /* RepositoryIssueComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssueComments.json; sourceTree = "<group>"; };
-		BE8A978A260B321400A32116 /* Organization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Organization.json; sourceTree = "<group>"; };
-		BE8A978B260B321400A32116 /* RepositoryReadme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReadme.json; sourceTree = "<group>"; };
-		BE8A978C260B321400A32116 /* EmptyObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyObject.json; sourceTree = "<group>"; };
-		BE8A978D260B321400A32116 /* RepositoryCommit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommit.json; sourceTree = "<group>"; };
-		BE8A978E260B321400A32116 /* UserFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowing.json; sourceTree = "<group>"; };
-		BE8A978F260B321400A32116 /* RepositoryCommits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommits.json; sourceTree = "<group>"; };
-		BE8A9790260B321400A32116 /* NotificationsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationsRepository.json; sourceTree = "<group>"; };
-		BE8A9791260B321400A32116 /* RepositoryContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContents.json; sourceTree = "<group>"; };
-		BE8A9792260B321400A32116 /* RepositoryForks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryForks.json; sourceTree = "<group>"; };
-		BE8A9793260B321400A32116 /* RepositoryBranches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranches.json; sourceTree = "<group>"; };
-		BE8A9794260B321400A32116 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
-		BE8A9795260B321400A32116 /* RepositoryReleases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReleases.json; sourceTree = "<group>"; };
-		BE8A9796260B321400A32116 /* RepositoryPullRequest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequest.json; sourceTree = "<group>"; };
-		BE8A9797260B321400A32116 /* RepositoryWatchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryWatchers.json; sourceTree = "<group>"; };
-		BE8A9798260B321400A32116 /* EventsOrganization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsOrganization.json; sourceTree = "<group>"; };
 		BE8A97D2260B35A700A32116 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizabled.strings; sourceTree = "<group>"; };
 		BE8A97DA260B35BE00A32116 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizabled.strings"; sourceTree = "<group>"; };
-		BE8A97E1260B396900A32116 /* XLBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseVC.swift; sourceTree = "<group>"; };
-		BE8A97E9260B399200A32116 /* XLNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLNavigator.swift; sourceTree = "<group>"; };
-		BE8A97F1260B410F00A32116 /* LXBaseNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseNavController.swift; sourceTree = "<group>"; };
-		BE8CD23E260D7A9000CC90A5 /* LX0324EventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0324EventsVC.swift; sourceTree = "<group>"; };
-		BE8CD24E260D7ABF00CC90A5 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
-		BE8CD25C260D7BF100CC90A5 /* LX0324EventsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0324EventsVM.swift; sourceTree = "<group>"; };
-		BE8CD2A2260D846B00CC90A5 /* Response +  rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Response +  rx.swift"; sourceTree = "<group>"; };
-		BE8CD2AA260D879300CC90A5 /* XLBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBaseModel.swift; sourceTree = "<group>"; };
-		BE8CD2CC260DAD0300CC90A5 /* XLAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLAPI.swift; sourceTree = "<group>"; };
-		BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLEventsModel.swift; sourceTree = "<group>"; };
-		BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLUserModel.swift; sourceTree = "<group>"; };
-		BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLRepositoryModel.swift; sourceTree = "<group>"; };
-		BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLLanguageModel.swift; sourceTree = "<group>"; };
-		BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLLicenseModel.swift; sourceTree = "<group>"; };
-		BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommentModel.swift; sourceTree = "<group>"; };
-		BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLBranchModel.swift; sourceTree = "<group>"; };
-		BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommitModel.swift; sourceTree = "<group>"; };
-		BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLCommitterModel.swift; sourceTree = "<group>"; };
-		BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLContactModel.swift; sourceTree = "<group>"; };
-		BE8CD337260DE00700CC90A5 /* XLContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLContentModel.swift; sourceTree = "<group>"; };
-		BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLIssueModel.swift; sourceTree = "<group>"; };
-		BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLMilestoneModel.swift; sourceTree = "<group>"; };
-		BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLNotificationModel.swift; sourceTree = "<group>"; };
-		BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLPullRequestModel.swift; sourceTree = "<group>"; };
-		BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLReleaseModel.swift; sourceTree = "<group>"; };
-		BE8CD367260DE12400CC90A5 /* XLSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLSectionType.swift; sourceTree = "<group>"; };
-		BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLStateModel.swift; sourceTree = "<group>"; };
-		BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XLTokenModel.swift; sourceTree = "<group>"; };
-		BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXCustomLoggerFormatter.swift; sourceTree = "<group>"; };
 		BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNewUserFloat.swift; sourceTree = "<group>"; };
 		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
 		BEA1A118258A023900E03DA3 /* LXToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LXToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -580,12 +498,8 @@
 		BEA245BE26F335290098707A /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		BEA245BF26F335290098707A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		BEA245C026F335290098707A /* DownloadableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadableImage.swift; sourceTree = "<group>"; };
-		BEA2461626F335340098707A /* LXGitHubTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGitHubTestModel.h; sourceTree = "<group>"; };
-		BEA2461726F335340098707A /* LXGitHubTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGitHubTestModel.m; sourceTree = "<group>"; };
-		BEA2461A26F33F7A0098707A /* LXMJExtensionTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMJExtensionTestModel.h; sourceTree = "<group>"; };
-		BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMJExtensionTestModel.m; sourceTree = "<group>"; };
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
-		BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
+		BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleNotificationDelegate.swift; sourceTree = "<group>"; };
 		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAF2C9025BE6FCE0054AE3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + assets.swift"; sourceTree = "<group>"; };
@@ -611,7 +525,6 @@
 		BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+insertSampleCode.m"; sourceTree = "<group>"; };
 		BEAF2F1F25BEAD3F0054AE3D /* LXMaJia+common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+common.h"; sourceTree = "<group>"; };
 		BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+common.m"; sourceTree = "<group>"; };
-		BEB52C4025B01309006C5C34 /* LX0114VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
 		BEC2D3772521DC31004C91B6 /* API + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "API + ex.swift"; path = "../Base/API + ex.swift"; sourceTree = "<group>"; };
 		BEC2D37A2521DE20004C91B6 /* LXBaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseViewModel.swift; sourceTree = "<group>"; };
 		BEC2D37C2521DF44004C91B6 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -629,6 +542,156 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
+		BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTable0120VC.swift; sourceTree = "<group>"; };
+		BEF15B832799455300D26B02 /* LX1019TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1019TestVC.h; sourceTree = "<group>"; };
+		BEF15B842799455300D26B02 /* LX1019TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1019TestVC.m; sourceTree = "<group>"; };
+		BEF15B862799455300D26B02 /* ExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		BEF15B872799455300D26B02 /* LXPhotoAlbumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPhotoAlbumVC.swift; sourceTree = "<group>"; };
+		BEF15B882799455300D26B02 /* LXPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPickerVC.swift; sourceTree = "<group>"; };
+		BEF15B892799455300D26B02 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		BEF15B8B2799455300D26B02 /* LXPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXPhotoCell.swift; sourceTree = "<group>"; };
+		BEF15B8D2799455300D26B02 /* LXAlbumListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXAlbumListModel.swift; sourceTree = "<group>"; };
+		BEF15B8F2799455300D26B02 /* LXEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXEmptyView.swift; sourceTree = "<group>"; };
+		BEF15B912799455300D26B02 /* LX0117VM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0117VM.swift; sourceTree = "<group>"; };
+		BEF15B922799455300D26B02 /* LX0117VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0117VC.swift; sourceTree = "<group>"; };
+		BEF15B942799455300D26B02 /* LX0117Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0117Model.swift; sourceTree = "<group>"; };
+		BEF15B962799455300D26B02 /* LXBaseVMVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseVMVC2.swift; sourceTree = "<group>"; };
+		BEF15B982799455300D26B02 /* LXStack1206VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStack1206VC.m; sourceTree = "<group>"; };
+		BEF15B992799455300D26B02 /* LXStack1206VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStack1206VC.h; sourceTree = "<group>"; };
+		BEF15B9B2799455300D26B02 /* LXCubeFaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXCubeFaceView.swift; sourceTree = "<group>"; };
+		BEF15B9C2799455300D26B02 /* LXCubeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXCubeVC.swift; sourceTree = "<group>"; };
+		BEF15B9E2799455300D26B02 /* LXRx0225VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXRx0225VC.swift; sourceTree = "<group>"; };
+		BEF15BA02799455300D26B02 /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
+		BEF15BA22799455300D26B02 /* LX0324EventsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0324EventsVM.swift; sourceTree = "<group>"; };
+		BEF15BA42799455300D26B02 /* LX0324EventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0324EventsVC.swift; sourceTree = "<group>"; };
+		BEF15BA72799455300D26B02 /* XLStateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLStateModel.swift; sourceTree = "<group>"; };
+		BEF15BA82799455300D26B02 /* XLTokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLTokenModel.swift; sourceTree = "<group>"; };
+		BEF15BA92799455300D26B02 /* XLCommitterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLCommitterModel.swift; sourceTree = "<group>"; };
+		BEF15BAA2799455300D26B02 /* XLCommitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLCommitModel.swift; sourceTree = "<group>"; };
+		BEF15BAB2799455300D26B02 /* XLUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLUserModel.swift; sourceTree = "<group>"; };
+		BEF15BAC2799455300D26B02 /* XLEventsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventsModel.swift; sourceTree = "<group>"; };
+		BEF15BAD2799455300D26B02 /* XLReleaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLReleaseModel.swift; sourceTree = "<group>"; };
+		BEF15BAE2799455300D26B02 /* XLPullRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLPullRequestModel.swift; sourceTree = "<group>"; };
+		BEF15BAF2799455300D26B02 /* XLIssueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLIssueModel.swift; sourceTree = "<group>"; };
+		BEF15BB02799455300D26B02 /* XLRepositoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLRepositoryModel.swift; sourceTree = "<group>"; };
+		BEF15BB12799455300D26B02 /* XLMilestoneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLMilestoneModel.swift; sourceTree = "<group>"; };
+		BEF15BB22799455300D26B02 /* XLLicenseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLLicenseModel.swift; sourceTree = "<group>"; };
+		BEF15BB32799455300D26B02 /* XLCommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLCommentModel.swift; sourceTree = "<group>"; };
+		BEF15BB42799455300D26B02 /* XLContentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLContentModel.swift; sourceTree = "<group>"; };
+		BEF15BB52799455300D26B02 /* XLLanguageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLLanguageModel.swift; sourceTree = "<group>"; };
+		BEF15BB62799455300D26B02 /* XLNotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLNotificationModel.swift; sourceTree = "<group>"; };
+		BEF15BB72799455300D26B02 /* XLBranchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBranchModel.swift; sourceTree = "<group>"; };
+		BEF15BB82799455300D26B02 /* XLContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLContactModel.swift; sourceTree = "<group>"; };
+		BEF15BB92799455300D26B02 /* XLSectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLSectionType.swift; sourceTree = "<group>"; };
+		BEF15BBB2799455300D26B02 /* XLEventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventsVC.swift; sourceTree = "<group>"; };
+		BEF15BBD2799455300D26B02 /* XLEventsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventsVM.swift; sourceTree = "<group>"; };
+		BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventCellVM.swift; sourceTree = "<group>"; };
+		BEF15BC02799455300D26B02 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		BEF15BC12799455300D26B02 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		BEF15BC22799455300D26B02 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BEF15BC32799455300D26B02 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		BEF15BC42799455300D26B02 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		BEF15BC52799455300D26B02 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
+		BEF15BC72799455300D26B02 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
+		BEF15BC82799455300D26B02 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		BEF15BC92799455300D26B02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BEF15BCA2799455300D26B02 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
+		BEF15BCB2799455300D26B02 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		BEF15BCC2799455300D26B02 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		BEF15BCD2799455300D26B02 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		BEF15BCE2799455300D26B02 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		BEF15BCF2799455300D26B02 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		BEF15BD02799455300D26B02 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
+		BEF15BD12799455300D26B02 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
+		BEF15BD22799455300D26B02 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		BEF15BD32799455300D26B02 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		BEF15BD52799455300D26B02 /* XLEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLEventCell.swift; sourceTree = "<group>"; };
+		BEF15BD72799455300D26B02 /* XLBaseTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseTableVC.swift; sourceTree = "<group>"; };
+		BEF15BDA2799455300D26B02 /* KafkaRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KafkaRefresh+Rx.swift"; sourceTree = "<group>"; };
+		BEF15BDB2799455300D26B02 /* Kingfisher+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Rx.swift"; sourceTree = "<group>"; };
+		BEF15BDC2799455300D26B02 /* Observable+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Logging.swift"; sourceTree = "<group>"; };
+		BEF15BDD2799455300D26B02 /* Observable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
+		BEF15BDE2799455300D26B02 /* XLBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseVC.swift; sourceTree = "<group>"; };
+		BEF15BDF2799455300D26B02 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		BEF15BE02799455300D26B02 /* XLNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLNavigator.swift; sourceTree = "<group>"; };
+		BEF15BE12799455300D26B02 /* LibraryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
+		BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXCustomLoggerFormatter.swift; sourceTree = "<group>"; };
+		BEF15BE32799455300D26B02 /* XLBaseTableViewCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCellVM.swift; sourceTree = "<group>"; };
+		BEF15BE52799455300D26B02 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		BEF15BE72799455300D26B02 /* XLReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLReachability.swift; sourceTree = "<group>"; };
+		BEF15BE92799455300D26B02 /* RepositorySearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositorySearch.json; sourceTree = "<group>"; };
+		BEF15BEA2799455300D26B02 /* RepositoryTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryTrendings.json; sourceTree = "<group>"; };
+		BEF15BEB2799455300D26B02 /* RepositoryPullRequests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequests.json; sourceTree = "<group>"; };
+		BEF15BEC2799455300D26B02 /* EventsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsRepository.json; sourceTree = "<group>"; };
+		BEF15BED2799455300D26B02 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
+		BEF15BEE2799455300D26B02 /* UserRepositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositories.json; sourceTree = "<group>"; };
+		BEF15BEF2799455300D26B02 /* RepositoryRelease.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryRelease.json; sourceTree = "<group>"; };
+		BEF15BF02799455300D26B02 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
+		BEF15BF12799455300D26B02 /* RepositoryIssue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssue.json; sourceTree = "<group>"; };
+		BEF15BF22799455300D26B02 /* RepositoryBranch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranch.json; sourceTree = "<group>"; };
+		BEF15BF32799455300D26B02 /* RepositoryPullRequestComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequestComments.json; sourceTree = "<group>"; };
+		BEF15BF42799455300D26B02 /* RepositoryContributors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContributors.json; sourceTree = "<group>"; };
+		BEF15BF52799455300D26B02 /* Repository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Repository.json; sourceTree = "<group>"; };
+		BEF15BF62799455300D26B02 /* RepositoryStargazers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryStargazers.json; sourceTree = "<group>"; };
+		BEF15BF72799455300D26B02 /* UserTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTrendings.json; sourceTree = "<group>"; };
+		BEF15BF82799455300D26B02 /* UserRepositoriesStarred.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesStarred.json; sourceTree = "<group>"; };
+		BEF15BF92799455300D26B02 /* EmptyArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyArray.json; sourceTree = "<group>"; };
+		BEF15BFA2799455300D26B02 /* EventsUserReceived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserReceived.json; sourceTree = "<group>"; };
+		BEF15BFB2799455300D26B02 /* UserRepositoriesWatching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesWatching.json; sourceTree = "<group>"; };
+		BEF15BFC2799455300D26B02 /* UserSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserSearch.json; sourceTree = "<group>"; };
+		BEF15BFD2799455300D26B02 /* UserFollowers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowers.json; sourceTree = "<group>"; };
+		BEF15BFE2799455300D26B02 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
+		BEF15BFF2799455300D26B02 /* EventsUserPerformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserPerformed.json; sourceTree = "<group>"; };
+		BEF15C002799455300D26B02 /* RepositoryIssues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssues.json; sourceTree = "<group>"; };
+		BEF15C012799455300D26B02 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
+		BEF15C022799455300D26B02 /* RepositoryNumberOfLines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryNumberOfLines.json; sourceTree = "<group>"; };
+		BEF15C032799455300D26B02 /* RepositoryIssueComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssueComments.json; sourceTree = "<group>"; };
+		BEF15C042799455300D26B02 /* Organization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Organization.json; sourceTree = "<group>"; };
+		BEF15C052799455300D26B02 /* RepositoryReadme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReadme.json; sourceTree = "<group>"; };
+		BEF15C062799455300D26B02 /* EmptyObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyObject.json; sourceTree = "<group>"; };
+		BEF15C072799455300D26B02 /* RepositoryCommit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommit.json; sourceTree = "<group>"; };
+		BEF15C082799455300D26B02 /* UserFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowing.json; sourceTree = "<group>"; };
+		BEF15C092799455300D26B02 /* RepositoryCommits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommits.json; sourceTree = "<group>"; };
+		BEF15C0A2799455300D26B02 /* NotificationsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationsRepository.json; sourceTree = "<group>"; };
+		BEF15C0B2799455300D26B02 /* RepositoryContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContents.json; sourceTree = "<group>"; };
+		BEF15C0C2799455300D26B02 /* RepositoryForks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryForks.json; sourceTree = "<group>"; };
+		BEF15C0D2799455300D26B02 /* RepositoryBranches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranches.json; sourceTree = "<group>"; };
+		BEF15C0E2799455300D26B02 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		BEF15C0F2799455300D26B02 /* RepositoryReleases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReleases.json; sourceTree = "<group>"; };
+		BEF15C102799455300D26B02 /* RepositoryPullRequest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequest.json; sourceTree = "<group>"; };
+		BEF15C112799455300D26B02 /* RepositoryWatchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryWatchers.json; sourceTree = "<group>"; };
+		BEF15C122799455300D26B02 /* EventsOrganization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsOrganization.json; sourceTree = "<group>"; };
+		BEF15C132799455400D26B02 /* XLBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseModel.swift; sourceTree = "<group>"; };
+		BEF15C142799455400D26B02 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		BEF15C152799455400D26B02 /* RestApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
+		BEF15C162799455400D26B02 /* XLAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLAPI.swift; sourceTree = "<group>"; };
+		BEF15C172799455400D26B02 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		BEF15C182799455400D26B02 /* Response +  rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response +  rx.swift"; sourceTree = "<group>"; };
+		BEF15C192799455400D26B02 /* XLGithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLGithubAPI.swift; sourceTree = "<group>"; };
+		BEF15C1A2799455400D26B02 /* GlobalConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfig.swift; sourceTree = "<group>"; };
+		BEF15C1C2799455400D26B02 /* RxActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxActivityIndicator.swift; sourceTree = "<group>"; };
+		BEF15C1D2799455400D26B02 /* XLBaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseVM.swift; sourceTree = "<group>"; };
+		BEF15C1E2799455400D26B02 /* LXBaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseNavController.swift; sourceTree = "<group>"; };
+		BEF15C1F2799455400D26B02 /* XLBaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XLBaseTableViewCell.swift; sourceTree = "<group>"; };
+		BEF15C212799455400D26B02 /* LXTableTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableTestVC.h; sourceTree = "<group>"; };
+		BEF15C232799455400D26B02 /* LXSectionHeaderTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionHeaderTestView.m; sourceTree = "<group>"; };
+		BEF15C242799455400D26B02 /* LXSectionHeaderTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionHeaderTestView.h; sourceTree = "<group>"; };
+		BEF15C252799455400D26B02 /* LXTableTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTableTestVC.m; sourceTree = "<group>"; };
+		BEF15C282799455400D26B02 /* LXNestedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCell.swift; sourceTree = "<group>"; };
+		BEF15C292799455400D26B02 /* LXNestedCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionCell.swift; sourceTree = "<group>"; };
+		BEF15C2B2799455400D26B02 /* LXNestedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableView.swift; sourceTree = "<group>"; };
+		BEF15C2C2799455400D26B02 /* LXNestedCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionView.swift; sourceTree = "<group>"; };
+		BEF15C2D2799455400D26B02 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
+		BEF15C302799455400D26B02 /* LXGitHubTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGitHubTestModel.h; sourceTree = "<group>"; };
+		BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMJExtensionTestModel.m; sourceTree = "<group>"; };
+		BEF15C322799455400D26B02 /* LXGitHubTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGitHubTestModel.m; sourceTree = "<group>"; };
+		BEF15C332799455400D26B02 /* LXMJExtensionTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMJExtensionTestModel.h; sourceTree = "<group>"; };
+		BEF15C352799455400D26B02 /* PHPhotoLibrary + requestAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary + requestAuthorization.swift"; sourceTree = "<group>"; };
+		BEF15C362799455400D26B02 /* LX0114VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
+		BEF15C382799455400D26B02 /* LXClsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
+		BEF15C3A2799455400D26B02 /* LXHugTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHugTestVC.h; sourceTree = "<group>"; };
+		BEF15C3B2799455400D26B02 /* LXHugTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHugTestVC.m; sourceTree = "<group>"; };
 		C191BB0B22DC23F7B4A282E6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E48A6F78194EBCDD87486B2A /* Pods_LXToolKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8C06168888EA63C778ED85 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -736,7 +799,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				BE8A97D3260B35A700A32116 /* Localizabled.strings */,
 				BE8A94CB252427C400E20F14 /* AppDelegate + Notification.swift */,
-				BE8A94CA252427C400E20F14 /* SampleNotificationDelegate.swift */,
+				BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -840,17 +903,9 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEF15B7C2799433500D26B02 /* 01-20 */,
 				BEA2454426F335290098707A /* 2020 */,
-				BEB52C3725B012F6006C5C34 /* 01-14 */,
-				BE60317E25B1F5830045117C /* 01-16 */,
-				BE66CCE625B3DE9300F6B7C8 /* 01-17 */,
-				BEAF2C7625BE6AAB0054AE3D /* 01-25 */,
-				BE89707B25E4892000101247 /* 02-23 */,
-				BE702A3B25E7373E0017C9D0 /* 02-25 */,
-				BE93ECF62609DC0D00B21A42 /* 03-23 */,
-				BE8CD23D260D7A7300CC90A5 /* 03-24 */,
-				BEA2461526F335340098707A /* 09-16 */,
-				BEE3D42B2700730E00117188 /* 09-26 */,
+				BEF15B812799455300D26B02 /* 2021 */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -875,63 +930,6 @@
 			path = Content;
 			sourceTree = "<group>";
 		};
-		BE60317E25B1F5830045117C /* 01-16 */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A3A6C25B2F3AF0062E388 /* General */,
-				BE8A3A6125B2E6820062E388 /* Model */,
-				BE8A39D825B2B5A10062E388 /* Cell */,
-				BE60318925B1F5DA0045117C /* LXPickerVC.swift */,
-				BE8A389225B282DE0062E388 /* ExampleViewController.swift */,
-				BE8A39ED25B2B9690062E388 /* LXPhotoAlbumVC.swift */,
-			);
-			path = "01-16";
-			sourceTree = "<group>";
-		};
-		BE66CCE625B3DE9300F6B7C8 /* 01-17 */ = {
-			isa = PBXGroup;
-			children = (
-				BE72699225B3EBDE00E155F6 /* Model */,
-				BE72698725B3EB3900E155F6 /* VM */,
-				BE72698025B3EA6400E155F6 /* Base */,
-				BE66CCE725B3DED300F6B7C8 /* LX0117VC.swift */,
-				BE72697625B3E9DE00E155F6 /* LXEmptyView.swift */,
-			);
-			path = "01-17";
-			sourceTree = "<group>";
-		};
-		BE702A3B25E7373E0017C9D0 /* 02-25 */ = {
-			isa = PBXGroup;
-			children = (
-				BE702A3C25E737550017C9D0 /* LXRx0225VC.swift */,
-			);
-			path = "02-25";
-			sourceTree = "<group>";
-		};
-		BE72698025B3EA6400E155F6 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				BE72698125B3EA8200E155F6 /* LXBaseVMVC2.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		BE72698725B3EB3900E155F6 /* VM */ = {
-			isa = PBXGroup;
-			children = (
-				BE72698825B3EB6600E155F6 /* LX0117VM.swift */,
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
-		BE72699225B3EBDE00E155F6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BE72699D25B3EBFF00E155F6 /* LX0117Model.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		BE754980270174F100739312 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -945,88 +943,12 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		BE754981270176A200739312 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BE754982270176A200739312 /* LXNestedCell.swift */,
-				BE754983270176A200739312 /* LXNestedCollectionCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		BE827D57260A09B5009D18D0 /* extension */ = {
-			isa = PBXGroup;
-			children = (
-				BE827D58260A09F7009D18D0 /* RxSwift */,
-			);
-			path = extension;
-			sourceTree = "<group>";
-		};
-		BE827D58260A09F7009D18D0 /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				BE827D59260A09F7009D18D0 /* KafkaRefresh+Rx.swift */,
-				BE827D5A260A09F7009D18D0 /* Kingfisher+Rx.swift */,
-				BE827D5B260A09F7009D18D0 /* Observable+Logging.swift */,
-				BE827D5C260A09F7009D18D0 /* Observable+Operators.swift */,
-			);
-			path = RxSwift;
-			sourceTree = "<group>";
-		};
-		BE827DC4260A1A2F009D18D0 /* RxErrorTracker */ = {
-			isa = PBXGroup;
-			children = (
-				BE827DC5260A1A2F009D18D0 /* ErrorTracker.swift */,
-			);
-			path = RxErrorTracker;
-			sourceTree = "<group>";
-		};
-		BE827DC6260A1A2F009D18D0 /* RxActivityIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				BE827DC7260A1A2F009D18D0 /* RxActivityIndicator.swift */,
-			);
-			path = RxActivityIndicator;
-			sourceTree = "<group>";
-		};
-		BE89707B25E4892000101247 /* 02-23 */ = {
-			isa = PBXGroup;
-			children = (
-				BE89708225E489A100101247 /* LXCubeVC.swift */,
-				BE89708A25E4903600101247 /* LXCubeFaceView.swift */,
-			);
-			path = "02-23";
-			sourceTree = "<group>";
-		};
 		BE8A39CD25B2B3830062E388 /* Macro */ = {
 			isa = PBXGroup;
 			children = (
 				BE8A39CE25B2B3920062E388 /* Macro.swift */,
 			);
 			path = Macro;
-			sourceTree = "<group>";
-		};
-		BE8A39D825B2B5A10062E388 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A39E325B2B7820062E388 /* LXPhotoCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		BE8A3A6125B2E6820062E388 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A3A6225B2E6950062E388 /* LXAlbumListModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BE8A3A6C25B2F3AF0062E388 /* General */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = General;
 			sourceTree = "<group>";
 		};
 		BE8A94C02524275000E20F14 /* Service */ = {
@@ -1036,182 +958,6 @@
 				BE8A94C32524275000E20F14 /* Info.plist */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		BE8A972B260B24A400A32116 /* RestApi */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A976E260B321300A32116 /* Stubbed Responses */,
-				BE8CD2CC260DAD0300CC90A5 /* XLAPI.swift */,
-				BE8A9758260B276300A32116 /* XLGithubAPI.swift */,
-				BE8A972C260B24B100A32116 /* RestApi.swift */,
-				BE8CD2AA260D879300CC90A5 /* XLBaseModel.swift */,
-				BE8A973A260B253900A32116 /* ErrorResponse.swift */,
-				BE8A9742260B260C00A32116 /* Networking.swift */,
-				BE8A974A260B26B300A32116 /* XLReachability.swift */,
-				BE8CD2A2260D846B00CC90A5 /* Response +  rx.swift */,
-			);
-			path = RestApi;
-			sourceTree = "<group>";
-		};
-		BE8A976E260B321300A32116 /* Stubbed Responses */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A976F260B321300A32116 /* RepositorySearch.json */,
-				BE8A9770260B321300A32116 /* RepositoryTrendings.json */,
-				BE8A9771260B321300A32116 /* RepositoryPullRequests.json */,
-				BE8A9772260B321300A32116 /* EventsRepository.json */,
-				BE8A9773260B321300A32116 /* Languages.json */,
-				BE8A9774260B321300A32116 /* UserRepositories.json */,
-				BE8A9775260B321300A32116 /* RepositoryRelease.json */,
-				BE8A9776260B321300A32116 /* Events.json */,
-				BE8A9777260B321300A32116 /* RepositoryIssue.json */,
-				BE8A9778260B321300A32116 /* RepositoryBranch.json */,
-				BE8A9779260B321300A32116 /* RepositoryPullRequestComments.json */,
-				BE8A977A260B321300A32116 /* RepositoryContributors.json */,
-				BE8A977B260B321300A32116 /* Repository.json */,
-				BE8A977C260B321300A32116 /* RepositoryStargazers.json */,
-				BE8A977D260B321300A32116 /* UserTrendings.json */,
-				BE8A977E260B321300A32116 /* UserRepositoriesStarred.json */,
-				BE8A977F260B321300A32116 /* EmptyArray.json */,
-				BE8A9780260B321300A32116 /* EventsUserReceived.json */,
-				BE8A9781260B321300A32116 /* UserRepositoriesWatching.json */,
-				BE8A9782260B321300A32116 /* UserSearch.json */,
-				BE8A9783260B321300A32116 /* UserFollowers.json */,
-				BE8A9784260B321300A32116 /* User.json */,
-				BE8A9785260B321300A32116 /* EventsUserPerformed.json */,
-				BE8A9786260B321400A32116 /* RepositoryIssues.json */,
-				BE8A9787260B321400A32116 /* Notifications.json */,
-				BE8A9788260B321400A32116 /* RepositoryNumberOfLines.json */,
-				BE8A9789260B321400A32116 /* RepositoryIssueComments.json */,
-				BE8A978A260B321400A32116 /* Organization.json */,
-				BE8A978B260B321400A32116 /* RepositoryReadme.json */,
-				BE8A978C260B321400A32116 /* EmptyObject.json */,
-				BE8A978D260B321400A32116 /* RepositoryCommit.json */,
-				BE8A978E260B321400A32116 /* UserFollowing.json */,
-				BE8A978F260B321400A32116 /* RepositoryCommits.json */,
-				BE8A9790260B321400A32116 /* NotificationsRepository.json */,
-				BE8A9791260B321400A32116 /* RepositoryContents.json */,
-				BE8A9792260B321400A32116 /* RepositoryForks.json */,
-				BE8A9793260B321400A32116 /* RepositoryBranches.json */,
-				BE8A9794260B321400A32116 /* Profile.json */,
-				BE8A9795260B321400A32116 /* RepositoryReleases.json */,
-				BE8A9796260B321400A32116 /* RepositoryPullRequest.json */,
-				BE8A9797260B321400A32116 /* RepositoryWatchers.json */,
-				BE8A9798260B321400A32116 /* EventsOrganization.json */,
-			);
-			path = "Stubbed Responses";
-			sourceTree = "<group>";
-		};
-		BE8CD23D260D7A7300CC90A5 /* 03-24 */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CD24D260D7AB000CC90A5 /* VM */,
-				BE8CD24C260D7AA900CC90A5 /* VC */,
-				BE8CD24E260D7ABF00CC90A5 /* Refreshable.swift */,
-			);
-			path = "03-24";
-			sourceTree = "<group>";
-		};
-		BE8CD24C260D7AA900CC90A5 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CD23E260D7A9000CC90A5 /* LX0324EventsVC.swift */,
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
-		BE8CD24D260D7AB000CC90A5 /* VM */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CD25C260D7BF100CC90A5 /* LX0324EventsVM.swift */,
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
-		BE8CD2DA260DD34500CC90A5 /* HandyJSONModel */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CD2DB260DD35C00CC90A5 /* XLEventsModel.swift */,
-				BE8CD2E9260DD46D00CC90A5 /* XLUserModel.swift */,
-				BE8CD2F7260DDD3100CC90A5 /* XLRepositoryModel.swift */,
-				BE8CD2FF260DDE2C00CC90A5 /* XLLanguageModel.swift */,
-				BE8CD307260DDEBB00CC90A5 /* XLLicenseModel.swift */,
-				BE8CD30F260DDF1A00CC90A5 /* XLCommentModel.swift */,
-				BE8CD317260DDF4500CC90A5 /* XLBranchModel.swift */,
-				BE8CD31F260DDF6C00CC90A5 /* XLCommitModel.swift */,
-				BE8CD327260DDFB900CC90A5 /* XLCommitterModel.swift */,
-				BE8CD32F260DDFD900CC90A5 /* XLContactModel.swift */,
-				BE8CD337260DE00700CC90A5 /* XLContentModel.swift */,
-				BE8CD33F260DE02A00CC90A5 /* XLIssueModel.swift */,
-				BE8CD347260DE06100CC90A5 /* XLMilestoneModel.swift */,
-				BE8CD34F260DE07E00CC90A5 /* XLNotificationModel.swift */,
-				BE8CD357260DE0D000CC90A5 /* XLPullRequestModel.swift */,
-				BE8CD35F260DE0E800CC90A5 /* XLReleaseModel.swift */,
-				BE8CD367260DE12400CC90A5 /* XLSectionType.swift */,
-				BE8CD36F260DE15200CC90A5 /* XLStateModel.swift */,
-				BE8CD377260DE16F00CC90A5 /* XLTokenModel.swift */,
-			);
-			path = HandyJSONModel;
-			sourceTree = "<group>";
-		};
-		BE93ECF62609DC0D00B21A42 /* 03-23 */ = {
-			isa = PBXGroup;
-			children = (
-				BE8CD2DA260DD34500CC90A5 /* HandyJSONModel */,
-				BE93ED062609DE2000B21A42 /* Controller */,
-				BE93ED052609DE1B00B21A42 /* View */,
-				BE93ED042609DE1600B21A42 /* VM */,
-				BE93ED032609DE0B00B21A42 /* mvvm */,
-			);
-			path = "03-23";
-			sourceTree = "<group>";
-		};
-		BE93ED032609DE0B00B21A42 /* mvvm */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A972B260B24A400A32116 /* RestApi */,
-				BE827D9E260A0F77009D18D0 /* Logger.swift */,
-				BE827D96260A0E6D009D18D0 /* GlobalConfig.swift */,
-				BE7BE97E260C40E30031B4F7 /* LibraryManager.swift */,
-				BE8A97F1260B410F00A32116 /* LXBaseNavController.swift */,
-				BE827D57260A09B5009D18D0 /* extension */,
-				BE827C222609E12A009D18D0 /* XLBaseTableViewCell.swift */,
-				BE827C2A2609E322009D18D0 /* XLBaseVM.swift */,
-				BE8A97E1260B396900A32116 /* XLBaseVC.swift */,
-				BE7BE976260C1BC20031B4F7 /* XLBaseTableVC.swift */,
-				BE8A97E9260B399200A32116 /* XLNavigator.swift */,
-				BE827DAE260A13CB009D18D0 /* XLBaseTableViewCellVM.swift */,
-				BE827DC6260A1A2F009D18D0 /* RxActivityIndicator */,
-				BE827DC4260A1A2F009D18D0 /* RxErrorTracker */,
-				BE90CA5C26131C0100DF0C07 /* LXCustomLoggerFormatter.swift */,
-			);
-			path = mvvm;
-			sourceTree = "<group>";
-		};
-		BE93ED042609DE1600B21A42 /* VM */ = {
-			isa = PBXGroup;
-			children = (
-				BE827C67260A0382009D18D0 /* XLEventCellVM.swift */,
-				BE827DA6260A136E009D18D0 /* XLEventsVM.swift */,
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
-		BE93ED052609DE1B00B21A42 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BE827C3E2609E771009D18D0 /* XLEventCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BE93ED062609DE2000B21A42 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				BE8A9766260B2E5000A32116 /* XLEventsVC.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		BEA2454426F335290098707A /* 2020 */ = {
@@ -1576,33 +1322,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		BEA2461526F335340098707A /* 09-16 */ = {
-			isa = PBXGroup;
-			children = (
-				BEA2461926F33F680098707A /* Model */,
-			);
-			path = "09-16";
-			sourceTree = "<group>";
-		};
-		BEA2461926F33F680098707A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BEA2461626F335340098707A /* LXGitHubTestModel.h */,
-				BEA2461726F335340098707A /* LXGitHubTestModel.m */,
-				BEA2461A26F33F7A0098707A /* LXMJExtensionTestModel.h */,
-				BEA2461B26F33F7A0098707A /* LXMJExtensionTestModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BEAF2C7625BE6AAB0054AE3D /* 01-25 */ = {
-			isa = PBXGroup;
-			children = (
-				BEAF2C7725BE6AC50054AE3D /* LXClsListVC.swift */,
-			);
-			path = "01-25";
-			sourceTree = "<group>";
-		};
 		BEAF2C8F25BE6FCE0054AE3D /* MaJia */ = {
 			isa = PBXGroup;
 			children = (
@@ -1654,15 +1373,6 @@
 				BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */,
 			);
 			path = Category;
-			sourceTree = "<group>";
-		};
-		BEB52C3725B012F6006C5C34 /* 01-14 */ = {
-			isa = PBXGroup;
-			children = (
-				BEB52C4025B01309006C5C34 /* LX0114VC.swift */,
-				BE673DF125B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift */,
-			);
-			path = "01-14";
 			sourceTree = "<group>";
 		};
 		BEC2D3752521DC0B004C91B6 /* MVVM */ = {
@@ -1781,13 +1491,472 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BEE3D42B2700730E00117188 /* 09-26 */ = {
+		BEF15B7C2799433500D26B02 /* 01-20 */ = {
 			isa = PBXGroup;
 			children = (
-				BE754981270176A200739312 /* Cell */,
-				BE754984270176A200739312 /* LXNestedTableVC.swift */,
+				BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */,
+			);
+			path = "01-20";
+			sourceTree = "<group>";
+		};
+		BEF15B812799455300D26B02 /* 2021 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B822799455300D26B02 /* 10-19 */,
+				BEF15B852799455300D26B02 /* 01-16 */,
+				BEF15B8E2799455300D26B02 /* 01-17 */,
+				BEF15B972799455300D26B02 /* 12-06 */,
+				BEF15B9A2799455300D26B02 /* 02-23 */,
+				BEF15B9D2799455300D26B02 /* 02-25 */,
+				BEF15B9F2799455300D26B02 /* 03-24 */,
+				BEF15BA52799455300D26B02 /* 03-23 */,
+				BEF15C202799455400D26B02 /* 10-12 */,
+				BEF15C262799455400D26B02 /* 09-26 */,
+				BEF15C2E2799455400D26B02 /* 09-16 */,
+				BEF15C342799455400D26B02 /* 01-14 */,
+				BEF15C372799455400D26B02 /* 01-25 */,
+				BEF15C392799455400D26B02 /* 11-09 */,
+				BEF15C3C2799455400D26B02 /* 12-28 */,
+			);
+			path = 2021;
+			sourceTree = "<group>";
+		};
+		BEF15B822799455300D26B02 /* 10-19 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B832799455300D26B02 /* LX1019TestVC.h */,
+				BEF15B842799455300D26B02 /* LX1019TestVC.m */,
+			);
+			path = "10-19";
+			sourceTree = "<group>";
+		};
+		BEF15B852799455300D26B02 /* 01-16 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B862799455300D26B02 /* ExampleViewController.swift */,
+				BEF15B872799455300D26B02 /* LXPhotoAlbumVC.swift */,
+				BEF15B882799455300D26B02 /* LXPickerVC.swift */,
+				BEF15B892799455300D26B02 /* Localizable.strings */,
+				BEF15B8A2799455300D26B02 /* Cell */,
+				BEF15B8C2799455300D26B02 /* Model */,
+			);
+			path = "01-16";
+			sourceTree = "<group>";
+		};
+		BEF15B8A2799455300D26B02 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B8B2799455300D26B02 /* LXPhotoCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEF15B8C2799455300D26B02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B8D2799455300D26B02 /* LXAlbumListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEF15B8E2799455300D26B02 /* 01-17 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B8F2799455300D26B02 /* LXEmptyView.swift */,
+				BEF15B902799455300D26B02 /* VM */,
+				BEF15B922799455300D26B02 /* LX0117VC.swift */,
+				BEF15B932799455300D26B02 /* Model */,
+				BEF15B952799455300D26B02 /* Base */,
+			);
+			path = "01-17";
+			sourceTree = "<group>";
+		};
+		BEF15B902799455300D26B02 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B912799455300D26B02 /* LX0117VM.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BEF15B932799455300D26B02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B942799455300D26B02 /* LX0117Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEF15B952799455300D26B02 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B962799455300D26B02 /* LXBaseVMVC2.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BEF15B972799455300D26B02 /* 12-06 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B982799455300D26B02 /* LXStack1206VC.m */,
+				BEF15B992799455300D26B02 /* LXStack1206VC.h */,
+			);
+			path = "12-06";
+			sourceTree = "<group>";
+		};
+		BEF15B9A2799455300D26B02 /* 02-23 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B9B2799455300D26B02 /* LXCubeFaceView.swift */,
+				BEF15B9C2799455300D26B02 /* LXCubeVC.swift */,
+			);
+			path = "02-23";
+			sourceTree = "<group>";
+		};
+		BEF15B9D2799455300D26B02 /* 02-25 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15B9E2799455300D26B02 /* LXRx0225VC.swift */,
+			);
+			path = "02-25";
+			sourceTree = "<group>";
+		};
+		BEF15B9F2799455300D26B02 /* 03-24 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BA02799455300D26B02 /* Refreshable.swift */,
+				BEF15BA12799455300D26B02 /* VM */,
+				BEF15BA32799455300D26B02 /* VC */,
+			);
+			path = "03-24";
+			sourceTree = "<group>";
+		};
+		BEF15BA12799455300D26B02 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BA22799455300D26B02 /* LX0324EventsVM.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BEF15BA32799455300D26B02 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BA42799455300D26B02 /* LX0324EventsVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BEF15BA52799455300D26B02 /* 03-23 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BA62799455300D26B02 /* HandyJSONModel */,
+				BEF15BBA2799455300D26B02 /* Controller */,
+				BEF15BBC2799455300D26B02 /* VM */,
+				BEF15BBF2799455300D26B02 /* model */,
+				BEF15BD42799455300D26B02 /* View */,
+				BEF15BD62799455300D26B02 /* mvvm */,
+			);
+			path = "03-23";
+			sourceTree = "<group>";
+		};
+		BEF15BA62799455300D26B02 /* HandyJSONModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BA72799455300D26B02 /* XLStateModel.swift */,
+				BEF15BA82799455300D26B02 /* XLTokenModel.swift */,
+				BEF15BA92799455300D26B02 /* XLCommitterModel.swift */,
+				BEF15BAA2799455300D26B02 /* XLCommitModel.swift */,
+				BEF15BAB2799455300D26B02 /* XLUserModel.swift */,
+				BEF15BAC2799455300D26B02 /* XLEventsModel.swift */,
+				BEF15BAD2799455300D26B02 /* XLReleaseModel.swift */,
+				BEF15BAE2799455300D26B02 /* XLPullRequestModel.swift */,
+				BEF15BAF2799455300D26B02 /* XLIssueModel.swift */,
+				BEF15BB02799455300D26B02 /* XLRepositoryModel.swift */,
+				BEF15BB12799455300D26B02 /* XLMilestoneModel.swift */,
+				BEF15BB22799455300D26B02 /* XLLicenseModel.swift */,
+				BEF15BB32799455300D26B02 /* XLCommentModel.swift */,
+				BEF15BB42799455300D26B02 /* XLContentModel.swift */,
+				BEF15BB52799455300D26B02 /* XLLanguageModel.swift */,
+				BEF15BB62799455300D26B02 /* XLNotificationModel.swift */,
+				BEF15BB72799455300D26B02 /* XLBranchModel.swift */,
+				BEF15BB82799455300D26B02 /* XLContactModel.swift */,
+				BEF15BB92799455300D26B02 /* XLSectionType.swift */,
+			);
+			path = HandyJSONModel;
+			sourceTree = "<group>";
+		};
+		BEF15BBA2799455300D26B02 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BBB2799455300D26B02 /* XLEventsVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BEF15BBC2799455300D26B02 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BBD2799455300D26B02 /* XLEventsVM.swift */,
+				BEF15BBE2799455300D26B02 /* XLEventCellVM.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BEF15BBF2799455300D26B02 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BC02799455300D26B02 /* PullRequest.swift */,
+				BEF15BC12799455300D26B02 /* Language.swift */,
+				BEF15BC22799455300D26B02 /* Event.swift */,
+				BEF15BC32799455300D26B02 /* Branch.swift */,
+				BEF15BC42799455300D26B02 /* Comment.swift */,
+				BEF15BC52799455300D26B02 /* Milestone.swift */,
+				BEF15BC62799455300D26B02 /* ISO8601DateTransform.swift */,
+				BEF15BC72799455300D26B02 /* Commit.swift */,
+				BEF15BC82799455300D26B02 /* State.swift */,
+				BEF15BC92799455300D26B02 /* User.swift */,
+				BEF15BCA2799455300D26B02 /* SectionType.swift */,
+				BEF15BCB2799455300D26B02 /* License.swift */,
+				BEF15BCC2799455300D26B02 /* Issue.swift */,
+				BEF15BCD2799455300D26B02 /* Repository.swift */,
+				BEF15BCE2799455300D26B02 /* Notification.swift */,
+				BEF15BCF2799455300D26B02 /* Content.swift */,
+				BEF15BD02799455300D26B02 /* Release.swift */,
+				BEF15BD12799455300D26B02 /* Committer.swift */,
+				BEF15BD22799455300D26B02 /* Token.swift */,
+				BEF15BD32799455300D26B02 /* Contact.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		BEF15BD42799455300D26B02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BD52799455300D26B02 /* XLEventCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEF15BD62799455300D26B02 /* mvvm */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BD72799455300D26B02 /* XLBaseTableVC.swift */,
+				BEF15BD82799455300D26B02 /* extension */,
+				BEF15BDE2799455300D26B02 /* XLBaseVC.swift */,
+				BEF15BDF2799455300D26B02 /* Logger.swift */,
+				BEF15BE02799455300D26B02 /* XLNavigator.swift */,
+				BEF15BE12799455300D26B02 /* LibraryManager.swift */,
+				BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */,
+				BEF15BE32799455300D26B02 /* XLBaseTableViewCellVM.swift */,
+				BEF15BE42799455300D26B02 /* RxErrorTracker */,
+				BEF15BE62799455300D26B02 /* RestApi */,
+				BEF15C1A2799455400D26B02 /* GlobalConfig.swift */,
+				BEF15C1B2799455400D26B02 /* RxActivityIndicator */,
+				BEF15C1D2799455400D26B02 /* XLBaseVM.swift */,
+				BEF15C1E2799455400D26B02 /* LXBaseNavController.swift */,
+				BEF15C1F2799455400D26B02 /* XLBaseTableViewCell.swift */,
+			);
+			path = mvvm;
+			sourceTree = "<group>";
+		};
+		BEF15BD82799455300D26B02 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BD92799455300D26B02 /* RxSwift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
+		BEF15BD92799455300D26B02 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BDA2799455300D26B02 /* KafkaRefresh+Rx.swift */,
+				BEF15BDB2799455300D26B02 /* Kingfisher+Rx.swift */,
+				BEF15BDC2799455300D26B02 /* Observable+Logging.swift */,
+				BEF15BDD2799455300D26B02 /* Observable+Operators.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		BEF15BE42799455300D26B02 /* RxErrorTracker */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BE52799455300D26B02 /* ErrorTracker.swift */,
+			);
+			path = RxErrorTracker;
+			sourceTree = "<group>";
+		};
+		BEF15BE62799455300D26B02 /* RestApi */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BE72799455300D26B02 /* XLReachability.swift */,
+				BEF15BE82799455300D26B02 /* Stubbed Responses */,
+				BEF15C132799455400D26B02 /* XLBaseModel.swift */,
+				BEF15C142799455400D26B02 /* Networking.swift */,
+				BEF15C152799455400D26B02 /* RestApi.swift */,
+				BEF15C162799455400D26B02 /* XLAPI.swift */,
+				BEF15C172799455400D26B02 /* ErrorResponse.swift */,
+				BEF15C182799455400D26B02 /* Response +  rx.swift */,
+				BEF15C192799455400D26B02 /* XLGithubAPI.swift */,
+			);
+			path = RestApi;
+			sourceTree = "<group>";
+		};
+		BEF15BE82799455300D26B02 /* Stubbed Responses */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15BE92799455300D26B02 /* RepositorySearch.json */,
+				BEF15BEA2799455300D26B02 /* RepositoryTrendings.json */,
+				BEF15BEB2799455300D26B02 /* RepositoryPullRequests.json */,
+				BEF15BEC2799455300D26B02 /* EventsRepository.json */,
+				BEF15BED2799455300D26B02 /* Languages.json */,
+				BEF15BEE2799455300D26B02 /* UserRepositories.json */,
+				BEF15BEF2799455300D26B02 /* RepositoryRelease.json */,
+				BEF15BF02799455300D26B02 /* Events.json */,
+				BEF15BF12799455300D26B02 /* RepositoryIssue.json */,
+				BEF15BF22799455300D26B02 /* RepositoryBranch.json */,
+				BEF15BF32799455300D26B02 /* RepositoryPullRequestComments.json */,
+				BEF15BF42799455300D26B02 /* RepositoryContributors.json */,
+				BEF15BF52799455300D26B02 /* Repository.json */,
+				BEF15BF62799455300D26B02 /* RepositoryStargazers.json */,
+				BEF15BF72799455300D26B02 /* UserTrendings.json */,
+				BEF15BF82799455300D26B02 /* UserRepositoriesStarred.json */,
+				BEF15BF92799455300D26B02 /* EmptyArray.json */,
+				BEF15BFA2799455300D26B02 /* EventsUserReceived.json */,
+				BEF15BFB2799455300D26B02 /* UserRepositoriesWatching.json */,
+				BEF15BFC2799455300D26B02 /* UserSearch.json */,
+				BEF15BFD2799455300D26B02 /* UserFollowers.json */,
+				BEF15BFE2799455300D26B02 /* User.json */,
+				BEF15BFF2799455300D26B02 /* EventsUserPerformed.json */,
+				BEF15C002799455300D26B02 /* RepositoryIssues.json */,
+				BEF15C012799455300D26B02 /* Notifications.json */,
+				BEF15C022799455300D26B02 /* RepositoryNumberOfLines.json */,
+				BEF15C032799455300D26B02 /* RepositoryIssueComments.json */,
+				BEF15C042799455300D26B02 /* Organization.json */,
+				BEF15C052799455300D26B02 /* RepositoryReadme.json */,
+				BEF15C062799455300D26B02 /* EmptyObject.json */,
+				BEF15C072799455300D26B02 /* RepositoryCommit.json */,
+				BEF15C082799455300D26B02 /* UserFollowing.json */,
+				BEF15C092799455300D26B02 /* RepositoryCommits.json */,
+				BEF15C0A2799455300D26B02 /* NotificationsRepository.json */,
+				BEF15C0B2799455300D26B02 /* RepositoryContents.json */,
+				BEF15C0C2799455300D26B02 /* RepositoryForks.json */,
+				BEF15C0D2799455300D26B02 /* RepositoryBranches.json */,
+				BEF15C0E2799455300D26B02 /* Profile.json */,
+				BEF15C0F2799455300D26B02 /* RepositoryReleases.json */,
+				BEF15C102799455300D26B02 /* RepositoryPullRequest.json */,
+				BEF15C112799455300D26B02 /* RepositoryWatchers.json */,
+				BEF15C122799455300D26B02 /* EventsOrganization.json */,
+			);
+			path = "Stubbed Responses";
+			sourceTree = "<group>";
+		};
+		BEF15C1B2799455400D26B02 /* RxActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C1C2799455400D26B02 /* RxActivityIndicator.swift */,
+			);
+			path = RxActivityIndicator;
+			sourceTree = "<group>";
+		};
+		BEF15C202799455400D26B02 /* 10-12 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C212799455400D26B02 /* LXTableTestVC.h */,
+				BEF15C222799455400D26B02 /* View */,
+				BEF15C252799455400D26B02 /* LXTableTestVC.m */,
+			);
+			path = "10-12";
+			sourceTree = "<group>";
+		};
+		BEF15C222799455400D26B02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C232799455400D26B02 /* LXSectionHeaderTestView.m */,
+				BEF15C242799455400D26B02 /* LXSectionHeaderTestView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEF15C262799455400D26B02 /* 09-26 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C272799455400D26B02 /* Cell */,
+				BEF15C2A2799455400D26B02 /* View */,
+				BEF15C2D2799455400D26B02 /* LXNestedTableVC.swift */,
 			);
 			path = "09-26";
+			sourceTree = "<group>";
+		};
+		BEF15C272799455400D26B02 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C282799455400D26B02 /* LXNestedCell.swift */,
+				BEF15C292799455400D26B02 /* LXNestedCollectionCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEF15C2A2799455400D26B02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C2B2799455400D26B02 /* LXNestedTableView.swift */,
+				BEF15C2C2799455400D26B02 /* LXNestedCollectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEF15C2E2799455400D26B02 /* 09-16 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C2F2799455400D26B02 /* Model */,
+			);
+			path = "09-16";
+			sourceTree = "<group>";
+		};
+		BEF15C2F2799455400D26B02 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C302799455400D26B02 /* LXGitHubTestModel.h */,
+				BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */,
+				BEF15C322799455400D26B02 /* LXGitHubTestModel.m */,
+				BEF15C332799455400D26B02 /* LXMJExtensionTestModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEF15C342799455400D26B02 /* 01-14 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C352799455400D26B02 /* PHPhotoLibrary + requestAuthorization.swift */,
+				BEF15C362799455400D26B02 /* LX0114VC.swift */,
+			);
+			path = "01-14";
+			sourceTree = "<group>";
+		};
+		BEF15C372799455400D26B02 /* 01-25 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C382799455400D26B02 /* LXClsListVC.swift */,
+			);
+			path = "01-25";
+			sourceTree = "<group>";
+		};
+		BEF15C392799455400D26B02 /* 11-09 */ = {
+			isa = PBXGroup;
+			children = (
+				BEF15C3A2799455400D26B02 /* LXHugTestVC.h */,
+				BEF15C3B2799455400D26B02 /* LXHugTestVC.m */,
+			);
+			path = "11-09";
+			sourceTree = "<group>";
+		};
+		BEF15C3C2799455400D26B02 /* 12-28 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "12-28";
 			sourceTree = "<group>";
 		};
 		DA9948B1BDF0FD1C5AF8B8F5 /* Frameworks */ = {
@@ -1993,57 +2162,58 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE8A97A8260B321400A32116 /* UserRepositoriesStarred.json in Resources */,
-				BE8A97C1260B321400A32116 /* RepositoryWatchers.json in Resources */,
-				BE8A97BC260B321400A32116 /* RepositoryForks.json in Resources */,
-				BE8A979E260B321400A32116 /* UserRepositories.json in Resources */,
-				BE8A979A260B321400A32116 /* RepositoryTrendings.json in Resources */,
+				BEF15CB02799455500D26B02 /* RepositoryWatchers.json in Resources */,
+				BEF15C8A2799455500D26B02 /* RepositoryPullRequests.json in Resources */,
+				BEF15CAB2799455500D26B02 /* RepositoryForks.json in Resources */,
+				BEF15C9A2799455500D26B02 /* UserRepositoriesWatching.json in Resources */,
 				BEA245C326F335290098707A /* LXStackTestVC.xib in Resources */,
-				BE8A979D260B321400A32116 /* Languages.json in Resources */,
-				BE8A97A1260B321400A32116 /* RepositoryIssue.json in Resources */,
+				BEF15CA42799455500D26B02 /* RepositoryReadme.json in Resources */,
+				BEF15CAC2799455500D26B02 /* RepositoryBranches.json in Resources */,
 				BEA245E426F335290098707A /* photodata.bin in Resources */,
-				BE8A97A5260B321400A32116 /* Repository.json in Resources */,
+				BEF15C892799455500D26B02 /* RepositoryTrendings.json in Resources */,
+				BEF15CA92799455500D26B02 /* NotificationsRepository.json in Resources */,
+				BEF15C922799455500D26B02 /* RepositoryPullRequestComments.json in Resources */,
+				BEF15C8B2799455500D26B02 /* EventsRepository.json in Resources */,
+				BEF15C412799455400D26B02 /* Localizable.strings in Resources */,
+				BEF15CA02799455500D26B02 /* Notifications.json in Resources */,
+				BEF15C962799455500D26B02 /* UserTrendings.json in Resources */,
+				BEF15C952799455500D26B02 /* RepositoryStargazers.json in Resources */,
+				BEF15CA32799455500D26B02 /* Organization.json in Resources */,
+				BEF15CA12799455500D26B02 /* RepositoryNumberOfLines.json in Resources */,
+				BEF15CA72799455500D26B02 /* UserFollowing.json in Resources */,
+				BEF15CAD2799455500D26B02 /* Profile.json in Resources */,
+				BEF15C9D2799455500D26B02 /* User.json in Resources */,
+				BEF15C992799455500D26B02 /* EventsUserReceived.json in Resources */,
+				BEF15C982799455500D26B02 /* EmptyArray.json in Resources */,
+				BEF15C942799455500D26B02 /* Repository.json in Resources */,
+				BEF15C882799455500D26B02 /* RepositorySearch.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				BEF15C972799455500D26B02 /* UserRepositoriesStarred.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				BE8A97AB260B321400A32116 /* UserRepositoriesWatching.json in Resources */,
-				BE8A97B9260B321400A32116 /* RepositoryCommits.json in Resources */,
-				BE8A979F260B321400A32116 /* RepositoryRelease.json in Resources */,
+				BEF15CAE2799455500D26B02 /* RepositoryReleases.json in Resources */,
+				BEF15C8F2799455500D26B02 /* Events.json in Resources */,
+				BEF15CA22799455500D26B02 /* RepositoryIssueComments.json in Resources */,
 				BE8A97D1260B35A700A32116 /* Localizabled.strings in Resources */,
+				BEF15C8D2799455500D26B02 /* UserRepositories.json in Resources */,
+				BEF15C912799455500D26B02 /* RepositoryBranch.json in Resources */,
+				BEF15C932799455500D26B02 /* RepositoryContributors.json in Resources */,
+				BEF15C9C2799455500D26B02 /* UserFollowers.json in Resources */,
+				BEF15CA82799455500D26B02 /* RepositoryCommits.json in Resources */,
 				BEA245CA26F335290098707A /* LXMessageCell.xib in Resources */,
-				BE8A97A4260B321400A32116 /* RepositoryContributors.json in Resources */,
-				BE8A97A0260B321400A32116 /* Events.json in Resources */,
-				BE8A97B5260B321400A32116 /* RepositoryReadme.json in Resources */,
-				BE8A97BF260B321400A32116 /* RepositoryReleases.json in Resources */,
-				BE8A97AE260B321400A32116 /* User.json in Resources */,
+				BEF15C902799455500D26B02 /* RepositoryIssue.json in Resources */,
+				BEF15C9B2799455500D26B02 /* UserSearch.json in Resources */,
+				BEF15CAA2799455500D26B02 /* RepositoryContents.json in Resources */,
+				BEF15CAF2799455500D26B02 /* RepositoryPullRequest.json in Resources */,
 				BEA245D026F335290098707A /* LXMessageTestCell.xib in Resources */,
-				BE8A97BD260B321400A32116 /* RepositoryBranches.json in Resources */,
-				BE8A97B3260B321400A32116 /* RepositoryIssueComments.json in Resources */,
-				BE8A97AF260B321400A32116 /* EventsUserPerformed.json in Resources */,
-				BE8A97A9260B321400A32116 /* EmptyArray.json in Resources */,
-				BE8A97A3260B321400A32116 /* RepositoryPullRequestComments.json in Resources */,
-				BE8A97B7260B321400A32116 /* RepositoryCommit.json in Resources */,
-				BE8A9799260B321400A32116 /* RepositorySearch.json in Resources */,
-				BE8A979B260B321400A32116 /* RepositoryPullRequests.json in Resources */,
-				BE8A97AC260B321400A32116 /* UserSearch.json in Resources */,
+				BEF15C9E2799455500D26B02 /* EventsUserPerformed.json in Resources */,
+				BEF15C9F2799455500D26B02 /* RepositoryIssues.json in Resources */,
+				BEF15CA52799455500D26B02 /* EmptyObject.json in Resources */,
+				BEF15C8E2799455500D26B02 /* RepositoryRelease.json in Resources */,
+				BEF15CB12799455500D26B02 /* EventsOrganization.json in Resources */,
 				BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */,
-				BE8A97AD260B321400A32116 /* UserFollowers.json in Resources */,
-				BE8A97B4260B321400A32116 /* Organization.json in Resources */,
-				BE8A97B0260B321400A32116 /* RepositoryIssues.json in Resources */,
-				BE8A97AA260B321400A32116 /* EventsUserReceived.json in Resources */,
-				BE8A97B2260B321400A32116 /* RepositoryNumberOfLines.json in Resources */,
-				BE8A97BE260B321400A32116 /* Profile.json in Resources */,
-				BE8A97A7260B321400A32116 /* UserTrendings.json in Resources */,
-				BE8A97A2260B321400A32116 /* RepositoryBranch.json in Resources */,
-				BE8A97B8260B321400A32116 /* UserFollowing.json in Resources */,
-				BE8A97C0260B321400A32116 /* RepositoryPullRequest.json in Resources */,
-				BE8A97BB260B321400A32116 /* RepositoryContents.json in Resources */,
-				BE8A97BA260B321400A32116 /* NotificationsRepository.json in Resources */,
-				BE8A97B1260B321400A32116 /* Notifications.json in Resources */,
-				BE8A97C2260B321400A32116 /* EventsOrganization.json in Resources */,
-				BE8A97B6260B321400A32116 /* EmptyObject.json in Resources */,
-				BE8A97A6260B321400A32116 /* RepositoryStargazers.json in Resources */,
+				BEF15C8C2799455500D26B02 /* Languages.json in Resources */,
 				BEA245EA26F335290098707A /* loading.gif in Resources */,
-				BE8A979C260B321400A32116 /* EventsRepository.json in Resources */,
+				BEF15CA62799455500D26B02 /* RepositoryCommit.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2140,6 +2310,7 @@
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -2213,6 +2384,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -2317,182 +2489,210 @@
 			files = (
 				BEA245F126F335290098707A /* LXSongVC.swift in Sources */,
 				BEA245DD26F335290098707A /* LXMusicVC.swift in Sources */,
-				BE8CD2CD260DAD0400CC90A5 /* XLAPI.swift in Sources */,
+				BEF15C532799455400D26B02 /* XLCommitModel.swift in Sources */,
+				BEF15CB62799455600D26B02 /* ErrorResponse.swift in Sources */,
 				BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */,
-				BE8CD350260DE07E00CC90A5 /* XLNotificationModel.swift in Sources */,
-				BE827C3F2609E771009D18D0 /* XLEventCell.swift in Sources */,
-				BE827D5D260A09F7009D18D0 /* KafkaRefresh+Rx.swift in Sources */,
-				BE673DF225B04A9000956AF5 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA2460926F335290098707A /* temp.swift in Sources */,
 				BEA245EC26F335290098707A /* LXEmptyCell.swift in Sources */,
-				BE8A9759260B276300A32116 /* XLGithubAPI.swift in Sources */,
-				BE827DC9260A1A2F009D18D0 /* RxActivityIndicator.swift in Sources */,
+				BEF15C7D2799455500D26B02 /* Kingfisher+Rx.swift in Sources */,
+				BEF15C4C2799455400D26B02 /* LXRx0225VC.swift in Sources */,
 				BEA2461426F335290098707A /* DownloadableImage.swift in Sources */,
 				BEC2D3982521E32F004C91B6 /* XLLBaseModel.swift in Sources */,
+				BEF15C432799455400D26B02 /* LXAlbumListModel.swift in Sources */,
+				BEF15CC32799455600D26B02 /* LXNestedCollectionView.swift in Sources */,
+				BEF15C492799455400D26B02 /* LXStack1206VC.m in Sources */,
 				BEA245DE26F335290098707A /* LXMusicModel.swift in Sources */,
+				BEF15C7F2799455500D26B02 /* Observable+Operators.swift in Sources */,
 				BEA245D526F335290098707A /* LXMultiRequestTestVC.swift in Sources */,
-				BE89708B25E4903600101247 /* LXCubeFaceView.swift in Sources */,
-				BE7BE97F260C40E30031B4F7 /* LibraryManager.swift in Sources */,
+				BEF15C7E2799455500D26B02 /* Observable+Logging.swift in Sources */,
+				BEF15C852799455500D26B02 /* XLBaseTableViewCellVM.swift in Sources */,
 				BEA245F526F335290098707A /* UIScrollView + refresh.swift in Sources */,
 				BEA245E926F335290098707A /* Theme.swift in Sources */,
+				BEF15C722799455500D26B02 /* Issue.swift in Sources */,
+				BEF15C6D2799455500D26B02 /* Commit.swift in Sources */,
 				BEA245E026F335290098707A /* LXTTTTT.swift in Sources */,
 				BEA245C726F335290098707A /* LXResolveTestObj.m in Sources */,
-				BE827D60260A09F7009D18D0 /* Observable+Operators.swift in Sources */,
 				BEA245E826F335290098707A /* UIImageView + Reactive.swift in Sources */,
-				BE8CD2EA260DD46D00CC90A5 /* XLUserModel.swift in Sources */,
-				BE827C2B2609E322009D18D0 /* XLBaseVM.swift in Sources */,
 				BEA245DC26F335290098707A /* LXTestVC.swift in Sources */,
-				BE66CCE825B3DED300F6B7C8 /* LX0117VC.swift in Sources */,
-				BE827DA7260A136E009D18D0 /* XLEventsVM.swift in Sources */,
-				BEA2461826F335350098707A /* LXGitHubTestModel.m in Sources */,
-				BE702A3D25E737550017C9D0 /* LXRx0225VC.swift in Sources */,
+				BEF15C3F2799455400D26B02 /* LXPhotoAlbumVC.swift in Sources */,
+				BEF15CBE2799455600D26B02 /* LXSectionHeaderTestView.m in Sources */,
+				BEF15C802799455500D26B02 /* XLBaseVC.swift in Sources */,
+				BEF15CBC2799455600D26B02 /* LXBaseNavController.swift in Sources */,
 				BEA2460526F335290098707A /* Macro2.swift in Sources */,
-				BE827DC8260A1A2F009D18D0 /* ErrorTracker.swift in Sources */,
 				BEA2460426F335290098707A /* UIImage + forceLazyDecompression.swift in Sources */,
+				BEF15CC72799455600D26B02 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA245E226F335290098707A /* LXListItemCell.swift in Sources */,
 				BEA245CF26F335290098707A /* LXMessageTestCell.swift in Sources */,
-				BE754985270176A200739312 /* LXNestedCell.swift in Sources */,
+				BEF15C612799455400D26B02 /* XLContactModel.swift in Sources */,
 				BEA245EE26F335290098707A /* LXSongCellVM.swift in Sources */,
-				BE8A39EE25B2B9690062E388 /* LXPhotoAlbumVC.swift in Sources */,
-				BE754986270176A200739312 /* LXNestedCollectionCell.swift in Sources */,
+				BEF15C7B2799455500D26B02 /* XLBaseTableVC.swift in Sources */,
 				BEA2460E26F335290098707A /* ReachabilityService.swift in Sources */,
-				BE8CD2F8260DDD3100CC90A5 /* XLRepositoryModel.swift in Sources */,
+				BEF15C762799455500D26B02 /* Release.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
-				BE89708325E489A100101247 /* LXCubeVC.swift in Sources */,
 				BEA2460826F335290098707A /* LXWikipediaSearchCell.swift in Sources */,
-				BE8CD300260DDE2D00CC90A5 /* XLLanguageModel.swift in Sources */,
+				BEF15C662799455500D26B02 /* PullRequest.swift in Sources */,
 				BEA2460026F335290098707A /* WikipediaAPI.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
-				BE7BE977260C1BC20031B4F7 /* XLBaseTableVC.swift in Sources */,
 				BEA2460C26F335290098707A /* LXWikipediaImageSearchView.swift in Sources */,
+				BEF15C6E2799455500D26B02 /* State.swift in Sources */,
 				BEA245ED26F335290098707A /* LXSongVM.swift in Sources */,
+				BEF15C6A2799455500D26B02 /* Comment.swift in Sources */,
 				BEA245F026F335290098707A /* LXMacro.swift in Sources */,
-				BE8A3A6325B2E6950062E388 /* LXAlbumListModel.swift in Sources */,
-				BE8CD358260DE0D000CC90A5 /* XLPullRequestModel.swift in Sources */,
-				BE8A9743260B260C00A32116 /* Networking.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BEA245F226F335290098707A /* UIViewController + topVC.swift in Sources */,
-				BE8CD2DC260DD35C00CC90A5 /* XLEventsModel.swift in Sources */,
 				BEA245D326F335290098707A /* LXDaily1117VC.swift in Sources */,
+				BEF15C572799455400D26B02 /* XLPullRequestModel.swift in Sources */,
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
-				BE8CD378260DE16F00CC90A5 /* XLTokenModel.swift in Sources */,
+				BEF15C5F2799455400D26B02 /* XLNotificationModel.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
-				BE8CD340260DE02A00CC90A5 /* XLIssueModel.swift in Sources */,
+				BEF15C692799455500D26B02 /* Branch.swift in Sources */,
+				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,
+				BEF15CB32799455500D26B02 /* Networking.swift in Sources */,
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
+				BEF15C542799455400D26B02 /* XLUserModel.swift in Sources */,
 				BEA245E126F335290098707A /* LXLockTestVC.m in Sources */,
+				BEF15C832799455500D26B02 /* LibraryManager.swift in Sources */,
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
-				BE8CD23F260D7A9000CC90A5 /* LX0324EventsVC.swift in Sources */,
+				BEF15C772799455500D26B02 /* Committer.swift in Sources */,
+				BEF15C7A2799455500D26B02 /* XLEventCell.swift in Sources */,
 				BEA245DB26F335290098707A /* LXPresentVC.swift in Sources */,
-				BE8A97EA260B399200A32116 /* XLNavigator.swift in Sources */,
+				BEF15C402799455400D26B02 /* LXPickerVC.swift in Sources */,
 				BEA245FA26F335290098707A /* Action + checkError.swift in Sources */,
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
-				BE8A972D260B24B100A32116 /* RestApi.swift in Sources */,
-				BEA2461C26F33F7A0098707A /* LXMJExtensionTestModel.m in Sources */,
-				BE90CA5D26131C0100DF0C07 /* LXCustomLoggerFormatter.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
+				BEF15C602799455400D26B02 /* XLBranchModel.swift in Sources */,
+				BEF15C782799455500D26B02 /* Token.swift in Sources */,
+				BEF15C5D2799455400D26B02 /* XLContentModel.swift in Sources */,
 				BEA245D426F335290098707A /* findCommonSuperview.swift in Sources */,
 				BEA245CC26F335290098707A /* LXStackMessageVC.swift in Sources */,
 				BEA2460726F335290098707A /* LXSingleImageCell.swift in Sources */,
+				BEF15C6F2799455500D26B02 /* User.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
 				BEA245E526F335290098707A /* LXListItemModel.swift in Sources */,
-				BE8CD330260DDFD900CC90A5 /* XLContactModel.swift in Sources */,
 				BEA245FF26F335290098707A /* Dependencies.swift in Sources */,
 				BEA2461226F335290098707A /* ActivityIndicator.swift in Sources */,
+				BEF15C522799455400D26B02 /* XLCommitterModel.swift in Sources */,
+				BEF15C7C2799455500D26B02 /* KafkaRefresh+Rx.swift in Sources */,
+				BEF15C5B2799455400D26B02 /* XLLicenseModel.swift in Sources */,
+				BEF15C742799455500D26B02 /* Notification.swift in Sources */,
+				BEF15CC52799455600D26B02 /* LXMJExtensionTestModel.m in Sources */,
+				BEF15C792799455500D26B02 /* Contact.swift in Sources */,
 				BEA245EB26F335290098707A /* UUHud.swift in Sources */,
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
+				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
-				BE827D5F260A09F7009D18D0 /* Observable+Logging.swift in Sources */,
-				BE754987270176A200739312 /* LXNestedTableVC.swift in Sources */,
+				BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
+				BEF15C672799455500D26B02 /* Language.swift in Sources */,
+				BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
+				BEF15C812799455500D26B02 /* Logger.swift in Sources */,
+				BEF15CC92799455600D26B02 /* LXClsListVC.swift in Sources */,
 				BEA245F826F335290098707A /* Observable + HandyJSON.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				BE8CD25D260D7BF100CC90A5 /* LX0324EventsVM.swift in Sources */,
+				BEF15C592799455400D26B02 /* XLRepositoryModel.swift in Sources */,
+				BEF15CB72799455600D26B02 /* Response +  rx.swift in Sources */,
+				BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */,
 				BEA245D926F335290098707A /* LXBaseRequiredVC.m in Sources */,
 				BEA245E626F335290098707A /* LXLightedDataSource.swift in Sources */,
-				BE8A974B260B26B300A32116 /* XLReachability.swift in Sources */,
 				BEA245D826F335290098707A /* LXRequiredVC1.m in Sources */,
-				BE8A389325B282DE0062E388 /* ExampleViewController.swift in Sources */,
-				BE827D97260A0E6D009D18D0 /* GlobalConfig.swift in Sources */,
+				BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */,
 				BEA2461026F335290098707A /* HtmlParsing.swift in Sources */,
 				BEA245C426F335290098707A /* LXImageTestVC.swift in Sources */,
 				BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */,
-				BE8CD24F260D7ABF00CC90A5 /* Refreshable.swift in Sources */,
-				BE8A97F2260B410F00A32116 /* LXBaseNavController.swift in Sources */,
+				BEF15CB22799455500D26B02 /* XLBaseModel.swift in Sources */,
 				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
+				BEF15CB82799455600D26B02 /* XLGithubAPI.swift in Sources */,
 				BEA245FD26F335290098707A /* @_exported.swift in Sources */,
+				BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */,
+				BEF15C4A2799455400D26B02 /* LXCubeFaceView.swift in Sources */,
+				BEF15C622799455400D26B02 /* XLSectionType.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEA245E326F335290098707A /* LXLightedVC.swift in Sources */,
 				BEA245FE26F335290098707A /* LXSearchResultViewModel.swift in Sources */,
+				BEF15C562799455400D26B02 /* XLReleaseModel.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
 				BEA2460A26F335290098707A /* LXWikipediaImageSearchVC.swift in Sources */,
 				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
+				BEF15C502799455400D26B02 /* XLStateModel.swift in Sources */,
+				BEF15C702799455500D26B02 /* SectionType.swift in Sources */,
+				BEF15C442799455400D26B02 /* LXEmptyView.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
-				BE827D9F260A0F77009D18D0 /* Logger.swift in Sources */,
-				BE60318A25B1F5DA0045117C /* LXPickerVC.swift in Sources */,
-				BE8CD348260DE06100CC90A5 /* XLMilestoneModel.swift in Sources */,
-				BE8CD2AB260D879300CC90A5 /* XLBaseModel.swift in Sources */,
-				BE8CD370260DE15200CC90A5 /* XLStateModel.swift in Sources */,
-				BE8A97E2260B396900A32116 /* XLBaseVC.swift in Sources */,
-				BE72697725B3E9DE00E155F6 /* LXEmptyView.swift in Sources */,
-				BE72699E25B3EBFF00E155F6 /* LX0117Model.swift in Sources */,
+				BEF15C582799455400D26B02 /* XLIssueModel.swift in Sources */,
+				BEF15C822799455500D26B02 /* XLNavigator.swift in Sources */,
 				BEA245C226F335290098707A /* LXStackTestVC.swift in Sources */,
+				BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */,
+				BEF15C642799455500D26B02 /* XLEventsVM.swift in Sources */,
+				BEF15C6B2799455500D26B02 /* Milestone.swift in Sources */,
 				BEA2460226F335290098707A /* WikipediaPage.swift in Sources */,
-				BE8A39E425B2B7820062E388 /* LXPhotoCell.swift in Sources */,
-				BE8CD318260DDF4500CC90A5 /* XLBranchModel.swift in Sources */,
 				BEA245DF26F335290098707A /* LXMusicVM.swift in Sources */,
+				BEF15C5E2799455400D26B02 /* XLLanguageModel.swift in Sources */,
+				BEF15C512799455400D26B02 /* XLTokenModel.swift in Sources */,
+				BEF15C552799455400D26B02 /* XLEventsModel.swift in Sources */,
 				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
 				BEA245F926F335290098707A /* API.swift in Sources */,
 				BEA245D726F335290098707A /* LXTestStringVC.m in Sources */,
+				BEF15C842799455500D26B02 /* LXCustomLoggerFormatter.swift in Sources */,
+				BEF15CB52799455600D26B02 /* XLAPI.swift in Sources */,
+				BEF15C862799455500D26B02 /* ErrorTracker.swift in Sources */,
+				BEF15C472799455400D26B02 /* LX0117Model.swift in Sources */,
+				BEF15C712799455500D26B02 /* License.swift in Sources */,
 				BEA2460F26F335290098707A /* Wireframe.swift in Sources */,
+				BEF15C872799455500D26B02 /* XLReachability.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
 				BEA2460326F335290098707A /* LXKeyInstance.swift in Sources */,
-				BE8CD338260DE00700CC90A5 /* XLContentModel.swift in Sources */,
 				BEA245FB26F335290098707A /* Reactive + RetryView.swift in Sources */,
+				BEF15C422799455400D26B02 /* LXPhotoCell.swift in Sources */,
 				BEA245F626F335290098707A /* HUD + Observable.swift in Sources */,
-				BE8A973B260B253900A32116 /* ErrorResponse.swift in Sources */,
-				BE827C68260A0382009D18D0 /* XLEventCellVM.swift in Sources */,
-				BE8CD320260DDF6C00CC90A5 /* XLCommitModel.swift in Sources */,
 				BEA2461126F335290098707A /* UIImageView + DownloadableImage.swift in Sources */,
+				BEF15C652799455500D26B02 /* XLEventCellVM.swift in Sources */,
+				BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */,
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
+				BEF15C6C2799455500D26B02 /* ISO8601DateTransform.swift in Sources */,
+				BEF15C682799455500D26B02 /* Event.swift in Sources */,
+				BEF15CBD2799455600D26B02 /* XLBaseTableViewCell.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
-				BE8CD360260DE0E800CC90A5 /* XLReleaseModel.swift in Sources */,
 				BEA2461326F335290098707A /* Reachability.swift in Sources */,
+				BEF15C5C2799455400D26B02 /* XLCommentModel.swift in Sources */,
+				BEF15CB92799455600D26B02 /* GlobalConfig.swift in Sources */,
+				BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */,
+				BEF15CBA2799455600D26B02 /* RxActivityIndicator.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
-				BE827DAF260A13CB009D18D0 /* XLBaseTableViewCellVM.swift in Sources */,
+				BEF15C5A2799455400D26B02 /* XLMilestoneModel.swift in Sources */,
+				BEF15C4B2799455400D26B02 /* LXCubeVC.swift in Sources */,
+				BEF15CC12799455600D26B02 /* LXNestedCollectionCell.swift in Sources */,
 				BEA245FC26F335290098707A /* LXSongRecordModel.swift in Sources */,
 				BEA245D126F335290098707A /* LXMessageCell.swift in Sources */,
-				BE827D5E260A09F7009D18D0 /* Kingfisher+Rx.swift in Sources */,
+				BEF15C752799455500D26B02 /* Content.swift in Sources */,
+				BEF15CBB2799455600D26B02 /* XLBaseVM.swift in Sources */,
+				BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */,
 				BEC2D37B2521DE20004C91B6 /* LXBaseViewModel.swift in Sources */,
-				BE8A9767260B2E5000A32116 /* XLEventsVC.swift in Sources */,
-				BE8A94CC252427C400E20F14 /* SampleNotificationDelegate.swift in Sources */,
+				BEF15C4F2799455400D26B02 /* LX0324EventsVC.swift in Sources */,
+				BEF15C732799455500D26B02 /* Repository.swift in Sources */,
+				BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */,
 				BEA245D626F335290098707A /* LXOffScreenVC.swift in Sources */,
-				BE8CD310260DDF1A00CC90A5 /* XLCommentModel.swift in Sources */,
-				BE8CD308260DDEBB00CC90A5 /* XLLicenseModel.swift in Sources */,
 				BEA245E726F335290098707A /* UIFont + ex.swift in Sources */,
 				BEA245CE26F335290098707A /* UIImage + emoticon.swift in Sources */,
 				BEA245D226F335290098707A /* LXStackViewVC.swift in Sources */,
-				BE8CD2A3260D846B00CC90A5 /* Response +  rx.swift in Sources */,
-				BEAF2C7825BE6AC50054AE3D /* LXClsListVC.swift in Sources */,
 				BEA245F326F335290098707A /* RetryView.swift in Sources */,
+				BEF15CCA2799455600D26B02 /* LXHugTestVC.m in Sources */,
+				BEF15CB42799455600D26B02 /* RestApi.swift in Sources */,
 				BEA245C926F335290098707A /* LXPerson.m in Sources */,
+				BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */,
 				BEA245CB26F335290098707A /* LXSwiftView.swift in Sources */,
-				BE8CD368260DE12400CC90A5 /* XLSectionType.swift in Sources */,
-				BE72698225B3EA8200E155F6 /* LXBaseVMVC2.swift in Sources */,
+				BEF15CC62799455600D26B02 /* LXGitHubTestModel.m in Sources */,
+				BEF15C632799455500D26B02 /* XLEventsVC.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
-				BEB52C4125B01309006C5C34 /* LX0114VC.swift in Sources */,
 				BEA2460126F335290098707A /* WikipediaSearchResult.swift in Sources */,
-				BE827C232609E12A009D18D0 /* XLBaseTableViewCell.swift in Sources */,
 				BEA245F426F335290098707A /* Service.swift in Sources */,
-				BE72698925B3EB6600E155F6 /* LX0117VM.swift in Sources */,
-				BE8CD328260DDFB900CC90A5 /* XLCommitterModel.swift in Sources */,
+				BEF15C452799455400D26B02 /* LX0117VM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

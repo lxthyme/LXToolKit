@@ -15,8 +15,8 @@ class LXNestedCell: UITableViewCell {
         layout.minimumInteritemSpacing = 1
 
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 120, height: 120)
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.itemSize = CGSize(width: 239, height: 239)
+        layout.estimatedItemSize = CGSize(width: 239, height: 239)
         layout.headerReferenceSize = .zero
         layout.footerReferenceSize = .zero
         layout.sectionInset = .zero
@@ -27,35 +27,35 @@ class LXNestedCell: UITableViewCell {
         }
         return layout
     }()
-    private lazy var collectionView: UICollectionView = {
-        let v = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private lazy var collectionView: LXNestedCollectionView = {
+        let v = LXNestedCollectionView(frame: .zero, collectionViewLayout: flowLayout)
 
         v.delegate = self
         v.dataSource = self
-            //v.prefetchDataSource = self
-            //v.dragDelegate = self
-            //v.dropDelegate = self
-            //v.isPrefetchingEnabled = true
+        // v.prefetchDataSource = self
+        // v.dragDelegate = self
+        // v.dropDelegate = self
+        // v.isPrefetchingEnabled = true
 
         v.backgroundColor = .white
-            //v.showsHorizontalScrollIndicator = true
-            //v.showsVerticalScrollIndicator = true
-            //v.alwaysBounceVertical = true
-            //v.alwaysBounceHorizontal = true
-            //v.allowsMultipleSelection = true
+        // v.showsHorizontalScrollIndicator = true
+        // v.showsVerticalScrollIndicator = true
+        // v.alwaysBounceVertical = true
+        // v.alwaysBounceHorizontal = true
+        // v.allowsMultipleSelection = true
 
-            //let header =  VPLoadingHeader.init(refreshingBlock: {
-            //    [weak self] in
-            //    guard let `self` = self else { return }
-            //    //self.loadData(true)
-            //})
-            //v.mj_header = header
-            //let footer = VPAutoLoadingFooter.init(refreshingBlock: {
-            //    [weak self] in
-            //    guard let `self` = self else { return }
-            //    //self.loadData(false)
-            //})
-            //v.mj_footer = footer
+        // let header =  VPLoadingHeader.init(refreshingBlock: {
+        //    [weak self] in
+        //    guard let `self` = self else { return }
+        //    //self.loadData(true)
+        // })
+        // v.mj_header = header
+        // let footer = VPAutoLoadingFooter.init(refreshingBlock: {
+        //    [weak self] in
+        //    guard let `self` = self else { return }
+        //    //self.loadData(false)
+        // })
+        // v.mj_footer = footer
 
         v.register(LXNestedCollectionCell.self, forCellWithReuseIdentifier: "LXNestedCollectionCell")
         return v
@@ -111,6 +111,16 @@ extension LXNestedCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+}
+
+extension LXNestedCell: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView == collectionView {
+//            dlog("-collectionView")
+//        } else {
+//            dlog("-ELSE")
+//        }
+//    }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
