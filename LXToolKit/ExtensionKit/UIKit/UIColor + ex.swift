@@ -93,3 +93,37 @@ public extension Swifty where Base: UIColor {
         return String(format:"#%06x", rgb)
     }
 }
+
+public extension Swifty where Base: UIColor {
+    struct PropertyItem {
+        let name: String?
+        let hex: String?
+        let rgb: String?
+        init(property: [String: String]) {
+            self.name = property["name"]
+            self.hex = property["hex"]
+            self.rgb = property["rgb"]
+        }
+    }
+    static var allColorList: [PropertyItem] {
+        let fm = FileManager.default
+        var opt: JSONSerialization.ReadingOptions = []
+        if #available(iOS 15.0, *) {
+            opt = [.json5Allowed, .fragmentsAllowed]
+        } else {
+            opt = [.fragmentsAllowed]
+        }
+        if let filePath = Bundle(identifier: "org.cocoapods.LXToolKit")?.path(forResource: "color", ofType: "json"),
+           let data = fm.contents(atPath: filePath),
+           let obj = try? JSONSerialization.jsonObject(with: data, options: opt) as? [[String: String]] {
+            return obj.map { PropertyItem(property: $0) }
+        }
+        return []
+    }
+    func getColorName() -> String {
+        return UIColor.xl
+            .allColorList
+            .filter { $0.hex == self.toHexString() }
+            .first?.name ?? self.toHexString()
+    }
+}

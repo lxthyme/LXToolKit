@@ -10,7 +10,7 @@ import Foundation
 // MARK: - 👀UIButton.Configuration
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration {
-    var allList: [UIButton.Configuration] {
+    static var allList: [UIButton.Configuration] {
         return [
             .plain(),
             .tinted(),
