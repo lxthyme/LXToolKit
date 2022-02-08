@@ -11,10 +11,38 @@ import Foundation
 //extension UIView: NamespaceWrappable {}
 //extension NSObject: NamespaceWrappable {}
 
-extension Array: NamespaceWrappable {}
-extension String: NamespaceWrappable {}
-extension Int: NamespaceWrappable {}
-extension Int64: NamespaceWrappable {}
-extension StringTransform: NamespaceWrappable {}
-extension Unicode.Scalar: NamespaceWrappable {}
-extension Date: NamespaceWrappable {}
+extension Array: SwiftyCompatible {}
+
+extension String: SwiftyCompatible {}
+extension StringTransform: SwiftyCompatible {}
+
+extension Int: SwiftyCompatible {}
+extension Int64: SwiftyCompatible {}
+
+extension Unicode.Scalar: SwiftyCompatible {}
+extension Date: SwiftyCompatible {}
+extension CATransform3D: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+// extension <#Type#>: SwiftyCompatible {}
+
+// MARK: - 👀UIButton
+@available(iOS 15.0, *)
+extension UIButton.Configuration: SwiftyCompatible {}
+@available(iOS 15.0, *)
+extension UIButton.Configuration.Size: SwiftyCompatible {}
+@available(iOS 15.0, *)
+extension UIButton.Configuration.CornerStyle: SwiftyCompatible {}
+@available(iOS 15.0, *)
+extension UIButton.Configuration.MacIdiomStyle: SwiftyCompatible {}
+@available(iOS 15.0, *)
+extension UIButton.Configuration.TitleAlignment: SwiftyCompatible {}

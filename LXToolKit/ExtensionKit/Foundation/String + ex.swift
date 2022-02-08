@@ -7,57 +7,54 @@
 //
 import UIKit
 
-public extension TypeWrapperProtocol where BaseValue == String {
+public extension Swifty where Base == String {
 //public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
-    func getVCInstance<T: UIViewController>() -> T? {
-        return self.getObjcInstance()
-    }
-    func getInstance<T>() -> T? {
-        return self.getObjcInstance() as? T
+    /// - Returns: VC 实例
+    func getVCInstance<T: UIViewController>(vc: T.Type = T.self) -> T? {
+        return self.getInstance(obj: vc)
     }
     /// 从字符串初始化一个 NSObject 实例
-    func getObjcInstance<T: NSObject>() -> T? {
+    /// - Returns: NSObject 实例
+    func getInstance<T: NSObject>(obj: T.Type = T.self) -> T? {
         guard let nameSpace = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String,
-            let cls = NSClassFromString(nameSpace + "." + baseValue),
-            let objType = cls as? T.Type else { return nil }
+              let cls = NSClassFromString(nameSpace + "." + base),
+              let objType = cls as? T.Type else { return nil }
         let instance = objType.init()
         return instance
     }
 }
 
-public extension TypeWrapperProtocol where BaseValue == Int64 {
-//public extension Swifty where Base: Int64 {
+public extension Swifty where Base == Int64 {
     /// 根据字节大小返回文件大小字符KB、MB
     var fileSize: String {
-        return ByteCountFormatter.string(fromByteCount: baseValue, countStyle: .file)
+        return ByteCountFormatter.string(fromByteCount: base, countStyle: .file)
     }
 }
 
 public typealias UnicodeEqualInfo = (Bool, nsstring: Bool, equal: Bool, utf8: Bool, utf16: Bool)
 
-public extension TypeWrapperProtocol where BaseValue == String {
-//public extension Swifty where Base: String {
+public extension Swifty where Base == String {
     var unicodeName: [String] {
-        return baseValue.unicodeScalars.lazy.map { $0.xl.unicodeName }
+        return base.unicodeScalars.lazy.map { $0.xl.unicodeName }
     }
     var unicodeValue: [String] {
-        return baseValue.unicodeScalars.lazy.map { "\\u{\(String($0.value, radix: 16, uppercase: true))}" }
+        return base.unicodeScalars.lazy.map { "\\u{\(String($0.value, radix: 16, uppercase: true))}" }
     }
     var unicodeInfo: (length: Int, count: Int, utf8: Int, utf16: Int, unicode: [(name: String, code: String)]) {
         let merge = zip(self.unicodeName, self.unicodeValue).map { $0 }
-        return (length: (baseValue as NSString).length,
-                count: baseValue.count,
-                utf8: baseValue.utf8.count,
-                utf16: baseValue.utf16.count,
+        return (length: (base as NSString).length,
+                count: base.count,
+                utf8: base.utf8.count,
+                utf16: base.utf16.count,
                 unicode: merge)
     }
     func unicodeEqual(to r: String) -> UnicodeEqualInfo {
-        let e0 = baseValue == r
-        let e1 = (baseValue as NSString) == (r as NSString)
-        let e2 = baseValue.elementsEqual(r)
-        let e3 = baseValue.utf8.elementsEqual(r.utf8)
-        let e4 = baseValue.utf16.elementsEqual(r.utf16)
+        let e0 = base == r
+        let e1 = (base as NSString) == (r as NSString)
+        let e2 = base.elementsEqual(r)
+        let e3 = base.utf8.elementsEqual(r.utf8)
+        let e4 = base.utf16.elementsEqual(r.utf16)
         return (e0,
                 nsstring: e1,
                 equal: e2,
@@ -69,16 +66,15 @@ public extension TypeWrapperProtocol where BaseValue == String {
     }
 }
 
-public extension TypeWrapperProtocol where BaseValue == StringTransform {
+public extension Swifty where Base == StringTransform {
     var toUnicodeName: StringTransform {
         return StringTransform(rawValue: "Any-Name")
     }
 }
 
-public extension TypeWrapperProtocol where BaseValue == Unicode.Scalar {
-//public extension Swifty where Base == Unicode.Scalar {
+public extension Swifty where Base == Unicode.Scalar {
     var unicodeName: String {
-        let name = String(baseValue).applyingTransform(.toUnicodeName, reverse: false)!
+        let name = String(base).applyingTransform(.toUnicodeName, reverse: false)!
         let prefixPattern = "\\N{"
         let suffixPattern = "}"
         let prefixLength = name.hasPrefix(prefixPattern) ? prefixPattern.count : 0
@@ -87,11 +83,10 @@ public extension TypeWrapperProtocol where BaseValue == Unicode.Scalar {
     }
 }
 
-public extension TypeWrapperProtocol where BaseValue == String {
-//public extension Swifty where Base == String {
+public extension Swifty where Base == String {
     func wrapped(after: Int = 70) -> String {
         var i = 0
-        let lines = baseValue.split(omittingEmptySubsequences: false) { char in
+        let lines = base.split(omittingEmptySubsequences: false) { char in
             switch char {
             case "\n",
                  " " where i >= after:
@@ -111,22 +106,20 @@ public extension Collection where Element: Equatable {
     }
 }
 
-public extension TypeWrapperProtocol where BaseValue == String {
-//public extension Swifty where Base: String {
+public extension Swifty where Base == String {
     var urlEscaped: String? {
-        return baseValue.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        return base.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
     }
 }
 
 // MARK: - 👀
-public extension TypeWrapperProtocol where BaseValue == String {
-//public extension Swifty where Base: String {
+public extension Swifty where Base == String {
     func toFloat() ->Float? {
         let numberFormatter = NumberFormatter()
-        return numberFormatter.number(from: baseValue)?.floatValue
+        return numberFormatter.number(from: base)?.floatValue
     }
     func toDouble() ->Double? {
         let numberFormatter = NumberFormatter()
-        return numberFormatter.number(from: baseValue)?.doubleValue
+        return numberFormatter.number(from: base)?.doubleValue
     }
 }

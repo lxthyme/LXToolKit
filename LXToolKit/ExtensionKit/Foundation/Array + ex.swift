@@ -11,7 +11,6 @@ import Foundation
 //    typealias Element = Base.Element
 //}
 
-//public extension TypeWrapperProtocol where WrappedType: Array {}
 // MARK: - 👀
 extension Array where Element: Equatable {
     func xl_removeDuplicate() -> Array {

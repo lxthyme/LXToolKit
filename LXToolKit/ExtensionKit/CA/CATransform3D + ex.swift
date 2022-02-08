@@ -8,12 +8,9 @@
 import Foundation
 import GLKit
 
-extension CATransform3D: NamespaceWrappable {}
 // MARK: - 🔐
-//public extension Swifty where Base == CATransform3D {
-public extension TypeWrapperProtocol where BaseValue == CATransform3D {
+public extension Swifty where Base == CATransform3D {
     var convertToGLKMatrix4: GLKMatrix4 {
-        let base = baseValue
         return GLKMatrix4Make(Float(base.m11), Float(base.m12), Float(base.m13), Float(base.m14),
                               Float(base.m21), Float(base.m22), Float(base.m23), Float(base.m24),
                               Float(base.m31), Float(base.m32), Float(base.m33), Float(base.m34),

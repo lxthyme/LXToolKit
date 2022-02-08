@@ -16,7 +16,6 @@ import Foundation
 //}
 
 // MARK: - 👀lx
-//public extension TypeWrapperProtocol where BaseType == UIColor {
 public extension Swifty where Base: UIColor {
     /// 提取给定颜色的 R, G, B, A值
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
@@ -55,7 +54,7 @@ public extension Swifty where Base: UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }
-//public extension TypeWrapperProtocol where BaseType == UIColor {
+
 public extension Swifty where Base: UIColor {
     static func rgba(r: CGFloat, g: CGFloat, b: CGFloat, alpha: CGFloat = 1.0) -> UIColor {
         assert(r >= 0 && r <= 255, "Invalid red component")

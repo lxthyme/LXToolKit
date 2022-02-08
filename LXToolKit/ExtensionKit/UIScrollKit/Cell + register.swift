@@ -8,7 +8,6 @@
 import Foundation
 
 public extension Swifty where Base: UICollectionViewCell {
-//public extension TypeWrapperProtocol where BaseValue == UICollectionViewCell {
     static func register(_ collectionView: UICollectionView) {
         collectionView.register(Base.self, forCellWithReuseIdentifier: Base.xl.xl_identifier)
     }
@@ -21,17 +20,15 @@ public extension Swifty where Base: UITableViewCell {
 }
 
 // MARK: - 👀
-//public extension Swifty where Base == Array<UICollectionViewCell.Type> {
-public extension TypeWrapperProtocol where BaseValue == [UICollectionViewCell.Type] {
+public extension Swifty where Base == [UICollectionViewCell.Type] {
     func register(_ collectionView: UICollectionView) {
-        baseValue.forEach { $0.xl.register(collectionView) }
+        base.forEach { $0.xl.register(collectionView) }
     }
 }
 
 // MARK: - 👀
-//public extension Swifty where Base == Array<UITableViewCell.Type> {
-public extension TypeWrapperProtocol where BaseValue == [UITableViewCell.Type] {
+public extension Swifty where Base == [UITableViewCell.Type] {
     func register(_ tableView: UITableView) {
-        baseValue.forEach { $0.xl.register(tableView) }
+        base.forEach { $0.xl.register(tableView) }
     }
 }

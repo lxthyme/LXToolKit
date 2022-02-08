@@ -13,9 +13,6 @@ open class LXBaseVC: UIViewController {
         dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: - lazy vars
-    public lazy var table: UITableView = {
-        return lazyTableView(style: .plain)
-    }()
 //    lazy var dataList: [Any] = {
 //        let ds = Array(repeating: "", count: 20)
 //        return ds
@@ -30,30 +27,21 @@ open class LXBaseVC: UIViewController {
 //        super.init(nibName: nil, bundle: nil)
 //    }
     // MARK: - Life Cycle
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//    }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//    }
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//    }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//    }
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//    }
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    override open func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = []
-        self.automaticallyAdjustsScrollViewInsets = true
-//        if #available(iOS 11.0, *) {
-//            tableView.contentInsetAdjustmentBehavior = .never
-//        } else {
-//            self.automaticallyAdjustsScrollViewInsets = false
-//        }
+        prepareUI()
     }
 }
 
@@ -69,49 +57,24 @@ open class LXBaseVC: UIViewController {
 //    }
 //}
 
-// MARK: - UITableView init
+// MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseVC {
-    func lazyTableView(style: UITableView.Style) -> UITableView {
-        let t = UITableView(frame: .zero, style: style)
-        t.rowHeight = UITableView.automaticDimension
-        t.estimatedRowHeight = UITableView.automaticDimension
-        t.estimatedSectionHeaderHeight = 0
-        t.estimatedSectionFooterHeight = 0
-        t.sectionHeaderHeight = 0
-        t.sectionFooterHeight = 0
-        t.backgroundColor = .white
-        t.separatorStyle = .none
-
-//        t.delegate = self
-//        t.dataSource = self
-
-        return t
-    }
-    func lazyLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.itemSize = .zero
-        layout.estimatedItemSize = .zero
-//        layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-        layout.scrollDirection = .vertical
-        layout.headerReferenceSize = .zero
-        layout.footerReferenceSize = .zero
-        layout.sectionInset = .zero
+    func prepareUI() {
+        self.edgesForExtendedLayout = []
+        self.automaticallyAdjustsScrollViewInsets = true
         if #available(iOS 11.0, *) {
-            layout.sectionInsetReference = .fromContentInset
+            // tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
         }
-        layout.sectionHeadersPinToVisibleBounds = true
-        layout.sectionFootersPinToVisibleBounds = true
-
-        return layout
+        if #available(iOS 15.0, *) {
+            if let presentationController = presentationController as? UISheetPresentationController {
+                // 显示时支持的尺寸
+                presentationController.detents = [.large(), .medium()]
+                // 显示一个指示器表示可以拖拽调整大小
+                presentationController.prefersGrabberVisible = true
+            }
+        }
     }
-    func lazyCollectionView(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()) -> UICollectionView {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
-//        cv.dataSource = self
-//        cv.delegate = self
-//        cv.prefetchDataSource
-        return cv
-    }
+    func masonry() {}
 }

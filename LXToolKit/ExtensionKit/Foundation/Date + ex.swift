@@ -8,14 +8,13 @@
 
 import struct Foundation.Date
 
-public extension TypeWrapperProtocol where BaseValue == Date {
-//public extension Swifty where Base == Date {
+public extension Swifty where Base == Date {
     static var now: Date {
         return Date()
     }
     /// 将 date 转换为时间戳，精确到微秒
     var timeStamp: TimeInterval {
-        return baseValue.timeIntervalSince1970 * 1000 * 1000
+        return base.timeIntervalSince1970 * 1000 * 1000
     }
     /// 将当前时间转换为时间戳，精确到微秒
     static var nowTimeStamp: TimeInterval {
