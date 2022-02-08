@@ -87,13 +87,15 @@ private extension ViewController {
         }
     }
     @objc func btnTestAction(sender: UIButton) {
-//        let vc = LXSongVC()
-        // let vc = LXNestedTableVC()
-        // let vc = LXTableTestVC()
-        // let vc = LX1019TestVC()
-        // let vc = LXHugTestVC()
-        // let vc = LXStack1206VC()
-        let vc = LXTable0120VC()
+       let vc =
+        // LXSongVC()
+        // LXNestedTableVC()
+        // LXTableTestVC()
+        // LX1019TestVC()
+        // LXHugTestVC()
+        // LXStack1206VC()
+        // LXTable0120VC()
+        LXiOS15VC()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.navigationController?.pushViewController(vc, animated: true)
 //        self.navigationController?.pushViewController(vc, animated: true)
@@ -104,7 +106,7 @@ private extension ViewController {
 extension ViewController {
     func testModel() {
 //        LXGitHubTestModel.test()
-        LXMJExtensionTestModel.test()
+        // LXMJExtensionTestModel.test()
     }
     func test2() {
         let params: [String: Any]? = [:]

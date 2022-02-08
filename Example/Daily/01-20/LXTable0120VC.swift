@@ -12,34 +12,8 @@
 import UIKit
 import LXToolKit
 
-class LXTable0120VC: UIViewController {
+class LXTable0120VC: LXBaseTableViewVC {
     // MARK: 📌UI
-    private lazy var table: UITableView = {
-        let t = UITableView(frame: .zero, style: .plain)
-        t.rowHeight = UITableView.automaticDimension
-        t.estimatedRowHeight = 0
-        t.estimatedSectionHeaderHeight = 0
-        t.estimatedSectionFooterHeight = 0
-        t.sectionHeaderHeight = 0
-        t.sectionFooterHeight = 0
-
-        t.backgroundColor = .white
-        t.separatorStyle = .none
-        t.keyboardDismissMode = .onDrag
-        t.cellLayoutMarginsFollowReadableWidth = false
-        t.separatorColor = .clear
-        t.separatorInset = .zero
-        t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-        t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-
-        t.delegate = self
-        t.dataSource = self
-        t.xl.adapter(withParentVC: self)
-
-        t.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-
-        return t
-    }()
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 20)
         return ds
@@ -105,9 +79,15 @@ extension LXTable0120VC: UITableViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXTable0120VC {
+    func prepareTableView() {
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+    }
     func prepareUI() {
         self.view.backgroundColor = .cyan
         self.table.backgroundColor = .random
+        prepareTableView()
 
         [self.table].forEach(self.view.addSubview)
 
