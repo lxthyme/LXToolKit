@@ -32,7 +32,7 @@ This library contains some useful category and extension kits
   s.swift_versions = '5.1'
   s.cocoapods_version = '>= 1.4.0'
 
-  s.source_files = "LXToolKit/**/*.{swift,h,m}"
+  s.source_files = "LXToolKit/**/*.{swift,h,m,json}"
 
   # s.resource_bundles = {
   #   'LXToolKit' => ['LXToolKit/Assets/*.png']
@@ -42,12 +42,13 @@ This library contains some useful category and extension kits
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 #   s.dependency 'Alamofire', '~> 5.0.0-rc.3'
-    s.dependency "Alamofire", "~> 5.0"
+    # https://github.com/Alamofire/Alamofire
+    s.dependency "Alamofire"
     s.dependency 'Moya'#, '~> 13'
     s.dependency 'RxSwift'#, '~> 5'
     s.dependency 'RxCocoa'
-    s.dependency 'HandyJSON', '~> 5'
-    s.dependency 'SnapKit', '~> 5.0'
+    s.dependency 'HandyJSON'
+    s.dependency 'SnapKit'
     s.dependency 'CryptoSwift'
     s.dependency 'SDWebImage'
 #  s.dependency 'CryptoSwift', '~>1.2.0'
