@@ -18,6 +18,7 @@ target 'LXToolKit_Exam' do
 #  pod 'RxCocoa'
 #pod 'Moya/RxSwift'
 #  pod 'Moya/RxSwift', '~> 13.0'
+# https://github.com/SDWebImage/SDWebImage
 pod 'SDWebImage'
 pod 'HandyJSON'
 pod 'ObjectMapper'
@@ -28,6 +29,7 @@ pod 'ObjectMapper'
 #pod 'Action'
 #pod 'RxSwiftExt'
 #pod 'Toast-Swift'
+# https://github.com/SVProgressHUD/SVProgressHUD
 pod 'SVProgressHUD'
 #pod 'MJRefresh'
 pod 'FLAnimatedImage'
@@ -54,70 +56,110 @@ pod 'TZImagePickerController'
 # Pods for LXToolKit2
 
 # Networking
-pod 'Moya/RxSwift'  # https://github.com/Moya/Moya
-# pod 'Apollo', '0.42.0'  # https://github.com/apollographql/apollo-ios
+# https://github.com/Moya/Moya
+pod 'Moya/RxSwift'
+# https://github.com/apollographql/apollo-ios
+# pod 'Apollo', '0.42.0'
 
 # Rx Extensions
-pod 'RxDataSources'  # https://github.com/RxSwiftCommunity/RxDataSources
-pod 'RxSwiftExt'  # https://github.com/RxSwiftCommunity/RxSwiftExt
-pod 'NSObject+Rx'  # https://github.com/RxSwiftCommunity/NSObject-Rx
-pod 'RxViewController'  # https://github.com/devxoul/RxViewController
-pod 'RxGesture'  # https://github.com/RxSwiftCommunity/RxGesture
-pod 'RxOptional'  # https://github.com/RxSwiftCommunity/RxOptional
-pod 'RxTheme'  # https://github.com/RxSwiftCommunity/RxTheme
+# https://github.com/RxSwiftCommunity/RxDataSources
+pod 'RxDataSources'
+# https://github.com/RxSwiftCommunity/RxSwiftExt
+pod 'RxSwiftExt'
+# https://github.com/RxSwiftCommunity/NSObject-Rx
+pod 'NSObject+Rx'
+# https://github.com/devxoul/RxViewController
+pod 'RxViewController'
+# https://github.com/RxSwiftCommunity/RxGesture
+pod 'RxGesture'
+# https://github.com/RxSwiftCommunity/RxOptional
+pod 'RxOptional'
+# https://github.com/RxSwiftCommunity/RxTheme
+pod 'RxTheme'
 
 # JSON Mapping
-#pod 'Moya-ObjectMapper/RxSwift', '~> 2.0'  # https://github.com/ivanbruel/Moya-ObjectMapper
+# https://github.com/ivanbruel/Moya-ObjectMapper
+# pod 'Moya-ObjectMapper/RxSwift'
 
 # Image
-pod 'Kingfisher'  # https://github.com/onevcat/Kingfisher
+# https://github.com/onevcat/Kingfisher
+pod 'Kingfisher'
 
 # Date
-pod 'DateToolsSwift'  # https://github.com/MatthewYork/DateTools
-pod 'SwiftDate'  # https://github.com/malcommac/SwiftDate
+# https://github.com/MatthewYork/DateTools
+pod 'DateToolsSwift'
+# https://github.com/malcommac/SwiftDate
+pod 'SwiftDate'
 
 # Tools
-pod 'R.swift'  # https://github.com/mac-cain13/R.swift
-pod 'SwiftLint'  # https://github.com/realm/SwiftLint
+# https://github.com/mac-cain13/R.swift
+pod 'R.swift'
+# https://github.com/realm/SwiftLint
+pod 'SwiftLint'
 
 # Keychain
-pod 'KeychainAccess'  # https://github.com/kishikawakatsumi/KeychainAccess
+# https://github.com/kishikawakatsumi/KeychainAccess
+pod 'KeychainAccess'
 
 # UI
-pod 'NVActivityIndicatorView'  # https://github.com/ninjaprox/NVActivityIndicatorView
-pod 'ImageSlideshow/Kingfisher'  # https://github.com/zvonicek/ImageSlideshow
-pod 'DZNEmptyDataSet'  # https://github.com/dzenbot/DZNEmptyDataSet
-pod 'Hero'  # https://github.com/lkzhao/Hero
-pod 'Localize-Swift'  # https://github.com/marmelroy/Localize-Swift
-pod 'RAMAnimatedTabBarController'  # https://github.com/Ramotion/animated-tab-bar
-pod 'AcknowList'  # https://github.com/vtourraine/AcknowList
-pod 'KafkaRefresh'  # https://github.com/OpenFeyn/KafkaRefresh
-pod 'WhatsNewKit'  # https://github.com/SvenTiigi/WhatsNewKit
-pod 'Highlightr'  # https://github.com/raspu/Highlightr
-pod 'DropDown'  # https://github.com/AssistoLab/DropDown
-pod 'Toast-Swift'  # https://github.com/scalessec/Toast-Swift
-pod 'HMSegmentedControl'  # https://github.com/HeshamMegid/HMSegmentedControl
-pod 'FloatingPanel'  # https://github.com/SCENEE/FloatingPanel
-pod 'MessageKit'  # https://github.com/MessageKit/MessageKit
-pod 'MultiProgressView'  # https://github.com/mac-gallagher/MultiProgressView
-pod 'Charts'  # https://github.com/danielgindi/Charts
+# https://github.com/ninjaprox/NVActivityIndicatorView
+pod 'NVActivityIndicatorView'
+# https://github.com/zvonicek/ImageSlideshow
+pod 'ImageSlideshow/Kingfisher'
+# https://github.com/dzenbot/DZNEmptyDataSet
+pod 'DZNEmptyDataSet'
+# https://github.com/lkzhao/Hero
+pod 'Hero'
+# https://github.com/marmelroy/Localize-Swift
+pod 'Localize-Swift'
+# https://github.com/Ramotion/animated-tab-bar
+pod 'RAMAnimatedTabBarController'
+# https://github.com/vtourraine/AcknowList
+pod 'AcknowList'
+# https://github.com/OpenFeyn/KafkaRefresh
+pod 'KafkaRefresh'
+# https://github.com/SvenTiigi/WhatsNewKit
+pod 'WhatsNewKit'
+# https://github.com/raspu/Highlightr
+pod 'Highlightr'
+# https://github.com/AssistoLab/DropDown
+pod 'DropDown'
+# https://github.com/scalessec/Toast-Swift
+pod 'Toast-Swift'
+# https://github.com/HeshamMegid/HMSegmentedControl
+pod 'HMSegmentedControl'
+# https://github.com/SCENEE/FloatingPanel
+pod 'FloatingPanel'
+# https://github.com/MessageKit/MessageKit
+pod 'MessageKit'
+# https://github.com/mac-gallagher/MultiProgressView
+pod 'MultiProgressView'
+# https://github.com/danielgindi/Charts
+pod 'Charts'
 
 # Keyboard
-pod 'IQKeyboardManagerSwift'  # https://github.com/hackiftekhar/IQKeyboardManager
+# https://github.com/hackiftekhar/IQKeyboardManager
+pod 'IQKeyboardManagerSwift'
 
 # Auto Layout
-pod 'SnapKit'  # https://github.com/SnapKit/SnapKit
+# https://github.com/SnapKit/SnapKit
+pod 'SnapKit'
 
 # Code Quality
-pod 'FLEX', :configurations => ['Debug']  # https://github.com/Flipboard/FLEX
-pod 'SwifterSwift'  # https://github.com/SwifterSwift/SwifterSwift
-pod 'BonMot'  # https://github.com/Rightpoint/BonMot
+# https://github.com/Flipboard/FLEX
+pod 'FLEX', :configurations => ['Debug']
+# https://github.com/SwifterSwift/SwifterSwift
+pod 'SwifterSwift'
+# https://github.com/Rightpoint/BonMot
+pod 'BonMot'
 
 # Logging
-pod 'CocoaLumberjack/Swift'  # https://github.com/CocoaLumberjack/CocoaLumberjack
+# https://github.com/CocoaLumberjack/CocoaLumberjack
+pod 'CocoaLumberjack/Swift'
 
 # Analytics
-pod 'Mixpanel-swift'  # https://github.com/mixpanel/mixpanel-iphone
+# https://github.com/mixpanel/mixpanel-iphone
+pod 'Mixpanel-swift'
 
 # Ads
 #pod 'Google-Mobile-Ads-SDK', '~> 8.0'
@@ -153,7 +195,7 @@ end
 post_install do |installer|
  installer.pods_project.targets.each do |target|
   target.build_configurations.each do |config|
-   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
   end
  end
 end
@@ -214,7 +256,7 @@ end
 ##  pod 'RxCocoa'
 #pod 'Moya/RxSwift'
 ##  pod 'Moya/RxSwift', '~> 13.0'
-#pod 'SDWebImage', '~>5.10'
+#pod 'SDWebImage', '~>5.10'B
 #pod 'HandyJSON'
 #pod 'Kingfisher', '~>5.15'
 #pod 'RxCocoa'
