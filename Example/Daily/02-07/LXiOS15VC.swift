@@ -148,6 +148,8 @@ private extension LXiOS15VC {
         /// 1. UINavigationBar
         let navAppearance = UINavigationBarAppearance()
         navAppearance.backgroundColor = .red
+        // 毛玻璃效果
+        navAppearance.backgroundEffect = UIBlurEffect(style: .regular)
         navigationController?.navigationBar.scrollEdgeAppearance = navAppearance
         navigationController?.navigationBar.standardAppearance = navAppearance
         /// 2. UIToolbar
@@ -209,7 +211,7 @@ extension LXiOS15VC: UITableViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXiOS15VC {
     func prepareUI() {
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
         [table].forEach(self.view.addSubview)

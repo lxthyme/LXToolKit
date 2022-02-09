@@ -156,6 +156,8 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
+		BEDE636F27B3BF150055F1F8 /* LXBaseMVVMTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDE636E27B3BF150055F1F8 /* LXBaseMVVMTableVC.swift */; };
+		BEDE637127B3C08D0055F1F8 /* LXBaseMVVMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDE637027B3C08D0055F1F8 /* LXBaseMVVMVC.swift */; };
 		BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */; };
 		BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B842799455300D26B02 /* LX1019TestVC.m */; };
 		BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B862799455300D26B02 /* ExampleViewController.swift */; };
@@ -273,8 +275,6 @@
 		BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2B2799455400D26B02 /* LXNestedTableView.swift */; };
 		BEF15CC32799455600D26B02 /* LXNestedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2C2799455400D26B02 /* LXNestedCollectionView.swift */; };
 		BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C2D2799455400D26B02 /* LXNestedTableVC.swift */; };
-		BEF15CC52799455600D26B02 /* LXMJExtensionTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */; };
-		BEF15CC62799455600D26B02 /* LXGitHubTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C322799455400D26B02 /* LXGitHubTestModel.m */; };
 		BEF15CC72799455600D26B02 /* PHPhotoLibrary + requestAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C352799455400D26B02 /* PHPhotoLibrary + requestAuthorization.swift */; };
 		BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C362799455400D26B02 /* LX0114VC.swift */; };
 		BEF15CC92799455600D26B02 /* LXClsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C382799455400D26B02 /* LXClsListVC.swift */; };
@@ -526,6 +526,8 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
+		BEDE636E27B3BF150055F1F8 /* LXBaseMVVMTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMTableVC.swift; sourceTree = "<group>"; };
+		BEDE637027B3C08D0055F1F8 /* LXBaseMVVMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMVC.swift; sourceTree = "<group>"; };
 		BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTable0120VC.swift; sourceTree = "<group>"; };
 		BEF15B832799455300D26B02 /* LX1019TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1019TestVC.h; sourceTree = "<group>"; };
 		BEF15B842799455300D26B02 /* LX1019TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1019TestVC.m; sourceTree = "<group>"; };
@@ -647,10 +649,6 @@
 		BEF15C2B2799455400D26B02 /* LXNestedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableView.swift; sourceTree = "<group>"; };
 		BEF15C2C2799455400D26B02 /* LXNestedCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedCollectionView.swift; sourceTree = "<group>"; };
 		BEF15C2D2799455400D26B02 /* LXNestedTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNestedTableVC.swift; sourceTree = "<group>"; };
-		BEF15C302799455400D26B02 /* LXGitHubTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGitHubTestModel.h; sourceTree = "<group>"; };
-		BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMJExtensionTestModel.m; sourceTree = "<group>"; };
-		BEF15C322799455400D26B02 /* LXGitHubTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGitHubTestModel.m; sourceTree = "<group>"; };
-		BEF15C332799455400D26B02 /* LXMJExtensionTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMJExtensionTestModel.h; sourceTree = "<group>"; };
 		BEF15C352799455400D26B02 /* PHPhotoLibrary + requestAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHPhotoLibrary + requestAuthorization.swift"; sourceTree = "<group>"; };
 		BEF15C362799455400D26B02 /* LX0114VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0114VC.swift; sourceTree = "<group>"; };
 		BEF15C382799455400D26B02 /* LXClsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXClsListVC.swift; sourceTree = "<group>"; };
@@ -859,6 +857,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEC4D73627B3A11700F03B22 /* 02-09 */,
 				BE801F1127B0EE61007EDEBF /* 02-07 */,
 				BEF15B7C2799433500D26B02 /* 01-20 */,
 				BEA2454426F335290098707A /* 2020 */,
@@ -1421,6 +1420,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		BEC4D73627B3A11700F03B22 /* 02-09 */ = {
+			isa = PBXGroup;
+			children = (
+				BEDE636E27B3BF150055F1F8 /* LXBaseMVVMTableVC.swift */,
+				BEDE637027B3C08D0055F1F8 /* LXBaseMVVMVC.swift */,
+			);
+			path = "02-09";
+			sourceTree = "<group>";
+		};
 		BEC818AC249859360002576B /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -1856,10 +1864,6 @@
 		BEF15C2F2799455400D26B02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BEF15C302799455400D26B02 /* LXGitHubTestModel.h */,
-				BEF15C312799455400D26B02 /* LXMJExtensionTestModel.m */,
-				BEF15C322799455400D26B02 /* LXGitHubTestModel.m */,
-				BEF15C332799455400D26B02 /* LXMJExtensionTestModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2482,6 +2486,7 @@
 				BEF15C5F2799455400D26B02 /* XLNotificationModel.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
 				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,
+				BEDE637127B3C08D0055F1F8 /* LXBaseMVVMVC.swift in Sources */,
 				BEF15CB32799455500D26B02 /* Networking.swift in Sources */,
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
 				BEF15C542799455400D26B02 /* XLUserModel.swift in Sources */,
@@ -2494,6 +2499,7 @@
 				BEA245DB26F335290098707A /* LXPresentVC.swift in Sources */,
 				BEF15C402799455400D26B02 /* LXPickerVC.swift in Sources */,
 				BEA245FA26F335290098707A /* Action + checkError.swift in Sources */,
+				BEDE636F27B3BF150055F1F8 /* LXBaseMVVMTableVC.swift in Sources */,
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
@@ -2510,7 +2516,6 @@
 				BEF15C522799455400D26B02 /* XLCommitterModel.swift in Sources */,
 				BEF15C7C2799455500D26B02 /* KafkaRefresh+Rx.swift in Sources */,
 				BEF15C5B2799455400D26B02 /* XLLicenseModel.swift in Sources */,
-				BEF15CC52799455600D26B02 /* LXMJExtensionTestModel.m in Sources */,
 				BEA245EB26F335290098707A /* UUHud.swift in Sources */,
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
 				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
@@ -2609,7 +2614,6 @@
 				BEA245C926F335290098707A /* LXPerson.m in Sources */,
 				BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */,
 				BEA245CB26F335290098707A /* LXSwiftView.swift in Sources */,
-				BEF15CC62799455600D26B02 /* LXGitHubTestModel.m in Sources */,
 				BEF15C632799455500D26B02 /* XLEventsVC.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
 				BEA2460126F335290098707A /* WikipediaSearchResult.swift in Sources */,

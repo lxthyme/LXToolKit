@@ -59,10 +59,10 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Moya.Response
             return model
         }
     }
-    func mapBaseModel<T: HandyJSON>(_ type: T.Type) -> PrimitiveSequence<Trait, LXBaseModel<T>> {
-        return self.map { response -> LXBaseModel<T> in
+    func mapBaseModel<T: HandyJSON>(_ type: T.Type) -> PrimitiveSequence<Trait, LXBaseGenericModel<T>> {
+        return self.map { response -> LXBaseGenericModel<T> in
             guard let string = String(data: response.data, encoding: .utf8),
-                let model = LXBaseModel<T>.deserialize(from: string) else {
+                let model = LXBaseGenericModel<T>.deserialize(from: string) else {
                     throw LXNetworkError.invalidJSON
             }
             guard (200...209) ~= response.statusCode else {

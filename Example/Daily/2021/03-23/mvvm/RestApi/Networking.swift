@@ -125,7 +125,7 @@ extension GithubNetworking {
                 single(.success(cachedResponse))
             }
             if !provider.online.value {
-                single(.error(ApiError.offline))
+                single(.failure(ApiError.offline))
             }
             let cancelableToken = self.provider.provider.request(token) { result in
                 switch result {
@@ -136,7 +136,7 @@ extension GithubNetworking {
                     }
                     single(.success(response))
                 case .failure(let error):
-                    single(.error(error))
+                    single(.failure(error))
                 }
             }
             return Disposables.create {

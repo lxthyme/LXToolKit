@@ -93,10 +93,10 @@ extension Reactive where Base: RxProvider {
                                         break
                                 }
                             } else {
-                                single(.error(LXNetworkError.invalidJSON))
+                                single(.failure(LXNetworkError.invalidJSON))
                             }
                         case .failure(let error):
-                            single(.error(LXNetworkError.invalidHTTPCode))
+                            single(.failure(LXNetworkError.invalidHTTPCode))
                     }
                 }
 
