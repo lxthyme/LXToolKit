@@ -7,7 +7,7 @@ PODS:
   - Apollo (0.50.0):
     - Apollo/Core (= 0.50.0)
   - Apollo/Core (0.50.0)
-  - BonMot (5.6.0)
+  - BonMot (6.0.0)
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
@@ -19,18 +19,18 @@ PODS:
   - Differentiator (5.0.0)
   - DropDown (2.3.13)
   - DZNEmptyDataSet (1.8.1)
-  - Firebase/Analytics (8.11.0):
+  - Firebase/Analytics (8.12.1):
     - Firebase/Core
-  - Firebase/Core (8.11.0):
+  - Firebase/Core (8.12.1):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (~> 8.11.0)
-  - Firebase/CoreOnly (8.11.0):
-    - FirebaseCore (= 8.11.0)
-  - Firebase/Crashlytics (8.11.0):
+    - FirebaseAnalytics (~> 8.12.0)
+  - Firebase/CoreOnly (8.12.1):
+    - FirebaseCore (= 8.12.1)
+  - Firebase/Crashlytics (8.12.1):
     - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 8.11.0)
-  - FirebaseAnalytics (8.11.0):
-    - FirebaseAnalytics/AdIdSupport (= 8.11.0)
+    - FirebaseCrashlytics (~> 8.12.0)
+  - FirebaseAnalytics (8.12.0):
+    - FirebaseAnalytics/AdIdSupport (= 8.12.0)
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -38,55 +38,55 @@ PODS:
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - FirebaseAnalytics/AdIdSupport (8.11.0):
+  - FirebaseAnalytics/AdIdSupport (8.12.0):
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
-    - GoogleAppMeasurement (= 8.11.0)
+    - GoogleAppMeasurement (= 8.12.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - FirebaseCore (8.11.0):
+  - FirebaseCore (8.12.1):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.11.0):
+  - FirebaseCoreDiagnostics (8.12.0):
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
-  - FirebaseCrashlytics (8.11.0):
+  - FirebaseCrashlytics (8.12.0):
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
     - GoogleDataTransport (~> 9.1)
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - FirebaseInstallations (8.11.0):
+  - FirebaseInstallations (8.12.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/UserDefaults (~> 7.7)
     - PromisesObjC (< 3.0, >= 1.2)
   - FLAnimatedImage (1.0.16)
   - FLEX (4.6.1)
-  - FloatingPanel (2.5.1)
+  - FloatingPanel (2.5.2)
   - FunctionalObjC (1.0.2)
-  - GoogleAppMeasurement (8.11.0):
-    - GoogleAppMeasurement/AdIdSupport (= 8.11.0)
+  - GoogleAppMeasurement (8.12.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.12.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/AdIdSupport (8.11.0):
-    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.11.0)
+  - GoogleAppMeasurement/AdIdSupport (8.12.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.12.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
     - nanopb (~> 2.30908.0)
-  - GoogleAppMeasurement/WithoutAdIdSupport (8.11.0):
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.12.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
     - GoogleUtilities/MethodSwizzler (~> 7.7)
     - GoogleUtilities/Network (~> 7.7)
@@ -123,9 +123,9 @@ PODS:
   - ImageSlideshow/Kingfisher (1.9.2):
     - ImageSlideshow/Core
     - Kingfisher (> 3.0)
-  - InputBarAccessoryView (4.3.3):
-    - InputBarAccessoryView/Core (= 4.3.3)
-  - InputBarAccessoryView/Core (4.3.3)
+  - InputBarAccessoryView (5.4.0):
+    - InputBarAccessoryView/Core (= 5.4.0)
+  - InputBarAccessoryView/Core (5.4.0)
   - IQKeyboardManagerSwift (6.5.9)
   - KafkaRefresh (1.5.0):
     - KafkaRefresh/Category (= 1.5.0)
@@ -163,7 +163,7 @@ PODS:
     - KafkaRefresh/Category
     - KafkaRefresh/Default
   - KeychainAccess (4.2.2)
-  - Kingfisher (6.3.1)
+  - Kingfisher (7.1.2)
   - Localize-Swift (3.2.0):
     - Localize-Swift/LocalizeSwiftCore (= 3.2.0)
     - Localize-Swift/UIKit (= 3.2.0)
@@ -184,11 +184,11 @@ PODS:
     - Mantle/extobjc (= 2.2.0)
   - Mantle/extobjc (2.2.0)
   - Masonry (1.1.0)
-  - MessageKit (3.1.1):
-    - InputBarAccessoryView (~> 4.3.0)
-  - Mixpanel-swift (3.1.3):
-    - Mixpanel-swift/Complete (= 3.1.3)
-  - Mixpanel-swift/Complete (3.1.3)
+  - MessageKit (3.7.0):
+    - InputBarAccessoryView (~> 5.4.0)
+  - Mixpanel-swift (3.1.4):
+    - Mixpanel-swift/Complete (= 3.1.4)
+  - Mixpanel-swift/Complete (3.1.4)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
   - Moya (15.0.0):
@@ -292,9 +292,9 @@ PODS:
   - Toast-Swift (5.0.1)
   - TZImagePickerController (3.7.2)
   - WhatsNewKit (1.3.7)
-  - YPImagePicker (4.5.0):
-    - PryntTrimmerView (~> 4.0.2)
-    - SteviaLayout (~> 4.7.3)
+  - YPImagePicker (5.2.1):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
   - YYCache (1.0.4)
   - ZLPhotoBrowser (4.2.2):
     - ZLPhotoBrowser/Core (= 4.2.2)
@@ -461,7 +461,7 @@ SPEC CHECKSUMS:
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Apollo: 5e4476a3236bd576686085b7cd99655c788e4d74
-  BonMot: 2217a66e5ddc6a8d2ffb759fe8c85a8528e0d3e7
+  BonMot: fb2b6a2209cb3149aca37b7131d49c051c04ae86
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   CryptoSwift: a532e74ed010f8c95f611d00b8bbae42e9fe7c17
@@ -469,17 +469,17 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
-  FirebaseAnalytics: 4e4b13031034e6561ed3bd1d47b6fdabbd6487c6
-  FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
-  FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
-  FirebaseCrashlytics: 62268addefae79601057818156e8bc69d71fee41
-  FirebaseInstallations: 044eede8a049bce71c4541ee68d6e4364fcbe774
+  Firebase: 580d09e8edafc3073ebf09c03fd42e4d80d35fe9
+  FirebaseAnalytics: bd10d7706ba8d6e01ea2816f8fe9e9b881cb0918
+  FirebaseCore: 8138de860a90ca7eec5e324da5788fb0ebf1d93c
+  FirebaseCoreDiagnostics: 3b40dfadef5b90433a60ae01f01e90fe87aa76aa
+  FirebaseCrashlytics: 7952ffd988006128325510664b99dc8ca5851dff
+  FirebaseInstallations: 25764cf322e77f99449395870a65b2bef88e1545
   FLAnimatedImage: 8f3e854ebf9680b71f0b6e700939687fc4d82b4b
   FLEX: bbc55d197f87d7cde2454c3981aa47069b694144
-  FloatingPanel: 523cb50f490f151fc03fabf24a8322e44d22f65f
+  FloatingPanel: 935712d7a8076630135fbbd47f717700913efef9
   FunctionalObjC: bd6aaa4b69abea0a5ac0e860a052c1ebebd5311c
-  GoogleAppMeasurement: aa3cb422fab2b05d2efac543a5720d1a85b9dea5
+  GoogleAppMeasurement: ae033c3aad67e68294369373056b4d74cc8ae0d6
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
@@ -487,18 +487,18 @@ SPEC CHECKSUMS:
   Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
-  InputBarAccessoryView: 8e7fc09e9cba75e0fee5da13450e15c194806f69
+  InputBarAccessoryView: 74d471ab1fa1736806be50328df79257e52865a9
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   KafkaRefresh: 01645b1509b8647809f6bb666629c80855bd3fdd
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
   LXToolKit: 7cec9e317c80a6f188426bba4685f794ce3121fc
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MessageKit: a3e612a54a24f5d9ca0295760749b481afd3f2da
-  Mixpanel-swift: cf3b61443647f79eba469ddda431e8c34697cdc0
+  MessageKit: 8e76dd8d65ad44b49e1651c673497146416461e9
+  Mixpanel-swift: 3ce40d07c05e437bf9258fc0dee9f214c4d5ed8d
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
@@ -533,7 +533,7 @@ SPEC CHECKSUMS:
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   TZImagePickerController: 0f926234c46362d3c4ed128832b6da59b2d9917e
   WhatsNewKit: c87028c4059dccd113495422801914cc53f6aab0
-  YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
+  YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: a7aa41a674e67a86c1728a3d9d73a471d5650a82
 

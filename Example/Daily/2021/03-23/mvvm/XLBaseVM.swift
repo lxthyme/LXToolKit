@@ -36,52 +36,7 @@ class XLBaseVM: NSObject {
         self.provider = provider
         super.init()
 
-        error
-            .asDriver()
-            .drive(onNext: {[weak self] error in
-                guard let `self` = self else { return }
-                Logger.error("🛠1. onNext: \(error)")
-                var emptySet = XLEmptyDataSet(title: "", description: "", img: nil, imgTintColor: BehaviorRelay<UIColor?>(value: .red))
-                if let apiError = error as? ApiError {
-                    emptySet.identifier = apiError.identifier
-                    switch apiError {
-                    case .offline:
-                        emptySet.title = "没有网络!"
-                        emptySet.description = "「1」检测到设备没有联网, 请确认后重试~"
-                    case .serverError(let response, let error):
-                        emptySet.title = "服务器错误!"
-                        emptySet.description = """
-「2」服务器错误, 请稍后重试~
-    -->response: \(response.debugDescription)
-    -->error: \(error.debugDescription)
-"""
-                    case .serializeError(let response, let error):
-                        emptySet.title = "序列化错误!"
-                        emptySet.description = """
-「3」序列化错误, 请稍后重试~
-    -->response: \(response.debugDescription)
-    -->error: \(error.debugDescription)
-"""
-                    case .nocontent:
-                        emptySet.title  = "没有内容!"
-                        emptySet.description = "「4」暂时没有更多内容, 请稍后重试~"
-                    case .invalidStatusCode(let statusCode, let tips):
-                        emptySet.title = "code 错误[\(statusCode ?? 999)"
-                        emptySet.description = "「5」code 错误~ -> \(tips ?? "--")"
-                    }
-                } else if let moyaError = error as? MoyaError {
-                    emptySet.identifier = "\(moyaError.errorCode)"
-                    emptySet.title = "\(moyaError.failureReason ?? "")"
-                    emptySet.description = "「moya」\(moyaError.errorDescription ?? "")"
-                } else {
-                    let error = error as NSError
-                    emptySet.identifier = "\(error.code)"
-                    emptySet.title = "「else」\(error.domain)"
-                    emptySet.description = error.localizedDescription
-                }
-                self.emptyDataSet.accept(emptySet)
-            })
-            .disposed(by: rx.disposeBag)
+        
     }
 }
 

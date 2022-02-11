@@ -26,7 +26,7 @@ enum EventSegments: Int, HandyJSONEnum {
     }
 }
 
-class XLEventsVC: XLBaseTableVC {
+class XLEventsVC: LXBaseMVVMTableVC {
     // MARK: 📌UI
     private lazy var segmentControl: HMSegmentedControl = {
         let s = HMSegmentedControl(sectionTitles: [

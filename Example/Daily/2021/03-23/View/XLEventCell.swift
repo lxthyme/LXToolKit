@@ -13,7 +13,7 @@ import RxOptional
 import Hero
 import LXToolKit
 
-class XLEventCell: XLBaseTableViewCell {
+class XLEventCell: LXBaseTableViewCell {
     // MARK: 📌UI
     private lazy var middleStackView: UIStackView = {
         let v = UIStackView()
@@ -91,7 +91,7 @@ class XLEventCell: XLBaseTableViewCell {
 
 // MARK: 👀Public Actions
 extension XLEventCell {
-    override func bind(to viewModel: XLBaseTableViewCellVM) {
+    override func bind(to viewModel: LXBaseMVVMTableCellVM) {
         super.bind(to: viewModel)
         guard let vm = viewModel as? XLEventCellVM else { return }
 

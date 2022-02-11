@@ -5,8 +5,8 @@
 #import "LXResolveTestObj.h"
 #import "LXTestStringVC.h"
 
-#import "LXGitHubTestModel.h"
-#import "LXMJExtensionTestModel.h"
+// #import "LXGitHubTestModel.h"
+// #import "LXMJExtensionTestModel.h"
 #import "LXTableTestVC.h"
 #import "LX1019TestVC.h"
 #import "LXHugTestVC.h"

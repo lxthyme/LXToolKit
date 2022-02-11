@@ -115,7 +115,7 @@ extension XLEventsVM: XLViewModelType {
     }
 }
 
-class XLEventsVM: XLBaseVM {
+class XLEventsVM: LXBaseVM {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     let mode: BehaviorRelay<XLEventsMode>

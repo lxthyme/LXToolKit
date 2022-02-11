@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SwiftDate
 
-class XLEventCellVM: XLBaseTableViewCellVM {
+class XLEventCellVM: LXBaseMVVMTableCellVM {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     let title = BehaviorRelay<String?>(value: nil)
