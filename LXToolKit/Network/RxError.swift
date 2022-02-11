@@ -162,8 +162,8 @@ public enum RxMoyaError: Error {
     case error(error: Error)
     case invalidHTTPCode(code: Int)
     case unReachable
-//    case codeInvalid(code: Int?, data: HandyJSON?, tips: String?, msg: String?)
-    case codeInvalid(code: Int?, base: BaseModel)
+    // case codeInvalid(code: Int?, data: HandyJSON?, tips: String?, msg: String?)
+    // case codeInvalid(code: Int?, base: BaseModel)
     case invalidJSON
     case noData
     case success

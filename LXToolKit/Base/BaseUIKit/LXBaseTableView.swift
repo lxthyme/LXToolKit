@@ -15,9 +15,9 @@ class LXBaseTableView: UITableView {
         super.init(coder: aDecoder)
         prepareUI()
      }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+        // TODO:「lxthyme」💊这里测试继承的 tableView 不主动调用prepareUI方法时, 是否会触发子类的prepareUI
         prepareUI()
     }
 
@@ -33,12 +33,22 @@ private extension LXBaseTableView {}
 private extension LXBaseTableView {
     func prepareUI() {
         self.backgroundColor = UIColor.white
-        // self.title = "<#title#>"
+        self.rowHeight = UITableView.automaticDimension
+        self.estimatedRowHeight = 0
+        self.estimatedSectionHeaderHeight = 0
+        self.estimatedSectionFooterHeight = 0
+        self.sectionHeaderHeight = 0
+        self.sectionFooterHeight = 0
 
-        // [<#table#>].forEach(self.addSubview)
+        self.backgroundColor = .white
+        self.separatorStyle = .none
+        self.keyboardDismissMode = .onDrag
+        self.cellLayoutMarginsFollowReadableWidth = false
+        self.separatorColor = .clear
+        self.separatorInset = .zero
+        self.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
+        self.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
 
-        masonry()
+        // self.xl.adapterWith(parentVC: self)
     }
-
-    func masonry() {}
 }

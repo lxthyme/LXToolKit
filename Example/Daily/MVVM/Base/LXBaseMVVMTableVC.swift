@@ -13,6 +13,7 @@ import KafkaRefresh
 import NSObject_Rx
 import DZNEmptyDataSet
 import Rswift
+import Toast_Swift
 import LXToolKit
 
 class LXBaseMVVMTableVC: LXBaseMVVMVC, LXBaseTableViewProtocol {
@@ -132,5 +133,7 @@ private extension LXBaseMVVMTableVC {
         masonry()
     }
 
-    func masonry() {}
+    func masonry() {
+        table.snp.setLabel("\(self.xl.xl_typeName).table")
+    }
 }

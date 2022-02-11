@@ -17,11 +17,14 @@ public extension Swifty where Base: UITableView {
 public extension Swifty where Base: UITableView {
     /// tableView 各系统版本适配
     /// - Parameter parentVC: tableView 所在的 VC
-    func adapter(withParentVC parentVC: UIViewController?) {
+    func adapterWith(parentVC: UIViewController?) {
         if #available(iOS 11.0, *) {
             base.contentInsetAdjustmentBehavior = .never
-        } else {
-            parentVC?.automaticallyAdjustsScrollViewInsets = false
+        } else if let vc = parentVC {
+            vc.automaticallyAdjustsScrollViewInsets = false
+        }
+        if #available(iOS 13.0, *) {
+            base.automaticallyAdjustsScrollIndicatorInsets = false
         }
         if #available(iOS 15.0, *) {
             base.sectionHeaderTopPadding = 0

@@ -11,6 +11,12 @@ import RxCocoa
 
 class LXBaseMVVMTableCell: UITableViewCell {
     // MARK: 📌UI
+    lazy var contentStackView: UIStackView = {
+        let v = UIStackView()
+        v.axis = .vertical
+        v.alignment = .center
+        return v
+    }()
     // MARK: 🔗Vaiables
     var cellDisposeBag = DisposeBag()
 
@@ -63,5 +69,7 @@ private extension LXBaseMVVMTableCell {
         masonry()
     }
 
-    func masonry() {}
+    func masonry() {
+        contentStackView.snp.setLabel("\(self.xl.xl_typeName).contentStackView")
+    }
 }

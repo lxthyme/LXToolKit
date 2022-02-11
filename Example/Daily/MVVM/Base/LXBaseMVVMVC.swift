@@ -14,10 +14,43 @@ import Hero
 import Localize_Swift
 // import GoogleMobileAds
 import SVProgressHUD
+import Rswift
 import LXToolKit
 
+struct LXEmptyDataSet: Equatable {
+    var identifier = "233"
+    var btnTap = PublishSubject<Void>()
+    var title = R.string.localizabled.commonNoResults()
+    var description = ""
+    var img = R.image.image_no_result()
+    var imgTintColor = BehaviorRelay<UIColor?>(value: nil)
+
+    static func == (lhs: LXEmptyDataSet, rhs: LXEmptyDataSet) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+}
+
 class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
+    deinit {
+        dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        LXPrint.resourcesCount()
+    }
     // MARK: 📌UI
+    lazy var btnClosed: UIBarButtonItem = {
+        let btn = UIBarButtonItem(image: R.image.icon_navigation_close(),
+                                  style: .plain,
+                                  target: self,
+                                  action: nil)
+        btn.rx.tap
+            .asObservable()
+            .subscribe(onNext: {[weak self] _ in
+                guard let `self` = self else { return }
+                Logger.debug("🛠1. onNext - btnClosed - tap: ")
+                self.navigator.dismiss(sender: self)
+            })
+            .disposed(by: rx.disposeBag)
+        return btn
+    }()
     lazy var backBarButton: UIBarButtonItem = {
         let view = UIBarButtonItem()
         view.title = ""
@@ -41,7 +74,7 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
 
 
     let emptyDataSetButtonTap = PublishSubject<Void>()
-    var emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
+    var emptyDataSetTitle = R.string.localizabled.commonNoResults.key.localized()
     var emptyDataSetDescription = ""
     var emptyDataSetImage = R.image.image_no_result()
     var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
@@ -73,6 +106,8 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareGesture()
+        prepareNotification()
         prepareUI()
     }
 
@@ -97,13 +132,13 @@ extension LXBaseMVVMVC {
 extension LXBaseMVVMVC {
     @objc func handleOneFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized, canOpenFlex {
-            // LibsManager.shared.showFlex()
+            LibsManager.shared.showFlex()
         }
     }
 
     @objc func handleTwoFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized {
-            // LibsManager.shared.showFlex()
+            LibsManager.shared.showFlex()
             HeroDebugPlugin.isEnabled = !HeroDebugPlugin.isEnabled
         }
     }
@@ -115,7 +150,7 @@ private extension LXBaseMVVMVC {
         if self.navigationController?.viewControllers.count ?? 0 > 1 { // Pushed
             self.navigationItem.leftBarButtonItem = nil
         } else if self.presentingViewController != nil { // presented
-            self.navigationItem.leftBarButtonItem = closeBarButton
+            self.navigationItem.leftBarButtonItem = btnClosed
         }
     }
     @objc func closeAction(sender: AnyObject) {

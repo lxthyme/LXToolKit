@@ -14,11 +14,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var notificationDelegate: SampleNotificationDelegate?
+    static var shared: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        configureNotification()
-        LibraryManager.shared.setupLibs(with: window)
+        window = UIWindow()
+        window?.bounds = UIScreen.main.bounds
+        window?.backgroundColor = UIColor.white
+
+        let vc = ViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
+
+        let libsManager = LibsManager.shared
+        libsManager.setupLibs(with: window)
+
+        if Configs.Network.useStaging == true {
+            // Logout
+            User.removeCurrentUser()
+            AuthManager.removeToken()
+
+            // Use Green Dark theme
+            var theme = ThemeType.currentTheme()
+            if theme.isDark != true {
+                theme = theme.toggled()
+            }
+            theme = theme.withColor(color: .green)
+            themeService.switch(theme)
+
+            // Disable banners
+            libsManager.bannersEnabled.accept(false)
+        } else {
+            connectedToInternet().skip(1).subscribe(onNext: { [weak self] (connected) in
+                var style = ToastManager.shared.style
+                style.backgroundColor = connected ? UIColor.Material.green: UIColor.Material.red
+                let message = connected ? R.string.localizabled.toastConnectionBackMessage.key.localized(): R.string.localizabled.toastConnectionLostMessage.key.localized()
+                let image = connected ? R.image.icon_toast_success(): R.image.icon_toast_warning()
+                if let view = self?.window?.rootViewController?.view {
+                    view.makeToast(message, position: .bottom, image: image, style: style)
+                }
+            }).disposed(by: rx.disposeBag)
+        }
+
+        // Show initial screen
+        Application.shared.presentInitialScreen(in: window!)
+
+        // configureNotification()
+
+        window?.makeKeyAndVisible()
         return true
     }
     func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {

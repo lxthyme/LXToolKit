@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import HandyJSON
+import SnapKit
 
 // MARK: - Create your borders and assign them to a property on a view when you can via the create methods when possible. Otherwise you might end up with multiple borders being created.
 extension UIView {
@@ -17,21 +17,13 @@ extension UIView {
         case left, top, right, bottom
     }
 
-    func defaultBorderColor() -> UIColor {
-        return UIColor.separator()
-    }
-
-    func defaultBorderDepth() -> CGFloat {
-        return Configs.BaseDimensions.borderWidth
-    }
-
     /// Add Border for side with default params
     ///
     /// - Parameter side: Border Side
     /// - Returns: Border view
     @discardableResult
-    func addBorder(for side: BorderSide) -> UIView {
-        return addBorder(for: side, color: defaultBorderColor(), depth: defaultBorderDepth())
+    func addBorder(for side: BorderSide, borderWidth: CGFloat, borderColor: UIColor) -> UIView {
+        return addBorder(for: side, color: borderColor, depth: borderWidth)
     }
 
     /// Add Bottom Border with default params
@@ -41,15 +33,15 @@ extension UIView {
     ///   - rightInset: right inset
     /// - Returns: Border view
     @discardableResult
-    func addBottomBorder(leftInset: CGFloat = 10, rightInset: CGFloat = 0) -> UIView {
+    func addBottomBorder(leftInset: CGFloat = 10, rightInset: CGFloat = 0, borderWidth: CGFloat, borderColor: UIColor) -> UIView {
         let border = UIView()
-        border.backgroundColor = defaultBorderColor()
+        border.backgroundColor = borderColor
         self.addSubview(border)
         border.snp.makeConstraints { (make) in
             make.left.equalToSuperview().inset(leftInset)
             make.right.equalToSuperview().inset(rightInset)
             make.bottom.equalToSuperview()
-            make.height.equalTo(self.defaultBorderDepth())
+            make.height.equalTo(borderWidth)
         }
         return border
     }

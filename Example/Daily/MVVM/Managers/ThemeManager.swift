@@ -397,7 +397,7 @@ extension ThemeProxy where Base: LXBaseMVVMTableCell {
     }
 }
 
-extension ThemeProxy where Base: ViewController {
+extension ThemeProxy where Base: LXBaseMVVMVC {
     var emptyDataSetImageTintColorBinder: ThemeAttribute<UIColor?> {
         get { fatalError("set only") }
         set {

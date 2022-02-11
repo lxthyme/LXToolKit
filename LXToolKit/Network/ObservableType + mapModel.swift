@@ -23,8 +23,8 @@ public extension ObservableType where Element == Response {
 //            return Observable.just(try response.mapModel(T.self))
 //        }
 //    }
-    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseModel<T>> {
-        return flatMap { response -> Observable<LXBaseModel<T>> in
+    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseGenericModel<T>> {
+        return flatMap { response -> Observable<LXBaseGenericModel<T>> in
             return Observable.just(try response.xl_mapModel(T.self))
 //            return Observable.just(try response.mapBaseModel(T.self))
         }
@@ -42,21 +42,21 @@ public extension ObservableType where Element == Response {
 
 // MARK: - <#Title...#>
 public extension Response {
-    func xl_mapModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
+    func xl_mapModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseGenericModel<T> {
         guard (200..<300) ~= statusCode else {
             throw ApiError.serverError(response: self, error: nil)
         }
 
         guard let json = try mapJSON() as? [String: Any],
-            let baseModel = LXBaseModel<T>.deserialize(from: json) else {
+            let baseModel = LXBaseGenericModel<T>.deserialize(from: json) else {
             throw ApiError.serializeError(response: self, error: nil)
         }
 
         guard baseModel.code != kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
 
-        baseModel.fullJsonString = try? mapString()
+        baseModel.xl_origin_json = try? mapString()
         return baseModel
     }
     func xl_mapModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T> {
@@ -65,16 +65,16 @@ public extension Response {
         }
 
         guard let json = try mapJSON() as? [String: Any],
-            let baseModel = LXBaseModel<LXBaseListModel<T>>.deserialize(from: json),
+            let baseModel = LXBaseGenericModel<LXBaseListModel<T>>.deserialize(from: json),
             let listModel = baseModel.data else {
             throw ApiError.serializeError(response: self, error: nil)
         }
 
         guard baseModel.code != kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
 
-        baseModel.fullJsonString = try? mapString()
+        baseModel.xl_origin_json = try? mapString()
         return listModel
 
     }

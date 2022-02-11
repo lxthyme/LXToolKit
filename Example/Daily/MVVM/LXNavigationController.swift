@@ -9,6 +9,7 @@
 import UIKit
 import Hero
 import Rswift
+import RxTheme
 
 class LXNavigationController: UINavigationController {
     // MARK: 📌UI

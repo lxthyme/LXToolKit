@@ -28,18 +28,18 @@ public extension ObservableType where Element == Response {
 }
 
 extension Response {
-    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseModel<T> {
+    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseGenericModel<T> {
         let jsonString = String(data: data, encoding: .utf8)
 
-        guard let baseModel = JSONDeserializer<LXBaseModel<T>>.deserializeFrom(json: jsonString) else {
+        guard let baseModel = JSONDeserializer<LXBaseGenericModel<T>>.deserializeFrom(json: jsonString) else {
             throw ApiError.serializeError(response: nil, error: nil)
         }
 
         guard baseModel.code == kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
 
-        baseModel.fullJsonString = jsonString
+        baseModel.xl_origin_json = jsonString
         return baseModel
     }
 
@@ -47,15 +47,15 @@ extension Response {
 
         let jsonString = String(data: data, encoding: .utf8)
 
-        guard let baseModel = JSONDeserializer<LXBaseModel<LXBaseListModel<T>>>.deserializeFrom(json: jsonString) else {
+        guard let baseModel = JSONDeserializer<LXBaseGenericModel<LXBaseListModel<T>>>.deserializeFrom(json: jsonString) else {
             throw ApiError.serializeError(response: nil, error: nil)
         }
 
         guard baseModel.code == kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.tips)
+            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
 
-        baseModel.fullJsonString = jsonString
+        baseModel.xl_origin_json = jsonString
         return baseModel.data
     }
 }

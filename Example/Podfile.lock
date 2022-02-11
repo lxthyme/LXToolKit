@@ -4,6 +4,9 @@ PODS:
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - Alamofire (5.5.0)
+  - Apollo (0.50.0):
+    - Apollo/Core (= 0.50.0)
+  - Apollo/Core (0.50.0)
   - BonMot (5.6.0)
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
@@ -190,6 +193,13 @@ PODS:
   - MJRefresh (3.7.5)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
+  - Moya-ObjectMapper/Core (2.9):
+    - Moya (~> 15.0.0)
+    - ObjectMapper
+  - Moya-ObjectMapper/RxSwift (2.9):
+    - Moya-ObjectMapper/Core
+    - Moya/RxSwift
+    - RxSwift
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - Moya/RxSwift (15.0.0):
@@ -206,6 +216,8 @@ PODS:
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
+  - NVActivityIndicatorView/Extended (5.1.1):
+    - NVActivityIndicatorView/Base
   - ObjectMapper (4.2.0)
   - PKHUD (5.3.0)
   - PromisesObjC (2.0.0)
@@ -291,6 +303,7 @@ PODS:
 DEPENDENCIES:
   - AcknowList
   - Action
+  - Apollo (= 0.50.0)
   - BonMot
   - Charts
   - CocoaLumberjack/Swift
@@ -321,10 +334,12 @@ DEPENDENCIES:
   - Mixpanel-swift
   - MJExtension
   - MJRefresh
+  - Moya-ObjectMapper/RxSwift (from `https://github.com/p-rob/Moya-ObjectMapper.git`, branch `master`)
   - Moya/RxSwift
   - MultiProgressView
   - "NSObject+Rx"
   - NVActivityIndicatorView
+  - NVActivityIndicatorView/Extended
   - ObjectMapper
   - PKHUD
   - PromisesObjC
@@ -354,6 +369,7 @@ SPEC REPOS:
     - AcknowList
     - Action
     - Alamofire
+    - Apollo
     - BonMot
     - Charts
     - CocoaLumberjack
@@ -431,11 +447,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   LXToolKit:
     :path: "../"
+  Moya-ObjectMapper:
+    :branch: master
+    :git: https://github.com/p-rob/Moya-ObjectMapper.git
+
+CHECKOUT OPTIONS:
+  Moya-ObjectMapper:
+    :commit: 4e4ba94bc8af9303471e637ba88a4768563642c9
+    :git: https://github.com/p-rob/Moya-ObjectMapper.git
 
 SPEC CHECKSUMS:
   AcknowList: 6d4faca4c3e0173377fe5649e086d627cd60b003
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  Apollo: 5e4476a3236bd576686085b7cd99655c788e4d74
   BonMot: 2217a66e5ddc6a8d2ffb759fe8c85a8528e0d3e7
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
@@ -477,6 +502,7 @@ SPEC CHECKSUMS:
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  Moya-ObjectMapper: fc1180eb07f527d70bba472f759cc7ccd3eadf24
   MultiProgressView: 65e5bb8181687099ade56d16d85d245a92fafa96
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
@@ -511,6 +537,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: a7aa41a674e67a86c1728a3d9d73a471d5650a82
 
-PODFILE CHECKSUM: 380b28456de773669cadd83f17572e494278d0a5
+PODFILE CHECKSUM: 3fabb8a18e518197092af211c8a340500c44febd
 
 COCOAPODS: 1.11.2

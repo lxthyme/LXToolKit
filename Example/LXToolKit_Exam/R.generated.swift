@@ -118,7 +118,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 44 files.
+  /// This `R.file` struct is generated, and contains static references to 48 files.
   struct file {
     /// Resource file `EmptyArray.json`.
     static let emptyArrayJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EmptyArray", pathExtension: "json")
@@ -144,6 +144,8 @@ struct R: Rswift.Validatable {
     static let organizationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Organization", pathExtension: "json")
     /// Resource file `Profile.json`.
     static let profileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Profile", pathExtension: "json")
+    /// Resource file `Repository.graphql`.
+    static let repositoryGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "Repository", pathExtension: "graphql")
     /// Resource file `Repository.json`.
     static let repositoryJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Repository", pathExtension: "json")
     /// Resource file `RepositoryBranch.json`.
@@ -188,6 +190,10 @@ struct R: Rswift.Validatable {
     static let repositoryTrendingsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryTrendings", pathExtension: "json")
     /// Resource file `RepositoryWatchers.json`.
     static let repositoryWatchersJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryWatchers", pathExtension: "json")
+    /// Resource file `Search.graphql`.
+    static let searchGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "Search", pathExtension: "graphql")
+    /// Resource file `User.graphql`.
+    static let userGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "User", pathExtension: "graphql")
     /// Resource file `User.json`.
     static let userJson = Rswift.FileResource(bundle: R.hostingBundle, name: "User", pathExtension: "json")
     /// Resource file `UserFollowers.json`.
@@ -208,6 +214,8 @@ struct R: Rswift.Validatable {
     static let loadingGif = Rswift.FileResource(bundle: R.hostingBundle, name: "loading", pathExtension: "gif")
     /// Resource file `photodata.bin`.
     static let photodataBin = Rswift.FileResource(bundle: R.hostingBundle, name: "photodata", pathExtension: "bin")
+    /// Resource file `schema.json`.
+    static let schemaJson = Rswift.FileResource(bundle: R.hostingBundle, name: "schema", pathExtension: "json")
 
     /// `bundle.url(forResource: "EmptyArray", withExtension: "json")`
     static func emptyArrayJson(_: Void = ()) -> Foundation.URL? {
@@ -278,6 +286,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Profile", withExtension: "json")`
     static func profileJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.profileJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Repository", withExtension: "graphql")`
+    static func repositoryGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryGraphql
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -413,6 +427,18 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "Search", withExtension: "graphql")`
+    static func searchGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.searchGraphql
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "User", withExtension: "graphql")`
+    static func userGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userGraphql
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "User", withExtension: "json")`
     static func userJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.userJson
@@ -470,6 +496,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "photodata", withExtension: "bin")`
     static func photodataBin(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.photodataBin
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "schema", withExtension: "json")`
+    static func schemaJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.schemaJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -1694,52 +1726,16 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.localizabled` struct is generated, and contains static references to 157 localization keys.
+    /// This `R.string.localizabled` struct is generated, and contains static references to 34 localization keys.
     struct localizabled {
-      /// en translation: %@ repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let searchRepositoriesTotalCountTitle = Rswift.StringResource(key: "Search.RepositoriesTotalCount.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: %@ users
-      ///
-      /// Locales: en, zh-Hans
-      static let searchUsersTotalCountTitle = Rswift.StringResource(key: "Search.UsersTotalCount.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Account
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsAccountSectionTitle = Rswift.StringResource(key: "Settings.AccountSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Acknowledgements
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsAcknowledgementsTitle = Rswift.StringResource(key: "Settings.Acknowledgements.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Activities
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarNotificationsTitle = Rswift.StringResource(key: "Home.TabBar.Notifications.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Ads enabled
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsBannerTitle = Rswift.StringResource(key: "Settings.Banner.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: All
       ///
       /// Locales: en, zh-Hans
       static let languagesAllSectionTitle = Rswift.StringResource(key: "Languages.AllSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: All
-      ///
-      /// Locales: en, zh-Hans
-      static let notificationsAllSegmentTitle = Rswift.StringResource(key: "Notifications.AllSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: All Languages
       ///
       /// Locales: en, zh-Hans
       static let languagesAllButtonTitle = Rswift.StringResource(key: "Languages.allButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: All notifications marked as read
-      ///
-      /// Locales: en, zh-Hans
-      static let notificationsMarkAsReadSuccess = Rswift.StringResource(key: "Notifications.MarkAsRead.Success", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Are you sure want to log out from SwiftHub?
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsLogoutAlertMessage = Rswift.StringResource(key: "Settings.Logout.Alert.Message", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Back
       ///
       /// Locales: en, zh-Hans
@@ -1748,30 +1744,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let toastConnectionBackMessage = Rswift.StringResource(key: "Toast.ConnectionBack.Message", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Basic
-      ///
-      /// Locales: en, zh-Hans
-      static let loginBasicSegmentTitle = Rswift.StringResource(key: "Login.BasicSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Best match
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesBestMatchTitle = Rswift.StringResource(key: "Search.SortRepositories.BestMatch.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Best match
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersBestMatchTitle = Rswift.StringResource(key: "Search.SortUsers.BestMatch.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Blog
-      ///
-      /// Locales: en, zh-Hans
-      static let userBlogCellTitle = Rswift.StringResource(key: "User.BlogCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Branches
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryBranchesCellTitle = Rswift.StringResource(key: "Repository.BranchesCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Cache Successfully Cleared
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsRemoveCacheAlertSuccessMessage = Rswift.StringResource(key: "Settings.RemoveCache.Alert.SuccessMessage", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Cancel
       ///
       /// Locales: en, zh-Hans
@@ -1780,54 +1752,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let commonClose = Rswift.StringResource(key: "Common.Close", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Closed
-      ///
-      /// Locales: en, zh-Hans
-      static let issuesClosedSegmentTitle = Rswift.StringResource(key: "Issues.ClosedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Color theme
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsThemeTitle = Rswift.StringResource(key: "Settings.Theme.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Color theme
-      ///
-      /// Locales: en, zh-Hans
-      static let themeNavigationTitle = Rswift.StringResource(key: "Theme.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Commits
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryCommitsCellTitle = Rswift.StringResource(key: "Repository.CommitsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Company
-      ///
-      /// Locales: en, zh-Hans
-      static let userCompanyCellTitle = Rswift.StringResource(key: "User.CompanyCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Continue
       ///
       /// Locales: en, zh-Hans
       static let whatsNewCompletionButtonTitle = Rswift.StringResource(key: "WhatsNew.CompletionButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Contributors
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryContributorsCellTitle = Rswift.StringResource(key: "Repository.ContributorsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Contributors
-      ///
-      /// Locales: en, zh-Hans
-      static let usersContributorsNavigationTitle = Rswift.StringResource(key: "Users.ContributorsNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Count Lines of Code
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryCountLinesOfCodeCellTitle = Rswift.StringResource(key: "Repository.CountLinesOfCodeCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Count Lines of Code
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem1Title = Rswift.StringResource(key: "WhatsNew.Item1.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Created
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryCreatedCellTitle = Rswift.StringResource(key: "Repository.CreatedCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Daily
-      ///
-      /// Locales: en, zh-Hans
-      static let searchDailySegmentTitle = Rswift.StringResource(key: "Search.DailySegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Delete
       ///
       /// Locales: en, zh-Hans
@@ -1844,178 +1776,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let commonError = Rswift.StringResource(key: "Common.Error", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static let eventsNavigationTitle = Rswift.StringResource(key: "Events.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarEventsTitle = Rswift.StringResource(key: "Home.TabBar.Events.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryEventsCellTitle = Rswift.StringResource(key: "Repository.EventsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static let userEventsCellTitle = Rswift.StringResource(key: "User.EventsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fewest followers
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersFewestFollowersTitle = Rswift.StringResource(key: "Search.SortUsers.FewestFollowers.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fewest forks
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesFewestForksTitle = Rswift.StringResource(key: "Search.SortRepositories.FewestForks.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fewest repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersFewestRepositoriesTitle = Rswift.StringResource(key: "Search.SortUsers.FewestRepositories.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Fewest stars
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesFewestStarsTitle = Rswift.StringResource(key: "Search.SortRepositories.FewestStars.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Followers
-      ///
-      /// Locales: en, zh-Hans
-      static let userFollowersButtonTitle = Rswift.StringResource(key: "User.FollowersButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Followers
-      ///
-      /// Locales: en, zh-Hans
-      static let usersFollowersNavigationTitle = Rswift.StringResource(key: "Users.FollowersNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Following
-      ///
-      /// Locales: en, zh-Hans
-      static let userFollowingButtonTitle = Rswift.StringResource(key: "User.FollowingButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Following
-      ///
-      /// Locales: en, zh-Hans
-      static let usersFollowingNavigationTitle = Rswift.StringResource(key: "Users.FollowingNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
-      ///
-      /// Locales: en, zh-Hans
-      static let loginDetailLabelText = Rswift.StringResource(key: "Login.DetailLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Forked from
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryParentCellTitle = Rswift.StringResource(key: "Repository.ParentCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Forks
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoriesForksNavigationTitle = Rswift.StringResource(key: "Repositories.ForksNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Forks
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryForksButtonTitle = Rswift.StringResource(key: "Repository.ForksButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Global Search
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSearchBarPlaceholder = Rswift.StringResource(key: "Search.SearchBar.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Homepage
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryHomepageCellTitle = Rswift.StringResource(key: "Repository.HomepageCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Invite friends
-      ///
-      /// Locales: en, zh-Hans
-      static let contactsNavigationTitle = Rswift.StringResource(key: "Contacts.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Invite friends
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsContactsTitle = Rswift.StringResource(key: "Settings.Contacts.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Issues
-      ///
-      /// Locales: en, zh-Hans
-      static let issuesNavigationTitle = Rswift.StringResource(key: "Issues.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Issues
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryIssuesCellTitle = Rswift.StringResource(key: "Repository.IssuesCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static let languageNavigationTitle = Rswift.StringResource(key: "Language.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryLanguageCellTitle = Rswift.StringResource(key: "Repository.LanguageCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsLanguageTitle = Rswift.StringResource(key: "Settings.Language.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
       static let languagesNavigationTitle = Rswift.StringResource(key: "Languages.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Last recently updated
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesLastRecentlyUpdatedTitle = Rswift.StringResource(key: "Search.SortRepositories.LastRecentlyUpdated.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Least recently joined
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersLeastRecentlyJoinedTitle = Rswift.StringResource(key: "Search.SortUsers.LeastRecentlyJoined.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Log Out
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsLogOutTitle = Rswift.StringResource(key: "Settings.LogOut.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarLoginTitle = Rswift.StringResource(key: "Home.TabBar.Login.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static let loginBasicLoginButtonTitle = Rswift.StringResource(key: "Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPersonalLoginButtonTitle = Rswift.StringResource(key: "Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Logout
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsLogoutAlertConfirmButtonTitle = Rswift.StringResource(key: "Settings.Logout.Alert.ConfirmButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Monthly
-      ///
-      /// Locales: en, zh-Hans
-      static let searchMonthlySegmentTitle = Rswift.StringResource(key: "Search.MonthlySegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Most followers
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersMostFollowersTitle = Rswift.StringResource(key: "Search.SortUsers.MostFollowers.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Most forks
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesMostForksTitle = Rswift.StringResource(key: "Search.SortRepositories.MostForks.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Most recently joined
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersMostRecentlyJoinedTitle = Rswift.StringResource(key: "Search.SortUsers.MostRecentlyJoined.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Most repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortUsersMostRepositoriesTitle = Rswift.StringResource(key: "Search.SortUsers.MostRepositories.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Most stars
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesMostStarsTitle = Rswift.StringResource(key: "Search.SortRepositories.MostStars.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My Notifications
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryNotificationsCellTitle = Rswift.StringResource(key: "Repository.NotificationsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: My Projects
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsProjectsSectionTitle = Rswift.StringResource(key: "Settings.ProjectsSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       ///
       /// Locales: en, zh-Hans
       static let commonNext = Rswift.StringResource(key: "Common.Next", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Night mode
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsNightModeTitle = Rswift.StringResource(key: "Settings.NightMode.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: No
       ///
       /// Locales: en, zh-Hans
@@ -2028,106 +1796,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let toastConnectionLostMessage = Rswift.StringResource(key: "Toast.ConnectionLost.Message", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Notifications
-      ///
-      /// Locales: en, zh-Hans
-      static let notificationsNavigationTitle = Rswift.StringResource(key: "Notifications.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: OAuth
-      ///
-      /// Locales: en, zh-Hans
-      static let loginOAuthSegmentTitle = Rswift.StringResource(key: "Login.OAuthSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: OK
       ///
       /// Locales: en, zh-Hans
       static let commonOK = Rswift.StringResource(key: "Common.OK", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Open
-      ///
-      /// Locales: en, zh-Hans
-      static let issuesOpenSegmentTitle = Rswift.StringResource(key: "Issues.OpenSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Open Source
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem3Title = Rswift.StringResource(key: "WhatsNew.Item3.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Organizations
-      ///
-      /// Locales: en, zh-Hans
-      static let userOrganizationsSectionTitle = Rswift.StringResource(key: "User.OrganizationsSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Participating
-      ///
-      /// Locales: en, zh-Hans
-      static let notificationsParticipatingSegmentTitle = Rswift.StringResource(key: "Notifications.ParticipatingSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Performed
-      ///
-      /// Locales: en, zh-Hans
-      static let eventsPerformedSegmentTitle = Rswift.StringResource(key: "Events.PerformedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Personal
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPersonalSegmentTitle = Rswift.StringResource(key: "Login.PersonalSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Personal Access Token
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPersonalTitleLabelText = Rswift.StringResource(key: "Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Pinned
-      ///
-      /// Locales: en, zh-Hans
-      static let userPinnedSectionTitle = Rswift.StringResource(key: "User.PinnedSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Please check your login or password
-      ///
-      /// Locales: en, zh-Hans
-      static let loginLoginFailedDescription = Rswift.StringResource(key: "Login.LoginFailed.Description", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Popular
       ///
       /// Locales: en, zh-Hans
       static let languagesPopularSectionTitle = Rswift.StringResource(key: "Languages.PopularSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Preferences
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsPreferencesSectionTitle = Rswift.StringResource(key: "Settings.PreferencesSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Profile
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarProfileTitle = Rswift.StringResource(key: "Home.TabBar.Profile.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Profile Summary
-      ///
-      /// Locales: en, zh-Hans
-      static let userProfileSummaryCellTitle = Rswift.StringResource(key: "User.ProfileSummaryCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Pull Requests
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryPullRequestsCellTitle = Rswift.StringResource(key: "Repository.PullRequestsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Readme
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryReadmeCellTitle = Rswift.StringResource(key: "Repository.ReadmeCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Received
-      ///
-      /// Locales: en, zh-Hans
-      static let eventsReceivedSegmentTitle = Rswift.StringResource(key: "Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Recently updated
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSortRepositoriesRecentlyUpdatedTitle = Rswift.StringResource(key: "Search.SortRepositories.RecentlyUpdated.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Releases
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryReleasesCellTitle = Rswift.StringResource(key: "Repository.ReleasesCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Remove cache
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsRemoveCacheTitle = Rswift.StringResource(key: "Settings.RemoveCache.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoriesRepositoriesNavigationTitle = Rswift.StringResource(key: "Repositories.RepositoriesNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let searchRepositoriesSegmentTitle = Rswift.StringResource(key: "Search.RepositoriesSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static let userRepositoriesButtonTitle = Rswift.StringResource(key: "User.RepositoriesButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Reset
       ///
       /// Locales: en, zh-Hans
@@ -2140,82 +1820,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let commonSearch = Rswift.StringResource(key: "Common.Search", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarSearchTitle = Rswift.StringResource(key: "Home.TabBar.Search.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSearchSectionTitle = Rswift.StringResource(key: "Search.SearchSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSearchSegmentTitle = Rswift.StringResource(key: "Search.SearchSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Search results for %@
-      ///
-      /// Locales: en, zh-Hans
-      static let searchSearchSectionWithLanguageTitle = Rswift.StringResource(key: "Search.SearchSectionWithLanguage.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: See what the GitHub community is most excited about today
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem4Subtitle = Rswift.StringResource(key: "WhatsNew.Item4.Subtitle", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static let contactsPermissionDeniedButton = Rswift.StringResource(key: "Contacts.PermissionDenied.Button", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static let homeTabBarSettingsTitle = Rswift.StringResource(key: "Home.TabBar.Settings.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsNavigationTitle = Rswift.StringResource(key: "Settings.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Sign in with Github
-      ///
-      /// Locales: en, zh-Hans
-      static let loginOAuthloginButtonTitle = Rswift.StringResource(key: "Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Size
-      ///
-      /// Locales: en, zh-Hans
-      static let repositorySizeCellTitle = Rswift.StringResource(key: "Repository.SizeCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Skip
       ///
       /// Locales: en, zh-Hans
       static let commonSkip = Rswift.StringResource(key: "Common.Skip", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Source Code
-      ///
-      /// Locales: en, zh-Hans
-      static let repositorySourceCellTitle = Rswift.StringResource(key: "Repository.SourceCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Stargazers
-      ///
-      /// Locales: en, zh-Hans
-      static let usersStargazersNavigationTitle = Rswift.StringResource(key: "Users.StargazersNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Starred
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoriesStarredNavigationTitle = Rswift.StringResource(key: "Repositories.StarredNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Stars
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryStarsButtonTitle = Rswift.StringResource(key: "Repository.StarsButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Stars
-      ///
-      /// Locales: en, zh-Hans
-      static let userStarsCellTitle = Rswift.StringResource(key: "User.StarsCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Stars History
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryStarsHistoryCellTitle = Rswift.StringResource(key: "Repository.StarsHistoryCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Success
       ///
       /// Locales: en, zh-Hans
       static let commonSuccess = Rswift.StringResource(key: "Common.Success", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Support
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsSupportSectionTitle = Rswift.StringResource(key: "Settings.SupportSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: SwiftHub is open source Stars are welcome ★
       ///
       /// Locales: en, zh-Hans
@@ -2224,10 +1840,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem2Title = Rswift.StringResource(key: "WhatsNew.Item2.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: These permissions are required %@
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPersonalDetailLabelText = Rswift.StringResource(key: "Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Tool for counting lines of code from repositories
       ///
       /// Locales: en, zh-Hans
@@ -2235,71 +1847,11 @@ struct R: Rswift.Validatable {
       /// en translation: Trending
       ///
       /// Locales: en, zh-Hans
-      static let searchTrendingSectionTitle = Rswift.StringResource(key: "Search.TrendingSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Trending
-      ///
-      /// Locales: en, zh-Hans
-      static let searchTrendingSegmentTitle = Rswift.StringResource(key: "Search.TrendingSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Trending
-      ///
-      /// Locales: en, zh-Hans
       static let whatsNewItem4Title = Rswift.StringResource(key: "WhatsNew.Item4.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Trending results for %@
-      ///
-      /// Locales: en, zh-Hans
-      static let searchTrendingSectionWithLanguageTitle = Rswift.StringResource(key: "Search.TrendingSectionWithLanguage.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Unread
-      ///
-      /// Locales: en, zh-Hans
-      static let notificationsUnreadSegmentTitle = Rswift.StringResource(key: "Notifications.UnreadSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Updated
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryUpdatedCellTitle = Rswift.StringResource(key: "Repository.UpdatedCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Users
-      ///
-      /// Locales: en, zh-Hans
-      static let searchUsersSegmentTitle = Rswift.StringResource(key: "Search.UsersSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: View on GitHub
       ///
       /// Locales: en, zh-Hans
       static let whatsNewDetailButtonTitle = Rswift.StringResource(key: "WhatsNew.DetailButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Watchers
-      ///
-      /// Locales: en, zh-Hans
-      static let repositoryWatchersButtonTitle = Rswift.StringResource(key: "Repository.WatchersButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Watchers
-      ///
-      /// Locales: en, zh-Hans
-      static let usersWatchersNavigationTitle = Rswift.StringResource(key: "Users.WatchersNavigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Watching
-      ///
-      /// Locales: en, zh-Hans
-      static let userWatchingCellTitle = Rswift.StringResource(key: "User.WatchingCell.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: We can't continue without your  permission to access your contacts.  Try Again?
-      ///
-      /// Locales: en, zh-Hans
-      static let contactsPermissionDeniedDescription = Rswift.StringResource(key: "Contacts.PermissionDenied.Description", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: We need your permission!
-      ///
-      /// Locales: en, zh-Hans
-      static let contactsPermissionDeniedTitle = Rswift.StringResource(key: "Contacts.PermissionDenied.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Weekly
-      ///
-      /// Locales: en, zh-Hans
-      static let searchWeeklySegmentTitle = Rswift.StringResource(key: "Search.WeeklySegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Welcome to SwiftHub
-      ///
-      /// Locales: en, zh-Hans
-      static let loginTitleLabelText = Rswift.StringResource(key: "Login.TitleLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Welcome to SwiftHub!
-      ///
-      /// Locales: en, zh-Hans
-      static let initialNoResults = Rswift.StringResource(key: "Initial.NoResults", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: Whats New
-      ///
-      /// Locales: en, zh-Hans
-      static let settingsWhatsNewTitle = Rswift.StringResource(key: "Settings.WhatsNew.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Whats New
       ///
       /// Locales: en, zh-Hans
@@ -2312,112 +1864,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem2Subtitle = Rswift.StringResource(key: "WhatsNew.Item2.Subtitle", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: login
-      ///
-      /// Locales: en, zh-Hans
-      static let loginLoginTextFieldPlaceholder = Rswift.StringResource(key: "Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: password
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPasswordTextFieldPlaceholder = Rswift.StringResource(key: "Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-      /// en translation: personal access token
-      ///
-      /// Locales: en, zh-Hans
-      static let loginPersonalTokenTextFieldPlaceholder = Rswift.StringResource(key: "Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
-
-      /// en translation: %@ repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func searchRepositoriesTotalCountTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("Search.RepositoriesTotalCount.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.RepositoriesTotalCount.Title"
-        }
-
-        let format = NSLocalizedString("Search.RepositoriesTotalCount.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// en translation: %@ users
-      ///
-      /// Locales: en, zh-Hans
-      static func searchUsersTotalCountTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("Search.UsersTotalCount.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.UsersTotalCount.Title"
-        }
-
-        let format = NSLocalizedString("Search.UsersTotalCount.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// en translation: Account
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsAccountSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.AccountSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.AccountSection.Title"
-        }
-
-        return NSLocalizedString("Settings.AccountSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Acknowledgements
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsAcknowledgementsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Acknowledgements.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Acknowledgements.Title"
-        }
-
-        return NSLocalizedString("Settings.Acknowledgements.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Activities
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarNotificationsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Notifications.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Notifications.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Notifications.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Ads enabled
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsBannerTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Banner.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Banner.Title"
-        }
-
-        return NSLocalizedString("Settings.Banner.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
 
       /// en translation: All
       ///
@@ -2434,21 +1880,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Languages.AllSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: All
-      ///
-      /// Locales: en, zh-Hans
-      static func notificationsAllSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Notifications.AllSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Notifications.AllSegment.Title"
-        }
-
-        return NSLocalizedString("Notifications.AllSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: All Languages
       ///
       /// Locales: en, zh-Hans
@@ -2462,36 +1893,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Languages.allButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: All notifications marked as read
-      ///
-      /// Locales: en, zh-Hans
-      static func notificationsMarkAsReadSuccess(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Notifications.MarkAsRead.Success", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Notifications.MarkAsRead.Success"
-        }
-
-        return NSLocalizedString("Notifications.MarkAsRead.Success", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Are you sure want to log out from SwiftHub?
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsLogoutAlertMessage(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Logout.Alert.Message", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Logout.Alert.Message"
-        }
-
-        return NSLocalizedString("Settings.Logout.Alert.Message", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Back
@@ -2524,96 +1925,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Toast.ConnectionBack.Message", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Basic
-      ///
-      /// Locales: en, zh-Hans
-      static func loginBasicSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.BasicSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.BasicSegment.Title"
-        }
-
-        return NSLocalizedString("Login.BasicSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Best match
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesBestMatchTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.BestMatch.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.BestMatch.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.BestMatch.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Best match
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersBestMatchTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.BestMatch.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.BestMatch.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.BestMatch.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Blog
-      ///
-      /// Locales: en, zh-Hans
-      static func userBlogCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.BlogCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.BlogCell.Title"
-        }
-
-        return NSLocalizedString("User.BlogCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Branches
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryBranchesCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.BranchesCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.BranchesCell.Title"
-        }
-
-        return NSLocalizedString("Repository.BranchesCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Cache Successfully Cleared
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsRemoveCacheAlertSuccessMessage(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.RemoveCache.Alert.SuccessMessage", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.RemoveCache.Alert.SuccessMessage"
-        }
-
-        return NSLocalizedString("Settings.RemoveCache.Alert.SuccessMessage", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Cancel
       ///
       /// Locales: en, zh-Hans
@@ -2644,81 +1955,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Common.Close", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Closed
-      ///
-      /// Locales: en, zh-Hans
-      static func issuesClosedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Issues.ClosedSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Issues.ClosedSegment.Title"
-        }
-
-        return NSLocalizedString("Issues.ClosedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Color theme
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsThemeTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Theme.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Theme.Title"
-        }
-
-        return NSLocalizedString("Settings.Theme.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Color theme
-      ///
-      /// Locales: en, zh-Hans
-      static func themeNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Theme.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Theme.Navigation.Title"
-        }
-
-        return NSLocalizedString("Theme.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Commits
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryCommitsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.CommitsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.CommitsCell.Title"
-        }
-
-        return NSLocalizedString("Repository.CommitsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Company
-      ///
-      /// Locales: en, zh-Hans
-      static func userCompanyCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.CompanyCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.CompanyCell.Title"
-        }
-
-        return NSLocalizedString("User.CompanyCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Continue
       ///
       /// Locales: en, zh-Hans
@@ -2734,51 +1970,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.CompletionButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Contributors
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryContributorsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.ContributorsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.ContributorsCell.Title"
-        }
-
-        return NSLocalizedString("Repository.ContributorsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Contributors
-      ///
-      /// Locales: en, zh-Hans
-      static func usersContributorsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Users.ContributorsNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Users.ContributorsNavigation.Title"
-        }
-
-        return NSLocalizedString("Users.ContributorsNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Count Lines of Code
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryCountLinesOfCodeCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.CountLinesOfCodeCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.CountLinesOfCodeCell.Title"
-        }
-
-        return NSLocalizedString("Repository.CountLinesOfCodeCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Count Lines of Code
       ///
       /// Locales: en, zh-Hans
@@ -2792,36 +1983,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.Item1.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Created
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryCreatedCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.CreatedCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.CreatedCell.Title"
-        }
-
-        return NSLocalizedString("Repository.CreatedCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Daily
-      ///
-      /// Locales: en, zh-Hans
-      static func searchDailySegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.DailySegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.DailySegment.Title"
-        }
-
-        return NSLocalizedString("Search.DailySegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Delete
@@ -2884,381 +2045,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Common.Error", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static func eventsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Events.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Events.Navigation.Title"
-        }
-
-        return NSLocalizedString("Events.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarEventsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Events.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Events.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Events.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryEventsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.EventsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.EventsCell.Title"
-        }
-
-        return NSLocalizedString("Repository.EventsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Events
-      ///
-      /// Locales: en, zh-Hans
-      static func userEventsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.EventsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.EventsCell.Title"
-        }
-
-        return NSLocalizedString("User.EventsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Fewest followers
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersFewestFollowersTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.FewestFollowers.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.FewestFollowers.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.FewestFollowers.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Fewest forks
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesFewestForksTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.FewestForks.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.FewestForks.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.FewestForks.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Fewest repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersFewestRepositoriesTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.FewestRepositories.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.FewestRepositories.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.FewestRepositories.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Fewest stars
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesFewestStarsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.FewestStars.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.FewestStars.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.FewestStars.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Followers
-      ///
-      /// Locales: en, zh-Hans
-      static func userFollowersButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.FollowersButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.FollowersButton.Title"
-        }
-
-        return NSLocalizedString("User.FollowersButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Followers
-      ///
-      /// Locales: en, zh-Hans
-      static func usersFollowersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Users.FollowersNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Users.FollowersNavigation.Title"
-        }
-
-        return NSLocalizedString("Users.FollowersNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Following
-      ///
-      /// Locales: en, zh-Hans
-      static func userFollowingButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.FollowingButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.FollowingButton.Title"
-        }
-
-        return NSLocalizedString("User.FollowingButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Following
-      ///
-      /// Locales: en, zh-Hans
-      static func usersFollowingNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Users.FollowingNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Users.FollowingNavigation.Title"
-        }
-
-        return NSLocalizedString("Users.FollowingNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
-      ///
-      /// Locales: en, zh-Hans
-      static func loginDetailLabelText(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.DetailLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.DetailLabel.Text"
-        }
-
-        return NSLocalizedString("Login.DetailLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Forked from
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryParentCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.ParentCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.ParentCell.Title"
-        }
-
-        return NSLocalizedString("Repository.ParentCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Forks
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoriesForksNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repositories.ForksNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repositories.ForksNavigation.Title"
-        }
-
-        return NSLocalizedString("Repositories.ForksNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Forks
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryForksButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.ForksButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.ForksButton.Title"
-        }
-
-        return NSLocalizedString("Repository.ForksButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Global Search
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSearchBarPlaceholder(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SearchBar.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SearchBar.Placeholder"
-        }
-
-        return NSLocalizedString("Search.SearchBar.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Homepage
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryHomepageCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.HomepageCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.HomepageCell.Title"
-        }
-
-        return NSLocalizedString("Repository.HomepageCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Invite friends
-      ///
-      /// Locales: en, zh-Hans
-      static func contactsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Contacts.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Contacts.Navigation.Title"
-        }
-
-        return NSLocalizedString("Contacts.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Invite friends
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsContactsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Contacts.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Contacts.Title"
-        }
-
-        return NSLocalizedString("Settings.Contacts.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Issues
-      ///
-      /// Locales: en, zh-Hans
-      static func issuesNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Issues.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Issues.Navigation.Title"
-        }
-
-        return NSLocalizedString("Issues.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Issues
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryIssuesCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.IssuesCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.IssuesCell.Title"
-        }
-
-        return NSLocalizedString("Repository.IssuesCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static func languageNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Language.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Language.Navigation.Title"
-        }
-
-        return NSLocalizedString("Language.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryLanguageCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.LanguageCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.LanguageCell.Title"
-        }
-
-        return NSLocalizedString("Repository.LanguageCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Language
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsLanguageTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Language.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Language.Title"
-        }
-
-        return NSLocalizedString("Settings.Language.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
@@ -3274,231 +2060,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Languages.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Last recently updated
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesLastRecentlyUpdatedTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.LastRecentlyUpdated.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.LastRecentlyUpdated.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.LastRecentlyUpdated.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Least recently joined
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersLeastRecentlyJoinedTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.LeastRecentlyJoined.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.LeastRecentlyJoined.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.LeastRecentlyJoined.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Log Out
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsLogOutTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.LogOut.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.LogOut.Title"
-        }
-
-        return NSLocalizedString("Settings.LogOut.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarLoginTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Login.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Login.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Login.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static func loginBasicLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.BasicLoginButton.Title"
-        }
-
-        return NSLocalizedString("Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Login
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPersonalLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PersonalLoginButton.Title"
-        }
-
-        return NSLocalizedString("Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Logout
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsLogoutAlertConfirmButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Logout.Alert.ConfirmButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Logout.Alert.ConfirmButton.Title"
-        }
-
-        return NSLocalizedString("Settings.Logout.Alert.ConfirmButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Monthly
-      ///
-      /// Locales: en, zh-Hans
-      static func searchMonthlySegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.MonthlySegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.MonthlySegment.Title"
-        }
-
-        return NSLocalizedString("Search.MonthlySegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Most followers
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersMostFollowersTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.MostFollowers.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.MostFollowers.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.MostFollowers.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Most forks
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesMostForksTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.MostForks.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.MostForks.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.MostForks.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Most recently joined
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersMostRecentlyJoinedTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.MostRecentlyJoined.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.MostRecentlyJoined.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.MostRecentlyJoined.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Most repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortUsersMostRepositoriesTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortUsers.MostRepositories.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortUsers.MostRepositories.Title"
-        }
-
-        return NSLocalizedString("Search.SortUsers.MostRepositories.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Most stars
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesMostStarsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.MostStars.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.MostStars.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.MostStars.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: My Notifications
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryNotificationsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.NotificationsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.NotificationsCell.Title"
-        }
-
-        return NSLocalizedString("Repository.NotificationsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: My Projects
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsProjectsSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.ProjectsSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.ProjectsSection.Title"
-        }
-
-        return NSLocalizedString("Settings.ProjectsSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Next
       ///
       /// Locales: en, zh-Hans
@@ -3512,21 +2073,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Common.Next", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Night mode
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsNightModeTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.NightMode.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.NightMode.Title"
-        }
-
-        return NSLocalizedString("Settings.NightMode.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: No
@@ -3574,36 +2120,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Toast.ConnectionLost.Message", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Notifications
-      ///
-      /// Locales: en, zh-Hans
-      static func notificationsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Notifications.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Notifications.Navigation.Title"
-        }
-
-        return NSLocalizedString("Notifications.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: OAuth
-      ///
-      /// Locales: en, zh-Hans
-      static func loginOAuthSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.OAuthSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.OAuthSegment.Title"
-        }
-
-        return NSLocalizedString("Login.OAuthSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: OK
       ///
       /// Locales: en, zh-Hans
@@ -3617,21 +2133,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Common.OK", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Open
-      ///
-      /// Locales: en, zh-Hans
-      static func issuesOpenSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Issues.OpenSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Issues.OpenSegment.Title"
-        }
-
-        return NSLocalizedString("Issues.OpenSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Open Source
@@ -3649,111 +2150,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.Item3.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Organizations
-      ///
-      /// Locales: en, zh-Hans
-      static func userOrganizationsSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.OrganizationsSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.OrganizationsSection.Title"
-        }
-
-        return NSLocalizedString("User.OrganizationsSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Participating
-      ///
-      /// Locales: en, zh-Hans
-      static func notificationsParticipatingSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Notifications.ParticipatingSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Notifications.ParticipatingSegment.Title"
-        }
-
-        return NSLocalizedString("Notifications.ParticipatingSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Performed
-      ///
-      /// Locales: en, zh-Hans
-      static func eventsPerformedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Events.PerformedSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Events.PerformedSegment.Title"
-        }
-
-        return NSLocalizedString("Events.PerformedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Personal
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPersonalSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.PersonalSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PersonalSegment.Title"
-        }
-
-        return NSLocalizedString("Login.PersonalSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Personal Access Token
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPersonalTitleLabelText(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PersonalTitleLabel.Text"
-        }
-
-        return NSLocalizedString("Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Pinned
-      ///
-      /// Locales: en, zh-Hans
-      static func userPinnedSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.PinnedSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.PinnedSection.Title"
-        }
-
-        return NSLocalizedString("User.PinnedSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Please check your login or password
-      ///
-      /// Locales: en, zh-Hans
-      static func loginLoginFailedDescription(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.LoginFailed.Description", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.LoginFailed.Description"
-        }
-
-        return NSLocalizedString("Login.LoginFailed.Description", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Popular
       ///
       /// Locales: en, zh-Hans
@@ -3767,186 +2163,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Languages.PopularSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Preferences
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsPreferencesSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.PreferencesSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.PreferencesSection.Title"
-        }
-
-        return NSLocalizedString("Settings.PreferencesSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Profile
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarProfileTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Profile.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Profile.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Profile.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Profile Summary
-      ///
-      /// Locales: en, zh-Hans
-      static func userProfileSummaryCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.ProfileSummaryCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.ProfileSummaryCell.Title"
-        }
-
-        return NSLocalizedString("User.ProfileSummaryCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Pull Requests
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryPullRequestsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.PullRequestsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.PullRequestsCell.Title"
-        }
-
-        return NSLocalizedString("Repository.PullRequestsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Readme
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryReadmeCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.ReadmeCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.ReadmeCell.Title"
-        }
-
-        return NSLocalizedString("Repository.ReadmeCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Received
-      ///
-      /// Locales: en, zh-Hans
-      static func eventsReceivedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Events.ReceivedSegment.Title"
-        }
-
-        return NSLocalizedString("Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Recently updated
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSortRepositoriesRecentlyUpdatedTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SortRepositories.RecentlyUpdated.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SortRepositories.RecentlyUpdated.Title"
-        }
-
-        return NSLocalizedString("Search.SortRepositories.RecentlyUpdated.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Releases
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryReleasesCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.ReleasesCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.ReleasesCell.Title"
-        }
-
-        return NSLocalizedString("Repository.ReleasesCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Remove cache
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsRemoveCacheTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.RemoveCache.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.RemoveCache.Title"
-        }
-
-        return NSLocalizedString("Settings.RemoveCache.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoriesRepositoriesNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repositories.RepositoriesNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repositories.RepositoriesNavigation.Title"
-        }
-
-        return NSLocalizedString("Repositories.RepositoriesNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func searchRepositoriesSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.RepositoriesSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.RepositoriesSegment.Title"
-        }
-
-        return NSLocalizedString("Search.RepositoriesSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Repositories
-      ///
-      /// Locales: en, zh-Hans
-      static func userRepositoriesButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.RepositoriesButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.RepositoriesButton.Title"
-        }
-
-        return NSLocalizedString("User.RepositoriesButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Reset
@@ -3994,68 +2210,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Common.Search", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarSearchTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Search.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Search.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Search.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSearchSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SearchSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SearchSection.Title"
-        }
-
-        return NSLocalizedString("Search.SearchSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Search
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSearchSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.SearchSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SearchSegment.Title"
-        }
-
-        return NSLocalizedString("Search.SearchSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Search results for %@
-      ///
-      /// Locales: en, zh-Hans
-      static func searchSearchSectionWithLanguageTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("Search.SearchSectionWithLanguage.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.SearchSectionWithLanguage.Title"
-        }
-
-        let format = NSLocalizedString("Search.SearchSectionWithLanguage.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
       /// en translation: See what the GitHub community is most excited about today
       ///
       /// Locales: en, zh-Hans
@@ -4069,81 +2223,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.Item4.Subtitle", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static func contactsPermissionDeniedButton(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Contacts.PermissionDenied.Button", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Contacts.PermissionDenied.Button"
-        }
-
-        return NSLocalizedString("Contacts.PermissionDenied.Button", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static func homeTabBarSettingsTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Home.TabBar.Settings.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Home.TabBar.Settings.Title"
-        }
-
-        return NSLocalizedString("Home.TabBar.Settings.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Settings
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.Navigation.Title"
-        }
-
-        return NSLocalizedString("Settings.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Sign in with Github
-      ///
-      /// Locales: en, zh-Hans
-      static func loginOAuthloginButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.OAuthloginButton.Title"
-        }
-
-        return NSLocalizedString("Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Size
-      ///
-      /// Locales: en, zh-Hans
-      static func repositorySizeCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.SizeCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.SizeCell.Title"
-        }
-
-        return NSLocalizedString("Repository.SizeCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Skip
@@ -4161,96 +2240,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Common.Skip", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: Source Code
-      ///
-      /// Locales: en, zh-Hans
-      static func repositorySourceCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.SourceCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.SourceCell.Title"
-        }
-
-        return NSLocalizedString("Repository.SourceCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Stargazers
-      ///
-      /// Locales: en, zh-Hans
-      static func usersStargazersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Users.StargazersNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Users.StargazersNavigation.Title"
-        }
-
-        return NSLocalizedString("Users.StargazersNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Starred
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoriesStarredNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repositories.StarredNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repositories.StarredNavigation.Title"
-        }
-
-        return NSLocalizedString("Repositories.StarredNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Stars
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryStarsButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.StarsButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.StarsButton.Title"
-        }
-
-        return NSLocalizedString("Repository.StarsButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Stars
-      ///
-      /// Locales: en, zh-Hans
-      static func userStarsCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.StarsCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.StarsCell.Title"
-        }
-
-        return NSLocalizedString("User.StarsCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Stars History
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryStarsHistoryCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.StarsHistoryCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.StarsHistoryCell.Title"
-        }
-
-        return NSLocalizedString("Repository.StarsHistoryCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
       /// en translation: Success
       ///
       /// Locales: en, zh-Hans
@@ -4264,21 +2253,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Common.Success", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Support
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsSupportSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.SupportSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.SupportSection.Title"
-        }
-
-        return NSLocalizedString("Settings.SupportSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: SwiftHub is open source Stars are welcome ★
@@ -4311,23 +2285,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.Item2.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
-      /// en translation: These permissions are required %@
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPersonalDetailLabelText(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PersonalDetailLabel.Text"
-        }
-
-        let format = NSLocalizedString("Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
       /// en translation: Tool for counting lines of code from repositories
       ///
       /// Locales: en, zh-Hans
@@ -4346,36 +2303,6 @@ struct R: Rswift.Validatable {
       /// en translation: Trending
       ///
       /// Locales: en, zh-Hans
-      static func searchTrendingSectionTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.TrendingSection.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.TrendingSection.Title"
-        }
-
-        return NSLocalizedString("Search.TrendingSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Trending
-      ///
-      /// Locales: en, zh-Hans
-      static func searchTrendingSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.TrendingSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.TrendingSegment.Title"
-        }
-
-        return NSLocalizedString("Search.TrendingSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Trending
-      ///
-      /// Locales: en, zh-Hans
       static func whatsNewItem4Title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("WhatsNew.Item4.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
@@ -4386,68 +2313,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.Item4.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Trending results for %@
-      ///
-      /// Locales: en, zh-Hans
-      static func searchTrendingSectionWithLanguageTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("Search.TrendingSectionWithLanguage.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.TrendingSectionWithLanguage.Title"
-        }
-
-        let format = NSLocalizedString("Search.TrendingSectionWithLanguage.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
-      /// en translation: Unread
-      ///
-      /// Locales: en, zh-Hans
-      static func notificationsUnreadSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Notifications.UnreadSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Notifications.UnreadSegment.Title"
-        }
-
-        return NSLocalizedString("Notifications.UnreadSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Updated
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryUpdatedCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.UpdatedCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.UpdatedCell.Title"
-        }
-
-        return NSLocalizedString("Repository.UpdatedCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Users
-      ///
-      /// Locales: en, zh-Hans
-      static func searchUsersSegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.UsersSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.UsersSegment.Title"
-        }
-
-        return NSLocalizedString("Search.UsersSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: View on GitHub
@@ -4463,141 +2328,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.DetailButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Watchers
-      ///
-      /// Locales: en, zh-Hans
-      static func repositoryWatchersButtonTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Repository.WatchersButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Repository.WatchersButton.Title"
-        }
-
-        return NSLocalizedString("Repository.WatchersButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Watchers
-      ///
-      /// Locales: en, zh-Hans
-      static func usersWatchersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Users.WatchersNavigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Users.WatchersNavigation.Title"
-        }
-
-        return NSLocalizedString("Users.WatchersNavigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Watching
-      ///
-      /// Locales: en, zh-Hans
-      static func userWatchingCellTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("User.WatchingCell.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "User.WatchingCell.Title"
-        }
-
-        return NSLocalizedString("User.WatchingCell.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: We can't continue without your  permission to access your contacts.  Try Again?
-      ///
-      /// Locales: en, zh-Hans
-      static func contactsPermissionDeniedDescription(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Contacts.PermissionDenied.Description", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Contacts.PermissionDenied.Description"
-        }
-
-        return NSLocalizedString("Contacts.PermissionDenied.Description", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: We need your permission!
-      ///
-      /// Locales: en, zh-Hans
-      static func contactsPermissionDeniedTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Contacts.PermissionDenied.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Contacts.PermissionDenied.Title"
-        }
-
-        return NSLocalizedString("Contacts.PermissionDenied.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Weekly
-      ///
-      /// Locales: en, zh-Hans
-      static func searchWeeklySegmentTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Search.WeeklySegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Search.WeeklySegment.Title"
-        }
-
-        return NSLocalizedString("Search.WeeklySegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Welcome to SwiftHub
-      ///
-      /// Locales: en, zh-Hans
-      static func loginTitleLabelText(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.TitleLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.TitleLabel.Text"
-        }
-
-        return NSLocalizedString("Login.TitleLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Welcome to SwiftHub!
-      ///
-      /// Locales: en, zh-Hans
-      static func initialNoResults(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Initial.NoResults", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Initial.NoResults"
-        }
-
-        return NSLocalizedString("Initial.NoResults", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Whats New
-      ///
-      /// Locales: en, zh-Hans
-      static func settingsWhatsNewTitle(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Settings.WhatsNew.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Settings.WhatsNew.Title"
-        }
-
-        return NSLocalizedString("Settings.WhatsNew.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Whats New
@@ -4643,51 +2373,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.Item2.Subtitle", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: login
-      ///
-      /// Locales: en, zh-Hans
-      static func loginLoginTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.LoginTextField.Placeholder"
-        }
-
-        return NSLocalizedString("Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: password
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPasswordTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PasswordTextField.Placeholder"
-        }
-
-        return NSLocalizedString("Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
-      }
-
-      /// en translation: personal access token
-      ///
-      /// Locales: en, zh-Hans
-      static func loginPersonalTokenTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
-          return "Login.PersonalTokenTextField.Placeholder"
-        }
-
-        return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
