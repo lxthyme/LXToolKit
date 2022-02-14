@@ -54,7 +54,7 @@ extension Logger {
                    ddlog: ddlog)
     }
     static func resourcesCount() {
-        #if DEBUG
+        #if DEBUG && TRACE_RESOURCES
         debug("RxSwift resources count: \(RxSwift.Resources.total)")
         #endif
     }

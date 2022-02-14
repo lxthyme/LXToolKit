@@ -26,7 +26,7 @@ import SwiftDate
 import Hero
 import KafkaRefresh
 import Mixpanel
-import Firebase
+import FirebaseCore
 import DropDown
 import Toast_Swift
 // import GoogleMobileAds
@@ -131,7 +131,7 @@ class LibsManager: NSObject {
 
     func setupAnalytics() {
         FirebaseApp.configure()
-        Mixpanel.initialize(token: Keys.mixpanel.apiKey)
+        // Mixpanel.initialize(token: Keys.mixpanel.apiKey)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
     }
 

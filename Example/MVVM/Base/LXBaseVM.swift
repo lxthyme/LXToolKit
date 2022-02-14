@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import ObjectMapper
 import Moya
-import LXToolKit
 
 protocol LXViewModelType {
     associatedtype Input

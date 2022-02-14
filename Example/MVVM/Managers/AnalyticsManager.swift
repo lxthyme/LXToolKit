@@ -8,7 +8,7 @@
 
 import Foundation
 import Mixpanel
-import FirebaseAnalytics
+// import FirebaseAnalytics
 
 let analytics = Analytics()
 
@@ -136,29 +136,29 @@ class Analytics {
     func log(_ event: AnalyticsEventType) {
         let name = event.name()
         let parameters = event.parameters()
-        Mixpanel.mainInstance().track(event: name, properties: parameters as? Properties)
-        FirebaseAnalytics.Analytics.logEvent(name, parameters: parameters)
+        // Mixpanel.mainInstance().track(event: name, properties: parameters as? Properties)
+        // FirebaseAnalytics.Analytics.logEvent(name, parameters: parameters)
     }
 
     func set(_ userProperty: AnalyticsUserEventType) {
         let name = userProperty.name()
         let value = userProperty.value()
         if let value = value as? MixpanelType {
-            Mixpanel.mainInstance().people.set(property: "$\(name)", to: value)
+            // Mixpanel.mainInstance().people.set(property: "$\(name)", to: value)
         }
-        FirebaseAnalytics.Analytics.setUserProperty("\(value)", forName: name)
+        // FirebaseAnalytics.Analytics.setUserProperty("\(value)", forName: name)
     }
 }
 
 extension Analytics {
 
     func identify(userId: String) {
-        Mixpanel.mainInstance().identify(distinctId: userId)
-        FirebaseAnalytics.Analytics.setUserID(userId)
+        // Mixpanel.mainInstance().identify(distinctId: userId)
+        // FirebaseAnalytics.Analytics.setUserID(userId)
     }
 
     func reset() {
-        Mixpanel.mainInstance().reset()
-        FirebaseAnalytics.Analytics.resetAnalyticsData()
+        // Mixpanel.mainInstance().reset()
+        // FirebaseAnalytics.Analytics.resetAnalyticsData()
     }
 }
