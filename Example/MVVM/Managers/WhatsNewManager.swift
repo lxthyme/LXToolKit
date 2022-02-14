@@ -23,19 +23,19 @@ class WhatsNewManager: NSObject {
 
     private func items() -> WhatsNew {
         let whatsNew = WhatsNew(
-            title: R.string.localizable.whatsNewTitle.key.localized(),
+            title: R.string.localizabled.whatsNewTitle.key.localized(),
             items: [
-                WhatsNew.Item(title: R.string.localizable.whatsNewItem4Title.key.localized(),
-                              subtitle: R.string.localizable.whatsNewItem4Subtitle.key.localized(),
+                WhatsNew.Item(title: R.string.localizabled.whatsNewItem4Title.key.localized(),
+                              subtitle: R.string.localizabled.whatsNewItem4Subtitle.key.localized(),
                               image: R.image.icon_whatsnew_trending()),
-                WhatsNew.Item(title: R.string.localizable.whatsNewItem1Title.key.localized(),
-                              subtitle: R.string.localizable.whatsNewItem1Subtitle.key.localized(),
+                WhatsNew.Item(title: R.string.localizabled.whatsNewItem1Title.key.localized(),
+                              subtitle: R.string.localizabled.whatsNewItem1Subtitle.key.localized(),
                               image: R.image.icon_whatsnew_cloc()),
-                WhatsNew.Item(title: R.string.localizable.whatsNewItem2Title.key.localized(),
-                              subtitle: R.string.localizable.whatsNewItem2Subtitle.key.localized(),
+                WhatsNew.Item(title: R.string.localizabled.whatsNewItem2Title.key.localized(),
+                              subtitle: R.string.localizabled.whatsNewItem2Subtitle.key.localized(),
                               image: R.image.icon_whatsnew_theme()),
-                WhatsNew.Item(title: R.string.localizable.whatsNewItem3Title.key.localized(),
-                              subtitle: R.string.localizable.whatsNewItem3Subtitle.key.localized(),
+                WhatsNew.Item(title: R.string.localizabled.whatsNewItem3Title.key.localized(),
+                              subtitle: R.string.localizabled.whatsNewItem3Subtitle.key.localized(),
                               image: R.image.icon_whatsnew_github())
             ])
         return whatsNew
@@ -43,9 +43,9 @@ class WhatsNewManager: NSObject {
 
     private func configuration() -> WhatsNewViewController.Configuration {
         var configuration = WhatsNewViewController.Configuration(
-            detailButton: .init(title: R.string.localizable.whatsNewDetailButtonTitle.key.localized(),
+            detailButton: .init(title: R.string.localizabled.whatsNewDetailButtonTitle.key.localized(),
                                 action: .website(url: Configs.App.githubUrl)),
-            completionButton: .init(stringLiteral: R.string.localizable.whatsNewCompletionButtonTitle.key.localized())
+            completionButton: .init(stringLiteral: R.string.localizabled.whatsNewCompletionButtonTitle.key.localized())
         )
         //        configuration.itemsView.layout = .centered
         configuration.itemsView.imageSize = .original

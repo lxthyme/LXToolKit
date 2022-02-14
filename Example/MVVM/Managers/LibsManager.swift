@@ -29,7 +29,7 @@ import Mixpanel
 import Firebase
 import DropDown
 import Toast_Swift
-import GoogleMobileAds
+// import GoogleMobileAds
 
 typealias DropDownView = DropDown
 
@@ -57,7 +57,7 @@ class LibsManager: NSObject {
     func setupLibs(with window: UIWindow? = nil) {
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
-        libsManager.setupAnalytics()
+        // libsManager.setupAnalytics()
         libsManager.setupAds()
         libsManager.setupTheme()
         libsManager.setupKafkaRefresh()
@@ -136,7 +136,7 @@ class LibsManager: NSObject {
     }
 
     func setupAds() {
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        // GADMobileAds.sharedInstance().start(completionHandler: nil)
     }
 }
 
