@@ -11,7 +11,7 @@ import Hero
 import Rswift
 import RxTheme
 
-class LXNavigationController: UINavigationController {
+open class LXNavigationController: UINavigationController {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     override var preferredStatusBarStyle: UIStatusBarStyle {

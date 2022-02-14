@@ -20,8 +20,6 @@
 		BE461183253D9A9600E93AB4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE461182253D9A9600E93AB4 /* TodayViewController.swift */; };
 		BE461186253D9A9600E93AB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE461184253D9A9600E93AB4 /* MainInterface.storyboard */; };
 		BE46118A253D9A9600E93AB4 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE46117E253D9A9600E93AB4 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE472AA927BA114500D8F170 /* LXColors + mvvm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE472AA827BA114500D8F170 /* LXColors + mvvm.swift */; };
-		BE472AAA27BA150C00D8F170 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88CA27B65E77007BA302 /* Reachability.swift */; };
 		BE472AAB27BA151600D8F170 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245BA26F335290098707A /* ReachabilityService.swift */; };
 		BE51ADBC25370943005D0F10 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51ADBB25370943005D0F10 /* UserNotifications.framework */; };
 		BE51ADBE25370943005D0F10 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51ADBD25370943005D0F10 /* UserNotificationsUI.framework */; };
@@ -156,111 +154,7 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
-		BEEC890627B65E78007BA302 /* User.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BEEC888C27B65E77007BA302 /* User.graphql */; };
-		BEEC890727B65E78007BA302 /* Search.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BEEC888D27B65E77007BA302 /* Search.graphql */; };
-		BEEC890827B65E78007BA302 /* Repository.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BEEC888E27B65E77007BA302 /* Repository.graphql */; };
-		BEEC890927B65E78007BA302 /* GraphApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC888F27B65E77007BA302 /* GraphApi.swift */; };
-		BEEC890A27B65E78007BA302 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889027B65E77007BA302 /* schema.json */; };
-		BEEC890B27B65E78007BA302 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC889127B65E77007BA302 /* API.swift */; };
-		BEEC890C27B65E78007BA302 /* Apollo+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC889227B65E77007BA302 /* Apollo+Rx.swift */; };
-		BEEC890D27B65E78007BA302 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC889327B65E77007BA302 /* Api.swift */; };
-		BEEC890E27B65E78007BA302 /* RepositorySearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889627B65E77007BA302 /* RepositorySearch.json */; };
-		BEEC890F27B65E78007BA302 /* RepositoryTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889727B65E77007BA302 /* RepositoryTrendings.json */; };
-		BEEC891027B65E78007BA302 /* RepositoryPullRequests.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889827B65E77007BA302 /* RepositoryPullRequests.json */; };
-		BEEC891127B65E78007BA302 /* EventsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889927B65E77007BA302 /* EventsRepository.json */; };
-		BEEC891227B65E78007BA302 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889A27B65E77007BA302 /* Languages.json */; };
-		BEEC891327B65E78007BA302 /* UserRepositories.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889B27B65E77007BA302 /* UserRepositories.json */; };
-		BEEC891427B65E78007BA302 /* RepositoryRelease.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889C27B65E77007BA302 /* RepositoryRelease.json */; };
-		BEEC891527B65E78007BA302 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889D27B65E77007BA302 /* Events.json */; };
-		BEEC891627B65E78007BA302 /* RepositoryIssue.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889E27B65E77007BA302 /* RepositoryIssue.json */; };
-		BEEC891727B65E78007BA302 /* RepositoryBranch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC889F27B65E77007BA302 /* RepositoryBranch.json */; };
-		BEEC891827B65E78007BA302 /* RepositoryPullRequestComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A027B65E77007BA302 /* RepositoryPullRequestComments.json */; };
-		BEEC891927B65E78007BA302 /* RepositoryContributors.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A127B65E77007BA302 /* RepositoryContributors.json */; };
-		BEEC891A27B65E78007BA302 /* Repository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A227B65E77007BA302 /* Repository.json */; };
-		BEEC891B27B65E78007BA302 /* RepositoryStargazers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A327B65E77007BA302 /* RepositoryStargazers.json */; };
-		BEEC891C27B65E78007BA302 /* UserTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A427B65E77007BA302 /* UserTrendings.json */; };
-		BEEC891D27B65E78007BA302 /* UserRepositoriesStarred.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A527B65E77007BA302 /* UserRepositoriesStarred.json */; };
-		BEEC891E27B65E78007BA302 /* EmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A627B65E77007BA302 /* EmptyArray.json */; };
-		BEEC891F27B65E78007BA302 /* EventsUserReceived.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A727B65E77007BA302 /* EventsUserReceived.json */; };
-		BEEC892027B65E78007BA302 /* UserRepositoriesWatching.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A827B65E77007BA302 /* UserRepositoriesWatching.json */; };
-		BEEC892127B65E78007BA302 /* UserSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88A927B65E77007BA302 /* UserSearch.json */; };
-		BEEC892227B65E78007BA302 /* UserFollowers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AA27B65E77007BA302 /* UserFollowers.json */; };
-		BEEC892327B65E79007BA302 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AB27B65E77007BA302 /* User.json */; };
-		BEEC892427B65E79007BA302 /* EventsUserPerformed.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AC27B65E77007BA302 /* EventsUserPerformed.json */; };
-		BEEC892527B65E79007BA302 /* RepositoryIssues.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AD27B65E77007BA302 /* RepositoryIssues.json */; };
-		BEEC892627B65E79007BA302 /* Notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AE27B65E77007BA302 /* Notifications.json */; };
-		BEEC892727B65E79007BA302 /* RepositoryNumberOfLines.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88AF27B65E77007BA302 /* RepositoryNumberOfLines.json */; };
-		BEEC892827B65E79007BA302 /* RepositoryIssueComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B027B65E77007BA302 /* RepositoryIssueComments.json */; };
-		BEEC892927B65E79007BA302 /* Organization.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B127B65E77007BA302 /* Organization.json */; };
-		BEEC892A27B65E79007BA302 /* RepositoryReadme.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B227B65E77007BA302 /* RepositoryReadme.json */; };
-		BEEC892B27B65E79007BA302 /* EmptyObject.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B327B65E77007BA302 /* EmptyObject.json */; };
-		BEEC892C27B65E79007BA302 /* RepositoryCommit.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B427B65E77007BA302 /* RepositoryCommit.json */; };
-		BEEC892D27B65E79007BA302 /* UserFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B527B65E77007BA302 /* UserFollowing.json */; };
-		BEEC892E27B65E79007BA302 /* RepositoryCommits.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B627B65E77007BA302 /* RepositoryCommits.json */; };
-		BEEC892F27B65E79007BA302 /* NotificationsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B727B65E77007BA302 /* NotificationsRepository.json */; };
-		BEEC893027B65E79007BA302 /* RepositoryContents.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B827B65E77007BA302 /* RepositoryContents.json */; };
-		BEEC893127B65E79007BA302 /* RepositoryForks.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88B927B65E77007BA302 /* RepositoryForks.json */; };
-		BEEC893227B65E79007BA302 /* RepositoryBranches.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BA27B65E77007BA302 /* RepositoryBranches.json */; };
-		BEEC893327B65E79007BA302 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BB27B65E77007BA302 /* Profile.json */; };
-		BEEC893427B65E79007BA302 /* RepositoryReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BC27B65E77007BA302 /* RepositoryReleases.json */; };
-		BEEC893527B65E79007BA302 /* RepositoryPullRequest.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BD27B65E77007BA302 /* RepositoryPullRequest.json */; };
-		BEEC893627B65E79007BA302 /* RepositoryWatchers.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BE27B65E77007BA302 /* RepositoryWatchers.json */; };
-		BEEC893727B65E79007BA302 /* EventsOrganization.json in Resources */ = {isa = PBXBuildFile; fileRef = BEEC88BF27B65E77007BA302 /* EventsOrganization.json */; };
-		BEEC893827B65E79007BA302 /* CodetabsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C027B65E77007BA302 /* CodetabsApi.swift */; };
-		BEEC893927B65E79007BA302 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C127B65E77007BA302 /* GitHubAPI.swift */; };
-		BEEC893A27B65E79007BA302 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C227B65E77007BA302 /* Networking.swift */; };
-		BEEC893B27B65E79007BA302 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C327B65E77007BA302 /* RestApi.swift */; };
-		BEEC893C27B65E79007BA302 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C427B65E77007BA302 /* ErrorResponse.swift */; };
-		BEEC893D27B65E79007BA302 /* TrendingGithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C527B65E77007BA302 /* TrendingGithubAPI.swift */; };
-		BEEC893E27B65E79007BA302 /* WhatsNewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C727B65E77007BA302 /* WhatsNewManager.swift */; };
-		BEEC893F27B65E79007BA302 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C827B65E77007BA302 /* LibsManager.swift */; };
-		BEEC894027B65E79007BA302 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88C927B65E77007BA302 /* ThemeManager.swift */; };
-		BEEC894227B65E79007BA302 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88CB27B65E77007BA302 /* AuthManager.swift */; };
-		BEEC894327B65E79007BA302 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88CC27B65E77007BA302 /* LogManager.swift */; };
-		BEEC894427B65E79007BA302 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88CD27B65E77007BA302 /* ContactsManager.swift */; };
-		BEEC894527B65E79007BA302 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88CE27B65E77007BA302 /* AnalyticsManager.swift */; };
-		BEEC894627B65E79007BA302 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88D127B65E77007BA302 /* ErrorTracker.swift */; };
-		BEEC894727B65E79007BA302 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88D327B65E77007BA302 /* ActivityIndicator.swift */; };
-		BEEC894827B65E79007BA302 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88D427B65E77007BA302 /* Config.swift */; };
-		BEEC894927B65E79007BA302 /* LXNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88D527B65E77007BA302 /* LXNavigationController.swift */; };
-		BEEC894A27B65E79007BA302 /* UIImage+SwiftHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88D827B65E77007BA302 /* UIImage+SwiftHub.swift */; };
-		BEEC894B27B65E79007BA302 /* UIColor+SwiftHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88DA27B65E77007BA302 /* UIColor+SwiftHub.swift */; };
-		BEEC894C27B65E79007BA302 /* UIView+Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88DC27B65E77007BA302 /* UIView+Borders.swift */; };
-		BEEC894D27B65E79007BA302 /* UIView+SwiftHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88DD27B65E77007BA302 /* UIView+SwiftHub.swift */; };
-		BEEC894E27B65E79007BA302 /* KafkaRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88DF27B65E77007BA302 /* KafkaRefresh+Rx.swift */; };
-		BEEC894F27B65E79007BA302 /* Kingfisher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E027B65E77007BA302 /* Kingfisher+Rx.swift */; };
-		BEEC895027B65E79007BA302 /* Observable+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E127B65E77007BA302 /* Observable+Logging.swift */; };
-		BEEC895127B65E79007BA302 /* Observable+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E227B65E77007BA302 /* Observable+Operators.swift */; };
-		BEEC895227B65E79007BA302 /* UIFont+SwiftHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E427B65E77007BA302 /* UIFont+SwiftHub.swift */; };
-		BEEC895327B65E79007BA302 /* Foundation+SwiftHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E627B65E77007BA302 /* Foundation+SwiftHub.swift */; };
 		BEEC895427B65E79007BA302 /* LXNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88E727B65E77007BA302 /* LXNavigatable.swift */; };
-		BEEC895527B65E79007BA302 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88EA27B65E77007BA302 /* PullRequest.swift */; };
-		BEEC895627B65E79007BA302 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88EB27B65E78007BA302 /* Language.swift */; };
-		BEEC895727B65E79007BA302 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88EC27B65E78007BA302 /* Event.swift */; };
-		BEEC895827B65E79007BA302 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88ED27B65E78007BA302 /* Branch.swift */; };
-		BEEC895927B65E79007BA302 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88EE27B65E78007BA302 /* Comment.swift */; };
-		BEEC895A27B65E79007BA302 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88EF27B65E78007BA302 /* Milestone.swift */; };
-		BEEC895B27B65E79007BA302 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F027B65E78007BA302 /* ISO8601DateTransform.swift */; };
-		BEEC895C27B65E79007BA302 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F127B65E78007BA302 /* Commit.swift */; };
-		BEEC895D27B65E79007BA302 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F227B65E78007BA302 /* State.swift */; };
-		BEEC895E27B65E79007BA302 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F327B65E78007BA302 /* User.swift */; };
-		BEEC895F27B65E79007BA302 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F427B65E78007BA302 /* SectionType.swift */; };
-		BEEC896027B65E79007BA302 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F527B65E78007BA302 /* License.swift */; };
-		BEEC896127B65E79007BA302 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F627B65E78007BA302 /* Issue.swift */; };
-		BEEC896227B65E79007BA302 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F727B65E78007BA302 /* Repository.swift */; };
-		BEEC896327B65E79007BA302 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F827B65E78007BA302 /* Notification.swift */; };
-		BEEC896427B65E7A007BA302 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88F927B65E78007BA302 /* Content.swift */; };
-		BEEC896527B65E7A007BA302 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FA27B65E78007BA302 /* Release.swift */; };
-		BEEC896627B65E7A007BA302 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FB27B65E78007BA302 /* Committer.swift */; };
-		BEEC896727B65E7A007BA302 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FC27B65E78007BA302 /* Token.swift */; };
-		BEEC896827B65E7A007BA302 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FD27B65E78007BA302 /* Contact.swift */; };
-		BEEC896927B65E7A007BA302 /* LXBaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FE27B65E78007BA302 /* LXBaseAPI.swift */; };
-		BEEC896A27B65E7A007BA302 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC88FF27B65E78007BA302 /* Application.swift */; };
-		BEEC896B27B65E7A007BA302 /* LXBaseMVVMTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC890127B65E78007BA302 /* LXBaseMVVMTableCellVM.swift */; };
-		BEEC896C27B65E7A007BA302 /* LXBaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC890227B65E78007BA302 /* LXBaseVM.swift */; };
-		BEEC896D27B65E7A007BA302 /* LXBaseMVVMTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC890327B65E78007BA302 /* LXBaseMVVMTableCell.swift */; };
-		BEEC896E27B65E7A007BA302 /* LXBaseMVVMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC890427B65E78007BA302 /* LXBaseMVVMVC.swift */; };
-		BEEC896F27B65E7A007BA302 /* LXBaseMVVMTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEC890527B65E78007BA302 /* LXBaseMVVMTableVC.swift */; };
 		BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */; };
 		BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B842799455300D26B02 /* LX1019TestVC.m */; };
 		BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B862799455300D26B02 /* ExampleViewController.swift */; };
@@ -281,8 +175,6 @@
 		BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA02799455300D26B02 /* Refreshable.swift */; };
 		BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA22799455300D26B02 /* LX0324EventsVM.swift */; };
 		BEF15C4F2799455400D26B02 /* LX0324EventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BA42799455300D26B02 /* LX0324EventsVC.swift */; };
-		BEF15C812799455500D26B02 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BDF2799455300D26B02 /* Logger.swift */; };
-		BEF15C842799455500D26B02 /* LXCustomLoggerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */; };
 		BEF15CBE2799455600D26B02 /* LXSectionHeaderTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C232799455400D26B02 /* LXSectionHeaderTestView.m */; };
 		BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C252799455400D26B02 /* LXTableTestVC.m */; };
 		BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15C282799455400D26B02 /* LXNestedCell.swift */; };
@@ -377,7 +269,6 @@
 		BE461182253D9A9600E93AB4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		BE461185253D9A9600E93AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BE461187253D9A9600E93AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE472AA827BA114500D8F170 /* LXColors + mvvm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LXColors + mvvm.swift"; sourceTree = "<group>"; };
 		BE51ADBA25370943005D0F10 /* Content.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Content.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE51ADBB25370943005D0F10 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		BE51ADBD25370943005D0F10 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -540,112 +431,7 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
-		BEEC888C27B65E77007BA302 /* User.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
-		BEEC888D27B65E77007BA302 /* Search.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Search.graphql; sourceTree = "<group>"; };
-		BEEC888E27B65E77007BA302 /* Repository.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Repository.graphql; sourceTree = "<group>"; };
-		BEEC888F27B65E77007BA302 /* GraphApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphApi.swift; sourceTree = "<group>"; };
-		BEEC889027B65E77007BA302 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		BEEC889127B65E77007BA302 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		BEEC889227B65E77007BA302 /* Apollo+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apollo+Rx.swift"; sourceTree = "<group>"; };
-		BEEC889327B65E77007BA302 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		BEEC889627B65E77007BA302 /* RepositorySearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositorySearch.json; sourceTree = "<group>"; };
-		BEEC889727B65E77007BA302 /* RepositoryTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryTrendings.json; sourceTree = "<group>"; };
-		BEEC889827B65E77007BA302 /* RepositoryPullRequests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequests.json; sourceTree = "<group>"; };
-		BEEC889927B65E77007BA302 /* EventsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsRepository.json; sourceTree = "<group>"; };
-		BEEC889A27B65E77007BA302 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
-		BEEC889B27B65E77007BA302 /* UserRepositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositories.json; sourceTree = "<group>"; };
-		BEEC889C27B65E77007BA302 /* RepositoryRelease.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryRelease.json; sourceTree = "<group>"; };
-		BEEC889D27B65E77007BA302 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
-		BEEC889E27B65E77007BA302 /* RepositoryIssue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssue.json; sourceTree = "<group>"; };
-		BEEC889F27B65E77007BA302 /* RepositoryBranch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranch.json; sourceTree = "<group>"; };
-		BEEC88A027B65E77007BA302 /* RepositoryPullRequestComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequestComments.json; sourceTree = "<group>"; };
-		BEEC88A127B65E77007BA302 /* RepositoryContributors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContributors.json; sourceTree = "<group>"; };
-		BEEC88A227B65E77007BA302 /* Repository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Repository.json; sourceTree = "<group>"; };
-		BEEC88A327B65E77007BA302 /* RepositoryStargazers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryStargazers.json; sourceTree = "<group>"; };
-		BEEC88A427B65E77007BA302 /* UserTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTrendings.json; sourceTree = "<group>"; };
-		BEEC88A527B65E77007BA302 /* UserRepositoriesStarred.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesStarred.json; sourceTree = "<group>"; };
-		BEEC88A627B65E77007BA302 /* EmptyArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyArray.json; sourceTree = "<group>"; };
-		BEEC88A727B65E77007BA302 /* EventsUserReceived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserReceived.json; sourceTree = "<group>"; };
-		BEEC88A827B65E77007BA302 /* UserRepositoriesWatching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesWatching.json; sourceTree = "<group>"; };
-		BEEC88A927B65E77007BA302 /* UserSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserSearch.json; sourceTree = "<group>"; };
-		BEEC88AA27B65E77007BA302 /* UserFollowers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowers.json; sourceTree = "<group>"; };
-		BEEC88AB27B65E77007BA302 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
-		BEEC88AC27B65E77007BA302 /* EventsUserPerformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserPerformed.json; sourceTree = "<group>"; };
-		BEEC88AD27B65E77007BA302 /* RepositoryIssues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssues.json; sourceTree = "<group>"; };
-		BEEC88AE27B65E77007BA302 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
-		BEEC88AF27B65E77007BA302 /* RepositoryNumberOfLines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryNumberOfLines.json; sourceTree = "<group>"; };
-		BEEC88B027B65E77007BA302 /* RepositoryIssueComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssueComments.json; sourceTree = "<group>"; };
-		BEEC88B127B65E77007BA302 /* Organization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Organization.json; sourceTree = "<group>"; };
-		BEEC88B227B65E77007BA302 /* RepositoryReadme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReadme.json; sourceTree = "<group>"; };
-		BEEC88B327B65E77007BA302 /* EmptyObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyObject.json; sourceTree = "<group>"; };
-		BEEC88B427B65E77007BA302 /* RepositoryCommit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommit.json; sourceTree = "<group>"; };
-		BEEC88B527B65E77007BA302 /* UserFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowing.json; sourceTree = "<group>"; };
-		BEEC88B627B65E77007BA302 /* RepositoryCommits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommits.json; sourceTree = "<group>"; };
-		BEEC88B727B65E77007BA302 /* NotificationsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationsRepository.json; sourceTree = "<group>"; };
-		BEEC88B827B65E77007BA302 /* RepositoryContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContents.json; sourceTree = "<group>"; };
-		BEEC88B927B65E77007BA302 /* RepositoryForks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryForks.json; sourceTree = "<group>"; };
-		BEEC88BA27B65E77007BA302 /* RepositoryBranches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranches.json; sourceTree = "<group>"; };
-		BEEC88BB27B65E77007BA302 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
-		BEEC88BC27B65E77007BA302 /* RepositoryReleases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReleases.json; sourceTree = "<group>"; };
-		BEEC88BD27B65E77007BA302 /* RepositoryPullRequest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequest.json; sourceTree = "<group>"; };
-		BEEC88BE27B65E77007BA302 /* RepositoryWatchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryWatchers.json; sourceTree = "<group>"; };
-		BEEC88BF27B65E77007BA302 /* EventsOrganization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsOrganization.json; sourceTree = "<group>"; };
-		BEEC88C027B65E77007BA302 /* CodetabsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodetabsApi.swift; sourceTree = "<group>"; };
-		BEEC88C127B65E77007BA302 /* GitHubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		BEEC88C227B65E77007BA302 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		BEEC88C327B65E77007BA302 /* RestApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
-		BEEC88C427B65E77007BA302 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		BEEC88C527B65E77007BA302 /* TrendingGithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGithubAPI.swift; sourceTree = "<group>"; };
-		BEEC88C727B65E77007BA302 /* WhatsNewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewManager.swift; sourceTree = "<group>"; };
-		BEEC88C827B65E77007BA302 /* LibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
-		BEEC88C927B65E77007BA302 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		BEEC88CA27B65E77007BA302 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		BEEC88CB27B65E77007BA302 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
-		BEEC88CC27B65E77007BA302 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
-		BEEC88CD27B65E77007BA302 /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
-		BEEC88CE27B65E77007BA302 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
-		BEEC88D127B65E77007BA302 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
-		BEEC88D327B65E77007BA302 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		BEEC88D427B65E77007BA302 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		BEEC88D527B65E77007BA302 /* LXNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNavigationController.swift; sourceTree = "<group>"; };
-		BEEC88D827B65E77007BA302 /* UIImage+SwiftHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftHub.swift"; sourceTree = "<group>"; };
-		BEEC88DA27B65E77007BA302 /* UIColor+SwiftHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+SwiftHub.swift"; sourceTree = "<group>"; };
-		BEEC88DC27B65E77007BA302 /* UIView+Borders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Borders.swift"; sourceTree = "<group>"; };
-		BEEC88DD27B65E77007BA302 /* UIView+SwiftHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SwiftHub.swift"; sourceTree = "<group>"; };
-		BEEC88DF27B65E77007BA302 /* KafkaRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KafkaRefresh+Rx.swift"; sourceTree = "<group>"; };
-		BEEC88E027B65E77007BA302 /* Kingfisher+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+Rx.swift"; sourceTree = "<group>"; };
-		BEEC88E127B65E77007BA302 /* Observable+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Logging.swift"; sourceTree = "<group>"; };
-		BEEC88E227B65E77007BA302 /* Observable+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Operators.swift"; sourceTree = "<group>"; };
-		BEEC88E427B65E77007BA302 /* UIFont+SwiftHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+SwiftHub.swift"; sourceTree = "<group>"; };
-		BEEC88E627B65E77007BA302 /* Foundation+SwiftHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+SwiftHub.swift"; sourceTree = "<group>"; };
 		BEEC88E727B65E77007BA302 /* LXNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXNavigatable.swift; sourceTree = "<group>"; };
-		BEEC88EA27B65E77007BA302 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
-		BEEC88EB27B65E78007BA302 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		BEEC88EC27B65E78007BA302 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BEEC88ED27B65E78007BA302 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
-		BEEC88EE27B65E78007BA302 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		BEEC88EF27B65E78007BA302 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
-		BEEC88F027B65E78007BA302 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
-		BEEC88F127B65E78007BA302 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
-		BEEC88F227B65E78007BA302 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		BEEC88F327B65E78007BA302 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BEEC88F427B65E78007BA302 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
-		BEEC88F527B65E78007BA302 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
-		BEEC88F627B65E78007BA302 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		BEEC88F727B65E78007BA302 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		BEEC88F827B65E78007BA302 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		BEEC88F927B65E78007BA302 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		BEEC88FA27B65E78007BA302 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
-		BEEC88FB27B65E78007BA302 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
-		BEEC88FC27B65E78007BA302 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		BEEC88FD27B65E78007BA302 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		BEEC88FE27B65E78007BA302 /* LXBaseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseAPI.swift; sourceTree = "<group>"; };
-		BEEC88FF27B65E78007BA302 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		BEEC890127B65E78007BA302 /* LXBaseMVVMTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMTableCellVM.swift; sourceTree = "<group>"; };
-		BEEC890227B65E78007BA302 /* LXBaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseVM.swift; sourceTree = "<group>"; };
-		BEEC890327B65E78007BA302 /* LXBaseMVVMTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMTableCell.swift; sourceTree = "<group>"; };
-		BEEC890427B65E78007BA302 /* LXBaseMVVMVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMVC.swift; sourceTree = "<group>"; };
-		BEEC890527B65E78007BA302 /* LXBaseMVVMTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseMVVMTableVC.swift; sourceTree = "<group>"; };
 		BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTable0120VC.swift; sourceTree = "<group>"; };
 		BEF15B832799455300D26B02 /* LX1019TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1019TestVC.h; sourceTree = "<group>"; };
 		BEF15B842799455300D26B02 /* LX1019TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1019TestVC.m; sourceTree = "<group>"; };
@@ -668,8 +454,6 @@
 		BEF15BA02799455300D26B02 /* Refreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		BEF15BA22799455300D26B02 /* LX0324EventsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0324EventsVM.swift; sourceTree = "<group>"; };
 		BEF15BA42799455300D26B02 /* LX0324EventsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LX0324EventsVC.swift; sourceTree = "<group>"; };
-		BEF15BDF2799455300D26B02 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXCustomLoggerFormatter.swift; sourceTree = "<group>"; };
 		BEF15C212799455400D26B02 /* LXTableTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableTestVC.h; sourceTree = "<group>"; };
 		BEF15C232799455400D26B02 /* LXSectionHeaderTestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionHeaderTestView.m; sourceTree = "<group>"; };
 		BEF15C242799455400D26B02 /* LXSectionHeaderTestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionHeaderTestView.h; sourceTree = "<group>"; };
@@ -887,7 +671,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
-				BEEC888827B65E77007BA302 /* MVVM */,
+				BE472B7D27BA2D8C00D8F170 /* 02-14 */,
 				BE801F1127B0EE61007EDEBF /* 02-07 */,
 				BEF15B7C2799433500D26B02 /* 01-20 */,
 				BEA2454426F335290098707A /* 2020 */,
@@ -904,6 +688,14 @@
 				BE461187253D9A9600E93AB4 /* Info.plist */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		BE472B7D27BA2D8C00D8F170 /* 02-14 */ = {
+			isa = PBXGroup;
+			children = (
+				BEEC88E727B65E77007BA302 /* LXNavigatable.swift */,
+			);
+			path = "02-14";
 			sourceTree = "<group>";
 		};
 		BE51ADBF25370943005D0F10 /* Content */ = {
@@ -1484,274 +1276,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BEEC888827B65E77007BA302 /* MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC888927B65E77007BA302 /* Networking */,
-				BEEC88C627B65E77007BA302 /* Managers */,
-				BEEC88CF27B65E77007BA302 /* 3rd */,
-				BEEC88D427B65E77007BA302 /* Config.swift */,
-				BEEC88D527B65E77007BA302 /* LXNavigationController.swift */,
-				BEEC88D627B65E77007BA302 /* Extensions */,
-				BEEC88E727B65E77007BA302 /* LXNavigatable.swift */,
-				BE472AA827BA114500D8F170 /* LXColors + mvvm.swift */,
-				BEEC88E827B65E77007BA302 /* VM */,
-				BEEC88E927B65E77007BA302 /* Model */,
-				BEEC88FE27B65E78007BA302 /* LXBaseAPI.swift */,
-				BEF15BDF2799455300D26B02 /* Logger.swift */,
-				BEF15BE22799455300D26B02 /* LXCustomLoggerFormatter.swift */,
-				BEEC88FF27B65E78007BA302 /* Application.swift */,
-				BEEC890027B65E78007BA302 /* Base */,
-			);
-			path = MVVM;
-			sourceTree = "<group>";
-		};
-		BEEC888927B65E77007BA302 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC888A27B65E77007BA302 /* GraphQL */,
-				BEEC889327B65E77007BA302 /* Api.swift */,
-				BEEC889427B65E77007BA302 /* Rest */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		BEEC888A27B65E77007BA302 /* GraphQL */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC888B27B65E77007BA302 /* Queries */,
-				BEEC888F27B65E77007BA302 /* GraphApi.swift */,
-				BEEC889027B65E77007BA302 /* schema.json */,
-				BEEC889127B65E77007BA302 /* API.swift */,
-				BEEC889227B65E77007BA302 /* Apollo+Rx.swift */,
-			);
-			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		BEEC888B27B65E77007BA302 /* Queries */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC888C27B65E77007BA302 /* User.graphql */,
-				BEEC888D27B65E77007BA302 /* Search.graphql */,
-				BEEC888E27B65E77007BA302 /* Repository.graphql */,
-			);
-			path = Queries;
-			sourceTree = "<group>";
-		};
-		BEEC889427B65E77007BA302 /* Rest */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC889527B65E77007BA302 /* Stubbed Responses */,
-				BEEC88C027B65E77007BA302 /* CodetabsApi.swift */,
-				BEEC88C127B65E77007BA302 /* GitHubAPI.swift */,
-				BEEC88C227B65E77007BA302 /* Networking.swift */,
-				BEEC88C327B65E77007BA302 /* RestApi.swift */,
-				BEEC88C427B65E77007BA302 /* ErrorResponse.swift */,
-				BEEC88C527B65E77007BA302 /* TrendingGithubAPI.swift */,
-			);
-			path = Rest;
-			sourceTree = "<group>";
-		};
-		BEEC889527B65E77007BA302 /* Stubbed Responses */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC889627B65E77007BA302 /* RepositorySearch.json */,
-				BEEC889727B65E77007BA302 /* RepositoryTrendings.json */,
-				BEEC889827B65E77007BA302 /* RepositoryPullRequests.json */,
-				BEEC889927B65E77007BA302 /* EventsRepository.json */,
-				BEEC889A27B65E77007BA302 /* Languages.json */,
-				BEEC889B27B65E77007BA302 /* UserRepositories.json */,
-				BEEC889C27B65E77007BA302 /* RepositoryRelease.json */,
-				BEEC889D27B65E77007BA302 /* Events.json */,
-				BEEC889E27B65E77007BA302 /* RepositoryIssue.json */,
-				BEEC889F27B65E77007BA302 /* RepositoryBranch.json */,
-				BEEC88A027B65E77007BA302 /* RepositoryPullRequestComments.json */,
-				BEEC88A127B65E77007BA302 /* RepositoryContributors.json */,
-				BEEC88A227B65E77007BA302 /* Repository.json */,
-				BEEC88A327B65E77007BA302 /* RepositoryStargazers.json */,
-				BEEC88A427B65E77007BA302 /* UserTrendings.json */,
-				BEEC88A527B65E77007BA302 /* UserRepositoriesStarred.json */,
-				BEEC88A627B65E77007BA302 /* EmptyArray.json */,
-				BEEC88A727B65E77007BA302 /* EventsUserReceived.json */,
-				BEEC88A827B65E77007BA302 /* UserRepositoriesWatching.json */,
-				BEEC88A927B65E77007BA302 /* UserSearch.json */,
-				BEEC88AA27B65E77007BA302 /* UserFollowers.json */,
-				BEEC88AB27B65E77007BA302 /* User.json */,
-				BEEC88AC27B65E77007BA302 /* EventsUserPerformed.json */,
-				BEEC88AD27B65E77007BA302 /* RepositoryIssues.json */,
-				BEEC88AE27B65E77007BA302 /* Notifications.json */,
-				BEEC88AF27B65E77007BA302 /* RepositoryNumberOfLines.json */,
-				BEEC88B027B65E77007BA302 /* RepositoryIssueComments.json */,
-				BEEC88B127B65E77007BA302 /* Organization.json */,
-				BEEC88B227B65E77007BA302 /* RepositoryReadme.json */,
-				BEEC88B327B65E77007BA302 /* EmptyObject.json */,
-				BEEC88B427B65E77007BA302 /* RepositoryCommit.json */,
-				BEEC88B527B65E77007BA302 /* UserFollowing.json */,
-				BEEC88B627B65E77007BA302 /* RepositoryCommits.json */,
-				BEEC88B727B65E77007BA302 /* NotificationsRepository.json */,
-				BEEC88B827B65E77007BA302 /* RepositoryContents.json */,
-				BEEC88B927B65E77007BA302 /* RepositoryForks.json */,
-				BEEC88BA27B65E77007BA302 /* RepositoryBranches.json */,
-				BEEC88BB27B65E77007BA302 /* Profile.json */,
-				BEEC88BC27B65E77007BA302 /* RepositoryReleases.json */,
-				BEEC88BD27B65E77007BA302 /* RepositoryPullRequest.json */,
-				BEEC88BE27B65E77007BA302 /* RepositoryWatchers.json */,
-				BEEC88BF27B65E77007BA302 /* EventsOrganization.json */,
-			);
-			path = "Stubbed Responses";
-			sourceTree = "<group>";
-		};
-		BEEC88C627B65E77007BA302 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88C727B65E77007BA302 /* WhatsNewManager.swift */,
-				BEEC88C827B65E77007BA302 /* LibsManager.swift */,
-				BEEC88C927B65E77007BA302 /* ThemeManager.swift */,
-				BEEC88CA27B65E77007BA302 /* Reachability.swift */,
-				BEEC88CB27B65E77007BA302 /* AuthManager.swift */,
-				BEEC88CC27B65E77007BA302 /* LogManager.swift */,
-				BEEC88CD27B65E77007BA302 /* ContactsManager.swift */,
-				BEEC88CE27B65E77007BA302 /* AnalyticsManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		BEEC88CF27B65E77007BA302 /* 3rd */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88D027B65E77007BA302 /* RxErrorTracker */,
-				BEEC88D227B65E77007BA302 /* RxActivityIndicator */,
-			);
-			path = 3rd;
-			sourceTree = "<group>";
-		};
-		BEEC88D027B65E77007BA302 /* RxErrorTracker */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88D127B65E77007BA302 /* ErrorTracker.swift */,
-			);
-			path = RxErrorTracker;
-			sourceTree = "<group>";
-		};
-		BEEC88D227B65E77007BA302 /* RxActivityIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88D327B65E77007BA302 /* ActivityIndicator.swift */,
-			);
-			path = RxActivityIndicator;
-			sourceTree = "<group>";
-		};
-		BEEC88D627B65E77007BA302 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88D727B65E77007BA302 /* UIImage */,
-				BEEC88D927B65E77007BA302 /* UIColor */,
-				BEEC88DB27B65E77007BA302 /* UIView */,
-				BEEC88DE27B65E77007BA302 /* RxSwift */,
-				BEEC88E327B65E77007BA302 /* UIFont */,
-				BEEC88E527B65E77007BA302 /* Foundation */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		BEEC88D727B65E77007BA302 /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88D827B65E77007BA302 /* UIImage+SwiftHub.swift */,
-			);
-			path = UIImage;
-			sourceTree = "<group>";
-		};
-		BEEC88D927B65E77007BA302 /* UIColor */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88DA27B65E77007BA302 /* UIColor+SwiftHub.swift */,
-			);
-			path = UIColor;
-			sourceTree = "<group>";
-		};
-		BEEC88DB27B65E77007BA302 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88DC27B65E77007BA302 /* UIView+Borders.swift */,
-				BEEC88DD27B65E77007BA302 /* UIView+SwiftHub.swift */,
-			);
-			path = UIView;
-			sourceTree = "<group>";
-		};
-		BEEC88DE27B65E77007BA302 /* RxSwift */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88DF27B65E77007BA302 /* KafkaRefresh+Rx.swift */,
-				BEEC88E027B65E77007BA302 /* Kingfisher+Rx.swift */,
-				BEEC88E127B65E77007BA302 /* Observable+Logging.swift */,
-				BEEC88E227B65E77007BA302 /* Observable+Operators.swift */,
-			);
-			path = RxSwift;
-			sourceTree = "<group>";
-		};
-		BEEC88E327B65E77007BA302 /* UIFont */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88E427B65E77007BA302 /* UIFont+SwiftHub.swift */,
-			);
-			path = UIFont;
-			sourceTree = "<group>";
-		};
-		BEEC88E527B65E77007BA302 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88E627B65E77007BA302 /* Foundation+SwiftHub.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		BEEC88E827B65E77007BA302 /* VM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
-		BEEC88E927B65E77007BA302 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC88EA27B65E77007BA302 /* PullRequest.swift */,
-				BEEC88EB27B65E78007BA302 /* Language.swift */,
-				BEEC88EC27B65E78007BA302 /* Event.swift */,
-				BEEC88ED27B65E78007BA302 /* Branch.swift */,
-				BEEC88EE27B65E78007BA302 /* Comment.swift */,
-				BEEC88EF27B65E78007BA302 /* Milestone.swift */,
-				BEEC88F027B65E78007BA302 /* ISO8601DateTransform.swift */,
-				BEEC88F127B65E78007BA302 /* Commit.swift */,
-				BEEC88F227B65E78007BA302 /* State.swift */,
-				BEEC88F327B65E78007BA302 /* User.swift */,
-				BEEC88F427B65E78007BA302 /* SectionType.swift */,
-				BEEC88F527B65E78007BA302 /* License.swift */,
-				BEEC88F627B65E78007BA302 /* Issue.swift */,
-				BEEC88F727B65E78007BA302 /* Repository.swift */,
-				BEEC88F827B65E78007BA302 /* Notification.swift */,
-				BEEC88F927B65E78007BA302 /* Content.swift */,
-				BEEC88FA27B65E78007BA302 /* Release.swift */,
-				BEEC88FB27B65E78007BA302 /* Committer.swift */,
-				BEEC88FC27B65E78007BA302 /* Token.swift */,
-				BEEC88FD27B65E78007BA302 /* Contact.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		BEEC890027B65E78007BA302 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				BEEC890127B65E78007BA302 /* LXBaseMVVMTableCellVM.swift */,
-				BEEC890227B65E78007BA302 /* LXBaseVM.swift */,
-				BEEC890327B65E78007BA302 /* LXBaseMVVMTableCell.swift */,
-				BEEC890427B65E78007BA302 /* LXBaseMVVMVC.swift */,
-				BEEC890527B65E78007BA302 /* LXBaseMVVMTableVC.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		BEF15B7C2799433500D26B02 /* 01-20 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2205,63 +1729,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEEC891B27B65E78007BA302 /* RepositoryStargazers.json in Resources */,
-				BEEC892827B65E79007BA302 /* RepositoryIssueComments.json in Resources */,
-				BEEC890E27B65E78007BA302 /* RepositorySearch.json in Resources */,
-				BEEC892E27B65E79007BA302 /* RepositoryCommits.json in Resources */,
-				BEEC891227B65E78007BA302 /* Languages.json in Resources */,
 				BEA245C326F335290098707A /* LXStackTestVC.xib in Resources */,
-				BEEC891027B65E78007BA302 /* RepositoryPullRequests.json in Resources */,
-				BEEC890827B65E78007BA302 /* Repository.graphql in Resources */,
 				BEA245E426F335290098707A /* photodata.bin in Resources */,
 				BEF15C412799455400D26B02 /* Localizable.strings in Resources */,
-				BEEC891E27B65E78007BA302 /* EmptyArray.json in Resources */,
-				BEEC890627B65E78007BA302 /* User.graphql in Resources */,
-				BEEC893227B65E79007BA302 /* RepositoryBranches.json in Resources */,
-				BEEC892C27B65E79007BA302 /* RepositoryCommit.json in Resources */,
-				BEEC893127B65E79007BA302 /* RepositoryForks.json in Resources */,
-				BEEC891F27B65E78007BA302 /* EventsUserReceived.json in Resources */,
-				BEEC891327B65E78007BA302 /* UserRepositories.json in Resources */,
-				BEEC892A27B65E79007BA302 /* RepositoryReadme.json in Resources */,
-				BEEC892127B65E78007BA302 /* UserSearch.json in Resources */,
-				BEEC892D27B65E79007BA302 /* UserFollowing.json in Resources */,
-				BEEC891127B65E78007BA302 /* EventsRepository.json in Resources */,
-				BEEC891527B65E78007BA302 /* Events.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				BEEC892F27B65E79007BA302 /* NotificationsRepository.json in Resources */,
-				BEEC892027B65E78007BA302 /* UserRepositoriesWatching.json in Resources */,
-				BEEC892727B65E79007BA302 /* RepositoryNumberOfLines.json in Resources */,
-				BEEC892427B65E79007BA302 /* EventsUserPerformed.json in Resources */,
-				BEEC893627B65E79007BA302 /* RepositoryWatchers.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				BEEC893427B65E79007BA302 /* RepositoryReleases.json in Resources */,
-				BEEC891927B65E78007BA302 /* RepositoryContributors.json in Resources */,
-				BEEC893727B65E79007BA302 /* EventsOrganization.json in Resources */,
-				BEEC891A27B65E78007BA302 /* Repository.json in Resources */,
 				BE8A97D1260B35A700A32116 /* Localizabled.strings in Resources */,
-				BEEC892527B65E79007BA302 /* RepositoryIssues.json in Resources */,
-				BEEC891827B65E78007BA302 /* RepositoryPullRequestComments.json in Resources */,
-				BEEC890A27B65E78007BA302 /* schema.json in Resources */,
-				BEEC893327B65E79007BA302 /* Profile.json in Resources */,
 				BEA245CA26F335290098707A /* LXMessageCell.xib in Resources */,
-				BEEC890F27B65E78007BA302 /* RepositoryTrendings.json in Resources */,
-				BEEC893527B65E79007BA302 /* RepositoryPullRequest.json in Resources */,
-				BEEC892227B65E78007BA302 /* UserFollowers.json in Resources */,
 				BEA245D026F335290098707A /* LXMessageTestCell.xib in Resources */,
-				BEEC891727B65E78007BA302 /* RepositoryBranch.json in Resources */,
-				BEEC891627B65E78007BA302 /* RepositoryIssue.json in Resources */,
-				BEEC892327B65E79007BA302 /* User.json in Resources */,
-				BEEC891D27B65E78007BA302 /* UserRepositoriesStarred.json in Resources */,
-				BEEC892B27B65E79007BA302 /* EmptyObject.json in Resources */,
-				BEEC892627B65E79007BA302 /* Notifications.json in Resources */,
-				BEEC893027B65E79007BA302 /* RepositoryContents.json in Resources */,
 				BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */,
-				BEEC890727B65E78007BA302 /* Search.graphql in Resources */,
-				BEEC892927B65E79007BA302 /* Organization.json in Resources */,
 				BEA245EA26F335290098707A /* loading.gif in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				BEEC891427B65E78007BA302 /* RepositoryRelease.json in Resources */,
-				BEEC891C27B65E78007BA302 /* UserTrendings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2319,158 +1797,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework",
-				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
-				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
-				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
-				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FloatingPanel/FloatingPanel.framework",
-				"${BUILT_PRODUCTS_DIR}/FunctionalObjC/FBLFunctional.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
-				"${BUILT_PRODUCTS_DIR}/Highlightr/Highlightr.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
-				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
-				"${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/LXToolKit/LXToolKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/M80AttributedLabel/M80AttributedLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya-ObjectMapper/Moya_ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/MultiProgressView/MultiProgressView.framework",
-				"${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework",
-				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTheme/RxTheme.framework",
-				"${BUILT_PRODUCTS_DIR}/RxViewController/RxViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SteviaLayout/Stevia.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
-				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/WhatsNewKit/WhatsNewKit.framework",
-				"${BUILT_PRODUCTS_DIR}/YPImagePicker/YPImagePicker.framework",
-				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
-				"${BUILT_PRODUCTS_DIR}/ZLPhotoBrowser/ZLPhotoBrowser.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AcknowList.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FloatingPanel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLFunctional.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Highlightr.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KafkaRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M80AttributedLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MultiProgressView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSObject_Rx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTheme.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TZImagePickerController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WhatsNewKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YPImagePicker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZLPhotoBrowser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2492,7 +1821,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/$PRODUCT_NAME/R.generated.swift,
+				"$SRCROOT/$PRODUCT_NAME/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2543,37 +1872,22 @@
 			files = (
 				BEA245F126F335290098707A /* LXSongVC.swift in Sources */,
 				BEA245DD26F335290098707A /* LXMusicVC.swift in Sources */,
-				BEEC895E27B65E79007BA302 /* User.swift in Sources */,
 				BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */,
 				BEA2460926F335290098707A /* temp.swift in Sources */,
 				BEA245EC26F335290098707A /* LXEmptyCell.swift in Sources */,
-				BEEC893E27B65E79007BA302 /* WhatsNewManager.swift in Sources */,
-				BEEC895627B65E79007BA302 /* Language.swift in Sources */,
-				BEEC893927B65E79007BA302 /* GitHubAPI.swift in Sources */,
 				BEF15C4C2799455400D26B02 /* LXRx0225VC.swift in Sources */,
-				BEEC896527B65E7A007BA302 /* Release.swift in Sources */,
 				BEA2461426F335290098707A /* DownloadableImage.swift in Sources */,
-				BEEC896727B65E7A007BA302 /* Token.swift in Sources */,
 				BEC2D3982521E32F004C91B6 /* XLLBaseModel.swift in Sources */,
 				BEF15C432799455400D26B02 /* LXAlbumListModel.swift in Sources */,
-				BEEC895027B65E79007BA302 /* Observable+Logging.swift in Sources */,
-				BEEC895727B65E79007BA302 /* Event.swift in Sources */,
 				BEF15CC32799455600D26B02 /* LXNestedCollectionView.swift in Sources */,
 				BEF15C492799455400D26B02 /* LXStack1206VC.m in Sources */,
-				BEEC896327B65E79007BA302 /* Notification.swift in Sources */,
 				BEEC895427B65E79007BA302 /* LXNavigatable.swift in Sources */,
-				BEEC896F27B65E7A007BA302 /* LXBaseMVVMTableVC.swift in Sources */,
 				BEA245DE26F335290098707A /* LXMusicModel.swift in Sources */,
 				BEA245D526F335290098707A /* LXMultiRequestTestVC.swift in Sources */,
-				BEEC894627B65E79007BA302 /* ErrorTracker.swift in Sources */,
 				BEA245F526F335290098707A /* UIScrollView + refresh.swift in Sources */,
-				BEEC895827B65E79007BA302 /* Branch.swift in Sources */,
 				BEA245E926F335290098707A /* Theme.swift in Sources */,
 				BEA245E026F335290098707A /* LXTTTTT.swift in Sources */,
-				BEEC894327B65E79007BA302 /* LogManager.swift in Sources */,
-				BEEC896C27B65E7A007BA302 /* LXBaseVM.swift in Sources */,
 				BEA245C726F335290098707A /* LXResolveTestObj.m in Sources */,
-				BEEC894C27B65E79007BA302 /* UIView+Borders.swift in Sources */,
 				BEA245E826F335290098707A /* UIImageView + Reactive.swift in Sources */,
 				BEA245DC26F335290098707A /* LXTestVC.swift in Sources */,
 				BEF15C3F2799455400D26B02 /* LXPhotoAlbumVC.swift in Sources */,
@@ -2583,25 +1897,17 @@
 				BEF15CC72799455600D26B02 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA245E226F335290098707A /* LXListItemCell.swift in Sources */,
 				BEA245CF26F335290098707A /* LXMessageTestCell.swift in Sources */,
-				BEEC890B27B65E78007BA302 /* API.swift in Sources */,
-				BEEC896B27B65E7A007BA302 /* LXBaseMVVMTableCellVM.swift in Sources */,
 				BEA245EE26F335290098707A /* LXSongCellVM.swift in Sources */,
-				BEEC896927B65E7A007BA302 /* LXBaseAPI.swift in Sources */,
-				BEEC896A27B65E7A007BA302 /* Application.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
 				BEA2460826F335290098707A /* LXWikipediaSearchCell.swift in Sources */,
 				BEA2460026F335290098707A /* WikipediaAPI.swift in Sources */,
-				BEEC896227B65E79007BA302 /* Repository.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEA2460C26F335290098707A /* LXWikipediaImageSearchView.swift in Sources */,
 				BEA245ED26F335290098707A /* LXSongVM.swift in Sources */,
-				BEEC890927B65E78007BA302 /* GraphApi.swift in Sources */,
 				BEA245F026F335290098707A /* LXMacro.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BEA245F226F335290098707A /* UIViewController + topVC.swift in Sources */,
-				BEEC895927B65E79007BA302 /* Comment.swift in Sources */,
-				BEEC896D27B65E7A007BA302 /* LXBaseMVVMTableCell.swift in Sources */,
 				BEA245D326F335290098707A /* LXDaily1117VC.swift in Sources */,
 				BEC2D37D2521DF44004C91B6 /* APIManager.swift in Sources */,
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
@@ -2609,7 +1915,6 @@
 				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
 				BEA245E126F335290098707A /* LXLockTestVC.m in Sources */,
-				BEEC890C27B65E78007BA302 /* Apollo+Rx.swift in Sources */,
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
@@ -2619,10 +1924,8 @@
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
-				BE472AA927BA114500D8F170 /* LXColors + mvvm.swift in Sources */,
 				BEA245D426F335290098707A /* findCommonSuperview.swift in Sources */,
 				BEA245CC26F335290098707A /* LXStackMessageVC.swift in Sources */,
-				BEEC894F27B65E79007BA302 /* Kingfisher+Rx.swift in Sources */,
 				BEC412E227B205DA0007A6DB /* LXiOS15ButtonTestVC.swift in Sources */,
 				BEA2460726F335290098707A /* LXSingleImageCell.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
@@ -2630,39 +1933,22 @@
 				BEA245FF26F335290098707A /* Dependencies.swift in Sources */,
 				BEA245EB26F335290098707A /* UUHud.swift in Sources */,
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
-				BEEC895327B65E79007BA302 /* Foundation+SwiftHub.swift in Sources */,
-				BEEC894427B65E79007BA302 /* ContactsManager.swift in Sources */,
-				BEEC896627B65E7A007BA302 /* Committer.swift in Sources */,
 				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
-				BEEC893827B65E79007BA302 /* CodetabsApi.swift in Sources */,
-				BEEC893C27B65E79007BA302 /* ErrorResponse.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */,
-				BEEC894527B65E79007BA302 /* AnalyticsManager.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
-				BEEC894A27B65E79007BA302 /* UIImage+SwiftHub.swift in Sources */,
-				BEEC895F27B65E79007BA302 /* SectionType.swift in Sources */,
 				BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */,
-				BEEC893F27B65E79007BA302 /* LibsManager.swift in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
-				BEF15C812799455500D26B02 /* Logger.swift in Sources */,
 				BEF15CC92799455600D26B02 /* LXClsListVC.swift in Sources */,
 				BEA245F826F335290098707A /* Observable + HandyJSON.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				BEEC896027B65E79007BA302 /* License.swift in Sources */,
-				BEEC890D27B65E78007BA302 /* Api.swift in Sources */,
-				BEEC894827B65E79007BA302 /* Config.swift in Sources */,
 				BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */,
-				BEEC895127B65E79007BA302 /* Observable+Operators.swift in Sources */,
 				BEA245D926F335290098707A /* LXBaseRequiredVC.m in Sources */,
 				BEA245E626F335290098707A /* LXLightedDataSource.swift in Sources */,
-				BEEC896827B65E7A007BA302 /* Contact.swift in Sources */,
-				BE472AAA27BA150C00D8F170 /* Reachability.swift in Sources */,
 				BEA245D826F335290098707A /* LXRequiredVC1.m in Sources */,
 				BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */,
 				BEA2461026F335290098707A /* HtmlParsing.swift in Sources */,
-				BEEC894D27B65E79007BA302 /* UIView+SwiftHub.swift in Sources */,
 				BEA245C426F335290098707A /* LXImageTestVC.swift in Sources */,
 				BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */,
 				BEC2D3782521DC31004C91B6 /* API + ex.swift in Sources */,
@@ -2672,42 +1958,26 @@
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
 				BEA245E326F335290098707A /* LXLightedVC.swift in Sources */,
 				BEA245FE26F335290098707A /* LXSearchResultViewModel.swift in Sources */,
-				BEEC895527B65E79007BA302 /* PullRequest.swift in Sources */,
-				BEEC895D27B65E79007BA302 /* State.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
 				BEA2460A26F335290098707A /* LXWikipediaImageSearchVC.swift in Sources */,
 				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
-				BEEC896127B65E79007BA302 /* Issue.swift in Sources */,
-				BEEC894027B65E79007BA302 /* ThemeManager.swift in Sources */,
 				BEF15C442799455400D26B02 /* LXEmptyView.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
-				BEEC894E27B65E79007BA302 /* KafkaRefresh+Rx.swift in Sources */,
 				BEA245C226F335290098707A /* LXStackTestVC.swift in Sources */,
 				BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */,
 				BEA2460226F335290098707A /* WikipediaPage.swift in Sources */,
 				BEA245DF26F335290098707A /* LXMusicVM.swift in Sources */,
-				BEEC894B27B65E79007BA302 /* UIColor+SwiftHub.swift in Sources */,
 				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
 				BEA245F926F335290098707A /* SongAPI.swift in Sources */,
-				BEEC894227B65E79007BA302 /* AuthManager.swift in Sources */,
 				BEA245D726F335290098707A /* LXTestStringVC.m in Sources */,
-				BEF15C842799455500D26B02 /* LXCustomLoggerFormatter.swift in Sources */,
-				BEEC893A27B65E79007BA302 /* Networking.swift in Sources */,
-				BEEC894727B65E79007BA302 /* ActivityIndicator.swift in Sources */,
 				BEF15C472799455400D26B02 /* LX0117Model.swift in Sources */,
 				BEA2460F26F335290098707A /* Wireframe.swift in Sources */,
-				BEEC895227B65E79007BA302 /* UIFont+SwiftHub.swift in Sources */,
-				BEEC893D27B65E79007BA302 /* TrendingGithubAPI.swift in Sources */,
-				BEEC895B27B65E79007BA302 /* ISO8601DateTransform.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
 				BEA2460326F335290098707A /* LXKeyInstance.swift in Sources */,
 				BEA245FB26F335290098707A /* Reactive + RetryView.swift in Sources */,
-				BEEC896427B65E7A007BA302 /* Content.swift in Sources */,
 				BEF15C422799455400D26B02 /* LXPhotoCell.swift in Sources */,
 				BEA245F626F335290098707A /* HUD + Observable.swift in Sources */,
 				BEA2461126F335290098707A /* UIImageView + DownloadableImage.swift in Sources */,
-				BEEC896E27B65E7A007BA302 /* LXBaseMVVMVC.swift in Sources */,
-				BEEC893B27B65E79007BA302 /* RestApi.swift in Sources */,
 				BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */,
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
 				BE801F1327B0EE82007EDEBF /* LXiOS15VC.swift in Sources */,
@@ -2715,7 +1985,6 @@
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
 				BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
-				BEEC895A27B65E79007BA302 /* Milestone.swift in Sources */,
 				BEF15C4B2799455400D26B02 /* LXCubeVC.swift in Sources */,
 				BEF15CC12799455600D26B02 /* LXNestedCollectionCell.swift in Sources */,
 				BEA245FC26F335290098707A /* LXSongRecordModel.swift in Sources */,
@@ -2735,11 +2004,9 @@
 				BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */,
 				BEA245CB26F335290098707A /* LXSwiftView.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
-				BEEC895C27B65E79007BA302 /* Commit.swift in Sources */,
 				BEA2460126F335290098707A /* WikipediaSearchResult.swift in Sources */,
 				BEA245F426F335290098707A /* Service.swift in Sources */,
 				BEF15C452799455400D26B02 /* LX0117VM.swift in Sources */,
-				BEEC894927B65E79007BA302 /* LXNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
