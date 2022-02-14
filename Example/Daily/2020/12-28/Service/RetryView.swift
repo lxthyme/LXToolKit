@@ -29,7 +29,7 @@ class RetryView: UIView {
     private lazy var labTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont(PingFang: 14)
-        label.textColor = Theme.Color.xl3c3e42
+        label.textColor = UIColor.xl3c3e42
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -37,7 +37,7 @@ class RetryView: UIView {
     private lazy var labContent: UILabel = {
         let label = UILabel()
         label.font = UIFont(PingFang: 16)
-        label.textColor = Theme.Color.xl22242A
+        label.textColor = UIColor.xl22242A
         label.numberOfLines = 1
         label.textAlignment = .center
         return label

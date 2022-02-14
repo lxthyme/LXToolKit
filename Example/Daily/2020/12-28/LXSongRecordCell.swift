@@ -27,7 +27,7 @@ class LXSongRecordCell: LXBaseCollectionCell {
         let iv = UIImageView()
         iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = Theme.Color.xlF4F4F4
+        iv.backgroundColor = UIColor.xlF4F4F4
         return iv
     }()
     private lazy var imgViewReadedTag: UIImageView = {
@@ -40,7 +40,7 @@ class LXSongRecordCell: LXBaseCollectionCell {
     private lazy var labTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont(PingFang: 25, type: .medium)
-        label.textColor = Theme.Color.xl534F4F
+        label.textColor = UIColor.xl534F4F
         label.numberOfLines = 1
         label.textAlignment = .center
         return label

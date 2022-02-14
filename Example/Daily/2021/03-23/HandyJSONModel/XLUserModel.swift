@@ -11,17 +11,17 @@ import KeychainAccess
 import MessageKit
 
 private let userKey = "CurrentUserKey"
-private let keychain = Keychain(service: GlobalConfig.App.bundleIdentifier)
+private let keychain = Keychain(service: Configs.App.bundleIdentifier)
 
-enum UserType: String, HandyJSONEnum {
-    case user = "User"
-    case organization = "Organization"
-}
-
-enum TrendingUserType: String, HandyJSONEnum {
-    case user
-    case organization
-}
+// enum UserType: String, HandyJSONEnum {
+//     case user = "User"
+//     case organization = "Organization"
+// }
+//
+// enum TrendingUserType: String, HandyJSONEnum {
+//     case user
+//     case organization
+// }
 
 class XLUserModel: NSObject, SenderType, HandyJSON {
     var avatarUrl: String?  // A URL pointing to the user's public avatar.

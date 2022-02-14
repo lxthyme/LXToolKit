@@ -16,21 +16,21 @@ import Alamofire
 
 typealias MoyaError = Moya.MoyaError
 
-enum ApiError: Error {
-    case serverError(response: ErrorResponse)
-
-    var title: String {
-        switch self {
-        case .serverError(let response): return response.message ?? ""
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .serverError(let response): return response.detail()
-        }
-    }
-}
+// enum ApiError: Error {
+//     case serverError(response: ErrorResponse)
+// 
+//     var title: String {
+//         switch self {
+//         case .serverError(let response): return response.message ?? ""
+//         }
+//     }
+// 
+//     var description: String {
+//         switch self {
+//         case .serverError(let response): return response.detail()
+//         }
+//     }
+// }
 
 class RestApi: SwiftHubAPI {
 

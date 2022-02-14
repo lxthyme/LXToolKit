@@ -266,4 +266,5 @@ extension ExampleViewController: YPImagePickerDelegate {
     func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool {
         return true// indexPath.row != 2
     }
+    func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker) {}
 }
