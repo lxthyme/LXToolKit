@@ -31,7 +31,7 @@ public func logWarn(_ message: @autoclosure () -> String) {
 }
 
 public func logResourcesCount() {
-    #if DEBUG && TRACE_RESOURCES
+    #if DEBUG
     logDebug("RxSwift resources count: \(RxSwift.Resources.total)")
     #endif
 }

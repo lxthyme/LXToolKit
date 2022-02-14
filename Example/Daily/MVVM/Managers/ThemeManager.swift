@@ -1,18 +1,17 @@
 //
 //  ThemeManager.swift
-//  LXToolKit_Exam
+//  SwiftHub
 //
-//  Created by lxthyme on 2022/2/10.
-//  Copyright © 2022 CocoaPods. All rights reserved.
+//  Created by Sygnoos9 on 7/21/18.
+//  Copyright © 2018 Khoren Markosyan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 import RxTheme
 import RAMAnimatedTabBarController
 import KafkaRefresh
-import SwifterSwift
 
 let globalStatusBarStyle = BehaviorRelay<UIStatusBarStyle>(value: .default)
 
@@ -470,4 +469,3 @@ extension ThemeProxy where Base: KafkaRefreshDefaults {
         }
     }
 }
-
