@@ -326,27 +326,27 @@ extension RestApi {
     }
 }
 
-// extension RestApi {
-//     private func trendingRequestObject<T: BaseMappable>(_ target: TrendingGithubAPI, type: T.Type) -> Single<T> {
-//         return trendingGithubProvider.request(target)
-//             .mapObject(T.self)
-//             .observe(on: MainScheduler.instance)
-//             .asSingle()
-//     }
-// 
-//     private func trendingRequestArray<T: BaseMappable>(_ target: TrendingGithubAPI, type: T.Type) -> Single<[T]> {
-//         return trendingGithubProvider.request(target)
-//             .mapArray(T.self)
-//             .observe(on: MainScheduler.instance)
-//             .asSingle()
-//     }
-// }
+extension RestApi {
+    private func trendingRequestObject<T: BaseMappable>(_ target: TrendingGithubAPI, type: T.Type) -> Single<T> {
+        return trendingGithubProvider.request(target)
+            .mapObject(T.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
 
-// extension RestApi {
-//     private func codetabsRequestArray<T: BaseMappable>(_ target: CodetabsApi, type: T.Type) -> Single<[T]> {
-//         return codetabsProvider.request(target)
-//             .mapArray(T.self)
-//             .observe(on: MainScheduler.instance)
-//             .asSingle()
-//     }
-// }
+    private func trendingRequestArray<T: BaseMappable>(_ target: TrendingGithubAPI, type: T.Type) -> Single<[T]> {
+        return trendingGithubProvider.request(target)
+            .mapArray(T.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+}
+
+extension RestApi {
+    private func codetabsRequestArray<T: BaseMappable>(_ target: CodetabsApi, type: T.Type) -> Single<[T]> {
+        return codetabsProvider.request(target)
+            .mapArray(T.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+}
