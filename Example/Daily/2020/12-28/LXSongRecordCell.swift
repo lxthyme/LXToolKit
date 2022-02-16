@@ -9,6 +9,8 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import LXToolKit
+
 enum LXSongRecordStatus {
     case record
     case square

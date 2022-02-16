@@ -9,22 +9,33 @@
 import UIKit
 import LXToolKit
 
-class ViewController: LXBaseVC {
-
-    private lazy var btnTest: UIButton = {
-        let btn = UIButton(type: .custom)
-
-        btn.setTitle("Test", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
-
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        btn.layer.masksToBounds = true
-        btn.layer.cornerRadius = 4
-
-        btn.addTarget(self, action: #selector(btnTestAction(sender:)), for: .touchUpInside)
-        return btn
-    }()
+class ViewController: LXBaseTableViewVC {
+    // MARK: 📌UI
+    // MARK: 🔗Vaiables
     private var testVC = LXTestVC()
+    lazy var dataList: [LXNavigator.Scene] = {
+        let staging = Configs.Network.useStaging
+        let githubProvider = staging
+            ? GithubNetworking.stubbingNetworking()
+            : GithubNetworking.defaultNetworking()
+        let trendingGithubProvider = staging
+            ? TrendingGithubNetworking.stubbingNetworking()
+            : TrendingGithubNetworking.defaultNetworking()
+        let codetabsProvider = staging
+            ? CodetabsNetworking.stubbingNetworking()
+            : CodetabsNetworking.defaultNetworking()
+        let provider = RestApi(githubProvider: githubProvider,
+                               trendingGithubProvider: trendingGithubProvider,
+                               codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM(provider: provider)
+        return [
+            .LXiOS15VC(viewModel: vm)
+        ]
+    }()
+    // MARK: 🛠Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -57,10 +68,17 @@ class ViewController: LXBaseVC {
 //        self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        prepareTableView()
         prepareUI()
 
 //        let _ = LXBaseVC()
@@ -77,29 +95,45 @@ class ViewController: LXBaseVC {
 // MARK: - 🔐Private Actions
 private extension ViewController {
     func goRouter() {
-        let navigator = XLNavigator()
-        if let user = XLUserModel.currentUser() {
-//            let provider = GithubNetworking.stubbingNetworking()
-            let provider = GithubNetworking.defaultNetworking()
-            let restApi = RestApi(with: provider)
-            let vm = XLEventsVM(with: .user(user: user), provider: restApi)
-            navigator.show(segue: .events(vm: vm), sender: self)
-        }
+//         let navigator = XLNavigator()
+//         if let user = XLUserModel.currentUser() {
+// //            let provider = GithubNetworking.stubbingNetworking()
+//             let provider = GithubNetworking.defaultNetworking()
+//             let restApi = RestApi(with: provider)
+//             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
+//             navigator.show(segue: .events(vm: vm), sender: self)
+//         }
+        let staging = Configs.Network.useStaging
+        let githubProvider = staging
+            ? GithubNetworking.stubbingNetworking()
+            : GithubNetworking.defaultNetworking()
+        let trendingGithubProvider = staging
+            ? TrendingGithubNetworking.stubbingNetworking()
+            : TrendingGithubNetworking.defaultNetworking()
+        let codetabsProvider = staging
+            ? CodetabsNetworking.stubbingNetworking()
+            : CodetabsNetworking.defaultNetworking()
+        let provider = RestApi(githubProvider: githubProvider,
+                               trendingGithubProvider: trendingGithubProvider,
+                               codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM(provider: provider)
+        let navigator = LXNavigator()
+        navigator.show(segue: .LXiOS15VC(viewModel: vm), sender: self)
     }
     @objc func btnTestAction(sender: UIButton) {
-       let vc =
-        // LXSongVC()
-        // LXNestedTableVC()
-        // LXTableTestVC()
-        // LX1019TestVC()
-        // LXHugTestVC()
-        // LXStack1206VC()
-        // LXTable0120VC()
-        LXiOS15VC()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.pushViewController(vc, animated: true)
-//        self.navigationController?.pushViewController(vc, animated: true)
-//        goRouter()
+       // let vc =
+       //  // LXSongVC()
+       //  // LXNestedTableVC()
+       //  // LXTableTestVC()
+       //  // LX1019TestVC()
+       //  // LXHugTestVC()
+       //  // LXStack1206VC()
+       //  // LXTable0120VC()
+       //  LXiOS15VC()
+       //  self.navigationController?.setNavigationBarHidden(true, animated: false)
+       //  self.navigationController?.pushViewController(vc, animated: true)
+        // self.navigationController?.pushViewController(vc, animated: true)
+        goRouter()
     }
 }
 
@@ -281,8 +315,8 @@ extension ViewController {
                 "r: \(r)"
             )
         })
-//        s1()
-         s2()
+        // s1()
+        s2()
         s3()
     }
 }
@@ -301,15 +335,51 @@ extension Sequence where Element: Hashable {
     }
 }
 
+// MARK: - ✈️UITableViewDataSource
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataList.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+        let info = dataList[indexPath.row].info
+        if #available(iOS 14.0, *) {
+            var config = UIListContentConfiguration.cell()
+            config.text = info.title
+            config.secondaryText = info.desc
+            cell.contentConfiguration = config
+        } else {
+            cell.textLabel?.text = info.title
+            cell.detailTextLabel?.text = info.desc
+        }
+        return cell
+    }
+}
+// MARK: - ✈️UITableViewDelegate
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let scene = dataList[indexPath.row]
+        let navigator = LXNavigator()
+        navigator.show(segue: scene, sender: self)
+
+    }
+}
+
 // MARK: - 🍺UI Prepare & Masonry
 private extension ViewController {
+    func prepareTableView() {
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+    }
     func prepareUI() {
-        [btnTest].forEach(self.view.addSubview)
+        [table].forEach(self.view.addSubview)
         masonry()
     }
     func masonry() {
-        btnTest.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ObjectiveC
 
-fileprivate var disposeBagContext: UInt8 = 0
+private var disposeBagContext: UInt8 = 0
 
 // MARK: - 👀<#Public Actions#>
 extension Reactive where Base: AnyObject {
@@ -32,7 +32,7 @@ extension Reactive where Base: AnyObject {
             }
         }
     }
-    func synchronizedBag<T>(_ action: () ->T) ->T {
+    func synchronizedBag<T>(_ action: () -> T) ->T {
         objc_sync_enter(self.base)
         let result = action()
         objc_sync_exit(self.base)

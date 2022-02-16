@@ -25,38 +25,35 @@ private extension IOS15FitType {
     }
 }
 
-class LXiOS15VC: UIViewController {
+class LXiOS15VC: LXBaseMVVMTableVC {
     // MARK: 📌UI
-    private lazy var table: UITableView = {
-        let t = UITableView(frame: .zero, style: .plain)
-        t.rowHeight = UITableView.automaticDimension
-        t.estimatedRowHeight = 0
-        t.estimatedSectionHeaderHeight = 0
-        t.estimatedSectionFooterHeight = 0
-        t.sectionHeaderHeight = 0
-        t.sectionFooterHeight = 0
-
-        t.backgroundColor = .white
-        t.separatorStyle = .none
-        t.keyboardDismissMode = .onDrag
-        t.cellLayoutMarginsFollowReadableWidth = false
-        t.separatorColor = .clear
-        t.separatorInset = .zero
-        t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-        t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-
-        t.delegate = self
-        t.dataSource = self
-
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-
-        return t
-    }()
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 20)
         return ds
     }()
     // MARK: 🔗Vaiables
+    @available(iOS 14.0, *)
+    private lazy var dataSource: UITableViewDiffableDataSource<String, NSInteger> = {
+        let dataSource = UITableViewDiffableDataSource<String, NSInteger>(tableView: table) { tableView, indexPath, idx in
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            var content = cell.defaultContentConfiguration()
+            content.text = "\(idx)_"
+            cell.contentConfiguration = content
+            return cell
+        }
+        // dataSource.did
+        dataSource.defaultRowAnimation = .fade
+        return dataSource
+    }()
+    @available(iOS 13.0, *)
+    private lazy var dataSnapshot: NSDiffableDataSourceSnapshot<String, NSInteger> = {
+        var snapshot = NSDiffableDataSourceSnapshot<String, NSInteger>()
+        snapshot.appendSections(["1", "3", "5"])
+        snapshot.appendItems([11, 13, 15], toSection: "1")
+        snapshot.appendItems([31, 33, 35], toSection: "3")
+        snapshot.appendItems([51, 53, 55], toSection: "5")
+        return snapshot
+    }()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -75,6 +72,7 @@ class LXiOS15VC: UIViewController {
 
         // Do any additional setup after loading the view.
         prepareUI()
+        prepareTableView()
     }
 
 }
@@ -190,7 +188,7 @@ extension LXiOS15VC: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier) as! UITableViewCell
-        cell.detailTextLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = "\(indexPath.row)"
         return cell
     }
 }
@@ -210,6 +208,16 @@ extension LXiOS15VC: UITableViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXiOS15VC {
+    func prepareTableView() {
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.delegate = self
+        if #available(iOS 14.0, *) {
+            dataSource.apply(dataSnapshot, animatingDifferences: true)
+        } else {
+            // Fallback on earlier versions
+            table.dataSource = self
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
