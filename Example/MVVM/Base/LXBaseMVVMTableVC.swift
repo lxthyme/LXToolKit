@@ -14,9 +14,13 @@ import NSObject_Rx
 import DZNEmptyDataSet
 import Rswift
 import Toast_Swift
+import LXToolKit
 
 class LXBaseMVVMTableVC: LXBaseMVVMVC, LXBaseTableViewProtocol {
     // MARK: 📌UI
+    public lazy var table: UITableView = {
+        return lazyTableView(style: .plain)
+    }()
     // MARK: 🔗Vaiables
     let headerRefreshTrigger = PublishSubject<Void>()
     let footerRefreshTrigger = PublishSubject<Void>()
@@ -45,18 +49,10 @@ class LXBaseMVVMTableVC: LXBaseMVVMVC, LXBaseTableViewProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        prepareTableView()
         prepareUI()
+        prepareTableView()
     }
-
-}
-
-// MARK: 🌎LoadData
-extension LXBaseMVVMTableVC {}
-
-// MARK: 👀Public Actions
-extension LXBaseMVVMTableVC {
-    func bindViewModel() {
+    override func bindViewModel() {
         viewModel?.headerLoading.asObservable()
             .bind(to: isHeaderLoading)
             .disposed(by: rx.disposeBag)
@@ -77,6 +73,12 @@ extension LXBaseMVVMTableVC {
     }
 }
 
+// MARK: 🌎LoadData
+extension LXBaseMVVMTableVC {}
+
+// MARK: 👀Public Actions
+extension LXBaseMVVMTableVC {}
+
 // MARK: 🔐Private Actions
 private extension LXBaseMVVMTableVC {
     func deselectSelectedRow() {
@@ -88,11 +90,40 @@ private extension LXBaseMVVMTableVC {
     }
 }
 
-// MARK: - ✈️DZNEmptyDataSetDelegate
-extension LXBaseMVVMTableVC: DZNEmptyDataSetDelegate {}
-
 // MARK: - ✈️DZNEmptyDataSetSource
-extension LXBaseMVVMTableVC: DZNEmptyDataSetSource {}
+extension LXBaseMVVMTableVC: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: emptyDataSetTitle)
+    }
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: emptyDataSetDescription)
+    }
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return emptyDataSetImage
+    }
+    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return emptyDataSetImageTintColor.value
+    }
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return .clear
+    }
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -60
+    }
+}
+
+// MARK: - ✈️DZNEmptyDataSetDelegate
+extension LXBaseMVVMTableVC: DZNEmptyDataSetDelegate {
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return !isLoading.value
+    }
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        emptyDataSetButtonTap.onNext(())
+    }
+}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseMVVMTableVC {
@@ -125,7 +156,6 @@ private extension LXBaseMVVMTableVC {
             .disposed(by: rx.disposeBag)
     }
     func prepareUI() {
-        self.view.backgroundColor = .white
 
         // [<#table#>].forEach(self.view.addSubview)
 

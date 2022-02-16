@@ -18,7 +18,7 @@ class LXNavigator {
     static var `default` = LXNavigator()
 
     // MARK: - segues list, all app scenes
-    enum Scene {
+    enum Scene: Hashable {
         // case tabs(viewModel: HomeTabBarViewModel)
         // case search(viewModel: SearchViewModel)
         // case languages(viewModel: LanguagesViewModel)
@@ -47,6 +47,7 @@ class LXNavigator {
         case safariController(URL)
         // case webController(URL)
         /// LXToolKit_Exam
+        case LXiOS15VC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -112,6 +113,10 @@ class LXNavigator {
         //     let vc = WebViewController(viewModel: nil, navigator: self)
         //     vc.load(url: url)
         //     return vc
+        /// LXToolKit_Exam
+        case .LXiOS15VC(let vm):
+            let vc = LXiOS15VC(viewModel: vm, navigator: self)
+            return vc
         }
     }
 
@@ -194,4 +199,20 @@ class LXNavigator {
     //     vc.recipients = [phone]
     //     return vc
     // }
+}
+
+// MARK: - 👀
+extension LXNavigator.Scene {
+    var info: (title: String?, desc: String) {
+        var tmp: (title: String?, desc: String)
+        switch self {
+        case .safari(_):
+            tmp = (title: "", desc: "")
+        case .safariController(_):
+            tmp = (title: "", desc: "")
+        case .LXiOS15VC:
+            tmp = (title: "iOS", desc: "iOS 15 适配")
+        }
+        return tmp
+    }
 }

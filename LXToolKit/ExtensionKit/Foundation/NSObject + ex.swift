@@ -29,17 +29,17 @@ public extension Swifty where Base: NSProxy {
 public extension Swifty where Base: NSObject {
     // Instance Level
     var xl_typeName: String {
-        let type_t = type(of: self)
+        let type_t = type(of: base)
         return String(describing: type_t)
     }
     // Type Level
     static var xl_typeName: String {
-        return String(describing: self)
+        return String(describing: Base.self)
     }
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
     static var xl_identifier: String {
-        return String(format: "%@_identifier", self.xl_typeName)
+        return String(format: "%@_xxl_identifier", self.xl_typeName)
     }
 
 }

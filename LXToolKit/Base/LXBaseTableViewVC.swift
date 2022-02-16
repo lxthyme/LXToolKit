@@ -8,14 +8,11 @@
 import UIKit
 
 public protocol LXBaseTableViewProtocol {
-    var table: UITableView { get }
+    func lazyTableView(style: UITableView.Style) -> UITableView
 }
 // MARK: - 👀
 extension LXBaseTableViewProtocol {
-    public var table: UITableView {
-        return lazyTableView(style: .plain)
-    }
-    private func lazyTableView(style: UITableView.Style) -> UITableView {
+    public func lazyTableView(style: UITableView.Style) -> UITableView {
         let t = UITableView(frame: .zero, style: style)
         t.rowHeight = UITableView.automaticDimension
         t.estimatedRowHeight = UITableView.automaticDimension
@@ -32,21 +29,14 @@ extension LXBaseTableViewProtocol {
         t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
 
-        adapter()
         // t.delegate = self
         // t.dataSource = self
 
         return t
     }
-    func adapter() {}
-}
-extension LXBaseTableViewProtocol where Self: UIViewController {
-    func adapter() {
-        table.xl.adapterWith(parentVC: self)
-    }
 }
 
-open class LXBaseTableViewVC: LXBaseVC {
+open class LXBaseTableViewVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: UI
     public lazy var table: UITableView = {
         return lazyTableView(style: .plain)
@@ -82,34 +72,6 @@ extension LXBaseTableViewVC {}
 
 // MARK: Private Actions
 private extension LXBaseTableViewVC {}
-
-// MARK: - UITableView init
-private extension LXBaseTableViewVC {
-    func lazyTableView(style: UITableView.Style) -> UITableView {
-        let t = UITableView(frame: .zero, style: style)
-        t.rowHeight = UITableView.automaticDimension
-        t.estimatedRowHeight = UITableView.automaticDimension
-        t.estimatedSectionHeaderHeight = 0
-        t.estimatedSectionFooterHeight = 0
-        t.sectionHeaderHeight = 0
-        t.sectionFooterHeight = 0
-        t.backgroundColor = .white
-        t.separatorStyle = .none
-        t.keyboardDismissMode = .onDrag
-        t.cellLayoutMarginsFollowReadableWidth = false
-        t.separatorColor = .clear
-        t.separatorInset = .zero
-        t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-        t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-
-        t.xl.adapterWith(parentVC: self)
-
-//        t.delegate = self
-//        t.dataSource = self
-
-        return t
-    }
-}
 
 // MARK: - UI Prepare & Masonry
 private extension LXBaseTableViewVC {
