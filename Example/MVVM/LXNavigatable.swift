@@ -43,11 +43,13 @@ class LXNavigator {
         // case acknowledgements
         // case contacts(viewModel: ContactsViewModel)
         // case whatsNew(block: WhatsNewBlock)
+        case events(vm: LXEventsVM)
         case safari(URL)
         case safariController(URL)
         // case webController(URL)
         /// LXToolKit_Exam
         case LXiOS15VC(viewModel: LXBaseVM)
+        case LXTable0120VC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -113,9 +115,14 @@ class LXNavigator {
         //     let vc = WebViewController(viewModel: nil, navigator: self)
         //     vc.load(url: url)
         //     return vc
+        case .events(let vm):
+            return LXEventsVC(viewModel: vm, navigator: self)
         /// LXToolKit_Exam
         case .LXiOS15VC(let vm):
             let vc = LXiOS15VC(viewModel: vm, navigator: self)
+            return vc
+        case .LXTable0120VC(let vm):
+            let vc = LXTable0120VC(viewModel: vm, navigator: self)
             return vc
         }
     }
@@ -203,15 +210,21 @@ class LXNavigator {
 
 // MARK: - 👀
 extension LXNavigator.Scene {
-    var info: (title: String?, desc: String) {
-        var tmp: (title: String?, desc: String)
+    var info: (title: String, desc: String) {
+        var tmp: (title: String, desc: String)
         switch self {
-        case .safari(_):
+        case .safari:
             tmp = (title: "", desc: "")
-        case .safariController(_):
+        case .safariController:
             tmp = (title: "", desc: "")
+            // Events
+        case .events:
+            tmp = (title: "EventsVC", desc: "[SwiftHub]")
+            // Demo
         case .LXiOS15VC:
             tmp = (title: "iOS", desc: "iOS 15 适配")
+        case .LXTable0120VC:
+            tmp = (title: "LXTable0120VC", desc: "测试 sectionHeaderTopPadding 偏移的场景")
         }
         return tmp
     }

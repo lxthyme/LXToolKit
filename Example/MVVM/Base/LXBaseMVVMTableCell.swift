@@ -11,7 +11,7 @@ import RxCocoa
 
 class LXBaseMVVMTableCell: UITableViewCell {
     // MARK: 📌UI
-    private lazy var wrapperView: UIView = {
+    lazy var wrapperView: UIView = {
         let v = UIView()
         v.backgroundColor = .white
         return v

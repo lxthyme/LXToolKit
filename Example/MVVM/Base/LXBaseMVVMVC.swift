@@ -36,12 +36,12 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
         LXPrint.resourcesCount()
     }
     // MARK: 📌UI
-    private lazy var contentView: UIView = {
+    lazy var contentView: UIView = {
         let v = UIView()
         v.backgroundColor = .white
         return v
     }()
-    private lazy var contentStackView: UIStackView = {
+    lazy var contentStackView: UIStackView = {
         let v = UIStackView()
         v.axis = .vertical
         return v

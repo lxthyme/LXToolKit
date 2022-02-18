@@ -31,10 +31,15 @@ extension LXBaseTableViewProtocol {
 
         // t.delegate = self
         // t.dataSource = self
+        t.xl.adapterWith(parentVC: nil)
 
         return t
     }
 }
+// extension UIViewController where Self: LXBaseTableViewProtocol {
+    // public func lazyTableView(style: UITableView.Style) -> UITableView {
+    // layouttab
+// }
 
 open class LXBaseTableViewVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: UI

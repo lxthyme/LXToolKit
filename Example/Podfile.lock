@@ -123,6 +123,9 @@ PODS:
   - ImageSlideshow/Kingfisher (1.9.2):
     - ImageSlideshow/Core
     - Kingfisher (> 3.0)
+  - ImageSlideshow/SDWebImage (1.9.2):
+    - ImageSlideshow/Core
+    - SDWebImage (>= 3.7)
   - InputBarAccessoryView (5.4.0):
     - InputBarAccessoryView/Core (= 5.4.0)
   - InputBarAccessoryView/Core (5.4.0)
@@ -321,6 +324,7 @@ DEPENDENCIES:
   - Highlightr
   - HMSegmentedControl
   - ImageSlideshow/Kingfisher
+  - ImageSlideshow/SDWebImage
   - IQKeyboardManagerSwift
   - KafkaRefresh
   - KeychainAccess
@@ -493,7 +497,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
-  LXToolKit: 7cec9e317c80a6f188426bba4685f794ce3121fc
+  LXToolKit: 3c7078237c8e97a374624672e78a6dcec4250b50
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -537,6 +541,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: a7aa41a674e67a86c1728a3d9d73a471d5650a82
 
-PODFILE CHECKSUM: 3fabb8a18e518197092af211c8a340500c44febd
+PODFILE CHECKSUM: f43018c7c05378d6e8486e59a7c243555e56b8a9
 
 COCOAPODS: 1.11.2

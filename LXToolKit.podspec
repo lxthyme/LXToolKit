@@ -28,7 +28,7 @@ This library contains some useful category and extension kits
   s.source           = { :git => 'https://github.com/lxthyme/LXToolKit.git', :tag => "v#{s.version.to_s}" }
   # s.social_media_url = 'https://twitter.com/lxthyme'
   # s.default_subspec = "Core"
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '12.0'
   s.swift_versions = '5.1'
   s.cocoapods_version = '>= 1.4.0'
 
@@ -57,6 +57,45 @@ This library contains some useful category and extension kits
   # https://github.com/SDWebImage/SDWebImage
   s.dependency 'SDWebImage'
   # s.source_files  = "LXToolKit/**/*.swift"
+  # s.dependency 'Apollo'
+  # s.dependency 'KeychainAccess'
+  # s.dependency 'Mixpanel'
+  # s.dependency 'ObjectMapper'
+  # s.dependency 'Moya-ObjectMapper/RxSwift'
+  # s.dependency 'Firebase/Analytics'
+  # s.dependency 'Firebase/Crashlytics'
+  # s.dependency 'MessageKit'
+  # s.dependency 'KafkaRefresh'
+  # s.dependency 'Kingfisher'
+  # s.dependency 'IQKeyboardManagerSwift'
+  # s.dependency 'CocoaLumberjack'
+  # s.dependency 'FLEX'
+  # s.dependency 'RxViewController'
+  # s.dependency 'RxOptional'
+  # s.dependency 'RxGesture'
+  # s.dependency 'SwifterSwift'
+  # s.dependency 'SwiftDate'
+  # s.dependency 'Hero'
+  # s.dependency 'DropDown'
+  # s.dependency 'Toast-Swift'
+  # s.dependency 'NSObject+Rx'
+  # s.dependency 'DZNEmptyDataSet'
+  # s.dependency 'R.swift'
+  # s.dependency 'Localize-Swift'
+  # s.dependency 'SVProgressHUD'
+  # s.dependency 'RxTheme'
+  # s.dependency 'RxDataSources'
+  # s.dependency 'RAMAnimatedTabBarController'
+  # s.dependency 'WhatsNewKit'
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+  # s.dependency ''
+
 
   # s.subspec "Core" do |ss|
   ##    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Bwase/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"

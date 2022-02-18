@@ -4,6 +4,11 @@ platform:ios, '12.0'
 
 source 'https://cdn.cocoapods.org'
 
+install! 'cocoapods',
+           disable_input_output_paths: true,
+           generate_multiple_pod_projects: true,
+           deterministic_uuids: false
+
 #install! 'cocoapods', :deterministic_uuids => false, :integrate_targets => false
 
 #target 'MaJia' do
@@ -107,6 +112,7 @@ pod 'NVActivityIndicatorView'
 pod 'NVActivityIndicatorView/Extended'
 # https://github.com/zvonicek/ImageSlideshow
 pod 'ImageSlideshow/Kingfisher'
+pod "ImageSlideshow/SDWebImage"
 # https://github.com/dzenbot/DZNEmptyDataSet
 pod 'DZNEmptyDataSet'
 # https://github.com/lkzhao/Hero
@@ -201,7 +207,7 @@ end
 post_install do |installer|
  installer.pods_project.targets.each do |target|
   target.build_configurations.each do |config|
-   # config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
    # config.build_settings['VALID_ARCHS'] = 'x86_64 arm64'
   end
  end

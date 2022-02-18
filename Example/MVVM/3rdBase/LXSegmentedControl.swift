@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import HMSegmentedControl
 
 class LXSegmentedControl: HMSegmentedControl {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
+    let segmentSelection = BehaviorRelay<Int>(value: 0)
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    init() {
+        super.init(sectionTitles: [])
         prepareUI()
-     }
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        prepareUI()
+        updateUI()
+    }
+    func updateUI() {
+        setNeedsDisplay()
     }
 
 }
@@ -34,12 +38,44 @@ private extension LXSegmentedControl {}
 private extension LXSegmentedControl {
     func prepareUI() {
         self.backgroundColor = UIColor.white
-        // self.title = "<#title#>"
+        themeService.typeStream
+            .subscribe(onNext: {[weak self] themeType in
+                guard let `self` = self else { return }
+                let theme = themeType.associatedObject
+                self.backgroundColor = theme.primary
+                self.selectionIndicatorColor = theme.secondary
+                let font = UIFont.systemFont(ofSize: 11)
+                self.titleTextAttributes = [
+                    NSAttributedString.Key.font: font,
+                    NSAttributedString.Key.foregroundColor: theme.text
+                ]
+                self.selectedTitleTextAttributes = [
+                    NSAttributedString.Key.font: font,
+                    NSAttributedString.Key.foregroundColor: theme.secondary
+                ]
+                self.setNeedsDisplay()
+            })
+            .disposed(by: rx.disposeBag)
+
+        cornerRadius = Configs.BaseDimensions.cornerRadius
+        imagePosition = .aboveText
+        selectionStyle = .box
+        selectionIndicatorLocation = .bottom
+        selectionIndicatorBoxOpacity = 0
+        selectionIndicatorHeight = 2
+        segmentEdgeInset = UIEdgeInsets(inset: Configs.BaseDimensions.inset)
+        indexChangeBlock = {[weak self] idx in
+            self?.segmentSelection.accept(Int(idx))
+        }
 
         // [<#table#>].forEach(self.addSubview)
 
         masonry()
     }
 
-    func masonry() {}
+    func masonry() {
+        self.snp.makeConstraints {
+            $0.height.equalTo(Configs.BaseDimensions.segmentedControlHeight)
+        }
+    }
 }
