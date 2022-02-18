@@ -39,35 +39,38 @@ class DefaultReachabilityService: ReachabilityService {
         return _reachabilitySubject.asObservable()
     }
 
-    let _reachability: Reachability
+    // let _reachability: ReachabilityManager.shared
 
     init() throws {
-        guard let reachabilityRef = Reachability() else { throw ReachabilityServiceError.failedToCreate }
+        // guard let reachabilityRef = ReachabilityManager.shared else { throw ReachabilityServiceError.failedToCreate }
 
         let reachabilitySubject = BehaviorSubject<ReachabilityStatus>(value: .unreachable)
 
         /// so main thread isn't blocked when reachability via WiFi is checked
         let backgroundQueue = DispatchQueue(label: "com.lx.reachability.wifiCheck")
+        // reachabilityRef.reachSubject.bind(onNext: {[weak self] reachability in
+        //     reachabilitySubject.on(.next(.reachable(viaWifi: reachability)))
+        // })
+        // .disposed(by: rx.disposeBag)
+        // reachabilityRef.whenReachable = { reachability in
+        //     backgroundQueue.async {
+        //         reachabilitySubject.on(.next(.reachable(viaWifi: reachabilityRef.isReachableViaWifi)))
+        //     }
+        // }
 
-        reachabilityRef.whenReachable = { reachability in
-            backgroundQueue.async {
-                reachabilitySubject.on(.next(.reachable(viaWifi: reachabilityRef.isReachableViaWifi)))
-            }
-        }
+        // reachabilityRef.whenUnreachable = { reachability in
+        //     backgroundQueue.async {
+        //         reachabilitySubject.on(.next(.unreachable))
+        //     }
+        // }
 
-        reachabilityRef.whenUnreachable = { reachability in
-            backgroundQueue.async {
-                reachabilitySubject.on(.next(.unreachable))
-            }
-        }
-
-        try reachabilityRef.startNotifier()
-        _reachability = reachabilityRef
-        _reachabilitySubject = reachabilitySubject
+        // try reachabilityRef.startNotifier()
+        // _reachability = ReachabilityManager.shared.reach
+        _reachabilitySubject = BehaviorSubject<ReachabilityStatus>(value: .unreachable)
     }
 
     deinit {
-        try? _reachability.stopNotifier()
+        // try? _reachability.stopNotifier()
     }
 }
 

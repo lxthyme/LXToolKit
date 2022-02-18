@@ -13,6 +13,8 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		BE21912827BF676D003CD138 /* LXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912727BF676D003CD138 /* LXSegmentedControl.swift */; };
+		BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */; };
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
@@ -143,6 +145,10 @@
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA60B259ABB9B00526193 /* RxSwift.framework */; };
 		BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA612259ABBA100526193 /* RxCocoa.framework */; };
+		BE6C8F5C27BDEA850019AEC0 /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5A27BDEA840019AEC0 /* DefaultTableViewCellViewModel.swift */; };
+		BE6C8F5D27BDEA850019AEC0 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5B27BDEA840019AEC0 /* DefaultTableViewCell.swift */; };
+		BE6C8F5F27BDED470019AEC0 /* LXEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5E27BDED470019AEC0 /* LXEventCell.swift */; };
+		BE6C8F6127BDEDBD0019AEC0 /* LXEventCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F6027BDEDBD0019AEC0 /* LXEventCellVM.swift */; };
 		BE801F1327B0EE82007EDEBF /* LXiOS15VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE801F1227B0EE82007EDEBF /* LXiOS15VC.swift */; };
 		BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C4D2609EC24009D18D0 /* R.generated.swift */; };
 		BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE827C552609ECBA009D18D0 /* Icons.xcassets */; };
@@ -265,6 +271,8 @@
 		BEC818C52499C6D00002576B /* API_ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C42499C6D00002576B /* API_ENV.swift */; };
 		BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818C82499F5130002576B /* LXUserProvider.swift */; };
 		BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818CB2499F6350002576B /* LXUserModel.swift */; };
+		BEE3716B27BF34D900F47E24 /* LXEventsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3716A27BF34D900F47E24 /* LXEventsVM.swift */; };
+		BEE3716D27BF386F00F47E24 /* LXEventsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3716C27BF386F00F47E24 /* LXEventsVC.swift */; };
 		BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */; };
 		BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B842799455300D26B02 /* LX1019TestVC.m */; };
 		BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF15B862799455300D26B02 /* ExampleViewController.swift */; };
@@ -371,6 +379,8 @@
 		9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Exam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE21912727BF676D003CD138 /* LXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSegmentedControl.swift; sourceTree = "<group>"; };
+		BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSlideImageView.swift; sourceTree = "<group>"; };
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
@@ -502,6 +512,10 @@
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE6AA60B259ABB9B00526193 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6AA612259ABBA100526193 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6C8F5A27BDEA840019AEC0 /* DefaultTableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		BE6C8F5B27BDEA840019AEC0 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
+		BE6C8F5E27BDED470019AEC0 /* LXEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEventCell.swift; sourceTree = "<group>"; };
+		BE6C8F6027BDEDBD0019AEC0 /* LXEventCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEventCellVM.swift; sourceTree = "<group>"; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
 		BE801F1227B0EE82007EDEBF /* LXiOS15VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXiOS15VC.swift; sourceTree = "<group>"; };
 		BE80622924DA7C2300F9C6AC /* LXMultiRequestTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMultiRequestTestVC.swift; sourceTree = "<group>"; };
@@ -652,6 +666,8 @@
 		BEC818C42499C6D00002576B /* API_ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_ENV.swift; sourceTree = "<group>"; };
 		BEC818C82499F5130002576B /* LXUserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserProvider.swift; sourceTree = "<group>"; };
 		BEC818CB2499F6350002576B /* LXUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXUserModel.swift; sourceTree = "<group>"; };
+		BEE3716A27BF34D900F47E24 /* LXEventsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEventsVM.swift; sourceTree = "<group>"; };
+		BEE3716C27BF386F00F47E24 /* LXEventsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXEventsVC.swift; sourceTree = "<group>"; };
 		BEF15B7D2799434F00D26B02 /* LXTable0120VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTable0120VC.swift; sourceTree = "<group>"; };
 		BEF15B832799455300D26B02 /* LX1019TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1019TestVC.h; sourceTree = "<group>"; };
 		BEF15B842799455300D26B02 /* LX1019TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1019TestVC.m; sourceTree = "<group>"; };
@@ -838,6 +854,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE21912627BF6757003CD138 /* 3rdBase */ = {
+			isa = PBXGroup;
+			children = (
+				BE21912727BF676D003CD138 /* LXSegmentedControl.swift */,
+				BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */,
+			);
+			path = 3rdBase;
+			sourceTree = "<group>";
+		};
 		BE258D8D25189837008E2777 /* Kit */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +938,9 @@
 		BE472B7D27BA2D8C00D8F170 /* 02-14 */ = {
 			isa = PBXGroup;
 			children = (
+				BEC5C43127BD0C8D00F08BF6 /* VC */,
+				BEC5C43027BD0C8700F08BF6 /* View */,
+				BEC5C42F27BD0C7F00F08BF6 /* Cell */,
 			);
 			path = "02-14";
 			sourceTree = "<group>";
@@ -1634,21 +1662,22 @@
 		BEC2D3752521DC0B004C91B6 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				BE47501127BA51FA00D8F170 /* 3rd */,
-				BE47500D27BA51F900D8F170 /* Application.swift */,
+				BE21912627BF6757003CD138 /* 3rdBase */,
 				BE47501627BA51FA00D8F170 /* Base */,
 				BE47500827BA51F900D8F170 /* Base2 */,
-				BE47501D27BA51FA00D8F170 /* Config.swift */,
 				BE47502827BA51FA00D8F170 /* Extensions */,
+				BE47501F27BA51FA00D8F170 /* Managers */,
+				BE47507727BA51FB00D8F170 /* Models */,
+				BE47503A27BA51FB00D8F170 /* Networking */,
+				BE47501127BA51FA00D8F170 /* 3rd */,
+				BE47500D27BA51F900D8F170 /* Application.swift */,
+				BE47501D27BA51FA00D8F170 /* Config.swift */,
 				BE47508C27BA51FB00D8F170 /* Logger.swift */,
 				BE47501E27BA51FA00D8F170 /* LXBaseAPI.swift */,
 				BE47503927BA51FB00D8F170 /* LXColors + mvvm.swift */,
 				BE47500C27BA51F900D8F170 /* LXCustomLoggerFormatter.swift */,
 				BE47501027BA51FA00D8F170 /* LXNavigatable.swift */,
 				BE47500E27BA51FA00D8F170 /* LXNavigationController.swift */,
-				BE47501F27BA51FA00D8F170 /* Managers */,
-				BE47507727BA51FB00D8F170 /* Models */,
-				BE47503A27BA51FB00D8F170 /* Networking */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -1704,6 +1733,33 @@
 				BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BEC5C42F27BD0C7F00F08BF6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE6C8F5B27BDEA840019AEC0 /* DefaultTableViewCell.swift */,
+				BE6C8F5A27BDEA840019AEC0 /* DefaultTableViewCellViewModel.swift */,
+				BE6C8F5E27BDED470019AEC0 /* LXEventCell.swift */,
+				BE6C8F6027BDEDBD0019AEC0 /* LXEventCellVM.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEC5C43027BD0C8700F08BF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEC5C43127BD0C8D00F08BF6 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BEE3716A27BF34D900F47E24 /* LXEventsVM.swift */,
+				BEE3716C27BF386F00F47E24 /* LXEventsVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		BEC818AC249859360002576B /* API */ = {
@@ -2384,7 +2440,9 @@
 			files = (
 				BEA245F126F335290098707A /* LXSongVC.swift in Sources */,
 				BEA245DD26F335290098707A /* LXMusicVC.swift in Sources */,
+				BE6C8F5C27BDEA850019AEC0 /* DefaultTableViewCellViewModel.swift in Sources */,
 				BE4750F127BA51FC00D8F170 /* Commit.swift in Sources */,
+				BE21912827BF676D003CD138 /* LXSegmentedControl.swift in Sources */,
 				BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */,
 				BE47509027BA51FB00D8F170 /* LXCustomLoggerFormatter.swift in Sources */,
 				BE4750B927BA51FC00D8F170 /* Api.swift in Sources */,
@@ -2395,6 +2453,7 @@
 				BE47508F27BA51FB00D8F170 /* LXBaseViewModel.swift in Sources */,
 				BE4750AD27BA51FC00D8F170 /* Observable+Logging.swift in Sources */,
 				BEA2461426F335290098707A /* DownloadableImage.swift in Sources */,
+				BE6C8F5F27BDED470019AEC0 /* LXEventCell.swift in Sources */,
 				BE4750EC27BA51FC00D8F170 /* Event.swift in Sources */,
 				BEF15C432799455400D26B02 /* LXAlbumListModel.swift in Sources */,
 				BE47509627BA51FB00D8F170 /* ActivityIndicator.swift in Sources */,
@@ -2457,6 +2516,7 @@
 				BE4750EB27BA51FC00D8F170 /* Language.swift in Sources */,
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
+				BE6C8F5D27BDEA850019AEC0 /* DefaultTableViewCell.swift in Sources */,
 				BE4750E627BA51FC00D8F170 /* Networking.swift in Sources */,
 				BE47509D27BA51FC00D8F170 /* Config.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
@@ -2496,6 +2556,7 @@
 				BE4750AF27BA51FC00D8F170 /* UIFont+SwiftHub.swift in Sources */,
 				BE4750ED27BA51FC00D8F170 /* Branch.swift in Sources */,
 				BEA245D926F335290098707A /* LXBaseRequiredVC.m in Sources */,
+				BEE3716D27BF386F00F47E24 /* LXEventsVC.swift in Sources */,
 				BEA245E626F335290098707A /* LXLightedDataSource.swift in Sources */,
 				BEA245D826F335290098707A /* LXRequiredVC1.m in Sources */,
 				BE4750F227BA51FC00D8F170 /* State.swift in Sources */,
@@ -2512,6 +2573,7 @@
 				BE4750F727BA51FC00D8F170 /* Repository.swift in Sources */,
 				BEF15C4A2799455400D26B02 /* LXCubeFaceView.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
+				BEE3716B27BF34D900F47E24 /* LXEventsVM.swift in Sources */,
 				BE47509227BA51FB00D8F170 /* LXNavigationController.swift in Sources */,
 				BEA245E326F335290098707A /* LXLightedVC.swift in Sources */,
 				BEA245FE26F335290098707A /* LXSearchResultViewModel.swift in Sources */,
@@ -2544,12 +2606,14 @@
 				BEA2461126F335290098707A /* UIImageView + DownloadableImage.swift in Sources */,
 				BE47508E27BA51FB00D8F170 /* XLLBaseModel.swift in Sources */,
 				BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */,
+				BE6C8F6127BDEDBD0019AEC0 /* LXEventCellVM.swift in Sources */,
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
 				BE4750AE27BA51FC00D8F170 /* Observable+Operators.swift in Sources */,
 				BE4750E927BA51FC00D8F170 /* TrendingGithubAPI.swift in Sources */,
 				BE801F1327B0EE82007EDEBF /* LXiOS15VC.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
+				BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */,
 				BE4750FD27BA51FC00D8F170 /* Contact.swift in Sources */,
 				BE47509127BA51FB00D8F170 /* Application.swift in Sources */,
 				BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */,

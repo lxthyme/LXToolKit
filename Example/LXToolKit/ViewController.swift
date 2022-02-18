@@ -29,8 +29,47 @@ class ViewController: LXBaseTableViewVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider)
         return [
-            .LXiOS15VC(viewModel: vm)
+            .LXiOS15VC(viewModel: vm),
+            .LXTable0120VC(viewModel: vm)
         ]
+    }()
+    @available(iOS 14.0, *)
+    private lazy var dataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> = {
+        let dataSource = UITableViewDiffableDataSource<String, LXNavigator.Scene>.init(tableView: table) { tableView, indexPath, scene in
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            var content = cell.defaultContentConfiguration()
+            content.text = "\(scene.info.title)"
+            content.secondaryText = "\(scene.info.desc)"
+            cell.contentConfiguration = content
+            return cell
+        }
+        dataSource.defaultRowAnimation = .fade
+        return dataSource
+    }()
+    @available(iOS 13.0, *)
+    private lazy var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> = {
+        let staging = Configs.Network.useStaging
+        let githubProvider = staging
+            ? GithubNetworking.stubbingNetworking()
+            : GithubNetworking.defaultNetworking()
+        let trendingGithubProvider = staging
+            ? TrendingGithubNetworking.stubbingNetworking()
+            : TrendingGithubNetworking.defaultNetworking()
+        let codetabsProvider = staging
+            ? CodetabsNetworking.stubbingNetworking()
+            : CodetabsNetworking.defaultNetworking()
+        let provider = RestApi(githubProvider: githubProvider,
+                               trendingGithubProvider: trendingGithubProvider,
+                               codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM(provider: provider)
+
+        var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
+        snapshot.appendSections(["2022", "2021", "2020"])
+        snapshot.appendItems([
+            .LXiOS15VC(viewModel: vm),
+            .LXTable0120VC(viewModel: vm)
+        ], toSection: "2022")
+        return snapshot
     }()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -78,8 +117,8 @@ class ViewController: LXBaseTableViewVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        prepareTableView()
         prepareUI()
+        prepareTableView()
 
 //        let _ = LXBaseVC()
 //        let identifier = self.xl_typeName
@@ -89,6 +128,8 @@ class ViewController: LXBaseTableViewVC {
 //        testDictionary()
 
         testModel()
+        // testTask()
+        // testTaskGroup()
     }
 }
 
@@ -134,6 +175,7 @@ private extension ViewController {
        //  self.navigationController?.pushViewController(vc, animated: true)
         // self.navigationController?.pushViewController(vc, animated: true)
         goRouter()
+        // testTaskGroup()
     }
 }
 
@@ -319,6 +361,59 @@ extension ViewController {
         s2()
         s3()
     }
+    @available(iOS 15.0.0, *)
+    func foo() async {
+        withUnsafeCurrentTask { task in
+            if let task = task {
+                print("Cancelled: \(task.isCancelled)")
+
+                print("priority: \(task.priority)")
+            } else {
+                print("No task")
+            }
+        }
+    }
+    @available(iOS 15.0.0, *)
+    func testTask() {
+
+        withUnsafeCurrentTask { task in
+            print("task: \(task)")
+        }
+        Task {
+            await foo()
+        }
+    }
+}
+
+// MARK: - 👀
+extension ViewController {
+    @available(iOS 15.0.0, *)
+    struct TaskGroupSample {
+        func work(_ value: Int) async -> Int {
+            print("Start work \(value)")
+            await Task.sleep(UInt64(value) * NSEC_PER_SEC)
+            print("Work \(value) done!")
+            return value
+        }
+        func start() async {
+            print("Start")
+            await withTaskGroup(of: Int.self, body: { group in
+                for i in 0 ..< 3 {
+                    group.addTask {
+                        await work(i)
+                    }
+                }
+                print("Task added!")
+
+                for await result in group {
+                    print("Get result: \(result)")
+                }
+                print("Task ended!")
+            })
+
+            print("End!")
+        }
+    }
 }
 
 extension String {
@@ -357,6 +452,18 @@ extension ViewController: UITableViewDataSource {
 }
 // MARK: - ✈️UITableViewDelegate
 extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if #available(iOS 13.0, *) {
+            let tmp = dataSnapshot.sectionIdentifiers[section]
+            return tmp
+        } else {
+            // Fallback on earlier versions
+            return ""
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let scene = dataList[indexPath.row]
@@ -370,8 +477,16 @@ extension ViewController: UITableViewDelegate {
 private extension ViewController {
     func prepareTableView() {
         table.delegate = self
-        table.dataSource = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        if #available(iOS 14.0, *) {
+            DispatchQueue.main.async {
+                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            table.dataSource = self
+        }
     }
     func prepareUI() {
         [table].forEach(self.view.addSubview)

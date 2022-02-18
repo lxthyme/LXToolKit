@@ -28,6 +28,11 @@
 "Toast.ConnectionBack.Message" = "连接已恢复";
 "Toast.ConnectionLost.Message" = "没联系";
 
+/* 活动 */
+"Events.Navigation.Title" = "活动";
+"Events.ReceivedSegment.Title" = "收到";
+"Events.PerformedSegment.Title" = "执行";
+
 /* 什么是新的 */
 "WhatsNew.Title" = "最近更新";
 "WhatsNew.Item1.Title" = "计算行数";

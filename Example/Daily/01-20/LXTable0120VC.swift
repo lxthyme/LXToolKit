@@ -12,7 +12,7 @@
 import UIKit
 import LXToolKit
 
-class LXTable0120VC: LXBaseTableViewVC {
+class LXTable0120VC: LXBaseMVVMTableVC {
     // MARK: 📌UI
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 20)

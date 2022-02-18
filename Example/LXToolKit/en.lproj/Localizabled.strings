@@ -28,6 +28,11 @@
 "Toast.ConnectionBack.Message" = "Back online";
 "Toast.ConnectionLost.Message" = "No connection";
 
+/* Events */
+"Events.Navigation.Title" = "Events";
+"Events.ReceivedSegment.Title" = "Received";
+"Events.PerformedSegment.Title" = "Performed";
+
 /* Whats New */
 "WhatsNew.Title" = "Whats New";
 "WhatsNew.Item1.Title" = "Count Lines of Code";

@@ -1726,7 +1726,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.localizabled` struct is generated, and contains static references to 34 localization keys.
+    /// This `R.string.localizabled` struct is generated, and contains static references to 37 localization keys.
     struct localizabled {
       /// en translation: All
       ///
@@ -1776,6 +1776,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let commonError = Rswift.StringResource(key: "Common.Error", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static let eventsNavigationTitle = Rswift.StringResource(key: "Events.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
@@ -1804,10 +1808,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem3Title = Rswift.StringResource(key: "WhatsNew.Item3.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Performed
+      ///
+      /// Locales: en, zh-Hans
+      static let eventsPerformedSegmentTitle = Rswift.StringResource(key: "Events.PerformedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Popular
       ///
       /// Locales: en, zh-Hans
       static let languagesPopularSectionTitle = Rswift.StringResource(key: "Languages.PopularSection.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Received
+      ///
+      /// Locales: en, zh-Hans
+      static let eventsReceivedSegmentTitle = Rswift.StringResource(key: "Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Reset
       ///
       /// Locales: en, zh-Hans
@@ -2045,6 +2057,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Common.Error", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.Navigation.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Events.Navigation.Title"
+        }
+
+        return NSLocalizedString("Events.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
@@ -2150,6 +2177,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.Item3.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: Performed
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsPerformedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.PerformedSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Events.PerformedSegment.Title"
+        }
+
+        return NSLocalizedString("Events.PerformedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: Popular
       ///
       /// Locales: en, zh-Hans
@@ -2163,6 +2205,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Languages.PopularSection.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Received
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsReceivedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Events.ReceivedSegment.Title"
+        }
+
+        return NSLocalizedString("Events.ReceivedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Reset

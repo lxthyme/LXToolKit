@@ -23,7 +23,7 @@ extension ObservableType where Element == Any {
             .map { response -> String in
                 guard let res = response as? String,
                       res.count > 0 else {
-                    throw ApiError.serializeError(response: nil, error: nil)
+                          throw ApiError.serializeError(response: nil, error: nil)
                 }
                 return res
             }

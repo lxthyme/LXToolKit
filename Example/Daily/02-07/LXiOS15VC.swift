@@ -196,13 +196,13 @@ extension LXiOS15VC: UITableViewDataSource {
 extension LXiOS15VC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        var vc: UIViewController =
-        LXTable0120VC()
+        // var vc: UIViewController =
+        // LXTable0120VC()
         if #available(iOS 15.0, *) {
                 // LXTable0120VC()
-            vc = LXiOS15ButtonTestVC()
+            let vc = LXiOS15ButtonTestVC()
+            self.navigationController?.showDetailViewController(vc, sender: nil)
         }
-        self.navigationController?.showDetailViewController(vc, sender: nil)
     }
 }
 
