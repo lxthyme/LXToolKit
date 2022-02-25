@@ -50,6 +50,7 @@ class LXNavigator {
         /// LXToolKit_Exam
         case LXiOS15VC(viewModel: LXBaseVM)
         case LXTable0120VC(viewModel: LXBaseVM)
+        case LXMasonryTestVCVC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -124,6 +125,8 @@ class LXNavigator {
         case .LXTable0120VC(let vm):
             let vc = LXTable0120VC(viewModel: vm, navigator: self)
             return vc
+        case .LXMasonryTestVCVC(let vm):
+            return LXMasonryTestVCVC(viewModel: vm, navigator: self)
         }
     }
 
@@ -225,6 +228,8 @@ extension LXNavigator.Scene {
             tmp = (title: "iOS", desc: "iOS 15 适配")
         case .LXTable0120VC:
             tmp = (title: "LXTable0120VC", desc: "测试 sectionHeaderTopPadding 偏移的场景")
+        case .LXMasonryTestVCVC:
+            tmp = (title: "两个 View 组合的 CenterX 测试", desc: "---")
         }
         return tmp
     }

@@ -258,6 +258,7 @@
 		BEAF2E1925BEA4310054AE3D /* LXMaJia+dealAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E1825BEA4310054AE3D /* LXMaJia+dealAssets.m */; };
 		BEAF2E2225BEA4500054AE3D /* LXMaJia+insertSampleCode.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */; };
 		BEAF2F2125BEAD3F0054AE3D /* LXMaJia+common.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */; };
+		BEBE304227C605CA008D8BB1 /* LXMasonryTestVCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBE304027C605CA008D8BB1 /* LXMasonryTestVCVC.swift */; };
 		BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3842521E187004C91B6 /* LXMVVMSampleVC.swift */; };
 		BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3862521E187004C91B6 /* LXMVVMSampleDataSource.swift */; };
 		BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3872521E187004C91B6 /* LXMVVMSampleModel.swift */; };
@@ -652,6 +653,7 @@
 		BEAF2E2125BEA4500054AE3D /* LXMaJia+insertSampleCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+insertSampleCode.m"; sourceTree = "<group>"; };
 		BEAF2F1F25BEAD3F0054AE3D /* LXMaJia+common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXMaJia+common.h"; sourceTree = "<group>"; };
 		BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LXMaJia+common.m"; sourceTree = "<group>"; };
+		BEBE304027C605CA008D8BB1 /* LXMasonryTestVCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMasonryTestVCVC.swift; sourceTree = "<group>"; };
 		BEC2D3842521E187004C91B6 /* LXMVVMSampleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleVC.swift; sourceTree = "<group>"; };
 		BEC2D3862521E187004C91B6 /* LXMVVMSampleDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleDataSource.swift; sourceTree = "<group>"; };
 		BEC2D3872521E187004C91B6 /* LXMVVMSampleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleModel.swift; sourceTree = "<group>"; };
@@ -916,6 +918,7 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEBE303E27C605A2008D8BB1 /* 02-23 */,
 				BE472B7D27BA2D8C00D8F170 /* 02-14 */,
 				BE801F1127B0EE61007EDEBF /* 02-07 */,
 				BEF15B7C2799433500D26B02 /* 01-20 */,
@@ -1657,6 +1660,14 @@
 				BEAF2F2025BEAD3F0054AE3D /* LXMaJia+common.m */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		BEBE303E27C605A2008D8BB1 /* 02-23 */ = {
+			isa = PBXGroup;
+			children = (
+				BEBE304027C605CA008D8BB1 /* LXMasonryTestVCVC.swift */,
+			);
+			path = "02-23";
 			sourceTree = "<group>";
 		};
 		BEC2D3752521DC0B004C91B6 /* MVVM */ = {
@@ -2626,6 +2637,7 @@
 				BE4750AA27BA51FC00D8F170 /* UIView+SwiftHub.swift in Sources */,
 				BE4750A727BA51FC00D8F170 /* UIImage+SwiftHub.swift in Sources */,
 				BE4750F327BA51FC00D8F170 /* User.swift in Sources */,
+				BEBE304227C605CA008D8BB1 /* LXMasonryTestVCVC.swift in Sources */,
 				BEA245D126F335290098707A /* LXMessageCell.swift in Sources */,
 				BE472AAB27BA151600D8F170 /* ReachabilityService.swift in Sources */,
 				BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */,

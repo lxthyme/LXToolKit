@@ -13,26 +13,26 @@ class ViewController: LXBaseTableViewVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     private var testVC = LXTestVC()
-    lazy var dataList: [LXNavigator.Scene] = {
-        let staging = Configs.Network.useStaging
-        let githubProvider = staging
-            ? GithubNetworking.stubbingNetworking()
-            : GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging
-            ? TrendingGithubNetworking.stubbingNetworking()
-            : TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging
-            ? CodetabsNetworking.stubbingNetworking()
-            : CodetabsNetworking.defaultNetworking()
-        let provider = RestApi(githubProvider: githubProvider,
-                               trendingGithubProvider: trendingGithubProvider,
-                               codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider)
-        return [
-            .LXiOS15VC(viewModel: vm),
-            .LXTable0120VC(viewModel: vm)
-        ]
-    }()
+    // lazy var dataList: [LXNavigator.Scene] = {
+    //     let staging = Configs.Network.useStaging
+    //     let githubProvider = staging
+    //         ? GithubNetworking.stubbingNetworking()
+    //         : GithubNetworking.defaultNetworking()
+    //     let trendingGithubProvider = staging
+    //         ? TrendingGithubNetworking.stubbingNetworking()
+    //         : TrendingGithubNetworking.defaultNetworking()
+    //     let codetabsProvider = staging
+    //         ? CodetabsNetworking.stubbingNetworking()
+    //         : CodetabsNetworking.defaultNetworking()
+    //     let provider = RestApi(githubProvider: githubProvider,
+    //                            trendingGithubProvider: trendingGithubProvider,
+    //                            codetabsProvider: codetabsProvider)
+    //     let vm = LXBaseVM(provider: provider)
+    //     return [
+    //         .LXiOS15VC(viewModel: vm),
+    //         .LXTable0120VC(viewModel: vm)
+    //     ]
+    // }()
     @available(iOS 14.0, *)
     private lazy var dataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> = {
         let dataSource = UITableViewDiffableDataSource<String, LXNavigator.Scene>.init(tableView: table) { tableView, indexPath, scene in
@@ -62,12 +62,14 @@ class ViewController: LXBaseTableViewVC {
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider)
-
+        let eventsVM = LXEventsVM(with: .user(user: User()), provider: provider)
         var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
         snapshot.appendSections(["2022", "2021", "2020"])
         snapshot.appendItems([
             .LXiOS15VC(viewModel: vm),
-            .LXTable0120VC(viewModel: vm)
+            .LXTable0120VC(viewModel: vm),
+            .LXMasonryTestVCVC(viewModel: vm),
+            .events(vm: eventsVM),
         ], toSection: "2022")
         return snapshot
     }()
@@ -431,25 +433,25 @@ extension Sequence where Element: Hashable {
 }
 
 // MARK: - ✈️UITableViewDataSource
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
-        let info = dataList[indexPath.row].info
-        if #available(iOS 14.0, *) {
-            var config = UIListContentConfiguration.cell()
-            config.text = info.title
-            config.secondaryText = info.desc
-            cell.contentConfiguration = config
-        } else {
-            cell.textLabel?.text = info.title
-            cell.detailTextLabel?.text = info.desc
-        }
-        return cell
-    }
-}
+// extension ViewController: UITableViewDataSource {
+//     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//         return dataList.count
+//     }
+//     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+//         let info = dataList[indexPath.row].info
+//         if #available(iOS 14.0, *) {
+//             var config = UIListContentConfiguration.cell()
+//             config.text = info.title
+//             config.secondaryText = info.desc
+//             cell.contentConfiguration = config
+//         } else {
+//             cell.textLabel?.text = info.title
+//             cell.detailTextLabel?.text = info.desc
+//         }
+//         return cell
+//     }
+// }
 // MARK: - ✈️UITableViewDelegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -466,9 +468,13 @@ extension ViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let scene = dataList[indexPath.row]
-        let navigator = LXNavigator()
-        navigator.show(segue: scene, sender: self)
+        if #available(iOS 14.0, *),
+           let scene = dataSource.itemIdentifier(for: indexPath) {
+            let navigator = LXNavigator()
+            navigator.show(segue: scene, sender: self)
+        } else {
+            // Fallback on earlier versions
+        }
 
     }
 }
@@ -485,7 +491,7 @@ private extension ViewController {
             }
         } else {
             // Fallback on earlier versions
-            table.dataSource = self
+            // table.dataSource = self
         }
     }
     func prepareUI() {
