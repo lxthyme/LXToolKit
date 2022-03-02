@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             connectedToInternet().skip(1).subscribe(onNext: { [weak self] (connected) in
                 var style = ToastManager.shared.style
                 style.backgroundColor = connected ? UIColor.Material.green: UIColor.Material.red
-                let message = connected ? R.string.localizabled.toastConnectionBackMessage.key.localized(): R.string.localizabled.toastConnectionLostMessage.key.localized()
+                let message = connected ? R.string.localizabled.toastConnectionBackMessage(): R.string.localizabled.toastConnectionLostMessage()
                 let image = connected ? R.image.icon_toast_success(): R.image.icon_toast_warning()
                 if let view = self?.window?.rootViewController?.view {
                     view.makeToast(message, position: .bottom, image: image, style: style)
