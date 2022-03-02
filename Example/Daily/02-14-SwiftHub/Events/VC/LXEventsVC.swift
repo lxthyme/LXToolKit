@@ -19,8 +19,8 @@ enum EventSegments: Int {
 
     var title: String {
         switch self {
-        case .received: return R.string.localizabled.eventsReceivedSegmentTitle.key.localized()
-        case .performed: return R.string.localizabled.eventsPerformedSegmentTitle.key.localized()
+        case .received: return R.string.localizabled.eventsReceivedSegmentTitle()
+        case .performed: return R.string.localizabled.eventsPerformedSegmentTitle()
         }
     }
 }
@@ -145,7 +145,7 @@ private extension LXEventsVC {
         headerView.theme.backgroundColor = themeService.attribute { $0.primaryDark }
 
         headerView.addSubview(imgViewOwner)
-        contentStackView.addArrangedSubview(headerView)
+        [headerView, table].forEach(contentStackView.addArrangedSubview)
 
         table.xl.registerCell(with: LXEventCell.self)
 
@@ -160,6 +160,10 @@ private extension LXEventsVC {
             $0.top.equalToSuperview().inset(Configs.BaseDimensions.inset)
             $0.center.equalToSuperview()
             $0.size.equalTo(80)
+        }
+        table.snp.makeConstraints {
+            $0.top.equalTo(imgViewOwner.snp.bottom)
+            $0.left.right.bottom.equalToSuperview()
         }
     }
 }

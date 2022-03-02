@@ -74,7 +74,7 @@ extension LXEventsVM {
         //     .map { Repo }
 
         let navTitle = mode
-            .map { _ in R.string.localizabled.eventsNavigationTitle.key.localized() }
+            .map { _ in R.string.localizabled.eventsNavigationTitle() }
             .asDriver(onErrorJustReturn: "")
         let imgUrl = mode
             .map { mode -> URL? in
