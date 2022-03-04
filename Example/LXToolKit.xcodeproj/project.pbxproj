@@ -242,6 +242,8 @@
 		BEA2461126F335290098707A /* UIImageView + DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245BD26F335290098707A /* UIImageView + DownloadableImage.swift */; };
 		BEA2461426F335290098707A /* DownloadableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA245C026F335290098707A /* DownloadableImage.swift */; };
 		BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */; };
+		BEAE4A0B27CF5D750095439C /* LXLoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE4A0927CF5D750095439C /* LXLoginVM.swift */; };
+		BEAE4A0C27CF5D750095439C /* LXLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE4A0A27CF5D750095439C /* LXLoginVC.swift */; };
 		BEAF2C9125BE6FCE0054AE3D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9025BE6FCE0054AE3D /* main.swift */; };
 		BEAF2C9C25BE8F550054AE3D /* handle + assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */; };
 		BEAF2CA325BE8FA30054AE3D /* handle + comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAF2CA225BE8FA30054AE3D /* handle + comments.swift */; };
@@ -628,6 +630,8 @@
 		BEA245C026F335290098707A /* DownloadableImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadableImage.swift; sourceTree = "<group>"; };
 		BEA9378924DD3D370048D644 /* LXToolKit_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKit_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEA9784E273A852500675B13 /* SampleNotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleNotificationDelegate.swift; sourceTree = "<group>"; };
+		BEAE4A0927CF5D750095439C /* LXLoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLoginVM.swift; sourceTree = "<group>"; };
+		BEAE4A0A27CF5D750095439C /* LXLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLoginVC.swift; sourceTree = "<group>"; };
 		BEAF2C8E25BE6FCE0054AE3D /* MaJia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MaJia; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAF2C9025BE6FCE0054AE3D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BEAF2C9B25BE8F540054AE3D /* handle + assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "handle + assets.swift"; sourceTree = "<group>"; };
@@ -1621,6 +1625,8 @@
 		BEAE4A0427CF5AD10095439C /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				BEAE4A0927CF5D750095439C /* LXLoginVM.swift */,
+				BEAE4A0A27CF5D750095439C /* LXLoginVC.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2565,6 +2571,7 @@
 				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				BE47509C27BA51FC00D8F170 /* API + ex.swift in Sources */,
+				BEAE4A0C27CF5D750095439C /* LXLoginVC.swift in Sources */,
 				BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */,
 				BE4750FE27BA51FC00D8F170 /* Logger.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
@@ -2589,6 +2596,7 @@
 				BE4750F227BA51FC00D8F170 /* State.swift in Sources */,
 				BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */,
 				BEA2461026F335290098707A /* HtmlParsing.swift in Sources */,
+				BEAE4A0B27CF5D750095439C /* LXLoginVM.swift in Sources */,
 				BEA245C426F335290098707A /* LXImageTestVC.swift in Sources */,
 				BE4750FC27BA51FC00D8F170 /* Token.swift in Sources */,
 				BE4750A627BA51FC00D8F170 /* AnalyticsManager.swift in Sources */,

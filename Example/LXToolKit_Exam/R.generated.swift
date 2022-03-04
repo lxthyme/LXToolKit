@@ -1726,7 +1726,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    /// This `R.string.localizabled` struct is generated, and contains static references to 37 localization keys.
+    /// This `R.string.localizabled` struct is generated, and contains static references to 51 localization keys.
     struct localizabled {
       /// en translation: All
       ///
@@ -1744,6 +1744,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let toastConnectionBackMessage = Rswift.StringResource(key: "Toast.ConnectionBack.Message", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Basic
+      ///
+      /// Locales: en, zh-Hans
+      static let loginBasicSegmentTitle = Rswift.StringResource(key: "Login.BasicSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Cancel
       ///
       /// Locales: en, zh-Hans
@@ -1780,10 +1784,22 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let eventsNavigationTitle = Rswift.StringResource(key: "Events.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
+      ///
+      /// Locales: en, zh-Hans
+      static let loginDetailLabelText = Rswift.StringResource(key: "Login.DetailLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
       static let languagesNavigationTitle = Rswift.StringResource(key: "Languages.Navigation.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginBasicLoginButtonTitle = Rswift.StringResource(key: "Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalLoginButtonTitle = Rswift.StringResource(key: "Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Next
       ///
       /// Locales: en, zh-Hans
@@ -1800,6 +1816,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let toastConnectionLostMessage = Rswift.StringResource(key: "Toast.ConnectionLost.Message", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: OAuth
+      ///
+      /// Locales: en, zh-Hans
+      static let loginOAuthSegmentTitle = Rswift.StringResource(key: "Login.OAuthSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: OK
       ///
       /// Locales: en, zh-Hans
@@ -1812,6 +1832,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let eventsPerformedSegmentTitle = Rswift.StringResource(key: "Events.PerformedSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Personal
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalSegmentTitle = Rswift.StringResource(key: "Login.PersonalSegment.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Personal Access Token
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalTitleLabelText = Rswift.StringResource(key: "Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please check your login or password
+      ///
+      /// Locales: en, zh-Hans
+      static let loginLoginFailedDescription = Rswift.StringResource(key: "Login.LoginFailed.Description", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Popular
       ///
       /// Locales: en, zh-Hans
@@ -1836,6 +1868,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem4Subtitle = Rswift.StringResource(key: "WhatsNew.Item4.Subtitle", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Sign in with Github
+      ///
+      /// Locales: en, zh-Hans
+      static let loginOAuthloginButtonTitle = Rswift.StringResource(key: "Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Skip
       ///
       /// Locales: en, zh-Hans
@@ -1852,6 +1888,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem2Title = Rswift.StringResource(key: "WhatsNew.Item2.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: These permissions are required %@
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalDetailLabelText = Rswift.StringResource(key: "Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Tool for counting lines of code from repositories
       ///
       /// Locales: en, zh-Hans
@@ -1864,6 +1904,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewDetailButtonTitle = Rswift.StringResource(key: "WhatsNew.DetailButton.Title", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Welcome to SwiftHub
+      ///
+      /// Locales: en, zh-Hans
+      static let loginTitleLabelText = Rswift.StringResource(key: "Login.TitleLabel.Text", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Whats New
       ///
       /// Locales: en, zh-Hans
@@ -1876,6 +1920,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, zh-Hans
       static let whatsNewItem2Subtitle = Rswift.StringResource(key: "WhatsNew.Item2.Subtitle", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginLoginTextFieldPlaceholder = Rswift.StringResource(key: "Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: password
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPasswordTextFieldPlaceholder = Rswift.StringResource(key: "Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: personal access token
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalTokenTextFieldPlaceholder = Rswift.StringResource(key: "Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
 
       /// en translation: All
       ///
@@ -1935,6 +1991,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Toast.ConnectionBack.Message", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Basic
+      ///
+      /// Locales: en, zh-Hans
+      static func loginBasicSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.BasicSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.BasicSegment.Title"
+        }
+
+        return NSLocalizedString("Login.BasicSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Cancel
@@ -2072,6 +2143,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Events.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
+      ///
+      /// Locales: en, zh-Hans
+      static func loginDetailLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.DetailLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.DetailLabel.Text"
+        }
+
+        return NSLocalizedString("Login.DetailLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: Languages
       ///
       /// Locales: en, zh-Hans
@@ -2085,6 +2171,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Languages.Navigation.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginBasicLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.BasicLoginButton.Title"
+        }
+
+        return NSLocalizedString("Login.BasicLoginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalLoginButton.Title"
+        }
+
+        return NSLocalizedString("Login.PersonalLoginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Next
@@ -2147,6 +2263,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Toast.ConnectionLost.Message", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: OAuth
+      ///
+      /// Locales: en, zh-Hans
+      static func loginOAuthSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.OAuthSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.OAuthSegment.Title"
+        }
+
+        return NSLocalizedString("Login.OAuthSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: OK
       ///
       /// Locales: en, zh-Hans
@@ -2190,6 +2321,51 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Events.PerformedSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Personal
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalSegment.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalSegment.Title"
+        }
+
+        return NSLocalizedString("Login.PersonalSegment.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Personal Access Token
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalTitleLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalTitleLabel.Text"
+        }
+
+        return NSLocalizedString("Login.PersonalTitleLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please check your login or password
+      ///
+      /// Locales: en, zh-Hans
+      static func loginLoginFailedDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.LoginFailed.Description", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.LoginFailed.Description"
+        }
+
+        return NSLocalizedString("Login.LoginFailed.Description", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       /// en translation: Popular
@@ -2282,6 +2458,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.Item4.Subtitle", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: Sign in with Github
+      ///
+      /// Locales: en, zh-Hans
+      static func loginOAuthloginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.OAuthloginButton.Title"
+        }
+
+        return NSLocalizedString("Login.OAuthloginButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: Skip
       ///
       /// Locales: en, zh-Hans
@@ -2342,6 +2533,23 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.Item2.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: These permissions are required %@
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalDetailLabelText(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalDetailLabel.Text"
+        }
+
+        let format = NSLocalizedString("Login.PersonalDetailLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: Tool for counting lines of code from repositories
       ///
       /// Locales: en, zh-Hans
@@ -2387,6 +2595,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("WhatsNew.DetailButton.Title", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
+      /// en translation: Welcome to SwiftHub
+      ///
+      /// Locales: en, zh-Hans
+      static func loginTitleLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.TitleLabel.Text", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.TitleLabel.Text"
+        }
+
+        return NSLocalizedString("Login.TitleLabel.Text", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
       /// en translation: Whats New
       ///
       /// Locales: en, zh-Hans
@@ -2430,6 +2653,51 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("WhatsNew.Item2.Subtitle", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginLoginTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.LoginTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.LoginTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: password
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPasswordTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PasswordTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.PasswordTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
+      }
+
+      /// en translation: personal access token
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalTokenTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizabled", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalTokenTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

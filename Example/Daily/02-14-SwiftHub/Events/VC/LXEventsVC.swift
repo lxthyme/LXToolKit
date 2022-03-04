@@ -30,7 +30,7 @@ class LXEventsVC: LXBaseMVVMTableVC {
     private lazy var segmentControl: LXSegmentedControl = {
         let s = LXSegmentedControl(sectionTitles: [
             EventSegments.received.title,
-            EventSegments.performed.title,
+            EventSegments.performed.title
         ])
         s.selectedSegmentIndex = 0
         return s

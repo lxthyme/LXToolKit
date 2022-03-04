@@ -62,14 +62,14 @@ class ViewController: LXBaseTableViewVC {
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider)
-        let eventsVM = LXEventsVM(with: .user(user: User()), provider: provider)
         var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
         snapshot.appendSections(["2022", "2021", "2020"])
         snapshot.appendItems([
             .LXiOS15VC(viewModel: vm),
             .LXTable0120VC(viewModel: vm),
             .LXMasonryTestVCVC(viewModel: vm),
-            .events(vm: eventsVM),
+            .login(vm: LXLoginVM(with: provider)),
+            .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
         ], toSection: "2022")
         return snapshot
     }()
@@ -123,13 +123,15 @@ class ViewController: LXBaseTableViewVC {
         prepareTableView()
 
 //        let _ = LXBaseVC()
-//        let identifier = self.xl_typeName
-//        dlog("identifier: \(identifier)")
+        let identifier = self.xl.xl_typeName
+        dlog("identifier: \(identifier)")
+        let aa = "abccccc"
+        dlog("\(aa.self): \(aa)")
 
 //        testArray()
 //        testDictionary()
 
-        testModel()
+        // testModel()
         // testTask()
         // testTaskGroup()
     }

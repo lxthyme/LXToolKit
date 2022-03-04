@@ -111,7 +111,7 @@ class LXEventsVM: LXBaseVM, LXViewModelType {
     let segment = BehaviorRelay<EventSegments>(value: .received)
     let userSelected = PublishSubject<User>()
     // MARK: 🛠Life Cycle
-    init(with mode: EventsMode, provider: LXBaseAPI) {
+    init(with mode: EventsMode, provider: API) {
         self.mode = BehaviorRelay(value: mode)
         super.init(provider: provider)
         switch mode {
