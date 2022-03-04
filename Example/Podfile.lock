@@ -177,6 +177,7 @@ PODS:
     - Alamofire
     - CryptoSwift
     - HandyJSON
+    - Hero
     - Moya
     - RxCocoa
     - RxSwift
@@ -497,7 +498,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
-  LXToolKit: 3c7078237c8e97a374624672e78a6dcec4250b50
+  LXToolKit: eba6985ef7c6e1bac48d74f5a69864dafe0f3837
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201

@@ -83,7 +83,7 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
     }
 
     let emptyDataSetButtonTap = PublishSubject<Void>()
-    var emptyDataSetTitle = R.string.localizabled.commonNoResults.key.localized()
+    var emptyDataSetTitle = R.string.localizabled.commonNoResults()
     var emptyDataSetDescription = ""
     var emptyDataSetImage = R.image.image_no_result()
     var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
@@ -138,7 +138,7 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
         viewModel?.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
 
         languageChanged.subscribe(onNext: { [weak self] () in
-            self?.emptyDataSetTitle = R.string.localizabled.commonNoResults.key.localized()
+            self?.emptyDataSetTitle = R.string.localizabled.commonNoResults()
         }).disposed(by: rx.disposeBag)
 
         isLoading.subscribe(onNext: { isLoading in

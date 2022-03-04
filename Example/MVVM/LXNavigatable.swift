@@ -43,6 +43,7 @@ class LXNavigator {
         // case acknowledgements
         // case contacts(viewModel: ContactsViewModel)
         // case whatsNew(block: WhatsNewBlock)
+        case login(vm: LXLoginVM)
         case events(vm: LXEventsVM)
         case safari(URL)
         case safariController(URL)
@@ -116,6 +117,8 @@ class LXNavigator {
         //     let vc = WebViewController(viewModel: nil, navigator: self)
         //     vc.load(url: url)
         //     return vc
+        case .login(let vm):
+            return LXLoginVC(viewModel: vm, navigator: self)
         case .events(let vm):
             return LXEventsVC(viewModel: vm, navigator: self)
         /// LXToolKit_Exam
@@ -221,6 +224,8 @@ extension LXNavigator.Scene {
         case .safariController:
             tmp = (title: "", desc: "")
             // Events
+        case .login:
+            tmp = (title: "LoginVC", desc: "[SwiftHub]")
         case .events:
             tmp = (title: "EventsVC", desc: "[SwiftHub]")
             // Demo

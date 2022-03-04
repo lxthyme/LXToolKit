@@ -14,16 +14,12 @@ open class LXBaseLabel: UILabel {
         didSet { invalidateIntrinsicContentSize() }
     }
     // MARK: 🛠Life Cycle
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        prepareUI()
-     }
-    override init(frame: CGRect) {
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public override init(frame: CGRect) {
         super.init(frame: frame)
 
         prepareUI()
     }
-
 }
 
 // MARK: 👀Public Actions

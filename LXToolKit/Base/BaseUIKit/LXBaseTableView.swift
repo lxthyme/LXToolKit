@@ -7,17 +7,15 @@
 
 import UIKit
 
-class LXBaseTableView: UITableView {
+open class LXBaseTableView: UITableView {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        prepareUI()
-     }
-    override init(frame: CGRect, style: UITableView.Style) {
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         // TODO:「lxthyme」💊这里测试继承的 tableView 不主动调用prepareUI方法时, 是否会触发子类的prepareUI
+        // TODO:「lxthyme」💊测试其它初始化方法是否会调用prepareUI
         prepareUI()
     }
 

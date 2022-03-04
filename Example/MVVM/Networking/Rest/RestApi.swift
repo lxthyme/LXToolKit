@@ -32,7 +32,7 @@ typealias MoyaError = Moya.MoyaError
 //     }
 // }
 
-class RestApi: SwiftHubAPI, LXBaseAPI {
+class RestApi: SwiftHubAPI, API {
 
     let githubProvider: GithubNetworking
     let trendingGithubProvider: TrendingGithubNetworking

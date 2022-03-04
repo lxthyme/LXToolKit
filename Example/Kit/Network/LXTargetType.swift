@@ -28,13 +28,25 @@ extension LXTargetType {
         return URL(string: "")!
     }
     var method: Moya.Method {
-        return parameters.method
+        // return parameters.method
+        return .get
     }
     var path: String {
         return parameters.path
     }
     var headers: [String : String]? {
-        return parameters.headers
+        var headers = parameters.headers
+        if let token = AuthManager.shared.token {
+            var tokenString = ""
+            switch token.type() {
+            case .basic(let token): tokenString = "Basic \(token)"
+            case .oAuth(let token): tokenString = "token \(token)"
+            case .personal(let token): tokenString = "token \(token)"
+            case .unauthorized: break
+            }
+            headers["Authorization"] = tokenString
+        }
+        return headers
     }
     var task: Task {
         return .requestParameters(parameters: parameters.params, encoding: URLEncoding.default)
@@ -45,12 +57,12 @@ extension LXTargetType {
     }
 }
 
-enum API: LXTargetType {
-    case test
-    var parameters: LXAPIParameter {
-        switch self {
-            case .test:
-                return LXAPIParameter(path: "", params: [:])
-        }
-    }
-}
+// enum API: LXTargetType {
+//     case test
+//     var parameters: LXAPIParameter {
+//         switch self {
+//             case .test:
+//                 return LXAPIParameter(path: "", params: [:])
+//         }
+//     }
+// }

@@ -6,18 +6,33 @@
 //
 
 import UIKit
+import Hero
 
-class LXBaseImageView: UIImageView {
+open class LXBaseImageView: UIImageView {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override init(frame: CGRect) {
+    // required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         prepareUI()
     }
 
+    override public init(image: UIImage?) {
+        super.init(image: image)
+        prepareUI()
+    }
+
+    override public init(image: UIImage?, highlightedImage: UIImage?) {
+        super.init(image: image, highlightedImage: highlightedImage)
+        prepareUI()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        prepareUI()
+    }
 }
 
 // MARK: 👀Public Actions
@@ -29,10 +44,9 @@ private extension LXBaseImageView {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseImageView {
     func prepareUI() {
-        self.backgroundColor = UIColor.white
-        // self.title = "<#title#>"
-
-        // [<#table#>].forEach(self.addSubview)
+        layer.masksToBounds = true
+        contentMode = .scaleAspectFit
+        hero.modifiers = [.arc]
 
         masonry()
     }

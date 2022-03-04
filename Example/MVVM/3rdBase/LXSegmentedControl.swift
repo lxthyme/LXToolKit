@@ -11,14 +11,15 @@ import RxSwift
 import RxCocoa
 import HMSegmentedControl
 
-class LXSegmentedControl: HMSegmentedControl {
+open class LXSegmentedControl: HMSegmentedControl {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     let segmentSelection = BehaviorRelay<Int>(value: 0)
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    init() {
-        super.init(sectionTitles: [])
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    override init(sectionTitles sectiontitles: [String]) {
+        super.init(sectionTitles: sectiontitles)
+
         prepareUI()
         updateUI()
     }

@@ -7,19 +7,19 @@
 
 import UIKit
 
-class LXBaseButton: UIButton {
+open class LXBaseButton: UIButton {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     /// 扩大按钮点击区域
     var expandInset: CGFloat = 0
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override init(frame: CGRect) {
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public override init(frame: CGRect) {
         super.init(frame: frame)
 
         prepareUI()
     }
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let expandRect = self.bounds.insetBy(dx: -self.expandInset, dy: -self.expandInset)
         if expandRect.contains(point) {
             return self

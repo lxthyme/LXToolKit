@@ -26,7 +26,7 @@ class LXBaseVM: NSObject {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    let provider: LXBaseAPI
+    let provider: API
 
     var page = 1
 
@@ -38,7 +38,7 @@ class LXBaseVM: NSObject {
     let serverError = PublishSubject<Error>()
     let parsedError = PublishSubject<ApiError>()
     // MARK: 🛠Life Cycle
-    init(provider: LXBaseAPI) {
+    init(provider: API) {
         self.provider = provider
         super.init()
 
