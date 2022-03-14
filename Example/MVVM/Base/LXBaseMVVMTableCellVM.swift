@@ -12,9 +12,7 @@ import RxCocoa
 class LXBaseMVVMTableCellVM: NSObject {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    override init() {
-        super.init()
-    }
+    // MARK: 🛠Life Cycle
 }
 
 // MARK: 👀Public Actions

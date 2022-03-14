@@ -12,10 +12,8 @@ import RxCocoa
 import DZNEmptyDataSet
 import Hero
 import Localize_Swift
-// import GoogleMobileAds
 import SVProgressHUD
-import Rswift
-import SnapKit
+// import GoogleMobileAds
 
 struct LXEmptyDataSet: Equatable {
     var identifier = "233"
@@ -30,95 +28,52 @@ struct LXEmptyDataSet: Equatable {
     }
 }
 
-class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
+open class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
     deinit {
         dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
         LXPrint.resourcesCount()
     }
     // MARK: 📌UI
-    lazy var contentView: UIView = {
-        let v = UIView()
-        v.backgroundColor = .white
-        return v
-    }()
-    lazy var contentStackView: UIStackView = {
-        let v = UIStackView()
-        v.axis = .vertical
-        return v
-    }()
-    lazy var btnClosed: UIBarButtonItem = {
-        let btn = UIBarButtonItem(image: R.image.icon_navigation_close(),
-                                  style: .plain,
-                                  target: self,
-                                  action: nil)
-        btn.rx.tap
-            .asObservable()
-            .subscribe(onNext: {[weak self] _ in
-                guard let `self` = self else { return }
-                Logger.debug("🛠1. onNext - btnClosed - tap: ")
-                self.navigator.dismiss(sender: self)
-            })
-            .disposed(by: rx.disposeBag)
-        return btn
-    }()
-    lazy var btnBack: UIBarButtonItem = {
-        let view = UIBarButtonItem()
-        view.title = ""
-        return view
-    }()
     // MARK: 🔗Vaiables
-    var viewModel: LXBaseVM?
-    var navigator: LXNavigator!
+    public var viewModel: LXBaseVM?
+    public var navigator: LXNavigator!
 
-    let isLoading = BehaviorRelay(value: false)
-    let error = PublishSubject<ApiError>()
+    public let isLoading = BehaviorRelay(value: false)
+    public let error = PublishSubject<ApiError>()
 
-    var automaticallyAdjustsLeftBarButtonItem = true
-    var canOpenFlex = true
+    public let emptyDataSetButtonTap = PublishSubject<Void>()
+    public var emptyDataSetTitle = R.string.localizabled.commonNoResults()
+    public var emptyDataSetDescription = ""
+    public var emptyDataSetImage = R.image.image_no_result()
+    public var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
 
-    var navigationTitle = "" {
-        didSet {
-            navigationItem.title = navigationTitle
-        }
-    }
+    public let languageChanged = BehaviorRelay<Void>(value: ())
 
-    let emptyDataSetButtonTap = PublishSubject<Void>()
-    var emptyDataSetTitle = R.string.localizabled.commonNoResults()
-    var emptyDataSetDescription = ""
-    var emptyDataSetImage = R.image.image_no_result()
-    var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
-
-    let languageChanged = BehaviorRelay<Void>(value: ())
-
-    let orientationEvent = PublishSubject<Void>()
-    let motionShakeEvent = PublishSubject<Void>()
+    public let orientationEvent = PublishSubject<Void>()
+    public let motionShakeEvent = PublishSubject<Void>()
     // MARK: 🛠Life Cycle
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    init(viewModel: LXBaseVM?, navigator: LXNavigator) {
+    required public init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public init(viewModel: LXBaseVM?, navigator: LXNavigator) {
         self.viewModel = viewModel
         self.navigator = navigator
         super.init(nibName: nil, bundle: nil)
     }
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if automaticallyAdjustsLeftBarButtonItem {
-            adjustLeftBarButtonItem()
-        }
-        updateUI()
+
     }
-    override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateUI()
 
         LXPrint.resourcesCount()
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -128,12 +83,7 @@ class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
         updateUI()
         bindViewModel()
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        logDebug("\(type(of: self)): Received Memory Warning")
-    }
-    func updateUI() {}
-    func bindViewModel() {
+    public func bindViewModel() {
         viewModel?.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
         viewModel?.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
 
@@ -188,24 +138,9 @@ extension LXBaseMVVMVC {
     }
 }
 
-// MARK: 🔐Adjusting Navigation Item
-private extension LXBaseMVVMVC {
-    func adjustLeftBarButtonItem() {
-        // Pushed
-        if self.navigationController?.viewControllers.count ?? 0 > 1 {
-            self.navigationItem.leftBarButtonItem = nil
-        } else if self.presentingViewController != nil {
-            // presented
-            self.navigationItem.leftBarButtonItem = btnClosed
-        }
-    }
-    @objc func closeAction(sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
-    }
-}
 // MARK: - 👀
 extension LXBaseMVVMVC {
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             motionShakeEvent.onNext(())
         }
@@ -268,25 +203,17 @@ private extension LXBaseMVVMVC {
             .disposed(by: rx.disposeBag)
     }
     func prepareUI() {
-        self.view.backgroundColor = .white
-        hero.isEnabled = true
-        navigationItem.backBarButtonItem = btnBack
-
-        [self.contentView].forEach(self.view.addSubview)
-        [self.contentStackView].forEach(self.contentView.addSubview)
+        btnClosed.rx.tap
+            .asObservable()
+            .subscribe(onNext: {[weak self] _ in
+                guard let `self` = self else { return }
+                Logger.debug("🛠1. onNext - btnClosed - tap: ")
+                self.navigator.dismiss(sender: self)
+            })
+            .disposed(by: rx.disposeBag)
 
         masonry()
     }
 
-    func masonry() {
-        self.view.snp.setLabel("\(self.view.xl.xl_typeName).view")
-        self.contentView.snp.setLabel("\(self.contentView.xl.xl_typeName).contentView")
-        self.contentStackView.snp.setLabel("\(self.contentStackView.xl.xl_typeName)")
-        contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
+    func masonry() {}
 }

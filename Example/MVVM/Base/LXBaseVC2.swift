@@ -9,10 +9,18 @@
 import UIKit
 import LXToolKit
 
-class LXBaseVC2: LXBaseVC {
+class LXBaseVC2<VM: LXBaseVM>: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
+    var vm: LXBaseVM?
+    var navigator: LXNavigator!
     // MARK: 🛠Life Cycle
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    init(vm: VM?, navigator: LXNavigator) {
+        self.vm = vm
+        self.navigator = navigator
+        super.init(nibName: nil, bundle: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

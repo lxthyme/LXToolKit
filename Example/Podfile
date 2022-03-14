@@ -202,6 +202,8 @@ pod 'Apollo', '0.50.0'
 # https://github.com/ivanbruel/Moya-ObjectMapper
 pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
 
+pod 'libextobjc/EXTScope'
+
 end
 
 post_install do |installer|

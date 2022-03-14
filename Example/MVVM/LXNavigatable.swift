@@ -14,7 +14,7 @@ protocol LXNavigatable {
     var navigator: LXNavigator! { get set }
 }
 
-class LXNavigator {
+open class LXNavigator {
     static var `default` = LXNavigator()
 
     // MARK: - segues list, all app scenes
@@ -52,6 +52,7 @@ class LXNavigator {
         case LXiOS15VC(viewModel: LXBaseVM)
         case LXTable0120VC(viewModel: LXBaseVM)
         case LXMasonryTestVCVC(viewModel: LXBaseVM)
+        case LXWebViewTestVC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -130,6 +131,8 @@ class LXNavigator {
             return vc
         case .LXMasonryTestVCVC(let vm):
             return LXMasonryTestVCVC(viewModel: vm, navigator: self)
+        case .LXWebViewTestVC(let vm):
+            return LXWebViewTestVC(viewModel: vm, navigator: self)
         }
     }
 
@@ -235,6 +238,8 @@ extension LXNavigator.Scene {
             tmp = (title: "LXTable0120VC", desc: "测试 sectionHeaderTopPadding 偏移的场景")
         case .LXMasonryTestVCVC:
             tmp = (title: "两个 View 组合的 CenterX 测试", desc: "---")
+        case .LXWebViewTestVC:
+            tmp = (title: "WebView 测试", desc: "---")
         }
         return tmp
     }

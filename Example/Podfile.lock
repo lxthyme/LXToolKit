@@ -167,6 +167,9 @@ PODS:
     - KafkaRefresh/Default
   - KeychainAccess (4.2.2)
   - Kingfisher (7.1.2)
+  - libextobjc/EXTScope (0.6):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.6)
   - Localize-Swift (3.2.0):
     - Localize-Swift/LocalizeSwiftCore (= 3.2.0)
     - Localize-Swift/UIKit (= 3.2.0)
@@ -178,11 +181,14 @@ PODS:
     - CryptoSwift
     - HandyJSON
     - Hero
+    - Localize-Swift
     - Moya
+    - R.swift
     - RxCocoa
     - RxSwift
     - SDWebImage
     - SnapKit
+    - SVProgressHUD
   - M80AttributedLabel (1.9.9)
   - Mantle (2.2.0):
     - Mantle/extobjc (= 2.2.0)
@@ -330,6 +336,7 @@ DEPENDENCIES:
   - KafkaRefresh
   - KeychainAccess
   - Kingfisher
+  - libextobjc/EXTScope
   - Localize-Swift
   - LXToolKit (from `../`)
   - M80AttributedLabel
@@ -406,6 +413,7 @@ SPEC REPOS:
     - KafkaRefresh
     - KeychainAccess
     - Kingfisher
+    - libextobjc
     - Localize-Swift
     - M80AttributedLabel
     - Mantle
@@ -497,8 +505,9 @@ SPEC CHECKSUMS:
   KafkaRefresh: 01645b1509b8647809f6bb666629c80855bd3fdd
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
+  libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
-  LXToolKit: eba6985ef7c6e1bac48d74f5a69864dafe0f3837
+  LXToolKit: 0df65986203b666a4ce00f9e4af95e70add76073
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -542,6 +551,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZLPhotoBrowser: a7aa41a674e67a86c1728a3d9d73a471d5650a82
 
-PODFILE CHECKSUM: f43018c7c05378d6e8486e59a7c243555e56b8a9
+PODFILE CHECKSUM: ec82f67ee0c85f194d3fad706fc96810d544b615
 
 COCOAPODS: 1.11.2

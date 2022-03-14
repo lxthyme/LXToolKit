@@ -16,43 +16,49 @@ import Rswift
 import Toast_Swift
 import LXToolKit
 
-class LXBaseMVVMTableVC: LXBaseMVVMVC, LXBaseTableViewProtocol {
+open class LXBaseMVVMTableVC: LXBaseMVVMVC, LXBaseTableViewProtocol {
     // MARK: 📌UI
     public lazy var table: UITableView = {
-        return lazyTableView(style: .plain)
+        return lazyTableView(style: self.style)
     }()
     // MARK: 🔗Vaiables
-    let headerRefreshTrigger = PublishSubject<Void>()
-    let footerRefreshTrigger = PublishSubject<Void>()
+    public let headerRefreshTrigger = PublishSubject<Void>()
+    public let footerRefreshTrigger = PublishSubject<Void>()
 
-    let isHeaderLoading = BehaviorRelay(value: false)
-    let isFooterLoading = BehaviorRelay(value: false)
+    public let isHeaderLoading = BehaviorRelay(value: false)
+    public let isFooterLoading = BehaviorRelay(value: false)
 
-    var clearsSelectionOnViewWillAppear = true
+    public var clearsSelectionOnViewWillAppear = true
+    public private(set) var style: UITableView.Style = UITableView.Style.plain
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public init(viewModel: LXBaseVM, navigator: LXNavigator, style: UITableView.Style = UITableView.Style.plain) {
+        self.style = style
+        super.init(viewModel: viewModel, navigator: navigator)
+    }
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if clearsSelectionOnViewWillAppear == true {
             deselectSelectedRow()
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    override open func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
     }
-    override func bindViewModel() {
+    override public func bindViewModel() {
         viewModel?.headerLoading.asObservable()
             .bind(to: isHeaderLoading)
             .disposed(by: rx.disposeBag)
@@ -92,35 +98,35 @@ private extension LXBaseMVVMTableVC {
 
 // MARK: - ✈️DZNEmptyDataSetSource
 extension LXBaseMVVMTableVC: DZNEmptyDataSetSource {
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: emptyDataSetTitle)
     }
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+    public func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: emptyDataSetDescription)
     }
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+    public func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return emptyDataSetImage
     }
-    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+    public func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return emptyDataSetImageTintColor.value
     }
-    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+    public func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return .clear
     }
-    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+    public func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return -60
     }
 }
 
 // MARK: - ✈️DZNEmptyDataSetDelegate
 extension LXBaseMVVMTableVC: DZNEmptyDataSetDelegate {
-    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+    public func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return !isLoading.value
     }
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+    public func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
         return true
     }
-    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+    public func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
         emptyDataSetButtonTap.onNext(())
     }
 }

@@ -19,7 +19,7 @@ protocol LXViewModelType {
     func transform(input: Input) -> Output
 }
 
-class LXBaseVM: NSObject {
+open class LXBaseVM: NSObject {
     deinit {
         logDebug("\(type(of: self)): Deinited")
         LXPrint.resourcesCount()

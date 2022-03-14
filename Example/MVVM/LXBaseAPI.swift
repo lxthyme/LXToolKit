@@ -43,33 +43,34 @@ enum LXBaseAPI {
 // MARK: - 👀
 extension LXBaseAPI: LXTargetType {
     var parameters: LXAPIParameter {
-        switch self {
-        case .events(let page):
-            return LXAPIParameter(path: "/events",
-                                  params: [
-                                    "page": page
-                                  ])
-        case .repositoryEvents(_, _, let page):
-            return LXAPIParameter(path: "/repos/\(owner)/\(repo)/events",
-                                  params: [
-                                    "page": page
-                                  ])
-        case .userReceivedEvents(_, let page):
-            return LXAPIParameter(path: "/users/\(username)/received_events",
-                                  params: [
-                                    "page": page
-                                  ])
-        case .userPerformedEvents(_, let page):
-            return LXAPIParameter(path: "/users/\(username)/events",
-                                  params: [
-                                    "page": page
-                                  ])
-        case .organizationEvents(_, let page):
-            return LXAPIParameter(path: "/orgs/\(username)/events",
-                                  params: [
-                                    "page": page
-                                  ])
-        }
+        return LXAPIParameter(path: "", params: [:])
+        // switch self {
+        // case .events(let page):
+        //     return LXAPIParameter(path: "/events",
+        //                           params: [
+        //                             "page": page
+        //                           ])
+        // case .repositoryEvents(let owner, let repo, let page):
+        //     return LXAPIParameter(path: "/repos/\(owner)/\(repo)/events",
+        //                           params: [
+        //                             "page": page
+        //                           ])
+        // case .userReceivedEvents(let username, let page):
+        //     return LXAPIParameter(path: "/users/\(username)/received_events",
+        //                           params: [
+        //                             "page": page
+        //                           ])
+        // case .userPerformedEvents(let username, let page):
+        //     return LXAPIParameter(path: "/users/\(username)/events",
+        //                           params: [
+        //                             "page": page
+        //                           ])
+        // case .organizationEvents(let username, let page):
+        //     return LXAPIParameter(path: "/orgs/\(username)/events",
+        //                           params: [
+        //                             "page": page
+        //                           ])
+        // }
     }
 
 
