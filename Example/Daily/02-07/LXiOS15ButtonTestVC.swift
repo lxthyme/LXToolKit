@@ -12,13 +12,6 @@ import LXToolKit
 @available(iOS 15.0, *)
 class LXiOS15ButtonTestVC: LXBaseVC {
     // MARK: UI
-    private lazy var contentStackView: UIStackView = {
-        let v = UIStackView()
-        v.axis = .vertical
-        v.alignment = .center
-        v.spacing = 5
-        return v
-    }()
     private lazy var segmentConfigurationStyle: UISegmentedControl = {
         let s = UISegmentedControl(items: UIButton.Configuration.xl.allList.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
@@ -288,6 +281,10 @@ private extension LXiOS15ButtonTestVC {
 private extension LXiOS15ButtonTestVC {
     func prepareUI() {
         self.view.backgroundColor = .white
+
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+        contentStackView.spacing = 5
         [
             segmentConfigurationStyle,
             segmentButtonSize,

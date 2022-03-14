@@ -70,6 +70,7 @@ class ViewController: LXBaseTableViewVC {
             .LXMasonryTestVCVC(viewModel: vm),
             .login(vm: LXLoginVM(with: provider)),
             .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
+            .LXWebViewTestVC(viewModel: vm)
         ], toSection: "2022")
         return snapshot
     }()
