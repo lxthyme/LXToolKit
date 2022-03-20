@@ -19,6 +19,7 @@
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
+		BE32083827E47C280052A6AF /* LXLoggerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32083727E47C280052A6AF /* LXLoggerTestVC.m */; };
 		BE461180253D9A9600E93AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */; };
 		BE461183253D9A9600E93AB4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE461182253D9A9600E93AB4 /* TodayViewController.swift */; };
 		BE461186253D9A9600E93AB4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE461184253D9A9600E93AB4 /* MainInterface.storyboard */; };
@@ -390,6 +391,9 @@
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
+		BE32083627E47C280052A6AF /* LXLoggerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerTestVC.h; sourceTree = "<group>"; };
+		BE32083727E47C280052A6AF /* LXLoggerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoggerTestVC.m; sourceTree = "<group>"; };
+		BE32083927E47C370052A6AF /* LXLoggerObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerObjc.h; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		BE461182253D9A9600E93AB4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -923,9 +927,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BE32083527E47BCD0052A6AF /* 03-18 */ = {
+			isa = PBXGroup;
+			children = (
+				BE32083627E47C280052A6AF /* LXLoggerTestVC.h */,
+				BE32083727E47C280052A6AF /* LXLoggerTestVC.m */,
+				BE32083927E47C370052A6AF /* LXLoggerObjc.h */,
+			);
+			path = "03-18";
+			sourceTree = "<group>";
+		};
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE32083527E47BCD0052A6AF /* 03-18 */,
 				BECC391E27DF1BC9006B7906 /* 03-14 */,
 				BEBE303E27C605A2008D8BB1 /* 02-23 */,
 				BE472B7D27BA2D8C00D8F170 /* 02-14-SwiftHub */,
@@ -2544,6 +2559,7 @@
 				BEA245D326F335290098707A /* LXDaily1117VC.swift in Sources */,
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
+				BE32083827E47C280052A6AF /* LXLoggerTestVC.m in Sources */,
 				BE4750B027BA51FC00D8F170 /* Foundation+SwiftHub.swift in Sources */,
 				BE4750A027BA51FC00D8F170 /* LibsManager.swift in Sources */,
 				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,

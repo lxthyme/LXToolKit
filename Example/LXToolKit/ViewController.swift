@@ -104,10 +104,11 @@ class ViewController: LXBaseTableViewVC {
 //            LX0114VC()
 //            LXPickerVC()
 //            LX0117VC()
-            LXCubeVC()
+            // LXCubeVC()
 //            LXRx0225VC()
+        LXLoggerTestVC()
 
-//        self.navigationController?.pushViewController(vc, animated: true)
+       self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {
