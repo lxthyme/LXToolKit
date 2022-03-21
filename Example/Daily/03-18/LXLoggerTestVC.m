@@ -59,6 +59,14 @@
 - (void)test233 {
     NSString *str = @"123";
     NSLog(@"-->%@: %@", fmtVar(str), str);
+    // xlog(str);
+    NSString *str1 = @"abc";
+    NSString *str2 = @"def";
+    NSString *str3 = @"ghi";
+    // xlog(str1);
+    // xlog(str1, str2, str3);
+    // xlog([str1, str2, str3]);
+
 }
 
 #pragma mark -

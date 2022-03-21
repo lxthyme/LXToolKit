@@ -24,10 +24,14 @@
 #define xlogDebug(frmt, ...)   DDLogDebug(frmt, ##__VA_ARGS__)
 #define xlogVerbose(frmt, ...) DDLogVerbose(frmt, ##__VA_ARGS__)
 
-#define fmtVar(arg) (@""#arg)
+#define fmtVar(arg) @""#arg
 
 // static func xlog(msg: @autoclosure () -> String) {
 //     xlogError(@"%@: %@", fmtVar(msg), msg);
+// }
+
+// static func xlog2(frmt: NSString, arguments...) {
+    // xlogError(@"%@: %@", fmtVar(msg), msg);
 // }
 
 
