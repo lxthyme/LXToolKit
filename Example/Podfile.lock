@@ -178,6 +178,7 @@ PODS:
     - Localize-Swift/LocalizeSwiftCore
   - LXToolKit (0.8.1):
     - Alamofire
+    - CocoaLumberjack/Swift
     - CryptoSwift
     - HandyJSON
     - Hero
@@ -507,7 +508,7 @@ SPEC CHECKSUMS:
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   libextobjc: aed8b7d2b07f511c1a7ecaacb33ea03e327c69b7
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
-  LXToolKit: 0df65986203b666a4ce00f9e4af95e70add76073
+  LXToolKit: d2129aa6febe7c950ae239ff4611606fc35ceaf4
   M80AttributedLabel: 77fedfe63804c989a6de0fa4d400ea8cad3ab441
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201

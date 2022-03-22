@@ -68,7 +68,10 @@ This library contains some useful category and extension kits
   # s.dependency 'KafkaRefresh'
   # s.dependency 'Kingfisher'
   # s.dependency 'IQKeyboardManagerSwift'
-  # s.dependency 'CocoaLumberjack'
+
+  # Logging
+  # https://github.com/CocoaLumberjack/CocoaLumberjack
+  s.dependency 'CocoaLumberjack/Swift'
   # s.dependency 'FLEX'
   # s.dependency 'RxViewController'
   # s.dependency 'RxOptional'
