@@ -9,7 +9,6 @@
 #import "LXKingfisherVC.h"
 #import <SDWebImage.h>
 #import <LXToolKit-Swift.h>
-#import <LXToolKit_Exam-Swift.h>
 
 @interface LXKingfisherVC () {
 }

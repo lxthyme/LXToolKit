@@ -393,7 +393,6 @@
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
 		BE32083627E47C280052A6AF /* LXLoggerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerTestVC.h; sourceTree = "<group>"; };
 		BE32083727E47C280052A6AF /* LXLoggerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoggerTestVC.m; sourceTree = "<group>"; };
-		BE32083927E47C370052A6AF /* LXLoggerObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerObjc.h; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		BE461182253D9A9600E93AB4 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -546,6 +545,7 @@
 		BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDashboardListModel.swift; sourceTree = "<group>"; };
 		BEA1A118258A023900E03DA3 /* LXToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LXToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LXToolKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEA1F6D627E868D200267126 /* LXLoggerObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerObjc.h; sourceTree = "<group>"; };
 		BEA2454626F335290098707A /* LXButtonTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXButtonTestVC.swift; sourceTree = "<group>"; };
 		BEA2454826F335290098707A /* LXStackTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXStackTestVC.swift; sourceTree = "<group>"; };
 		BEA2454926F335290098707A /* LXStackTestVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LXStackTestVC.xib; sourceTree = "<group>"; };
@@ -932,7 +932,7 @@
 			children = (
 				BE32083627E47C280052A6AF /* LXLoggerTestVC.h */,
 				BE32083727E47C280052A6AF /* LXLoggerTestVC.m */,
-				BE32083927E47C370052A6AF /* LXLoggerObjc.h */,
+				BEA1F6D627E868D200267126 /* LXLoggerObjc.h */,
 			);
 			path = "03-18";
 			sourceTree = "<group>";
@@ -2967,6 +2967,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -2997,6 +2998,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.bl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKit/LXToolKit_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;

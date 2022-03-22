@@ -8,6 +8,7 @@
 
 #import "LXLoggerTestVC.h"
 
+// #import <LXToolKit/LXLoggerObjc.h>
 #import "LXLoggerObjc.h"
 
 @interface LXLoggerTestVC() {
@@ -59,19 +60,21 @@
 - (void)test233 {
     NSString *str = @"123";
     NSLog(@"-->%@: %@", fmtVar(str), str);
-    // xlog(str);
+    xlog(str);
     NSString *str1 = @"abc";
     NSString *str2 = @"def";
     NSString *str3 = @"ghi";
     // xlog(str1);
-    // xlog(str1, str2, str3);
+    xlog(str1, str2, str3);
+    xlog(@"2. ", str1, str2, str3);
+    xlog(@"3. %@-%@-%@", str1, str2, str3);
     // xlog([str1, str2, str3]);
 
 }
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
-- (void)prepareUI {// <#[self prepareUI];#>
+- (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
 
     // [self.<#view#> addSubview:self.<#table#>];
