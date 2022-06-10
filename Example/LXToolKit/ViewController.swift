@@ -70,7 +70,8 @@ class ViewController: LXBaseTableViewVC {
             .LXMasonryTestVCVC(viewModel: vm),
             .login(vm: LXLoginVM(with: provider)),
             .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
-            .LXWebViewTestVC(viewModel: vm)
+            .LXWebViewTestVC(viewModel: vm),
+            .LXYYLabelMoreTestVC(viewModel: vm)
         ], toSection: "2022")
         return snapshot
     }()
@@ -108,7 +109,7 @@ class ViewController: LXBaseTableViewVC {
 //            LXRx0225VC()
         LXLoggerTestVC()
 
-       self.navigationController?.pushViewController(vc, animated: true)
+       // self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {

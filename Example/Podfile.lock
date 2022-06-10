@@ -307,6 +307,10 @@ PODS:
     - PryntTrimmerView (= 4.0.2)
     - SteviaLayout (= 4.7.3)
   - YYCache (1.0.4)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+  - YYText (1.0.7)
   - ZLPhotoBrowser (4.2.2):
     - ZLPhotoBrowser/Core (= 4.2.2)
   - ZLPhotoBrowser/Core (4.2.2)
@@ -375,6 +379,8 @@ DEPENDENCIES:
   - WhatsNewKit
   - YPImagePicker
   - YYCache
+  - YYKit
+  - YYText
   - ZLPhotoBrowser
 
 SPEC REPOS:
@@ -456,6 +462,8 @@ SPEC REPOS:
     - WhatsNewKit
     - YPImagePicker
     - YYCache
+    - YYKit
+    - YYText
     - ZLPhotoBrowser
 
 EXTERNAL SOURCES:
@@ -550,8 +558,10 @@ SPEC CHECKSUMS:
   WhatsNewKit: c87028c4059dccd113495422801914cc53f6aab0
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZLPhotoBrowser: a7aa41a674e67a86c1728a3d9d73a471d5650a82
 
-PODFILE CHECKSUM: ec82f67ee0c85f194d3fad706fc96810d544b615
+PODFILE CHECKSUM: 91cd255e944e10358ed5a74690d28009cfa0a0ba
 
 COCOAPODS: 1.11.2

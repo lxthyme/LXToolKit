@@ -13,6 +13,8 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		BE03B9EC2849A42700BA688A /* LXAttributedStringVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B9EB2849A42700BA688A /* LXAttributedStringVC.swift */; };
+		BE03B9EE2849A4EB00BA688A /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE03B9ED2849A4EB00BA688A /* AttributedString.swift */; };
 		BE201D8427DB278300385445 /* LXBaseVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE201D8327DB278300385445 /* LXBaseVC2.swift */; };
 		BE21912827BF676D003CD138 /* LXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912727BF676D003CD138 /* LXSegmentedControl.swift */; };
 		BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */; };
@@ -269,6 +271,7 @@
 		BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3892521E187004C91B6 /* LXMVVMSampleView.swift */; };
 		BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */; };
 		BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC2D3952521E289004C91B6 /* LXResultModel.swift */; };
+		BEC3CBF7283221D40084B393 /* LXYYLabelMoreTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC3CBF6283221D40084B393 /* LXYYLabelMoreTestVC.swift */; };
 		BEC412E227B205DA0007A6DB /* LXiOS15ButtonTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC412E127B205DA0007A6DB /* LXiOS15ButtonTestVC.swift */; };
 		BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B4249868AD0002576B /* LXApiTestVC.swift */; };
 		BEC818B72499BA870002576B /* LXZenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC818B62499BA870002576B /* LXZenModel.swift */; };
@@ -385,6 +388,8 @@
 		9BD54FC60D36AA524C7D4B8C /* Pods_LXToolKit_Exam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKit_Exam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7AF05AB6F402D3CC89327E /* LXToolKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKit.podspec; path = ../LXToolKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AE81447FE9C3916C8CD253D9 /* Pods-LXToolKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKit_Tests/Pods-LXToolKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BE03B9EB2849A42700BA688A /* LXAttributedStringVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAttributedStringVC.swift; sourceTree = "<group>"; };
+		BE03B9ED2849A4EB00BA688A /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		BE201D8327DB278300385445 /* LXBaseVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseVC2.swift; sourceTree = "<group>"; };
 		BE21912727BF676D003CD138 /* LXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSegmentedControl.swift; sourceTree = "<group>"; };
 		BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSlideImageView.swift; sourceTree = "<group>"; };
@@ -672,6 +677,7 @@
 		BEC2D38F2521E1A2004C91B6 /* LXMVVMSampleVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXMVVMSampleVM.swift; sourceTree = "<group>"; };
 		BEC2D3952521E289004C91B6 /* LXResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXResultModel.swift; sourceTree = "<group>"; };
 		BEC2D4E7252339EF004C91B6 /* LXToolKit_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LXToolKit_Example.entitlements; sourceTree = "<group>"; };
+		BEC3CBF6283221D40084B393 /* LXYYLabelMoreTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXYYLabelMoreTestVC.swift; sourceTree = "<group>"; };
 		BEC412E127B205DA0007A6DB /* LXiOS15ButtonTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXiOS15ButtonTestVC.swift; sourceTree = "<group>"; };
 		BEC818B4249868AD0002576B /* LXApiTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXApiTestVC.swift; sourceTree = "<group>"; };
 		BEC818B62499BA870002576B /* LXZenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXZenModel.swift; sourceTree = "<group>"; };
@@ -786,6 +792,7 @@
 				BEC2D3752521DC0B004C91B6 /* MVVM */,
 				BE258D8D25189837008E2777 /* Kit */,
 				BE4299442518770200CFCF53 /* Daily */,
+				BE03B9E82849A26200BA688A /* WWDC */,
 				BEC818CA2499F5D40002576B /* Model */,
 				BEC818C12499C4270002576B /* APIProvider */,
 				BEC818AC249859360002576B /* API */,
@@ -868,6 +875,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE03B9E82849A26200BA688A /* WWDC */ = {
+			isa = PBXGroup;
+			children = (
+				BE03B9EB2849A42700BA688A /* LXAttributedStringVC.swift */,
+				BE03B9ED2849A4EB00BA688A /* AttributedString.swift */,
+			);
+			path = WWDC;
+			sourceTree = "<group>";
+		};
 		BE21912627BF6757003CD138 /* 3rdBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -940,6 +956,8 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEC3CBF52832219E0084B393 /* 05-16 */,
+				BE467CC928055A310054260D /* 04-12 */,
 				BE32083527E47BCD0052A6AF /* 03-18 */,
 				BECC391E27DF1BC9006B7906 /* 03-14 */,
 				BEBE303E27C605A2008D8BB1 /* 02-23 */,
@@ -960,6 +978,13 @@
 				BE461187253D9A9600E93AB4 /* Info.plist */,
 			);
 			path = Today;
+			sourceTree = "<group>";
+		};
+		BE467CC928055A310054260D /* 04-12 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "04-12";
 			sourceTree = "<group>";
 		};
 		BE472B7D27BA2D8C00D8F170 /* 02-14-SwiftHub */ = {
@@ -1789,6 +1814,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		BEC3CBF52832219E0084B393 /* 05-16 */ = {
+			isa = PBXGroup;
+			children = (
+				BEC3CBF6283221D40084B393 /* LXYYLabelMoreTestVC.swift */,
+			);
+			path = "05-16";
+			sourceTree = "<group>";
+		};
 		BEC5C42F27BD0C7F00F08BF6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2491,7 +2524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint > /dev/null; then\n        swiftlint\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint to lint!\"\n    fi\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    if which swiftlint > /dev/null; then\n        echo \"skip swiftlint.\"\n        #swiftlint\n    else\n        echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint to lint!\"\n    fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2566,6 +2599,7 @@
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
 				BEA245E126F335290098707A /* LXLockTestVC.m in Sources */,
 				BE4750F527BA51FC00D8F170 /* License.swift in Sources */,
+				BE03B9EE2849A4EB00BA688A /* AttributedString.swift in Sources */,
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
@@ -2609,6 +2643,7 @@
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
 				BE47509427BA51FB00D8F170 /* LXNavigatable.swift in Sources */,
 				BE4750FA27BA51FC00D8F170 /* Release.swift in Sources */,
+				BE03B9EC2849A42700BA688A /* LXAttributedStringVC.swift in Sources */,
 				BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */,
 				BE4750F927BA51FC00D8F170 /* Content.swift in Sources */,
 				BE4750F827BA51FC00D8F170 /* Notification.swift in Sources */,
@@ -2714,6 +2749,7 @@
 				BE4750B827BA51FC00D8F170 /* Apollo+Rx.swift in Sources */,
 				BE4750E827BA51FC00D8F170 /* ErrorResponse.swift in Sources */,
 				BEF15C452799455400D26B02 /* LX0117VM.swift in Sources */,
+				BEC3CBF7283221D40084B393 /* LXYYLabelMoreTestVC.swift in Sources */,
 				BE4750E427BA51FC00D8F170 /* CodetabsApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

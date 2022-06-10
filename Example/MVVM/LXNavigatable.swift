@@ -53,6 +53,7 @@ open class LXNavigator {
         case LXTable0120VC(viewModel: LXBaseVM)
         case LXMasonryTestVCVC(viewModel: LXBaseVM)
         case LXWebViewTestVC(viewModel: LXBaseVM)
+        case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -133,6 +134,8 @@ open class LXNavigator {
             return LXMasonryTestVCVC(viewModel: vm, navigator: self)
         case .LXWebViewTestVC(let vm):
             return LXWebViewTestVC(viewModel: vm, navigator: self)
+        case .LXYYLabelMoreTestVC(let vm):
+            return LXYYLabelMoreTestVC(viewModel: vm, navigator: self)
         }
     }
 
@@ -240,6 +243,8 @@ extension LXNavigator.Scene {
             tmp = (title: "两个 View 组合的 CenterX 测试", desc: "---")
         case .LXWebViewTestVC:
             tmp = (title: "WebView 测试", desc: "---")
+        case .LXYYLabelMoreTestVC:
+            tmp = (title: "YYLabel more 查看详情", desc: "---")
         }
         return tmp
     }

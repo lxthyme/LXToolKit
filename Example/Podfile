@@ -197,6 +197,9 @@ pod 'Masonry'
 pod 'Mantle'
 pod 'MJExtension'
 
+pod 'YYKit'
+pod 'YYText'
+
 # https://github.com/apollographql/apollo-ios
 pod 'Apollo', '0.50.0'
 # https://github.com/ivanbruel/Moya-ObjectMapper
