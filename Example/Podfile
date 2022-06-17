@@ -1,13 +1,31 @@
-use_frameworks!
+source 'https://gitlab.bl.com/iOS/BLRepositories.git'
+#source 'https://gitlab.bl.com/iOS/BLRepositories_bin.git'
+source 'https://cdn.cocoapods.org'
 
+#inhibit_all_warnings!
 platform :ios, '9.0'
+#use_frameworks!
+install! 'cocoapods',
+           disable_input_output_paths: true,
+           generate_multiple_pod_projects: true,
+           deterministic_uuids: false
 
 target 'LXToolKitObjc_Example' do
   pod 'LXToolKitObjc', :path => '../'
 
-  target 'LXToolKitObjc_Tests' do
+  #target 'LXToolKitObjc_Tests' do
     inherit! :search_paths
 
+    pod 'Masonry'
+    pod 'YTKNetwork'
+    pod 'ReactiveObjC'
+    pod 'BLNetworking'
+    pod 'BLRawAPIManager'
+
+    pod 'JXCategoryView'
+    pod 'JXPagingView/Pager'
+    pod 'MJRefresh', '3.4.0'
+    pod 'FDFullscreenPopGesture', '1.1'
     
-  end
+  #end
 end

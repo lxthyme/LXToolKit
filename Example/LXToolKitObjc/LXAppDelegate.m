@@ -7,12 +7,19 @@
 //
 
 #import "LXAppDelegate.h"
-
+#import "LXViewController.h"
 @implementation LXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    [self.window setBackgroundColor:[UIColor whiteColor]];
+
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
+
+    [self.window setRootViewController:nav];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

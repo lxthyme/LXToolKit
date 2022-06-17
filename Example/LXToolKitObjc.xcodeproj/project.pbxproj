@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59ABB36C7F5DA5F22272775A /* libPods-LXToolKitObjc_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -22,8 +23,17 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		C887C741F7F575C1863923A1 /* Pods_LXToolKitObjc_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 730B07FD5E5B4D522BF8DE21 /* Pods_LXToolKitObjc_Example.framework */; };
-		D824E32E201CADB570BDA254 /* Pods_LXToolKitObjc_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5895C9CDCA6BA3245A0CDD /* Pods_LXToolKitObjc_Tests.framework */; };
+		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
+		BEA96F79285C0DD90002AB73 /* LXPagingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F78285C0DD90002AB73 /* LXPagingVC.m */; };
+		BEA96F7D285C10C60002AB73 /* UIWindow+JXSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F7B285C10C60002AB73 /* UIWindow+JXSafeArea.m */; };
+		BEA96F81285C11FA0002AB73 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F80285C11FA0002AB73 /* LXHeaderView.m */; };
+		BEA97014285C170E0002AB73 /* LXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97013285C170E0002AB73 /* LXListViewController.m */; };
+		BEA97017285C20700002AB73 /* LXNestedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97016285C20700002AB73 /* LXNestedVC.m */; };
+		BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */; };
+		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
+		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
+		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
+		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,16 +67,35 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		60768611B5E99144AB3B6168 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		60768611B5E99144AB3B6168 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		730B07FD5E5B4D522BF8DE21 /* Pods_LXToolKitObjc_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKitObjc_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BC44FB16583423C6585BC5C3 /* Pods-LXToolKitObjc_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Tests/Pods-LXToolKitObjc_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; };
-		DD5895C9CDCA6BA3245A0CDD /* Pods_LXToolKitObjc_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKitObjc_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE894F22284065780022EF57 /* LX0527VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX0527VC.h; sourceTree = "<group>"; };
+		BE894F23284065780022EF57 /* LX0527VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
+		BEA96F77285C0DD90002AB73 /* LXPagingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPagingVC.h; sourceTree = "<group>"; };
+		BEA96F78285C0DD90002AB73 /* LXPagingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXPagingVC.m; sourceTree = "<group>"; };
+		BEA96F7B285C10C60002AB73 /* UIWindow+JXSafeArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+JXSafeArea.m"; sourceTree = "<group>"; };
+		BEA96F7C285C10C60002AB73 /* UIWindow+JXSafeArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+JXSafeArea.h"; sourceTree = "<group>"; };
+		BEA96F7F285C11FA0002AB73 /* LXHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHeaderView.h; sourceTree = "<group>"; };
+		BEA96F80285C11FA0002AB73 /* LXHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
+		BEA97012285C170E0002AB73 /* LXListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXListViewController.h; sourceTree = "<group>"; };
+		BEA97013285C170E0002AB73 /* LXListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXListViewController.m; sourceTree = "<group>"; };
+		BEA97015285C20700002AB73 /* LXNestedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedVC.h; sourceTree = "<group>"; };
+		BEA97016285C20700002AB73 /* LXNestedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedVC.m; sourceTree = "<group>"; };
+		BEB56B32283E1774003BAA77 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
+		BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
+		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
+		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
+		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
+		BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVM.m; sourceTree = "<group>"; };
+		BED144002844B22400DEA8EA /* LXCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
+		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
+		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
+		BED144042844B2AB00DEA8EA /* LXCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionCell.m; sourceTree = "<group>"; };
+		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		F24860C9212845EEF3B9D1E1 /* Pods-LXToolKitObjc_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Tests/Pods-LXToolKitObjc_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +106,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				C887C741F7F575C1863923A1 /* Pods_LXToolKitObjc_Example.framework in Frameworks */,
+				59ABB36C7F5DA5F22272775A /* libPods-LXToolKitObjc_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +117,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				D824E32E201CADB570BDA254 /* Pods_LXToolKitObjc_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +126,9 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				BE894F20284065510022EF57 /* Daily */,
+				BEB56B35283E19F4003BAA77 /* MVVM */,
+				BEB56AA8283E1319003BAA77 /* Kit */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for LXToolKitObjc */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -123,8 +154,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				730B07FD5E5B4D522BF8DE21 /* Pods_LXToolKitObjc_Example.framework */,
-				DD5895C9CDCA6BA3245A0CDD /* Pods_LXToolKitObjc_Tests.framework */,
+				BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,15 +215,111 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BE894F20284065510022EF57 /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				BEA96F76285C0CD70002AB73 /* 06-17 */,
+				BED143FF2844B21000DEA8EA /* 05-28 */,
+				BE894F212840655F0022EF57 /* 05-27 */,
+			);
+			path = Daily;
+			sourceTree = "<group>";
+		};
+		BE894F212840655F0022EF57 /* 05-27 */ = {
+			isa = PBXGroup;
+			children = (
+				BE894F22284065780022EF57 /* LX0527VC.h */,
+				BE894F23284065780022EF57 /* LX0527VC.m */,
+			);
+			path = "05-27";
+			sourceTree = "<group>";
+		};
+		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
+			isa = PBXGroup;
+			children = (
+				BEA96F7A285C10C60002AB73 /* Common */,
+				BEA96F7E285C11EA0002AB73 /* View */,
+				BEA97015285C20700002AB73 /* LXNestedVC.h */,
+				BEA97016285C20700002AB73 /* LXNestedVC.m */,
+			);
+			path = "06-17";
+			sourceTree = "<group>";
+		};
+		BEA96F7A285C10C60002AB73 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BEA96F7B285C10C60002AB73 /* UIWindow+JXSafeArea.m */,
+				BEA96F7C285C10C60002AB73 /* UIWindow+JXSafeArea.h */,
+				BEA97012285C170E0002AB73 /* LXListViewController.h */,
+				BEA97013285C170E0002AB73 /* LXListViewController.m */,
+				BEA96F77285C0DD90002AB73 /* LXPagingVC.h */,
+				BEA96F78285C0DD90002AB73 /* LXPagingVC.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BEA96F7E285C11EA0002AB73 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEA96F7F285C11FA0002AB73 /* LXHeaderView.h */,
+				BEA96F80285C11FA0002AB73 /* LXHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEB56AA8283E1319003BAA77 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BEB56B31283E1764003BAA77 /* Networking */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		BEB56B31283E1764003BAA77 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BEB56B32283E1774003BAA77 /* CTAPIBaseManager+Rac.h */,
+				BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BEB56B35283E19F4003BAA77 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				BEB56B36283E19FC003BAA77 /* Login */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		BEB56B36283E19FC003BAA77 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */,
+				BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */,
+				BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */,
+				BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BED143FF2844B21000DEA8EA /* 05-28 */ = {
+			isa = PBXGroup;
+			children = (
+				BED144002844B22400DEA8EA /* LXCollectionVC.h */,
+				BED144012844B22400DEA8EA /* LXCollectionVC.m */,
+				BED144032844B2AB00DEA8EA /* LXCollectionCell.h */,
+				BED144042844B2AB00DEA8EA /* LXCollectionCell.m */,
+			);
+			path = "05-28";
+			sourceTree = "<group>";
+		};
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */,
 				1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjc_Example.release.xcconfig */,
-				F24860C9212845EEF3B9D1E1 /* Pods-LXToolKitObjc_Tests.debug.xcconfig */,
-				BC44FB16583423C6585BC5C3 /* Pods-LXToolKitObjc_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,7 +334,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				A249565BF295292684397691 /* [CP] Embed Pods Frameworks */,
+				6CDEA65985B6A912F7F36531 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,7 +349,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjc_Tests" */;
 			buildPhases = (
-				C47050BE68E6147DACBA4E32 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
@@ -248,6 +373,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = lxthyme;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 6C6JHMW46K;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -258,6 +386,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -295,44 +424,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A249565BF295292684397691 /* [CP] Embed Pods Frameworks */ = {
+		6CDEA65985B6A912F7F36531 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/LXToolKitObjc/LXToolKitObjc.framework",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LXToolKitObjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C47050BE68E6147DACBA4E32 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LXToolKitObjc_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E5D42D56566EAE530ED7D74F /* [CP] Check Pods Manifest.lock */ = {
@@ -365,8 +469,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
+				BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */,
+				BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */,
+				BEA96F7D285C10C60002AB73 /* UIWindow+JXSafeArea.m in Sources */,
+				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
+				BEA96F81285C11FA0002AB73 /* LXHeaderView.m in Sources */,
+				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
+				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
+				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
+				BEA97014285C170E0002AB73 /* LXListViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
+				BEA97017285C20700002AB73 /* LXNestedVC.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				BEA96F79285C0DD90002AB73 /* LXPagingVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +609,8 @@
 			baseConfigurationReference = E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
 				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
@@ -510,6 +627,8 @@
 			baseConfigurationReference = 1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjc_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
 				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
@@ -523,7 +642,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F24860C9212845EEF3B9D1E1 /* Pods-LXToolKitObjc_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -548,7 +666,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC44FB16583423C6585BC5C3 /* Pods-LXToolKitObjc_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
