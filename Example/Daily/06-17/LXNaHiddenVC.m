@@ -1,18 +1,18 @@
 //
-//  LXNestedVC.m
+//  LXNaHiddenVC.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/17.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXNestedVC.h"
+#import "LXNaHiddenVC.h"
 
 #import <Masonry/Masonry.h>
 #import "UIWindow+JXSafeArea.h"
 #import <MJRefresh/MJRefresh.h>
 
 
-@interface LXNestedVC() {
+@interface LXNaHiddenVC() {
 }
 @property(nonatomic, strong)UIView *navBgView;
 @property(nonatomic, strong)UILabel *labTitle;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation LXNestedVC
+@implementation LXNaHiddenVC
 - (void)dealloc {
     NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
 }

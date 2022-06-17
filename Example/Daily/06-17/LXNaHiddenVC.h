@@ -1,5 +1,5 @@
 //
-//  LXNestedVC.h
+//  LXNaHiddenVC.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/17.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXNestedVC : LXPagingVC {
+@interface LXNaHiddenVC : LXPagingVC {
 }
 
 @end
