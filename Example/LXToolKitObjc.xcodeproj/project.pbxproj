@@ -31,7 +31,8 @@
 		BEA97017285C20700002AB73 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97016285C20700002AB73 /* LXNaHiddenVC.m */; };
 		BEA9701A285C2A0D0002AB73 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */; };
 		BEA9701D285C2BB20002AB73 /* LXNestedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9701C285C2BB20002AB73 /* LXNestedVC.m */; };
-		BEA97020285C2C590002AB73 /* LXLXNestedListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */; };
+		BEA97020285C2C590002AB73 /* LXNestedListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9701F285C2C590002AB73 /* LXNestedListVC.m */; };
+		BEA97025285C2D300002AB73 /* LXNestedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97024285C2D300002AB73 /* LXNestedListView.m */; };
 		BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
@@ -90,8 +91,10 @@
 		BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseNavigationController.m; sourceTree = "<group>"; };
 		BEA9701B285C2BB20002AB73 /* LXNestedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedVC.h; sourceTree = "<group>"; };
 		BEA9701C285C2BB20002AB73 /* LXNestedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedVC.m; sourceTree = "<group>"; };
-		BEA9701E285C2C590002AB73 /* LXLXNestedListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLXNestedListVC.h; sourceTree = "<group>"; };
-		BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLXNestedListVC.m; sourceTree = "<group>"; };
+		BEA9701E285C2C590002AB73 /* LXNestedListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedListVC.h; sourceTree = "<group>"; };
+		BEA9701F285C2C590002AB73 /* LXNestedListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedListVC.m; sourceTree = "<group>"; };
+		BEA97023285C2D300002AB73 /* LXNestedListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedListView.h; sourceTree = "<group>"; };
+		BEA97024285C2D300002AB73 /* LXNestedListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedListView.m; sourceTree = "<group>"; };
 		BEB56B32283E1774003BAA77 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
 		BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
@@ -283,8 +286,10 @@
 			children = (
 				BEA9701B285C2BB20002AB73 /* LXNestedVC.h */,
 				BEA9701C285C2BB20002AB73 /* LXNestedVC.m */,
-				BEA9701E285C2C590002AB73 /* LXLXNestedListVC.h */,
-				BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */,
+				BEA9701E285C2C590002AB73 /* LXNestedListVC.h */,
+				BEA9701F285C2C590002AB73 /* LXNestedListVC.m */,
+				BEA97023285C2D300002AB73 /* LXNestedListView.h */,
+				BEA97024285C2D300002AB73 /* LXNestedListView.m */,
 			);
 			path = Nested;
 			sourceTree = "<group>";
@@ -507,13 +512,14 @@
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
 				BEA96F81285C11FA0002AB73 /* LXHeaderView.m in Sources */,
 				BEA9701D285C2BB20002AB73 /* LXNestedVC.m in Sources */,
-				BEA97020285C2C590002AB73 /* LXLXNestedListVC.m in Sources */,
+				BEA97020285C2C590002AB73 /* LXNestedListVC.m in Sources */,
 				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
 				BEA97014285C170E0002AB73 /* LXListViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
 				BEA97017285C20700002AB73 /* LXNaHiddenVC.m in Sources */,
+				BEA97025285C2D300002AB73 /* LXNestedListView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				BEA96F79285C0DD90002AB73 /* LXPagingVC.m in Sources */,
 			);

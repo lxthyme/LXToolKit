@@ -81,7 +81,8 @@
             @"LXLoginVC",
             @"LX0527VC",
             @"LXCollectionVC",
-            @"LXNaHiddenVC"
+            @"LXNaHiddenVC",
+            @"LXNestedVC"
         ];
     }
     return _dataList;
