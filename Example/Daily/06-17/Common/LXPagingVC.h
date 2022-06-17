@@ -32,8 +32,6 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
 - (JXPagerView *)preferredPagingView;
 
-- (void)prepareUI;
-- (void)masonry;
 @end
 
 NS_ASSUME_NONNULL_END

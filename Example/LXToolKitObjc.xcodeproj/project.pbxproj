@@ -23,6 +23,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BE4A61BC285C5F0E0087A862 /* LXHeaderListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4A61BB285C5F0E0087A862 /* LXHeaderListView.m */; };
+		BE4A61C0285C64150087A862 /* LXNested2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4A61BF285C64150087A862 /* LXNested2VC.m */; };
 		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
 		BEA96F79285C0DD90002AB73 /* LXPagingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F78285C0DD90002AB73 /* LXPagingVC.m */; };
 		BEA96F7D285C10C60002AB73 /* UIWindow+JXSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F7B285C10C60002AB73 /* UIWindow+JXSafeArea.m */; };
@@ -75,6 +77,10 @@
 		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE4A61BA285C5F0E0087A862 /* LXHeaderListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXHeaderListView.h; sourceTree = "<group>"; };
+		BE4A61BB285C5F0E0087A862 /* LXHeaderListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXHeaderListView.m; sourceTree = "<group>"; };
+		BE4A61BE285C64150087A862 /* LXNested2VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNested2VC.h; sourceTree = "<group>"; };
+		BE4A61BF285C64150087A862 /* LXNested2VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNested2VC.m; sourceTree = "<group>"; };
 		BE894F22284065780022EF57 /* LX0527VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX0527VC.h; sourceTree = "<group>"; };
 		BE894F23284065780022EF57 /* LX0527VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
 		BEA96F77285C0DD90002AB73 /* LXPagingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPagingVC.h; sourceTree = "<group>"; };
@@ -227,6 +233,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BE4A61BD285C63FC0087A862 /* Nested2 */ = {
+			isa = PBXGroup;
+			children = (
+				BE4A61BE285C64150087A862 /* LXNested2VC.h */,
+				BE4A61BF285C64150087A862 /* LXNested2VC.m */,
+			);
+			path = Nested2;
+			sourceTree = "<group>";
+		};
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +268,7 @@
 				BEA96F7E285C11EA0002AB73 /* View */,
 				BEA97022285C2CF60002AB73 /* NavHidden */,
 				BEA97021285C2CDB0002AB73 /* Nested */,
+				BE4A61BD285C63FC0087A862 /* Nested2 */,
 			);
 			path = "06-17";
 			sourceTree = "<group>";
@@ -290,6 +306,8 @@
 				BEA9701F285C2C590002AB73 /* LXNestedListVC.m */,
 				BEA97023285C2D300002AB73 /* LXNestedListView.h */,
 				BEA97024285C2D300002AB73 /* LXNestedListView.m */,
+				BE4A61BA285C5F0E0087A862 /* LXHeaderListView.h */,
+				BE4A61BB285C5F0E0087A862 /* LXHeaderListView.m */,
 			);
 			path = Nested;
 			sourceTree = "<group>";
@@ -521,6 +539,8 @@
 				BEA97017285C20700002AB73 /* LXNaHiddenVC.m in Sources */,
 				BEA97025285C2D300002AB73 /* LXNestedListView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				BE4A61BC285C5F0E0087A862 /* LXHeaderListView.m in Sources */,
+				BE4A61C0285C64150087A862 /* LXNested2VC.m in Sources */,
 				BEA96F79285C0DD90002AB73 /* LXPagingVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

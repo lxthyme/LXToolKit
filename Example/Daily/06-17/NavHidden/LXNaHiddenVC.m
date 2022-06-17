@@ -72,7 +72,6 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    [super prepareUI];
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -98,7 +97,6 @@
 
 #pragma mark Masonry
 - (void)masonry {
-    [super masonry];
     // MASAttachKeys(<#...#>)
     UIEdgeInsets safeMargin = [UIApplication.sharedApplication.keyWindow jx_layoutInsets];
     CGFloat navHeight = [UIApplication.sharedApplication.keyWindow jx_navigationHeight];

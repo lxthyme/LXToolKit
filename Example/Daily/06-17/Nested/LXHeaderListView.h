@@ -1,5 +1,5 @@
 //
-//  LXNestedVC.h
+//  LXHeaderListView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/17.
@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-// #import "LXPagingVC.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXNestedVC : UIViewController {
+@interface LXHeaderListView : UIView {
 }
 
 @end

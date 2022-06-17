@@ -48,7 +48,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 
-    // [self prepareUI];
+    [self basePrepareUI];
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -115,7 +115,7 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
-- (void)prepareUI {
+- (void)basePrepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = false;
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -126,11 +126,11 @@
 
     [self.view addSubview:self.pagerView];
 
-    // [self masonry];
+    [self baseMasonry];
 }
 
 #pragma mark Masonry
-- (void)masonry {
+- (void)baseMasonry {
     // MASAttachKeys(<#...#>)
 }
 

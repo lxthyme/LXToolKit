@@ -12,14 +12,18 @@
 #import <JXPagingView/JXPagerListRefreshView.h>
 #import "LXHeaderView.h"
 #import "LXNestedListVC.h"
+#import "LXHeaderListView.h"
+#import "LXPagingVC.h"
 
-static const CGFloat JXTableHeaderViewHeight = 200;
-static const CGFloat JXheightForHeaderInSection = 50;
+// static const CGFloat JXTableHeaderViewHeight = 200;
+// static const CGFloat JXheightForHeaderInSection = 50;
 
 @interface LXNestedVC()<JXCategoryViewDelegate, JXPagerViewDelegate, JXPagerMainTableViewGestureDelegate> {
 }
 @property (nonatomic, strong)JXPagerListRefreshView *pagerView;
 @property (nonatomic, strong)LXHeaderView *headerView;
+@property (nonatomic, strong)LXHeaderListView *headerListView;
+@property (nonatomic, strong)LXPagingVC *headerPageVC;
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)NSArray <NSString *> *titles;
 
@@ -88,10 +92,14 @@ static const CGFloat JXheightForHeaderInSection = 50;
 #pragma mark -
 #pragma mark - ✈️JXPagerViewDelegate
 - (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView {
-    return self.headerView;
+    // return self.headerView;
+    // return self.headerListView;
+    return self.headerPageVC.view;
 }
 - (NSUInteger)tableHeaderViewHeightInPagerView:(JXPagerView *)pagerView {
-    return JXTableHeaderViewHeight;
+    // return JXTableHeaderViewHeight;
+    // return 20 * 44.f;
+    return 24 * 50.f;
 }
 - (NSUInteger)heightForPinSectionHeaderInPagerView:(JXPagerView *)pagerView {
     return JXheightForHeaderInSection;
@@ -149,6 +157,21 @@ static const CGFloat JXheightForHeaderInSection = 50;
         _headerView = v;
     }
     return _headerView;
+}
+- (LXHeaderListView *)headerListView {
+    if(!_headerListView){
+        LXHeaderListView *v = [[LXHeaderListView alloc]init];
+        // v.frame = CGRectMake(0, 0, SCREEN_WIDTH, 20 * 44.f);
+        _headerListView = v;
+    }
+    return _headerListView;
+}
+- (LXPagingVC *)headerPageVC {
+    if(!_headerPageVC){
+        LXPagingVC *v = [[LXPagingVC alloc]init];
+        _headerPageVC = v;
+    }
+    return _headerPageVC;
 }
 - (JXCategoryTitleView *)categoryView {
     if(!_categoryView){
