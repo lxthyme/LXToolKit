@@ -29,8 +29,8 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-
-  s.source_files = 'LXToolKitObjc/Classes/**/*'
+  s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 armv7s arm64' }
+  s.source_files = 'LXToolKitObjc/**/*'
   
   # s.resource_bundles = {
   #   'LXToolKitObjc' => ['LXToolKitObjc/Assets/*.png']
@@ -39,4 +39,5 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Masonry'
 end
