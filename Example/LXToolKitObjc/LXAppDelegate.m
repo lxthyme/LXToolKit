@@ -8,6 +8,8 @@
 
 #import "LXAppDelegate.h"
 #import "LXViewController.h"
+#import "LXBaseNavigationController.h"
+
 @implementation LXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,7 +18,7 @@
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
 
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
+    LXBaseNavigationController *nav = [[LXBaseNavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
 
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];

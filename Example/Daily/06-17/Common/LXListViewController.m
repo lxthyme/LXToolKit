@@ -26,22 +26,6 @@
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:YES];
-    // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
@@ -63,6 +47,11 @@
             [self.tableView reloadData];
         }
     }
+}
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    self.tableView.frame = self.view.bounds;
 }
 
 #pragma mark -
@@ -151,7 +140,7 @@
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
 
-    // [self.<#view#> addSubview:self.<#table#>];
+    [self.view addSubview:self.tableView];
 
     [self masonry];
 }
@@ -159,6 +148,9 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
+    // [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //     make.edges.equalTo(@0.f);
+    // }];
 }
 
 #pragma mark Lazy Property

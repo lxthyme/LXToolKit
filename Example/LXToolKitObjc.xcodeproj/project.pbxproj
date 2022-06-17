@@ -29,6 +29,7 @@
 		BEA96F81285C11FA0002AB73 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA96F80285C11FA0002AB73 /* LXHeaderView.m */; };
 		BEA97014285C170E0002AB73 /* LXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97013285C170E0002AB73 /* LXListViewController.m */; };
 		BEA97017285C20700002AB73 /* LXNestedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97016285C20700002AB73 /* LXNestedVC.m */; };
+		BEA9701A285C2A0D0002AB73 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */; };
 		BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
@@ -83,6 +84,8 @@
 		BEA97013285C170E0002AB73 /* LXListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXListViewController.m; sourceTree = "<group>"; };
 		BEA97015285C20700002AB73 /* LXNestedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedVC.h; sourceTree = "<group>"; };
 		BEA97016285C20700002AB73 /* LXNestedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedVC.m; sourceTree = "<group>"; };
+		BEA97018285C2A0D0002AB73 /* LXBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBaseNavigationController.h; sourceTree = "<group>"; };
+		BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseNavigationController.m; sourceTree = "<group>"; };
 		BEB56B32283E1774003BAA77 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
 		BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 				BEA97013285C170E0002AB73 /* LXListViewController.m */,
 				BEA96F77285C0DD90002AB73 /* LXPagingVC.h */,
 				BEA96F78285C0DD90002AB73 /* LXPagingVC.m */,
+				BEA97018285C2A0D0002AB73 /* LXBaseNavigationController.h */,
+				BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 			files = (
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
 				BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */,
+				BEA9701A285C2A0D0002AB73 /* LXBaseNavigationController.m in Sources */,
 				BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */,
 				BEA96F7D285C10C60002AB73 /* UIWindow+JXSafeArea.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
