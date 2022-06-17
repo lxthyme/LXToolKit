@@ -30,6 +30,8 @@
 		BEA97014285C170E0002AB73 /* LXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97013285C170E0002AB73 /* LXListViewController.m */; };
 		BEA97017285C20700002AB73 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97016285C20700002AB73 /* LXNaHiddenVC.m */; };
 		BEA9701A285C2A0D0002AB73 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */; };
+		BEA9701D285C2BB20002AB73 /* LXNestedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9701C285C2BB20002AB73 /* LXNestedVC.m */; };
+		BEA97020285C2C590002AB73 /* LXLXNestedListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */; };
 		BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
@@ -86,6 +88,10 @@
 		BEA97016285C20700002AB73 /* LXNaHiddenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNaHiddenVC.m; sourceTree = "<group>"; };
 		BEA97018285C2A0D0002AB73 /* LXBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBaseNavigationController.h; sourceTree = "<group>"; };
 		BEA97019285C2A0D0002AB73 /* LXBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBaseNavigationController.m; sourceTree = "<group>"; };
+		BEA9701B285C2BB20002AB73 /* LXNestedVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNestedVC.h; sourceTree = "<group>"; };
+		BEA9701C285C2BB20002AB73 /* LXNestedVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNestedVC.m; sourceTree = "<group>"; };
+		BEA9701E285C2C590002AB73 /* LXLXNestedListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLXNestedListVC.h; sourceTree = "<group>"; };
+		BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLXNestedListVC.m; sourceTree = "<group>"; };
 		BEB56B32283E1774003BAA77 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
 		BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
@@ -242,8 +248,8 @@
 			children = (
 				BEA96F7A285C10C60002AB73 /* Common */,
 				BEA96F7E285C11EA0002AB73 /* View */,
-				BEA97015285C20700002AB73 /* LXNaHiddenVC.h */,
-				BEA97016285C20700002AB73 /* LXNaHiddenVC.m */,
+				BEA97022285C2CF60002AB73 /* NavHidden */,
+				BEA97021285C2CDB0002AB73 /* Nested */,
 			);
 			path = "06-17";
 			sourceTree = "<group>";
@@ -270,6 +276,26 @@
 				BEA96F80285C11FA0002AB73 /* LXHeaderView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BEA97021285C2CDB0002AB73 /* Nested */ = {
+			isa = PBXGroup;
+			children = (
+				BEA9701B285C2BB20002AB73 /* LXNestedVC.h */,
+				BEA9701C285C2BB20002AB73 /* LXNestedVC.m */,
+				BEA9701E285C2C590002AB73 /* LXLXNestedListVC.h */,
+				BEA9701F285C2C590002AB73 /* LXLXNestedListVC.m */,
+			);
+			path = Nested;
+			sourceTree = "<group>";
+		};
+		BEA97022285C2CF60002AB73 /* NavHidden */ = {
+			isa = PBXGroup;
+			children = (
+				BEA97015285C20700002AB73 /* LXNaHiddenVC.h */,
+				BEA97016285C20700002AB73 /* LXNaHiddenVC.m */,
+			);
+			path = NavHidden;
 			sourceTree = "<group>";
 		};
 		BEB56AA8283E1319003BAA77 /* Kit */ = {
@@ -480,6 +506,8 @@
 				BEA96F7D285C10C60002AB73 /* UIWindow+JXSafeArea.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
 				BEA96F81285C11FA0002AB73 /* LXHeaderView.m in Sources */,
+				BEA9701D285C2BB20002AB73 /* LXNestedVC.m in Sources */,
+				BEA97020285C2C590002AB73 /* LXLXNestedListVC.m in Sources */,
 				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
