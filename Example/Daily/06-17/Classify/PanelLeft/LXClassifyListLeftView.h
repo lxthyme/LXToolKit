@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXClassifyListLeftView : UIView {
 }
 
+- (void)dataFill:(NSArray<NSString *> *)dataList;
+
 @end
 
 NS_ASSUME_NONNULL_END

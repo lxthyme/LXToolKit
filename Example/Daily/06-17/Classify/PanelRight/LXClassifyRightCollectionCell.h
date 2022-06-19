@@ -1,18 +1,19 @@
 //
-//  LXLeftCell.h
+//  LXClassifyRightCollectionCell.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#import "LXSectionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXLeftCell : UITableViewCell {
+@interface LXClassifyRightCollectionCell : UICollectionViewCell {
 }
 
-- (void)dataFill:(NSString *)title;
+- (void)dataFill:(LXSectionItemModel *)item;
 
 @end
 

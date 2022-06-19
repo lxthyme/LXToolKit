@@ -1,22 +1,22 @@
 //
-//  LXSectionItemCell.m
+//  LXClassifyRightCollectionCell.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXSectionItemCell.h"
+#import "LXClassifyRightCollectionCell.h"
 
 #import <Masonry/Masonry.h>
 
-@interface LXSectionItemCell() {
+@interface LXClassifyRightCollectionCell() {
 }
 @property(nonatomic, strong)UILabel *labTitle;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
 
 @end
 
-@implementation LXSectionItemCell
+@implementation LXClassifyRightCollectionCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

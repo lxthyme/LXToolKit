@@ -1,23 +1,23 @@
 //
-//  LXClassifyMainVC.m
+//  LXClassifyWrapperVC.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyMainVC.h"
+#import "LXClassifyWrapperVC.h"
 
-#import "LXClassifyVC.h"
+#import "LXClassifyListVC.h"
 
-@interface LXClassifyMainVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
-    BOOL __navigationBarHidden;
+@interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
 }
-@property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)NSArray *titles;
+@property (nonatomic, strong)JXCategoryTitleImageView *categoryView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
+
 @end
 
-@implementation LXClassifyMainVC
+@implementation LXClassifyWrapperVC
 - (void)dealloc {
     NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
 }
@@ -27,8 +27,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-    __navigationBarHidden = self.navigationController.navigationBarHidden;
-    // self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -43,13 +41,11 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
     // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-    self.navigationController.navigationBarHidden = __navigationBarHidden;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
 
     [self prepareUI];
 }
@@ -81,7 +77,7 @@
     return self.titles.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    LXClassifyVC *vc = [[LXClassifyVC alloc]init];
+    LXClassifyListVC *vc = [[LXClassifyListVC alloc]init];
     return vc;
 }
 
@@ -90,17 +86,15 @@
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.hidesBackButton = YES;
 
-    self.titles = @[@"即时达配送", @"超市精选"];
-    self.categoryView.titles = self.titles;
+    self.titles = @[@"螃蟹", @"小龙虾", @"苹果", @"胡萝卜", @"葡萄", @"西瓜"];
+    NSMutableArray *imageTypes = [NSMutableArray array];
+    for (NSInteger i = 0; i < self.titles.count; i++) {
+        [imageTypes addObject:@(JXCategoryTitleImageType_TopImage)];
+    }
+    self.categoryView.imageTypes = imageTypes;
     self.categoryView.listContainer = self.listContainerView;
-    self.categoryView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
-    self.navigationItem.titleView = self.categoryView;
-
-    // [self.view addSubview:self.categoryView];
+    [self.view addSubview:self.categoryView];
     [self.view addSubview:self.listContainerView];
 
     [self masonry];
@@ -109,25 +103,33 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    // [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     // make.top.equalTo(self.view);
-    //     make.top.centerX.equalTo(@0.f);
-    //     make.width.equalTo(@200.f);
-    //     make.height.equalTo(@44.f);
-    // }];
+    [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(@0.f);
+        make.height.equalTo(@(80.f));
+    }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        // make.top.equalTo(self.categoryView.mas_bottom);
-        // make.left.right.bottom.equalTo(@0.f);
-        make.edges.equalTo(@0.f);
+        make.top.equalTo(self.categoryView.mas_bottom);
+        make.left.right.bottom.equalTo(@0.f);
+        // make.edges.equalTo(@0.f);
     }];
 }
 
 #pragma mark Lazy Property
-- (JXCategoryTitleView *)categoryView {
+- (JXCategoryTitleImageView *)categoryView {
     if(!_categoryView){
-        JXCategoryTitleView *v = [[JXCategoryTitleView alloc]init];
-        v.averageCellSpacingEnabled = YES;
+        JXCategoryTitleImageView *v = [[JXCategoryTitleImageView alloc]init];
+        v.imageZoomEnabled = YES;
+        v.imageZoomScale = 1.3f;
+        v.averageCellSpacingEnabled = NO;
+        // v.cellWidth = 60.f;
+        v.imageSize = CGSizeMake(40.f, 40.f);
         v.delegate = self;
+
+        NSArray *imageNames = @[@"crab", @"lobster", @"apple", @"carrot", @"grape", @"watermelon"];
+        NSArray *selectedImageNames = @[@"crab_selected", @"lobster_selected", @"apple_selected", @"carrot_selected", @"grape_selected", @"watermelon_selected"];
+        v.titles = self.titles;
+        v.imageNames = imageNames;
+        v.selectedImageNames = selectedImageNames;
 
         JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
         lineView.indicatorWidth = 20;

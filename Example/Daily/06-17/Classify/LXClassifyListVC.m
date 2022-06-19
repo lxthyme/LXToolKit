@@ -9,15 +9,14 @@
 
 #import "LXSectionModel.h"
 #import "LXClassifyListLeftView.h"
-#import "LXClassifyListPanelRightView.h"
+#import "LXClassifyListRightView.h"
 
 static const CGFloat kLeftTableWidth = 100.f;
 
 @interface LXClassifyListVC()<JXCategoryViewDelegate> {
 }
-@property(nonatomic, strong)UIView *topPanelView;
 @property(nonatomic, strong)LXClassifyListLeftView *panelLeftView;
-@property(nonatomic, strong)LXClassifyListPanelRightView *rightPanelView;
+@property(nonatomic, strong)LXClassifyListRightView *panelRightView;
 @property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
 
 @end
@@ -40,6 +39,12 @@ static const CGFloat kLeftTableWidth = 100.f;
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)loadData {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSInteger i = 0; i < 20; i++) {
+        [arr addObject:[NSString stringWithFormat:@"row: %ld", i]];
+    }
+    [self.panelLeftView dataFill:[arr copy]];
+
     NSMutableArray *dataList = [NSMutableArray array];
     /// section 0: banner
     [dataList addObject:@[]];
@@ -62,7 +67,7 @@ static const CGFloat kLeftTableWidth = 100.f;
         sectionModel.itemList = itemList;
         [dataList addObject:sectionModel];
     }];
-    [self.rightPanelView dataFill:self.dataList];
+    [self.panelRightView dataFill:[dataList copy]];
 }
 
 #pragma mark -
@@ -81,13 +86,9 @@ static const CGFloat kLeftTableWidth = 100.f;
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.translucent = NO;
-
-    
-    [self.view addSubview:self.topPanelView];
 
     [self.view addSubview:self.panelLeftView];
-    [self.view addSubview:self.rightPanelView];
+    [self.view addSubview:self.panelRightView];
 
     [self masonry];
 }
@@ -99,27 +100,19 @@ static const CGFloat kLeftTableWidth = 100.f;
         make.top.left.bottom.equalTo(@0.f);
         make.width.equalTo(@(kLeftTableWidth));
     }];
-    [self.rightPanelView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.panelRightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.bottom.equalTo(@0.f);
         make.left.equalTo(self.panelLeftView.mas_right);
     }];
 }
 #pragma mark getter/setter
 #pragma mark Lazy Property
-- (UIView *)topPanelView {
-    if(!_topPanelView){
-        UIView *v = [[UIView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
-        _topPanelView = v;
+- (LXClassifyListRightView *)panelRightView {
+    if(!_panelRightView){
+        LXClassifyListRightView *v = [[LXClassifyListRightView alloc]init];
+        _panelRightView = v;
     }
-    return _topPanelView;
-}
-- (LXClassifyListPanelRightView *)rightPanelView {
-    if(!_rightPanelView){
-        LXClassifyListPanelRightView *v = [[LXClassifyListPanelRightView alloc]init];
-        _rightPanelView = v;
-    }
-    return _rightPanelView;
+    return _panelRightView;
 }
 - (LXClassifyListLeftView *)panelLeftView {
     if(!_panelLeftView){

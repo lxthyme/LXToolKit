@@ -7,13 +7,12 @@
 //
 #import "LXClassifyListLeftView.h"
 
-#import "LXLeftCell.h"
+#import "LXClassifyListLeftCell.h"
 
 @interface LXClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
-@property(nonatomic, strong)UITableView *leftTableView;
-@property(nonatomic, copy)NSArray<NSString *> *leftDataList;
-
+@property(nonatomic, strong)UITableView *tableView;
+@property(nonatomic, copy)NSArray<NSString *> *dataList;
 @end
 
 @implementation LXClassifyListLeftView
@@ -29,6 +28,13 @@
 }
 
 #pragma mark -
+#pragma mark - 🌎LoadData
+- (void)dataFill:(NSArray<NSString *> *)dataList {
+    self.dataList = dataList;
+    [self.tableView reloadData];
+}
+
+#pragma mark -
 #pragma mark - 👀Public Actions
 
 #pragma mark -
@@ -36,11 +42,11 @@
 
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.leftDataList count];
+    return [self.dataList count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LXLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXLeftCell" forIndexPath:indexPath];
-    NSString *title = self.leftDataList[indexPath.row];
+    LXClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXClassifyListLeftCell" forIndexPath:indexPath];
+    NSString *title = self.dataList[indexPath.row];
     [cell dataFill:title];
     return cell;
 }
@@ -55,13 +61,12 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareTableView {
-    [self.leftTableView registerClass:[LXLeftCell class] forCellReuseIdentifier:@"LXLeftCell"];
-    [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    [self.tableView registerClass:[LXClassifyListLeftCell class] forCellReuseIdentifier:@"LXClassifyListLeftCell"];
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.leftTableView];
+    [self addSubview:self.tableView];
 
     [self masonry];
 }
@@ -69,24 +74,14 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
 }
 
 #pragma mark Lazy Property
-- (NSArray<NSString *> *)leftDataList {
-    if(!_leftDataList){
-        NSMutableArray *arr = [NSMutableArray array];
-        for (NSInteger i = 0; i < 20; i++) {
-            [arr addObject:[NSString stringWithFormat:@"row: %ld", i]];
-        }
-        _leftDataList = [arr copy];
-    }
-    return _leftDataList;
-}
-- (UITableView *)leftTableView {
-    if(!_leftTableView) {
+- (UITableView *)tableView {
+    if(!_tableView) {
         UITableView *t = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         t.tableHeaderView = [UIView new];
         t.tableFooterView = [UIView new];
@@ -114,8 +109,8 @@
         if(@available(iOS 15.0, *)) {
             t.sectionHeaderTopPadding = 0.f;
         }
-        _leftTableView = t;
+        _tableView = t;
     }
-    return _leftTableView;
+    return _tableView;
 }
 @end

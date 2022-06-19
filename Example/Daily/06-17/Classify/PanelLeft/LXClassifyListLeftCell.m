@@ -1,21 +1,21 @@
 //
-//  LXLeftCell.m
+//  LXClassifyListLeftCell.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXLeftCell.h"
+#import "LXClassifyListLeftCell.h"
 
 #import <Masonry/Masonry.h>
 
-@interface LXLeftCell() {
+@interface LXClassifyListLeftCell() {
 }
 @property(nonatomic, strong)UILabel *labTitle;
 
 @end
 
-@implementation LXLeftCell
+@implementation LXClassifyListLeftCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

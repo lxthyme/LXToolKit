@@ -1,36 +1,35 @@
 //
-//  LXClassifyListPanelRightView.m
+//  LXClassifyListRightView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyListPanelRightView.h"
+#import "LXClassifyListRightView.h"
 
 #import "LXMyCollectionView.h"
-#import "LXSectionItemCell.h"
+#import "LXClassifyRightCollectionCell.h"
 #import "LXClassifySectionHeaderView.h"
 #import "LXSectionCategoryHeaderView.h"
 #import "LXClassifyListBannerCell.h"
 
-static const CGFloat VerticalListCategoryViewHeight = 60.f;   //悬浮categoryView的高度
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
-static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定section的index
+static const NSUInteger kPinCategoryViewSectionIndex = 1;
+static const CGFloat kPinCategoryViewHeight = 60.f;
 
-@interface LXClassifyListPanelRightView()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface LXClassifyListRightView()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+    BOOL __shouldRest;
 }
 @property (nonatomic, strong)JXCategoryTitleView *pinCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
-@property (nonatomic, strong)NSArray<UICollectionViewLayoutAttributes *> *sectionHeaderAttributes;
 
-@property(nonatomic, strong)LXSectionCategoryHeaderView *sectionHeaderView;
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
 @property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
 
 @end
 
-@implementation LXClassifyListPanelRightView
+@implementation LXClassifyListRightView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -45,7 +44,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     [super layoutSubviews];
 
     CGRect frame = self.bounds;
-    frame.size.height = VerticalListCategoryViewHeight;
+    frame.size.height = kPinCategoryViewHeight;
     self.pinCategoryView.frame = frame;
 }
 #pragma mark -
@@ -58,6 +57,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     }].array;
     [self.pinCategoryView reloadDataWithoutListContainer];
     [self.collectionView reloadData];
+    __shouldRest = YES;
 }
 
 #pragma mark -
@@ -66,30 +66,10 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)updateSectionHeaderAttributes {
-    static NSInteger idx = 1;
-    if(idx > 1) {
+    if(!__shouldRest) {
         return;
     }
-    idx += 1;
-    // if (self.sectionHeaderAttributes) {
-    //     return;
-    // }
-    // //获取到所有的sectionHeaderAtrributes，用于后续的点击，滚动到指定contentOffset.y使用
-    // NSMutableArray *attributes = [NSMutableArray array];
-    // UICollectionViewLayoutAttributes *lastHeaderAttri = nil;
-    // for (int i = 0; i < self.headerTitles.count; i++) {
-    //     UICollectionViewLayoutAttributes *attri = [self.collectionView.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForItem:0 inSection:i]];
-    //     if (attri) {
-    //         [attributes addObject:attri];
-    //     }
-    //     if (i == self.headerTitles.count - 1) {
-    //         lastHeaderAttri = attri;
-    //     }
-    // }
-    // if (attributes.count == 0) {
-    //     return;
-    // }
-    // self.sectionHeaderAttributes = attributes;
+    __shouldRest = NO;
 
     //如果最后一个section条目太少了，会导致滚动最底部，但是却不能触发categoryView选中最后一个item。而且点击最后一个滚动的contentOffset.y也不好弄。所以添加contentInset，让最后一个section滚到最下面能显示完整个屏幕。
     NSInteger lastSection = self.dataList.count - 1;
@@ -100,7 +80,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
 
     CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
-    CGFloat value = (self.bounds.size.height - VerticalListCategoryViewHeight) - lastSectionHeight;
+    CGFloat value = (self.bounds.size.height - kPinCategoryViewHeight) - lastSectionHeight;
     if (value > 0) {
         self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
     }
@@ -109,20 +89,12 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewDelegate
 - (void)categoryView:(JXCategoryBaseView *)categoryView didClickSelectedItemAtIndex:(NSInteger)index {
-    // UICollectionViewLayoutAttributes *targetAttri = self.sectionHeaderAttributes[index + VerticalListPinSectionIndex];
-    // if (index == 0) {
-    //     //选中了第一个，特殊处理一下，滚动到sectionHeaer的最上面
-    //     [self.collectionView setContentOffset:CGPointMake(0, targetAttri.frame.origin.y) animated:YES];
-    // }else {
-    //     //不是第一个，需要滚动到categoryView下面
-    //     [self.collectionView setContentOffset:CGPointMake(0, targetAttri.frame.origin.y - VerticalListCategoryViewHeight) animated:YES];
-    // }
-    if((index + VerticalListPinSectionIndex) < self.dataList.count) {
-        NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:index + VerticalListPinSectionIndex];
+    if((index + kPinCategoryViewSectionIndex) < self.dataList.count) {
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:index + kPinCategoryViewSectionIndex];
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:ip];
         CGPoint contentOffset = CGPointMake(0, CGRectGetMinY(attr.frame));
         if(index > 0) {
-            contentOffset.y -= VerticalListCategoryViewHeight;
+            contentOffset.y -= kPinCategoryViewHeight;
         }
         [self.collectionView setContentOffset:contentOffset animated:YES];
     }
@@ -143,7 +115,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
         LXClassifyListBannerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyListBannerCell" forIndexPath:indexPath];
         return cell;
     }
-    LXSectionItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXSectionItemCell" forIndexPath:indexPath];
+    LXClassifyRightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyRightCollectionCell" forIndexPath:indexPath];
     LXSectionModel *sectionModel = self.dataList[indexPath.section];
     LXSectionItemModel *itemModel = sectionModel.itemList[indexPath.row];
     [cell dataFill:itemModel];
@@ -152,7 +124,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
 #pragma mark - UICollectionViewDelegate
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     if([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        if(indexPath.section == VerticalListPinSectionIndex) {
+        if(indexPath.section == kPinCategoryViewSectionIndex) {
             if(!self.sectionCategoryHeaderView) {
             LXSectionCategoryHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXSectionCategoryHeaderView" forIndexPath:indexPath];
                 self.sectionCategoryHeaderView = header;
@@ -194,8 +166,8 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     CGFloat width = CGRectGetWidth(collectionView.frame);
     if(section == kBannerSectionIdx) {
         return CGSizeZero;
-    } else if(section == VerticalListPinSectionIndex) {
-        return CGSizeMake(width, VerticalListCategoryViewHeight);
+    } else if(section == kPinCategoryViewSectionIndex) {
+        return CGSizeMake(width, kPinCategoryViewHeight);
     }
     return CGSizeMake(width, 40.f);
 }
@@ -215,7 +187,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
     if([scrollView isEqual:self.collectionView]) {
-        UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:VerticalListPinSectionIndex]];
+        UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:kPinCategoryViewSectionIndex]];
         if(offsetY >= CGRectGetMinY(attr.frame)) {
             if(self.pinCategoryView.superview != self) {
                 [self addSubview:self.pinCategoryView];
@@ -233,13 +205,13 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
         }
         //用户滚动的才处理
         //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
-        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + VerticalListCategoryViewHeight + 1, self.collectionView.bounds.size.width, 1);
+        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + kPinCategoryViewHeight + 1, self.collectionView.bounds.size.width, 1);
         UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
         NSUInteger topSection = topAttributes.indexPath.section;
-        if (topAttributes != nil && topSection >= VerticalListPinSectionIndex) {
-            if (self.pinCategoryView.selectedIndex != topSection - VerticalListPinSectionIndex) {
+        if (topAttributes != nil && topSection >= kPinCategoryViewSectionIndex) {
+            if (self.pinCategoryView.selectedIndex != topSection - kPinCategoryViewSectionIndex) {
                 //不相同才切换
-                [self.pinCategoryView selectItemAtIndex:topSection - VerticalListPinSectionIndex];
+                [self.pinCategoryView selectItemAtIndex:topSection - kPinCategoryViewSectionIndex];
             }
         }
     }
@@ -248,7 +220,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXSectionItemCell class] forCellWithReuseIdentifier:@"LXSectionItemCell"];
+    [self.collectionView registerClass:[LXClassifyRightCollectionCell class] forCellWithReuseIdentifier:@"LXClassifyRightCollectionCell"];
     [self.collectionView registerClass:[LXClassifyListBannerCell class] forCellWithReuseIdentifier:@"LXClassifyListBannerCell"];
     [self.collectionView registerClass:[LXClassifySectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXClassifySectionHeaderView"];
     [self.collectionView registerClass:[LXSectionCategoryHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXSectionCategoryHeaderView"];

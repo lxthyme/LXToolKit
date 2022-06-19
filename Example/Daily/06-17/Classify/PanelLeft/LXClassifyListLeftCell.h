@@ -1,5 +1,5 @@
 //
-//  LXClassifyMainVC.h
+//  LXClassifyListLeftCell.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyMainVC : UIViewController {
+@interface LXClassifyListLeftCell : UITableViewCell {
 }
+
+- (void)dataFill:(NSString *)title;
 
 @end
 
