@@ -1,5 +1,5 @@
 //
-//  LXClassifyVC.h
+//  LXClassifyListPanelRightView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
@@ -7,10 +7,14 @@
 //
 #import <UIKit/UIKit.h>
 
+#import "LXSectionModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyVC : UIViewController<JXCategoryListContentViewDelegate> {
+@interface LXClassifyListPanelRightView : UIView {
 }
+
+- (void)dataFill:(NSArray<LXSectionModel *> *)dataList;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  LXClassifyVC.h
+//  LXClassifyListLeftView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyVC : UIViewController<JXCategoryListContentViewDelegate> {
+@interface LXClassifyListLeftView : UIView {
 }
 
 @end
