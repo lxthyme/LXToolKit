@@ -1,11 +1,11 @@
 //
-//  LXClassifyVC.m
+//  LXClassifyListVC.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyVC.h"
+#import "LXClassifyListVC.h"
 
 #import "LXSectionModel.h"
 #import "LXMyCollectionView.h"
@@ -13,22 +13,30 @@
 #import "LXClassifySectionHeaderView.h"
 #import "LXSectionCategoryHeaderView.h"
 
+#import "LXLeftCell.h"
+
+static const CGFloat kLeftTableWidth = 100.f;
 static const CGFloat VerticalListCategoryViewHeight = 60;   //悬浮categoryView的高度
 static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定section的index
 
-@interface LXClassifyVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, JXCategoryViewDelegate> {
+@interface LXClassifyListVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, JXCategoryViewDelegate, UITableViewDataSource,UITableViewDelegate> {
 }
 @property (nonatomic, strong)JXCategoryTitleView *pinCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 @property (nonatomic, strong)NSArray<UICollectionViewLayoutAttributes *> *sectionHeaderAttributes;
 
+@property(nonatomic, strong)UITableView *leftTableView;
+@property(nonatomic, copy)NSArray<NSString *> *leftDataList;
+
+@property(nonatomic, strong)UIView *topPanelView;
+@property(nonatomic, strong)UIView *rightPanelView;
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
 @property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
 @property (nonatomic, copy)NSArray<NSString *> *headerTitles;
 
 @end
 
-@implementation LXClassifyVC
+@implementation LXClassifyListVC
 - (void)dealloc {
     NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
 }
@@ -56,6 +64,7 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    [self prepareTableView];
     [self prepareCollectionView];
     [self prepareUI];
 }
@@ -102,10 +111,16 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
 
     CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
-    CGFloat value = (self.view.bounds.size.height - VerticalListCategoryViewHeight) - lastSectionHeight;
+    CGFloat value = (self.rightPanelView.bounds.size.height - VerticalListCategoryViewHeight) - lastSectionHeight;
     if (value > 0) {
         self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
     }
+}
+
+#pragma mark -
+#pragma mark - ✈️JXCategoryListContentViewDelegate
+- (UIView *)listView {
+    return self.view;
 }
 
 #pragma mark -
@@ -199,42 +214,66 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     return UIEdgeInsetsMake(0, 10.f, 0, 10.f);
 }
 
+#pragma mark - ✈️UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.leftDataList count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LXLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXLeftCell" forIndexPath:indexPath];
+    NSString *title = self.leftDataList[indexPath.row];
+    [cell dataFill:title];
+    return cell;
+}
+#pragma mark - ✈️UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.f;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark -
 #pragma mark - ✈️UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
-    UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:VerticalListPinSectionIndex]];
-    if(offsetY >= CGRectGetMinY(attr.frame)) {
-        if(self.pinCategoryView.superview != self.view) {
-            [self.view addSubview:self.pinCategoryView];
+    if([scrollView isEqual:self.collectionView]) {
+        UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:VerticalListPinSectionIndex]];
+        if(offsetY >= CGRectGetMinY(attr.frame)) {
+            if(self.pinCategoryView.superview != self.rightPanelView) {
+                [self.rightPanelView addSubview:self.pinCategoryView];
+            }
+        } else if(self.pinCategoryView.superview != self.sectionCategoryHeaderView) {
+            [self.sectionCategoryHeaderView addSubview:self.pinCategoryView];
         }
-    } else if(self.pinCategoryView.superview != self.sectionCategoryHeaderView) {
-        [self.sectionCategoryHeaderView addSubview:self.pinCategoryView];
-    }
-    if (self.pinCategoryView.selectedIndex != 0 && scrollView.contentOffset.y == 0) {
-        //点击了状态栏滚动到顶部时的处理
-        [self.pinCategoryView selectItemAtIndex:0];
-    }
-    if (!(scrollView.isTracking || scrollView.isDecelerating)) {
-        //不是用户滚动的，比如setContentOffset等方法，引起的滚动不需要处理。
-        return;
-    }
-    //用户滚动的才处理
-    //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
-    CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + VerticalListCategoryViewHeight + 1, self.view.bounds.size.width, 1);
-    UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
-    NSUInteger topSection = topAttributes.indexPath.section;
-    if (topAttributes != nil && topSection >= VerticalListPinSectionIndex) {
-        if (self.pinCategoryView.selectedIndex != topSection - VerticalListPinSectionIndex) {
-            //不相同才切换
-            [self.pinCategoryView selectItemAtIndex:topSection - VerticalListPinSectionIndex];
+        if (self.pinCategoryView.selectedIndex != 0 && scrollView.contentOffset.y == 0) {
+            //点击了状态栏滚动到顶部时的处理
+            [self.pinCategoryView selectItemAtIndex:0];
+        }
+        if (!(scrollView.isTracking || scrollView.isDecelerating)) {
+            //不是用户滚动的，比如setContentOffset等方法，引起的滚动不需要处理。
+            return;
+        }
+        //用户滚动的才处理
+        //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
+        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + VerticalListCategoryViewHeight + 1, self.collectionView.bounds.size.width, 1);
+        UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
+        NSUInteger topSection = topAttributes.indexPath.section;
+        if (topAttributes != nil && topSection >= VerticalListPinSectionIndex) {
+            if (self.pinCategoryView.selectedIndex != topSection - VerticalListPinSectionIndex) {
+                //不相同才切换
+                [self.pinCategoryView selectItemAtIndex:topSection - VerticalListPinSectionIndex];
+            }
         }
     }
 }
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
+- (void)prepareTableView {
+    [self.leftTableView registerClass:[LXLeftCell class] forCellReuseIdentifier:@"LXLeftCell"];
+    [self.leftTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+}
 - (void)prepareCollectionView {
     [self.collectionView registerClass:[LXSectionItemCell class] forCellWithReuseIdentifier:@"LXSectionItemCell"];
     [self.collectionView registerClass:[LXClassifySectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXClassifySectionHeaderView"];
@@ -246,7 +285,13 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
 
-    [self.view addSubview:self.collectionView];
+    
+    [self.view addSubview:self.topPanelView];
+
+    [self.view addSubview:self.leftTableView];
+
+    [self.rightPanelView addSubview:self.collectionView];
+    [self.view addSubview:self.rightPanelView];
 
     [self masonry];
 }
@@ -254,6 +299,14 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
+    [self.leftTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.equalTo(@0.f);
+        make.width.equalTo(@(kLeftTableWidth));
+    }];
+    [self.rightPanelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.bottom.equalTo(@0.f);
+        make.left.equalTo(self.leftTableView.mas_right);
+    }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
@@ -291,10 +344,26 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
     }
     return _dataList;
 }
+- (UIView *)topPanelView {
+    if(!_topPanelView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor whiteColor];
+        _topPanelView = v;
+    }
+    return _topPanelView;
+}
+- (UIView *)rightPanelView {
+    if(!_rightPanelView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor whiteColor];
+        _rightPanelView = v;
+    }
+    return _rightPanelView;
+}
 - (JXCategoryTitleView *)pinCategoryView {
     if(!_pinCategoryView){
         JXCategoryTitleView *v = [[JXCategoryTitleView alloc]init];
-        v.frame = CGRectMake(0, 0, SCREEN_WIDTH, VerticalListCategoryViewHeight);
+        v.frame = CGRectMake(0, 0, SCREEN_WIDTH - kLeftTableWidth, VerticalListCategoryViewHeight);
         v.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1];
         NSMutableArray *tmp = [self.headerTitles mutableCopy];
         [tmp removeObjectAtIndex:0];
@@ -339,5 +408,48 @@ static const NSUInteger VerticalListPinSectionIndex = 1;    //悬浮固定sectio
         _collectionView = cv;
     }
     return _collectionView;
+}
+- (NSArray<NSString *> *)leftDataList {
+    if(!_leftDataList){
+        NSMutableArray *arr = [NSMutableArray array];
+        for (NSInteger i = 0; i < 20; i++) {
+            [arr addObject:[NSString stringWithFormat:@"row: %ld", i]];
+        }
+        _leftDataList = [arr copy];
+    }
+    return _leftDataList;
+}
+- (UITableView *)leftTableView {
+    if(!_leftTableView) {
+        UITableView *t = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        t.tableHeaderView = [UIView new];
+        t.tableFooterView = [UIView new];
+        t.backgroundColor = [UIColor lightGrayColor];
+        t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        t.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+        t.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        t.estimatedRowHeight = 44.0f;
+        t.rowHeight = UITableViewAutomaticDimension;
+        t.sectionHeaderHeight = 0.f;
+        t.sectionFooterHeight = 0.f;
+        t.estimatedRowHeight = 0;
+        t.estimatedSectionHeaderHeight = 0;
+        t.estimatedSectionFooterHeight = 0;
+
+        t.delegate = self;
+        t.dataSource = self;
+
+        if (@available(iOS 11.0, *)) {
+            t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        if(@available(iOS 13.0, *)) {
+            t.automaticallyAdjustsScrollIndicatorInsets = NO;
+        }
+        if(@available(iOS 15.0, *)) {
+            t.sectionHeaderTopPadding = 0.f;
+        }
+        _leftTableView = t;
+    }
+    return _leftTableView;
 }
 @end
