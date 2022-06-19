@@ -114,9 +114,6 @@
 
 #pragma mark -
 #pragma mark - ✈️UIScrollViewDelegate
-// - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//     return YES;
-// }
 - (void)childNotice {
     self.canScroll = YES;
 }

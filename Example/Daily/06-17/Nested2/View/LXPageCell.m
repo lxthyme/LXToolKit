@@ -82,61 +82,9 @@ static const CGFloat JXheightForHeaderInSection = 50;
 //     }
 // }
 - (BOOL)mainTableViewGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    // return YES;
     //禁止categoryView左右滑动的时候，上下和左右都可以滚动
     if (otherGestureRecognizer == self.categoryView.collectionView.panGestureRecognizer) {
         return NO;
-    }
-    // if(gestureRecognizer.view == self.pagerView.mainTableView &&
-    //    [otherGestureRecognizer.view isKindOfClass:[JXPagerMainTableView class]]) {
-    //     if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
-    //         UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)gestureRecognizer;
-    //         CGPoint point = [pan translationInView:pan.view];
-    //         CGFloat absX = fabs(point.x);
-    //         CGFloat absY = fabs(point.y);
-    //         // 设置滑动有效距离
-    //         NSString *direction = @"";
-    //         if (MAX(absX, absY) < 10)
-    //             return NO;
-    //         if (absX > absY ) {
-    //             if (point.x<0) {
-    //                 //向左滑动
-    //                 direction = @"左";
-    //             }else{
-    //                 //向右滑动
-    //                 direction = @"右";
-    //             }
-    //         } else if (absY > absX) {
-    //             if (point.y<0) {
-    //                 //向上滑动
-    //                 direction = @"上";
-    //             }else{
-    //                 //向下滑动
-    //                 direction = @"下";
-    //             }
-    //         }
-    //         NSLog(@"direction: %@", direction);
-    //         if([direction isEqualToString:@"上"]) {
-    //             if(self.pagerView.mainTableView.contentOffset.y <= 0) {
-    //                 return NO;
-    //             } else {
-    //                 return YES;
-    //             }
-    //         } else if([direction isEqualToString:@"下"]) {
-    //             if(self.pagerView.mainTableView.contentOffset.y < 0) {
-    //                 return YES;
-    //             } else {
-    //                 return NO;
-    //             }
-    //         }
-    //         return NO;
-    //     } else {
-    //         NSLog(@"gestureRecognizer: %@", gestureRecognizer);
-    //     }
-    // }
-    if([gestureRecognizer.view isKindOfClass:[JXPagerMainTableView class]] &&
-       [otherGestureRecognizer.view isKindOfClass:[JXPagerMainTableView class]]) {
-        return YES;
     }
     return [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]];
 }

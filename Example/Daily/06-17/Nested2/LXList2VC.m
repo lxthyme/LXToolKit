@@ -133,10 +133,6 @@ static const NSInteger kSectionCount = 2;
     NSLog(@"-->: %@", title);
 }
 
-// - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//     return YES;
-// }
-
 #pragma mark -
 #pragma mark - ✈️UIScrollViewDelegate
 - (void)mainNotice {
@@ -146,7 +142,7 @@ static const NSInteger kSectionCount = 2;
     !self.scrollCallback ?: self.scrollCallback(scrollView);
     CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
-    CGFloat HEADER_HEIGHT = 1100;
+    CGFloat HEADER_HEIGHT = 1200;
     if(offsetY >= HEADER_HEIGHT) {
         scrollView.contentOffset = CGPointMake(0, HEADER_HEIGHT);
         if(self.canScroll) {
