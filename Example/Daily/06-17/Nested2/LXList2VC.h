@@ -1,5 +1,5 @@
 //
-//  LXListViewController.h
+//  LXList2VC.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/17.
@@ -13,7 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXListViewController : UIViewController<JXPagerViewListViewDelegate> {
+@interface LXList2VC : UIViewController<JXPagerViewListViewDelegate> {
 }
 @property (nonatomic, strong)LXMyTableView *tableView;
 @property (nonatomic, strong)NSMutableArray<NSString *> *dataSource;
@@ -21,11 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isNeedHeader;
 /// 默认为YES
 @property (nonatomic, assign) BOOL isHeaderRefreshed;
-
-- (void)viewWillAppear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewDidAppear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewWillDisappear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewDidDisappear:(BOOL)animated NS_REQUIRES_SUPER;
 
 @end
 
