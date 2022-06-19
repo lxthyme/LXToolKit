@@ -1,17 +1,17 @@
 //
-//  LXClassifyMainVC.m
+//  LXClassifyVC.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyMainVC.h"
+#import "LXClassifyVC.h"
 
 #import "LXClassifyListVC.h"
 
 static CGFloat kCategoryViewHeight = 60.f;
 
-@interface LXClassifyMainVC()<JXCategoryViewDelegate> {
+@interface LXClassifyVC()<JXCategoryViewDelegate> {
 }
 @property (nonatomic, strong)NSArray *titles;
 @property (nonatomic, strong)JXCategoryTitleImageView *categoryView;
@@ -19,7 +19,7 @@ static CGFloat kCategoryViewHeight = 60.f;
 
 @end
 
-@implementation LXClassifyMainVC
+@implementation LXClassifyVC
 - (void)dealloc {
     NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
 }
