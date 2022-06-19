@@ -120,7 +120,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     !self.scrollCallback ?: self.scrollCallback(scrollView);
     CGFloat offsetY = scrollView.contentOffset.y;
-    NSLog(@"-->offsetY: %f", offsetY);
+    // NSLog(@"-->offsetY: %f", offsetY);
     if(!self.canScroll) {
         scrollView.contentOffset = CGPointZero;
     }

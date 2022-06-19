@@ -47,40 +47,6 @@ static const CGFloat JXheightForHeaderInSection = 50;
 
 #pragma mark -
 #pragma mark - ✈️JXPagerMainTableViewGestureDelegate
-// - (BOOL)mainTableViewGestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-//     if(gestureRecognizer.view == self.pagerView.mainTableView) {
-//         if(self.pagerView.mainTableView.contentOffset.y < 0) {
-//             return NO;
-//         }
-//     }
-//     [gestureRecognizer v
-//     return YES;
-// }
-// - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//     if(touches.count > 1) {
-//         return;
-//     }
-//     UITouch *touch = touches.anyObject;
-//     self.beginPoint = [touch locationInView:self.contentView];
-// }
-// - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//     if(touches.count > 1) {
-//         return;
-//     }
-//     UITouch *touch = touches.anyObject;
-//     self.movePoint = [touch locationInView:self.contentView];
-//     NSInteger deltaX = fabs(self.movePoint.x - self.beginPoint.x);
-//     NSInteger deltaY = fabs(self.movePoint.y - self.beginPoint.y);
-//     NSInteger touchDistance = 100;
-//     NSInteger touchPy = 10;
-//     if (deltaX > touchDistance && deltaY <= touchPy) {
-//         // 横扫
-//     }
-//     if (deltaY > touchDistance && deltaX <= touchPy) {
-//         // 竖扫
-//
-//     }
-// }
 - (BOOL)mainTableViewGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     //禁止categoryView左右滑动的时候，上下和左右都可以滚动
     if (otherGestureRecognizer == self.categoryView.collectionView.panGestureRecognizer) {

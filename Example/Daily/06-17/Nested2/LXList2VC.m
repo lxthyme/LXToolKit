@@ -142,7 +142,7 @@ static const NSInteger kSectionCount = 2;
     !self.scrollCallback ?: self.scrollCallback(scrollView);
     CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
-    CGFloat HEADER_HEIGHT = 1200;
+    CGFloat HEADER_HEIGHT = CGRectGetHeight([self.tableView rectForSection:0]);
     if(offsetY >= HEADER_HEIGHT) {
         scrollView.contentOffset = CGPointMake(0, HEADER_HEIGHT);
         if(self.canScroll) {
