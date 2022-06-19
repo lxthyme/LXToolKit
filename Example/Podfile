@@ -22,10 +22,13 @@ target 'LXToolKitObjc_Example' do
     pod 'BLNetworking'
     pod 'BLRawAPIManager'
 
+    #pod 'JXPageListView'
     pod 'JXCategoryView'
     pod 'JXPagingView/Pager'
     pod 'MJRefresh', '3.4.0'
     pod 'FDFullscreenPopGesture', '1.1'
+    pod 'MBProgressHUD'
+    pod 'SDCycleScrollView'
     
   #end
 end

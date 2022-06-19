@@ -16,8 +16,17 @@
 #endif
 
 #import <ReactiveObjC/ReactiveObjC.h>
-#import <Masonry/Masonry.h>
 #import "CTAPIBaseManager+Rac.h"
 
 #import <LXToolKitObjc/LXToolKitObjc.h>
 #import <ReactiveObjC/NSObject+RACDescription.h>
+
+#import <Masonry/Masonry.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <MJRefresh/MJRefresh.h>
+
+#import <JXCategoryView/JXCategoryView.h>
+#import <JXPagingView/JXPagerView.h>
+// #import <JXPageListView/JXPageListView.h>
+
+#import "UIWindow+JXSafeArea.h"
