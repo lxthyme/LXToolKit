@@ -83,6 +83,14 @@ static const CGFloat kLeftTableWidth = 100.f;
 }
 
 #pragma mark -
+#pragma mark - ✈️JXPagerViewListViewDelegate
+- (UIScrollView *)listScrollView {
+    return self.panelRightView.collectionView;
+}
+- (void)listViewDidScrollCallback:(void (^)(UIScrollView *))callback {
+}
+
+#pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];

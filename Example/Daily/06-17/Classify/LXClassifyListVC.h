@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListVC : UIViewController<JXCategoryListContentViewDelegate> {
+@interface LXClassifyListVC : UIViewController<JXCategoryListContentViewDelegate, JXPagerViewListViewDelegate> {
 }
 
 @end

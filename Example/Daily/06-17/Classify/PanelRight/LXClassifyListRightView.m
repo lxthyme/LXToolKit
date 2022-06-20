@@ -7,7 +7,6 @@
 //
 #import "LXClassifyListRightView.h"
 
-#import "LXMyCollectionView.h"
 #import "LXClassifyRightCollectionCell.h"
 #import "LXClassifySectionHeaderView.h"
 #import "LXSectionCategoryHeaderView.h"
@@ -102,13 +101,13 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [self.dataList count];
+    return self.dataList.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(section == kBannerSectionIdx) {
         return 1;
     }
-    return [self.dataList[section].itemList count];
+    return self.dataList[section].itemList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
@@ -186,7 +185,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
-    if([scrollView isEqual:self.collectionView]) {
+    if([scrollView isEqual:self.collectionView] && [self.collectionView numberOfSections] > 1) {
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:kPinCategoryViewSectionIndex]];
         if(offsetY >= CGRectGetMinY(attr.frame)) {
             if(self.pinCategoryView.superview != self) {

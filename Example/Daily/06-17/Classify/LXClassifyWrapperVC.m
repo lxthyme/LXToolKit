@@ -8,10 +8,12 @@
 #import "LXClassifyWrapperVC.h"
 
 #import "LXClassifyListVC.h"
+#import <YYText/YYLabel.h>
 
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
 }
 @property (nonatomic, strong)NSArray *titles;
+@property(nonatomic, strong)YYLabel *labAll;
 @property (nonatomic, strong)JXCategoryTitleImageView *categoryView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 
@@ -47,6 +49,7 @@
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    [self prepareVM];
     [self prepareUI];
 }
 
@@ -83,6 +86,13 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
+- (void)prepareVM {
+    // [[[self.labAll rac_signalForControlEvents:UIControlEventTouchUpInside]
+    // takeUntil:self.rac_willDeallocSignal]
+    //  subscribeNext:^(__kindof UIControl * _Nullable x) {
+    //     NSLog(@"btn: %@", x);
+    // }];
+}
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
@@ -95,6 +105,7 @@
     self.categoryView.imageTypes = imageTypes;
     self.categoryView.listContainer = self.listContainerView;
     [self.view addSubview:self.categoryView];
+    [self.view addSubview:self.labAll];
     [self.view addSubview:self.listContainerView];
 
     [self masonry];
@@ -104,8 +115,14 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(@0.f);
+        make.top.left.equalTo(@0.f);
         make.height.equalTo(@(80.f));
+    }];
+    [self.labAll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self.categoryView);
+        make.left.equalTo(self.categoryView.mas_right);
+        make.right.equalTo(@0.f);
+        make.width.equalTo(@44.f);
     }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.categoryView.mas_bottom);
@@ -115,6 +132,38 @@
 }
 
 #pragma mark Lazy Property
+- (YYLabel *)labAll {
+    if(!_labAll){
+        YYLabel *lab = [[YYLabel alloc]init];
+        lab.text = @"全部";
+        lab.textColor = [UIColor blackColor];
+        lab.verticalForm = YES;
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
+        lab.exclusionPaths = @[[UIBezierPath bezierPathWithRect:CGRectZero]];
+        lab.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"233");
+            UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.categoryView.collectionView.collectionViewLayout;
+            if(layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            } else {
+                layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+
+            }
+            [layout prepareLayout];
+            [self.categoryView.collectionView setNeedsLayout];
+            [self.categoryView.collectionView layoutIfNeeded];
+            CGSize contentSize = self.categoryView.collectionView.contentSize;
+            CGRect frame = self.categoryView.collectionView.frame;
+            frame.size = contentSize;
+            self.categoryView.frame = frame;
+            NSLog(@"%@", NSStringFromCGRect(frame));
+        };
+
+        _labAll = lab;
+    }
+    return _labAll;
+}
 - (JXCategoryTitleImageView *)categoryView {
     if(!_categoryView){
         JXCategoryTitleImageView *v = [[JXCategoryTitleImageView alloc]init];

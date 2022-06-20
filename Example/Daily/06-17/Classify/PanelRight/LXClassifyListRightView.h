@@ -8,11 +8,13 @@
 #import <UIKit/UIKit.h>
 
 #import "LXSectionModel.h"
+#import "LXMyCollectionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListRightView : UIView {
 }
+@property(nonatomic, strong, readonly)LXMyCollectionView *collectionView;
 
 - (void)dataFill:(NSArray<LXSectionModel *> *)dataList;
 
