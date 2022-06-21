@@ -47,7 +47,7 @@
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.contentView.backgroundColor = [UIColor whiteColor];
-
+    
     [self.contentView addSubview:self.classifyListVC.view];
 
     [self masonry];

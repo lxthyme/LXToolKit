@@ -11,7 +11,7 @@
 #import "LXClassifyListLeftView.h"
 #import "LXClassifyListRightView.h"
 
-static const CGFloat kLeftTableWidth = 0.f;
+static const CGFloat kLeftTableWidth = 100.f;
 
 @interface LXClassifyListVC()<JXCategoryViewDelegate> {
 }
@@ -38,6 +38,7 @@ static const CGFloat kLeftTableWidth = 0.f;
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXCategoryModel *)cateogryModel {
+    [self.panelLeftView dataFill:cateogryModel.sectionList];
     [self.panelRightView dataFill:cateogryModel.sectionList];
 }
 

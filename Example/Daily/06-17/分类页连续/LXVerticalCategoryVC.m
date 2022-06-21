@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 @property(nonatomic, strong)JXPagerView *pagerView;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UICollectionView *collectionView;
-@property(nonatomic, strong)NSMutableArray<NSIndexPath *> *cellShowHistory;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
 @property(nonatomic, assign)LXClassifyScrollType scrollType;
 @end
@@ -112,6 +111,12 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 #pragma mark - ✈️JXCategoryViewDelegate
 
 #pragma mark -
+#pragma mark - ✈️JXCategoryListContentViewDelegate
+- (UIView *)listView {
+    return self.view;
+}
+
+#pragma mark -
 #pragma mark - ✈️JXCategoryListContainerViewDelegate
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
     return self.titles.count;
@@ -196,12 +201,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     return cell;
 }
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.cellShowHistory removeObject:indexPath];
-    NSLog(@"end_row: %ld", indexPath.row);
-}
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.cellShowHistory addObject:indexPath];
     if(self.scrollType != LXClassifyScrollTypeFromPanelLeft) {
         CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
         LXCategoryModel *category = self.dataList[indexPath.row];
@@ -234,7 +234,9 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 #pragma mark -
 #pragma mark - ✈️UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return collectionView.frame.size;
+    CGSize size = collectionView.frame.size;
+    // size.height -= 1;
+    return size;
 }
 
 #pragma mark -
@@ -242,7 +244,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     if([scrollView isEqual:self.collectionView]) {
         /// collectionView 滑动结束后重置 scrollType
-        NSLog(@"-->scrollType: %ld, %@, scrollViewDidEndScrollingAnimation", self.scrollType, scrollView);
+        NSLog(@"-->scrollType: %ld, scrollViewDidEndScrollingAnimation", self.scrollType);
         self.scrollType = LXClassifyScrollTypeUnknown;
     }
 }
@@ -389,10 +391,10 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 - (UICollectionView *)collectionView {
     if(!_collectionView) {
         CGRect collectFrame = CGRectZero;
-        CGSize itemSize = CGSizeZero;
+        CGSize itemSize = CGSizeMake(CGFLOAT_MIN, CGFLOAT_MIN);;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.itemSize = itemSize;
-        flowLayout.estimatedItemSize = itemSize;
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
         flowLayout.minimumLineSpacing = 0.f;
         flowLayout.minimumInteritemSpacing = 0.f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -405,6 +407,11 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
         UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:flowLayout];
         cv.backgroundColor = [UIColor whiteColor];
         cv.pagingEnabled = YES;
+        if (@available(iOS 11.0, *)) {
+            cv.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
 
         cv.delegate = self;
         cv.dataSource = self;
@@ -412,11 +419,5 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
         _collectionView = cv;
     }
     return _collectionView;
-}
-- (NSMutableArray<NSIndexPath *> *)cellShowHistory {
-    if(!_cellShowHistory){
-        _cellShowHistory = [NSMutableArray array];
-    }
-    return _cellShowHistory;
 }
 @end

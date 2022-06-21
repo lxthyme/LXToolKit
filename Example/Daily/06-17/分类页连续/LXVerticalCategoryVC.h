@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXVerticalCategoryVC : UIViewController {
+@interface LXVerticalCategoryVC : UIViewController<JXCategoryListContentViewDelegate> {
 }
 
 @end

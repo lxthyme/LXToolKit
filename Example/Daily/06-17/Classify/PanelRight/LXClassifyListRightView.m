@@ -160,7 +160,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = CGRectGetWidth(collectionView.frame);
     if(indexPath.section == kBannerSectionIdx) {
-        return CGSizeMake(width, kBannerSectionHeight);
+        return CGSizeMake(width - 10.f * 2, kBannerSectionHeight);
     }
     CGFloat itemWidth = (width - 10 * 4) / 3.f;
     itemWidth = MAX(CGFLOAT_MIN, itemWidth);

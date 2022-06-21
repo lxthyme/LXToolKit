@@ -12,7 +12,7 @@
 @interface LXClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
 @property(nonatomic, strong)UITableView *tableView;
-@property(nonatomic, copy)NSArray<NSString *> *dataList;
+@property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
 @end
 
 @implementation LXClassifyListLeftView
@@ -29,7 +29,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<NSString *> *)dataList {
+- (void)dataFill:(NSArray<LXSectionModel *> *)dataList {
     self.dataList = dataList;
     [self.tableView reloadData];
 }
@@ -46,8 +46,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXClassifyListLeftCell" forIndexPath:indexPath];
-    NSString *title = self.dataList[indexPath.row];
-    [cell dataFill:title];
+    LXSectionModel *sectionModel = self.dataList[indexPath.row];
+    [cell dataFill:sectionModel.sectionTitle];
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
