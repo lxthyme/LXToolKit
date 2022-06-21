@@ -11,6 +11,12 @@
 #import "LXVerticalCell.h"
 #import "LXSectionModel.h"
 
+typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
+    LXClassifyScrollTypeUnknown,
+    /// 点击左侧联动滑动
+    LXClassifyScrollTypeFromPanelLeft,
+};
+
 @interface LXVerticalCategoryVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXPagerViewDelegate, JXPagerMainTableViewGestureDelegate, UITableViewDataSource,UITableViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
@@ -21,6 +27,7 @@
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)NSMutableArray<NSIndexPath *> *cellShowHistory;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
+@property(nonatomic, assign)LXClassifyScrollType scrollType;
 @end
 
 @implementation LXVerticalCategoryVC
@@ -51,6 +58,7 @@
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    [self prepareVM];
     [self prepareTableView];
     [self prepareCollectionView];
     [self prepareUI];
@@ -170,7 +178,11 @@
     //     [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
     // }
     // [self.listContainerView didClickSelectedItemAtIndex:indexPath.row];
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    self.scrollType = LXClassifyScrollTypeFromPanelLeft;
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+    LXVerticalCell *verticalCell = (LXVerticalCell *)[self.collectionView cellForItemAtIndexPath:ip];
+    [verticalCell.classifyListVC.panelRightView.collectionView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -190,28 +202,30 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.cellShowHistory addObject:indexPath];
-    CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
-    LXCategoryModel *category = self.dataList[indexPath.row];
-    NSMutableString *log = [NSMutableString string];
-    [log appendFormat:@"contentOffset[%@-%f]", category.categoryTitle, point.y];
-    LXVerticalCell *verticalCell = (LXVerticalCell *)cell;
-    UICollectionView *cv = verticalCell.classifyListVC.panelRightView.collectionView;
-    JXCategoryTitleView *pinCategoryView = verticalCell.classifyListVC.panelRightView.pinCategoryView;
-    NSInteger idx = 0;
-    CGPoint contentOffset = CGPointZero;
-    if(point.y > 0) {
-        /// 上滑
-        idx = pinCategoryView.titles.count - 1;
-        contentOffset = CGPointMake(0, cv.contentSize.height - CGRectGetHeight(cv.frame));
-    } else if(point.y < 0) {
-        /// 下滑
-        // cv.contentOffset = CGPointZero;
-        // [log appendString:@": CGPointZero"];
+    if(self.scrollType != LXClassifyScrollTypeFromPanelLeft) {
+        CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
+        LXCategoryModel *category = self.dataList[indexPath.row];
+        NSMutableString *log = [NSMutableString string];
+        [log appendFormat:@"contentOffset[%@-%f]", category.categoryTitle, point.y];
+        LXVerticalCell *verticalCell = (LXVerticalCell *)cell;
+        UICollectionView *cv = verticalCell.classifyListVC.panelRightView.collectionView;
+        JXCategoryTitleView *pinCategoryView = verticalCell.classifyListVC.panelRightView.pinCategoryView;
+        NSInteger idx = 0;
+        CGPoint contentOffset = CGPointZero;
+        if(point.y > 0) {
+            /// 上滑
+            idx = pinCategoryView.titles.count - 1;
+            contentOffset = CGPointMake(0, cv.contentSize.height - CGRectGetHeight(cv.frame));
+        } else if(point.y < 0) {
+            /// 下滑
+            // cv.contentOffset = CGPointZero;
+            // [log appendString:@": CGPointZero"];
+        }
+        cv.contentOffset = contentOffset;
+        BOOL success = [pinCategoryView selectCellAtIndex:idx selectedType:JXCategoryCellSelectedTypeCode];
+        [log appendFormat:@": %@_%@", kBOOLString(success), NSStringFromCGPoint(contentOffset)];
+        NSLog(@"%@", log);
     }
-    cv.contentOffset = contentOffset;
-    BOOL success = [pinCategoryView selectCellAtIndex:idx selectedType:JXCategoryCellSelectedTypeCode];
-    [log appendFormat:@": %@_%@", kBOOLString(success), NSStringFromCGPoint(contentOffset)];
-    NSLog(@"%@", log);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
@@ -225,23 +239,16 @@
 
 #pragma mark -
 #pragma mark - ✈️UIScrollViewDelegate
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    if([scrollView isEqual:self.collectionView]) {
+        /// collectionView 滑动结束后重置 scrollType
+        NSLog(@"-->scrollType: %ld, %@, scrollViewDidEndScrollingAnimation", self.scrollType, scrollView);
+        self.scrollType = LXClassifyScrollTypeUnknown;
+    }
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
-    if([scrollView isEqual:self.collectionView]) {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updatePage:) object:scrollView];
-        [self performSelector:@selector(updatePage:) withObject:scrollView afterDelay:0.3];
-    }
-}
-- (void)updatePage:(UIScrollView *)scrollView {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    CGFloat page = offsetY / CGRectGetHeight(self.collectionView.frame);
-    NSLog(@"page: %f", page);
-    if(page < self.dataList.count) {
-        NSIndexPath *ip = [NSIndexPath indexPathForRow:ceilf(page) inSection:0];
-        // [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionNone animated:YES];
-        [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-    }
 }
 
 #pragma mark -
@@ -277,6 +284,23 @@
     [self.view addSubview:self.collectionView];
 
     [self masonry];
+}
+- (void)prepareVM {
+    @weakify(self)
+    [[[RACObserve(self.collectionView, contentOffset)
+       distinctUntilChanged]
+      throttle:0.2]
+     subscribeNext:^(NSValue *_Nullable x) {
+        @strongify(self)
+        CGFloat offsetY = [x CGPointValue].y;
+        CGFloat page = offsetY / CGRectGetHeight(self.collectionView.frame);
+        NSLog(@"page: %f, scrollType: %ld", page, self.scrollType);
+        if(page < self.dataList.count) {
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:ceilf(page) inSection:0];
+            // [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        }
+    }];
 }
 
 #pragma mark Masonry
