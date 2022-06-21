@@ -68,7 +68,7 @@
     if(!_bannerView){
         SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
         v.delegate = self;
-        v.placeholderImage = [UIImage imageNamed:@""];
+        v.placeholderImage = [UIImage xl_imageNamed:@""];
         _bannerView = v;
     }
     return _bannerView;

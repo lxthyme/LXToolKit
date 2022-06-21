@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListRightView : UIView {
 }
+@property (nonatomic, strong, readonly)JXCategoryTitleView *pinCategoryView;
 @property(nonatomic, strong, readonly)LXMyCollectionView *collectionView;
 
 - (void)dataFill:(NSArray<LXSectionModel *> *)dataList;

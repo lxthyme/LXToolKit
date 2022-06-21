@@ -7,11 +7,8 @@
 //
 #import "LXVerticalCell.h"
 
-#import "LXClassifyListVC.h"
-
 @interface LXVerticalCell() {
 }
-@property(nonatomic, strong)LXClassifyListVC *classifyListVC;
 
 @end
 
@@ -35,8 +32,9 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill {
+- (void)dataFill:(LXCategoryModel *)cateogryModel {
     [self.classifyListVC viewDidLoad];
+    [self.classifyListVC dataFill:cateogryModel];
 }
 
 #pragma mark -

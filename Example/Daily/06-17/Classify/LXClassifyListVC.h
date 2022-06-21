@@ -7,10 +7,15 @@
 //
 #import <UIKit/UIKit.h>
 
+#import "LXClassifyListRightView.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListVC : UIViewController<JXCategoryListContentViewDelegate, JXPagerViewListViewDelegate> {
 }
+@property(nonatomic, strong, readonly)LXClassifyListRightView *panelRightView;
+
+- (void)dataFill:(LXCategoryModel *)cateogryModel;
 
 @end
 

@@ -88,8 +88,14 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewDelegate
 - (void)categoryView:(JXCategoryBaseView *)categoryView didClickSelectedItemAtIndex:(NSInteger)index {
-    if((index + kPinCategoryViewSectionIndex) < self.dataList.count) {
-        NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:index + kPinCategoryViewSectionIndex];
+    [self scrollTo:index];
+}
+- (void)scrollTo:(NSInteger)index {
+    NSInteger realIdx = index + kPinCategoryViewSectionIndex;
+    if(realIdx < self.dataList.count &&
+       realIdx < [self.collectionView numberOfSections] &&
+       [self.collectionView numberOfItemsInSection:realIdx] > 0) {
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:realIdx];
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:ip];
         CGPoint contentOffset = CGPointMake(0, CGRectGetMinY(attr.frame));
         if(index > 0) {
@@ -157,7 +163,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
         return CGSizeMake(width, kBannerSectionHeight);
     }
     CGFloat itemWidth = (width - 10 * 4) / 3.f;
-    itemWidth = MAX(0, itemWidth);
+    itemWidth = MAX(CGFLOAT_MIN, itemWidth);
     itemWidth = floorf(itemWidth);
     return CGSizeMake(itemWidth, itemWidth);
 }

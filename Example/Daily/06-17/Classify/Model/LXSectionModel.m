@@ -37,3 +37,18 @@
 #pragma mark - 🔐Private Actions
 
 @end
+
+@interface LXCategoryModel() {
+}
+
+@end
+
+@implementation LXCategoryModel
+
+#pragma mark -
+#pragma mark - 👀Public Actions
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+
+@end

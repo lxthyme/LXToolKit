@@ -38,7 +38,7 @@
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXSectionItemModel *)item {
     self.labTitle.text = item.title;
-    self.imgViewLogo.image = [UIImage imageNamed:item.icon];
+    self.imgViewLogo.image = [UIImage xl_imageNamed:item.icon];
 }
 
 #pragma mark -

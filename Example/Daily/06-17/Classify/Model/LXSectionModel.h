@@ -23,4 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface LXCategoryModel : NSObject {
+}
+@property(nonatomic, copy)NSString *categoryTitle;
+@property(nonatomic, strong)NSArray<LXSectionModel *> *sectionList;
+
+@end
+
 NS_ASSUME_NONNULL_END

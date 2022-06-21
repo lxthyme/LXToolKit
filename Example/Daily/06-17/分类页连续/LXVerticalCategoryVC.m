@@ -9,6 +9,7 @@
 
 #import "LXClassifyListVC.h"
 #import "LXVerticalCell.h"
+#import "LXSectionModel.h"
 
 @interface LXVerticalCategoryVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXPagerViewDelegate, JXPagerMainTableViewGestureDelegate, UITableViewDataSource,UITableViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
@@ -18,6 +19,8 @@
 @property(nonatomic, strong)JXPagerView *pagerView;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UICollectionView *collectionView;
+@property(nonatomic, strong)NSMutableArray<NSIndexPath *> *cellShowHistory;
+@property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
 @end
 
 @implementation LXVerticalCategoryVC
@@ -51,10 +54,45 @@
     [self prepareTableView];
     [self prepareCollectionView];
     [self prepareUI];
+    [self loadData];
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
+- (void)loadData {
+    NSMutableArray *dataList = [NSMutableArray array];
+    for (NSInteger j = 0; j < 20; j++) {
+        NSMutableArray *sectionList = [NSMutableArray array];
+        /// section 0: banner
+        // [dataList addObject:@[]];
+        NSArray *imageNames = @[@"boat", @"crab", @"lobster", @"apple", @"carrot", @"grape", @"watermelon", @"watermelon"];
+        NSArray<NSString *> *titleList = @[@"我的频道", @"超级大IP", @"热门HOT", @"周边衍生", @"影视综", @"游戏集锦", @"搞笑百事", @"lastOne"];
+        [titleList enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
+            LXSectionModel *sectionModel = [[LXSectionModel alloc] init];
+            sectionModel.sectionTitle = title;
+            NSUInteger randomCount = arc4random()%10 + 5;
+            NSMutableArray *itemList = [NSMutableArray array];
+            if(idx == titleList.count - 1) {
+                randomCount = 1;
+            }
+            for (int i = 0; i < randomCount; i ++) {
+                LXSectionItemModel *itemModel = [[LXSectionItemModel alloc] init];
+                itemModel.icon = imageNames[idx];
+                itemModel.title = title;
+                [itemList addObject:itemModel];
+            }
+            sectionModel.itemList = itemList;
+            [sectionList addObject:sectionModel];
+        }];
+        LXCategoryModel *category = [[LXCategoryModel alloc]init];
+        category.categoryTitle = [NSString stringWithFormat:@"row: %ld", j];
+        category.sectionList = sectionList;
+        [dataList addObject:category];
+    }
+    self.dataList = [dataList copy];
+    [self.tableView reloadData];
+    [self.collectionView reloadData];
+}
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -108,17 +146,25 @@
 
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titles.count;
+    return self.dataList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    cell.textLabel.text = self.titles[indexPath.row];
+    cell.backgroundColor = [UIColor whiteColor];
+    UIView *bgView = [UIView new];
+    bgView.backgroundColor = [UIColor redColor];
+    cell.selectedBackgroundView = bgView;
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.f];
+
+    LXCategoryModel *category = self.dataList[indexPath.row];
+    cell.textLabel.text = category.categoryTitle;
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    // [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     // if([self.listContainerView.scrollView isKindOfClass:[UICollectionView class]]) {
     //     UICollectionView *collectionView = (UICollectionView *)self.listContainerView.scrollView;
     //     [collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0] atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
@@ -129,14 +175,44 @@
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.titles count];
+    return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXVerticalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXVerticalCell" forIndexPath:indexPath];
-    // [cell dataFill];
+    LXCategoryModel *category = self.dataList[indexPath.row];
+    [cell dataFill:category];
     return cell;
 }
 #pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.cellShowHistory removeObject:indexPath];
+    NSLog(@"end_row: %ld", indexPath.row);
+}
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.cellShowHistory addObject:indexPath];
+    CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
+    LXCategoryModel *category = self.dataList[indexPath.row];
+    NSMutableString *log = [NSMutableString string];
+    [log appendFormat:@"contentOffset[%@-%f]", category.categoryTitle, point.y];
+    LXVerticalCell *verticalCell = (LXVerticalCell *)cell;
+    UICollectionView *cv = verticalCell.classifyListVC.panelRightView.collectionView;
+    JXCategoryTitleView *pinCategoryView = verticalCell.classifyListVC.panelRightView.pinCategoryView;
+    NSInteger idx = 0;
+    CGPoint contentOffset = CGPointZero;
+    if(point.y > 0) {
+        /// 上滑
+        idx = pinCategoryView.titles.count - 1;
+        contentOffset = CGPointMake(0, cv.contentSize.height - CGRectGetHeight(cv.frame));
+    } else if(point.y < 0) {
+        /// 下滑
+        // cv.contentOffset = CGPointZero;
+        // [log appendString:@": CGPointZero"];
+    }
+    cv.contentOffset = contentOffset;
+    BOOL success = [pinCategoryView selectCellAtIndex:idx selectedType:JXCategoryCellSelectedTypeCode];
+    [log appendFormat:@": %@_%@", kBOOLString(success), NSStringFromCGPoint(contentOffset)];
+    NSLog(@"%@", log);
+}
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
@@ -147,6 +223,26 @@
     return collectionView.frame.size;
 }
 
+#pragma mark -
+#pragma mark - ✈️UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // CGFloat offsetY = scrollView.contentOffset.y;
+    // NSLog(@"-->offsetY: %f", offsetY);
+    if([scrollView isEqual:self.collectionView]) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updatePage:) object:scrollView];
+        [self performSelector:@selector(updatePage:) withObject:scrollView afterDelay:0.3];
+    }
+}
+- (void)updatePage:(UIScrollView *)scrollView {
+    CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat page = offsetY / CGRectGetHeight(self.collectionView.frame);
+    NSLog(@"page: %f", page);
+    if(page < self.dataList.count) {
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:ceilf(page) inSection:0];
+        // [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionNone animated:YES];
+        [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
@@ -292,5 +388,11 @@
         _collectionView = cv;
     }
     return _collectionView;
+}
+- (NSMutableArray<NSIndexPath *> *)cellShowHistory {
+    if(!_cellShowHistory){
+        _cellShowHistory = [NSMutableArray array];
+    }
+    return _cellShowHistory;
 }
 @end
