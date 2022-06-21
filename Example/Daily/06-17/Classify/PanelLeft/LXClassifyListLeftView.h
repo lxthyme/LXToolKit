@@ -13,8 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListLeftView : UIView {
 }
+@property(nonatomic, copy)void (^didSelectRowBlock)(NSIndexPath *ip);
 
-- (void)dataFill:(NSArray<LXSectionModel *> *)dataList;
+- (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList;
 
 @end
 

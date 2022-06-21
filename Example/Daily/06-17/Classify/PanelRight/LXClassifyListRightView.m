@@ -52,10 +52,11 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     self.dataList = dataList;
     self.pinCategoryView.titles = [[dataList.rac_sequence skip:1]
                                    map:^id _Nullable(LXSectionModel * _Nullable value) {
-        return value.sectionTitle;
+        return value.title;
     }].array;
     [self.pinCategoryView reloadDataWithoutListContainer];
     [self.collectionView reloadData];
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
     __shouldRest = YES;
 }
 

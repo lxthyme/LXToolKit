@@ -18,15 +18,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXSectionModel : NSObject {
 }
-@property(nonatomic, copy)NSString *sectionTitle;
+@property(nonatomic, copy)NSString *title;
 @property(nonatomic, strong)NSArray<LXSectionItemModel *> *itemList;
+
+@end
+
+@interface LXSubCategoryModel : NSObject {
+}
+@property(nonatomic, copy)NSString *title;
+@property(nonatomic, strong)NSArray<LXSectionModel *> *sectionList;
 
 @end
 
 @interface LXCategoryModel : NSObject {
 }
-@property(nonatomic, copy)NSString *categoryTitle;
-@property(nonatomic, strong)NSArray<LXSectionModel *> *sectionList;
+@property(nonatomic, copy)NSString *title;
+@property(nonatomic, assign)JXCategoryTitleImageType imageType;
+@property(nonatomic, copy)NSString *imageNames;
+@property(nonatomic, copy)NSString *selectedImageNames;
+@property(nonatomic, strong)NSArray<LXSubCategoryModel *> *subCategoryList;
 
 @end
 

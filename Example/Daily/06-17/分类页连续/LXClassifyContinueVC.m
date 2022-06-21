@@ -49,7 +49,7 @@ static const NSInteger kSectionCount = 5;
         //         [itemList addObject:item];
         //     }
         //     LXSectionModel *section = [[LXSectionModel alloc]init];
-        //     section.sectionTitle = [NSString stringWithFormat:@"section: %ld", i];
+        //     section.title = [NSString stringWithFormat:@"section: %ld", i];
         //     section.itemList = [itemList copy];
         //     [dataList addObject:section];
         // }
@@ -65,7 +65,7 @@ static const NSInteger kSectionCount = 5;
             [itemList addObject:item];
         }
         LXSectionModel *section = [[LXSectionModel alloc]init];
-        section.sectionTitle = [NSString stringWithFormat:@"section: %ld", idx];
+        section.title = [NSString stringWithFormat:@"section: %ld", idx];
         section.itemList = [itemList copy];
 
         NSMutableArray *dataList = [NSMutableArray arrayWithArray:self.dataList];
@@ -89,7 +89,7 @@ static const NSInteger kSectionCount = 5;
             [itemList addObject:item];
         }
         LXSectionModel *section = [[LXSectionModel alloc]init];
-        section.sectionTitle = [NSString stringWithFormat:@"section: %ld", idx];
+        section.title = [NSString stringWithFormat:@"section: %ld", idx];
         section.itemList = [itemList copy];
 
         NSMutableArray *dataList = [NSMutableArray arrayWithArray:self.dataList];
@@ -134,7 +134,7 @@ static const NSInteger kSectionCount = 5;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     LXSectionModel *sectionModel = self.dataList[section];
-    return sectionModel.sectionTitle;
+    return sectionModel.title;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -195,7 +195,7 @@ static const NSInteger kSectionCount = 5;
                 [itemList addObject:item];
             }
             LXSectionModel *section = [[LXSectionModel alloc]init];
-            section.sectionTitle = [NSString stringWithFormat:@"section: %ld", i + kSectionAddNum];
+            section.title = [NSString stringWithFormat:@"section: %ld", i + kSectionAddNum];
             section.itemList = [itemList copy];
             [dataList addObject:section];
         }

@@ -17,7 +17,7 @@ static const CGFloat kLeftTableWidth = 100.f;
 }
 @property(nonatomic, strong)LXClassifyListLeftView *panelLeftView;
 @property(nonatomic, strong)LXClassifyListRightView *panelRightView;
-@property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
+@property(nonatomic, copy)NSArray<LXSubCategoryModel *> *dataList;
 
 @end
 
@@ -38,8 +38,9 @@ static const CGFloat kLeftTableWidth = 100.f;
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXCategoryModel *)cateogryModel {
-    [self.panelLeftView dataFill:cateogryModel.sectionList];
-    [self.panelRightView dataFill:cateogryModel.sectionList];
+    self.dataList = cateogryModel.subCategoryList;
+    [self.panelLeftView dataFill:cateogryModel.subCategoryList];
+    [self.panelRightView dataFill:cateogryModel.subCategoryList.firstObject.sectionList];
 }
 
 #pragma mark -
@@ -97,6 +98,14 @@ static const CGFloat kLeftTableWidth = 100.f;
 - (LXClassifyListLeftView *)panelLeftView {
     if(!_panelLeftView){
         LXClassifyListLeftView *v = [[LXClassifyListLeftView alloc]init];
+        WEAKSELF(self)
+        v.didSelectRowBlock = ^(NSIndexPath * _Nonnull ip) {
+            if(ip.row < weakSelf.dataList.count) {
+                LXSubCategoryModel *subCategoryModel = weakSelf.dataList[ip.row];
+                [weakSelf.panelRightView dataFill:subCategoryModel.sectionList];
+            }
+        };
+
         _panelLeftView = v;
     }
     return _panelLeftView;

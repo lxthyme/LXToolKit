@@ -61,45 +61,45 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     [self prepareTableView];
     [self prepareCollectionView];
     [self prepareUI];
-    [self loadData];
+    // [self loadData];
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)loadData {
-    NSMutableArray *dataList = [NSMutableArray array];
-    for (NSInteger j = 0; j < 20; j++) {
-        NSMutableArray *sectionList = [NSMutableArray array];
-        /// section 0: banner
-        // [dataList addObject:@[]];
-        NSArray *imageNames = @[@"boat", @"crab", @"lobster", @"apple", @"carrot", @"grape", @"watermelon", @"watermelon"];
-        NSArray<NSString *> *titleList = @[@"我的频道", @"超级大IP", @"热门HOT", @"周边衍生", @"影视综", @"游戏集锦", @"搞笑百事", @"lastOne"];
-        [titleList enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
-            LXSectionModel *sectionModel = [[LXSectionModel alloc] init];
-            sectionModel.sectionTitle = title;
-            NSUInteger randomCount = arc4random()%10 + 5;
-            NSMutableArray *itemList = [NSMutableArray array];
-            if(idx == titleList.count - 1) {
-                randomCount = 1;
-            }
-            for (int i = 0; i < randomCount; i ++) {
-                LXSectionItemModel *itemModel = [[LXSectionItemModel alloc] init];
-                itemModel.icon = imageNames[idx];
-                itemModel.title = title;
-                [itemList addObject:itemModel];
-            }
-            sectionModel.itemList = itemList;
-            [sectionList addObject:sectionModel];
-        }];
-        LXCategoryModel *category = [[LXCategoryModel alloc]init];
-        category.categoryTitle = [NSString stringWithFormat:@"row: %ld", j];
-        category.sectionList = sectionList;
-        [dataList addObject:category];
-    }
-    self.dataList = [dataList copy];
-    [self.tableView reloadData];
-    [self.collectionView reloadData];
-}
+// - (void)loadData {
+//     NSMutableArray *dataList = [NSMutableArray array];
+//     for (NSInteger j = 0; j < 20; j++) {
+//         NSMutableArray *sectionList = [NSMutableArray array];
+//         /// section 0: banner
+//         // [dataList addObject:@[]];
+//         NSArray *imageNames = @[@"boat", @"crab", @"lobster", @"apple", @"carrot", @"grape", @"watermelon", @"watermelon"];
+//         NSArray<NSString *> *titleList = @[@"我的频道", @"超级大IP", @"热门HOT", @"周边衍生", @"影视综", @"游戏集锦", @"搞笑百事", @"lastOne"];
+//         [titleList enumerateObjectsUsingBlock:^(NSString *title, NSUInteger idx, BOOL * _Nonnull stop) {
+//             LXSectionModel *sectionModel = [[LXSectionModel alloc] init];
+//             sectionModel.title = title;
+//             NSUInteger randomCount = arc4random()%10 + 5;
+//             NSMutableArray *itemList = [NSMutableArray array];
+//             if(idx == titleList.count - 1) {
+//                 randomCount = 1;
+//             }
+//             for (int i = 0; i < randomCount; i ++) {
+//                 LXSectionItemModel *itemModel = [[LXSectionItemModel alloc] init];
+//                 itemModel.icon = imageNames[idx];
+//                 itemModel.title = title;
+//                 [itemList addObject:itemModel];
+//             }
+//             sectionModel.itemList = itemList;
+//             [sectionList addObject:sectionModel];
+//         }];
+//         LXCategoryModel *category = [[LXCategoryModel alloc]init];
+//         category.title = [NSString stringWithFormat:@"row: %ld", j];
+//         category.sectionList = sectionList;
+//         [dataList addObject:category];
+//     }
+//     self.dataList = [dataList copy];
+//     [self.tableView reloadData];
+//     [self.collectionView reloadData];
+// }
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     cell.textLabel.font = [UIFont systemFontOfSize:14.f];
 
     LXCategoryModel *category = self.dataList[indexPath.row];
-    cell.textLabel.text = category.categoryTitle;
+    cell.textLabel.text = category.title;
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
@@ -206,7 +206,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
         CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
         LXCategoryModel *category = self.dataList[indexPath.row];
         NSMutableString *log = [NSMutableString string];
-        [log appendFormat:@"contentOffset[%@-%f]", category.categoryTitle, point.y];
+        [log appendFormat:@"contentOffset[%@-%f]", category.title, point.y];
         LXVerticalCell *verticalCell = (LXVerticalCell *)cell;
         UICollectionView *cv = verticalCell.classifyListVC.panelRightView.collectionView;
         JXCategoryTitleView *pinCategoryView = verticalCell.classifyListVC.panelRightView.pinCategoryView;

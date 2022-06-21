@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, strong, readonly)LXClassifyListRightView *panelRightView;
 
-- (void)dataFill:(LXCategoryModel *)cateogryModel;
+- (void)dataFill:(LXCategoryModel *)subCateogryModel;
 
 @end
 

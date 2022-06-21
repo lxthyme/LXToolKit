@@ -32,7 +32,7 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXSectionModel *)model {
-    self.labTitle.text = model.sectionTitle;
+    self.labTitle.text = model.title;
 }
 
 #pragma mark -

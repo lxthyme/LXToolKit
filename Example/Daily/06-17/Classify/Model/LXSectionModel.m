@@ -38,6 +38,21 @@
 
 @end
 
+@interface LXSubCategoryModel() {
+}
+
+@end
+
+@implementation LXSubCategoryModel
+
+#pragma mark -
+#pragma mark - 👀Public Actions
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+
+@end
+
 @interface LXCategoryModel() {
 }
 

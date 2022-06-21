@@ -12,7 +12,7 @@
 @interface LXClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
 @property(nonatomic, strong)UITableView *tableView;
-@property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
+@property(nonatomic, copy)NSArray<LXSubCategoryModel *> *dataList;
 @end
 
 @implementation LXClassifyListLeftView
@@ -29,7 +29,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXSectionModel *> *)dataList {
+- (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList {
     self.dataList = dataList;
     [self.tableView reloadData];
 }
@@ -46,8 +46,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXClassifyListLeftCell" forIndexPath:indexPath];
-    LXSectionModel *sectionModel = self.dataList[indexPath.row];
-    [cell dataFill:sectionModel.sectionTitle];
+    LXSubCategoryModel *subCategoryModel = self.dataList[indexPath.row];
+    [cell dataFill:subCategoryModel.title];
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
@@ -56,6 +56,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath);
 }
 
 #pragma mark -
