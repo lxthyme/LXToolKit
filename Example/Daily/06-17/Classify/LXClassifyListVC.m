@@ -124,9 +124,9 @@ static const CGFloat kLeftTableWidth = 0.f;
     if(!_panelLeftView){
         LXClassifyListLeftView *v = [[LXClassifyListLeftView alloc]init];
         WEAKSELF(self)
-        v.didSelectRowBlock = ^(NSIndexPath * _Nonnull ip) {
-            if(ip.row < weakSelf.dataList.count) {
-                LXSubCategoryModel *subCategoryModel = weakSelf.dataList[ip.row];
+        v.didSelectRowBlock = ^(NSInteger idx) {
+            if(idx < weakSelf.dataList.count) {
+                LXSubCategoryModel *subCategoryModel = weakSelf.dataList[idx];
                 [weakSelf.panelRightView dataFill:subCategoryModel.sectionList];
             }
         };

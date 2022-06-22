@@ -7,7 +7,7 @@
 //
 #import "LXPageVC.h"
 
-#import "LXClassifyListVC.h"
+#import "LXClassifyListRightVC.h"
 #import "LXClassifyListLeftView.h"
 
 static const CGFloat kLeftTableWidth = 100.f;
@@ -18,7 +18,7 @@ static const CGFloat kLeftTableWidth = 100.f;
 @property(nonatomic, strong)LXCategoryModel *categoryModel;
 @property(nonatomic, strong)UIPageViewController *pageVC;
 @property(nonatomic, copy)NSArray *dataList;
-@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
+@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *classifyVCList;
 @end
 
 @implementation LXPageVC
@@ -37,8 +37,8 @@ static const CGFloat kLeftTableWidth = 100.f;
 - (void)dataFill:(LXCategoryModel *)categoryModel; {
     self.categoryModel = categoryModel;
     [self.panelLeftView dataFill:categoryModel.subCategoryList];
-    LXClassifyListVC *vc = [self vcAtIdx:0];
-    [vc dataFill2:categoryModel.subCategoryList.firstObject];
+    LXClassifyListRightVC *vc = [self vcAtIdx:0];
+    [vc dataFill:categoryModel.subCategoryList.firstObject];
 }
 
 #pragma mark -
@@ -46,8 +46,8 @@ static const CGFloat kLeftTableWidth = 100.f;
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
-- (NSInteger)idxOfVC:(LXClassifyListVC *)vc {
-    RACSequence<RACTwoTuple<NSNumber *, LXClassifyListVC *> *> *seq = [self.classifyVCList.rac_sequence filter:^BOOL(RACTwoTuple<NSNumber *, LXClassifyListVC *> *_Nullable value) {
+- (NSInteger)idxOfVC:(LXClassifyListRightVC *)vc {
+    RACSequence<RACTwoTuple<NSNumber *, LXClassifyListRightVC *> *> *seq = [self.classifyVCList.rac_sequence filter:^BOOL(RACTwoTuple<NSNumber *, LXClassifyListRightVC *> *_Nullable value) {
         return [value.second isEqual:vc];
     }];
     if(seq.head == nil) {
@@ -55,17 +55,43 @@ static const CGFloat kLeftTableWidth = 100.f;
     }
     return [seq.head.first integerValue];
 }
-- (LXClassifyListVC *)vcAtIdx:(NSInteger)idx {
+- (LXClassifyListRightVC *)vcAtIdx:(NSInteger)idx {
     if(idx < 0 || idx >= self.categoryModel.subCategoryList.count) {
         return nil;
     }
-    LXClassifyListVC *vc = self.classifyVCList[@(idx)];
+    LXClassifyListRightVC *vc = self.classifyVCList[@(idx)];
     if(!vc) {
-        vc = [[LXClassifyListVC alloc]init];
+        vc = [[LXClassifyListRightVC alloc]init];
         vc.view.tag = idx;
+        WEAKSELF(self)
+        vc.refreshBlock = ^(BOOL isRefresh) {
+            if(isRefresh) {
+                [weakSelf pageVCScrollToIdx:idx - 1];
+            } else {
+                [weakSelf pageVCScrollToIdx:idx + 1];
+            }
+        };
         self.classifyVCList[@(idx)] = vc;
     }
     return vc;
+}
+- (void)pageVCScrollToIdx:(NSInteger)idx {
+    if(idx < 0 && idx >= self.categoryModel.subCategoryList.count) {
+        return;
+    }
+    LXClassifyListRightVC *vc = [self vcAtIdx:idx];
+    LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx];
+    [vc dataFill:subCategoryModel];
+
+    NSInteger previousIdx = [self idxOfVC:self.pageVC.viewControllers.firstObject];
+    UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
+    if(previousIdx > idx) {
+        direction = UIPageViewControllerNavigationDirectionReverse;
+    }
+    [self.pageVC setViewControllers:@[vc]
+                          direction: direction
+                           animated:YES
+                         completion:nil];
 }
 
 #pragma mark -
@@ -81,9 +107,9 @@ static const CGFloat kLeftTableWidth = 100.f;
     if(idx <= 0) {
         return nil;
     }
-    LXClassifyListVC *vc = [self vcAtIdx:idx - 1];
+    LXClassifyListRightVC *vc = [self vcAtIdx:idx - 1];
     LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx - 1];
-    [vc dataFill2:subCategoryModel];
+    [vc dataFill:subCategoryModel];
     return vc;
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -91,9 +117,9 @@ static const CGFloat kLeftTableWidth = 100.f;
     if(idx >= self.categoryModel.subCategoryList.count - 1) {
         return nil;
     }
-    LXClassifyListVC *vc = [self vcAtIdx:idx + 1];
+    LXClassifyListRightVC *vc = [self vcAtIdx:idx + 1];
     LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx + 1];
-    [vc dataFill2:subCategoryModel];
+    [vc dataFill:subCategoryModel];
     return vc;
 }
 
@@ -106,7 +132,7 @@ static const CGFloat kLeftTableWidth = 100.f;
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self addChildViewController:self.pageVC];
-    LXClassifyListVC *vc = [self vcAtIdx:0];
+    LXClassifyListRightVC *vc = [self vcAtIdx:0];
     self.classifyVCList[@0] = vc;
     [self.pageVC setViewControllers:@[vc]
                           direction:UIPageViewControllerNavigationDirectionReverse
@@ -132,7 +158,7 @@ static const CGFloat kLeftTableWidth = 100.f;
 }
 
 #pragma mark Lazy Property
-- (NSMutableDictionary<NSNumber *, LXClassifyListVC *> *)classifyVCList {
+- (NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *)classifyVCList {
     if(!_classifyVCList){
         _classifyVCList = [NSMutableDictionary dictionary];
     }
@@ -153,23 +179,9 @@ static const CGFloat kLeftTableWidth = 100.f;
     if(!_panelLeftView){
         LXClassifyListLeftView *v = [[LXClassifyListLeftView alloc]init];
         WEAKSELF(self)
-        v.didSelectRowBlock = ^(NSIndexPath * _Nonnull ip) {
-            if(ip.row < weakSelf.categoryModel.subCategoryList.count) {
-                LXSubCategoryModel *subCategoryModel = weakSelf.categoryModel.subCategoryList[ip.row];
-                LXClassifyListVC *vc = [weakSelf vcAtIdx:ip.row];
-                [vc dataFill2:subCategoryModel];
-                NSInteger previousIdx = [weakSelf idxOfVC:weakSelf.pageVC.viewControllers.firstObject];
-                UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
-                if(previousIdx > ip.row) {
-                    direction = UIPageViewControllerNavigationDirectionReverse;
-                }
-                [weakSelf.pageVC setViewControllers:@[vc]
-                                          direction: direction
-                                           animated:YES
-                                         completion:nil];
-            }
+        v.didSelectRowBlock = ^(NSInteger idx) {
+            [weakSelf pageVCScrollToIdx:idx];
         };
-
         _panelLeftView = v;
     }
     return _panelLeftView;

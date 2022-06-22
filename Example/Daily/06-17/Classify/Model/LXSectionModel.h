@@ -9,6 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, LXSubCategoryIndexType) {
+    LXSubCategoryIndexTypeDefault,
+    LXSubCategoryIndexTypeFirst,
+    LXSubCategoryIndexTypeLast
+};
+
 @interface LXSectionItemModel : LXBaseModel {
 }
 @property(nonatomic, copy)NSString *title;
@@ -25,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXSubCategoryModel : LXBaseModel {
 }
+/// 顺序
+@property(nonatomic, assign)LXSubCategoryIndexType idxType;
 @property(nonatomic, copy)NSString *title;
 @property(nonatomic, strong)NSArray<LXSectionModel *> *sectionList;
 

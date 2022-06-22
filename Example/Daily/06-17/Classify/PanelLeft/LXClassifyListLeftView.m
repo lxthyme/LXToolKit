@@ -90,7 +90,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath);
+    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath.row);
 }
 
 #pragma mark -

@@ -106,6 +106,13 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
                 [sectionList addObject:sectionModel];
             }];
             LXSubCategoryModel *subCategory = [[LXSubCategoryModel alloc]init];
+            LXSubCategoryIndexType idxType = LXSubCategoryIndexTypeDefault;
+            if(j == 0) {
+                idxType = LXSubCategoryIndexTypeFirst;
+            } else if(j == 20) {
+                idxType = LXSubCategoryIndexTypeLast;
+            }
+            subCategory.idxType = idxType;
             subCategory.title = [NSString stringWithFormat:@"[%@]row: %ld", tuple.first, j];
             subCategory.sectionList = sectionList;
             [subCategoryList addObject:subCategory];

@@ -1,62 +1,72 @@
 //
-//  LXClassifyListRightView.m
+//  LXClassifyListRightVC.m
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyListRightView.h"
+
+#import "LXClassifyListRightVC.h"
 
 #import "LXClassifyRightCollectionCell.h"
 #import "LXClassifySectionHeaderView.h"
 #import "LXSectionCategoryHeaderView.h"
 #import "LXClassifyListBannerCell.h"
+#import "LXMyCollectionView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
 static const NSUInteger kPinCategoryViewSectionIndex = 1;
 static const CGFloat kPinCategoryViewHeight = 60.f;
 
-@interface LXClassifyListRightView()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
 }
 @property (nonatomic, strong)JXCategoryTitleView *pinCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
-@property(nonatomic, copy)NSArray<LXSectionModel *> *dataList;
+@property(nonatomic, strong)LXSubCategoryModel *subCateogryModel;
 
 @end
 
-@implementation LXClassifyListRightView
+@implementation LXClassifyListRightVC
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self prepareCollectionView];
-        [self prepareUI];
-    }
-    return self;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self prepareCollectionView];
+    [self prepareUI];
 }
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
 
-    CGRect frame = self.bounds;
+    CGRect frame = self.view.bounds;
     frame.size.height = kPinCategoryViewHeight;
     self.pinCategoryView.frame = frame;
 }
+
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXSectionModel *> *)dataList {
-    self.dataList = dataList;
-    self.pinCategoryView.titles = [[dataList.rac_sequence skip:1]
+- (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
+    self.subCateogryModel = subCateogryModel;
+    self.pinCategoryView.titles = [[subCateogryModel.sectionList.rac_sequence skip:1]
                                    map:^id _Nullable(LXSectionModel * _Nullable value) {
         return value.title;
     }].array;
     [self.pinCategoryView reloadDataWithoutListContainer];
     [self.collectionView reloadData];
     [self.collectionView setContentOffset:CGPointZero animated:YES];
+
+    [self.collectionView.mj_footer resetNoMoreData];
+
+    BOOL isFirst = subCateogryModel.idxType == LXSubCategoryIndexTypeFirst;
+    MJRefreshDispatchAsyncOnMainQueue(self.collectionView.mj_header.state = isFirst ? MJRefreshStateNoMoreData : MJRefreshStateIdle;)
+    if(subCateogryModel.idxType == LXSubCategoryIndexTypeLast) {
+        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+    }
+
     __shouldRest = YES;
 }
 
@@ -66,24 +76,24 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)updateSectionHeaderAttributes {
-    if(!__shouldRest) {
-        return;
-    }
-    __shouldRest = NO;
-
-    //如果最后一个section条目太少了，会导致滚动最底部，但是却不能触发categoryView选中最后一个item。而且点击最后一个滚动的contentOffset.y也不好弄。所以添加contentInset，让最后一个section滚到最下面能显示完整个屏幕。
-    NSInteger lastSection = self.dataList.count - 1;
-    NSInteger lastItem = self.dataList[lastSection].itemList.count - 1;
-    NSIndexPath *lastHeaderIp = [NSIndexPath indexPathForRow:0 inSection:lastSection];
-    NSIndexPath *lastItemIp = [NSIndexPath indexPathForItem:lastItem inSection:lastSection];
-    UICollectionViewLayoutAttributes *lastHeaderAttri = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:lastHeaderIp];
-    UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
-
-    CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
-    CGFloat value = (self.bounds.size.height - kPinCategoryViewHeight) - lastSectionHeight;
-    if (value > 0) {
-        self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
-    }
+    // if(!__shouldRest) {
+    //     return;
+    // }
+    // __shouldRest = NO;
+    // 
+    // //如果最后一个section条目太少了，会导致滚动最底部，但是却不能触发categoryView选中最后一个item。而且点击最后一个滚动的contentOffset.y也不好弄。所以添加contentInset，让最后一个section滚到最下面能显示完整个屏幕。
+    // NSInteger lastSection = self.subCateogryModel.sectionList.count - 1;
+    // NSInteger lastItem = self.subCateogryModel.sectionList[lastSection].itemList.count - 1;
+    // NSIndexPath *lastHeaderIp = [NSIndexPath indexPathForRow:0 inSection:lastSection];
+    // NSIndexPath *lastItemIp = [NSIndexPath indexPathForItem:lastItem inSection:lastSection];
+    // UICollectionViewLayoutAttributes *lastHeaderAttri = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:lastHeaderIp];
+    // UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
+    // 
+    // CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
+    // CGFloat value = (self.view.bounds.size.height - kPinCategoryViewHeight) - lastSectionHeight;
+    // if (value > 0) {
+    //     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
+    // }
 }
 
 #pragma mark -
@@ -93,7 +103,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 }
 - (void)scrollTo:(NSInteger)index {
     NSInteger realIdx = index + kPinCategoryViewSectionIndex;
-    if(realIdx < self.dataList.count &&
+    if(realIdx < self.subCateogryModel.sectionList.count &&
        realIdx < [self.collectionView numberOfSections] &&
        [self.collectionView numberOfItemsInSection:realIdx] > 0) {
         NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:realIdx];
@@ -108,13 +118,13 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.dataList.count;
+    return self.subCateogryModel.sectionList.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(section == kBannerSectionIdx) {
         return 1;
     }
-    return self.dataList[section].itemList.count;
+    return self.subCateogryModel.sectionList[section].itemList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
@@ -122,7 +132,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
         return cell;
     }
     LXClassifyRightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyRightCollectionCell" forIndexPath:indexPath];
-    LXSectionModel *sectionModel = self.dataList[indexPath.section];
+    LXSectionModel *sectionModel = self.subCateogryModel.sectionList[indexPath.section];
     LXSectionItemModel *itemModel = sectionModel.itemList[indexPath.row];
     [cell dataFill:itemModel];
     return cell;
@@ -141,7 +151,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
             return self.sectionCategoryHeaderView;
         } else {
             LXClassifySectionHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXClassifySectionHeaderView" forIndexPath:indexPath];
-            LXSectionModel *sectionModel = self.dataList[indexPath.section];
+            LXSectionModel *sectionModel = self.subCateogryModel.sectionList[indexPath.section];
             [header dataFill:sectionModel];
             return header;
         }
@@ -195,8 +205,8 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     if([scrollView isEqual:self.collectionView] && [self.collectionView numberOfSections] > 1) {
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:kPinCategoryViewSectionIndex]];
         if(offsetY >= CGRectGetMinY(attr.frame)) {
-            if(self.pinCategoryView.superview != self) {
-                [self addSubview:self.pinCategoryView];
+            if(self.pinCategoryView.superview != self.view) {
+                [self.view addSubview:self.pinCategoryView];
             }
         } else if(self.pinCategoryView.superview != self.sectionCategoryHeaderView) {
             [self.sectionCategoryHeaderView addSubview:self.pinCategoryView];
@@ -243,6 +253,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     header.refreshingBlock = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             !weakSelf.refreshBlock ?: weakSelf.refreshBlock(YES);
+            [weakSelf.collectionView.mj_header endRefreshing];
         });
     };
     self.collectionView.mj_header = header;
@@ -255,21 +266,22 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     footer.refreshingBlock = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             !weakSelf.refreshBlock ?: weakSelf.refreshBlock(NO);
+            [weakSelf.collectionView.mj_footer endRefreshing];
         });
     };
     self.collectionView.mj_footer = footer;
 }
 - (void)prepareUI {
-    self.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.collectionView];
+    [self.view addSubview:self.collectionView];
 
     [self masonry];
 }
 #pragma mark getter/setter
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    // MASAttachKeys(...)
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
