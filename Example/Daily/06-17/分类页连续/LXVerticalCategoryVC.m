@@ -21,37 +21,16 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 }
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
-@property (nonatomic, strong)NSArray *titles;
 @property(nonatomic, strong)JXPagerView *pagerView;
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)UICollectionView *collectionView;
-@property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
+@property(nonatomic, strong)LXCategoryModel *categoryModel;
 @property(nonatomic, assign)LXClassifyScrollType scrollType;
 @end
 
 @implementation LXVerticalCategoryVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
-
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:YES];
-    // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
@@ -66,6 +45,14 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 
 #pragma mark -
 #pragma mark - 🌎LoadData
+- (void)dataFill:(LXCategoryModel *)categoryModel {
+    self.categoryModel = categoryModel;
+    self.categoryView.titles = [categoryModel.subCategoryList.rac_sequence map:^id _Nullable(LXSubCategoryModel * _Nullable model) {
+        return model.title;
+    }].array;
+    // [self.panelLeftView dataFill:categoryModel.subCategoryList];
+    // [self.panelRightView dataFill:categoryModel.subCategoryList.firstObject.sectionList];
+}
 // - (void)loadData {
 //     NSMutableArray *dataList = [NSMutableArray array];
 //     for (NSInteger j = 0; j < 20; j++) {
@@ -119,7 +106,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 #pragma mark -
 #pragma mark - ✈️JXCategoryListContainerViewDelegate
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
-    return self.titles.count;
+    return self.categoryModel.subCategoryList.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
     LXClassifyListVC *vc = [[LXClassifyListVC alloc]init];
@@ -141,7 +128,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     return [UIView new];
 }
 - (NSInteger)numberOfListsInPagerView:(JXPagerView *)pagerView {
-    return self.titles.count;
+    return self.categoryModel.subCategoryList.count;
 }
 - (id<JXPagerViewListViewDelegate>)pagerView:(JXPagerView *)pagerView initListAtIndex:(NSInteger)index {
     LXClassifyListVC *vc = [[LXClassifyListVC alloc]init];
@@ -159,7 +146,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataList.count;
+    return self.categoryModel.subCategoryList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
@@ -170,7 +157,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     cell.textLabel.textColor = [UIColor blackColor];
     cell.textLabel.font = [UIFont systemFontOfSize:14.f];
 
-    LXCategoryModel *category = self.dataList[indexPath.row];
+    LXCategoryModel *category = self.categoryModel.subCategoryList[indexPath.row];
     cell.textLabel.text = category.title;
     return cell;
 }
@@ -192,21 +179,20 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataList.count;
+    return self.categoryModel.subCategoryList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXVerticalCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXVerticalCell" forIndexPath:indexPath];
-    LXCategoryModel *category = self.dataList[indexPath.row];
-    [cell dataFill:category];
+    [cell dataFill:self.categoryModel];
     return cell;
 }
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if(self.scrollType != LXClassifyScrollTypeFromPanelLeft) {
         CGPoint point = [collectionView.panGestureRecognizer translationInView:collectionView];
-        LXCategoryModel *category = self.dataList[indexPath.row];
+        LXSubCategoryModel *subCategory = self.categoryModel.subCategoryList[indexPath.row];
         NSMutableString *log = [NSMutableString string];
-        [log appendFormat:@"contentOffset[%@-%f]", category.title, point.y];
+        [log appendFormat:@"contentOffset[%@-%f]", subCategory.title, point.y];
         LXVerticalCell *verticalCell = (LXVerticalCell *)cell;
         UICollectionView *cv = verticalCell.classifyListVC.panelRightView.collectionView;
         JXCategoryTitleView *pinCategoryView = verticalCell.classifyListVC.panelRightView.pinCategoryView;
@@ -265,8 +251,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
 
-    self.titles = @[@"我的频道", @"超级大IP", @"热门HOT", @"周边衍生", @"影视综", @"游戏集锦", @"搞笑百事", @"lastOne"];
-    self.categoryView.titles = self.titles;
+
     self.categoryView.listContainer = self.listContainerView;
     self.listContainerView.bounces = YES;
     // self.categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
@@ -297,7 +282,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
         CGFloat offsetY = [x CGPointValue].y;
         CGFloat page = offsetY / CGRectGetHeight(self.collectionView.frame);
         NSLog(@"page: %f, scrollType: %ld", page, self.scrollType);
-        if(page < self.dataList.count) {
+        if(page < self.categoryModel.subCategoryList.count) {
             NSIndexPath *ip = [NSIndexPath indexPathForRow:ceilf(page) inSection:0];
             // [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionNone animated:YES];
             [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
@@ -407,6 +392,7 @@ typedef NS_ENUM(NSInteger, LXClassifyScrollType) {
         UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:flowLayout];
         cv.backgroundColor = [UIColor whiteColor];
         cv.pagingEnabled = YES;
+        cv.scrollEnabled = NO;
         if (@available(iOS 11.0, *)) {
             cv.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {

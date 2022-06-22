@@ -32,9 +32,9 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXCategoryModel *)cateogryModel {
+- (void)dataFill:(LXCategoryModel *)categoryModel {
     [self.classifyListVC viewDidLoad];
-    [self.classifyListVC dataFill:cateogryModel];
+    [self.classifyListVC dataFill:categoryModel];
 }
 
 #pragma mark -

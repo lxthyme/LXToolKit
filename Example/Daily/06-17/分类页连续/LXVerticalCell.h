@@ -12,11 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXVerticalCell : UICollectionViewCell {
+@interface LXVerticalCell : LXBaseCollectionViewCell {
 }
 @property(nonatomic, strong)LXClassifyListVC *classifyListVC;
 
-- (void)dataFill:(LXCategoryModel *)cateogryModel;
+- (void)dataFill:(LXCategoryModel *)categoryModel;
 
 @end
 

@@ -11,7 +11,7 @@
 #import "LXClassifyListLeftView.h"
 #import "LXClassifyListRightView.h"
 
-static const CGFloat kLeftTableWidth = 100.f;
+static const CGFloat kLeftTableWidth = 0.f;
 
 @interface LXClassifyListVC()<JXCategoryViewDelegate> {
 }
@@ -22,10 +22,6 @@ static const CGFloat kLeftTableWidth = 100.f;
 @end
 
 @implementation LXClassifyListVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
-
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (void)viewDidLoad {
@@ -37,10 +33,15 @@ static const CGFloat kLeftTableWidth = 100.f;
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXCategoryModel *)cateogryModel {
-    self.dataList = cateogryModel.subCategoryList;
-    [self.panelLeftView dataFill:cateogryModel.subCategoryList];
-    [self.panelRightView dataFill:cateogryModel.subCategoryList.firstObject.sectionList];
+- (void)dataFill:(LXCategoryModel *)categoryModel {
+    self.dataList = categoryModel.subCategoryList;
+    [self.panelLeftView dataFill:categoryModel.subCategoryList];
+    [self.panelRightView dataFill:categoryModel.subCategoryList.firstObject.sectionList];
+}
+- (void)dataFill2:(LXSubCategoryModel *)subCategoryModel {
+    // self.dataList = categoryModel.subCategoryList;
+    // [self.panelLeftView dataFill:categoryModel.subCategoryList];
+    [self.panelRightView dataFill:subCategoryModel.sectionList];
 }
 
 #pragma mark -
@@ -91,6 +92,30 @@ static const CGFloat kLeftTableWidth = 100.f;
 - (LXClassifyListRightView *)panelRightView {
     if(!_panelRightView){
         LXClassifyListRightView *v = [[LXClassifyListRightView alloc]init];
+        @weakify(self)
+        @weakify(v)
+        v.refreshBlock = ^(BOOL isRefresh) {
+            @strongify(self)
+            @strongify(v)
+            if(isRefresh) {
+                BOOL success = [self.panelLeftView scrollToPreviousRow];
+                if(success) {
+                    [v.collectionView.mj_header endRefreshing];
+                } else {
+                    [v.collectionView.mj_header endRefreshingWithCompletionBlock:^{
+                        v.collectionView.mj_header.state = MJRefreshStateNoMoreData;
+                    }];
+                }
+            } else {
+                BOOL success = [self.panelLeftView scrollToNextRow];
+                if(success) {
+                    [v.collectionView.mj_footer endRefreshing];
+                } else {
+                    [v.collectionView.mj_footer endRefreshingWithNoMoreData];
+                }
+            }
+        };
+
         _panelRightView = v;
     }
     return _panelRightView;

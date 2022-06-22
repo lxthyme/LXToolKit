@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyRightCollectionCell : UICollectionViewCell {
+@interface LXClassifyRightCollectionCell : LXBaseCollectionViewCell {
 }
 
 - (void)dataFill:(LXSectionItemModel *)item;

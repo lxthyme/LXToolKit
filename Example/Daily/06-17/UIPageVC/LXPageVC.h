@@ -1,19 +1,20 @@
 //
-//  LXClassifySectionHeaderView.h
+//  LXPageVC.h
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+
 #import "LXSectionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifySectionHeaderView : LXBaseCollectionReusableView {
+@interface LXPageVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
 
-- (void)dataFill:(LXSectionModel *)model;
+- (void)dataFill:(LXCategoryModel *)subCateogryModel;
 
 @end
 

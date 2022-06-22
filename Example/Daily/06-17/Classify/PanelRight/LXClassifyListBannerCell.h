@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListBannerCell : UICollectionViewCell {
+@interface LXClassifyListBannerCell : LXBaseCollectionViewCell {
 }
 
 @end

@@ -7,8 +7,10 @@
 //
 #import "LXClassifyWrapperVC.h"
 
+#import "LXSectionModel.h"
+#import "LXVerticalCategoryVC.h"
 #import "LXClassifyListVC.h"
-#import <YYText/YYLabel.h>
+#import "LXPageVC.h"
 
 static const CGFloat kLabelAllWidth = 44.f;
 static const CGFloat kCategoryHeight = 80.f;
@@ -22,15 +24,11 @@ static const NSInteger kCategoryMaxCount = 5;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
-@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
+@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXVerticalCategoryVC *> *classifyVCList;
 
 @end
 
 @implementation LXClassifyWrapperVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
-
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (void)viewWillAppear:(BOOL)animated {
@@ -172,11 +170,14 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     return self.dataList.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    LXClassifyListVC *vc = self.classifyVCList[@(index)];
-    if(!vc) {
-        vc = [[LXClassifyListVC alloc]init];
-        self.classifyVCList[@(index)] = vc;
-    }
+    // LXVerticalCategoryVC *vc = self.classifyVCList[@(index)];
+    // if(!vc) {
+    //     vc = [[LXVerticalCategoryVC alloc]init];
+    //     self.classifyVCList[@(index)] = vc;
+    // }
+    // LXClassifyListVC *vc = [[LXClassifyListVC alloc]init];
+    // LXVerticalCategoryVC *vc = [[LXVerticalCategoryVC alloc]init];
+    LXPageVC *vc = [[LXPageVC alloc]init];
     LXCategoryModel *categoryModel = self.dataList[index];
     [vc dataFill:categoryModel];
     return vc;
@@ -251,7 +252,7 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
 }
 
 #pragma mark Lazy Property
-- (NSMutableDictionary<NSNumber *, LXClassifyListVC *> *)classifyVCList {
+- (NSMutableDictionary<NSNumber *, LXVerticalCategoryVC *> *)classifyVCList {
     if(!_classifyVCList){
         _classifyVCList = [NSMutableDictionary dictionary];
     }

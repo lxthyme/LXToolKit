@@ -232,6 +232,34 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     [self.collectionView registerClass:[LXSectionCategoryHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXSectionCategoryHeaderView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"UICollectionReusableView"];
+
+    WEAKSELF(self)
+    MJRefreshNormalHeader *header = [[MJRefreshNormalHeader alloc]init];
+    [header setTitle:@"下拉加载上一个分类" forState:MJRefreshStateIdle];
+    [header setTitle:@"松开加载上一个分类" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [header setTitle:@"will refresh" forState:MJRefreshStateWillRefresh];
+    [header setTitle:@"已经是第一个分类了" forState:MJRefreshStateNoMoreData];
+    header.refreshingBlock = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            !weakSelf.refreshBlock ?: weakSelf.refreshBlock(YES);
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        });
+    };
+    self.collectionView.mj_header = header;
+    MJRefreshBackStateFooter *footer = [[MJRefreshBackStateFooter alloc]init];
+    [footer setTitle:@"上拉加载下一个分类" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开加载下一个分类" forState:MJRefreshStatePulling];
+    [footer setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"will refresh" forState:MJRefreshStateWillRefresh];
+    [footer setTitle:@"已经是最后一个分类了" forState:MJRefreshStateNoMoreData];
+    footer.refreshingBlock = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            !weakSelf.refreshBlock ?: weakSelf.refreshBlock(NO);
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        });
+    };
+    self.collectionView.mj_footer = footer;
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];

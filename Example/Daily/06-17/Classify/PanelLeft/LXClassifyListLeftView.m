@@ -36,9 +36,43 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (BOOL)scrollToPreviousRow {
+    return [self scrollToRowWithType: LXClassifyLeftScrollTypePrevious];
+}
+- (BOOL)scrollToNextRow {
+    return [self scrollToRowWithType: LXClassifyLeftScrollTypeNext];
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (BOOL)scrollToRowWithType:(LXClassifyLeftScrollType)scrollType {
+    NSIndexPath *ip;
+    switch (scrollType) {
+        case LXClassifyLeftScrollTypePrevious:
+            ip = [NSIndexPath
+                  indexPathForRow:self.tableView.indexPathForSelectedRow.row - 1
+                  inSection:self.tableView.indexPathForSelectedRow.section];
+            break;
+
+        case LXClassifyLeftScrollTypeNext:
+            ip = [NSIndexPath
+                  indexPathForRow:self.tableView.indexPathForSelectedRow.row + 1
+                  inSection:self.tableView.indexPathForSelectedRow.section];
+            break;
+    }
+    if(ip) {
+        if(ip.row <= 1) {
+            return NO;
+        } else if(ip.row <= self.dataList.count - 1) {
+            return NO;
+        }
+        [self.tableView scrollToRowAtIndexPath:ip
+                              atScrollPosition:UITableViewScrollPositionMiddle
+                                      animated:YES];
+        return YES;
+    }
+    return NO;
+}
 
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -20,10 +20,6 @@ static const NSInteger kSectionCount = 5;
 @end
 
 @implementation LXClassifyContinueVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
-
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (void)viewDidLoad {

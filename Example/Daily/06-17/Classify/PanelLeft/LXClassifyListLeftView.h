@@ -9,13 +9,21 @@
 
 #import "LXSectionModel.h"
 
+typedef NS_ENUM(NSInteger, LXClassifyLeftScrollType) {
+    LXClassifyLeftScrollTypePrevious = 1,
+    LXClassifyLeftScrollTypeNext = 2,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListLeftView : UIView {
+@interface LXClassifyListLeftView : LXBaseView {
 }
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSIndexPath *ip);
 
 - (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList;
+
+- (BOOL)scrollToPreviousRow;
+- (BOOL)scrollToNextRow;
 
 @end
 

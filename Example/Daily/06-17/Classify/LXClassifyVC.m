@@ -18,10 +18,6 @@
 @end
 
 @implementation LXClassifyVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
-
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (void)viewWillAppear:(BOOL)animated {

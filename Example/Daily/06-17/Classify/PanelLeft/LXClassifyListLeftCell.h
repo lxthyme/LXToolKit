@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListLeftCell : UITableViewCell {
+@interface LXClassifyListLeftCell : LXBaseTableViewCell {
 }
 
 - (void)dataFill:(NSString *)title;

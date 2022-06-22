@@ -7,10 +7,14 @@
 //
 #import <UIKit/UIKit.h>
 
+#import "LXSectionModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXVerticalCategoryVC : UIViewController<JXCategoryListContentViewDelegate> {
+@interface LXVerticalCategoryVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
+
+- (void)dataFill:(LXCategoryModel *)subCateogryModel;
 
 @end
 

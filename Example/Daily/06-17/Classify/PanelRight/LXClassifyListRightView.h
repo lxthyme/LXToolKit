@@ -12,10 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListRightView : UIView {
+@interface LXClassifyListRightView : LXBaseView {
 }
 @property (nonatomic, strong, readonly)JXCategoryTitleView *pinCategoryView;
 @property(nonatomic, strong, readonly)LXMyCollectionView *collectionView;
+@property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
 - (void)dataFill:(NSArray<LXSectionModel *> *)dataList;
 

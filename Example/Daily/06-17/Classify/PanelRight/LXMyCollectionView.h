@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXMyCollectionView : UICollectionView {
+@interface LXMyCollectionView : LXBaseCollectionView {
 }
 @property (nonatomic, copy) void(^layoutSubviewsCallback)(void);
 

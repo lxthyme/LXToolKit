@@ -11,11 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListVC : UIViewController<JXCategoryListContentViewDelegate, JXPagerViewListViewDelegate> {
+@interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate, JXPagerViewListViewDelegate> {
 }
 @property(nonatomic, strong, readonly)LXClassifyListRightView *panelRightView;
 
 - (void)dataFill:(LXCategoryModel *)subCateogryModel;
+- (void)dataFill2:(LXSubCategoryModel *)subCategoryModel;
 
 @end
 
