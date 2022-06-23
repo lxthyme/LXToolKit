@@ -11,6 +11,8 @@
 #import "LXVerticalCategoryVC.h"
 #import "LXClassifyListVC.h"
 #import "LXPageVC.h"
+#import "LXAllCategoryView.h"
+#import <pop/POP.h>
 
 static const CGFloat kLabelAllWidth = 44.f;
 static const CGFloat kCategoryHeight = 80.f;
@@ -20,7 +22,7 @@ static const NSInteger kCategoryMaxCount = 5;
 }
 @property(nonatomic, strong)YYLabel *labAll;
 @property (nonatomic, strong)JXCategoryTitleImageView *categoryView;
-@property (nonatomic, strong)JXCategoryTitleImageView *allCategoryView;
+@property (nonatomic, strong)LXAllCategoryView *allCategoryView;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
@@ -142,15 +144,21 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     RACSequence *selectedImageNames = [self.dataList.rac_sequence map:^id _Nullable(LXCategoryModel * _Nullable model) {
         return model.selectedImageNames;
     }];
-    self.categoryView.imageTypes = [imageType take:kCategoryMaxCount].array;
-    self.categoryView.titles = [titles take:kCategoryMaxCount].array;
-    self.categoryView.imageNames = [imageNames take:kCategoryMaxCount].array;
-    self.categoryView.selectedImageNames = [selectedImageNames take:kCategoryMaxCount].array;
-    //
-    self.allCategoryView.imageTypes = imageType.array;
-    self.allCategoryView.titles = titles.array;
-    self.allCategoryView.imageNames = imageNames.array;
-    self.allCategoryView.selectedImageNames = selectedImageNames.array;
+    // self.categoryView.imageTypes = [imageType take:kCategoryMaxCount].array;
+    // self.categoryView.titles = [titles take:kCategoryMaxCount].array;
+    // self.categoryView.imageNames = [imageNames take:kCategoryMaxCount].array;
+    // self.categoryView.selectedImageNames = [selectedImageNames take:kCategoryMaxCount].array;
+    ///
+    self.categoryView.imageTypes = imageType.array;
+    self.categoryView.titles = titles.array;
+    self.categoryView.imageNames = imageNames.array;
+    self.categoryView.selectedImageNames = selectedImageNames.array;
+    ///
+    // self.allCategoryView
+    // self.allCategoryView.imageTypes = imageType.array;
+    // self.allCategoryView.titles = titles.array;
+    // self.allCategoryView.imageNames = imageNames.array;
+    // self.allCategoryView.selectedImageNames = selectedImageNames.array;
 }
 
 #pragma mark -
@@ -202,18 +210,20 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     [[self.allMaskView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        self.allMaskView.opaque = 1.f;
-        self.allCategoryView.opaque = 1.f;
-        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:5 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.allMaskView.opaque = 0.f;
-            CGRect frame = self.allCategoryView.frame;
-            frame.origin.y -= CGRectGetHeight(self.allCategoryView.frame) + 20.f;
-            self.allCategoryView.frame = frame;
-            self.allMaskView.opaque = 0.f;
-            self.allCategoryView.opaque = 0.f;
-        } completion:^(BOOL finished) {
+        self.allMaskView.hidden = NO;
+        POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+        maskAnim.fromValue = @1.f;
+        maskAnim.toValue = @0.f;
+        [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        anim.fromValue = @100.f;
+        anim.toValue = @(-200.f);
+        anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
             self.allMaskView.hidden = YES;
-        }];
+        };
+        [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+
+
     }];
 }
 - (void)prepareUI {
@@ -224,8 +234,8 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     [self.view addSubview:self.labAll];
     [self.view addSubview:self.listContainerView];
 
-    // [self.allMaskView addSubview:self.allCategoryView];
-    // [self.view addSubview:self.allMaskView];
+    [self.allMaskView addSubview:self.allCategoryView];
+    [self.view addSubview:self.allMaskView];
 
     [self masonry];
 }
@@ -248,14 +258,14 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
         // make.edges.equalTo(@0.f);
     }];
 
-    // [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     make.top.equalTo(self.categoryView.mas_bottom);
-    //     make.left.right.bottom.equalTo(@0.f);
-    // }];
-    // [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     make.top.left.right.equalTo(@0.f);
-    //     make.height.equalTo(@200.f);
-    // }];
+    [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.categoryView.mas_top);
+        make.left.right.bottom.equalTo(@0.f);
+    }];
+    [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(@0.f);
+        make.height.equalTo(@200.f);
+    }];
 }
 
 #pragma mark Lazy Property
@@ -276,16 +286,16 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
         lab.exclusionPaths = @[[UIBezierPath bezierPathWithRect:CGRectZero]];
         WEAKSELF(self)
         lab.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-            self.allMaskView.opaque = 0.f;
-            self.allMaskView.hidden = NO;
-            self.allCategoryView.opaque = 0.f;
-            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:5 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                CGRect frame = self.allCategoryView.frame;
-                frame.origin.y = CGRectGetMaxY(weakSelf.categoryView.frame);
-                weakSelf.allCategoryView.frame = frame;
-                weakSelf.allMaskView.opaque = 1.f;
-                self.allCategoryView.opaque = 1.f;
-            } completion:nil];
+            weakSelf.allMaskView.hidden = NO;
+            POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+            maskAnim.fromValue = @0.f;
+            maskAnim.toValue = @1.f;
+            [weakSelf.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+            anim.fromValue = @(-200.f);
+            anim.toValue = @100.f;
+            anim.springBounciness = 0.f;
+            [weakSelf.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
         };
 
         _labAll = lab;
@@ -296,45 +306,37 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     if(!_categoryView){
         JXCategoryTitleImageView *v = [[JXCategoryTitleImageView alloc]init];
         v.backgroundColor = [UIColor whiteColor];
-        v.imageZoomEnabled = YES;
-        v.imageZoomScale = 1.3f;
+        // v.imageZoomEnabled = YES;
+        // v.imageZoomScale = 1.3f;
+        v.titleColorGradientEnabled = NO;
+        // v.titleLabelMaskEnabled = YES;
         v.averageCellSpacingEnabled = YES;
+        v.titleColor = [UIColor colorWithHex:0x333333];
+        v.titleSelectedColor = [UIColor whiteColor];
         v.cellSpacing = 0.f;
         v.cellWidth = (SCREEN_WIDTH - kLabelAllWidth) / kCategoryMaxCount;
         v.imageSize = CGSizeMake(44.f, 44.f);
         v.listContainer = self.listContainerView;
         v.delegate = self;
 
-        JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        lineView.indicatorWidth = 20;
-        v.indicators = @[lineView];
+        // JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+        // lineView.indicatorWidth = 20;
+        // v.indicators = @[lineView];
+        JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
+        backgroundView.indicatorWidthIncrement = 0;
+        backgroundView.indicatorHeight = 20;
+        backgroundView.indicatorCornerRadius = 10;
+        backgroundView.indicatorColor = [UIColor colorWithHex:0xFF774F];
+        backgroundView.verticalMargin = -25;
+        v.indicators = @[backgroundView];
 
         _categoryView = v;
     }
     return _categoryView;
 }
-- (JXCategoryTitleImageView *)allCategoryView {
+- (LXAllCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        JXCategoryTitleImageView *v = [[JXCategoryTitleImageView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
-        v.imageZoomEnabled = YES;
-        v.imageZoomScale = 1.3f;
-        v.averageCellSpacingEnabled = YES;
-        v.cellSpacing = 0.f;
-        v.cellWidth = (SCREEN_WIDTH - kLabelAllWidth) / kCategoryMaxCount;
-        v.imageSize = CGSizeMake(44.f, 44.f);
-        v.delegate = self;
-
-        JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        lineView.indicatorWidth = 20;
-        v.indicators = @[lineView];
-
-        if([v.collectionView isKindOfClass:[UICollectionView class]]) {
-            UICollectionView *collectionView = (UICollectionView *)v.collectionView;
-            UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)collectionView.collectionViewLayout;
-            layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-            [layout prepareLayout];
-        }
+        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
 
         _allCategoryView = v;
     }
