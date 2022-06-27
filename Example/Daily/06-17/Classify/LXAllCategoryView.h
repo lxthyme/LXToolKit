@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXAllCategoryView : LXBaseView {
 }
+@property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
+@property(nonatomic, copy)void (^didSelectRowBlock)(NSIndexPath *ip);
+
+- (void)selectItemAtIndexPath:(NSIndexPath *)ip;
 
 @end
 

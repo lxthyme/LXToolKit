@@ -21,7 +21,7 @@ static const NSInteger kCategoryMaxCount = 5;
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
-@property (nonatomic, strong)JXCategoryTitleImageView *categoryView;
+@property (nonatomic, strong)LXAllCategoryView *categoryView;
 @property (nonatomic, strong)LXAllCategoryView *allCategoryView;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
@@ -40,7 +40,7 @@ static const NSInteger kCategoryMaxCount = 5;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-    self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
+    // self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
@@ -149,10 +149,10 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     // self.categoryView.imageNames = [imageNames take:kCategoryMaxCount].array;
     // self.categoryView.selectedImageNames = [selectedImageNames take:kCategoryMaxCount].array;
     ///
-    self.categoryView.imageTypes = imageType.array;
-    self.categoryView.titles = titles.array;
-    self.categoryView.imageNames = imageNames.array;
-    self.categoryView.selectedImageNames = selectedImageNames.array;
+    // self.categoryView.imageTypes = imageType.array;
+    // self.categoryView.titles = titles.array;
+    // self.categoryView.imageNames = imageNames.array;
+    // self.categoryView.selectedImageNames = selectedImageNames.array;
     ///
     // self.allCategoryView
     // self.allCategoryView.imageTypes = imageType.array;
@@ -302,34 +302,44 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
     }
     return _labAll;
 }
-- (JXCategoryTitleImageView *)categoryView {
+- (LXAllCategoryView *)categoryView {
     if(!_categoryView){
-        JXCategoryTitleImageView *v = [[JXCategoryTitleImageView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
-        // v.imageZoomEnabled = YES;
-        // v.imageZoomScale = 1.3f;
-        v.titleColorGradientEnabled = NO;
-        // v.titleLabelMaskEnabled = YES;
-        v.averageCellSpacingEnabled = YES;
-        v.titleColor = [UIColor colorWithHex:0x333333];
-        v.titleSelectedColor = [UIColor whiteColor];
-        v.cellSpacing = 0.f;
-        v.cellWidth = (SCREEN_WIDTH - kLabelAllWidth) / kCategoryMaxCount;
-        v.imageSize = CGSizeMake(44.f, 44.f);
-        v.listContainer = self.listContainerView;
-        v.delegate = self;
+        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
+        // v.backgroundColor = [UIColor whiteColor];
+        // // v.imageZoomEnabled = YES;
+        // // v.imageZoomScale = 1.3f;
+        // v.titleColorGradientEnabled = NO;
+        // // v.titleLabelMaskEnabled = YES;
+        // v.averageCellSpacingEnabled = YES;
+        // v.titleColor = [UIColor colorWithHex:0x333333];
+        // v.titleSelectedColor = [UIColor whiteColor];
+        // v.cellSpacing = 0.f;
+        // v.cellWidth = (SCREEN_WIDTH - kLabelAllWidth) / kCategoryMaxCount;
+        // v.imageSize = CGSizeMake(44.f, 44.f);
+        // v.listContainer = self.listContainerView;
+        // v.delegate = self;
 
         // JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
         // lineView.indicatorWidth = 20;
         // v.indicators = @[lineView];
-        JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
-        backgroundView.indicatorWidthIncrement = 0;
-        backgroundView.indicatorHeight = 20;
-        backgroundView.indicatorCornerRadius = 10;
-        backgroundView.indicatorColor = [UIColor colorWithHex:0xFF774F];
-        backgroundView.verticalMargin = -25;
-        v.indicators = @[backgroundView];
+        // JXCategoryIndicatorBackgroundView *backgroundView = [[JXCategoryIndicatorBackgroundView alloc] init];
+        // backgroundView.indicatorWidthIncrement = 0;
+        // backgroundView.indicatorHeight = 20;
+        // backgroundView.indicatorCornerRadius = 10;
+        // backgroundView.indicatorColor = [UIColor colorWithHex:0xFF774F];
+        // backgroundView.verticalMargin = -25;
+        // v.indicators = @[backgroundView];
 
+        v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        [v.flowLayout prepareLayout];
+        WEAKSELF(self)
+        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.allCategoryView selectItemAtIndexPath:ip];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
+                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+            });
+        };
         _categoryView = v;
     }
     return _categoryView;
@@ -337,7 +347,14 @@ map:^id _Nullable(RACFourTuple *_Nullable tuple) {
 - (LXAllCategoryView *)allCategoryView {
     if(!_allCategoryView){
         LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
-
+        WEAKSELF(self)
+        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.categoryView selectItemAtIndexPath:ip];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
+                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+            });
+        };
         _allCategoryView = v;
     }
     return _allCategoryView;

@@ -13,6 +13,8 @@
 }
 @property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
+@property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
+
 @end
 
 @implementation LXAllCategoryView
@@ -29,6 +31,14 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (void)selectItemAtIndexPath:(NSIndexPath *)ip {
+    UICollectionViewScrollPosition position = UICollectionViewScrollPositionCenteredHorizontally;
+    if(self.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        position = UICollectionViewScrollPositionCenteredVertically;
+    }
+    [self.collectionView selectItemAtIndexPath:ip animated:YES scrollPosition:position];
+    // [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:position animated:YES];
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
@@ -53,6 +63,8 @@
 #pragma mark - ✈️UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [self selectItemAtIndexPath:indexPath];
+    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath);
 }
 
 #pragma mark -
@@ -87,23 +99,28 @@
     }
     return _dataList;
 }
+- (UICollectionViewFlowLayout *)flowLayout {
+    if(!_flowLayout){
+        CGSize itemSize = CGSizeZero;
+        UICollectionViewFlowLayout *v = [[UICollectionViewFlowLayout alloc]init];
+        v.itemSize = itemSize;
+        v.estimatedItemSize = itemSize;
+        v.minimumLineSpacing = 0.f;
+        v.minimumInteritemSpacing = 0.f;
+        v.scrollDirection = UICollectionViewScrollDirectionVertical;
+        v.sectionHeadersPinToVisibleBounds = YES;
+        // v.sectionFootersPinToVisibleBounds = YES;
+        // v.headerReferenceSize = CGSizeMake(CGRectGetWidth(collectFrame), <#HeaderSectionHeight#>);
+        // v.footerReferenceSize = CGSizeMake(CGRectGetWidth(collectFrame), <#FooterSectionHeight#>);
+        v.sectionInset = UIEdgeInsetsZero;
+        _flowLayout = v;
+    }
+    return _flowLayout;
+}
 - (UICollectionView *)collectionView {
     if(!_collectionView) {
         CGRect collectFrame = CGRectZero;
-        CGSize itemSize = CGSizeZero;
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.itemSize = itemSize;
-        flowLayout.estimatedItemSize = itemSize;
-        flowLayout.minimumLineSpacing = 0.f;
-        flowLayout.minimumInteritemSpacing = 0.f;
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        flowLayout.sectionHeadersPinToVisibleBounds = YES;
-        // flowLayout.sectionFootersPinToVisibleBounds = YES;
-        // flowLayout.headerReferenceSize = CGSizeMake(CGRectGetWidth(collectFrame), <#HeaderSectionHeight#>);
-        // flowLayout.footerReferenceSize = CGSizeMake(CGRectGetWidth(collectFrame), <#FooterSectionHeight#>);
-        flowLayout.sectionInset = UIEdgeInsetsZero;
-
-        UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:flowLayout];
+        UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:self.flowLayout];
         cv.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         // cv.pagingEnabled = YES;
 

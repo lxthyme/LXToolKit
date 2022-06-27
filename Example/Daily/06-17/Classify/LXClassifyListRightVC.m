@@ -13,6 +13,7 @@
 #import "LXSectionCategoryHeaderView.h"
 #import "LXClassifyListBannerCell.h"
 #import "LXMyCollectionView.h"
+#import "JXCategoryTitleBackgroundView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
@@ -22,7 +23,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
 }
-@property (nonatomic, strong)JXCategoryTitleView *pinCategoryView;
+@property (nonatomic, strong)JXCategoryTitleBackgroundView *pinCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
@@ -288,15 +289,21 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 }
 
 #pragma mark Lazy Property
-- (JXCategoryTitleView *)pinCategoryView {
+- (JXCategoryTitleBackgroundView *)pinCategoryView {
     if(!_pinCategoryView){
-        JXCategoryTitleView *v = [[JXCategoryTitleView alloc]init];
-        v.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1];
+        JXCategoryTitleBackgroundView *v = [[JXCategoryTitleBackgroundView alloc]init];
+        v.backgroundColor = [UIColor whiteColor];
+        v.normalBackgroundColor = [UIColor colorWithHex:0xF6F6F6];
+        v.selectedBackgroundColor = [UIColor colorWithHex:0xFF774F alpha:0.1];
+        v.titleColor = [UIColor colorWithHex:0x666666];
+        v.titleSelectedColor = [UIColor colorWithHex:0xFF774F];
+        v.borderLineWidth = 0.f;
+        v.backgroundCornerRadius = kWPercentage(4.f);
         v.delegate = self;
 
-        JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        lineView.verticalMargin = 15;
-        v.indicators = @[lineView];
+        // JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
+        // lineView.verticalMargin = 15;
+        // v.indicators = @[lineView];
 
         _pinCategoryView = v;
     }
