@@ -12,7 +12,6 @@
 #import "LXClassifyListVC.h"
 #import "LXPageVC.h"
 #import "LXAllCategoryView.h"
-#import <pop/POP.h>
 
 static const CGFloat kLabelAllWidth = 44.f;
 static const CGFloat kCategoryHeight = 80.f;
@@ -70,9 +69,9 @@ static const NSInteger kCategoryMaxCount = 5;
     // [[RACThreeTuple pack:titles :imageNames :selectedImageNames].rac_sequence
     // [[RACThreeTuple tupleWithObjectsFromArray:@[titles, imageNames, selectedImageNames]].rac_sequence
     self.dataList = [[[[[@[@1, @2, @3, @4, @5, @6].rac_sequence zipWith:titles.rac_sequence]
-       zipWith:imageNames.rac_sequence]
-      zipWith:selectedImageNames.rac_sequence]
-     map:^id _Nullable(RACTuple * _Nullable value) {
+                        zipWith:imageNames.rac_sequence]
+                       zipWith:selectedImageNames.rac_sequence]
+                      map:^id _Nullable(RACTuple * _Nullable value) {
         RACTwoTuple *tmp1 = value.first;
         RACTwoTuple *tmp2 = tmp1.first;
         NSMutableArray *a = [NSMutableArray array];
@@ -82,7 +81,7 @@ static const NSInteger kCategoryMaxCount = 5;
         [a addObject:value.second];
         return [RACFourTuple tupleWithObjectsFromArray:a];
     }]
-map:^id _Nullable(RACFourTuple *_Nullable tuple) {
+                     map:^id _Nullable(RACFourTuple *_Nullable tuple) {
         NSMutableArray *subCategoryList = [NSMutableArray array];
         for (NSInteger j = 0; j < 20; j++) {
             NSMutableArray *sectionList = [NSMutableArray array];

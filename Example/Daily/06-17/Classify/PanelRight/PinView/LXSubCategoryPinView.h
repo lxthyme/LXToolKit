@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXSubCategoryPinView : UIView {
 }
 @property (nonatomic, strong, readonly)JXCategoryTitleBackgroundView *pinCategoryView;
+@property(nonatomic, copy)void (^toggleShowAll)(void);
 
 - (void)dataFill:(LXSubCategoryModel *)subCateogryModel;
 

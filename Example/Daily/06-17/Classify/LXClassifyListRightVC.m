@@ -14,16 +14,21 @@
 #import "LXClassifyListBannerCell.h"
 #import "LXMyCollectionView.h"
 #import "LXSubCategoryPinView.h"
+#import "LXAllCategoryView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
 static const NSUInteger kPinCategoryViewSectionIndex = 1;
-#define kPinCategoryViewHeight kWPercentage(44.f + 34.f)
+#define kPinCategoryViewHeight kWPercentage(44.f)
+#define kPinFilterViewHeight kWPercentage(34.f)
+#define kPinViewHeight (kPinCategoryViewHeight + kPinFilterViewHeight)
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
 }
 @property (nonatomic, strong)LXSubCategoryPinView *pinView;
+@property (nonatomic, strong)UIControl *allMaskView;
+@property (nonatomic, strong)LXAllCategoryView *allCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
@@ -39,12 +44,13 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     // Do any additional setup after loading the view.
     [self prepareCollectionView];
     [self prepareUI];
+    [self prepareVM];
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
     CGRect frame = self.view.bounds;
-    frame.size.height = kPinCategoryViewHeight;
+    frame.size.height = kPinViewHeight;
     self.pinView.frame = frame;
 }
 
@@ -87,7 +93,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     // UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
     //
     // CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
-    // CGFloat value = (self.view.bounds.size.height - kPinCategoryViewHeight) - lastSectionHeight;
+    // CGFloat value = (self.view.bounds.size.height - kPinViewHeight) - lastSectionHeight;
     // if (value > 0) {
     //     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
     // }
@@ -107,7 +113,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:ip];
         CGPoint contentOffset = CGPointMake(0, CGRectGetMinY(attr.frame));
         if(index > 0) {
-            contentOffset.y -= kPinCategoryViewHeight;
+            contentOffset.y -= kPinViewHeight;
         }
         [self.collectionView setContentOffset:contentOffset animated:YES];
     }
@@ -180,7 +186,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     if(section == kBannerSectionIdx) {
         return CGSizeZero;
     } else if(section == kPinCategoryViewSectionIndex) {
-        return CGSizeMake(width, kPinCategoryViewHeight);
+        return CGSizeMake(width, kPinViewHeight);
     }
     return CGSizeMake(width, 40.f);
 }
@@ -218,7 +224,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         }
         //用户滚动的才处理
         //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
-        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + kPinCategoryViewHeight + 1, self.collectionView.bounds.size.width, 1);
+        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + kPinViewHeight + 1, self.collectionView.bounds.size.width, 1);
         UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
         NSUInteger topSection = topAttributes.indexPath.section;
         if (topAttributes != nil && topSection >= kPinCategoryViewSectionIndex) {
@@ -272,13 +278,46 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.collectionView];
+    [self.allMaskView addSubview:self.allCategoryView];
+    [self.view addSubview:self.allMaskView];
 
     [self masonry];
+}
+- (void)prepareVM {
+    @weakify(self)
+    [[self.allMaskView rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        self.allMaskView.hidden = NO;
+        POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+        maskAnim.fromValue = @1.f;
+        maskAnim.toValue = @0.f;
+        [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.pinView.frame), 300.f);
+        anim.fromValue = [NSValue valueWithCGRect:frame];
+        frame.size.height = 0.f;
+        anim.toValue = [NSValue valueWithCGRect:frame];
+        anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            self.allMaskView.hidden = YES;
+        };
+        [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+
+
+    }];
 }
 #pragma mark getter/setter
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(...)
+    [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(kBannerSectionHeight + kPinCategoryViewHeight));
+        make.left.right.bottom.equalTo(@0.f);
+    }];
+    [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(@0.f);
+        make.height.equalTo(@200.f);
+    }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
@@ -289,9 +328,51 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     if(!_pinView){
         LXSubCategoryPinView *v = [[LXSubCategoryPinView alloc]init];
         v.pinCategoryView.delegate = self;
+        WEAKSELF(self)
+        v.toggleShowAll = ^{
+            if(weakSelf.allMaskView.hidden != YES) {
+                return;
+            }
+            weakSelf.allMaskView.hidden = NO;
+            POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+            maskAnim.fromValue = @0.f;
+            maskAnim.toValue = @1.f;
+            [weakSelf.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+            CGRect frame = CGRectMake(0, 0, CGRectGetWidth(weakSelf.pinView.frame), 0);
+            anim.fromValue = [NSValue valueWithCGRect:frame];
+            frame.size.height = 300;
+            anim.toValue = [NSValue valueWithCGRect:frame];
+            anim.springBounciness = 0.f;
+            [weakSelf.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+        };
         _pinView = v;
     }
     return _pinView;
+}
+- (UIControl *)allMaskView {
+    if(!_allMaskView){
+        UIControl *v = [[UIControl alloc]init];
+        v.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+        v.hidden = YES;
+        _allMaskView = v;
+    }
+    return _allMaskView;
+}
+- (LXAllCategoryView *)allCategoryView {
+    if(!_allCategoryView){
+        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
+        WEAKSELF(self)
+        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // [weakSelf.pinCategoryView selectItemAtIndexPath:ip];
+                // [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
+                // [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+            });
+        };
+        _allCategoryView = v;
+    }
+    return _allCategoryView;
 }
 - (LXMyCollectionView *)collectionView {
     if(!_collectionView) {//

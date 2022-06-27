@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 @interface LXSubCategoryPinView() {
 }
 @property (nonatomic, strong)JXCategoryTitleBackgroundView *pinCategoryView;
+@property(nonatomic, strong)YYLabel *labAll;
 @property(nonatomic, strong)UIView *filterView;
 /// 即时达 最快30分钟
 @property(nonatomic, strong)UIButton *btnJiShiDa;
@@ -73,6 +74,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     self.backgroundColor = [UIColor whiteColor];
 
     [self addSubview:self.pinCategoryView];
+    [self addSubview:self.labAll];
 
     self.filterType = LXSubcategoryFilterTypeJiShiDa;
 
@@ -118,8 +120,13 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0.f);
         make.left.equalTo(@(kWPercentage(10.f)));
-        make.right.equalTo(@(kWPercentage(-10.f)));
         make.height.equalTo(@(kWPercentage(44.f)));
+    }];
+    [self.labAll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self.pinCategoryView);
+        make.left.equalTo(self.pinCategoryView.mas_right);
+        make.right.equalTo(@(kWPercentage(-10.f)));
+        make.width.equalTo(@44.f);
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.pinCategoryView.mas_bottom);
@@ -207,6 +214,24 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         _pinCategoryView = v;
     }
     return _pinCategoryView;
+}
+- (YYLabel *)labAll {
+    if(!_labAll){
+        YYLabel *lab = [[YYLabel alloc]init];
+        lab.text = @"全部";
+        lab.textColor = [UIColor blackColor];
+        lab.verticalForm = YES;
+        lab.textAlignment = NSTextAlignmentCenter;
+        lab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
+        lab.exclusionPaths = @[[UIBezierPath bezierPathWithRect:CGRectZero]];
+        WEAKSELF(self)
+        lab.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            !weakSelf.toggleShowAll ?: weakSelf.toggleShowAll();
+        };
+
+        _labAll = lab;
+    }
+    return _labAll;
 }
 - (UIView *)filterView {
     if(!_filterView){
