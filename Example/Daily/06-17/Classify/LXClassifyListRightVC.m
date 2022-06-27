@@ -13,17 +13,17 @@
 #import "LXSectionCategoryHeaderView.h"
 #import "LXClassifyListBannerCell.h"
 #import "LXMyCollectionView.h"
-#import "JXCategoryTitleBackgroundView.h"
+#import "LXSubCategoryPinView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
 static const NSUInteger kPinCategoryViewSectionIndex = 1;
-static const CGFloat kPinCategoryViewHeight = 60.f;
+#define kPinCategoryViewHeight kWPercentage(44.f + 34.f)
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
 }
-@property (nonatomic, strong)JXCategoryTitleBackgroundView *pinCategoryView;
+@property (nonatomic, strong)LXSubCategoryPinView *pinView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
@@ -45,18 +45,14 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 
     CGRect frame = self.view.bounds;
     frame.size.height = kPinCategoryViewHeight;
-    self.pinCategoryView.frame = frame;
+    self.pinView.frame = frame;
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
     self.subCateogryModel = subCateogryModel;
-    self.pinCategoryView.titles = [[subCateogryModel.sectionList.rac_sequence skip:1]
-                                   map:^id _Nullable(LXSectionModel * _Nullable value) {
-        return value.title;
-    }].array;
-    [self.pinCategoryView reloadDataWithoutListContainer];
+    [self.pinView dataFill:subCateogryModel];
     [self.collectionView reloadData];
     [self.collectionView setContentOffset:CGPointZero animated:YES];
 
@@ -81,7 +77,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     //     return;
     // }
     // __shouldRest = NO;
-    // 
+    //
     // //如果最后一个section条目太少了，会导致滚动最底部，但是却不能触发categoryView选中最后一个item。而且点击最后一个滚动的contentOffset.y也不好弄。所以添加contentInset，让最后一个section滚到最下面能显示完整个屏幕。
     // NSInteger lastSection = self.subCateogryModel.sectionList.count - 1;
     // NSInteger lastItem = self.subCateogryModel.sectionList[lastSection].itemList.count - 1;
@@ -89,7 +85,7 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     // NSIndexPath *lastItemIp = [NSIndexPath indexPathForItem:lastItem inSection:lastSection];
     // UICollectionViewLayoutAttributes *lastHeaderAttri = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:lastHeaderIp];
     // UICollectionViewLayoutAttributes *lastItemAttri = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:lastItemIp];
-    // 
+    //
     // CGFloat lastSectionHeight = CGRectGetMaxY(lastItemAttri.frame) - CGRectGetMinY(lastHeaderAttri.frame);
     // CGFloat value = (self.view.bounds.size.height - kPinCategoryViewHeight) - lastSectionHeight;
     // if (value > 0) {
@@ -146,8 +142,8 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
             LXSectionCategoryHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXSectionCategoryHeaderView" forIndexPath:indexPath];
                 self.sectionCategoryHeaderView = header;
             }
-            if(!self.pinCategoryView.superview) {
-                [self.sectionCategoryHeaderView addSubview:self.pinCategoryView];
+            if(!self.pinView.superview) {
+                [self.sectionCategoryHeaderView addSubview:self.pinView];
             }
             return self.sectionCategoryHeaderView;
         } else {
@@ -206,15 +202,15 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
     if([scrollView isEqual:self.collectionView] && [self.collectionView numberOfSections] > 1) {
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:kPinCategoryViewSectionIndex]];
         if(offsetY >= CGRectGetMinY(attr.frame)) {
-            if(self.pinCategoryView.superview != self.view) {
-                [self.view addSubview:self.pinCategoryView];
+            if(self.pinView.superview != self.view) {
+                [self.view addSubview:self.pinView];
             }
-        } else if(self.pinCategoryView.superview != self.sectionCategoryHeaderView) {
-            [self.sectionCategoryHeaderView addSubview:self.pinCategoryView];
+        } else if(self.pinView.superview != self.sectionCategoryHeaderView) {
+            [self.sectionCategoryHeaderView addSubview:self.pinView];
         }
-        if (self.pinCategoryView.selectedIndex != 0 && scrollView.contentOffset.y == 0) {
+        if (self.pinView.pinCategoryView.selectedIndex != 0 && scrollView.contentOffset.y == 0) {
             //点击了状态栏滚动到顶部时的处理
-            [self.pinCategoryView selectItemAtIndex:0];
+            [self.pinView.pinCategoryView selectItemAtIndex:0];
         }
         if (!(scrollView.isTracking || scrollView.isDecelerating)) {
             //不是用户滚动的，比如setContentOffset等方法，引起的滚动不需要处理。
@@ -226,9 +222,9 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
         UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
         NSUInteger topSection = topAttributes.indexPath.section;
         if (topAttributes != nil && topSection >= kPinCategoryViewSectionIndex) {
-            if (self.pinCategoryView.selectedIndex != topSection - kPinCategoryViewSectionIndex) {
+            if (self.pinView.pinCategoryView.selectedIndex != topSection - kPinCategoryViewSectionIndex) {
                 //不相同才切换
-                [self.pinCategoryView selectItemAtIndex:topSection - kPinCategoryViewSectionIndex];
+                [self.pinView.pinCategoryView selectItemAtIndex:topSection - kPinCategoryViewSectionIndex];
             }
         }
     }
@@ -289,25 +285,13 @@ static const CGFloat kPinCategoryViewHeight = 60.f;
 }
 
 #pragma mark Lazy Property
-- (JXCategoryTitleBackgroundView *)pinCategoryView {
-    if(!_pinCategoryView){
-        JXCategoryTitleBackgroundView *v = [[JXCategoryTitleBackgroundView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
-        v.normalBackgroundColor = [UIColor colorWithHex:0xF6F6F6];
-        v.selectedBackgroundColor = [UIColor colorWithHex:0xFF774F alpha:0.1];
-        v.titleColor = [UIColor colorWithHex:0x666666];
-        v.titleSelectedColor = [UIColor colorWithHex:0xFF774F];
-        v.borderLineWidth = 0.f;
-        v.backgroundCornerRadius = kWPercentage(4.f);
-        v.delegate = self;
-
-        // JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        // lineView.verticalMargin = 15;
-        // v.indicators = @[lineView];
-
-        _pinCategoryView = v;
+- (LXSubCategoryPinView *)pinView {
+    if(!_pinView){
+        LXSubCategoryPinView *v = [[LXSubCategoryPinView alloc]init];
+        v.pinCategoryView.delegate = self;
+        _pinView = v;
     }
-    return _pinCategoryView;
+    return _pinView;
 }
 - (LXMyCollectionView *)collectionView {
     if(!_collectionView) {//

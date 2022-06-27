@@ -7,10 +7,16 @@
 //
 #import <UIKit/UIKit.h>
 
+#import "JXCategoryTitleBackgroundView.h"
+#import "LXSectionModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXSubCategoryPinView : UIView {
 }
+@property (nonatomic, strong, readonly)JXCategoryTitleBackgroundView *pinCategoryView;
+
+- (void)dataFill:(LXSubCategoryModel *)subCateogryModel;
 
 @end
 
