@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXBaseModel : LXBaseObject {
+@interface LXBaseModel : NSObject {
 }
 
 @end

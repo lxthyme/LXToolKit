@@ -10,6 +10,8 @@
 
 #import "LXMacro.h"
 
+#import "iPhoneX.h"
+
 #import "LXBaseObject.h"
 #import "LXBaseVC.h"
 #import "LXBaseView.h"
