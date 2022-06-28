@@ -2,21 +2,19 @@
 //  LXClassifyListVC.h
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
 
-#import "LXClassifyListRightView.h"
+#import "LXSectionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate, JXPagerViewListViewDelegate> {
+@interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
-@property(nonatomic, strong, readonly)LXClassifyListRightView *panelRightView;
 
 - (void)dataFill:(LXCategoryModel *)subCateogryModel;
-- (void)dataFill2:(LXSubCategoryModel *)subCategoryModel;
 
 @end
 

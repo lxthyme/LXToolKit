@@ -8,9 +8,7 @@
 #import "LXClassifyWrapperVC.h"
 
 #import "LXSectionModel.h"
-#import "LXVerticalCategoryVC.h"
 #import "LXClassifyListVC.h"
-#import "LXPageVC.h"
 #import "LXAllCategoryView.h"
 
 static const CGFloat kLabelAllWidth = 44.f;
@@ -25,7 +23,7 @@ static const NSInteger kCategoryMaxCount = 5;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
-@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXVerticalCategoryVC *> *classifyVCList;
+@property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
 
 @end
 
@@ -110,7 +108,7 @@ static const NSInteger kCategoryMaxCount = 5;
             LXSubCategoryIndexType idxType = LXSubCategoryIndexTypeDefault;
             if(j == 0) {
                 idxType = LXSubCategoryIndexTypeFirst;
-            } else if(j == 20) {
+            } else if(j == 19) {
                 idxType = LXSubCategoryIndexTypeLast;
             }
             subCategory.idxType = idxType;
@@ -184,14 +182,11 @@ static const NSInteger kCategoryMaxCount = 5;
     return self.dataList.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    // LXVerticalCategoryVC *vc = self.classifyVCList[@(index)];
-    // if(!vc) {
-    //     vc = [[LXVerticalCategoryVC alloc]init];
-    //     self.classifyVCList[@(index)] = vc;
-    // }
-    // LXClassifyListVC *vc = [[LXClassifyListVC alloc]init];
-    // LXVerticalCategoryVC *vc = [[LXVerticalCategoryVC alloc]init];
-    LXPageVC *vc = [[LXPageVC alloc]init];
+    LXClassifyListVC *vc = self.classifyVCList[@(index)];
+    if(!vc) {
+        vc = [[LXClassifyListVC alloc]init];
+        self.classifyVCList[@(index)] = vc;
+    }
     LXCategoryModel *categoryModel = self.dataList[index];
     [vc dataFill:categoryModel];
     return vc;
@@ -268,7 +263,7 @@ static const NSInteger kCategoryMaxCount = 5;
 }
 
 #pragma mark Lazy Property
-- (NSMutableDictionary<NSNumber *, LXVerticalCategoryVC *> *)classifyVCList {
+- (NSMutableDictionary<NSNumber *, LXClassifyListVC *> *)classifyVCList {
     if(!_classifyVCList){
         _classifyVCList = [NSMutableDictionary dictionary];
     }

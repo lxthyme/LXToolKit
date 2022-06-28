@@ -130,7 +130,8 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.pinCategoryView.mas_bottom);
-        make.left.right.equalTo(self.pinCategoryView);
+        make.left.equalTo(self.pinCategoryView);
+        make.right.equalTo(@(kWPercentage(-10.f)));
         make.bottom.equalTo(@0.f);
     }];
     [self.btnJiShiDa mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,6 +157,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }];
     [self.btnSale mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.priceWrapperView.mas_right).offset(kWPercentage(30.f));
+        make.right.equalTo(@0.f);
         make.centerY.equalTo(self.btnJiShiDa);
     }];
 }

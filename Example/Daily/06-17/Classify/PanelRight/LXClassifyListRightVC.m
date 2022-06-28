@@ -98,6 +98,53 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     //     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
     // }
 }
+- (void)dismissAllCategoryView {
+    if(self.allMaskView.hidden == YES) {
+        return;
+    }
+    self.allMaskView.hidden = NO;
+    POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    maskAnim.fromValue = @1.f;
+    maskAnim.toValue = @0.f;
+    [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.pinView.frame), 300.f);
+    anim.fromValue = [NSValue valueWithCGRect:frame];
+    frame.size.height = 0.f;
+    anim.toValue = [NSValue valueWithCGRect:frame];
+    anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        self.allMaskView.hidden = YES;
+    };
+    [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+}
+- (void)showAllCategoryView {
+    if(self.allMaskView.hidden == NO) {
+        [self dismissAllCategoryView];
+        return;
+    }
+    CGRect pinViewFrame = [self.view convertRect:self.pinView.frame fromView:self.pinView];
+    CGRect maskFrame = self.allMaskView.frame;
+    // maskFrame.origin.y = CGRectGetMaxY(pinViewFrame) - kPinFilterViewHeight;
+    // self.allMaskView.frame = maskFrame;
+    [self.allMaskView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(CGRectGetMaxY(pinViewFrame) - kPinFilterViewHeight));
+        make.left.right.bottom.equalTo(@0.f);
+    }];
+    NSLog(@"pinViewFrame: %@", NSStringFromCGRect(maskFrame));
+    [self.view bringSubviewToFront:self.allMaskView];
+    self.allMaskView.hidden = NO;
+    POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    maskAnim.fromValue = @0.f;
+    maskAnim.toValue = @1.f;
+    [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.pinView.frame), 0);
+    anim.fromValue = [NSValue valueWithCGRect:frame];
+    frame.size.height = 300;
+    anim.toValue = [NSValue valueWithCGRect:frame];
+    anim.springBounciness = 0.f;
+    [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+}
 
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewDelegate
@@ -248,6 +295,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 
     WEAKSELF(self)
     MJRefreshNormalHeader *header = [[MJRefreshNormalHeader alloc]init];
+    header.lastUpdatedTimeLabel.hidden = YES;
     [header setTitle:@"下拉加载上一个分类" forState:MJRefreshStateIdle];
     [header setTitle:@"松开加载上一个分类" forState:MJRefreshStatePulling];
     [header setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
@@ -261,6 +309,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     };
     self.collectionView.mj_header = header;
     MJRefreshBackStateFooter *footer = [[MJRefreshBackStateFooter alloc]init];
+    footer.ignoredScrollViewContentInsetBottom = iPhoneX.xl_safeareaInsets.bottom;
     [footer setTitle:@"上拉加载下一个分类" forState:MJRefreshStateIdle];
     [footer setTitle:@"松开加载下一个分类" forState:MJRefreshStatePulling];
     [footer setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
@@ -288,22 +337,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     [[self.allMaskView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        self.allMaskView.hidden = NO;
-        POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-        maskAnim.fromValue = @1.f;
-        maskAnim.toValue = @0.f;
-        [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
-        POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-        CGRect frame = CGRectMake(0, 0, CGRectGetWidth(self.pinView.frame), 300.f);
-        anim.fromValue = [NSValue valueWithCGRect:frame];
-        frame.size.height = 0.f;
-        anim.toValue = [NSValue valueWithCGRect:frame];
-        anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-            self.allMaskView.hidden = YES;
-        };
-        [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
-
-
+        [self dismissAllCategoryView];
     }];
 }
 #pragma mark getter/setter
@@ -311,8 +345,8 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 - (void)masonry {
     // MASAttachKeys(...)
     [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(kBannerSectionHeight + kPinCategoryViewHeight));
-        make.left.right.bottom.equalTo(@0.f);
+        make.edges.equalTo(@0.f);
+        // make.left.right.bottom.equalTo(@0.f);
     }];
     [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(@0.f);
@@ -330,21 +364,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         v.pinCategoryView.delegate = self;
         WEAKSELF(self)
         v.toggleShowAll = ^{
-            if(weakSelf.allMaskView.hidden != YES) {
-                return;
-            }
-            weakSelf.allMaskView.hidden = NO;
-            POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-            maskAnim.fromValue = @0.f;
-            maskAnim.toValue = @1.f;
-            [weakSelf.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
-            POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
-            CGRect frame = CGRectMake(0, 0, CGRectGetWidth(weakSelf.pinView.frame), 0);
-            anim.fromValue = [NSValue valueWithCGRect:frame];
-            frame.size.height = 300;
-            anim.toValue = [NSValue valueWithCGRect:frame];
-            anim.springBounciness = 0.f;
-            [weakSelf.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+            [weakSelf showAllCategoryView];
         };
         _pinView = v;
     }

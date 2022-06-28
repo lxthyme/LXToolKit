@@ -32,6 +32,9 @@
 - (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList {
     self.dataList = dataList;
     [self.tableView reloadData];
+    if(self.dataList.count > 0) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    }
 }
 
 #pragma mark -
@@ -41,6 +44,13 @@
 }
 - (BOOL)scrollToNextRow {
     return [self scrollToRowWithType: LXClassifyLeftScrollTypeNext];
+}
+- (void)scrollToRowAtIndexPath:(NSIndexPath *)ip {
+    if(ip.row < 0 ||
+       (ip.row > self.dataList.count - 1)) {
+        return;
+    }
+    [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 #pragma mark -
@@ -66,9 +76,9 @@
         } else if(ip.row <= self.dataList.count - 1) {
             return NO;
         }
-        [self.tableView scrollToRowAtIndexPath:ip
-                              atScrollPosition:UITableViewScrollPositionMiddle
-                                      animated:YES];
+        [self.tableView selectRowAtIndexPath:ip
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionMiddle];
         return YES;
     }
     return NO;

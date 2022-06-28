@@ -22,8 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList;
 
-- (BOOL)scrollToPreviousRow;
-- (BOOL)scrollToNextRow;
+- (void)scrollToRowAtIndexPath:(NSIndexPath *)ip;
 
 @end
 

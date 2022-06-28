@@ -89,12 +89,12 @@
             @"LXNest5VC",
             @"LXTableVC",
             // @"LXNest6VC",
-            @"LXClassifyListVC",
+            // @"LXClassifyWrapperVC",
             @"LXClassifyWrapperVC",
             @"LXClassifyVC",
             @"LXClassifyContinueVC",
             @"LXVerticalCategoryVC",
-            @"LXPageVC",
+            @"LXClassifyListVC",
         ];
     }
     return _dataList;
