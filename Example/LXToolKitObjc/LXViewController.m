@@ -57,7 +57,7 @@
 }
 #pragma mark -
 #pragma mark - 📌UI Prepare & Masonry
-- (void)prepareUI {// <#[self prepareUI];#>
+- (void)prepareUI {
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -66,7 +66,7 @@
 }
 
 #pragma mark Masonry
-- (void)masonry { // <#[self masonry];#> <##import <Masonry/Masonry.h>#>
+- (void)masonry {
     // MASAttachKeys(<#...#>)
     // UIView *superView = self.view;
     [self.table mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,6 +92,9 @@
             @"LXClassifyListVC",
             @"LXClassifyWrapperVC",
             @"LXClassifyVC",
+            @"LXClassifyContinueVC",
+            @"LXVerticalCategoryVC",
+            @"LXPageVC",
         ];
     }
     return _dataList;

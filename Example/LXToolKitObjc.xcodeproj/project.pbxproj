@@ -23,10 +23,17 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BE36428E286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36428B286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m */; };
+		BE36428F286550FB009C19C7 /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36428C286550FB009C19C7 /* JXCategoryTitleBackgroundView.m */; };
+		BE364290286550FB009C19C7 /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE36428D286550FB009C19C7 /* JXCategoryTitleBackgroundCell.m */; };
 		BE6042B5285F40BB00DF3EB0 /* LXClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6042B4285F40BB00DF3EB0 /* LXClassifyVC.m */; };
 		BE605070285F590500DF3EB0 /* LXClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE60506F285F590500DF3EB0 /* LXClassifyListBannerCell.m */; };
 		BE605073285F5B2C00DF3EB0 /* LXClassifyListLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE605072285F5B2C00DF3EB0 /* LXClassifyListLeftView.m */; };
 		BE605076285F5C6100DF3EB0 /* LXClassifyListRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE605075285F5C6100DF3EB0 /* LXClassifyListRightView.m */; };
+		BE63A2F3286994A9000EA644 /* LXSubCategoryPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63A2F2286994A9000EA644 /* LXSubCategoryPinView.m */; };
+		BE7337F728600CCE0066F884 /* LXClassifyContinueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7337F628600CCE0066F884 /* LXClassifyContinueVC.m */; };
+		BE7337FA28601A8F0066F884 /* LXVerticalCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7337F928601A8F0066F884 /* LXVerticalCategoryVC.m */; };
+		BE7345172860369A0066F884 /* LXVerticalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7345162860369A0066F884 /* LXVerticalCell.m */; };
 		BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */; };
 		BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE58285D7F1C00A86665 /* LXList2VC.m */; };
 		BE7CAE81285D7F1D00A86665 /* LXPaging2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE59285D7F1C00A86665 /* LXPaging2VC.m */; };
@@ -41,9 +48,13 @@
 		BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE6B285D7F1C00A86665 /* UIWindow+JXSafeArea.m */; };
 		BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE6D285D7F1C00A86665 /* LXBaseNavigationController.m */; };
 		BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */; };
+		BE7F30922862A6F100C09F3C /* LXPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F30912862A6F100C09F3C /* LXPageVC.m */; };
 		BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C4F285EAF450027F9FF /* LXNest6VC.m */; };
 		BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C82285ECB010027F9FF /* LXPageCell.m */; };
 		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
+		BE89B3A9286300C800369681 /* LXClassifyListRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B3A8286300C800369681 /* LXClassifyListRightVC.m */; };
+		BE89B44D28631B7900369681 /* LXAllCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44C28631B7900369681 /* LXAllCategoryView.m */; };
+		BE89B450286324AF00369681 /* LXAllCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44F286324AF00369681 /* LXAllCategoryCell.m */; };
 		BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234AB285EDDC400ABB71B /* LXMyTableView.m */; };
 		BE9234B2285F039100ABB71B /* LXSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234B1285F039100ABB71B /* LXSectionModel.m */; };
 		BE9234B5285F041000ABB71B /* LXClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234B4285F041000ABB71B /* LXClassifyRightCollectionCell.m */; };
@@ -95,6 +106,12 @@
 		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE364288286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCellModel.h; sourceTree = "<group>"; };
+		BE364289286550FB009C19C7 /* JXCategoryTitleBackgroundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCell.h; sourceTree = "<group>"; };
+		BE36428A286550FB009C19C7 /* JXCategoryTitleBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundView.h; sourceTree = "<group>"; };
+		BE36428B286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCellModel.m; sourceTree = "<group>"; };
+		BE36428C286550FB009C19C7 /* JXCategoryTitleBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundView.m; sourceTree = "<group>"; };
+		BE36428D286550FB009C19C7 /* JXCategoryTitleBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCell.m; sourceTree = "<group>"; };
 		BE6042B3285F40BB00DF3EB0 /* LXClassifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyVC.h; sourceTree = "<group>"; };
 		BE6042B4285F40BB00DF3EB0 /* LXClassifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyVC.m; sourceTree = "<group>"; };
 		BE60506E285F590500DF3EB0 /* LXClassifyListBannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyListBannerCell.h; sourceTree = "<group>"; };
@@ -103,6 +120,14 @@
 		BE605072285F5B2C00DF3EB0 /* LXClassifyListLeftView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListLeftView.m; sourceTree = "<group>"; };
 		BE605074285F5C6100DF3EB0 /* LXClassifyListRightView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyListRightView.h; sourceTree = "<group>"; };
 		BE605075285F5C6100DF3EB0 /* LXClassifyListRightView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListRightView.m; sourceTree = "<group>"; };
+		BE63A2F1286994A9000EA644 /* LXSubCategoryPinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSubCategoryPinView.h; sourceTree = "<group>"; };
+		BE63A2F2286994A9000EA644 /* LXSubCategoryPinView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSubCategoryPinView.m; sourceTree = "<group>"; };
+		BE7337F528600CCE0066F884 /* LXClassifyContinueVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyContinueVC.h; sourceTree = "<group>"; };
+		BE7337F628600CCE0066F884 /* LXClassifyContinueVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyContinueVC.m; sourceTree = "<group>"; };
+		BE7337F828601A8F0066F884 /* LXVerticalCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXVerticalCategoryVC.h; sourceTree = "<group>"; };
+		BE7337F928601A8F0066F884 /* LXVerticalCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXVerticalCategoryVC.m; sourceTree = "<group>"; };
+		BE7345152860369A0066F884 /* LXVerticalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXVerticalCell.h; sourceTree = "<group>"; };
+		BE7345162860369A0066F884 /* LXVerticalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXVerticalCell.m; sourceTree = "<group>"; };
 		BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNaHiddenVC.m; sourceTree = "<group>"; };
 		BE7CAE43285D7F1C00A86665 /* LXNaHiddenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNaHiddenVC.h; sourceTree = "<group>"; };
 		BE7CAE55285D7F1C00A86665 /* LXList2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXList2VC.h; sourceTree = "<group>"; };
@@ -131,12 +156,20 @@
 		BE7CAE6F285D7F1C00A86665 /* UIWindow+JXSafeArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+JXSafeArea.h"; sourceTree = "<group>"; };
 		BE7CAE74285D7F1C00A86665 /* LXHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHeaderView.h; sourceTree = "<group>"; };
 		BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
+		BE7F30902862A6F100C09F3C /* LXPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPageVC.h; sourceTree = "<group>"; };
+		BE7F30912862A6F100C09F3C /* LXPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXPageVC.m; sourceTree = "<group>"; };
 		BE888C4E285EAF450027F9FF /* LXNest6VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNest6VC.h; sourceTree = "<group>"; };
 		BE888C4F285EAF450027F9FF /* LXNest6VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNest6VC.m; sourceTree = "<group>"; };
 		BE888C81285ECB010027F9FF /* LXPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPageCell.h; sourceTree = "<group>"; };
 		BE888C82285ECB010027F9FF /* LXPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXPageCell.m; sourceTree = "<group>"; };
 		BE894F22284065780022EF57 /* LX0527VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX0527VC.h; sourceTree = "<group>"; };
 		BE894F23284065780022EF57 /* LX0527VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
+		BE89B3A7286300C800369681 /* LXClassifyListRightVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyListRightVC.h; sourceTree = "<group>"; };
+		BE89B3A8286300C800369681 /* LXClassifyListRightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListRightVC.m; sourceTree = "<group>"; };
+		BE89B44B28631B7900369681 /* LXAllCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAllCategoryView.h; sourceTree = "<group>"; };
+		BE89B44C28631B7900369681 /* LXAllCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAllCategoryView.m; sourceTree = "<group>"; };
+		BE89B44E286324AF00369681 /* LXAllCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAllCategoryCell.h; sourceTree = "<group>"; };
+		BE89B44F286324AF00369681 /* LXAllCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAllCategoryCell.m; sourceTree = "<group>"; };
 		BE9234AA285EDDC400ABB71B /* LXMyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyTableView.h; sourceTree = "<group>"; };
 		BE9234AB285EDDC400ABB71B /* LXMyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyTableView.m; sourceTree = "<group>"; };
 		BE9234B0285F039100ABB71B /* LXSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSectionModel.h; sourceTree = "<group>"; };
@@ -287,6 +320,19 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BE364285286550A6009C19C7 /* JX */ = {
+			isa = PBXGroup;
+			children = (
+				BE364289286550FB009C19C7 /* JXCategoryTitleBackgroundCell.h */,
+				BE36428D286550FB009C19C7 /* JXCategoryTitleBackgroundCell.m */,
+				BE364288286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.h */,
+				BE36428B286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m */,
+				BE36428A286550FB009C19C7 /* JXCategoryTitleBackgroundView.h */,
+				BE36428C286550FB009C19C7 /* JXCategoryTitleBackgroundView.m */,
+			);
+			path = JX;
+			sourceTree = "<group>";
+		};
 		BE605077285F68B600DF3EB0 /* PanelLeft */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +347,7 @@
 		BE605078285F68C400DF3EB0 /* PanelRight */ = {
 			isa = PBXGroup;
 			children = (
+				BE63A2F028699493000EA644 /* PinView */,
 				BE9234B3285F041000ABB71B /* LXClassifyRightCollectionCell.h */,
 				BE9234B4285F041000ABB71B /* LXClassifyRightCollectionCell.m */,
 				BE9234B6285F063400ABB71B /* LXClassifySectionHeaderView.h */,
@@ -315,6 +362,28 @@
 				BE605075285F5C6100DF3EB0 /* LXClassifyListRightView.m */,
 			);
 			path = PanelRight;
+			sourceTree = "<group>";
+		};
+		BE63A2F028699493000EA644 /* PinView */ = {
+			isa = PBXGroup;
+			children = (
+				BE63A2F1286994A9000EA644 /* LXSubCategoryPinView.h */,
+				BE63A2F2286994A9000EA644 /* LXSubCategoryPinView.m */,
+			);
+			path = PinView;
+			sourceTree = "<group>";
+		};
+		BE7337F428600CAA0066F884 /* 分类页连续 */ = {
+			isa = PBXGroup;
+			children = (
+				BE7337F528600CCE0066F884 /* LXClassifyContinueVC.h */,
+				BE7337F628600CCE0066F884 /* LXClassifyContinueVC.m */,
+				BE7337F828601A8F0066F884 /* LXVerticalCategoryVC.h */,
+				BE7337F928601A8F0066F884 /* LXVerticalCategoryVC.m */,
+				BE7345152860369A0066F884 /* LXVerticalCell.h */,
+				BE7345162860369A0066F884 /* LXVerticalCell.m */,
+			);
+			path = "分类页连续";
 			sourceTree = "<group>";
 		};
 		BE7CAE41285D7F1C00A86665 /* NavHidden */ = {
@@ -389,6 +458,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE7F308F2862A6DD00C09F3C /* UIPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F30902862A6F100C09F3C /* LXPageVC.h */,
+				BE7F30912862A6F100C09F3C /* LXPageVC.m */,
+			);
+			path = UIPageVC;
+			sourceTree = "<group>";
+		};
 		BE888C4D285EAF2E0027F9FF /* Nest6 */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,12 +509,19 @@
 		BE9234AD285EFF6800ABB71B /* Classify */ = {
 			isa = PBXGroup;
 			children = (
+				BE364285286550A6009C19C7 /* JX */,
 				BE6042B3285F40BB00DF3EB0 /* LXClassifyVC.h */,
 				BE6042B4285F40BB00DF3EB0 /* LXClassifyVC.m */,
 				BE9234CC285F345700ABB71B /* LXClassifyWrapperVC.h */,
 				BE9234CD285F345700ABB71B /* LXClassifyWrapperVC.m */,
 				BE9234BC285F07A300ABB71B /* LXClassifyListVC.h */,
 				BE9234BD285F07A300ABB71B /* LXClassifyListVC.m */,
+				BE89B3A7286300C800369681 /* LXClassifyListRightVC.h */,
+				BE89B3A8286300C800369681 /* LXClassifyListRightVC.m */,
+				BE89B44B28631B7900369681 /* LXAllCategoryView.h */,
+				BE89B44C28631B7900369681 /* LXAllCategoryView.m */,
+				BE89B44E286324AF00369681 /* LXAllCategoryCell.h */,
+				BE89B44F286324AF00369681 /* LXAllCategoryCell.m */,
 				BE605078285F68C400DF3EB0 /* PanelRight */,
 				BE605077285F68B600DF3EB0 /* PanelLeft */,
 				BE9234AF285F038500ABB71B /* Model */,
@@ -456,6 +541,8 @@
 		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
 			isa = PBXGroup;
 			children = (
+				BE7F308F2862A6DD00C09F3C /* UIPageVC */,
+				BE7337F428600CAA0066F884 /* 分类页连续 */,
 				BE9234AD285EFF6800ABB71B /* Classify */,
 				BE7CAE54285D7F1C00A86665 /* Nested2 */,
 				BE888C4D285EAF2E0027F9FF /* Nest6 */,
@@ -669,11 +756,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE9234C1285F1E2900ABB71B /* LXMyCollectionView.m in Sources */,
+				BE7F30922862A6F100C09F3C /* LXPageVC.m in Sources */,
 				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
 				BE9234BE285F07A300ABB71B /* LXClassifyListVC.m in Sources */,
 				BE605073285F5B2C00DF3EB0 /* LXClassifyListLeftView.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
 				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
+				BE89B3A9286300C800369681 /* LXClassifyListRightVC.m in Sources */,
 				BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */,
 				BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
@@ -681,15 +770,21 @@
 				BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */,
 				BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */,
 				BE7CAE81285D7F1D00A86665 /* LXPaging2VC.m in Sources */,
+				BE7337F728600CCE0066F884 /* LXClassifyContinueVC.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
 				BE7CAE85285D7F1D00A86665 /* LXNestCell.m in Sources */,
 				BE9234B8285F063400ABB71B /* LXClassifySectionHeaderView.m in Sources */,
+				BE89B450286324AF00369681 /* LXAllCategoryCell.m in Sources */,
+				BE36428F286550FB009C19C7 /* JXCategoryTitleBackgroundView.m in Sources */,
 				BE7CAE89285D7F1D00A86665 /* LXPagingVC.m in Sources */,
+				BE7345172860369A0066F884 /* LXVerticalCell.m in Sources */,
 				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
 				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
+				BE63A2F3286994A9000EA644 /* LXSubCategoryPinView.m in Sources */,
+				BE364290286550FB009C19C7 /* JXCategoryTitleBackgroundCell.m in Sources */,
 				BE9234CE285F345700ABB71B /* LXClassifyWrapperVC.m in Sources */,
 				BE605070285F590500DF3EB0 /* LXClassifyListBannerCell.m in Sources */,
 				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
@@ -697,14 +792,17 @@
 				BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */,
 				BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */,
 				BE9234B5285F041000ABB71B /* LXClassifyRightCollectionCell.m in Sources */,
+				BE36428E286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
 				BE7CAE86285D7F1D00A86665 /* LXTableVC.m in Sources */,
 				BE9234B2285F039100ABB71B /* LXSectionModel.m in Sources */,
 				BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */,
+				BE89B44D28631B7900369681 /* LXAllCategoryView.m in Sources */,
 				BE605076285F5C6100DF3EB0 /* LXClassifyListRightView.m in Sources */,
 				BE6042B5285F40BB00DF3EB0 /* LXClassifyVC.m in Sources */,
 				BE9234BB285F078000ABB71B /* LXSectionCategoryHeaderView.m in Sources */,
 				BE7CAE84285D7F1D00A86665 /* LXSectionHeaderView.m in Sources */,
 				BE7CAE83285D7F1D00A86665 /* LXTableHeaderView.m in Sources */,
+				BE7337FA28601A8F0066F884 /* LXVerticalCategoryVC.m in Sources */,
 				BE9234C4285F23C600ABB71B /* LXClassifyListLeftCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

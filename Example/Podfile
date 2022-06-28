@@ -29,6 +29,9 @@ target 'LXToolKitObjc_Example' do
     pod 'FDFullscreenPopGesture', '1.1'
     pod 'MBProgressHUD'
     pod 'SDCycleScrollView'
+    pod 'YYText'
+    pod 'YYModel'
+    pod 'pop'
     
   #end
 end
