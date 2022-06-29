@@ -10,8 +10,6 @@
 #import "LXClassifyListRightVC.h"
 #import "LXClassifyListLeftView.h"
 
-#define kLeftTableWidth kWPercentage(84.f)
-
 @interface LXClassifyListVC()<UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
 }
 @property(nonatomic, strong)LXClassifyListLeftView *panelLeftView;
@@ -56,9 +54,6 @@
     return [seq.head.first integerValue];
 }
 - (LXClassifyListRightVC *)vcAtIdx:(NSInteger)idx {
-    if(idx < 0 || idx >= self.categoryModel.subCategoryList.count) {
-        return nil;
-    }
     LXClassifyListRightVC *vc = self.classifyVCList[@(idx)];
     if(!vc) {
         vc = [[LXClassifyListRightVC alloc]init];

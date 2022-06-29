@@ -1,15 +1,15 @@
 //
-//  LXAllCategoryView.m
+//  LXFirstCategoryView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXAllCategoryView.h"
+#import "LXFirstCategoryView.h"
 
 #import "LXAllCategoryCell.h"
 
-@interface LXAllCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface LXFirstCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
 @property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation LXAllCategoryView
+@implementation LXFirstCategoryView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -32,14 +32,16 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-- (void)selectItemAtIndexPath:(NSIndexPath *)ip {
-    if(ip.row >= self.dataList.count) {
+- (void)selectItemAtIndex:(NSInteger)idx {
+    NSLog(@"topCategory selectItemAtIndex: %ld", idx);
+    if(idx >= self.dataList.count) {
         return;
     }
     UICollectionViewScrollPosition position = UICollectionViewScrollPositionCenteredHorizontally;
     if(self.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
         position = UICollectionViewScrollPositionCenteredVertically;
     }
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:idx inSection:0];
     [self.collectionView selectItemAtIndexPath:ip animated:YES scrollPosition:position];
     // [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:position animated:YES];
 }
@@ -67,8 +69,8 @@
 #pragma mark - ✈️UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    [self selectItemAtIndexPath:indexPath];
-    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath);
+    [self selectItemAtIndex:indexPath.row];
+    !self.didSelectRowBlock ?: self.didSelectRowBlock(indexPath.row);
 }
 
 #pragma mark -

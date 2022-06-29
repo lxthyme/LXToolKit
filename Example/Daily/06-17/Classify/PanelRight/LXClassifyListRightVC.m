@@ -14,21 +14,18 @@
 #import "LXClassifyListBannerCell.h"
 #import "LXMyCollectionView.h"
 #import "LXSubCategoryPinView.h"
-#import "LXAllCategoryView.h"
+#import "LXThirdCategoryView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
 static const CGFloat kBannerSectionHeight = 80.f;
 static const NSUInteger kPinCategoryViewSectionIndex = 1;
-#define kPinCategoryViewHeight kWPercentage(44.f)
-#define kPinFilterViewHeight kWPercentage(34.f)
-#define kPinViewHeight (kPinCategoryViewHeight + kPinFilterViewHeight)
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
 }
 @property (nonatomic, strong)LXSubCategoryPinView *pinView;
 @property (nonatomic, strong)UIControl *allMaskView;
-@property (nonatomic, strong)LXAllCategoryView *allCategoryView;
+@property (nonatomic, strong)LXThirdCategoryView *allCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
@@ -59,6 +56,8 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 - (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
     self.subCateogryModel = subCateogryModel;
     [self.pinView dataFill:subCateogryModel];
+    [self.pinView.pinCategoryView selectItemAtIndex:0];
+    [self.allCategoryView dataFill:subCateogryModel];
     [self.collectionView reloadData];
     [self.collectionView setContentOffset:CGPointZero animated:YES];
 
@@ -78,6 +77,14 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)selectItemAtIndex:(NSInteger)idx {
+    if(idx < 0 || idx >= self.subCateogryModel.sectionList.count) {
+        return;
+    }
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:idx];
+    [self.collectionView selectItemAtIndexPath:ip animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    // [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:position animated:YES];
+}
 - (void)updateSectionHeaderAttributes {
     // if(!__shouldRest) {
     //     return;
@@ -163,6 +170,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
             contentOffset.y -= kPinViewHeight;
         }
         [self.collectionView setContentOffset:contentOffset animated:YES];
+        [self.allCategoryView selectItemAtIndex:index];
     }
 }
 
@@ -361,9 +369,19 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 - (LXSubCategoryPinView *)pinView {
     if(!_pinView){
         LXSubCategoryPinView *v = [[LXSubCategoryPinView alloc]init];
-        v.pinCategoryView.delegate = self;
         WEAKSELF(self)
+        v.pinCategoryView.didSelectRowBlock = ^(NSInteger idx) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(idx >= 0 && idx < weakSelf.subCateogryModel.sectionList.count) {
+                    [weakSelf.allCategoryView selectItemAtIndex:idx];
+                    [weakSelf selectItemAtIndex:idx];
+                    // CGRect sectionRect = [weakSelf.collectionView.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx]].frame;
+                    // weakSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx] atScrollPosition:<#(UICollectionViewScrollPosition)#> animated:<#(BOOL)#>
+                }
+            });
+        };
         v.toggleShowAll = ^{
+            [weakSelf.allCategoryView selectItemAtIndex:weakSelf.pinView.pinCategoryView.selectedIndex];
             [weakSelf showAllCategoryView];
         };
         _pinView = v;
@@ -379,15 +397,23 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     }
     return _allMaskView;
 }
-- (LXAllCategoryView *)allCategoryView {
+- (LXThirdCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
+        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        v.minimumLineSpacing = kWPercentage(7.5f);
+        v.minimumInteritemSpacing = kWPercentage(7.5f);
+        v.sectionInset = UIEdgeInsetsMake(0, kWPercentage(10.f), kWPercentage(15.f), kWPercentage(10.f));
+        v.itemSize = CGSizeMake(kWPercentage(68.f), kPinCategoryViewHeight - v.sectionInset.top - v.sectionInset.bottom);
+        CGFloat itemWidth = SCREEN_WIDTH - kLeftTableWidth - (v.sectionInset.left + v.sectionInset.right + v.minimumLineSpacing + v.minimumInteritemSpacing);
+        itemWidth /= 3.f;
+        v.itemSize = CGSizeMake(floorf(itemWidth), kWPercentage(35.f));
         WEAKSELF(self)
-        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+        v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                // [weakSelf.pinCategoryView selectItemAtIndexPath:ip];
-                // [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
-                // [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+                if(idx >= 0 && idx < weakSelf.subCateogryModel.sectionList.count) {
+                    [weakSelf.pinView.pinCategoryView selectItemAtIndex:idx];
+                    [weakSelf selectItemAtIndex:idx];
+                }
             });
         };
         _allCategoryView = v;

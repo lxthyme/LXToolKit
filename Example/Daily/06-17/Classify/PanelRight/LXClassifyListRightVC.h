@@ -10,6 +10,8 @@
 
 #import "LXSectionModel.h"
 
+#define kLeftTableWidth kWPercentage(84.f)
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListRightVC : LXBaseVC {

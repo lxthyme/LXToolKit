@@ -1,5 +1,5 @@
 //
-//  LXAllCategoryView.h
+//  LXFirstCategoryView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
@@ -9,13 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXAllCategoryView : LXBaseView {
+@interface LXFirstCategoryView : LXBaseView {
 }
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong, readonly)NSIndexPath *_Nullable selectedIndexPath;
-@property(nonatomic, copy)void (^didSelectRowBlock)(NSIndexPath *ip);
+@property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 
-- (void)selectItemAtIndexPath:(NSIndexPath *)ip;
+- (void)selectItemAtIndex:(NSInteger)idx;
 
 @end
 

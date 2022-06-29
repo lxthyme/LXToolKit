@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 
 @interface LXSubCategoryPinView() {
 }
-@property (nonatomic, strong)JXCategoryTitleBackgroundView *pinCategoryView;
+@property (nonatomic, strong)LXThirdCategoryView *pinCategoryView;
 @property(nonatomic, strong)YYLabel *labAll;
 @property(nonatomic, strong)UIView *filterView;
 /// 即时达 最快30分钟
@@ -55,11 +55,11 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
     // self.subCateogryModel = subCateogryModel;
-    self.pinCategoryView.titles = [[subCateogryModel.sectionList.rac_sequence skip:1]
-                                   map:^id _Nullable(LXSectionModel * _Nullable value) {
-        return value.title;
-    }].array;
-    [self.pinCategoryView reloadDataWithoutListContainer];
+    // NSArray *titleList = [[subCateogryModel.sectionList.rac_sequence skip:1]
+    //                                map:^id _Nullable(LXSectionModel * _Nullable value) {
+    //     return value.title;
+    // }].array;
+    [self.pinCategoryView dataFill:subCateogryModel];
 }
 
 #pragma mark -
@@ -120,7 +120,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0.f);
         make.left.equalTo(@(kWPercentage(10.f)));
-        make.height.equalTo(@(kWPercentage(44.f)));
+        make.height.equalTo(@(kPinCategoryViewHeight));
     }];
     [self.labAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.pinCategoryView);
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         make.top.equalTo(self.pinCategoryView.mas_bottom);
         make.left.equalTo(self.pinCategoryView);
         make.right.equalTo(@(kWPercentage(-10.f)));
-        make.bottom.equalTo(@0.f);
+        make.height.equalTo(@(kPinFilterViewHeight));
     }];
     [self.btnJiShiDa mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(@0.f);
@@ -196,22 +196,15 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
 }
 #pragma mark Lazy Property
-- (JXCategoryTitleBackgroundView *)pinCategoryView {
+- (LXThirdCategoryView *)pinCategoryView {
     if(!_pinCategoryView){
-        JXCategoryTitleBackgroundView *v = [[JXCategoryTitleBackgroundView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
-        v.normalBackgroundColor = [UIColor colorWithHex:0xF6F6F6];
-        v.selectedBackgroundColor = [UIColor colorWithHex:0xFF774F alpha:0.1];
-        v.titleColor = [UIColor colorWithHex:0x666666];
-        v.titleSelectedColor = [UIColor colorWithHex:0xFF774F];
-        v.borderLineWidth = 0.f;
-        v.contentEdgeInsetLeft = 0.f;
-        v.contentEdgeInsetRight = 0.f;
-        v.backgroundCornerRadius = kWPercentage(4.f);
-
-        // JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        // lineView.verticalMargin = 15;
-        // v.indicators = @[lineView];
+        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        [v.flowLayout prepareLayout];
+        v.minimumLineSpacing = kWPercentage(5.f);
+        v.minimumInteritemSpacing = kWPercentage(5.f);
+        v.sectionInset = UIEdgeInsetsMake(kWPercentage(10.f), 0.f, kWPercentage(10.f), 0.f);
+        v.itemSize = CGSizeMake(kWPercentage(68.f), kPinCategoryViewHeight - v.sectionInset.top - v.sectionInset.bottom);
 
         _pinCategoryView = v;
     }

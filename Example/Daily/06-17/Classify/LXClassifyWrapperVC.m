@@ -9,7 +9,7 @@
 
 #import "LXSectionModel.h"
 #import "LXClassifyListVC.h"
-#import "LXAllCategoryView.h"
+#import "LXFirstCategoryView.h"
 
 static const CGFloat kLabelAllWidth = 44.f;
 static const CGFloat kCategoryHeight = 80.f;
@@ -18,8 +18,8 @@ static const NSInteger kCategoryMaxCount = 5;
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXCategoryViewListContainer> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
-@property (nonatomic, strong)LXAllCategoryView *categoryView;
-@property (nonatomic, strong)LXAllCategoryView *allCategoryView;
+@property (nonatomic, strong)LXFirstCategoryView *categoryView;
+@property (nonatomic, strong)LXFirstCategoryView *allCategoryView;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
@@ -167,12 +167,16 @@ static const NSInteger kCategoryMaxCount = 5;
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewListContainer
 - (void)listContainerViewDidScroll:(UIScrollView *)scrollView {
+    if (!(scrollView.isTracking || scrollView.isDecelerating)) {
+        //不是用户滚动的，比如setContentOffset等方法，引起的滚动不需要处理。
+        return;
+    }
     CGPoint offset = scrollView.contentOffset;
     CGFloat page = floorf(offset.x / CGRectGetWidth(scrollView.frame));
     if(self.categoryView.selectedIndexPath.row != page) {
         NSIndexPath *ip = [NSIndexPath indexPathForRow:page inSection:0];
-        [self.categoryView selectItemAtIndexPath:ip];
-        [self.allCategoryView selectItemAtIndexPath:ip];
+        [self.categoryView selectItemAtIndex:ip.row];
+        [self.allCategoryView selectItemAtIndex:ip.row];
     }
 }
 #pragma mark -
@@ -307,9 +311,9 @@ static const NSInteger kCategoryMaxCount = 5;
     }
     return _labAll;
 }
-- (LXAllCategoryView *)categoryView {
+- (LXFirstCategoryView *)categoryView {
     if(!_categoryView){
-        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
+        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]init];
         // v.backgroundColor = [UIColor whiteColor];
         // // v.imageZoomEnabled = YES;
         // // v.imageZoomScale = 1.3f;
@@ -338,26 +342,26 @@ static const NSInteger kCategoryMaxCount = 5;
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];
         WEAKSELF(self)
-        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+        v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.allCategoryView selectItemAtIndexPath:ip];
-                [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
-                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+                [weakSelf.allCategoryView selectItemAtIndex:idx];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
+                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
             });
         };
         _categoryView = v;
     }
     return _categoryView;
 }
-- (LXAllCategoryView *)allCategoryView {
+- (LXFirstCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        LXAllCategoryView *v = [[LXAllCategoryView alloc]init];
+        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]init];
         WEAKSELF(self)
-        v.didSelectRowBlock = ^(NSIndexPath *ip) {
+        v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.categoryView selectItemAtIndexPath:ip];
-                [weakSelf.listContainerView didClickSelectedItemAtIndex:ip.row];
-                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(ip.row * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
+                [weakSelf.categoryView selectItemAtIndex:idx];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
+                [weakSelf.listContainerView.contentScrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.contentScrollView.bounds.size.width, 0) animated:YES];
             });
         };
         _allCategoryView = v;
