@@ -95,6 +95,7 @@
             @"LXClassifyContinueVC",
             @"LXVerticalCategoryVC",
             @"LXClassifyListVC",
+            @"LXTestModelVC",
         ];
     }
     return _dataList;

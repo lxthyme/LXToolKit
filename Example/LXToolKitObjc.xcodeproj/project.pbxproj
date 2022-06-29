@@ -45,6 +45,8 @@
 		BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE6D285D7F1C00A86665 /* LXBaseNavigationController.m */; };
 		BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */; };
 		BE7F30922862A6F100C09F3C /* LXClassifyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F30912862A6F100C09F3C /* LXClassifyListVC.m */; };
+		BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F4130286B01C5009D8A8A /* LXTestModel.m */; };
+		BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */; };
 		BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C4F285EAF450027F9FF /* LXNest6VC.m */; };
 		BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C82285ECB010027F9FF /* LXPageCell.m */; };
 		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
@@ -145,6 +147,10 @@
 		BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
 		BE7F30902862A6F100C09F3C /* LXClassifyListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyListVC.h; sourceTree = "<group>"; };
 		BE7F30912862A6F100C09F3C /* LXClassifyListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListVC.m; sourceTree = "<group>"; };
+		BE7F412F286B01C5009D8A8A /* LXTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestModel.h; sourceTree = "<group>"; };
+		BE7F4130286B01C5009D8A8A /* LXTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestModel.m; sourceTree = "<group>"; };
+		BE7F4132286B01D2009D8A8A /* LXTestModelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestModelVC.h; sourceTree = "<group>"; };
+		BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestModelVC.m; sourceTree = "<group>"; };
 		BE888C4E285EAF450027F9FF /* LXNest6VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNest6VC.h; sourceTree = "<group>"; };
 		BE888C4F285EAF450027F9FF /* LXNest6VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNest6VC.m; sourceTree = "<group>"; };
 		BE888C81285ECB010027F9FF /* LXPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPageCell.h; sourceTree = "<group>"; };
@@ -422,6 +428,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE7F412E286B01AB009D8A8A /* 06-28 */ = {
+			isa = PBXGroup;
+			children = (
+				BE7F412F286B01C5009D8A8A /* LXTestModel.h */,
+				BE7F4130286B01C5009D8A8A /* LXTestModel.m */,
+				BE7F4132286B01D2009D8A8A /* LXTestModelVC.h */,
+				BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */,
+			);
+			path = "06-28";
+			sourceTree = "<group>";
+		};
 		BE888C4D285EAF2E0027F9FF /* Nest6 */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +462,7 @@
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE7F412E286B01AB009D8A8A /* 06-28 */,
 				BEA96F76285C0CD70002AB73 /* 06-17 */,
 				BED143FF2844B21000DEA8EA /* 05-28 */,
 				BE894F212840655F0022EF57 /* 05-27 */,
@@ -740,8 +758,10 @@
 			files = (
 				BE9234C1285F1E2900ABB71B /* LXMyCollectionView.m in Sources */,
 				BE7F30922862A6F100C09F3C /* LXClassifyListVC.m in Sources */,
+				BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */,
 				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
 				BE605073285F5B2C00DF3EB0 /* LXClassifyListLeftView.m in Sources */,
+				BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
 				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
 				BEE8EB53286AA191004D06F7 /* LXClassifyRightCollectionCell.m in Sources */,

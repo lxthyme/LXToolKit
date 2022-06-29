@@ -14,6 +14,7 @@
 @property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
+@property(nonatomic, strong)NSIndexPath *_Nullable selectedIndexPath;
 
 @end
 
@@ -32,6 +33,9 @@
 #pragma mark -
 #pragma mark - 👀Public Actions
 - (void)selectItemAtIndexPath:(NSIndexPath *)ip {
+    if(ip.row >= self.dataList.count) {
+        return;
+    }
     UICollectionViewScrollPosition position = UICollectionViewScrollPositionCenteredHorizontally;
     if(self.flowLayout.scrollDirection == UICollectionViewScrollDirectionVertical) {
         position = UICollectionViewScrollPositionCenteredVertically;
@@ -86,6 +90,10 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
+}
+#pragma mark getter / setter
+- (NSIndexPath *)selectedIndexPath {
+    return self.collectionView.indexPathsForSelectedItems.firstObject;
 }
 
 #pragma mark Lazy Property

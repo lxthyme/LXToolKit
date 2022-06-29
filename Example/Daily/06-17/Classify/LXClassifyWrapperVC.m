@@ -15,7 +15,7 @@ static const CGFloat kLabelAllWidth = 44.f;
 static const CGFloat kCategoryHeight = 80.f;
 static const NSInteger kCategoryMaxCount = 5;
 
-@interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
+@interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXCategoryViewListContainer> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
 @property (nonatomic, strong)LXAllCategoryView *categoryView;
@@ -164,6 +164,17 @@ static const NSInteger kCategoryMaxCount = 5;
 #pragma mark -
 #pragma mark - 🔐Private Actions
 
+#pragma mark -
+#pragma mark - ✈️JXCategoryViewListContainer
+- (void)listContainerViewDidScroll:(UIScrollView *)scrollView {
+    CGPoint offset = scrollView.contentOffset;
+    CGFloat page = floorf(offset.x / CGRectGetWidth(scrollView.frame));
+    if(self.categoryView.selectedIndexPath.row != page) {
+        NSIndexPath *ip = [NSIndexPath indexPathForRow:page inSection:0];
+        [self.categoryView selectItemAtIndexPath:ip];
+        [self.allCategoryView selectItemAtIndexPath:ip];
+    }
+}
 #pragma mark -
 #pragma mark - ✈️JXCategoryListContentViewDelegate
 - (UIView *)listView {
