@@ -7,7 +7,7 @@
 //
 #import "LXFirstCategoryView.h"
 
-#import "LXAllCategoryCell.h"
+#import "LXFirstCategoryCell.h"
 
 @interface LXFirstCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
@@ -54,7 +54,7 @@
     return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXAllCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXAllCategoryCell" forIndexPath:indexPath];
+    LXFirstCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryCell" forIndexPath:indexPath];
     [cell dataFill];
     return cell;
 }
@@ -76,7 +76,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXAllCategoryCell class] forCellWithReuseIdentifier:@"LXAllCategoryCell"];
+    [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:@"LXFirstCategoryCell"];
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];

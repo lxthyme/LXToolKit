@@ -1,15 +1,15 @@
 //
-//  LXAllCategoryCell.m
+//  LXFirstCategoryCell.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXAllCategoryCell.h"
+#import "LXFirstCategoryCell.h"
 
 static const kCellWidth = 42.f;
 
-@interface LXAllCategoryCell() {
+@interface LXFirstCategoryCell() {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
@@ -17,7 +17,7 @@ static const kCellWidth = 42.f;
 
 @end
 
-@implementation LXAllCategoryCell
+@implementation LXFirstCategoryCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

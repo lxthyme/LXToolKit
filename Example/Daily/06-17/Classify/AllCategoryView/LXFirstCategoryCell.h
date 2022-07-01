@@ -1,5 +1,5 @@
 //
-//  LXAllCategoryCell.h
+//  LXFirstCategoryCell.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXAllCategoryCell : LXBaseCollectionViewCell {
+@interface LXFirstCategoryCell : LXBaseCollectionViewCell {
 }
 
 - (void)dataFill;

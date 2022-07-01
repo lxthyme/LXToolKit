@@ -64,7 +64,7 @@
     return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXThirdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXSubCategoryCell" forIndexPath:indexPath];
+    LXThirdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXThirdCategoryCell" forIndexPath:indexPath];
     [cell dataFill:self.dataList[indexPath.row]];
     return cell;
 }
