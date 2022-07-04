@@ -95,6 +95,7 @@
             @"LXClassifyContinueVC",
             @"LXVerticalCategoryVC",
             @"LXClassifyListVC",
+            @"LXClassifyMainVC",
             @"LXTestModelVC",
         ];
     }

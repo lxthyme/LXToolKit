@@ -11,15 +11,15 @@
 #import "LXClassifyListVC.h"
 #import "LXFirstCategoryView.h"
 
-static const CGFloat kLabelAllWidth = 44.f;
-static const CGFloat kCategoryHeight = 80.f;
-static const NSInteger kCategoryMaxCount = 5;
+static const CGFloat kLabelAllWidth = 35.f;
 
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXCategoryViewListContainer> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
 @property (nonatomic, strong)LXFirstCategoryView *categoryView;
 @property (nonatomic, strong)LXFirstCategoryView *allCategoryView;
+@property(nonatomic, strong)UIImageView *imgViewShadowLeft;
+@property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
@@ -119,6 +119,9 @@ static const NSInteger kCategoryMaxCount = 5;
         LXCategoryModel *category = [[LXCategoryModel alloc]init];
         // category.title = [NSString stringWithFormat:@"row: %ld", j];
         category.title = [NSString stringWithFormat:@"[%@]%@", tuple.first, tuple.second];
+        if([tuple.first isEqual:@(3)]) {
+            category.title = @"苹";
+        }
         category.imageNames = tuple.third;
         category.selectedImageNames = tuple.fourth;
         category.imageType = JXCategoryTitleImageType_TopImage;
@@ -156,6 +159,8 @@ static const NSInteger kCategoryMaxCount = 5;
     // self.allCategoryView.titles = titles.array;
     // self.allCategoryView.imageNames = imageNames.array;
     // self.allCategoryView.selectedImageNames = selectedImageNames.array;
+    [self.categoryView dataFill:self.dataList];
+    [self.allCategoryView dataFill:self.dataList];
 }
 
 #pragma mark -
@@ -241,6 +246,8 @@ static const NSInteger kCategoryMaxCount = 5;
 
     [self.view addSubview:self.categoryView];
     [self.view addSubview:self.labAll];
+    [self.view addSubview:self.imgViewShadowLeft];
+    [self.view addSubview:self.imgViewShadowRight];
     [self.view addSubview:self.listContainerView];
 
     [self.allMaskView addSubview:self.allCategoryView];
@@ -253,13 +260,21 @@ static const NSInteger kCategoryMaxCount = 5;
     // MASAttachKeys(<#...#>)
     [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(@0.f);
-        make.height.equalTo(@(kCategoryHeight));
+        make.height.equalTo(@(kFirstCategoryFoldHeight));
     }];
     [self.labAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.categoryView);
         make.left.equalTo(self.categoryView.mas_right);
         make.right.equalTo(@0.f);
         make.width.equalTo(@(kLabelAllWidth));
+    }];
+    [self.imgViewShadowLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self.categoryView);
+        make.left.equalTo(@0.f);
+    }];
+    [self.imgViewShadowRight mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(self.categoryView);
+        make.right.equalTo(self.labAll.mas_left);
     }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.categoryView.mas_bottom);
@@ -287,8 +302,21 @@ static const NSInteger kCategoryMaxCount = 5;
 - (YYLabel *)labAll {
     if(!_labAll){
         YYLabel *lab = [[YYLabel alloc]init];
-        lab.text = @"全部";
-        lab.textColor = [UIColor blackColor];
+        UIFont *font = [UIFont boldSystemFontOfSize:kWPercentage(11.f)];
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];
+        [attr yy_appendString:@"全 部"];
+        attr.yy_font = font;
+        attr.yy_color = [UIColor colorWithHex:0x333333];
+        UIImage *img = [iBLImage imageNamed:@"icon_unfold"];
+        NSMutableAttributedString *attachment = [NSMutableAttributedString
+                                                 yy_attachmentStringWithContent:img
+                                                 contentMode:UIViewContentModeCenter
+                                                 attachmentSize:img.size
+                                                 alignToFont:font
+                                                 alignment:YYTextVerticalAlignmentCenter];
+        [attr yy_appendString:@" "];
+        [attr appendAttributedString:attachment];
+        lab.attributedText = attr;
         lab.verticalForm = YES;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
@@ -313,7 +341,7 @@ static const NSInteger kCategoryMaxCount = 5;
 }
 - (LXFirstCategoryView *)categoryView {
     if(!_categoryView){
-        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]init];
+        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]initWithFirstCategoryType:LXFirstCategoryTypeFold];
         // v.backgroundColor = [UIColor whiteColor];
         // // v.imageZoomEnabled = YES;
         // // v.imageZoomScale = 1.3f;
@@ -353,9 +381,29 @@ static const NSInteger kCategoryMaxCount = 5;
     }
     return _categoryView;
 }
+- (UIImageView *)imgViewShadowLeft {
+    if(!_imgViewShadowLeft){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.image = [iBLImage imageNamed:@"dj_category_shadow_left"];
+        _imgViewShadowLeft = iv;
+    }
+    return _imgViewShadowLeft;
+}
+- (UIImageView *)imgViewShadowRight {
+    if(!_imgViewShadowRight){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.image = [iBLImage imageNamed:@"dj_category_shadow_right"];
+        _imgViewShadowRight = iv;
+    }
+    return _imgViewShadowRight;
+}
+
+
 - (LXFirstCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]init];
+        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]initWithFirstCategoryType:LXFirstCategoryTypeUnfold];
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -7,27 +7,33 @@
 //
 #import "LXFirstCategoryView.h"
 
-#import "LXFirstCategoryCell.h"
-
 @interface LXFirstCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
-@property(nonatomic, strong)NSArray<NSString *> *dataList;
+@property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong)NSIndexPath *_Nullable selectedIndexPath;
-
+@property(nonatomic, assign)LXFirstCategoryType firstCategoryType;
 @end
 
 @implementation LXFirstCategoryView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithFirstCategoryType:(LXFirstCategoryType)firstCategoryType {
+    if (self = [super init]) {
+        self.firstCategoryType = firstCategoryType;
+
         [self prepareCollectionView];
         [self prepareUI];
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark - 🌎LoadData
+- (void)dataFill:(NSArray<LXCategoryModel *> *)categoryList {
+    self.dataList = categoryList;
+    [self.collectionView reloadData];
 }
 
 #pragma mark -
@@ -54,8 +60,14 @@
     return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXFirstCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryCell" forIndexPath:indexPath];
-    [cell dataFill];
+    LXFirstCategoryCell *cell;
+    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFirstCategoryCellFoldReuseIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFirstCategoryCellUnfoldReuseIdentifier forIndexPath:indexPath];
+    }
+    LXCategoryModel *categoryModel = self.dataList[indexPath.row];
+    [cell dataFill:categoryModel];
     return cell;
 }
 #pragma mark -
@@ -63,7 +75,11 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = CGRectGetWidth(collectionView.frame);
     CGFloat itemWidth = floor(width / 5.f);
-    return CGSizeMake(itemWidth, 67.5f);
+    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
+        return CGSizeMake(itemWidth, kFirstCategoryFoldHeight);
+    } else {
+        return CGSizeMake(itemWidth, 67.5f);
+    }
 }
 
 #pragma mark - ✈️UICollectionViewDelegate
@@ -76,7 +92,11 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:@"LXFirstCategoryCell"];
+    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
+        [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:kFirstCategoryCellFoldReuseIdentifier];
+    } else {
+        [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:kFirstCategoryCellUnfoldReuseIdentifier];
+    }
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
@@ -99,16 +119,6 @@
 }
 
 #pragma mark Lazy Property
-- (NSArray<NSString *> *)dataList {
-    if(!_dataList){
-        NSMutableArray *arr = [NSMutableArray array];
-        for (NSInteger i = 0; i < 20; i++) {
-            [arr addObject:[NSString stringWithFormat:@"row: %ld", i]];
-        }
-        _dataList = [arr copy];
-    }
-    return _dataList;
-}
 - (UICollectionViewFlowLayout *)flowLayout {
     if(!_flowLayout){
         CGSize itemSize = CGSizeZero;
@@ -133,6 +143,8 @@
         UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:self.flowLayout];
         cv.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         // cv.pagingEnabled = YES;
+        cv.showsHorizontalScrollIndicator = NO;
+        cv.showsVerticalScrollIndicator = NO;
 
         cv.delegate = self;
         cv.dataSource = self;

@@ -7,13 +7,12 @@
 //
 #import "LXFirstCategoryCell.h"
 
-static const kCellWidth = 42.f;
-
 @interface LXFirstCategoryCell() {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
-@property(nonatomic, strong)YYLabel *labTitle;
+@property(nonatomic, strong)UIView *logView;
+@property(nonatomic, strong)LXLabel *labTitle;
 
 @end
 
@@ -34,21 +33,28 @@ static const kCellWidth = 42.f;
     [super setSelected:selected];
     // Configure the view for the selected state
     if(selected) {
-        self.imgViewLogo.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        // self.imgViewLogo.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        self.logView.layer.borderWidth = kWPercentage(1.5f);
         self.labTitle.backgroundColor = [UIColor colorWithHex:0xFF774F];
-        self.labTitle.layer.cornerRadius = CGRectGetHeight(self.labTitle.frame) / 2.f;
     } else {
-        self.imgViewLogo.layer.borderColor = [UIColor whiteColor].CGColor;
+        // self.imgViewLogo.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.logView.layer.borderWidth = 0.f;
         self.labTitle.backgroundColor = [UIColor clearColor];
-        self.labTitle.layer.cornerRadius = 0.f;
     }
 }
-
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill {
-    self.labTitle.text = @"title";
-    [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
+- (void)dataFill:(LXCategoryModel *)categoryModel {
+    self.labTitle.text = categoryModel.title;
+    // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
+    // [self.imgViewLogo setImage:[iBLImage imageNamed:categoryModel.imageNames]];
+
+    if([self.reuseIdentifier isEqualToString:kFirstCategoryCellFoldReuseIdentifier]) {
+        self.logView.layer.cornerRadius = kFirstCategoryCellFoldBorderWidth / 2.f;
+        self.imgViewLogo.layer.cornerRadius = kFirstCategoryCellFoldImgLogoWidth / 2.f;
+    } else if([self.reuseIdentifier isEqualToString:kFirstCategoryCellUnfoldReuseIdentifier]) {
+        
+    }
 }
 
 #pragma mark -
@@ -60,7 +66,8 @@ static const kCellWidth = 42.f;
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    [self.wrapperStackView addArrangedSubview:self.imgViewLogo];
+    [self.logView addSubview:self.imgViewLogo];
+    [self.wrapperStackView addArrangedSubview:self.logView];
     [self.wrapperStackView addArrangedSubview:self.labTitle];
     [self.contentView addSubview:self.wrapperStackView];
 
@@ -71,10 +78,20 @@ static const kCellWidth = 42.f;
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+        make.top.equalTo(@(kWPercentage(2.f)));
+        make.left.right.equalTo(@0.f);
+        make.bottom.lessThanOrEqualTo(@0.f);
+    }];
+    [self.logView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(@(kFirstCategoryCellFoldBorderWidth));
     }];
     [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(@(kCellWidth));
+        make.center.equalTo(@0.f);
+        make.width.height.equalTo(@(kFirstCategoryCellFoldImgLogoWidth));
+    }];
+    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(kFirstCategoryCellLabelHeight));
+        make.width.greaterThanOrEqualTo(@(kFirstCategoryCellLabelHeight));
     }];
 }
 
@@ -83,11 +100,23 @@ static const kCellWidth = 42.f;
     if(!_wrapperStackView){
         UIStackView *sv = [[UIStackView alloc]init];
         sv.axis = UILayoutConstraintAxisVertical;
-        sv.spacing = 2.5f;
+        sv.spacing = kWPercentage(2.5f);
         sv.alignment = UIStackViewAlignmentCenter;
+        sv.distribution = UIStackViewDistributionFillProportionally;
         _wrapperStackView = sv;
     }
     return _wrapperStackView;
+}
+- (UIView *)logView {
+    if(!_logView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
+        v.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        v.layer.borderWidth = 0.f;
+        v.clipsToBounds = YES;
+        _logView = v;
+    }
+    return _logView;
 }
 - (UIImageView *)imgViewLogo {
     if(!_imgViewLogo){
@@ -95,17 +124,16 @@ static const kCellWidth = 42.f;
         iv.contentMode = UIViewContentModeScaleAspectFit;
         // iv.image = [UIImage imageNamed:@""];
         iv.backgroundColor = [UIColor lightGrayColor];
-        iv.layer.borderColor = [UIColor whiteColor].CGColor;
-        iv.layer.borderWidth = 2.f;
-        iv.layer.cornerRadius = kCellWidth / 2.f;
+        // iv.layer.borderColor = [UIColor whiteColor].CGColor;
+        // iv.layer.borderWidth = kWPercentage(1.5f);
         iv.clipsToBounds = YES;
         _imgViewLogo = iv;
     }
     return _imgViewLogo;
 }
-- (YYLabel *)labTitle {
+- (LXLabel *)labTitle {
     if(!_labTitle){
-        YYLabel *label = [[YYLabel alloc]init];
+        LXLabel *label = [[LXLabel alloc]init];
         label.text = @"";
         label.font = [UIFont systemFontOfSize:14.f];
         label.textColor = [UIColor blackColor];
@@ -113,7 +141,9 @@ static const kCellWidth = 42.f;
         label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.clipsToBounds = YES;
-        // label.textContainerInset = UIEdgeInsetsMake(2, 5, 2, 5);
+        label.layer.cornerRadius = kFirstCategoryCellLabelHeight / 2.f;
+        label.x_insets = UIEdgeInsetsMake(kWPercentage(1.f), kWPercentage(3.5f), kWPercentage(1.f), kWPercentage(3.5f));
+
         _labTitle = label;
     }
     return _labTitle;

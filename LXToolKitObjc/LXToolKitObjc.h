@@ -25,4 +25,6 @@
 #import "LXBaseTableViewCell.h"
 #import "LXBaseTableViewHeaderFooterView.h"
 
+#import "LXLabel.h"
+
 #endif /* LXToolKitObjc_h */

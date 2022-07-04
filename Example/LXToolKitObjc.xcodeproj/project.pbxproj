@@ -51,8 +51,8 @@
 		BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C82285ECB010027F9FF /* LXPageCell.m */; };
 		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
 		BE89B3A9286300C800369681 /* LXClassifyListRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B3A8286300C800369681 /* LXClassifyListRightVC.m */; };
-		BE89B44D28631B7900369681 /* LXAllCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44C28631B7900369681 /* LXAllCategoryView.m */; };
-		BE89B450286324AF00369681 /* LXAllCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44F286324AF00369681 /* LXAllCategoryCell.m */; };
+		BE89B44D28631B7900369681 /* LXFirstCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44C28631B7900369681 /* LXFirstCategoryView.m */; };
+		BE89B450286324AF00369681 /* LXFirstCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE89B44F286324AF00369681 /* LXFirstCategoryCell.m */; };
 		BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234AB285EDDC400ABB71B /* LXMyTableView.m */; };
 		BE9234B2285F039100ABB71B /* LXSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234B1285F039100ABB71B /* LXSectionModel.m */; };
 		BE9234B8285F063400ABB71B /* LXClassifySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234B7285F063400ABB71B /* LXClassifySectionHeaderView.m */; };
@@ -63,6 +63,10 @@
 		BEB56B34283E1774003BAA77 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B33283E1774003BAA77 /* CTAPIBaseManager+Rac.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
+		BECC0AF2286C1E130062E115 /* LXClassifyMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC0AF1286C1E130062E115 /* LXClassifyMainVC.m */; };
+		BECC0AF5286C20200062E115 /* LXClassifyList2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC0AF4286C20200062E115 /* LXClassifyList2VC.m */; };
+		BECC0AF9286C29050062E115 /* LXThirdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC0AF8286C29050062E115 /* LXThirdCategoryView.m */; };
+		BECC0AFC286C2D450062E115 /* LXThirdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BECC0AFB286C2D450062E115 /* LXThirdCategoryCell.m */; };
 		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
 		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
 		BEE8EB53286AA191004D06F7 /* LXClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE8EB52286AA190004D06F7 /* LXClassifyRightCollectionCell.m */; };
@@ -159,10 +163,10 @@
 		BE894F23284065780022EF57 /* LX0527VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
 		BE89B3A7286300C800369681 /* LXClassifyListRightVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyListRightVC.h; sourceTree = "<group>"; };
 		BE89B3A8286300C800369681 /* LXClassifyListRightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListRightVC.m; sourceTree = "<group>"; };
-		BE89B44B28631B7900369681 /* LXAllCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAllCategoryView.h; sourceTree = "<group>"; };
-		BE89B44C28631B7900369681 /* LXAllCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAllCategoryView.m; sourceTree = "<group>"; };
-		BE89B44E286324AF00369681 /* LXAllCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAllCategoryCell.h; sourceTree = "<group>"; };
-		BE89B44F286324AF00369681 /* LXAllCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAllCategoryCell.m; sourceTree = "<group>"; };
+		BE89B44B28631B7900369681 /* LXFirstCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFirstCategoryView.h; sourceTree = "<group>"; };
+		BE89B44C28631B7900369681 /* LXFirstCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFirstCategoryView.m; sourceTree = "<group>"; };
+		BE89B44E286324AF00369681 /* LXFirstCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXFirstCategoryCell.h; sourceTree = "<group>"; };
+		BE89B44F286324AF00369681 /* LXFirstCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXFirstCategoryCell.m; sourceTree = "<group>"; };
 		BE9234AA285EDDC400ABB71B /* LXMyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyTableView.h; sourceTree = "<group>"; };
 		BE9234AB285EDDC400ABB71B /* LXMyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyTableView.m; sourceTree = "<group>"; };
 		BE9234B0285F039100ABB71B /* LXSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSectionModel.h; sourceTree = "<group>"; };
@@ -183,6 +187,14 @@
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
 		BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVM.m; sourceTree = "<group>"; };
+		BECC0AF0286C1E130062E115 /* LXClassifyMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyMainVC.h; sourceTree = "<group>"; };
+		BECC0AF1286C1E130062E115 /* LXClassifyMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyMainVC.m; sourceTree = "<group>"; };
+		BECC0AF3286C20200062E115 /* LXClassifyList2VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXClassifyList2VC.h; sourceTree = "<group>"; };
+		BECC0AF4286C20200062E115 /* LXClassifyList2VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXClassifyList2VC.m; sourceTree = "<group>"; };
+		BECC0AF7286C29050062E115 /* LXThirdCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXThirdCategoryView.h; sourceTree = "<group>"; };
+		BECC0AF8286C29050062E115 /* LXThirdCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXThirdCategoryView.m; sourceTree = "<group>"; };
+		BECC0AFA286C2D450062E115 /* LXThirdCategoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXThirdCategoryCell.h; sourceTree = "<group>"; };
+		BECC0AFB286C2D450062E115 /* LXThirdCategoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXThirdCategoryCell.m; sourceTree = "<group>"; };
 		BED144002844B22400DEA8EA /* LXCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
 		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
 		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
@@ -338,6 +350,7 @@
 		BE605078285F68C400DF3EB0 /* PanelRight */ = {
 			isa = PBXGroup;
 			children = (
+				BECC0AF6286C28EB0062E115 /* AllCategoryView */,
 				BEE8EB56286AA38F004D06F7 /* View */,
 				BEE8EB55286AA36D004D06F7 /* Cell & HeaderFooter */,
 				BE63A2F028699493000EA644 /* PinView */,
@@ -508,6 +521,7 @@
 		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
 			isa = PBXGroup;
 			children = (
+				BECC0AEF286C1DFF0062E115 /* Classify2 */,
 				BE9234AD285EFF6800ABB71B /* Classify */,
 				BE7CAE54285D7F1C00A86665 /* Nested2 */,
 				BE888C4D285EAF2E0027F9FF /* Nest6 */,
@@ -555,6 +569,28 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		BECC0AEF286C1DFF0062E115 /* Classify2 */ = {
+			isa = PBXGroup;
+			children = (
+				BECC0AF0286C1E130062E115 /* LXClassifyMainVC.h */,
+				BECC0AF1286C1E130062E115 /* LXClassifyMainVC.m */,
+				BECC0AF3286C20200062E115 /* LXClassifyList2VC.h */,
+				BECC0AF4286C20200062E115 /* LXClassifyList2VC.m */,
+			);
+			path = Classify2;
+			sourceTree = "<group>";
+		};
+		BECC0AF6286C28EB0062E115 /* AllCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BECC0AF7286C29050062E115 /* LXThirdCategoryView.h */,
+				BECC0AF8286C29050062E115 /* LXThirdCategoryView.m */,
+				BECC0AFA286C2D450062E115 /* LXThirdCategoryCell.h */,
+				BECC0AFB286C2D450062E115 /* LXThirdCategoryCell.m */,
+			);
+			path = AllCategoryView;
+			sourceTree = "<group>";
+		};
 		BED143FF2844B21000DEA8EA /* 05-28 */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,10 +606,10 @@
 			isa = PBXGroup;
 			children = (
 				BE364285286550A6009C19C7 /* JX */,
-				BE89B44B28631B7900369681 /* LXAllCategoryView.h */,
-				BE89B44C28631B7900369681 /* LXAllCategoryView.m */,
-				BE89B44E286324AF00369681 /* LXAllCategoryCell.h */,
-				BE89B44F286324AF00369681 /* LXAllCategoryCell.m */,
+				BE89B44B28631B7900369681 /* LXFirstCategoryView.h */,
+				BE89B44C28631B7900369681 /* LXFirstCategoryView.m */,
+				BE89B44E286324AF00369681 /* LXFirstCategoryCell.h */,
+				BE89B44F286324AF00369681 /* LXFirstCategoryCell.m */,
 			);
 			path = AllCategoryView;
 			sourceTree = "<group>";
@@ -757,12 +793,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE9234C1285F1E2900ABB71B /* LXMyCollectionView.m in Sources */,
+				BECC0AF9286C29050062E115 /* LXThirdCategoryView.m in Sources */,
+				BECC0AFC286C2D450062E115 /* LXThirdCategoryCell.m in Sources */,
 				BE7F30922862A6F100C09F3C /* LXClassifyListVC.m in Sources */,
 				BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */,
 				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
 				BE605073285F5B2C00DF3EB0 /* LXClassifyListLeftView.m in Sources */,
 				BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
+				BECC0AF5286C20200062E115 /* LXClassifyList2VC.m in Sources */,
 				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
 				BEE8EB53286AA191004D06F7 /* LXClassifyRightCollectionCell.m in Sources */,
 				BE89B3A9286300C800369681 /* LXClassifyListRightVC.m in Sources */,
@@ -776,7 +815,7 @@
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
 				BE7CAE85285D7F1D00A86665 /* LXNestCell.m in Sources */,
 				BE9234B8285F063400ABB71B /* LXClassifySectionHeaderView.m in Sources */,
-				BE89B450286324AF00369681 /* LXAllCategoryCell.m in Sources */,
+				BE89B450286324AF00369681 /* LXFirstCategoryCell.m in Sources */,
 				BE36428F286550FB009C19C7 /* JXCategoryTitleBackgroundView.m in Sources */,
 				BE7CAE89285D7F1D00A86665 /* LXPagingVC.m in Sources */,
 				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
@@ -795,8 +834,9 @@
 				BE36428E286550FB009C19C7 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
 				BE7CAE86285D7F1D00A86665 /* LXTableVC.m in Sources */,
 				BE9234B2285F039100ABB71B /* LXSectionModel.m in Sources */,
+				BECC0AF2286C1E130062E115 /* LXClassifyMainVC.m in Sources */,
 				BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */,
-				BE89B44D28631B7900369681 /* LXAllCategoryView.m in Sources */,
+				BE89B44D28631B7900369681 /* LXFirstCategoryView.m in Sources */,
 				BE6042B5285F40BB00DF3EB0 /* LXClassifyVC.m in Sources */,
 				BE9234BB285F078000ABB71B /* LXSectionCategoryHeaderView.m in Sources */,
 				BE7CAE84285D7F1D00A86665 /* LXSectionHeaderView.m in Sources */,
