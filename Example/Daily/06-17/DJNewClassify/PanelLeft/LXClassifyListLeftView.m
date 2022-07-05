@@ -141,6 +141,7 @@
         t.estimatedRowHeight = 0;
         t.estimatedSectionHeaderHeight = 0;
         t.estimatedSectionFooterHeight = 0;
+        t.showsVerticalScrollIndicator = NO;
 
         t.delegate = self;
         t.dataSource = self;
