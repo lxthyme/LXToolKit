@@ -26,5 +26,6 @@
 #import "LXBaseTableViewHeaderFooterView.h"
 
 #import "LXLabel.h"
+#import "UIView+ex.h"
 
 #endif /* LXToolKitObjc_h */
