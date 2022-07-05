@@ -106,7 +106,8 @@
         }];
     }];
 #if DEBUG
-    [signal setNameWithFormat:@"rac-%@", RACDescription(self)];
+    // TODO: 「lxthyme」💊
+    // [signal setNameWithFormat:@"rac-%@", RACDescription(self)];
 #endif
 
     [[signal deliverOnMainThread]

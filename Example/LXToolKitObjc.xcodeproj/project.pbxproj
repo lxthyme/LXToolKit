@@ -458,16 +458,16 @@
 		BEA1AB8F2873E22200E41726 /* DJNewClassify */ = {
 			isa = PBXGroup;
 			children = (
+				BEA1AB922873E22200E41726 /* LXClassifyVC.h */,
+				BEA1ABC62873E22200E41726 /* LXClassifyVC.m */,
+				BEA1ABAF2873E22200E41726 /* LXClassifyWrapperVC.h */,
 				BEA1AB902873E22200E41726 /* LXClassifyWrapperVC.m */,
 				BEA1AB912873E22200E41726 /* LXClassifyListVC.h */,
-				BEA1AB922873E22200E41726 /* LXClassifyVC.h */,
+				BEA1ABB32873E22200E41726 /* LXClassifyListVC.m */,
 				BEA1AB932873E22200E41726 /* PanelLeft */,
 				BEA1AB982873E22200E41726 /* PanelRight */,
-				BEA1ABAF2873E22200E41726 /* LXClassifyWrapperVC.h */,
 				BEA1ABB02873E22200E41726 /* Model */,
-				BEA1ABB32873E22200E41726 /* LXClassifyListVC.m */,
 				BEA1ABB42873E22200E41726 /* AllCategoryView */,
-				BEA1ABC62873E22200E41726 /* LXClassifyVC.m */,
 			);
 			path = DJNewClassify;
 			sourceTree = "<group>";
@@ -486,12 +486,12 @@
 		BEA1AB982873E22200E41726 /* PanelRight */ = {
 			isa = PBXGroup;
 			children = (
+				BEA1ABAE2873E22200E41726 /* LXClassifyListRightVC.h */,
 				BEA1AB992873E22200E41726 /* LXClassifyListRightVC.m */,
 				BEA1AB9A2873E22200E41726 /* View */,
 				BEA1AB9D2873E22200E41726 /* PinView */,
 				BEA1ABA02873E22200E41726 /* Cell & HeaderFooter */,
 				BEA1ABA92873E22200E41726 /* AllCategoryView */,
-				BEA1ABAE2873E22200E41726 /* LXClassifyListRightVC.h */,
 			);
 			path = PanelRight;
 			sourceTree = "<group>";
@@ -517,14 +517,14 @@
 		BEA1ABA02873E22200E41726 /* Cell & HeaderFooter */ = {
 			isa = PBXGroup;
 			children = (
+				BEA1ABA52873E22200E41726 /* LXClassifySectionHeaderView.h */,
 				BEA1ABA12873E22200E41726 /* LXClassifySectionHeaderView.m */,
 				BEA1ABA22873E22200E41726 /* LXSectionCategoryHeaderView.h */,
-				BEA1ABA32873E22200E41726 /* LXClassifyRightCollectionCell.h */,
-				BEA1ABA42873E22200E41726 /* LXClassifyListBannerCell.m */,
-				BEA1ABA52873E22200E41726 /* LXClassifySectionHeaderView.h */,
-				BEA1ABA62873E22200E41726 /* LXClassifyListBannerCell.h */,
-				BEA1ABA72873E22200E41726 /* LXClassifyRightCollectionCell.m */,
 				BEA1ABA82873E22200E41726 /* LXSectionCategoryHeaderView.m */,
+				BEA1ABA62873E22200E41726 /* LXClassifyListBannerCell.h */,
+				BEA1ABA42873E22200E41726 /* LXClassifyListBannerCell.m */,
+				BEA1ABA32873E22200E41726 /* LXClassifyRightCollectionCell.h */,
+				BEA1ABA72873E22200E41726 /* LXClassifyRightCollectionCell.m */,
 			);
 			path = "Cell & HeaderFooter";
 			sourceTree = "<group>";

@@ -75,8 +75,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    CGFloat navHeight = [UIApplication.sharedApplication.keyWindow jx_navigationHeight];
-    self.pagerView.pinSectionHeaderVerticalOffset = navHeight;
+    // TODO: 「lxthyme」💊
+    // CGFloat navHeight = [UIApplication.sharedApplication.keyWindow jx_navigationHeight];
+    // self.pagerView.pinSectionHeaderVerticalOffset = navHeight;
     WEAKSELF(self)
     self.pagerView.mainTableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

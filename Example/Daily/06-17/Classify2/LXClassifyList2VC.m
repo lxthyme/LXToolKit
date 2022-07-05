@@ -49,16 +49,16 @@
                         zipWith:imageNames.rac_sequence]
                        zipWith:selectedImageNames.rac_sequence]
                       map:^id _Nullable(RACTuple * _Nullable value) {
-        RACTwoTuple *tmp1 = value.first;
-        RACTwoTuple *tmp2 = tmp1.first;
+        RACTuple *tmp1 = value.first;
+        RACTuple *tmp2 = tmp1.first;
         NSMutableArray *a = [NSMutableArray array];
         [a addObject:tmp2.first];
         [a addObject:tmp2.second];
         [a addObject:tmp1.second];
         [a addObject:value.second];
-        return [RACFourTuple tupleWithObjectsFromArray:a];
+        return [RACTuple tupleWithObjectsFromArray:a];
     }]
-                     map:^id _Nullable(RACFourTuple *_Nullable tuple) {
+                     map:^id _Nullable(RACTuple *_Nullable tuple) {
         NSMutableArray *subCategoryList = [NSMutableArray array];
         for (NSInteger j = 0; j < 20; j++) {
             NSMutableArray *sectionList = [NSMutableArray array];
@@ -100,7 +100,7 @@
         category.title = [NSString stringWithFormat:@"[%@]%@", tuple.first, tuple.second];
         category.imageNames = tuple.third;
         category.selectedImageNames = tuple.fourth;
-        category.imageType = JXCategoryTitleImageType_TopImage;
+        // category.imageType = JXCategoryTitleImageType_TopImage;
         category.subCategoryList = subCategoryList;
         return category;
     }].array;
@@ -108,9 +108,9 @@
     [self dataFill];
 }
 - (void)dataFill {
-RACSequence *imageType = [self.dataList.rac_sequence map:^id _Nullable(LXCategoryModel * _Nullable model) {
-    return @(model.imageType);
-}];
+// RACSequence *imageType = [self.dataList.rac_sequence map:^id _Nullable(LXCategoryModel * _Nullable model) {
+//     return @(model.imageType);
+// }];
 RACSequence *titles = [self.dataList.rac_sequence map:^id _Nullable(LXCategoryModel * _Nullable model) {
     return model.title;
 }];
@@ -192,7 +192,7 @@ self.categoryView.titles = titles.array;
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.contentScrollView = self.listContainerView.scrollView;
-    self.categoryView.listContainer = self.listContainerView;
+    self.categoryView.contentScrollView = self.listContainerView.scrollView;
     [self.view addSubview:self.categoryView];
     [self.view addSubview:self.listContainerView];
 
@@ -231,7 +231,9 @@ self.categoryView.titles = titles.array;
 }
 - (JXCategoryListContainerView *)listContainerView {
     if(!_listContainerView){
-        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_CollectionView delegate:self];
+        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithDelegate:self];
+        // TODO: 「lxthyme」💊
+        // [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_CollectionView delegate:self];
         _listContainerView = v;
     }
     return _listContainerView;

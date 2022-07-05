@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ReactiveObjC/ReactiveObjC.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXLoginVM : NSObject {

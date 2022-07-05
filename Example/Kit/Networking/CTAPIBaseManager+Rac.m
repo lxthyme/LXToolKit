@@ -32,7 +32,8 @@
         }];
     }] takeUntil:[self rac_willDeallocSignal]];
 #if DEBUG
-    [signal setNameWithFormat:@"rac-%@", RACDescription(self)];
+    // TODO: 「lxthyme」💊
+    // [signal setNameWithFormat:@"rac-%@", RACDescription(self)];
 #endif
     return signal;
 }

@@ -6,7 +6,7 @@
 //
 #import "LXBaseModel.h"
 
-#import <ReactiveObjC/ReactiveObjC.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <YYModel/YYModel.h>
 
 @interface LXBaseModel() {

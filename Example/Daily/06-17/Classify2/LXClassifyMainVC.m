@@ -124,7 +124,8 @@
     self.navigationController.navigationBar.translucent = false;
     self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
 
-    self.categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
+    // TODO: 「lxthyme」💊
+    // self.categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
     [self.view addSubview:self.pagerView];
 
     [self masonry];
@@ -160,7 +161,9 @@
 }
 - (JXPagerView *)pagerView {
     if(!_pagerView){
-        JXPagerView *v = [[JXPagerView alloc]initWithDelegate:self listContainerType:JXPagerListContainerType_CollectionView];
+        // TODO: 「lxthyme」💊
+        JXPagerView *v = [[JXPagerView alloc]initWithDelegate:self];
+        // [[JXPagerView alloc]initWithDelegate:self listContainerType:JXPagerListContainerType_CollectionView];
         v.mainTableView.gestureDelegate = self;
         v.mainTableView.bounces = NO;
         _pagerView = v;

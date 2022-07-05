@@ -144,7 +144,8 @@ static const CGFloat JXheightForHeaderInSection = 50;
         v.delegate = self;
         v.titles = self.titles;
 
-        v.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
+        // TODO: 「lxthyme」💊
+        // v.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
 
         _categoryView = v;
     }

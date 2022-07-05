@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'LXToolKitObjc'
+  s.name             = 'DJBusinessTools'
   s.version          = '0.1.0'
   s.summary          = 'A short description of LXToolKitObjc.'
 
@@ -40,6 +40,7 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'Masonry'
-  s.dependency 'ReactiveObjC'
+  # s.dependency 'ReactiveObjC'
+  s.dependency 'ReactiveCocoa', '2.5'
 
 end
