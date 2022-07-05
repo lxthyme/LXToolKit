@@ -35,20 +35,24 @@
 /// 你可以在这里对数据进行校验，如果校验不通过，可以返回 NO，则该 Model 会被忽略。
 /// 你也可以在这里做一些自动转换不能完成的工作。
 - (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic {
-    [self prepareData];
-    return YES;
+    return [self didFinishTransformFromDictionary];
 }
 
 /// 当 Model 转为 JSON 完成后，该方法会被调用。
 /// 你可以在这里对数据进行校验，如果校验不通过，可以返回 NO，则该 Model 会被忽略。
 /// 你也可以在这里做一些自动转换不能完成的工作。
 - (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic {
-    return YES;
+    return [self didFinishTransformToDictionary];
 }
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-- (void)prepareData {}
+- (BOOL)didFinishTransformFromDictionary {
+    return YES;
+}
+- (BOOL)didFinishTransformToDictionary {
+    return YES;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
