@@ -17,11 +17,12 @@
 #import "LXThirdCategoryView.h"
 
 static const NSUInteger kBannerSectionIdx = 0;
-static const CGFloat kBannerSectionHeight = 80.f;
+#define kBannerSectionHeight kWPercentage(90.f)
 static const NSUInteger kPinCategoryViewSectionIndex = 1;
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
+    UIButton *__btnRotate;
 }
 @property (nonatomic, strong)LXSubCategoryPinView *pinView;
 @property (nonatomic, strong)UIControl *allMaskView;
@@ -109,6 +110,11 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     if(self.allMaskView.hidden == YES) {
         return;
     }
+    if(__btnRotate) {
+        POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
+        anim.toValue = @(0);
+        [__btnRotate.imageView.layer pop_addAnimation:anim forKey:@"btnAll.Rotation"];
+    }
     self.allMaskView.hidden = NO;
     POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     maskAnim.fromValue = @1.f;
@@ -128,6 +134,11 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     if(self.allMaskView.hidden == NO) {
         [self dismissAllCategoryView];
         return;
+    }
+    if(__btnRotate) {
+        POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
+        anim.toValue = @(M_PI);
+        [__btnRotate.imageView.layer pop_addAnimation:anim forKey:@"btnAll.Rotation"];
     }
     CGRect pinViewFrame = [self.view convertRect:self.pinView.frame fromView:self.pinView];
     CGRect maskFrame = self.allMaskView.frame;
@@ -185,7 +196,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     return self.subCateogryModel.sectionList[section].itemList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 0) {
+    if(indexPath.section == kBannerSectionIdx) {
         LXClassifyListBannerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyListBannerCell" forIndexPath:indexPath];
         return cell;
     }
@@ -231,10 +242,10 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     if(indexPath.section == kBannerSectionIdx) {
         return CGSizeMake(width - 10.f * 2, kBannerSectionHeight);
     }
-    CGFloat itemWidth = (width - 10 * 4) / 3.f;
-    itemWidth = MAX(CGFLOAT_MIN, itemWidth);
-    itemWidth = floorf(itemWidth);
-    return CGSizeMake(itemWidth, itemWidth);
+    // CGFloat itemWidth = (width - 10 * 4) / 3.f;
+    // itemWidth = MAX(CGFLOAT_MIN, itemWidth);
+    // itemWidth = floorf(itemWidth);
+    return CGSizeMake(width, 150.f);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     CGFloat width = CGRectGetWidth(collectionView.frame);
@@ -243,7 +254,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     } else if(section == kPinCategoryViewSectionIndex) {
         return CGSizeMake(width, kPinViewHeight);
     }
-    return CGSizeMake(width, 40.f);
+    return CGSizeMake(width, kWPercentage(44.f));
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 10.f;
@@ -252,6 +263,9 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     return 10.f;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if(section == kBannerSectionIdx) {
+        return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
+    }
     return UIEdgeInsetsMake(0, 10.f, 0, 10.f);
 }
 
@@ -380,7 +394,8 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
                 }
             });
         };
-        v.toggleShowAll = ^{
+        v.toggleShowAll = ^(UIButton * _Nonnull btn) {
+            __btnRotate = btn;
             [weakSelf.allCategoryView selectItemAtIndex:weakSelf.pinView.pinCategoryView.selectedIndex];
             [weakSelf showAllCategoryView];
         };
@@ -437,7 +452,8 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         flowLayout.sectionInset = UIEdgeInsetsZero;
 
         LXMyCollectionView *cv = [[LXMyCollectionView alloc]initWithFrame:collectFrame collectionViewLayout:flowLayout];
-        cv.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1];
+        cv.backgroundColor = [UIColor whiteColor];
+        // cv.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1];
         // cv.pagingEnabled = YES;
         cv.delegate = self;
         cv.dataSource = self;

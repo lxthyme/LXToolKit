@@ -1,27 +1,27 @@
 //
-//  LXFirstCategoryView.m
+//  LXBaseFirstCategoryView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXFirstCategoryView.h"
+#import "LXBaseFirstCategoryView.h"
 
-@interface LXFirstCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface LXBaseFirstCategoryView()<UICollectionViewDelegate> {
 }
 @property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong)NSIndexPath *_Nullable selectedIndexPath;
-@property(nonatomic, assign)LXFirstCategoryType firstCategoryType;
+// @property(nonatomic, assign)LXFirstCategoryType firstCategoryType;
 @end
 
-@implementation LXFirstCategoryView
+@implementation LXBaseFirstCategoryView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithFirstCategoryType:(LXFirstCategoryType)firstCategoryType {
-    if (self = [super init]) {
-        self.firstCategoryType = firstCategoryType;
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        // self.firstCategoryType = firstCategoryType;
 
         [self prepareCollectionView];
         [self prepareUI];
@@ -34,6 +34,9 @@
 - (void)dataFill:(NSArray<LXCategoryModel *> *)categoryList {
     self.dataList = categoryList;
     [self.collectionView reloadData];
+    if(self.collectionView.indexPathsForSelectedItems.count <= 0) {
+        [self selectItemAtIndex:0];
+    }
 }
 
 #pragma mark -
@@ -60,26 +63,8 @@
     return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXFirstCategoryCell *cell;
-    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFirstCategoryCellFoldReuseIdentifier forIndexPath:indexPath];
-    } else {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kFirstCategoryCellUnfoldReuseIdentifier forIndexPath:indexPath];
-    }
-    LXCategoryModel *categoryModel = self.dataList[indexPath.row];
-    [cell dataFill:categoryModel];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
     return cell;
-}
-#pragma mark -
-#pragma mark - ✈️UICollectionViewDelegateFlowLayout
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = CGRectGetWidth(collectionView.frame);
-    CGFloat itemWidth = floor(width / 5.f);
-    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
-        return CGSizeMake(itemWidth, kFirstCategoryFoldHeight);
-    } else {
-        return CGSizeMake(itemWidth, 67.5f);
-    }
 }
 
 #pragma mark - ✈️UICollectionViewDelegate
@@ -92,11 +77,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    if(self.firstCategoryType == LXFirstCategoryTypeFold) {
-        [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:kFirstCategoryCellFoldReuseIdentifier];
-    } else {
-        [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:kFirstCategoryCellUnfoldReuseIdentifier];
-    }
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];

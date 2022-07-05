@@ -11,7 +11,7 @@
 
 @interface LXClassifySectionHeaderView() {
 }
-@property(nonatomic, strong)UILabel *labTitle;
+@property(nonatomic, strong)LXLabel *labTitle;
 
 @end
 
@@ -44,7 +44,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.backgroundColor = [UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1];
+    self.backgroundColor = [UIColor whiteColor];
 
     [self addSubview:self.labTitle];
 
@@ -55,22 +55,24 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0.f);
-        make.left.equalTo(@16.f);
-        make.right.lessThanOrEqualTo(@(-16.f));
+        make.edges.equalTo(self).inset(kWPercentage(10.f));
     }];
 }
 
 #pragma mark Lazy Property
-- (UILabel *)labTitle {
+- (LXLabel *)labTitle {
     if(!_labTitle){
-        UILabel *label = [[UILabel alloc]init];
+        LXLabel *label = [[LXLabel alloc]init];
+        label.x_insets = UIEdgeInsetsMake(0, kWPercentage(10.f), 0, 0);
         label.text = @"";
-        label.font = [UIFont systemFontOfSize:15.f];
-        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:12.f];
+        label.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
+        label.textColor = [UIColor colorWithHex:0x666666];
         label.numberOfLines = 1;
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentLeft;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
+        label.layer.cornerRadius = kWPercentage(4.f);
+        label.clipsToBounds = YES;
         _labTitle = label;
     }
     return _labTitle;

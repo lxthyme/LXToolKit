@@ -9,9 +9,16 @@
 
 #import <Masonry/Masonry.h>
 
+#define kNormalTextColor [UIColor colorWithHex:0x333333]
+#define kSelectedTextColor [UIColor colorWithHex:0xFF774F]
+#define kNormalBgColor [UIColor colorWithHex:0xF9F9F9]
+#define kSelectedBgColor [UIColor colorWithHex:0xFFFFFF]
 @interface LXClassifyListLeftCell() {
 }
+@property(nonatomic, strong)UIView *selectedIndicatorView;
+@property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UILabel *labTitle;
+@property(nonatomic, strong)UIImageView *imgViewLogo;
 
 @end
 
@@ -31,6 +38,24 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+    self.selectedIndicatorView.hidden = !selected;
+    if(selected) {
+        self.labTitle.textColor = kSelectedTextColor;
+        self.labTitle.font = [UIFont boldSystemFontOfSize:kWPercentage(12.f)];
+        self.contentView.backgroundColor = kSelectedBgColor;
+    } else {
+        self.labTitle.textColor = kNormalTextColor;
+        self.labTitle.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+        self.contentView.backgroundColor = kNormalBgColor;
+    }
+}
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    [self.selectedIndicatorView xl_setRoundingCorners:[UIColor clearColor]
+                                          borderWidth:0.f
+                                                raddi:kWPercentage(4.f)
+                                              corners:UIRectCornerTopRight | UIRectCornerBottomRight isDotted:NO];
 }
 
 #pragma mark -
@@ -48,13 +73,12 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    // self.contentView.backgroundColor = [UIColor whiteColor];
-    self.backgroundColor = [UIColor lightGrayColor];
-    UIView *v = [[UIView alloc]init];
-    v.backgroundColor = [UIColor redColor];
-    self.selectedBackgroundView = v;
+    self.contentView.backgroundColor = kNormalBgColor;
 
-    [self.contentView addSubview:self.labTitle];
+    [self.wrapperStackView addArrangedSubview:self.imgViewLogo];
+    [self.wrapperStackView addArrangedSubview:self.labTitle];
+    [self.contentView addSubview:self.wrapperStackView];
+    [self.contentView addSubview:self.selectedIndicatorView];
 
     [self masonry];
 }
@@ -62,20 +86,58 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+    [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(@0.f);
+        // make.height.equalTo(@20.f);
+    }];
+    [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.equalTo(@(kWPercentage(11.f)));
+    }];
+    [self.selectedIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.centerY.equalTo(@0.f);
+        make.width.equalTo(@(kWPercentage(3.f)));
+        make.height.equalTo(@(kWPercentage(25.f)));
     }];
 }
 
 #pragma mark Lazy Property
+- (UIView *)selectedIndicatorView {
+    if(!_selectedIndicatorView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        _selectedIndicatorView = v;
+    }
+    return _selectedIndicatorView;
+}
+- (UIStackView *)wrapperStackView {
+    if(!_wrapperStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisHorizontal;
+        sv.alignment = UIStackViewAlignmentCenter;
+        sv.spacing = kWPercentage(1.5f);
+        _wrapperStackView = sv;
+    }
+    return _wrapperStackView;
+}
+- (UIImageView *)imgViewLogo {
+    if(!_imgViewLogo){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
+        // iv.image = [UIImage imageNamed:@""];
+        _imgViewLogo = iv;
+    }
+    return _imgViewLogo;
+}
+
 - (UILabel *)labTitle {
     if(!_labTitle){
         UILabel *label = [[UILabel alloc]init];
         label.text = @"";
-        label.font = [UIFont systemFontOfSize:15.f];
-        label.textColor = [UIColor blackColor];
+        label.font = [UIFont systemFontOfSize:12.f];
+        label.textColor = kNormalTextColor;
         label.numberOfLines = 0;
-        label.textAlignment = NSTextAlignmentLeft;
+        label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         _labTitle = label;
     }

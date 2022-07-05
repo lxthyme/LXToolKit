@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXSubCategoryPinView : UIView {
 }
 @property (nonatomic, strong, readonly)LXThirdCategoryView *pinCategoryView;
-@property(nonatomic, copy)void (^toggleShowAll)(void);
+@property(nonatomic, copy)void (^toggleShowAll)(UIButton *btn);
 
 - (void)dataFill:(LXSubCategoryModel *)subCateogryModel;
 

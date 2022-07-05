@@ -9,15 +9,16 @@
 
 #import "LXSectionModel.h"
 #import "LXClassifyListVC.h"
-#import "LXFirstCategoryView.h"
+#import "LXFirstCategoryFoldView.h"
+#import "LXFirstCategoryUnfoldView.h"
 
 static const CGFloat kLabelAllWidth = 35.f;
 
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, JXCategoryViewListContainer> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
-@property (nonatomic, strong)LXFirstCategoryView *categoryView;
-@property (nonatomic, strong)LXFirstCategoryView *allCategoryView;
+@property (nonatomic, strong)LXFirstCategoryFoldView *categoryView;
+@property (nonatomic, strong)LXFirstCategoryUnfoldView *allCategoryView;
 @property(nonatomic, strong)UIImageView *imgViewShadowLeft;
 @property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
@@ -339,9 +340,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _labAll;
 }
-- (LXFirstCategoryView *)categoryView {
+- (LXFirstCategoryFoldView *)categoryView {
     if(!_categoryView){
-        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]initWithFirstCategoryType:LXFirstCategoryTypeFold];
+        LXFirstCategoryFoldView *v = [[LXFirstCategoryFoldView alloc]init];
         // v.backgroundColor = [UIColor whiteColor];
         // // v.imageZoomEnabled = YES;
         // // v.imageZoomScale = 1.3f;
@@ -369,6 +370,8 @@ static const CGFloat kLabelAllWidth = 35.f;
 
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];
+        v.normalTextColor = [UIColor colorWithHex:0x333333];
+        v.selectedTextColor = [UIColor colorWithHex:0xFFFFFF];
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -401,9 +404,11 @@ static const CGFloat kLabelAllWidth = 35.f;
 }
 
 
-- (LXFirstCategoryView *)allCategoryView {
+- (LXFirstCategoryUnfoldView *)allCategoryView {
     if(!_allCategoryView){
-        LXFirstCategoryView *v = [[LXFirstCategoryView alloc]initWithFirstCategoryType:LXFirstCategoryTypeUnfold];
+        LXFirstCategoryUnfoldView *v = [[LXFirstCategoryUnfoldView alloc]init];
+        v.normalTextColor = [UIColor colorWithHex:0x333333];
+        v.selectedTextColor = [UIColor colorWithHex:0xFFFFFF];
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{

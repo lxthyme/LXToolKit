@@ -32,7 +32,7 @@
 - (void)dataFill:(NSArray<LXSubCategoryModel *> *)dataList {
     self.dataList = dataList;
     [self.tableView reloadData];
-    if(self.dataList.count > 0) {
+    if(self.dataList.count > 0 && self.tableView.indexPathsForSelectedRows.count <= 0) {
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
 }
@@ -132,8 +132,8 @@
         t.tableFooterView = [UIView new];
         t.backgroundColor = [UIColor lightGrayColor];
         t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        t.indicatorStyle = UIScrollViewIndicatorStyleBlack;
-        t.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        t.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+        t.separatorStyle = UITableViewCellSeparatorStyleNone;
         t.estimatedRowHeight = 44.0f;
         t.rowHeight = UITableViewAutomaticDimension;
         t.sectionHeaderHeight = 0.f;

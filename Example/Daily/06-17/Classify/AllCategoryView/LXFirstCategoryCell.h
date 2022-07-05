@@ -11,26 +11,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, LXFirstCategoryType) {
-    /// 仅一行时的样式
-    LXFirstCategoryTypeFold,
-    /// 展开后的样式
-    LXFirstCategoryTypeUnfold,
-};
-
-#define kFirstCategoryCellBorderWidth kWPercentage(1.5f)
-#define kFirstCategoryCellFoldImgLogoWidth kWPercentage(36.f)
-#define kFirstCategoryCellFoldBorderWidth (kFirstCategoryCellFoldImgLogoWidth + kFirstCategoryCellBorderWidth * 4)
-#define kFirstCategoryCellLabelHeight kWPercentage(17.f)
-
-static NSString * const kFirstCategoryCellFoldReuseIdentifier = @"LXFirstCategoryCell.Fold";
-static NSString * const kFirstCategoryCellUnfoldReuseIdentifier = @"LXFirstCategoryCell.Unfold";
-
 @interface LXFirstCategoryCell : LXBaseCollectionViewCell {
 }
+@property(nonatomic, strong)UIColor *normalTextColor;
+@property(nonatomic, strong)UIColor *selectedTextColor;
 
 - (void)dataFill:(LXCategoryModel *)categoryModel;
 
+/// 预置分类球样式属性
+- (void)prepareCategoryConfig;
+/// cell 高度
+- (CGFloat)cellHeight;
+/// 配置分类球属性
+/// @param logoWidth 图标尺寸
+/// @param borderWidth 边框宽度
+/// @param wrapperSpacing wrapperStackView's spacing
+/// @param labelHeight label 选中时的高度
+- (void)configCategoryWithLogoWidth:(CGFloat)logoWidth
+                        borderWidth:(CGFloat)borderWidth
+                     wrapperSpacing:(CGFloat)wrapperSpacing
+                        labelHeight:(CGFloat)labelHeight;
 @end
 
 NS_ASSUME_NONNULL_END

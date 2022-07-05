@@ -38,7 +38,7 @@
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXSectionItemModel *)item {
     self.labTitle.text = item.title;
-    self.imgViewLogo.image = [UIImage xl_imageNamed:item.icon];
+    // self.imgViewLogo.image = [UIImage xl_imageNamed:item.icon];
 }
 
 #pragma mark -
@@ -54,7 +54,7 @@
     self.contentView.layer.cornerRadius = 8.f;
     self.contentView.clipsToBounds = YES;
 
-    [self.contentView addSubview:self.imgViewLogo];
+    // [self.contentView addSubview:self.imgViewLogo];
     [self.contentView addSubview:self.labTitle];
 
     [self masonry];
@@ -63,12 +63,8 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(@0.f);
-    }];
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.imgViewLogo.mas_bottom);
-        make.left.right.bottom.equalTo(@0.f);
+        make.top.left.right.equalTo(@0.f);
     }];
 }
 
@@ -79,21 +75,11 @@
         label.text = @"";
         label.textColor = [UIColor blackColor];
         label.numberOfLines = 1;
-        label.textAlignment = NSTextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentLeft;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
         _labTitle = label;
     }
     return _labTitle;
-}
-- (UIImageView *)imgViewLogo {
-    if(!_imgViewLogo){
-        UIImageView *iv = [[UIImageView alloc]init];
-        iv.contentMode = UIViewContentModeScaleAspectFit;
-        iv.backgroundColor = [UIColor lightGrayColor];
-        // iv.image = [UIImage imageNamed:@""];
-        _imgViewLogo = iv;
-    }
-    return _imgViewLogo;
 }
 
 @end

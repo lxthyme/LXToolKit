@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 @interface LXSubCategoryPinView() {
 }
 @property (nonatomic, strong)LXThirdCategoryView *pinCategoryView;
-@property(nonatomic, strong)YYLabel *labAll;
+@property(nonatomic, strong)UIButton *btnAll;
 @property(nonatomic, strong)UIView *filterView;
 /// 即时达 最快30分钟
 @property(nonatomic, strong)UIButton *btnJiShiDa;
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     self.backgroundColor = [UIColor whiteColor];
 
     [self addSubview:self.pinCategoryView];
-    [self addSubview:self.labAll];
+    [self addSubview:self.btnAll];
 
     self.filterType = LXSubcategoryFilterTypeJiShiDa;
 
@@ -91,14 +91,23 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     [self masonry];
 }
 - (void)prepareVM {
+    @weakify(self)
+    [[[self.btnAll rac_signalForControlEvents:UIControlEventTouchUpInside]
+      throttle:0.3]
+     subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
+        !self.toggleShowAll ?: self.toggleShowAll(self.btnAll);
+    }];
     [[[self.btnJiShiDa rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.3]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
         self.filterType = LXSubcategoryFilterTypeJiShiDa;
     }];
     [[[self.priceWrapperView rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.3]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
         if(self.filterType == LXSubcategoryFilterTypePriceAsc) {
             self.filterType = LXSubcategoryFilterTypePriceDesc;
         } else {
@@ -108,6 +117,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     [[[self.btnSale rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.3]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
         self.filterType = LXSubcategoryFilterTypeSale;
     }];
 }
@@ -122,11 +132,11 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         make.left.equalTo(@(kWPercentage(10.f)));
         make.height.equalTo(@(kPinCategoryViewHeight));
     }];
-    [self.labAll mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.btnAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.pinCategoryView);
         make.left.equalTo(self.pinCategoryView.mas_right);
         make.right.equalTo(@(kWPercentage(-10.f)));
-        make.width.equalTo(@44.f);
+        make.width.equalTo(@35.f);
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.pinCategoryView.mas_bottom);
@@ -141,23 +151,23 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         make.left.equalTo(self.btnJiShiDa.mas_right).offset(kWPercentage(40.f));
         make.centerY.equalTo(self.btnJiShiDa);
     }];
+    [self.btnPrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.btnPrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.btnPrice mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.equalTo(@0.f);
     }];
     [self.imgViewArrowUp mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.btnPrice.mas_right).offset(kWPercentage(3.5f));
         make.right.equalTo(@0.f);
-        // make.centerY.equalTo(@0.f);
         make.bottom.equalTo(self.btnPrice.mas_centerY).offset(kWPercentage(-1.5f));
     }];
     [self.imgViewArrowDown mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.imgViewArrowUp);
-        // make.centerY.equalTo(@0.f);
         make.top.equalTo(self.btnPrice.mas_centerY).offset(kWPercentage(1.5f));
     }];
     [self.btnSale mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.priceWrapperView.mas_right).offset(kWPercentage(30.f));
-        make.right.equalTo(@0.f);
+        make.right.lessThanOrEqualTo(@0.f);
         make.centerY.equalTo(self.btnJiShiDa);
     }];
 }
@@ -210,23 +220,16 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
     return _pinCategoryView;
 }
-- (YYLabel *)labAll {
-    if(!_labAll){
-        YYLabel *lab = [[YYLabel alloc]init];
-        lab.text = @"全部";
-        lab.textColor = [UIColor blackColor];
-        lab.verticalForm = YES;
-        lab.textAlignment = NSTextAlignmentCenter;
-        lab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
-        lab.exclusionPaths = @[[UIBezierPath bezierPathWithRect:CGRectZero]];
-        WEAKSELF(self)
-        lab.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-            !weakSelf.toggleShowAll ?: weakSelf.toggleShowAll();
-        };
+- (UIButton *)btnAll {
+    if(!_btnAll){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor whiteColor];
 
-        _labAll = lab;
+        [btn setImage:[iBLImage imageNamed:@"icon_arrow_down"] forState:UIControlStateNormal];
+        _btnAll = btn;
     }
-    return _labAll;
+    return _btnAll;
 }
 - (UIView *)filterView {
     if(!_filterView){

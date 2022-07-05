@@ -15,6 +15,8 @@
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)NSArray *titles;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
+@property(nonatomic, strong)UIButton *btnSearch;
+@property(nonatomic, strong)UIView *separateLineView;
 @end
 
 @implementation LXClassifyVC
@@ -24,7 +26,7 @@
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
     __navigationBarHidden = self.navigationController.navigationBarHidden;
-    // self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -83,6 +85,9 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
@@ -93,10 +98,12 @@
     self.titles = @[@"即时达配送", @"超市精选"];
     self.categoryView.titles = self.titles;
     self.categoryView.listContainer = self.listContainerView;
-    self.categoryView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
-    self.navigationItem.titleView = self.categoryView;
+    // self.categoryView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+    // self.navigationItem.titleView = self.categoryView;
 
-    // [self.view addSubview:self.categoryView];
+    [self.view addSubview:self.categoryView];
+    [self.view addSubview:self.separateLineView];
+    [self.view addSubview:self.btnSearch];
     [self.view addSubview:self.listContainerView];
 
     [self masonry];
@@ -105,16 +112,30 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    // [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     // make.top.equalTo(self.view);
-    //     make.top.centerX.equalTo(@0.f);
-    //     make.width.equalTo(@200.f);
-    //     make.height.equalTo(@44.f);
-    // }];
+    MASViewAttribute *topAttribute = self.view.mas_top;
+    if (@available(iOS 11.0, *)) {
+        topAttribute = self.view.mas_safeAreaLayoutGuideTop;
+    }
+    [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        // make.top.equalTo(self.view);
+        make.top.equalTo(topAttribute);
+        make.left.right.equalTo(@0.f);
+        make.height.equalTo(@44.f);
+    }];
+    [self.separateLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.categoryView);
+        make.width.equalTo(@0.5f);
+        make.height.equalTo(@(kWPercentage(14.f)));
+    }];
+    [self.btnSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.centerY.equalTo(self.categoryView);
+        make.width.height.equalTo(@(kWPercentage(23.f)));
+    }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        // make.top.equalTo(self.categoryView.mas_bottom);
-        // make.left.right.bottom.equalTo(@0.f);
-        make.edges.equalTo(@0.f);
+        make.top.equalTo(self.categoryView.mas_bottom);
+        make.left.right.bottom.equalTo(@0.f);
+        // make.edges.equalTo(@0.f);
     }];
 }
 
@@ -123,10 +144,18 @@
     if(!_categoryView){
         JXCategoryTitleView *v = [[JXCategoryTitleView alloc]init];
         v.averageCellSpacingEnabled = YES;
+        v.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
+        v.titleFont = [UIFont boldSystemFontOfSize:kWPercentage(14.f)];
+        v.titleSelectedFont = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
+        v.titleColor = [UIColor colorWithHex:0x666666];
+        v.titleSelectedColor = [UIColor colorWithHex:0x333333];
         v.delegate = self;
 
         JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
-        lineView.indicatorWidth = 20;
+        lineView.indicatorColor = [UIColor colorWithHex:0xFF774F];
+        lineView.indicatorHeight = kWPercentage(3.5f);
+        lineView.indicatorCornerRadius = kWPercentage(3.5f / 2.f);
+        lineView.indicatorWidthIncrement = -kWPercentage(10.f);
         v.indicators = @[lineView];
 
         _categoryView = v;
@@ -136,8 +165,28 @@
 - (JXCategoryListContainerView *)listContainerView {
     if(!_listContainerView){
         JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_CollectionView delegate:self];
+        v.scrollView.scrollEnabled = NO;
         _listContainerView = v;
     }
     return _listContainerView;
+}
+- (UIButton *)btnSearch {
+    if(!_btnSearch){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor whiteColor];
+
+        [btn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
+        _btnSearch = btn;
+    }
+    return _btnSearch;
+}
+- (UIView *)separateLineView {
+    if(!_separateLineView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xDDDDDD];
+        _separateLineView = v;
+    }
+    return _separateLineView;
 }
 @end
