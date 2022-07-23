@@ -5,9 +5,9 @@
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import <LXToolKitObjc/LXBaseView.h>
+#import <DJBusinessTools/LXBaseView.h>
 
-#import "LXSectionModel.h"
+#import "LXLHCategoryModel.h"
 
 #define kFirstCategoryFoldHeight kWPercentage(67.5f)
 #define kFirstCategoryUnfoldHeight kWPercentage(69.5f)
@@ -25,15 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong, readonly)UICollectionView *collectionView;
-@property(nonatomic, strong, readonly)NSArray<LXCategoryModel *> *dataList;
+@property(nonatomic, strong, readonly)NSArray<LXLHCategoryModel *> *dataList;
 @property(nonatomic, strong)UIColor *normalTextColor;
 @property(nonatomic, strong)UIColor *selectedTextColor;
 @property(nonatomic, strong, readonly)NSIndexPath *_Nullable selectedIndexPath;
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 
+- (void)prepareUI;
 - (void)prepareCollectionView;
 
-- (void)dataFill:(NSArray<LXCategoryModel *> *)categoryList;
+- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryList;
 
 - (void)selectItemAtIndex:(NSInteger)idx;
 

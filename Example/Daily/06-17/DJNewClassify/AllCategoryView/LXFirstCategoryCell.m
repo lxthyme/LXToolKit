@@ -6,6 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXFirstCategoryCell.h"
+#import <DJBusinessTools/LXLabel.h>
 
 @interface LXFirstCategoryCell() {
     /// 边框宽度
@@ -60,10 +61,10 @@
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXCategoryModel *)categoryModel {
-    self.labTitle.text = categoryModel.title;
+- (void)dataFill:(LXLHCategoryModel *)categoryModel {
+    self.labTitle.text = categoryModel.categoryName;
     // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
-    [self.imgViewLogo setImage:[iBLImage imageNamed:categoryModel.imageNames]];
+    // [self.imgViewLogo setImage:[iBLImage imageNamed:categoryModel.imageNames]];
 }
 
 #pragma mark -

@@ -22,7 +22,7 @@
     LXFirstCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryUnfoldCell" forIndexPath:indexPath];
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
-    LXCategoryModel *categoryModel = self.dataList[indexPath.row];
+    LXLHCategoryModel *categoryModel = self.dataList[indexPath.row];
     [cell dataFill:categoryModel];
     return cell;
 }
@@ -54,13 +54,13 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.labTitle mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0.f);
         make.left.equalTo(@(kWPercentage(15.f)));
         make.right.equalTo(@(kWPercentage(-15.f)));
         make.height.equalTo(@(kWPercentage(38.5f)));
     }];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.labTitle.mas_bottom);
         make.left.right.bottom.equalTo(@0.f);
     }];

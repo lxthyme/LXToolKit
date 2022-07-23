@@ -5,16 +5,17 @@
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import <UIKit/UIKit.h>
+#import <DJBusinessTools/LXBaseVC.h>
+#import <JXCategoryView/JXCategoryView.h>
 
-#import "LXSectionModel.h"
+#import "LXClassifyRightVCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
 
-- (void)dataFill:(LXCategoryModel *)subCateogryModel;
+- (void)dataFill:(LXClassifyListModel *)cateogryModel;
 
 @end
 

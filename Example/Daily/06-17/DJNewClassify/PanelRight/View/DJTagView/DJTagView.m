@@ -1,21 +1,23 @@
 //
-//  LXClassifySectionHeaderView.m
+//  DJTagView.m
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/7/5.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifySectionHeaderView.h"
+#import "DJTagView.h"
 
 #import <DJBusinessTools/LXLabel.h>
+#import <BLCategories/UIColor+Hex.h>
 
-@interface LXClassifySectionHeaderView() {
+@interface DJTagView() {
 }
+@property(nonatomic, strong)UIImageView *imgViewLogo;
 @property(nonatomic, strong)LXLabel *labTitle;
 
 @end
 
-@implementation LXClassifySectionHeaderView
+@implementation DJTagView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -25,14 +27,19 @@
     }
     return self;
 }
-- (void)prepareForReuse {
-    [super prepareForReuse];
-}
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXLHCategoryModel *)model {
-    self.labTitle.text = model.categoryName;
+- (void)dataFill:(DJGoodsPopinfosList *)popInfoItem {
+    self.labTitle.attributedText = popInfoItem.f_textAttributeString;
+    self.labTitle.layer.borderWidth = popInfoItem.f_borderWidth;
+    self.labTitle.layer.borderColor = popInfoItem.f_borderColor.CGColor;
+    self.labTitle.layer.cornerRadius = popInfoItem.f_cornerRadius;
+    UIColor *bgColor = popInfoItem.f_backgroundColor;
+    if(!bgColor) {
+        bgColor = [UIColor whiteColor];
+    }
+    self.labTitle.backgroundColor = bgColor;
 }
 
 #pragma mark -
@@ -55,7 +62,7 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self).inset(kWPercentage(10.f));
+        make.edges.equalTo(@0.f);
     }];
 }
 
@@ -63,16 +70,11 @@
 - (LXLabel *)labTitle {
     if(!_labTitle){
         LXLabel *label = [[LXLabel alloc]init];
-        label.x_insets = UIEdgeInsetsMake(0, kWPercentage(10.f), 0, 0);
         label.text = @"";
-        label.font = [UIFont systemFontOfSize:12.f];
-        label.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
-        label.textColor = [UIColor colorWithHex:0x666666];
         label.numberOfLines = 1;
-        label.textAlignment = NSTextAlignmentLeft;
+        label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
-        label.layer.cornerRadius = kWPercentage(4.f);
-        label.clipsToBounds = YES;
+        label.layer.borderWidth = 1.f;
         _labTitle = label;
     }
     return _labTitle;

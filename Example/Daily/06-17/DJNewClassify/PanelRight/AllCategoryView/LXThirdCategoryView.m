@@ -8,6 +8,7 @@
 #import "LXThirdCategoryView.h"
 
 #import "LXThirdCategoryCell.h"
+#import "DJClassifyMacro.h"
 
 @interface LXThirdCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
@@ -31,11 +32,10 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
+- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
-    self.dataList = [[subCateogryModel.sectionList.rac_sequence skip:1]
-                                   map:^id _Nullable(LXSectionModel * _Nullable value) {
-        return value.title;
+    self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(LXLHCategoryModel * _Nullable value) {
+        return value.categoryName;
     }].array;
     [self.collectionView reloadData];
 }
@@ -56,6 +56,34 @@
     // [self.collectionView scrollToItemAtIndexPath:ip atScrollPosition:position animated:YES];
 }
 
+- (void)customized1rdCategoryViewStyle {
+    self.bgColor = [UIColor colorWithHex:0xF9F9F9];
+
+    self.textBGNormalColor = [UIColor colorWithHex:0xF9F9F9];
+    self.textBGSelectedColor = [UIColor colorWithHex:0xF9F9F9];
+
+    self.textNormalColor = [UIColor colorWithHex:0x666666];
+    self.textSelectedColor = [UIColor colorWithHex:0xFF774F];
+
+    self.textNormalFont = kPingFangSCMedium(kWPercentage(13.f));
+    self.textSelectedFont = kPingFangSCSemibold(kWPercentage(15.f));
+}
+
+- (void)customized3rdCategoryViewStyle {
+    self.bgColor = [UIColor whiteColor];
+
+    self.textBGNormalColor = [UIColor colorWithHex:0xF6F6F6];
+    self.textBGSelectedColor = [UIColor colorWithHex:0xFF774F alpha:0.1];
+
+    self.textNormalColor = [UIColor colorWithHex:0x666666];
+    self.textSelectedColor = [UIColor colorWithHex:0xFF774F];
+
+    self.textNormalFont = [UIFont systemFontOfSize:kWPercentage(12.f)];
+    self.textSelectedFont = [UIFont systemFontOfSize:kWPercentage(12.f)];
+
+    self.cellCornerRadius = kWPercentage(4.f);
+}
+
 #pragma mark -
 #pragma mark - 🔐Private Actions
 
@@ -65,6 +93,14 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXThirdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXThirdCategoryCell" forIndexPath:indexPath];
+    cell.bgColor = self.bgColor;
+    cell.textBGNormalColor = self.textBGNormalColor;
+    cell.textBGSelectedColor = self.textBGSelectedColor;
+    cell.textNormalColor = self.textNormalColor;
+    cell.textSelectedColor = self.textSelectedColor;
+    cell.textNormalFont = self.textNormalFont;
+    cell.textSelectedFont = self.textSelectedFont;
+    cell.contentView.layer.cornerRadius = self.cellCornerRadius;
     [cell dataFill:self.dataList[indexPath.row]];
     return cell;
 }
@@ -96,15 +132,22 @@
     [self.collectionView registerClass:[LXThirdCategoryCell class] forCellWithReuseIdentifier:@"LXThirdCategoryCell"];
 }
 - (void)prepareUI {
-    self.backgroundColor = [UIColor whiteColor];
-
     [self addSubview:self.collectionView];
 
     [self masonry];
 }
+#pragma mark getter / setter
+- (void)setBgColor:(UIColor *)bgColor {
+    if([_bgColor isEqual:bgColor]) {
+        return;
+    }
+    _bgColor = bgColor;
+    self.backgroundColor = bgColor;
+    self.collectionView.backgroundColor = bgColor;
+}
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    MASAttachKeys(self.collectionView)
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
@@ -139,7 +182,7 @@
     if(!_collectionView) {
         CGRect collectFrame = CGRectZero;
         UICollectionView *cv = [[UICollectionView alloc]initWithFrame:collectFrame collectionViewLayout:self.flowLayout];
-        cv.backgroundColor = [UIColor whiteColor];
+        cv.backgroundColor = [UIColor clearColor];
         cv.showsHorizontalScrollIndicator = NO;
         cv.showsVerticalScrollIndicator = NO;
         // cv.pagingEnabled = YES;

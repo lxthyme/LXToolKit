@@ -8,11 +8,8 @@
 #import <UIKit/UIKit.h>
 
 #import "LXThirdCategoryView.h"
-#import "LXSectionModel.h"
-
-#define kPinCategoryViewHeight kWPercentage(44.f)
-#define kPinFilterViewHeight kWPercentage(34.f)
-#define kPinViewHeight (kPinCategoryViewHeight + kPinFilterViewHeight)
+#import "DJClassifyMacro.h"
+#import "LXLHCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly)LXThirdCategoryView *pinCategoryView;
 @property(nonatomic, copy)void (^toggleShowAll)(UIButton *btn);
 
-- (void)dataFill:(LXSubCategoryModel *)subCateogryModel;
+- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel;
 
 @end
 

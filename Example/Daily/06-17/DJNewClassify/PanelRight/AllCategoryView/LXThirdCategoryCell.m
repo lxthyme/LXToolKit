@@ -25,21 +25,20 @@
 }
 - (void)prepareForReuse {
     [super prepareForReuse];
+    self.contentView.backgroundColor = self.bgColor;
+    self.labTitle.textColor = self.textNormalColor;
+    self.labTitle.font = self.textNormalFont;
+    self.labTitle.backgroundColor = self.textBGNormalColor;
 }
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     // Configure the view for the selected state
-    if(selected) {
-        self.labTitle.textColor = [UIColor colorWithHex:0xFF774F];
-        self.contentView.backgroundColor = [UIColor colorWithHex:0xFF774F alpha:0.1];
-    } else {
-        self.labTitle.textColor = [UIColor colorWithHex:0x666666];
-        self.contentView.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
-    }
+    [self toggleStyleBy:selected];
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(NSString *)title {
+    [self toggleStyleBy:self.isSelected];
     self.labTitle.text = title;
 }
 
@@ -48,12 +47,22 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)toggleStyleBy:(BOOL)selected {
+    self.contentView.backgroundColor = self.bgColor;
+    if(selected) {
+        self.labTitle.textColor = self.textSelectedColor;
+        self.labTitle.font = self.textSelectedFont;
+        self.labTitle.backgroundColor = self.textBGSelectedColor;
+    } else {
+        self.labTitle.textColor = self.textNormalColor;
+        self.labTitle.font = self.textNormalFont;
+        self.labTitle.backgroundColor = self.textBGSelectedColor;
+    }
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.contentView.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
-    self.contentView.layer.cornerRadius = kWPercentage(4.f);
     self.contentView.clipsToBounds = YES;
 
     [self.contentView addSubview:self.labTitle];
@@ -63,20 +72,18 @@
 
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    MASAttachKeys(self.labTitle)
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
 }
 
+#pragma mark getter / setter
 #pragma mark Lazy Property
 - (UILabel *)labTitle {
     if(!_labTitle){
         UILabel *label = [[UILabel alloc]init];
         label.text = @"";
-        label.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
-        label.textColor = [UIColor colorWithHex:0x666666];
-        label.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
         label.numberOfLines = 1;
         label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;

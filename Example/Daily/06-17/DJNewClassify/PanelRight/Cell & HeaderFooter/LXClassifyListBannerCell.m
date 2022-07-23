@@ -68,7 +68,7 @@
     if(!_bannerView){
         SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
         v.delegate = self;
-        v.placeholderImage = [UIImage xl_imageNamed:@""];
+        v.placeholderImage = [iBLImage imageNamed:@""];
         v.layer.cornerRadius = kWPercentage(4.f);
         v.clipsToBounds = YES;
         _bannerView = v;

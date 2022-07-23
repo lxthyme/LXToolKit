@@ -8,6 +8,11 @@
 
 #import "LXClassifyListRightVC.h"
 
+#import <JXCategoryView/JXCategoryView.h>
+#import <pop/POP.h>
+#import <MJRefresh/MJRefresh.h>
+#import <DJBusinessTools/iPhoneX.h>
+
 #import "LXClassifyRightCollectionCell.h"
 #import "LXClassifySectionHeaderView.h"
 #import "LXSectionCategoryHeaderView.h"
@@ -15,14 +20,12 @@
 #import "LXMyCollectionView.h"
 #import "LXSubCategoryPinView.h"
 #import "LXThirdCategoryView.h"
-
-static const NSUInteger kBannerSectionIdx = 0;
-#define kBannerSectionHeight kWPercentage(90.f)
-static const NSUInteger kPinCategoryViewSectionIndex = 1;
+#import "DJClassifyMacro.h"
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
     UIButton *__btnRotate;
+    CGFloat __pinViewHeight;
 }
 @property (nonatomic, strong)LXSubCategoryPinView *pinView;
 @property (nonatomic, strong)UIControl *allMaskView;
@@ -30,7 +33,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
-@property(nonatomic, strong)LXSubCategoryModel *subCateogryModel;
+@property(nonatomic, strong)LXClassifyRightModel *rightModel;
 
 @end
 
@@ -48,27 +51,38 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     [super viewDidLayoutSubviews];
 
     CGRect frame = self.view.bounds;
-    frame.size.height = kPinViewHeight;
+    frame.size.height = __pinViewHeight;
     self.pinView.frame = frame;
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
-    self.subCateogryModel = subCateogryModel;
-    [self.pinView dataFill:subCateogryModel];
+- (void)dataFill:(LXClassifyRightModel *)rightModel {
+    self.rightModel = rightModel;
+    [self.pinView dataFill:rightModel.categorys];
     [self.pinView.pinCategoryView selectItemAtIndex:0];
-    [self.allCategoryView dataFill:subCateogryModel];
+    [self.allCategoryView dataFill:rightModel.categorys];
     [self.collectionView reloadData];
     [self.collectionView setContentOffset:CGPointZero animated:YES];
 
     [self.collectionView.mj_footer resetNoMoreData];
 
-    BOOL isFirst = subCateogryModel.idxType == LXSubCategoryIndexTypeFirst;
-    MJRefreshDispatchAsyncOnMainQueue(self.collectionView.mj_header.state = isFirst ? MJRefreshStateNoMoreData : MJRefreshStateIdle;)
-    if(subCateogryModel.idxType == LXSubCategoryIndexTypeLast) {
+    BOOL isFirst = rightModel.f_idxType == LXSubCategoryIndexTypeFirst;
+    // TODO: 「lxthyme」💊
+    // MJRefreshDispatchAsyncOnMainQueue(self.collectionView.mj_header.state = isFirst ? MJRefreshStateNoMoreData : MJRefreshStateIdle;)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.collectionView.mj_header.state = isFirst ? MJRefreshStateNoMoreData : MJRefreshStateIdle;
+    });
+    if(rightModel.f_idxType == LXSubCategoryIndexTypeLast) {
         [self.collectionView.mj_footer endRefreshingWithNoMoreData];
     }
+
+    CGFloat h = 0.f;
+    h += kPinFilterViewHeight;
+    if(self.rightModel.categorys.count > 0) {
+        h += kPinCategoryViewHeight;
+    }
+    __pinViewHeight = h;
 
     __shouldRest = YES;
 }
@@ -79,7 +93,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)selectItemAtIndex:(NSInteger)idx {
-    if(idx < 0 || idx >= self.subCateogryModel.sectionList.count) {
+    if(idx < 0 || idx >= self.rightModel.f_goodsList.goodsInfoList.count) {
         return;
     }
     NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:idx];
@@ -107,9 +121,10 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     // }
 }
 - (void)dismissAllCategoryView {
-    if(self.allMaskView.hidden == YES) {
+    if(self.allMaskView.hidden) {
         return;
     }
+    self.collectionView.userInteractionEnabled = YES;
     if(__btnRotate) {
         POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
         anim.toValue = @(0);
@@ -131,10 +146,11 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
     [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
 }
 - (void)showAllCategoryView {
-    if(self.allMaskView.hidden == NO) {
+    if(!self.allMaskView.hidden) {
         [self dismissAllCategoryView];
         return;
     }
+    self.collectionView.userInteractionEnabled = NO;
     if(__btnRotate) {
         POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
         anim.toValue = @(M_PI);
@@ -171,14 +187,14 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 }
 - (void)scrollTo:(NSInteger)index {
     NSInteger realIdx = index + kPinCategoryViewSectionIndex;
-    if(realIdx < self.subCateogryModel.sectionList.count &&
+    if(realIdx < self.rightModel.f_goodsList.goodsInfoList.count &&
        realIdx < [self.collectionView numberOfSections] &&
        [self.collectionView numberOfItemsInSection:realIdx] > 0) {
         NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:realIdx];
         UICollectionViewLayoutAttributes *attr = [self.collectionView layoutAttributesForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:ip];
         CGPoint contentOffset = CGPointMake(0, CGRectGetMinY(attr.frame));
         if(index > 0) {
-            contentOffset.y -= kPinViewHeight;
+            contentOffset.y -= __pinViewHeight;
         }
         [self.collectionView setContentOffset:contentOffset animated:YES];
         [self.allCategoryView selectItemAtIndex:index];
@@ -187,13 +203,13 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.subCateogryModel.sectionList.count;
+    return 2;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if(section == kBannerSectionIdx) {
-        return 1;
+        return self.rightModel.f_shouldShowBanner ? 1 : 0;
     }
-    return self.subCateogryModel.sectionList[section].itemList.count;
+    return self.rightModel.f_goodsList.goodsInfoList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == kBannerSectionIdx) {
@@ -201,8 +217,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         return cell;
     }
     LXClassifyRightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyRightCollectionCell" forIndexPath:indexPath];
-    LXSectionModel *sectionModel = self.subCateogryModel.sectionList[indexPath.section];
-    LXSectionItemModel *itemModel = sectionModel.itemList[indexPath.row];
+    LXGoodsInfoModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
     [cell dataFill:itemModel];
     return cell;
 }
@@ -220,7 +235,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
             return self.sectionCategoryHeaderView;
         } else {
             LXClassifySectionHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXClassifySectionHeaderView" forIndexPath:indexPath];
-            LXSectionModel *sectionModel = self.subCateogryModel.sectionList[indexPath.section];
+            LXLHCategoryModel *sectionModel = self.rightModel.categorys[indexPath.section];
             [header dataFill:sectionModel];
             return header;
         }
@@ -238,21 +253,20 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 #pragma mark -
 #pragma mark - ✈️UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = CGRectGetWidth(collectionView.frame);
+    CGFloat width = CGRectGetWidth(collectionView.frame) - kWPercentage(10.f) * 2;
     if(indexPath.section == kBannerSectionIdx) {
-        return CGSizeMake(width - 10.f * 2, kBannerSectionHeight);
+        return self.rightModel.f_shouldShowBanner ? CGSizeMake(width, kBannerSectionHeight) : CGSizeZero;
     }
-    // CGFloat itemWidth = (width - 10 * 4) / 3.f;
-    // itemWidth = MAX(CGFLOAT_MIN, itemWidth);
-    // itemWidth = floorf(itemWidth);
-    return CGSizeMake(width, 150.f);
+    LXGoodsInfoModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
+    return CGSizeMake(width, itemModel.f_cellHeight);
+    // return CGSizeMake(width, 200);
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     CGFloat width = CGRectGetWidth(collectionView.frame);
     if(section == kBannerSectionIdx) {
         return CGSizeZero;
     } else if(section == kPinCategoryViewSectionIndex) {
-        return CGSizeMake(width, kPinViewHeight);
+        return CGSizeMake(width, __pinViewHeight);
     }
     return CGSizeMake(width, kWPercentage(44.f));
 }
@@ -264,9 +278,9 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     if(section == kBannerSectionIdx) {
-        return UIEdgeInsetsMake(10.f, 10.f, 10.f, 10.f);
+        return UIEdgeInsetsMake(kWPercentage(10.f), kWPercentage(10.f), 0.f, kWPercentage(10.f));
     }
-    return UIEdgeInsetsMake(0, 10.f, 0, 10.f);
+    return UIEdgeInsetsMake(0, kWPercentage(10.f), 0, kWPercentage(10.f));
 }
 
 #pragma mark -
@@ -293,7 +307,7 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         }
         //用户滚动的才处理
         //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
-        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + kPinViewHeight + 1, self.collectionView.bounds.size.width, 1);
+        CGRect topRect = CGRectMake(0, scrollView.contentOffset.y + __pinViewHeight + 1, self.collectionView.bounds.size.width, 1);
         UICollectionViewLayoutAttributes *topAttributes = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:topRect].firstObject;
         NSUInteger topSection = topAttributes.indexPath.section;
         if (topAttributes != nil && topSection >= kPinCategoryViewSectionIndex) {
@@ -386,9 +400,10 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         WEAKSELF(self)
         v.pinCategoryView.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(idx >= 0 && idx < weakSelf.subCateogryModel.sectionList.count) {
+                if(idx >= 0 && idx < weakSelf.rightModel.f_goodsList.goodsInfoList.count) {
                     [weakSelf.allCategoryView selectItemAtIndex:idx];
                     [weakSelf selectItemAtIndex:idx];
+                    [weakSelf dismissAllCategoryView];
                     // CGRect sectionRect = [weakSelf.collectionView.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx]].frame;
                     // weakSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx] atScrollPosition:<#(UICollectionViewScrollPosition)#> animated:<#(BOOL)#>
                 }
@@ -415,6 +430,8 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 - (LXThirdCategoryView *)allCategoryView {
     if(!_allCategoryView){
         LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        [v customized3rdCategoryViewStyle];
+        
         v.minimumLineSpacing = kWPercentage(7.5f);
         v.minimumInteritemSpacing = kWPercentage(7.5f);
         v.sectionInset = UIEdgeInsetsMake(0, kWPercentage(10.f), kWPercentage(15.f), kWPercentage(10.f));
@@ -425,9 +442,10 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(idx >= 0 && idx < weakSelf.subCateogryModel.sectionList.count) {
+                if(idx >= 0 && idx < weakSelf.rightModel.f_goodsList.goodsInfoList.count) {
                     [weakSelf.pinView.pinCategoryView selectItemAtIndex:idx];
                     [weakSelf selectItemAtIndex:idx];
+                    [weakSelf dismissAllCategoryView];
                 }
             });
         };

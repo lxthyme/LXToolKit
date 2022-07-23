@@ -7,16 +7,23 @@
 //
 #import "LXClassifyListVC.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <DJBusinessTools/iPhoneX.h>
+
 #import "LXClassifyListRightVC.h"
 #import "LXClassifyListLeftView.h"
+#import "LXB2CClassifyVM.h"
+// @import DJBusinessModuleSwift;
 
 @interface LXClassifyListVC()<UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
 }
 @property(nonatomic, strong)LXClassifyListLeftView *panelLeftView;
-@property(nonatomic, strong)LXCategoryModel *categoryModel;
+@property(nonatomic, strong)LXClassifyListModel *classifyListModel;
 @property(nonatomic, strong)UIPageViewController *pageVC;
-@property(nonatomic, copy)NSArray *dataList;
+@property(nonatomic, strong)UIImageView *imgViewLeftCorner;
+@property(nonatomic, strong)UIImageView *imgViewRightCorner;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *classifyVCList;
+@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @end
 
 @implementation LXClassifyListVC
@@ -28,15 +35,40 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
+    [self bindVM];
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXCategoryModel *)categoryModel; {
-    self.categoryModel = categoryModel;
-    [self.panelLeftView dataFill:categoryModel.subCategoryList];
-    LXClassifyListRightVC *vc = [self vcAtIdx:0];
-    [vc dataFill:categoryModel.subCategoryList.firstObject];
+- (void)bindVM {
+    @weakify(self)
+    [self.b2cVM.v2SearchForLHApiSubject subscribeNext:^(LXGoodsInfoListModel *goodsInfoModel) {
+        @strongify(self)
+        NSLog(@"goodsInfoModel: %@", goodsInfoModel);
+        LXClassifyRightModel *rightModel = self.classifyListModel.rightListModel[goodsInfoModel.f_categoryId];
+        rightModel.f_goodsList = goodsInfoModel;
+        NSInteger idx = self.pageVC.viewControllers.firstObject.view.tag;
+        if(idx >= 0 && idx < self.classifyListModel.categorys.count) {
+            LXClassifyListRightVC *vc = [self vcAtIdx:idx];
+            [vc dataFill:rightModel];
+        }
+    } error:^(NSError *error) {
+        NSLog(@"error: %@", error);
+    }];
+
+}
+- (void)dataFill:(LXClassifyListModel *)classifyListModel {
+    self.classifyListModel = classifyListModel;
+    [self.panelLeftView dataFill:classifyListModel.categorys];
+
+    NSString *firstCategoryId = classifyListModel.categorys.firstObject.categoryId;
+    LXClassifyRightModel *rightModel = classifyListModel.rightListModel[firstCategoryId];
+    if(rightModel.f_goodsList) {
+        LXClassifyListRightVC *vc = [self vcAtIdx:0];
+        [vc dataFill:rightModel];
+    } else {
+        [self.b2cVM loadV2SearchForLHApi:firstCategoryId];
+    }
 }
 
 #pragma mark -
@@ -45,13 +77,19 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (NSInteger)idxOfVC:(LXClassifyListRightVC *)vc {
-    RACSequence<RACTwoTuple<NSNumber *, LXClassifyListRightVC *> *> *seq = [self.classifyVCList.rac_sequence filter:^BOOL(RACTwoTuple<NSNumber *, LXClassifyListRightVC *> *_Nullable value) {
+    /// <RACTuple<NSNumber *, LXClassifyListRightVC *> *>
+    /// <NSNumber *, LXClassifyListRightVC *>
+    RACSequence *seq = [self.classifyVCList.rac_sequence filter:^BOOL(RACTuple *_Nullable value) {
         return [value.second isEqual:vc];
     }];
     if(seq.head == nil) {
         return NSNotFound;
     }
-    return [seq.head.first integerValue];
+    if([seq.head isKindOfClass:[RACTuple class]]) {
+        RACTuple *headTuple = seq.head;
+        return [headTuple.first integerValue];
+    }
+    return NSNotFound;
 }
 - (LXClassifyListRightVC *)vcAtIdx:(NSInteger)idx {
     LXClassifyListRightVC *vc = self.classifyVCList[@(idx)];
@@ -71,12 +109,22 @@
     return vc;
 }
 - (void)pageVCScrollToIdx:(NSInteger)idx {
-    if(idx < 0 || idx >= self.categoryModel.subCategoryList.count) {
+    if(idx < 0 || idx >= self.classifyListModel.categorys.count) {
         return;
     }
+    /// 1. 隐藏当前 VC
+    LXClassifyListRightVC *tmp_beforeVC = (LXClassifyListRightVC *)self.pageVC.viewControllers.firstObject;
+    [tmp_beforeVC dismissAllCategoryView];
+    /// 2. 切换到下一个 VC
     LXClassifyListRightVC *vc = [self vcAtIdx:idx];
-    LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx];
-    [vc dataFill:subCategoryModel];
+    NSString *categoryId = self.classifyListModel.categorys[idx].categoryId;
+    LXClassifyRightModel *rightModel = self.classifyListModel.rightListModel[categoryId];
+    if(rightModel.f_goodsList) {
+        LXClassifyListRightVC *vc = [self vcAtIdx:0];
+        [vc dataFill:rightModel];
+    } else {
+        [self.b2cVM loadV2SearchForLHApi:categoryId];
+    }
 
     NSInteger previousIdx = [self idxOfVC:self.pageVC.viewControllers.firstObject];
     UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
@@ -96,27 +144,40 @@
 - (UIView *)listView {
     return self.view;
 }
+- (void)listDidDisappear {
+    /// 容器在隐藏时, 隐藏各种弹窗
+    [self.pageVC.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if([obj isKindOfClass:[LXClassifyListRightVC class]]) {
+            LXClassifyListRightVC *vc = (LXClassifyListRightVC *)obj;
+            [vc dismissAllCategoryView];
+        }
+    }];
+}
 
 #pragma mark -
 #pragma mark - ✈️UIPageViewControllerDataSource
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    /// 1. 隐藏当前 VC
+    LXClassifyListRightVC *tmp_beforeVC = (LXClassifyListRightVC *)viewController;
+    [tmp_beforeVC dismissAllCategoryView];
+    /// 2. 切换到当前 VC
     NSInteger idx = viewController.view.tag;
     if(idx <= 0) {
         return nil;
     }
     LXClassifyListRightVC *vc = [self vcAtIdx:idx - 1];
-    LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx - 1];
-    [vc dataFill:subCategoryModel];
     return vc;
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    /// 1. 隐藏当前 VC
+    LXClassifyListRightVC *tmp_afterVC = (LXClassifyListRightVC *)viewController;
+    [tmp_afterVC dismissAllCategoryView];
+    /// 2. 切换到当前 VC
     NSInteger idx = viewController.view.tag;
-    if(idx >= self.categoryModel.subCategoryList.count - 1) {
+    if(idx >= self.classifyListModel.categorys.count - 1) {
         return nil;
     }
     LXClassifyListRightVC *vc = [self vcAtIdx:idx + 1];
-    LXSubCategoryModel *subCategoryModel = self.categoryModel.subCategoryList[idx + 1];
-    [vc dataFill:subCategoryModel];
     return vc;
 }
 
@@ -137,25 +198,41 @@
                          completion:nil];
     [self.view addSubview:self.panelLeftView];
     [self.view addSubview:self.pageVC.view];
+    [self.view addSubview:self.imgViewLeftCorner];
+    [self.view addSubview:self.imgViewRightCorner];
 
     [self masonry];
 }
 
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
-    [self.panelLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(@0.f);
+    MASAttachKeys(self.panelLeftView, self.pageVC.view, self.imgViewLeftCorner, self.imgViewRightCorner)
+    [self.panelLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.equalTo(@0.f);
         make.width.equalTo(@(kLeftTableWidth));
-        make.bottom.equalTo(@(-iPhoneX.xl_safeareaInsets.bottom));
     }];
-    [self.pageVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.pageVC.view mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.right.bottom.equalTo(@0.f);
         make.left.equalTo(self.panelLeftView.mas_right);
+    }];
+    [self.imgViewLeftCorner mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.equalTo(self.panelLeftView);
+        make.width.height.equalTo(@(kWPercentage(10.f)));
+    }];
+    [self.imgViewRightCorner mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.equalTo(self.pageVC.view);
+        make.width.height.equalTo(@(kWPercentage(10.f)));
     }];
 }
 
 #pragma mark Lazy Property
+- (LXB2CClassifyVM *)b2cVM {
+    if(!_b2cVM){
+        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
+        _b2cVM = v;
+    }
+    return _b2cVM;
+}
 - (NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *)classifyVCList {
     if(!_classifyVCList){
         _classifyVCList = [NSMutableDictionary dictionary];
@@ -163,10 +240,11 @@
     return _classifyVCList;
 }
 - (UIPageViewController *)pageVC {
-    if(!_pageVC){//<#UIPageViewControllerDelegate, UIPageViewControllerDataSource#>
+    if(!_pageVC){
         UIPageViewController *v = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationVertical options:@{
             UIPageViewControllerOptionInterPageSpacingKey: @0.f
         }];
+        v.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         v.delegate = self;
         // v.dataSource = self;
         _pageVC = v;
@@ -184,4 +262,24 @@
     }
     return _panelLeftView;
 }
+- (UIImageView *)imgViewLeftCorner {
+    if(!_imgViewLeftCorner){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.image = [iBLImage imageNamed:@"icon_left_corner"];
+        _imgViewLeftCorner = iv;
+    }
+    return _imgViewLeftCorner;
+}
+- (UIImageView *)imgViewRightCorner {
+    if(!_imgViewRightCorner){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.image = [iBLImage imageNamed:@"icon_right_corner"];
+        _imgViewRightCorner = iv;
+    }
+    return _imgViewRightCorner;
+}
+
+
 @end

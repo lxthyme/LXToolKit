@@ -9,7 +9,7 @@
 
 @interface LXBaseFirstCategoryView()<UICollectionViewDelegate> {
 }
-@property(nonatomic, strong)NSArray<LXCategoryModel *> *dataList;
+@property(nonatomic, strong)NSArray<LXLHCategoryModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong)NSIndexPath *_Nullable selectedIndexPath;
@@ -28,10 +28,16 @@
     }
     return self;
 }
+// - (void)updateConstraints {
+//     [super updateConstraints];
+//     if(CGRectGetWidth(self.frame) > 0.f) {
+//         [self masonry];
+//     }
+// }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXCategoryModel *> *)categoryList {
+- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryList {
     self.dataList = categoryList;
     [self.collectionView reloadData];
     if(self.collectionView.indexPathsForSelectedItems.count <= 0) {
@@ -76,24 +82,14 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
-- (void)prepareCollectionView {
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
-}
+- (void)prepareCollectionView {}
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
-
-    [self addSubview:self.collectionView];
-
-    [self masonry];
 }
 
 #pragma mark Masonry
-- (void)masonry {
-    // MASAttachKeys(<#...#>)
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-}
+- (void)masonry {}
+
 #pragma mark getter / setter
 - (NSIndexPath *)selectedIndexPath {
     return self.collectionView.indexPathsForSelectedItems.firstObject;

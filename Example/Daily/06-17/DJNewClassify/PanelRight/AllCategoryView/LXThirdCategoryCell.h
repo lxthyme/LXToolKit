@@ -6,11 +6,23 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#import <DJBusinessTools/LXBaseCollectionViewCell.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXThirdCategoryCell: UICollectionViewCell {
+@interface LXThirdCategoryCell: LXBaseCollectionViewCell {
 }
+@property(nonatomic, strong)UIColor *bgColor;
+
+@property(nonatomic, strong)UIColor *textBGNormalColor;
+@property(nonatomic, strong)UIColor *textBGSelectedColor;
+
+@property(nonatomic, strong)UIColor *textNormalColor;
+@property(nonatomic, strong)UIColor *textSelectedColor;
+
+@property(nonatomic, strong)UIFont *textNormalFont;
+@property(nonatomic, strong)UIFont *textSelectedFont;
+
 
 - (void)dataFill:(NSString *)title;
 

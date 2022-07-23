@@ -5,9 +5,9 @@
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXBaseCollectionViewCell.h"
+#import <DJBusinessTools/LXBaseCollectionViewCell.h>
 
-#import "LXSectionModel.h"
+#import "LXLHCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)UIColor *normalTextColor;
 @property(nonatomic, strong)UIColor *selectedTextColor;
 
-- (void)dataFill:(LXCategoryModel *)categoryModel;
+- (void)dataFill:(LXLHCategoryModel *)categoryModel;
 
 /// 预置分类球样式属性
 - (void)prepareCategoryConfig;

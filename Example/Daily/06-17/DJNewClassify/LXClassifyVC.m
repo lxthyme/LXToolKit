@@ -7,7 +7,12 @@
 //
 #import "LXClassifyVC.h"
 
+#import <JXCategoryView/JXCategoryView.h>
+
 #import "LXClassifyWrapperVC.h"
+#import "LXB2CClassifyWrapperVC.h"
+
+static const CGFloat kCategoryHeight = 44.f;
 
 @interface LXClassifyVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
     BOOL __navigationBarHidden;
@@ -25,13 +30,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-    __navigationBarHidden = self.navigationController.navigationBarHidden;
-    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
     self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
+    __navigationBarHidden = self.navigationController.navigationBarHidden;
+    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
@@ -71,6 +76,9 @@
 #pragma mark - ✈️JXCategoryViewDelegate
 - (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
     self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
+    [self.listContainerView didClickSelectedItemAtIndex:index];
+    // [weakSelf.listContainerView.scrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.scrollView.bounds.size.width, 0) animated:YES];
+    // self.listContainerView select
 }
 
 #pragma mark -
@@ -79,8 +87,15 @@
     return self.titles.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
-    LXClassifyWrapperVC *vc = [[LXClassifyWrapperVC alloc]init];
-    return vc;
+    if(index == 0) {
+        LXClassifyWrapperVC *vc = [[LXClassifyWrapperVC alloc]init];
+        vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300.f);
+        return vc;
+    } else {
+        LXB2CClassifyWrapperVC *vc = [[LXB2CClassifyWrapperVC alloc]init];
+        vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300.f);
+        return vc;
+    }
 }
 
 #pragma mark -
@@ -97,7 +112,9 @@
 
     self.titles = @[@"即时达配送", @"超市精选"];
     self.categoryView.titles = self.titles;
-    self.categoryView.listContainer = self.listContainerView;
+    // TODO: 「lxthyme」💊
+    // self.categoryView.listContainer = self.listContainerView;
+    self.categoryView.contentScrollView = self.listContainerView.scrollView;
     // self.categoryView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
     // self.navigationItem.titleView = self.categoryView;
 
@@ -111,7 +128,7 @@
 
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    MASAttachKeys(self.categoryView)
     MASViewAttribute *topAttribute = self.view.mas_top;
     if (@available(iOS 11.0, *)) {
         topAttribute = self.view.mas_safeAreaLayoutGuideTop;
@@ -120,7 +137,7 @@
         // make.top.equalTo(self.view);
         make.top.equalTo(topAttribute);
         make.left.right.equalTo(@0.f);
-        make.height.equalTo(@44.f);
+        make.height.equalTo(@(kCategoryHeight));
     }];
     [self.separateLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.categoryView);
@@ -134,7 +151,8 @@
     }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.categoryView.mas_bottom);
-        make.left.right.bottom.equalTo(@0.f);
+        make.left.right.equalTo(@0.f);
+        make.bottom.equalTo(@(kWPercentage(-50.f)));
         // make.edges.equalTo(@0.f);
     }];
 }
@@ -164,8 +182,11 @@
 }
 - (JXCategoryListContainerView *)listContainerView {
     if(!_listContainerView){
-        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_CollectionView delegate:self];
-        v.scrollView.scrollEnabled = NO;
+        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithDelegate:self];
+        v.frame = CGRectMake(0, kCategoryHeight, SCREEN_WIDTH, SCREEN_HEIGHT - kCategoryHeight);
+        // TODO: 「lxthyme」💊
+        // [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_CollectionView delegate:self];
+        // v.scrollView.scrollEnabled = NO;
         _listContainerView = v;
     }
     return _listContainerView;

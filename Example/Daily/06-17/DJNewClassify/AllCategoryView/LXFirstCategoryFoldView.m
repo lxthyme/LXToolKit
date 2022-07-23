@@ -22,7 +22,7 @@
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryCell" forIndexPath:indexPath];
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
-    LXCategoryModel *categoryModel = self.dataList[indexPath.row];
+    LXLHCategoryModel *categoryModel = self.dataList[indexPath.row];
     [cell dataFill:categoryModel];
     return cell;
 }
@@ -44,4 +44,21 @@
     [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:@"LXFirstCategoryCell"];
 }
 
+#pragma mark -
+#pragma mark - 🍺UI Prepare & Masonry
+- (void)prepareUI {
+    self.backgroundColor = [UIColor whiteColor];
+
+    [self addSubview:self.collectionView];
+
+    [self masonry];
+}
+
+#pragma mark Masonry
+- (void)masonry {
+    MASAttachKeys(self.collectionView, self)
+    [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+}
 @end

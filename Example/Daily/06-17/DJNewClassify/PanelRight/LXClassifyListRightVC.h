@@ -6,11 +6,10 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 
-#import <LXToolKitObjc/LXBaseVC.h>
+#import <DJBusinessTools/LXBaseVC.h>
 
-#import "LXSectionModel.h"
-
-#define kLeftTableWidth kWPercentage(84.f)
+#import "DJClassifyMacro.h"
+#import "LXClassifyRightVCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
-- (void)dataFill:(LXSubCategoryModel *)subCateogryModel;
+- (void)dataFill:(LXClassifyRightModel *)subCateogryModel;
+
+- (void)dismissAllCategoryView;
 
 @end
 

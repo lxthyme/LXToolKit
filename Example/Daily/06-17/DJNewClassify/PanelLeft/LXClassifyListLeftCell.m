@@ -7,7 +7,7 @@
 //
 #import "LXClassifyListLeftCell.h"
 
-#import <Masonry/Masonry.h>
+#import <DJBusinessTools/UIView+ex.h>
 
 #define kNormalTextColor [UIColor colorWithHex:0x333333]
 #define kSelectedTextColor [UIColor colorWithHex:0xFF774F]
@@ -15,7 +15,7 @@
 #define kSelectedBgColor [UIColor colorWithHex:0xFFFFFF]
 @interface LXClassifyListLeftCell() {
 }
-@property(nonatomic, strong)UIView *selectedIndicatorView;
+@property(nonatomic, strong)UIImageView *indicatorView;
 @property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UILabel *labTitle;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
@@ -38,7 +38,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
-    self.selectedIndicatorView.hidden = !selected;
+    self.indicatorView.hidden = !selected;
     if(selected) {
         self.labTitle.textColor = kSelectedTextColor;
         self.labTitle.font = [UIFont boldSystemFontOfSize:kWPercentage(12.f)];
@@ -52,7 +52,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    [self.selectedIndicatorView xl_setRoundingCorners:[UIColor clearColor]
+    [self.indicatorView xl_setRoundingCorners:[UIColor clearColor]
                                           borderWidth:0.f
                                                 raddi:kWPercentage(4.f)
                                               corners:UIRectCornerTopRight | UIRectCornerBottomRight isDotted:NO];
@@ -78,7 +78,7 @@
     [self.wrapperStackView addArrangedSubview:self.imgViewLogo];
     [self.wrapperStackView addArrangedSubview:self.labTitle];
     [self.contentView addSubview:self.wrapperStackView];
-    [self.contentView addSubview:self.selectedIndicatorView];
+    [self.contentView addSubview:self.indicatorView];
 
     [self masonry];
 }
@@ -93,21 +93,22 @@
     [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@(kWPercentage(11.f)));
     }];
-    [self.selectedIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.centerY.equalTo(@0.f);
         make.width.equalTo(@(kWPercentage(3.f)));
-        make.height.equalTo(@(kWPercentage(25.f)));
     }];
 }
 
 #pragma mark Lazy Property
-- (UIView *)selectedIndicatorView {
-    if(!_selectedIndicatorView){
-        UIView *v = [[UIView alloc]init];
-        v.backgroundColor = [UIColor colorWithHex:0xFF774F];
-        _selectedIndicatorView = v;
+- (UIImageView *)indicatorView {
+    if(!_indicatorView){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        iv.image = [iBLImage imageNamed:@"icon_secondCategory_indicator"];
+        _indicatorView = iv;
     }
-    return _selectedIndicatorView;
+    return _indicatorView;
 }
 - (UIStackView *)wrapperStackView {
     if(!_wrapperStackView){

@@ -21,8 +21,10 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 
 @interface LXSubCategoryPinView() {
 }
+@property(nonatomic, strong)UIStackView *wrapperStackView;
 @property (nonatomic, strong)LXThirdCategoryView *pinCategoryView;
 @property(nonatomic, strong)UIButton *btnAll;
+@property(nonatomic, strong)UIView *topView;
 @property(nonatomic, strong)UIView *filterView;
 /// 即时达 最快30分钟
 @property(nonatomic, strong)UIButton *btnJiShiDa;
@@ -53,13 +55,14 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXSubCategoryModel *)subCateogryModel {
+- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
     // NSArray *titleList = [[subCateogryModel.sectionList.rac_sequence skip:1]
     //                                map:^id _Nullable(LXSectionModel * _Nullable value) {
     //     return value.title;
     // }].array;
-    [self.pinCategoryView dataFill:subCateogryModel];
+    self.topView.hidden = categoryListModel.count <= 0;
+    [self.pinCategoryView dataFill:categoryListModel];
 }
 
 #pragma mark -
@@ -73,8 +76,9 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.pinCategoryView];
-    [self addSubview:self.btnAll];
+    [self.topView addSubview:self.pinCategoryView];
+    [self.topView addSubview:self.btnAll];
+    [self.wrapperStackView addArrangedSubview:self.topView];
 
     self.filterType = LXSubcategoryFilterTypeJiShiDa;
 
@@ -86,7 +90,9 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     [self.filterView addSubview:self.priceWrapperView];
 
     [self.filterView addSubview:self.btnSale];
-    [self addSubview:self.filterView];
+    [self.wrapperStackView addArrangedSubview:self.filterView];
+
+    [self addSubview:self.wrapperStackView];
 
     [self masonry];
 }
@@ -127,25 +133,26 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     MASAttachKeys(self.pinCategoryView, self.filterView,
                   self.btnJiShiDa, self.priceWrapperView, self.btnSale,
                   self.btnPrice, self.imgViewArrowUp, self.imgViewArrowDown)
-    [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@0.f);
+    [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(@0.f);
         make.left.equalTo(@(kWPercentage(10.f)));
+        make.right.equalTo(@(kWPercentage(-10.f)));
+    }];
+    [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.equalTo(@0.f);
         make.height.equalTo(@(kPinCategoryViewHeight));
     }];
     [self.btnAll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self.pinCategoryView);
         make.left.equalTo(self.pinCategoryView.mas_right);
-        make.right.equalTo(@(kWPercentage(-10.f)));
+        make.right.equalTo(@0.f);
         make.width.equalTo(@35.f);
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.pinCategoryView.mas_bottom);
-        make.left.equalTo(self.pinCategoryView);
-        make.right.equalTo(@(kWPercentage(-10.f)));
         make.height.equalTo(@(kPinFilterViewHeight));
     }];
     [self.btnJiShiDa mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(@0.f);
+        make.left.centerY.equalTo(@0.f);
     }];
     [self.priceWrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.btnJiShiDa.mas_right).offset(kWPercentage(40.f));
@@ -206,9 +213,26 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
 }
 #pragma mark Lazy Property
+- (UIStackView *)wrapperStackView {
+    if(!_wrapperStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisVertical;
+        sv.spacing = 0.f;
+        _wrapperStackView = sv;
+    }
+    return _wrapperStackView;
+}
+- (UIView *)topView {
+    if(!_topView){
+        UIView *v = [[UIView alloc]init];
+        _topView = v;
+    }
+    return _topView;
+}
 - (LXThirdCategoryView *)pinCategoryView {
     if(!_pinCategoryView){
         LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        [v customized3rdCategoryViewStyle];
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];
         v.minimumLineSpacing = kWPercentage(5.f);
