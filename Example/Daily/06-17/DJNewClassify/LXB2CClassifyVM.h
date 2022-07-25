@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "LXLHCategoryModel.h"
 #import "LXGoodsInfoListModel.h"
+#import "LXShopResourceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,9 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)RACCommand *v2SearchForLHApiCommand;
 @property(nonatomic, strong)RACSubject *productSearchDoCategoryByLevOneSubject;
 @property(nonatomic, strong)RACSubject *v2SearchForLHApiSubject;
+@property(nonatomic, strong)RACSubject *shopResourseSubject;
 
 - (void)loadV2SearchForLHApi:(NSString *)categorySid;
 - (void)loadProductSearchDoCategoryByLevOne;
+- (void)loadShopResource;
 
 @end
 

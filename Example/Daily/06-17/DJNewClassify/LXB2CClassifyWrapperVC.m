@@ -18,6 +18,8 @@
 #import "LXThirdCategoryView.h"
 #import "LXB2CClassifyVM.h"
 #import "LXClassifyRightVCModel.h"
+#import "LXClassifyEmptyView.h"
+#import "DJClassifyMacro.h"
 
 #define kB2CCategoryViewHeight kWPercentage(48.5f)
 static const CGFloat kLabelAllWidth = 35.f;
@@ -31,6 +33,9 @@ static const CGFloat kLabelAllWidth = 35.f;
 @property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
+@property(nonatomic, strong)LXClassifyEmptyView *emptyView;
+/// 页面状态
+@property(nonatomic, assign)LXViewStatus viewStatus;
 @property(nonatomic, strong)LXClassifyModel *classifyModel;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
@@ -63,11 +68,12 @@ static const CGFloat kLabelAllWidth = 35.f;
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
     [self prepareVM];
     [self prepareUI];
     [self bindVM];
     // [self loadData];
-    [IBLProgressHud showInView:self.view];
+    self.viewStatus = LXViewStatusLoading;
     [self.b2cVM loadProductSearchDoCategoryByLevOne];
 }
 
@@ -77,6 +83,11 @@ static const CGFloat kLabelAllWidth = 35.f;
     @weakify(self)
     [self.b2cVM.productSearchDoCategoryByLevOneSubject subscribeNext:^(NSArray<LXLHCategoryModel *> *categoryModelList) {
         @strongify(self)
+        if(categoryModelList.count <= 0) {
+            self.viewStatus = LXViewStatusNoData;
+            return;
+        }
+        self.viewStatus = LXViewStatusNormal;
         NSLog(@"categoryModelList: %@", categoryModelList);
         [self.categoryView dataFill:categoryModelList];
         [self.allCategoryView dataFill:categoryModelList];
@@ -98,6 +109,7 @@ static const CGFloat kLabelAllWidth = 35.f;
             tmp.categorys = obj.categorys;
             tmp.rightListModel = [rightListModel copy];
             classifyListModel[obj.categoryId] = tmp;
+            !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(YES);
         }];
         self.classifyModel.categorys = categoryModelList;
         self.classifyModel.classifyListModel = [classifyListModel copy];
@@ -108,6 +120,7 @@ static const CGFloat kLabelAllWidth = 35.f;
         //     [obj dataFill:categoryModel];
         // }];
     } error:^(NSError *error) {
+        self.viewStatus = LXViewStatusOffline;
         NSLog(@"error: %@", error);
     }];
     [[RACSignal combineLatest:@[
@@ -260,8 +273,36 @@ static const CGFloat kLabelAllWidth = 35.f;
 
     [self.allMaskView addSubview:self.allCategoryView];
     [self.view addSubview:self.allMaskView];
+    [self.view addSubview:self.emptyView];
 
     [self masonry];
+}
+#pragma mark getter / setter
+- (void)setViewStatus:(LXViewStatus)viewStatus {
+    if(_viewStatus == viewStatus) {
+        return;
+    }
+    _viewStatus = viewStatus;
+
+    self.emptyView.hidden = YES;
+    // self.classifySkeletonScreen.hidden = YES;
+    switch (viewStatus) {
+        case LXViewStatusUnknown:
+            break;
+        case LXViewStatusNormal:
+            break;
+        case LXViewStatusLoading:
+            // self.classifySkeletonScreen.hidden = NO;
+            break;
+        case LXViewStatusNoData:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillEmptyStyle];
+            break;
+        case LXViewStatusOffline:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillOfflineStyle];
+            break;
+    }
 }
 #pragma mark Masonry
 - (void)masonry {
@@ -297,6 +338,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(@0.f);
         make.height.equalTo(@200.f);
+    }];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
     }];
 }
 
@@ -442,6 +486,14 @@ static const CGFloat kLabelAllWidth = 35.f;
         _classifyModel = v;
     }
     return _classifyModel;
+}
+- (LXClassifyEmptyView *)emptyView {
+    if(!_emptyView){
+        LXClassifyEmptyView *v = [[LXClassifyEmptyView alloc]init];
+        v.hidden = YES;
+        _emptyView = v;
+    }
+    return _emptyView;
 }
 
 @end

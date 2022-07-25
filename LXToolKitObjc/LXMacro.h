@@ -25,7 +25,7 @@
 #endif
 
 #ifndef kWPercentage
-#define kWPercentage(a) (SCREEN_WIDTH *((a) / 414))
+#define kWPercentage(a) (SCREEN_WIDTH *((a) / 375))
 #endif
 
 #define kBOOLString(__bool__) ((__bool__) ? @"YES" : @"NO")

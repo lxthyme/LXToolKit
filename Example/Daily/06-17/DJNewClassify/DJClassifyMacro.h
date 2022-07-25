@@ -12,6 +12,18 @@
 #define kPingFangSCMedium(__size__) [UIFont fontWithName:@"PingFangSC-Medium" size:(__size__)]
 #define kPingFangSCSemibold(__size__) [UIFont fontWithName:@"PingFangSC-Semibold" size:(__size__)]
 
+typedef NS_ENUM(NSInteger, LXViewStatus) {
+    LXViewStatusUnknown = 0,
+    /// 正常模式
+    LXViewStatusNormal,
+    /// 骨架屏
+    LXViewStatusLoading,
+    /// 无数据
+    LXViewStatusNoData,
+    /// 离线模式
+    LXViewStatusOffline
+};
+
 // MARK: - 🔥一级分类配置
 // typedef NS_ENUM(NSInteger, DJClassifyType) {
 //     DJClassifyTypeB2C = 1,

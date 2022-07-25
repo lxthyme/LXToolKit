@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)DJGoodsRuleType ruletype;
 @property (nonatomic, copy)NSString *ruleName;
 @property (nonatomic, copy)NSString *activityDesc;
-@property (nonatomic, copy)NSString *activityID;
+@property (nonatomic, copy)NSString *activityId;
 @property (nonatomic, copy)NSString *shopid;
 @property (nonatomic, copy)NSString *sLabel;
 @property (nonatomic, copy)NSString *mLabel;

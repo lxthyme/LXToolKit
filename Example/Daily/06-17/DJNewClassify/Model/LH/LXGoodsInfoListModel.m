@@ -171,4 +171,12 @@
 @end
 
 @implementation DJRule
+#pragma mark -
+#pragma mark - 🛠Life Cycle
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+        @"identifier": @"id"
+    };
+}
+
 @end

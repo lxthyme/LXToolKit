@@ -37,6 +37,7 @@
     self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(LXLHCategoryModel * _Nullable value) {
         return value.categoryName;
     }].array;
+    self.collectionView.hidden = NO;
     [self.collectionView reloadData];
 }
 
@@ -186,6 +187,7 @@
         cv.showsHorizontalScrollIndicator = NO;
         cv.showsVerticalScrollIndicator = NO;
         // cv.pagingEnabled = YES;
+        cv.hidden = YES;
 
         cv.delegate = self;
         cv.dataSource = self;

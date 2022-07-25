@@ -8,19 +8,51 @@
 #import "LXB2CClassifyVM.h"
 #import <BLAPIManagers/BLProductSearchDoCategoryByLevOneApiManager.h>
 #import <BLRawAPIManager/DJNewClassifyListSearchForLHAPIManager.h>
+#import <BLRawAPIManager/DJNewHomeShopResourseAPIManager.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "CTAPIBaseManager+Rac.h"
+#import <DJGlobalStoreManager/DJStoreManager.h>
+#import <YYModel/YYModel.h>
 
 @interface LXB2CClassifyVM()/**<CTAPIManagerParamSource, CTAPIManagerCallBackDelegate>*/ {
 }
 @property (nonatomic, strong)BLProductSearchDoCategoryByLevOneApiManager *productSearchDoCategoryByLevOneApiManager;
 @property (nonatomic, strong)DJNewClassifyListSearchForLHAPIManager *v2SearchForLHApiManager;
+@property (nonatomic, strong)DJNewHomeShopResourseAPIManager *shopResourseAPIManager;
 @end
 
 @implementation LXB2CClassifyVM
-
+- (instancetype)init {
+    if(self = [super init]) {
+        [self prepareUI];
+    }
+    return self;
+}
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (void)loadShopResource {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    NSString *resourceId = @"2019724";
+
+    @weakify(self)
+    [self.shopResourseAPIManager loadDataWithParams:@{
+        @"channelId": @1,
+        @"merchantId": gStore.merchantId,
+        @"resourceIds": resourceId,
+        @"status": @4,
+    } success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
+        NSArray<LXShopResourceModel *> *shopResourceList = [NSArray yy_modelArrayWithClass:[LXShopResourceModel class] json:obj];
+        LXShopResourceModel *shopResourceModel = [shopResourceList.rac_sequence filter:^BOOL(LXShopResourceModel *value) {
+            return [value.resourceId isEqualToString:resourceId];
+        }].head;
+        [self.shopResourseSubject sendNext:shopResourceModel];
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.shopResourseSubject sendError:nil];
+    }];
+}
 - (void)loadProductSearchDoCategoryByLevOne {
     @weakify(self)
     [self.productSearchDoCategoryByLevOneApiManager loadDataWithParams:@{
@@ -73,7 +105,11 @@
 
 #pragma mark -
 #pragma mark - 📌UI Prepare & Masonry
-
+- (void)prepareUI {
+    self.shopResourseSubject = [RACSubject subject];
+    self.productSearchDoCategoryByLevOneSubject = [RACSubject subject];
+    self.v2SearchForLHApiSubject = [RACSubject subject];
+}
 #pragma mark -
 #pragma mark Lazy Property
 // - (RACCommand *)productSearchDoCategoryByLevOneCommand {
@@ -104,20 +140,6 @@
 //     }
 //     return _v2SearchForLHApiCommand;
 // }
-- (RACSubject *)productSearchDoCategoryByLevOneSubject {
-    if(!_productSearchDoCategoryByLevOneSubject){
-        RACSubject *v = [RACSubject subject];
-        _productSearchDoCategoryByLevOneSubject = v;
-    }
-    return _productSearchDoCategoryByLevOneSubject;
-}
-- (RACSubject *)v2SearchForLHApiSubject {
-    if(!_v2SearchForLHApiSubject){
-        RACSubject *v = [RACSubject subject];
-        _v2SearchForLHApiSubject = v;
-    }
-    return _v2SearchForLHApiSubject;
-}
 -(BLProductSearchDoCategoryByLevOneApiManager *)productSearchDoCategoryByLevOneApiManager
 {
     if (!_productSearchDoCategoryByLevOneApiManager) {
@@ -137,5 +159,15 @@
         _v2SearchForLHApiManager = api;
     }
     return _v2SearchForLHApiManager;
+}
+- (DJNewHomeShopResourseAPIManager *)shopResourseAPIManager
+{
+    if (!_shopResourseAPIManager) {
+        DJNewHomeShopResourseAPIManager *api = [[DJNewHomeShopResourseAPIManager alloc] init];
+        // api.delegate = self;
+        // api.paramSource = self;
+        _shopResourseAPIManager = api;
+    }
+    return _shopResourseAPIManager;
 }
 @end

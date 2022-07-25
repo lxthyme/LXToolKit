@@ -21,6 +21,8 @@
 #import "LXSubCategoryPinView.h"
 #import "LXThirdCategoryView.h"
 #import "DJClassifyMacro.h"
+#import "LXClassifyRightSkeletonScreen.h"
+#import "LXClassifyEmptyView.h"
 
 @interface LXClassifyListRightVC ()<JXCategoryViewDelegate, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
     BOOL __shouldRest;
@@ -31,7 +33,10 @@
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)LXThirdCategoryView *allCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
-
+@property(nonatomic, strong)LXClassifyEmptyView *emptyView;
+@property (nonatomic, strong)LXClassifyRightSkeletonScreen *skeletonScreen;
+/// 页面状态
+@property(nonatomic, assign)LXViewStatus viewStatus;
 @property(nonatomic, strong)LXMyCollectionView *collectionView;
 @property(nonatomic, strong)LXClassifyRightModel *rightModel;
 
@@ -58,6 +63,8 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXClassifyRightModel *)rightModel {
+    self.skeletonScreen.hidden = YES;
+
     self.rightModel = rightModel;
     [self.pinView dataFill:rightModel.categorys];
     [self.pinView.pinCategoryView selectItemAtIndex:0];
@@ -365,6 +372,8 @@
     [self.view addSubview:self.collectionView];
     [self.allMaskView addSubview:self.allCategoryView];
     [self.view addSubview:self.allMaskView];
+    [self.view addSubview:self.skeletonScreen];
+    [self.view addSubview:self.emptyView];
 
     [self masonry];
 }
@@ -377,9 +386,38 @@
     }];
 }
 #pragma mark getter/setter
+- (void)setViewStatus:(LXViewStatus)viewStatus {
+    if(_viewStatus == viewStatus) {
+        return;
+    }
+    _viewStatus = viewStatus;
+
+    self.emptyView.hidden = YES;
+    self.skeletonScreen.hidden = YES;
+    switch (viewStatus) {
+        case LXViewStatusUnknown:
+            break;
+        case LXViewStatusNormal:
+            break;
+        case LXViewStatusLoading:
+            self.skeletonScreen.hidden = NO;
+            break;
+        case LXViewStatusNoData:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillEmptyStyle];
+            break;
+        case LXViewStatusOffline:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillOfflineStyle];
+            break;
+    }
+}
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(...)
+    [self.skeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
     [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
         // make.left.right.bottom.equalTo(@0.f);
@@ -389,6 +427,9 @@
         make.height.equalTo(@200.f);
     }];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
 }
@@ -484,5 +525,21 @@
         _collectionView = cv;
     }
     return _collectionView;
+}
+- (LXClassifyRightSkeletonScreen *)skeletonScreen {
+    if(!_skeletonScreen){
+        LXClassifyRightSkeletonScreen *v = [[LXClassifyRightSkeletonScreen alloc]init];
+        v.hidden = YES;
+        _skeletonScreen = v;
+    }
+    return _skeletonScreen;
+}
+- (LXClassifyEmptyView *)emptyView {
+    if(!_emptyView){
+        LXClassifyEmptyView *v = [[LXClassifyEmptyView alloc]init];
+        v.hidden = YES;
+        _emptyView = v;
+    }
+    return _emptyView;
 }
 @end

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXB2CClassifyWrapperVC: LXBaseVC<JXCategoryListContentViewDelegate> {
 }
+@property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 
 @end
 

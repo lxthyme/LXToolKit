@@ -11,6 +11,11 @@
 
 #import "LXClassifyWrapperVC.h"
 #import "LXB2CClassifyWrapperVC.h"
+#import "LXClassifySkeletonScreen.h"
+#import "LXClassifyEmptyView.h"
+#import "LXB2CClassifyVM.h"
+#import <DJGlobalStoreManager/DJStoreManager.h>
+#import "DJClassifyMacro.h"
 
 static const CGFloat kCategoryHeight = 44.f;
 
@@ -22,6 +27,11 @@ static const CGFloat kCategoryHeight = 44.f;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)UIButton *btnSearch;
 @property(nonatomic, strong)UIView *separateLineView;
+@property(nonatomic, strong)LXClassifySkeletonScreen *classifySkeletonScreen;
+@property(nonatomic, strong)LXClassifyEmptyView *emptyView;
+/// 页面状态
+@property(nonatomic, assign)LXViewStatus viewStatus;
+@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @end
 
 @implementation LXClassifyVC
@@ -30,12 +40,13 @@ static const CGFloat kCategoryHeight = 44.f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
+    __navigationBarHidden = self.navigationController.navigationBarHidden;
+    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
     self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
-    __navigationBarHidden = self.navigationController.navigationBarHidden;
     self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -54,11 +65,61 @@ static const CGFloat kCategoryHeight = 44.f;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    gStore.djHomeStyle = DAOJIA;
+
     [self prepareUI];
+    [self bindVM];
+    self.viewStatus = LXViewStatusLoading;
+    [self.b2cVM loadShopResource];
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
+- (void)bindVM {
+    @weakify(self)
+    [[self.b2cVM.shopResourseSubject delay:1.f] subscribeNext:^(LXShopResourceModel *shopResourceModel) {
+        @strongify(self)
+        self.viewStatus = LXViewStatusNormal;
+        DJOnlineDeployList *onlineDeployItem = shopResourceModel.onlineDeployList.firstObject;
+        NSMutableArray *array = [NSMutableArray array];
+        DJStoreManager *gStore = [DJStoreManager sharedInstance];
+        if (gStore.djModuleType == FIRSTMEDICINE) {
+            NSString *picDesc1 = onlineDeployItem.picDesc1;
+            if(isEmptyString(picDesc1)) {
+                picDesc1 = @"即时达";
+            }
+            [array addObject:picDesc1];
+        }else {
+            if (gStore.djHomeStyle == LIANHUA) {
+                NSString *picDesc2 = onlineDeployItem.picDesc2;
+                if(isEmptyString(picDesc2)) {
+                    picDesc2 = @"优选市集";
+                }
+                [array addObject:picDesc2];
+            }else {
+                NSString *picDesc1 = onlineDeployItem.picDesc1;
+                if(isEmptyString(picDesc1)) {
+                    picDesc1 = @"即时达";
+                }
+                [array addObject:picDesc1];
+                NSString *picDesc2 = onlineDeployItem.picDesc2;
+                if(isEmptyString(picDesc2)) {
+                    picDesc2 = @"优选市集";
+                }
+                [array addObject:picDesc2];
+            }
+        }
+        self.titles = [array copy];
+        self.categoryView.titles = self.titles;
+        [self.categoryView reloadData];
+        [self.listContainerView reloadData];
+        self.classifySkeletonScreen.hidden = YES;
+    } error:^(NSError *error) {
+        @strongify(self)
+        self.viewStatus = LXViewStatusOffline;
+    }];
+}
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -87,13 +148,16 @@ static const CGFloat kCategoryHeight = 44.f;
     return self.titles.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
+    @weakify(self)
     if(index == 0) {
         LXClassifyWrapperVC *vc = [[LXClassifyWrapperVC alloc]init];
-        vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300.f);
         return vc;
     } else {
         LXB2CClassifyWrapperVC *vc = [[LXB2CClassifyWrapperVC alloc]init];
-        vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300.f);
+        vc.toggleSkeletonScreenBlock = ^(BOOL isHidden) {
+            @strongify(self)
+            self.classifySkeletonScreen.hidden = isHidden;
+        };
         return vc;
     }
 }
@@ -110,8 +174,6 @@ static const CGFloat kCategoryHeight = 44.f;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.hidesBackButton = YES;
 
-    self.titles = @[@"即时达配送", @"超市精选"];
-    self.categoryView.titles = self.titles;
     // TODO: 「lxthyme」💊
     // self.categoryView.listContainer = self.listContainerView;
     self.categoryView.contentScrollView = self.listContainerView.scrollView;
@@ -122,10 +184,38 @@ static const CGFloat kCategoryHeight = 44.f;
     [self.view addSubview:self.separateLineView];
     [self.view addSubview:self.btnSearch];
     [self.view addSubview:self.listContainerView];
+    [self.view addSubview:self.classifySkeletonScreen];
+    [self.view addSubview:self.emptyView];
 
     [self masonry];
 }
+#pragma mark getter / setter
+- (void)setViewStatus:(LXViewStatus)viewStatus {
+    if(_viewStatus == viewStatus) {
+        return;
+    }
+    _viewStatus = viewStatus;
 
+    self.emptyView.hidden = YES;
+    self.classifySkeletonScreen.hidden = YES;
+    switch (viewStatus) {
+        case LXViewStatusUnknown:
+            break;
+        case LXViewStatusNormal:
+            break;
+        case LXViewStatusLoading:
+            self.classifySkeletonScreen.hidden = NO;
+            break;
+        case LXViewStatusNoData:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillEmptyStyle];
+            break;
+        case LXViewStatusOffline:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillOfflineStyle];
+            break;
+    }
+}
 #pragma mark Masonry
 - (void)masonry {
     MASAttachKeys(self.categoryView)
@@ -133,6 +223,9 @@ static const CGFloat kCategoryHeight = 44.f;
     if (@available(iOS 11.0, *)) {
         topAttribute = self.view.mas_safeAreaLayoutGuideTop;
     }
+    [self.classifySkeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
     [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         // make.top.equalTo(self.view);
         make.top.equalTo(topAttribute);
@@ -154,6 +247,9 @@ static const CGFloat kCategoryHeight = 44.f;
         make.left.right.equalTo(@0.f);
         make.bottom.equalTo(@(kWPercentage(-50.f)));
         // make.edges.equalTo(@0.f);
+    }];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
     }];
 }
 
@@ -209,5 +305,28 @@ static const CGFloat kCategoryHeight = 44.f;
         _separateLineView = v;
     }
     return _separateLineView;
+}
+- (LXClassifySkeletonScreen *)classifySkeletonScreen {
+    if(!_classifySkeletonScreen){
+        LXClassifySkeletonScreen *v = [[LXClassifySkeletonScreen alloc]init];
+        v.hidden = YES;
+        _classifySkeletonScreen = v;
+    }
+    return _classifySkeletonScreen;
+}
+- (LXB2CClassifyVM *)b2cVM {
+    if(!_b2cVM){
+        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
+        _b2cVM = v;
+    }
+    return _b2cVM;
+}
+- (LXClassifyEmptyView *)emptyView {
+    if(!_emptyView){
+        LXClassifyEmptyView *v = [[LXClassifyEmptyView alloc]init];
+        v.hidden = YES;
+        _emptyView = v;
+    }
+    return _emptyView;
 }
 @end

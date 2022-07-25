@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *categoryPicture;
 @property (nonatomic, copy)NSString *categoryHot;
 @property (nonatomic, copy)NSString *categoryName;
-@property (nonatomic, copy)NSString *parentID;
+@property (nonatomic, copy)NSString *parentId;
 @property (nonatomic, copy)NSArray<NSString *> *urls;
 @property (nonatomic, copy)NSString *categoryIcon;
 @property (nonatomic, copy)NSArray<NSString *> *urlTypes;

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
+@property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 
 - (void)dataFill:(LXClassifyListModel *)cateogryModel;
 

@@ -13,6 +13,7 @@
 #import "LXClassifyListRightVC.h"
 #import "LXClassifyListLeftView.h"
 #import "LXB2CClassifyVM.h"
+#import "LXClassifyEmptyView.h"
 // @import DJBusinessModuleSwift;
 
 @interface LXClassifyListVC()<UIPageViewControllerDelegate, UIPageViewControllerDataSource> {
@@ -23,6 +24,10 @@
 @property(nonatomic, strong)UIImageView *imgViewLeftCorner;
 @property(nonatomic, strong)UIImageView *imgViewRightCorner;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *classifyVCList;
+@property(nonatomic, strong)LXClassifyEmptyView *emptyView;
+/// 页面状态
+@property(nonatomic, assign)LXViewStatus viewStatus;
+
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @end
 
@@ -34,6 +39,7 @@
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
     [self prepareUI];
     [self bindVM];
 }
@@ -200,10 +206,37 @@
     [self.view addSubview:self.pageVC.view];
     [self.view addSubview:self.imgViewLeftCorner];
     [self.view addSubview:self.imgViewRightCorner];
+    [self.view addSubview:self.emptyView];
 
     [self masonry];
 }
+#pragma mark getter / setter
+- (void)setViewStatus:(LXViewStatus)viewStatus {
+    if(_viewStatus == viewStatus) {
+        return;
+    }
+    _viewStatus = viewStatus;
 
+    self.emptyView.hidden = YES;
+    // self.classifySkeletonScreen.hidden = YES;
+    switch (viewStatus) {
+        case LXViewStatusUnknown:
+            break;
+        case LXViewStatusNormal:
+            break;
+        case LXViewStatusLoading:
+            // self.classifySkeletonScreen.hidden = NO;
+            break;
+        case LXViewStatusNoData:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillEmptyStyle];
+            break;
+        case LXViewStatusOffline:
+            self.emptyView.hidden = NO;
+            [self.emptyView dataFillOfflineStyle];
+            break;
+    }
+}
 #pragma mark Masonry
 - (void)masonry {
     MASAttachKeys(self.panelLeftView, self.pageVC.view, self.imgViewLeftCorner, self.imgViewRightCorner)
@@ -222,6 +255,9 @@
     [self.imgViewRightCorner mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.right.equalTo(self.pageVC.view);
         make.width.height.equalTo(@(kWPercentage(10.f)));
+    }];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
     }];
 }
 
@@ -279,6 +315,14 @@
         _imgViewRightCorner = iv;
     }
     return _imgViewRightCorner;
+}
+- (LXClassifyEmptyView *)emptyView {
+    if(!_emptyView){
+        LXClassifyEmptyView *v = [[LXClassifyEmptyView alloc]init];
+        v.hidden = YES;
+        _emptyView = v;
+    }
+    return _emptyView;
 }
 
 

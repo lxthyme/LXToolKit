@@ -18,6 +18,9 @@
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
+// + (NSDictionary *)modelContainerPropertyGenericClass {
+//     return @{};
+// }
 /// 如果实现了该方法，则处理过程中会忽略该列表内的所有属性
 + (NSArray *)modelPropertyBlacklist {
     YYClassInfo *a = [YYClassInfo classInfoWithClass:[self class]];
