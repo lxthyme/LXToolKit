@@ -7,6 +7,9 @@
 //
 #import "LXBaseModel.h"
 #import "LXGoodBaseItemModel.h"
+#import "LXO2OGoodItemModel.h"
+#import "DJGoodsIdsModel.h"
+
 @class LXB2CGoodItemModel;
 
 typedef NS_ENUM(NSInteger, DJGoodsRuleType) {
@@ -23,8 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger totalPage;
 @property (nonatomic, assign)NSInteger pageNum;
 @property (nonatomic, assign)NSInteger pageSize;
-@property (nonatomic, copy)NSArray<LXB2CGoodItemModel *> *goodsInfoList;
+@property (nonatomic, copy)NSArray<LXGoodBaseItemModel *> *goodsInfoList;
 @property (nonatomic, copy)NSString *f_categoryId;
+
+/// 「only O2O」
+// @property (nonatomic, copy)NSArray<LXO2OGoodItemModel *> *f_o2oGoodsInfo;
+@property (nonatomic, strong)DJGoodsIdsModel *f_o2oIdsModel;
 
 @end
 
@@ -40,18 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger score;
 @property (nonatomic, assign)NSInteger pageSortField;
 @property (nonatomic, assign)NSInteger rowNum;
-
-@property (nonatomic, copy)NSString *subtitle233;
-@property (nonatomic, copy)NSString *tdType233;
-@property (nonatomic, copy)NSString *tdLable233;
-@property (nonatomic, assign)NSInteger num233;
-@property (nonatomic, copy)NSString *icon233;
-@property(nonatomic, copy)NSAttributedString *f_titleAttributeString;
-@property(nonatomic, copy)NSAttributedString *f_subtitleAttributeString;
-/// RACSequence<DJGoodItemPopinfosList *>
-@property (nonatomic, copy)RACSequence *f_popinfosList;
-@property(nonatomic, assign)CGFloat f_cellHeight;
-@property(nonatomic, assign)CGFloat f_titleMaxWidth;
 
 @end
 

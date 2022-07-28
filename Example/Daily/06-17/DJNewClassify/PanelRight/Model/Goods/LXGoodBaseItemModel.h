@@ -27,6 +27,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSArray *xgList;
 @property (nonatomic, assign)NSInteger minBuyQuan;
 
+@property (nonatomic, copy)NSString *subtitle233;
+@property (nonatomic, copy)NSString *tdType233;
+@property (nonatomic, copy)NSString *tdLable233;
+@property (nonatomic, assign)NSInteger num233;
+@property (nonatomic, copy)NSString *icon233;
+@property(nonatomic, copy)NSAttributedString *f_titleAttributeString;
+@property(nonatomic, copy)NSAttributedString *f_subtitleAttributeString;
+/// RACSequence<DJGoodItemPopinfosList *>
+@property (nonatomic, copy)RACSequence *f_popinfosList;
+@property(nonatomic, assign)CGFloat f_cellHeight;
+@property(nonatomic, assign)CGFloat f_titleMaxWidth;
+
+- (NSString *)xl_goodsName;
+
 @end
 
 @interface DJGoodItemPopinfosList: LXBaseModel {

@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel {
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
     // NSArray *titleList = [[subCateogryModel.sectionList.rac_sequence skip:1]
     //                                map:^id _Nullable(LXSectionModel * _Nullable value) {

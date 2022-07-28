@@ -165,9 +165,11 @@
     @weakify(self)
     if(index == 0) {
         LXClassifyWrapperVC *vc = [[LXClassifyWrapperVC alloc]init];
+        vc.b2cVM = self.b2cVM;
         return vc;
     } else {
         LXB2CClassifyWrapperVC *vc = [[LXB2CClassifyWrapperVC alloc]init];
+        vc.b2cVM = self.b2cVM;
         vc.toggleSkeletonScreenBlock = ^(BOOL isHidden) {
             @strongify(self)
             self.classifySkeletonScreen.hidden = isHidden;

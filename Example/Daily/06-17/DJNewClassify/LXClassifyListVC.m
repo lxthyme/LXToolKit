@@ -64,7 +64,13 @@
         LXClassifyListRightVC *vc = [self vcAtIdx:idx];
         [vc dataFill:rightModel];
     } else {
-        [self.b2cVM loadV2SearchForLHApi:rightModel.f_categoryId];
+        switch (self.classifyType) {
+            case DJClassifyTypeB2C:
+                [self.b2cVM loadV2SearchForLHApi:rightModel.f_categoryId];
+                break;
+            case DJClassifyTypeO2O:
+                [self.b2cVM loadSearchGoodsDetailsWithCategoryId:rightModel.f_categoryId];
+        }
     }
 }
 - (void)updateGoodItem:(LXB2CGoodsItemListModel *)goodsInfoModel {

@@ -1,13 +1,15 @@
 //
-//  DJGoodsIdsModel.m
+//  DJGoodsIdsModel.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/28.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "DJGoodsIdsModel.h"
+#import "LXBaseModel.h"
 
-@interface DJGoodsIdsModel() {
+NS_ASSUME_NONNULL_BEGIN
+
+@interface DJGoodsIdsModel: LXBaseModel {
 }
 @property (nonatomic, assign)NSInteger pages;
 @property (nonatomic, assign)NSInteger pageNo;
@@ -19,12 +21,4 @@
 
 @end
 
-@implementation DJGoodsIdsModel
-
-#pragma mark -
-#pragma mark - 👀Public Actions
-
-#pragma mark -
-#pragma mark - 🔐Private Actions
-
-@end
+NS_ASSUME_NONNULL_END

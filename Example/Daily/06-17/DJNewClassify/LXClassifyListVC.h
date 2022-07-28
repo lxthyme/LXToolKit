@@ -9,11 +9,13 @@
 #import <JXCategoryView/JXCategoryView.h>
 #import "LXB2CClassifyVM.h"
 #import "LXClassifyRightVCModel.h"
+#import "DJClassifyMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
+@property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 

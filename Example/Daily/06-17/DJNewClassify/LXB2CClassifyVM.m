@@ -28,6 +28,7 @@
 
 @property(nonatomic, strong)RACSubject *searchGoodsIdsSubject;
 @property(nonatomic, strong)RACSubject *searchGoodsIdsErrorSubject;
+@property(nonatomic, strong)RACSubject *tmp_searchGoodsDetailsErrorSubject;
 
 @end
 
@@ -36,11 +37,44 @@
     if(self = [super init]) {
         [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
         [self prepareUI];
+        [self bindVM];
     }
     return self;
 }
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (void)bindVM {
+    @weakify(self)
+    [[RACSignal combineLatest:@[self.searchGoodsIdsErrorSubject, self.tmp_searchGoodsDetailsErrorSubject]] subscribeNext:^(id x) {
+        @strongify(self)
+        [self.searchGoodsDetailsErrorSubject sendNext:x];
+    }];
+    [self.searchGoodsIdsSubject subscribeNext:^(LXB2CGoodsItemListModel *x) {
+        @strongify(self)
+        NSDictionary *params = @{
+            @"ids": x.f_o2oIdsModel.ids,
+            @"shuffle": @"0",
+            @"storeType": @"2020",
+            @"storeCode": @"007780",
+            @"merchantId": @"2020007780ENT23234",
+            @"version": @"7.44.0",
+            @"skuType": @0,
+            @"fromApp": @"IOS"
+        };
+        [self.searchGoodsDetailsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
+            @strongify(self)
+            NSDictionary *obj = dictionaryFromObject(apiManager.response.content, @"obj");
+            NSArray *goodsList = arrayFromObject(obj, @"goodsList");
+            NSArray<LXO2OGoodItemModel *> *o2oGoodsListModel = [NSArray yy_modelArrayWithClass:[LXO2OGoodItemModel class] json:goodsList];
+            x.goodsInfoList = o2oGoodsListModel;
+            [x didFinishTransformFromDictionary];
+            [self.searchGoodsDetailsSubject sendNext:x];
+        } fail:^(CTAPIBaseManager *apiManager) {
+            @strongify(self)
+            [self.tmp_searchGoodsDetailsErrorSubject sendNext:apiManager];
+        }];
+    }];
+}
 /// 查询分类标题
 - (void)loadShopResource {
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
@@ -96,12 +130,38 @@
         [self.shopCategoryErrorSubject sendNext:apiManager];
     }];
 }
-- (void)loadD {
-    [self.searchGoodsIdsSubject subscribeNext:^(id x) {
-    }];
-    [self.searchGoodsIdsAPIManager loadDataWithParams:@{} success:^(CTAPIBaseManager *apiManager) {
-
+- (void)loadSearchGoodsDetailsWithCategoryId:(NSString *)categoryId {
+    @weakify(self)
+    NSDictionary *params = @{
+        @"brandIds": @"",
+        @"cateId": categoryId,
+        @"comId": @"2000",
+        @"fromApp": @"IOS",
+        @"isPromotion": @"false",
+        @"mainShopCursor": @"0",
+        @"merchantId": @"2020007780ENT23234",
+        @"pageNo": @"0",
+        @"pageSize": @"50",
+        @"priceRange": @"",
+        @"reassureShopCursor": @"0",
+        @"skuType": @"0",
+        @"sort": @"goodsScore-desc",
+        @"storeCode": @"007780",
+        @"storeType": @"2020",
+        @"tdType": @"1",
+        @"version": @"7.58.0",
+    };
+    [self.searchGoodsIdsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        NSDictionary *obj = dictionaryFromObject(apiManager.response.content, @"obj");
+        DJGoodsIdsModel *idsModel = [DJGoodsIdsModel yy_modelWithJSON:obj];
+        LXB2CGoodsItemListModel *o2oGoodInfoModel = [[LXB2CGoodsItemListModel alloc]init];
+        o2oGoodInfoModel.f_o2oIdsModel = idsModel;
+        o2oGoodInfoModel.f_categoryId = categoryId;
+        [self.searchGoodsIdsSubject sendNext:o2oGoodInfoModel];
     } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.searchGoodsIdsErrorSubject sendNext:apiManager];
     }];
 }
 
@@ -174,10 +234,11 @@
     self.shopResourseErrorSubject = [RACSubject subject];
     self.shopCategorySubject = [RACSubject subject];
     self.shopCategoryErrorSubject = [RACSubject subject];
-    self.searchGoodsDetailsSubject = [RACSubject subject];
-    self.searchGoodsDetailsErrorSubject = [RACSubject subject];
     self.searchGoodsIdsSubject = [RACSubject subject];
     self.searchGoodsIdsErrorSubject = [RACSubject subject];
+    self.searchGoodsDetailsSubject = [RACSubject subject];
+    self.searchGoodsDetailsErrorSubject = [RACSubject subject];
+    self.tmp_searchGoodsDetailsErrorSubject = [RACSubject subject];
 
     self.productSearchDoCategoryByLevOneSubject = [RACSubject subject];
     self.productSearchDoCategoryByLevOneErrorSubject = [RACSubject subject];

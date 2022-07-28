@@ -10,11 +10,13 @@
 
 #import "DJClassifyMacro.h"
 #import "LXClassifyRightVCModel.h"
+#import "DJClassifyMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListRightVC : LXBaseVC {
 }
+@property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
 - (void)dataFill:(LXClassifyRightModel *)subCateogryModel;

@@ -7,7 +7,7 @@
 //
 #import "LXBaseModel.h"
 #import "LXGoodBaseItemModel.h"
-
+@class LXO2OGoodItemModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,8 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *mainTitle;
 @property (nonatomic, copy)NSString *minBuySpec;
 @property (nonatomic, copy)NSDictionary *pageCat;
-
-@property (nonatomic, copy)RACSequence *f_popinfosList;
 
 @end
 

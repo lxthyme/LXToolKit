@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel;
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel;
 
 - (void)selectItemAtIndex:(NSInteger)idx;
 

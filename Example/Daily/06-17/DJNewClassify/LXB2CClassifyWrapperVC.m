@@ -16,7 +16,6 @@
 
 #import "LXClassifyListVC.h"
 #import "LXThirdCategoryView.h"
-#import "LXB2CClassifyVM.h"
 #import "LXClassifyRightVCModel.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
@@ -40,7 +39,6 @@ static const CGFloat kLabelAllWidth = 35.f;
 @property(nonatomic, assign)LXViewStatus viewStatus;
 @property(nonatomic, strong)LXClassifyModel *classifyModel;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
-@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 
 @end
 
@@ -188,10 +186,12 @@ static const CGFloat kLabelAllWidth = 35.f;
     if(!vc) {
         vc = [[LXClassifyListVC alloc]init];
         vc.b2cVM = self.b2cVM;
+        vc.classifyType = DJClassifyTypeB2C;
+        vc.b2cVM = self.b2cVM;
         vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         self.classifyVCList[@(index)] = vc;
     }
-    LXLHCategoryModel *categoryModel = self.classifyModel.categorys[index];
+    LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.categorys[index];
     LXClassifyListModel *classifyListModel = self.classifyModel.classifyListModel[categoryModel.categoryId];
     [vc dataFill:classifyListModel];
     return vc;
@@ -440,13 +440,6 @@ static const CGFloat kLabelAllWidth = 35.f;
         _listContainerView = v;
     }
     return _listContainerView;
-}
-- (LXB2CClassifyVM *)b2cVM {
-    if(!_b2cVM){
-        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
-        _b2cVM = v;
-    }
-    return _b2cVM;
 }
 - (LXClassifyModel *)classifyModel {
     if(!_classifyModel){

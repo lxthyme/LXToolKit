@@ -32,7 +32,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel {
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
     self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(LXLHCategoryModel * _Nullable value) {
         return value.categoryName;

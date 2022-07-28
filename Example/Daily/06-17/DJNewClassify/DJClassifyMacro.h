@@ -25,10 +25,10 @@ typedef NS_ENUM(NSInteger, LXViewStatus) {
 };
 
 // MARK: - 🔥一级分类配置
-// typedef NS_ENUM(NSInteger, DJClassifyType) {
-//     DJClassifyTypeB2C = 1,
-//     DJClassifyTypeO2O = 2,
-// };
+typedef NS_ENUM(NSInteger, DJClassifyType) {
+    DJClassifyTypeB2C = 1,
+    DJClassifyTypeO2O = 2,
+};
 
 // MARK: - 🔥二级分类配置
 

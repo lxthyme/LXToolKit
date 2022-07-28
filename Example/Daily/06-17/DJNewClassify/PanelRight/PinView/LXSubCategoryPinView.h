@@ -9,7 +9,7 @@
 
 #import "LXThirdCategoryView.h"
 #import "DJClassifyMacro.h"
-#import "LXLHCategoryModel.h"
+#import "LXClassifyBaseCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly)LXThirdCategoryView *pinCategoryView;
 @property(nonatomic, copy)void (^toggleShowAll)(UIButton *btn);
 
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryListModel;
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel;
 
 @end
 

@@ -23,6 +23,9 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (NSString *)xl_goodsName {
+    return self.productName;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions

@@ -11,6 +11,9 @@
 #import "LXShopResourceModel.h"
 #import "DJO2OCategoryListModel.h"
 
+#import "DJGoodsIdsModel.h"
+#import "LXO2OGoodItemModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXB2CClassifyVM: NSObject {
@@ -30,13 +33,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)RACSubject *shopResourseSubject;
 @property(nonatomic, strong)RACSubject *shopResourseErrorSubject;
 
-- (void)loadV2SearchForLHApi:(NSString *)categorySid;
-- (void)loadProductSearchDoCategoryByLevOne;
 /// 查询分类标题
 - (void)loadShopResource;
 /// 查询 O2O 目录
 - (void)loadShopCategory;
-
+/// 查询 O2O 商品信息
+- (void)loadSearchGoodsDetailsWithCategoryId:(NSString *)categoryId;
+/// 查询 B2C 目录
+- (void)loadProductSearchDoCategoryByLevOne;
+/// 查询 B2C 商品信息
+- (void)loadV2SearchForLHApi:(NSString *)categorySid;
 @end
 
 NS_ASSUME_NONNULL_END

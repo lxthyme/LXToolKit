@@ -17,7 +17,6 @@
 #import "LXFirstCategoryUnfoldView.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
-#import "LXB2CClassifyVM.h"
 
 static const CGFloat kLabelAllWidth = 35.f;
 
@@ -35,7 +34,6 @@ static const CGFloat kLabelAllWidth = 35.f;
 /// 页面状态
 @property(nonatomic, assign)LXViewStatus viewStatus;
 
-@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @property(nonatomic, strong)LXClassifyModel *classifyModel;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
 
@@ -99,6 +97,15 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self.b2cVM.shopCategoryErrorSubject subscribeNext:^(CTAPIBaseManager *apiManager) {
         self.viewStatus = LXViewStatusOffline;
         NSLog(@"error_productSearchDoCategoryByLevOneErrorSubject: %@", apiManager);
+    }];
+    [self.b2cVM.searchGoodsDetailsSubject subscribeNext:^(LXB2CGoodsItemListModel *x) {
+        @strongify(self)
+        NSLog(@"goodsList: %@", x);
+        NSInteger idx = self.categoryView.selectedIndexPath.row;
+        LXClassifyListVC *vc = self.classifyVCList[@(idx)];
+        [vc updateGoodItem:x];
+    }];
+    [self.b2cVM.searchGoodsDetailsErrorSubject subscribeNext:^(id x) {
     }];
 }
 
@@ -186,6 +193,8 @@ static const CGFloat kLabelAllWidth = 35.f;
     LXClassifyListVC *vc = self.classifyVCList[@(index)];
     if(!vc) {
         vc = [[LXClassifyListVC alloc]init];
+        vc.b2cVM = self.b2cVM;
+        vc.classifyType = DJClassifyTypeO2O;
         vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         self.classifyVCList[@(index)] = vc;
     }
@@ -310,13 +319,6 @@ static const CGFloat kLabelAllWidth = 35.f;
         _classifyVCList = [NSMutableDictionary dictionary];
     }
     return _classifyVCList;
-}
-- (LXB2CClassifyVM *)b2cVM {
-    if(!_b2cVM){
-        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
-        _b2cVM = v;
-    }
-    return _b2cVM;
 }
 - (LXClassifyModel *)classifyModel {
     if(!_classifyModel){

@@ -23,12 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)NSString *f_categoryId;
 /// 三级目录数据源
 @property(nonatomic, assign)BOOL f_shouldShowBanner;
-/// 三级分类对应的商品列表
-@property (nonatomic, strong)LXB2CGoodsItemListModel *f_goodsList;
 /// 在二级目录中的顺序
 @property(nonatomic, assign)LXSubCategoryIndexType f_idxType;
+@property (nonatomic, strong)LXB2CGoodsItemListModel *f_goodsList;
 /// 三级级目录数据
-@property (nonatomic, copy)NSArray<LXLHCategoryModel *> *categorys;
+@property (nonatomic, copy)NSArray<LXClassifyBaseCategoryModel *> *categorys;
+/// 「for O2O」三级级目录数据
+// @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *rywCategorys;
 
 @end
 
