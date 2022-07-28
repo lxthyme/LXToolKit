@@ -7,7 +7,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'DJBusinessTools'
+  s.name             = 'LXToolKitObjc'
   s.version          = '0.1.0'
   s.summary          = 'A short description of LXToolKitObjc.'
 

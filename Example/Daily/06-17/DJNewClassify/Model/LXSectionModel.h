@@ -8,7 +8,7 @@
 #import <DJBusinessTools/LXBaseModel.h>
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "DJGoodsItemModel.h"
+#import "LXO2OGoodItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)NSAttributedString *f_titleAttributeString;
 @property(nonatomic, copy)NSString *subtitle;
 @property(nonatomic, copy)NSAttributedString *f_subtitleAttributeString;
-/// RACSequence<DJGoodsPopinfosList *>
+/// RACSequence<DJGoodItemPopinfosList *>
 @property (nonatomic, copy)RACSequence *f_popinfosList;
 @property(nonatomic, assign)BOOL is24H;
 @property(nonatomic, assign)NSInteger num;
 @property(nonatomic, copy)NSString *icon;
-@property(nonatomic, strong)DJGoodsItemModel *goodsItem;
+@property(nonatomic, strong)LXO2OGoodItemModel *goodsItem;
 @property(nonatomic, assign)CGFloat f_cellHeight;
 @property(nonatomic, assign)CGFloat f_titleMaxWidth;
 

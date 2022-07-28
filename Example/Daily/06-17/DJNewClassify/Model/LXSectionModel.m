@@ -58,12 +58,12 @@
     /// 3. tagList
     __block CGFloat allWidth = 0.f;
     self.f_popinfosList = [[self.goodsItem.f_popinfosList
-                            map:^id(DJGoodsPopinfosList *value) {
+                            map:^id(DJGoodItemPopinfosList *value) {
         value.f_cornerRadius = kTagListHeight / 2.f;
         [value makeTextAttribute];
         return value;
     }]
-                           filter:^BOOL(DJGoodsPopinfosList *value) {
+                           filter:^BOOL(DJGoodItemPopinfosList *value) {
         allWidth += CGRectGetWidth(value.f_textRect) + kTagListHPadding * 2 + kTagListInterval;
         return (allWidth - kTagListInterval) <= maxWidth;
     }];

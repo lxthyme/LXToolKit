@@ -17,11 +17,13 @@
 #import <DJGlobalStoreManager/DJStoreManager.h>
 #import "DJClassifyMacro.h"
 
-static const CGFloat kCategoryHeight = 44.f;
+#define kCategoryHeight kWPercentage(44.f)
 
 @interface LXClassifyVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
     BOOL __navigationBarHidden;
 }
+@property(nonatomic, strong)UIView *panelTopView;
+@property(nonatomic, strong)UITextField *tfSearch;
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)NSArray *titles;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
@@ -77,45 +79,57 @@ static const CGFloat kCategoryHeight = 44.f;
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)bindVM {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    gStore.djModuleType = FIRSTMEDICINE;
+    // gStore.djModuleType = COMMONTYPE;
+    // gStore.djHomeStyle = DAOJIA;
+
     @weakify(self)
     [[self.b2cVM.shopResourseSubject delay:1.f] subscribeNext:^(LXShopResourceModel *shopResourceModel) {
         @strongify(self)
         self.viewStatus = LXViewStatusNormal;
         DJOnlineDeployList *onlineDeployItem = shopResourceModel.onlineDeployList.firstObject;
-        NSMutableArray *array = [NSMutableArray array];
-        DJStoreManager *gStore = [DJStoreManager sharedInstance];
+        NSMutableArray *titleList = [NSMutableArray array];
         if (gStore.djModuleType == FIRSTMEDICINE) {
             NSString *picDesc1 = onlineDeployItem.picDesc1;
             if(isEmptyString(picDesc1)) {
                 picDesc1 = @"即时达";
             }
-            [array addObject:picDesc1];
+            [titleList addObject:picDesc1];
         }else {
             if (gStore.djHomeStyle == LIANHUA) {
                 NSString *picDesc2 = onlineDeployItem.picDesc2;
                 if(isEmptyString(picDesc2)) {
                     picDesc2 = @"优选市集";
                 }
-                [array addObject:picDesc2];
+                [titleList addObject:picDesc2];
             }else {
                 NSString *picDesc1 = onlineDeployItem.picDesc1;
                 if(isEmptyString(picDesc1)) {
                     picDesc1 = @"即时达";
                 }
-                [array addObject:picDesc1];
+                [titleList addObject:picDesc1];
                 NSString *picDesc2 = onlineDeployItem.picDesc2;
                 if(isEmptyString(picDesc2)) {
                     picDesc2 = @"优选市集";
                 }
-                [array addObject:picDesc2];
+                [titleList addObject:picDesc2];
             }
         }
-        self.titles = [array copy];
+        self.titles = [titleList copy];
         self.categoryView.titles = self.titles;
+        if(titleList.count == 1) {
+            self.categoryView.hidden = YES;
+            self.tfSearch.hidden = NO;
+        } else {
+            self.categoryView.hidden = NO;
+            self.tfSearch.hidden = YES;
+        }
         [self.categoryView reloadData];
         [self.listContainerView reloadData];
         self.classifySkeletonScreen.hidden = YES;
-    } error:^(NSError *error) {
+    }];
+    [self.b2cVM.shopResourseErrorSubject subscribeNext:^(id x) {
         @strongify(self)
         self.viewStatus = LXViewStatusOffline;
     }];
@@ -180,9 +194,12 @@ static const CGFloat kCategoryHeight = 44.f;
     // self.categoryView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
     // self.navigationItem.titleView = self.categoryView;
 
-    [self.view addSubview:self.categoryView];
-    [self.view addSubview:self.separateLineView];
-    [self.view addSubview:self.btnSearch];
+    [self.panelTopView addSubview:self.tfSearch];
+    [self.categoryView addSubview:self.separateLineView];
+    [self.categoryView addSubview:self.btnSearch];
+    [self.panelTopView addSubview:self.categoryView];
+    [self.view addSubview:self.panelTopView];
+
     [self.view addSubview:self.listContainerView];
     [self.view addSubview:self.classifySkeletonScreen];
     [self.view addSubview:self.emptyView];
@@ -219,18 +236,22 @@ static const CGFloat kCategoryHeight = 44.f;
 #pragma mark Masonry
 - (void)masonry {
     MASAttachKeys(self.categoryView)
-    MASViewAttribute *topAttribute = self.view.mas_top;
-    if (@available(iOS 11.0, *)) {
-        topAttribute = self.view.mas_safeAreaLayoutGuideTop;
-    }
     [self.classifySkeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
-    [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        // make.top.equalTo(self.view);
-        make.top.equalTo(topAttribute);
+    [self.panelTopView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.xl_safeAreaLayoutGuideTop);
         make.left.right.equalTo(@0.f);
         make.height.equalTo(@(kCategoryHeight));
+    }];
+    [self.tfSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(kWPercentage(15.f)));
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.centerY.equalTo(@0.f);
+        make.height.equalTo(@(kWPercentage(32.f)));
+    }];
+    [self.categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
     }];
     [self.separateLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.categoryView);
@@ -243,7 +264,7 @@ static const CGFloat kCategoryHeight = 44.f;
         make.width.height.equalTo(@(kWPercentage(23.f)));
     }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.categoryView.mas_bottom);
+        make.top.equalTo(self.panelTopView.mas_bottom);
         make.left.right.equalTo(@0.f);
         make.bottom.equalTo(@(kWPercentage(-50.f)));
         // make.edges.equalTo(@0.f);
@@ -254,6 +275,38 @@ static const CGFloat kCategoryHeight = 44.f;
 }
 
 #pragma mark Lazy Property
+- (UIView *)panelTopView {
+    if(!_panelTopView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor whiteColor];
+        _panelTopView = v;
+    }
+    return _panelTopView;
+}
+- (UITextField *)tfSearch {
+    if(!_tfSearch){
+        //<UITextFieldDelegate>
+        UITextField *tf = [[UITextField alloc]init];
+        tf.placeholder = @"牛奶";
+        tf.returnKeyType = UIReturnKeyDone;
+        tf.keyboardType = UIKeyboardTypeDefault;
+        tf.layer.cornerRadius = kWPercentage(16.f);
+        tf.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        tf.layer.borderWidth = 1.f;
+
+        UIImageView *imgView = [[UIImageView alloc]init];
+        imgView.image = [iBLImage imageNamed:@"icon_classify_search"];
+        imgView.frame = CGRectMake(kWPercentage(15.f), kWPercentage(9.f), kWPercentage(14.f), kWPercentage(14.f));
+        UIView *leftView = [[UIView alloc]init];
+        leftView.frame = CGRectMake(0, 0, kWPercentage(39.f), kWPercentage(32.f));
+        [leftView addSubview:imgView];
+        tf.leftView = leftView;
+        tf.leftViewMode = UITextFieldViewModeAlways;
+
+        _tfSearch = tf;
+    }
+    return _tfSearch;
+}
 - (JXCategoryTitleView *)categoryView {
     if(!_categoryView){
         JXCategoryTitleView *v = [[JXCategoryTitleView alloc]init];
@@ -264,6 +317,7 @@ static const CGFloat kCategoryHeight = 44.f;
         v.titleColor = [UIColor colorWithHex:0x666666];
         v.titleSelectedColor = [UIColor colorWithHex:0x333333];
         v.delegate = self;
+        v.hidden = YES;
 
         JXCategoryIndicatorLineView *lineView = [[JXCategoryIndicatorLineView alloc] init];
         lineView.indicatorColor = [UIColor colorWithHex:0xFF774F];
@@ -291,9 +345,9 @@ static const CGFloat kCategoryHeight = 44.f;
     if(!_btnSearch){
         // 初始化一个 Button
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.backgroundColor = [UIColor whiteColor];
+        btn.backgroundColor = [UIColor clearColor];
 
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"icon_classify_search"] forState:UIControlStateNormal];
         _btnSearch = btn;
     }
     return _btnSearch;

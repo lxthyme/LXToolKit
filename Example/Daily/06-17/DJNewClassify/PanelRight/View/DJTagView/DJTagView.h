@@ -6,14 +6,14 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "DJGoodsItemModel.h"
+#import "LXO2OGoodItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJTagView: UIView {
 }
 
-- (void)dataFill:(DJGoodsPopinfosList *)popInfoItem;
+- (void)dataFill:(DJGoodItemPopinfosList *)popInfoItem;
 
 @end
 

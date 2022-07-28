@@ -12,7 +12,7 @@
 @interface LXClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
 @property(nonatomic, strong)UITableView *tableView;
-@property(nonatomic, copy)NSArray<LXLHCategoryModel *> *dataList;
+@property(nonatomic, copy)NSArray<LXClassifyBaseCategoryModel *> *dataList;
 @end
 
 @implementation LXClassifyListLeftView
@@ -29,11 +29,13 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)catagoryList {
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)catagoryList {
     self.dataList = catagoryList;
     [self.tableView reloadData];
     if(self.dataList.count > 0 && self.tableView.indexPathsForSelectedRows.count <= 0) {
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                    animated:YES
+                              scrollPosition:UITableViewScrollPositionTop];
     }
 }
 
@@ -90,7 +92,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXClassifyListLeftCell" forIndexPath:indexPath];
-    LXLHCategoryModel *categoryModel = self.dataList[indexPath.row];
+    LXClassifyBaseCategoryModel *categoryModel = self.dataList[indexPath.row];
     [cell dataFill:categoryModel.categoryName];
     return cell;
 }

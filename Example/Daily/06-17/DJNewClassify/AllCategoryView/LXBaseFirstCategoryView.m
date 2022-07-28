@@ -9,7 +9,7 @@
 
 @interface LXBaseFirstCategoryView()<UICollectionViewDelegate> {
 }
-@property(nonatomic, strong)NSArray<LXLHCategoryModel *> *dataList;
+@property(nonatomic, strong)NSArray<DJO2OCategoryListModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong)NSIndexPath *_Nullable selectedIndexPath;
@@ -37,7 +37,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryList {
+- (void)dataFill:(NSArray<DJO2OCategoryListModel *> *)categoryList {
     self.dataList = categoryList;
     [self.collectionView reloadData];
     if(self.collectionView.indexPathsForSelectedItems.count <= 0) {

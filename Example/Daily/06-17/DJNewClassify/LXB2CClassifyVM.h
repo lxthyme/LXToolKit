@@ -7,8 +7,9 @@
 //
 #import <Foundation/Foundation.h>
 #import "LXLHCategoryModel.h"
-#import "LXGoodsInfoListModel.h"
+#import "LXB2CGoodsItemListModel.h"
 #import "LXShopResourceModel.h"
+#import "DJO2OCategoryListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,13 +17,25 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, strong)RACCommand *productSearchDoCategoryByLevOneCommand;
 @property(nonatomic, strong)RACCommand *v2SearchForLHApiCommand;
+
 @property(nonatomic, strong)RACSubject *productSearchDoCategoryByLevOneSubject;
+@property(nonatomic, strong)RACSubject *productSearchDoCategoryByLevOneErrorSubject;
+@property(nonatomic, strong)RACSubject *shopCategorySubject;
+@property(nonatomic, strong)RACSubject *shopCategoryErrorSubject;
+@property(nonatomic, strong)RACSubject *searchGoodsDetailsSubject;
+@property(nonatomic, strong)RACSubject *searchGoodsDetailsErrorSubject;
+
 @property(nonatomic, strong)RACSubject *v2SearchForLHApiSubject;
+@property(nonatomic, strong)RACSubject *v2SearchForLHApiErrorSubject;
 @property(nonatomic, strong)RACSubject *shopResourseSubject;
+@property(nonatomic, strong)RACSubject *shopResourseErrorSubject;
 
 - (void)loadV2SearchForLHApi:(NSString *)categorySid;
 - (void)loadProductSearchDoCategoryByLevOne;
+/// 查询分类标题
 - (void)loadShopResource;
+/// 查询 O2O 目录
+- (void)loadShopCategory;
 
 @end
 

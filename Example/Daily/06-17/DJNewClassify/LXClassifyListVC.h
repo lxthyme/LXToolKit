@@ -7,16 +7,18 @@
 //
 #import <DJBusinessTools/LXBaseVC.h>
 #import <JXCategoryView/JXCategoryView.h>
-
+#import "LXB2CClassifyVM.h"
 #import "LXClassifyRightVCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListVC : LXBaseVC<JXCategoryListContentViewDelegate> {
 }
+@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 
 - (void)dataFill:(LXClassifyListModel *)cateogryModel;
+- (void)updateGoodItem:(LXB2CGoodsItemListModel *)goodsInfoModel;
 
 @end
 

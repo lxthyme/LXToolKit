@@ -7,7 +7,7 @@
 //
 #import <DJBusinessTools/LXBaseView.h>
 
-#import "LXLHCategoryModel.h"
+#import "DJO2OCategoryListModel.h"
 
 #define kFirstCategoryFoldHeight kWPercentage(67.5f)
 #define kFirstCategoryUnfoldHeight kWPercentage(69.5f)
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong, readonly)UICollectionView *collectionView;
-@property(nonatomic, strong, readonly)NSArray<LXLHCategoryModel *> *dataList;
+@property(nonatomic, strong, readonly)NSArray<DJO2OCategoryListModel *> *dataList;
 @property(nonatomic, strong)UIColor *normalTextColor;
 @property(nonatomic, strong)UIColor *selectedTextColor;
 @property(nonatomic, strong, readonly)NSIndexPath *_Nullable selectedIndexPath;
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)prepareUI;
 - (void)prepareCollectionView;
 
-- (void)dataFill:(NSArray<LXLHCategoryModel *> *)categoryList;
+- (void)dataFill:(NSArray<DJO2OCategoryListModel *> *)categoryList;
 
 - (void)selectItemAtIndex:(NSInteger)idx;
 

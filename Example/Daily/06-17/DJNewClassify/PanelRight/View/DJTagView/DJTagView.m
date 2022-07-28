@@ -30,7 +30,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(DJGoodsPopinfosList *)popInfoItem {
+- (void)dataFill:(DJGoodItemPopinfosList *)popInfoItem {
     self.labTitle.attributedText = popInfoItem.f_textAttributeString;
     self.labTitle.layer.borderWidth = popInfoItem.f_borderWidth;
     self.labTitle.layer.borderColor = popInfoItem.f_borderColor.CGColor;

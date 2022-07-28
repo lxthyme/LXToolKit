@@ -51,6 +51,7 @@
     [self prepareCollectionView];
     [self prepareUI];
     [self prepareVM];
+    self.viewStatus = LXViewStatusLoading;
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -63,7 +64,11 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(LXClassifyRightModel *)rightModel {
-    self.skeletonScreen.hidden = YES;
+    if(rightModel.f_goodsList.goodsInfoList.count > 0) {
+        self.viewStatus = LXViewStatusNormal;
+    } else {
+        self.viewStatus = LXViewStatusNoData;
+    }
 
     self.rightModel = rightModel;
     [self.pinView dataFill:rightModel.categorys];
@@ -224,7 +229,7 @@
         return cell;
     }
     LXClassifyRightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyRightCollectionCell" forIndexPath:indexPath];
-    LXGoodsInfoModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
+    LXB2CGoodItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
     [cell dataFill:itemModel];
     return cell;
 }
@@ -264,7 +269,7 @@
     if(indexPath.section == kBannerSectionIdx) {
         return self.rightModel.f_shouldShowBanner ? CGSizeMake(width, kBannerSectionHeight) : CGSizeZero;
     }
-    LXGoodsInfoModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
+    LXB2CGoodItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
     return CGSizeMake(width, itemModel.f_cellHeight);
     // return CGSizeMake(width, 200);
 }
@@ -385,7 +390,28 @@
         [self dismissAllCategoryView];
     }];
 }
-#pragma mark getter/setter
+#pragma mark Masonry
+- (void)masonry {
+    // MASAttachKeys(...)
+    [self.skeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+    [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+        // make.left.right.bottom.equalTo(@0.f);
+    }];
+    [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(@0.f);
+        make.height.equalTo(@200.f);
+    }];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+}
+#pragma mark getter / setter
 - (void)setViewStatus:(LXViewStatus)viewStatus {
     if(_viewStatus == viewStatus) {
         return;
@@ -412,28 +438,6 @@
             break;
     }
 }
-#pragma mark Masonry
-- (void)masonry {
-    // MASAttachKeys(...)
-    [self.skeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-    [self.allMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-        // make.left.right.bottom.equalTo(@0.f);
-    }];
-    [self.allCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(@0.f);
-        make.height.equalTo(@200.f);
-    }];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-}
-
 #pragma mark Lazy Property
 - (LXSubCategoryPinView *)pinView {
     if(!_pinView){

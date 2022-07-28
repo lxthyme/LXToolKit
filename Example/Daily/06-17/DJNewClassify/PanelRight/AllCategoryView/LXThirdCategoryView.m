@@ -39,6 +39,11 @@
     }].array;
     self.collectionView.hidden = NO;
     [self.collectionView reloadData];
+    if(self.dataList.count > 0 && self.collectionView.indexPathsForSelectedItems.count <= 0) {
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]
+                                          animated:YES
+                                    scrollPosition:UICollectionViewScrollPositionTop];
+    }
 }
 
 #pragma mark -

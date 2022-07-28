@@ -49,7 +49,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXGoodsInfoModel *)item {
+- (void)dataFill:(LXB2CGoodItemModel *)item {
     /// 1. 标题
     self.labTitle.attributedText = item.f_titleAttributeString;
     /// 2. 副标题
@@ -61,7 +61,7 @@
     for(UIView *v in self.tagWrapperView.subviews) {
         [v removeFromSuperview];
     }
-    for (DJGoodsPopinfosList *tmp in item.f_popinfosList.array) {
+    for (DJGoodItemPopinfosList *tmp in item.f_popinfosList.array) {
         DJTagView *tagView = [[DJTagView alloc]init];
         CGRect frame = CGRectMake(0, 0, 0, 0);
         frame.origin.y = yPoint;
@@ -74,7 +74,7 @@
     }
     /// 4. 24H 发货
     if([item.tdType233 isEqualToString:@"2"]) {
-        DJGoodsPopinfosList *popInfoItem = [[DJGoodsPopinfosList alloc]init];
+        DJGoodItemPopinfosList *popInfoItem = [[DJGoodItemPopinfosList alloc]init];
         [popInfoItem didFinishTransformFromDictionary];
         popInfoItem.f_text = isEmptyString(item.tdLable233) ? @"24H发货" : item.tdLable233;
         popInfoItem.f_textColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];

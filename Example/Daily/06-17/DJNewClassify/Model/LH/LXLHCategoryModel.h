@@ -6,7 +6,8 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBaseModel.h"
-#import "LXGoodsInfoListModel.h"
+#import "LXB2CGoodsItemListModel.h"
+#import "LXClassifyBaseCategoryModel.h"
 
 typedef NS_ENUM(NSInteger, LXSubCategoryIndexType) {
     LXSubCategoryIndexTypeDefault,
@@ -16,7 +17,7 @@ typedef NS_ENUM(NSInteger, LXSubCategoryIndexType) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXLHCategoryModel: LXBaseModel {
+@interface LXLHCategoryModel: LXClassifyBaseCategoryModel {
 }
 @property (nonatomic, assign)NSString *categoryColor;
 @property (nonatomic, copy)NSArray<LXLHCategoryModel *> *categorys;
@@ -24,18 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger bestSelling;
 @property (nonatomic, copy)NSString *categoryPicture;
 @property (nonatomic, copy)NSString *categoryHot;
-@property (nonatomic, copy)NSString *categoryName;
+// @property (nonatomic, copy)NSString *categoryName;
 @property (nonatomic, copy)NSString *parentId;
 @property (nonatomic, copy)NSArray<NSString *> *urls;
 @property (nonatomic, copy)NSString *categoryIcon;
 @property (nonatomic, copy)NSArray<NSString *> *urlTypes;
 @property (nonatomic, copy)NSString *categoryIconOn;
 @property (nonatomic, copy)NSString *lev;
-@property (nonatomic, copy)NSString *categoryId;
+// @property (nonatomic, copy)NSString *categoryId;
 @property (nonatomic, copy)NSArray<NSString *> *showNames;
 
 /// 三级分类对应的商品列表
-@property (nonatomic, strong)LXGoodsInfoListModel *f_goodsList;
+@property (nonatomic, strong)LXB2CGoodsItemListModel *f_goodsList;
 
 @end
 

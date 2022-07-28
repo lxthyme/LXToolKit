@@ -6,14 +6,14 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <DJBusinessTools/LXBaseCollectionViewCell.h>
-#import "LXGoodsInfoListModel.h"
+#import "LXB2CGoodsItemListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyRightCollectionCell : LXBaseCollectionViewCell {
 }
 
-- (void)dataFill:(LXGoodsInfoModel *)item;
+- (void)dataFill:(LXB2CGoodItemModel *)item;
 
 @end
 

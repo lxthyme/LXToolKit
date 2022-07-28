@@ -5,20 +5,20 @@
 //  Created by lxthyme on 2022/7/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXGoodsInfoListModel.h"
+#import "LXB2CGoodsItemListModel.h"
 #import "DJClassifyMacro.h"
 
-@interface LXGoodsInfoListModel() {
+@interface LXB2CGoodsItemListModel() {
 }
 
 @end
 
-@implementation LXGoodsInfoListModel
+@implementation LXB2CGoodsItemListModel
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
-        @"goodsInfoList": [LXGoodsInfoModel class]
+        @"goodsInfoList": [LXB2CGoodItemModel class]
     };
 }
 
@@ -31,12 +31,12 @@
 
 @end
 
-@implementation LXGoodsInfoModel
+@implementation LXB2CGoodItemModel
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
-        @"popinfosList": [DJGoodsPopinfosList class]
+        @"popinfosList": [DJGoodItemPopinfosList class]
     };
 }
 - (BOOL)didFinishTransformFromDictionary {
@@ -84,12 +84,12 @@
     /// 3. tagList
     __block CGFloat allWidth = 0.f;
     self.f_popinfosList = [[self.f_popinfosList
-                            map:^id(DJGoodsPopinfosList *value) {
+                            map:^id(DJGoodItemPopinfosList *value) {
         value.f_cornerRadius = kTagListHeight / 2.f;
         [value makeTextAttribute];
         return value;
     }]
-                           filter:^BOOL(DJGoodsPopinfosList *value) {
+                           filter:^BOOL(DJGoodItemPopinfosList *value) {
         allWidth += CGRectGetWidth(value.f_textRect) + kTagListHPadding * 2 + kTagListInterval;
         return (allWidth - kTagListInterval) <= maxWidth;
     }];
@@ -107,9 +107,9 @@
     self.f_cellHeight = MAX(leftHeight, ceilf(rightHeight));
 
     /// 3. tagList
-    // self.f_popinfosList = [[self.popinfosList.rac_sequence filter:^BOOL(DJGoodsPopinfosList *value) {
+    // self.f_popinfosList = [[self.popinfosList.rac_sequence filter:^BOOL(DJGoodItemPopinfosList *value) {
     //     return value.ruletype != DJGoodsRuleType12;
-    // }] map:^id(DJGoodsPopinfosList *value) {
+    // }] map:^id(DJGoodItemPopinfosList *value) {
     //     if([value.buyMember isEqualToString:@"1"]) {
     //         value.f_borderWidth = 0.f;
     //         value.f_cornerRadius = 3.f;
@@ -133,50 +133,5 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
-
-@end
-
-@implementation DJGoodsPopinfosList
-#pragma mark -
-#pragma mark - 🔐Private Actions
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{
-        @"rules": [DJRule class]
-    };
-}
-- (BOOL)didFinishTransformFromDictionary {
-    /// 设置默认值
-    self.f_cornerRadius = 0.f;
-    self.f_borderWidth = 1.f;
-    self.f_textColor = [UIColor colorWithHex:0xFF4A4A];
-    self.f_borderColor = [UIColor colorWithHex:0xFF4A4A];
-    self.f_backgroundColor = [UIColor colorWithHex:0xffffff];
-    self.f_textFont = [UIFont systemFontOfSize:kWPercentage(9.f)];
-    return YES;
-}
-
-#pragma mark -
-#pragma mark - 🔐Private Actions
-- (void)makeTextAttribute {
-    self.f_textAttributeString = [[NSAttributedString alloc]
-                                  initWithString:self.f_text
-                                  attributes:@{
-        NSFontAttributeName: self.f_textFont,
-        NSForegroundColorAttributeName: self.f_textColor,
-    }];
-    self.f_textRect = [self.f_textAttributeString
-                       boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, self.f_textFont.lineHeight) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                       context:nil];
-}
-@end
-
-@implementation DJRule
-#pragma mark -
-#pragma mark - 🛠Life Cycle
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{
-        @"identifier": @"id"
-    };
-}
 
 @end

@@ -12,7 +12,6 @@
 
 #import "LXClassifyListRightVC.h"
 #import "LXClassifyListLeftView.h"
-#import "LXB2CClassifyVM.h"
 #import "LXClassifyEmptyView.h"
 // @import DJBusinessModuleSwift;
 
@@ -28,7 +27,6 @@
 /// 页面状态
 @property(nonatomic, assign)LXViewStatus viewStatus;
 
-@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @end
 
 @implementation LXClassifyListVC
@@ -41,42 +39,40 @@
 
     !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
     [self prepareUI];
-    [self bindVM];
 }
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)bindVM {
-    @weakify(self)
-    [self.b2cVM.v2SearchForLHApiSubject subscribeNext:^(LXGoodsInfoListModel *goodsInfoModel) {
-        @strongify(self)
-        NSLog(@"goodsInfoModel: %@", goodsInfoModel);
-        LXClassifyRightModel *rightModel = self.classifyListModel.rightListModel[goodsInfoModel.f_categoryId];
-        rightModel.f_goodsList = goodsInfoModel;
-        NSInteger idx = self.pageVC.viewControllers.firstObject.view.tag;
-        if(idx >= 0 && idx < self.classifyListModel.categorys.count) {
-            LXClassifyListRightVC *vc = [self vcAtIdx:idx];
-            [vc dataFill:rightModel];
-        }
-    } error:^(NSError *error) {
-        NSLog(@"error: %@", error);
-    }];
-
-}
 - (void)dataFill:(LXClassifyListModel *)classifyListModel {
+    if(classifyListModel.categorys.count > 0) {
+        self.viewStatus = LXViewStatusNormal;
+    } else {
+        self.viewStatus = LXViewStatusNoData;
+    }
     self.classifyListModel = classifyListModel;
     [self.panelLeftView dataFill:classifyListModel.categorys];
 
     NSString *firstCategoryId = classifyListModel.categorys.firstObject.categoryId;
     LXClassifyRightModel *rightModel = classifyListModel.rightListModel[firstCategoryId];
+    [self dataFillRightVCAtIdx:0 rightModel:rightModel];
+}
+- (void)dataFillRightVCAtIdx:(NSInteger)idx rightModel:(LXClassifyRightModel *)rightModel {
+    if(idx < 0 || idx >= self.classifyListModel.categorys.count) {
+        return;
+    }
     if(rightModel.f_goodsList) {
-        LXClassifyListRightVC *vc = [self vcAtIdx:0];
+        LXClassifyListRightVC *vc = [self vcAtIdx:idx];
         [vc dataFill:rightModel];
     } else {
-        [self.b2cVM loadV2SearchForLHApi:firstCategoryId];
+        [self.b2cVM loadV2SearchForLHApi:rightModel.f_categoryId];
     }
 }
-
+- (void)updateGoodItem:(LXB2CGoodsItemListModel *)goodsInfoModel {
+    LXClassifyRightModel *rightModel = self.classifyListModel.rightListModel[goodsInfoModel.f_categoryId];
+    rightModel.f_goodsList = goodsInfoModel;
+    NSInteger idx = self.pageVC.viewControllers.firstObject.view.tag;
+    [self dataFillRightVCAtIdx:idx rightModel:rightModel];
+}
 #pragma mark -
 #pragma mark - 👀Public Actions
 
@@ -125,12 +121,7 @@
     LXClassifyListRightVC *vc = [self vcAtIdx:idx];
     NSString *categoryId = self.classifyListModel.categorys[idx].categoryId;
     LXClassifyRightModel *rightModel = self.classifyListModel.rightListModel[categoryId];
-    if(rightModel.f_goodsList) {
-        LXClassifyListRightVC *vc = [self vcAtIdx:0];
-        [vc dataFill:rightModel];
-    } else {
-        [self.b2cVM loadV2SearchForLHApi:categoryId];
-    }
+    [self dataFillRightVCAtIdx:idx rightModel:rightModel];
 
     NSInteger previousIdx = [self idxOfVC:self.pageVC.viewControllers.firstObject];
     UIPageViewControllerNavigationDirection direction = UIPageViewControllerNavigationDirectionForward;
@@ -262,13 +253,6 @@
 }
 
 #pragma mark Lazy Property
-- (LXB2CClassifyVM *)b2cVM {
-    if(!_b2cVM){
-        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
-        _b2cVM = v;
-    }
-    return _b2cVM;
-}
 - (NSMutableDictionary<NSNumber *, LXClassifyListRightVC *> *)classifyVCList {
     if(!_classifyVCList){
         _classifyVCList = [NSMutableDictionary dictionary];

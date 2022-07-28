@@ -12,12 +12,12 @@
 #import <JXCategoryView/JXCategoryView.h>
 #import <pop/POP.h>
 
-#import "DJGoodsItemModel.h"
 #import "LXClassifyListVC.h"
 #import "LXFirstCategoryFoldView.h"
 #import "LXFirstCategoryUnfoldView.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
+#import "LXB2CClassifyVM.h"
 
 static const CGFloat kLabelAllWidth = 35.f;
 
@@ -35,7 +35,8 @@ static const CGFloat kLabelAllWidth = 35.f;
 /// 页面状态
 @property(nonatomic, assign)LXViewStatus viewStatus;
 
-@property(nonatomic, strong)NSArray<LXLHCategoryModel *> *dataList;
+@property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
+@property(nonatomic, strong)LXClassifyModel *classifyModel;
 @property(nonatomic, strong)NSMutableDictionary<NSNumber *, LXClassifyListVC *> *classifyVCList;
 
 @end
@@ -43,37 +44,63 @@ static const CGFloat kLabelAllWidth = 35.f;
 @implementation LXClassifyWrapperVC
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-    // self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:YES];
-    // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
+    !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
+    self.viewStatus = LXViewStatusLoading;
     [self prepareVM];
     [self prepareUI];
-    self.viewStatus = LXViewStatusNoData;
-    // [self loadData];
+    [self bindVM];
+    [self.b2cVM loadShopCategory];
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
-// - (void)loadData {}
+- (void)bindVM {
+    @weakify(self)
+    [self.b2cVM.shopCategorySubject subscribeNext:^(NSArray<DJO2OCategoryListModel *> *x) {
+        @strongify(self)
+        if(x.count <= 0) {
+            self.viewStatus = LXViewStatusNoData;
+            return;
+        }
+        self.viewStatus = LXViewStatusNormal;
+        NSLog(@"categoryModelList: %@", x);
+        [self.categoryView dataFill:x];
+        [self.allCategoryView dataFill:x];
+        /// 一级级目录数据结构
+        NSMutableDictionary<NSString *, LXClassifyListModel *> *classifyListModel = [NSMutableDictionary dictionary];
+        [x enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            /// 二级级目录数据结构
+            NSMutableDictionary<NSString *, LXClassifyRightModel *> *rightListModel = [NSMutableDictionary dictionary];
+            [obj1.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                LXClassifyRightModel *tmp = [[LXClassifyRightModel alloc]init];
+                if(idx2 == 0) {
+                    tmp.f_idxType = LXSubCategoryIndexTypeFirst;
+                } else if(idx2 == obj2.rywCategorys.count - 1) {
+                    tmp.f_idxType = LXSubCategoryIndexTypeLast;
+                }
+                tmp.f_categoryId = obj2.categoryId;
+                rightListModel[obj2.categoryId] = tmp;
+            }];
+            LXClassifyListModel *tmp = [[LXClassifyListModel alloc]init];
+            tmp.f_categoryId = obj1.categoryId;
+            tmp.categorys = obj1.rywCategorys;
+            tmp.rightListModel = [rightListModel copy];
+            classifyListModel[obj1.categoryId] = tmp;
+            !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(YES);
+        }];
+        self.classifyModel.categorys = x;
+        self.classifyModel.classifyListModel = [classifyListModel copy];
+        [self.listContainerView reloadData];
+    }];
+    [self.b2cVM.shopCategoryErrorSubject subscribeNext:^(CTAPIBaseManager *apiManager) {
+        self.viewStatus = LXViewStatusOffline;
+        NSLog(@"error_productSearchDoCategoryByLevOneErrorSubject: %@", apiManager);
+    }];
+}
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -153,7 +180,7 @@ static const CGFloat kLabelAllWidth = 35.f;
 #pragma mark -
 #pragma mark - ✈️JXCategoryListContainerViewDelegate
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
-    return self.dataList.count;
+    return self.classifyModel.categorys.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
     LXClassifyListVC *vc = self.classifyVCList[@(index)];
@@ -162,8 +189,9 @@ static const CGFloat kLabelAllWidth = 35.f;
         vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         self.classifyVCList[@(index)] = vc;
     }
-    LXLHCategoryModel *categoryModel = self.dataList[index];
-    [vc dataFill:categoryModel];
+    DJO2OCategoryListModel *categoryModel = self.classifyModel.categorys[index];
+    LXClassifyListModel *classifyListModel = self.classifyModel.classifyListModel[categoryModel.categoryId];
+    [vc dataFill:classifyListModel];
     return vc;
 }
 
@@ -282,6 +310,20 @@ static const CGFloat kLabelAllWidth = 35.f;
         _classifyVCList = [NSMutableDictionary dictionary];
     }
     return _classifyVCList;
+}
+- (LXB2CClassifyVM *)b2cVM {
+    if(!_b2cVM){
+        LXB2CClassifyVM *v = [[LXB2CClassifyVM alloc]init];
+        _b2cVM = v;
+    }
+    return _b2cVM;
+}
+- (LXClassifyModel *)classifyModel {
+    if(!_classifyModel){
+        LXClassifyModel *v = [[LXClassifyModel alloc]init];
+        _classifyModel = v;
+    }
+    return _classifyModel;
 }
 - (YYLabel *)labAll {
     if(!_labAll){
