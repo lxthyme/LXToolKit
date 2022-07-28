@@ -97,6 +97,8 @@
             @"LXClassifyListVC",
             @"LXClassifyMainVC",
             @"LXTestModelVC",
+            @"LXTestBorderVC",
+            @"LXYYZZVC"
         ];
     }
     return _dataList;

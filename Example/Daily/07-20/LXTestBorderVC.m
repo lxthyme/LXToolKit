@@ -12,6 +12,7 @@
 @interface LXTestBorderVC() {
 }
 @property (nonatomic, strong)UIView *redView;
+@property(nonatomic, strong)RACSubject *shopResourseSubject;
 
 @end
 
@@ -44,6 +45,9 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
+
+    // [self testSendCompleted];
+    [self testSendError];
 }
 
 #pragma mark -
@@ -54,6 +58,36 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)testSendCompleted {
+    self.shopResourseSubject = [RACSubject subject];
+    [self.shopResourseSubject subscribeNext:^(id x) {
+        NSLog(@"1. subscribeNext: %@", x);
+    } error:^(NSError *error) {
+        NSLog(@"2. error: %@", error);
+    } completed:^{
+        NSLog(@"3. completed");
+    }];
+    [self.shopResourseSubject sendNext:@1];
+    [self.shopResourseSubject sendNext:@2];
+    [self.shopResourseSubject sendCompleted];
+    [self.shopResourseSubject sendNext:@3];
+    [self.shopResourseSubject sendNext:@4];
+}
+- (void)testSendError {
+    self.shopResourseSubject = [RACSubject subject];
+    [self.shopResourseSubject subscribeNext:^(id x) {
+        NSLog(@"1. subscribeNext: %@", x);
+    } error:^(NSError *error) {
+        NSLog(@"2. error: %@", error);
+    } completed:^{
+        NSLog(@"3. completed");
+    }];
+    [self.shopResourseSubject sendNext:@1];
+    [self.shopResourseSubject sendNext:@2];
+    [self.shopResourseSubject sendError:[NSError errorWithDomain:@"999" code:-999 userInfo:@{}]];
+    [self.shopResourseSubject sendNext:@3];
+    [self.shopResourseSubject sendNext:@4];
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry

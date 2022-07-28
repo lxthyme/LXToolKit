@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)xl_addBorder:(UIRectEdge)edges
                color:(UIColor *)color
+           thickness:(CGFloat)thickness;
+
+- (void)xl_addBorder:(UIRectEdge)edges
+               color:(UIColor *)color
                inset:(CGFloat)inset
            thickness:(CGFloat)thickness;
 

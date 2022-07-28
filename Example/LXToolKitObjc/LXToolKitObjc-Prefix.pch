@@ -18,8 +18,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "CTAPIBaseManager+Rac.h"
 
-#import <DJBusinessTools/LXToolKitObjc.h>
-#import <DJBusinessTools/UIImage+xl.h>
+#import <LXToolKitObjc/LXToolKitObjc.h>
 #import <ReactiveCocoa/NSObject+RACDescription.h>
 
 #import <Masonry/Masonry.h>
@@ -37,5 +36,8 @@
 #import <BLCategories/UIColor+Hex.h>
 #import <BLImage/iBLImage.h>
 #import <pop/POP.h>
+
+#import "UIView+border.h"
+#import <DJBusinessTools/DJBusinessTools.h>
 
 #import "UIWindow+JXSafeArea.h"

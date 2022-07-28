@@ -12,6 +12,11 @@
 
 - (void)xl_addBorder:(UIRectEdge)edges
                color:(UIColor *)color
+           thickness:(CGFloat)thickness {
+    [self xl_addBorder:edges color:color inset:0.f thickness:thickness];
+}
+- (void)xl_addBorder:(UIRectEdge)edges
+               color:(UIColor *)color
                inset:(CGFloat)inset
            thickness:(CGFloat)thickness {
     if((edges & UIRectEdgeTop)) {

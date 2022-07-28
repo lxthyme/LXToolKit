@@ -10,6 +10,7 @@
 #import "LXLoginVM.h"
 #import <Masonry/Masonry.h>
 #import <DJBusinessTools/LXButton.h>
+// #import <LXToolKitObjc/LXButton.h>
 
 @interface LXLoginVC() {
 }
@@ -69,11 +70,11 @@
     }];
     [[self.vm.loginCommand.executing skip:1] subscribeNext:^(NSNumber * _Nullable x) {
         @strongify(self)
-        if(x.boolValue) {
-            [self.btnLogin startLoading];
-        } else {
-            [self.btnLogin stopLoading];
-        }
+        // if(x.boolValue) {
+        //     [self.btnLogin startLoading];
+        // } else {
+        //     [self.btnLogin stopLoading];
+        // }
         NSLog(@"-->X: %@-%@", x, self.vm.f_result);
     }];
     [self.vm.loginCommand.executionSignals subscribeNext:^(RACSignal *_Nullable signal) {
