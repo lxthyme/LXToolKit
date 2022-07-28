@@ -15,11 +15,11 @@
 #import <BLNetworking/CTAPIBaseManager.h>
 
 #import "LXClassifyListVC.h"
-#import "LXThirdCategoryView.h"
+#import "LX3rdCategoryView.h"
 #import "LXClassifyRightVCModel.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
-#import "LXFirstAllCategoryWrapperView.h"
+#import "LX1rdAllCategoryWrapperView.h"
 
 #define kB2CCategoryViewHeight kWPercentage(48.5f)
 static const CGFloat kLabelAllWidth = 35.f;
@@ -27,9 +27,9 @@ static const CGFloat kLabelAllWidth = 35.f;
 @interface LXB2CClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate/**, JXCategoryViewListContainer*/> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
-@property (nonatomic, strong)LXThirdCategoryView *categoryView;
-@property (nonatomic, strong)LXThirdCategoryView *allCategoryView;
-@property (nonatomic, strong)LXFirstAllCategoryWrapperView *allCategoryWrapperView;
+@property (nonatomic, strong)LX3rdCategoryView *categoryView;
+@property (nonatomic, strong)LX3rdCategoryView *allCategoryView;
+@property (nonatomic, strong)LX1rdAllCategoryWrapperView *allCategoryWrapperView;
 @property(nonatomic, strong)UIImageView *imgViewShadowLeft;
 @property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
@@ -345,9 +345,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _labAll;
 }
-- (LXThirdCategoryView *)categoryView {
+- (LX3rdCategoryView *)categoryView {
     if(!_categoryView){
-        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        LX3rdCategoryView *v = [[LX3rdCategoryView alloc]init];
         [v customized1rdCategoryViewStyle];
 
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -389,16 +389,16 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _imgViewShadowRight;
 }
-- (LXFirstAllCategoryWrapperView *)allCategoryWrapperView {
+- (LX1rdAllCategoryWrapperView *)allCategoryWrapperView {
     if(!_allCategoryWrapperView){
-        LXFirstAllCategoryWrapperView *v = [[LXFirstAllCategoryWrapperView alloc]init];
+        LX1rdAllCategoryWrapperView *v = [[LX1rdAllCategoryWrapperView alloc]init];
         _allCategoryWrapperView = v;
     }
     return _allCategoryWrapperView;
 }
-- (LXThirdCategoryView *)allCategoryView {
+- (LX3rdCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        LX3rdCategoryView *v = [[LX3rdCategoryView alloc]init];
         [v customized1rdCategoryViewStyle];
 
         v.minimumLineSpacing = kWPercentage(7.5f);

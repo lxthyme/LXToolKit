@@ -1,14 +1,14 @@
 //
-//  LXFirstCategoryCell.m
+//  LX1rdCategoryCell.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXFirstCategoryCell.h"
+#import "LX1rdCategoryCell.h"
 #import <DJBusinessTools/LXLabel.h>
 
-@interface LXFirstCategoryCell() {
+@interface LX1rdCategoryCell() {
     /// 边框宽度
     CGFloat __borderWidth;
     /// 图标尺寸
@@ -28,7 +28,7 @@
 
 @end
 
-@implementation LXFirstCategoryCell
+@implementation LX1rdCategoryCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

@@ -1,25 +1,25 @@
 //
-//  LXFirstCategoryFoldView.m
+//  LX1rdCategoryFoldView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/5.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXFirstCategoryFoldView.h"
+#import "LX1rdCategoryFoldView.h"
 
-#import "LXFirstCategoryCell.h"
+#import "LX1rdCategoryCell.h"
 
-@interface LXFirstCategoryFoldView() {
+@interface LX1rdCategoryFoldView() {
 }
 
 @end
 
-@implementation LXFirstCategoryFoldView
+@implementation LX1rdCategoryFoldView
 
 #pragma mark - ✈️UICollectionViewDataSource
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXFirstCategoryCell *cell;
-    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryCell" forIndexPath:indexPath];
+    LX1rdCategoryCell *cell;
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LX1rdCategoryCell" forIndexPath:indexPath];
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
     DJO2OCategoryListModel *categoryModel = self.dataList[indexPath.row];
@@ -41,7 +41,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXFirstCategoryCell class] forCellWithReuseIdentifier:@"LXFirstCategoryCell"];
+    [self.collectionView registerClass:[LX1rdCategoryCell class] forCellWithReuseIdentifier:@"LX1rdCategoryCell"];
 }
 
 #pragma mark -

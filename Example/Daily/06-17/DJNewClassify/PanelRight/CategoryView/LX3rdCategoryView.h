@@ -1,5 +1,5 @@
 //
-//  LXThirdCategoryView.h
+//  LX3rdCategoryView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/29.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXThirdCategoryView: LXBaseView {
+@interface LX3rdCategoryView: LXBaseView {
 }
 @property(nonatomic, assign)CGSize itemSize;
 @property(nonatomic, assign)CGFloat minimumLineSpacing;

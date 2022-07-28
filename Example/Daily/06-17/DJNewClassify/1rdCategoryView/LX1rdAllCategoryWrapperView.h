@@ -1,5 +1,5 @@
 //
-//  LXFirstAllCategoryWrapperView.h
+//  LX1rdAllCategoryWrapperView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/28.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXFirstAllCategoryWrapperView: UIControl {
+@interface LX1rdAllCategoryWrapperView: UIControl {
 }
 
 - (void)showWithContainerView:(UIView *)containerView topConstraint:(MASViewAttribute *)topConstraint;

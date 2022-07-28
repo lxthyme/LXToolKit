@@ -1,15 +1,15 @@
 //
-//  LXFirstAllCategoryWrapperView.m
+//  LX1rdAllCategoryWrapperView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/28.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXFirstAllCategoryWrapperView.h"
+#import "LX1rdAllCategoryWrapperView.h"
 
 #import <Masonry/Masonry.h>
 
-@interface LXFirstAllCategoryWrapperView() {
+@interface LX1rdAllCategoryWrapperView() {
 }
 @property(nonatomic, strong)UIView *wrapperView;
 @property(nonatomic, strong)UILabel *labTitle;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation LXFirstAllCategoryWrapperView
+@implementation LX1rdAllCategoryWrapperView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

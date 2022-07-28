@@ -1,5 +1,5 @@
 //
-//  LXBaseFirstCategoryView.h
+//  LXBase1rdCategoryView.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
@@ -21,7 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXBaseFirstCategoryView : LXBaseView<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface LXBase1rdCategoryView : LXBaseView<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
 }
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, strong, readonly)UICollectionView *collectionView;

@@ -1,25 +1,25 @@
 //
-//  LXFirstCategoryUnfoldView.m
+//  LX1rdCategoryUnfoldView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/4.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXFirstCategoryUnfoldView.h"
+#import "LX1rdCategoryUnfoldView.h"
 
-#import "LXFirstCategoryUnfoldCell.h"
+#import "LX1rdCategoryUnfoldCell.h"
 
-@interface LXFirstCategoryUnfoldView() {
+@interface LX1rdCategoryUnfoldView() {
 }
 @property(nonatomic, strong)UILabel *labTitle;
 
 @end
 
-@implementation LXFirstCategoryUnfoldView
+@implementation LX1rdCategoryUnfoldView
 
 #pragma mark - ✈️UICollectionViewDataSource
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXFirstCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryUnfoldCell" forIndexPath:indexPath];
+    LX1rdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LX1rdCategoryUnfoldCell" forIndexPath:indexPath];
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
     DJO2OCategoryListModel *categoryModel = self.dataList[indexPath.row];
@@ -40,7 +40,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXFirstCategoryUnfoldCell class] forCellWithReuseIdentifier:@"LXFirstCategoryUnfoldCell"];
+    [self.collectionView registerClass:[LX1rdCategoryUnfoldCell class] forCellWithReuseIdentifier:@"LX1rdCategoryUnfoldCell"];
 }
 - (void)prepareUI {
     self.backgroundColor = [UIColor colorWithHex:0xF9F9F9];

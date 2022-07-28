@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 @interface LXSubCategoryPinView() {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
-@property (nonatomic, strong)LXThirdCategoryView *pinCategoryView;
+@property (nonatomic, strong)LX3rdCategoryView *pinCategoryView;
 @property(nonatomic, strong)UIButton *btnAll;
 @property(nonatomic, strong)UIView *topView;
 @property(nonatomic, strong)UIView *filterView;
@@ -229,9 +229,9 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
     return _topView;
 }
-- (LXThirdCategoryView *)pinCategoryView {
+- (LX3rdCategoryView *)pinCategoryView {
     if(!_pinCategoryView){
-        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        LX3rdCategoryView *v = [[LX3rdCategoryView alloc]init];
         [v customized3rdCategoryViewStyle];
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];

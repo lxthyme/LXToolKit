@@ -1,5 +1,5 @@
 //
-//  LXThirdCategoryCell.h
+//  LX3rdCategoryCell.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/29.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXThirdCategoryCell: LXBaseCollectionViewCell {
+@interface LX3rdCategoryCell: LXBaseCollectionViewCell {
 }
 @property(nonatomic, strong)UIColor *bgColor;
 

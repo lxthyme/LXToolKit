@@ -13,8 +13,8 @@
 #import <pop/POP.h>
 
 #import "LXClassifyListVC.h"
-#import "LXFirstCategoryFoldView.h"
-#import "LXFirstCategoryUnfoldView.h"
+#import "LX1rdCategoryFoldView.h"
+#import "LX1rdCategoryUnfoldView.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
 
@@ -24,8 +24,8 @@ static const CGFloat kLabelAllWidth = 35.f;
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate/**, JXCategoryViewListContainer*/> {
 }
 @property(nonatomic, strong)YYLabel *labAll;
-@property (nonatomic, strong)LXFirstCategoryFoldView *categoryView;
-@property (nonatomic, strong)LXFirstCategoryUnfoldView *allCategoryView;
+@property (nonatomic, strong)LX1rdCategoryFoldView *categoryView;
+@property (nonatomic, strong)LX1rdCategoryUnfoldView *allCategoryView;
 @property(nonatomic, strong)UIImageView *imgViewShadowLeft;
 @property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
@@ -359,9 +359,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _labAll;
 }
-- (LXFirstCategoryFoldView *)categoryView {
+- (LX1rdCategoryFoldView *)categoryView {
     if(!_categoryView){
-        LXFirstCategoryFoldView *v = [[LXFirstCategoryFoldView alloc]init];
+        LX1rdCategoryFoldView *v = [[LX1rdCategoryFoldView alloc]init];
 
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];
@@ -399,9 +399,9 @@ static const CGFloat kLabelAllWidth = 35.f;
 }
 
 
-- (LXFirstCategoryUnfoldView *)allCategoryView {
+- (LX1rdCategoryUnfoldView *)allCategoryView {
     if(!_allCategoryView){
-        LXFirstCategoryUnfoldView *v = [[LXFirstCategoryUnfoldView alloc]init];
+        LX1rdCategoryUnfoldView *v = [[LX1rdCategoryUnfoldView alloc]init];
         v.normalTextColor = [UIColor colorWithHex:0x333333];
         v.selectedTextColor = [UIColor colorWithHex:0xFFFFFF];
         WEAKSELF(self)

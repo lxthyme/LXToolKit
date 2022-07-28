@@ -1,16 +1,16 @@
 //
-//  LXThirdCategoryView.m
+//  LX3rdCategoryView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/29.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXThirdCategoryView.h"
+#import "LX3rdCategoryView.h"
 
-#import "LXThirdCategoryCell.h"
+#import "LX3rdCategoryCell.h"
 #import "DJClassifyMacro.h"
 
-@interface LXThirdCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
+@interface LX3rdCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
 @property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation LXThirdCategoryView
+@implementation LX3rdCategoryView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -98,7 +98,7 @@
     return self.dataList.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LXThirdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXThirdCategoryCell" forIndexPath:indexPath];
+    LX3rdCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LX3rdCategoryCell" forIndexPath:indexPath];
     cell.bgColor = self.bgColor;
     cell.textBGNormalColor = self.textBGNormalColor;
     cell.textBGSelectedColor = self.textBGSelectedColor;
@@ -135,7 +135,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
-    [self.collectionView registerClass:[LXThirdCategoryCell class] forCellWithReuseIdentifier:@"LXThirdCategoryCell"];
+    [self.collectionView registerClass:[LX3rdCategoryCell class] forCellWithReuseIdentifier:@"LX3rdCategoryCell"];
 }
 - (void)prepareUI {
     [self addSubview:self.collectionView];

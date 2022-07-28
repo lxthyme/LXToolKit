@@ -1,19 +1,19 @@
 //
-//  LXThirdCategoryCell.m
+//  LX3rdCategoryCell.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/29.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXThirdCategoryCell.h"
+#import "LX3rdCategoryCell.h"
 
-@interface LXThirdCategoryCell() {
+@interface LX3rdCategoryCell() {
 }
 @property(nonatomic, strong)UILabel *labTitle;
 
 @end
 
-@implementation LXThirdCategoryCell
+@implementation LX3rdCategoryCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

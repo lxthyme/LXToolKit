@@ -19,7 +19,7 @@
 #import "LXClassifyListBannerCell.h"
 #import "LXMyCollectionView.h"
 #import "LXSubCategoryPinView.h"
-#import "LXThirdCategoryView.h"
+#import "LX3rdCategoryView.h"
 #import "DJClassifyMacro.h"
 #import "LXClassifyRightSkeletonScreen.h"
 #import "LXClassifyEmptyView.h"
@@ -31,7 +31,7 @@
 }
 @property (nonatomic, strong)LXSubCategoryPinView *pinView;
 @property (nonatomic, strong)UIControl *allMaskView;
-@property (nonatomic, strong)LXThirdCategoryView *allCategoryView;
+@property (nonatomic, strong)LX3rdCategoryView *allCategoryView;
 @property (nonatomic, strong)LXSectionCategoryHeaderView *sectionCategoryHeaderView;
 @property(nonatomic, strong)LXClassifyEmptyView *emptyView;
 @property (nonatomic, strong)LXClassifyRightSkeletonScreen *skeletonScreen;
@@ -472,9 +472,9 @@
     }
     return _allMaskView;
 }
-- (LXThirdCategoryView *)allCategoryView {
+- (LX3rdCategoryView *)allCategoryView {
     if(!_allCategoryView){
-        LXThirdCategoryView *v = [[LXThirdCategoryView alloc]init];
+        LX3rdCategoryView *v = [[LX3rdCategoryView alloc]init];
         [v customized3rdCategoryViewStyle];
         
         v.minimumLineSpacing = kWPercentage(7.5f);

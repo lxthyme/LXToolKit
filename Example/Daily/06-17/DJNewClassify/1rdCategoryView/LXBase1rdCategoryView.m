@@ -1,13 +1,13 @@
 //
-//  LXBaseFirstCategoryView.m
+//  LXBase1rdCategoryView.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXBaseFirstCategoryView.h"
+#import "LXBase1rdCategoryView.h"
 
-@interface LXBaseFirstCategoryView()<UICollectionViewDelegate> {
+@interface LXBase1rdCategoryView()<UICollectionViewDelegate> {
 }
 @property(nonatomic, strong)NSArray<DJO2OCategoryListModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
@@ -16,7 +16,7 @@
 // @property(nonatomic, assign)LXFirstCategoryType firstCategoryType;
 @end
 
-@implementation LXBaseFirstCategoryView
+@implementation LXBase1rdCategoryView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {

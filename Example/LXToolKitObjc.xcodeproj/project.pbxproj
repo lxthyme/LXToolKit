@@ -53,6 +53,48 @@
 		BEA806312891131F00710636 /* DJYYZZInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA806302891131F00710636 /* DJYYZZInfoModel.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
+		BEB652032892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6519C2892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.m */; };
+		BEB652042892B28B00CB37F3 /* LXClassifySkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6519D2892B28B00CB37F3 /* LXClassifySkeletonScreen.m */; };
+		BEB652052892B28B00CB37F3 /* LXClassifyEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6519E2892B28B00CB37F3 /* LXClassifyEmptyView.m */; };
+		BEB652062892B28B00CB37F3 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651A32892B28B00CB37F3 /* CTAPIBaseManager+Rac.m */; };
+		BEB652072892B28B00CB37F3 /* LXB2CClassifyVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651A72892B28B00CB37F3 /* LXB2CClassifyVM.m */; };
+		BEB652082892B28B00CB37F3 /* LXClassifyWrapperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651AA2892B28B00CB37F3 /* LXClassifyWrapperVC.m */; };
+		BEB652092892B28B00CB37F3 /* LXB2CClassifyWrapperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651AD2892B28B00CB37F3 /* LXB2CClassifyWrapperVC.m */; };
+		BEB6520A2892B28B00CB37F3 /* LXClassifyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651AF2892B28B00CB37F3 /* LXClassifyListVC.m */; };
+		BEB6520B2892B28B00CB37F3 /* LXClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651B02892B28B00CB37F3 /* LXClassifyVC.m */; };
+		BEB6520C2892B28B00CB37F3 /* LXClassifyListLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651B22892B28B00CB37F3 /* LXClassifyListLeftView.m */; };
+		BEB6520D2892B28B00CB37F3 /* LXClassifyListLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651B32892B28B00CB37F3 /* LXClassifyListLeftCell.m */; };
+		BEB6520E2892B28B00CB37F3 /* LXClassifyListRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651B72892B28B00CB37F3 /* LXClassifyListRightVC.m */; };
+		BEB6520F2892B28B00CB37F3 /* DJPriceWrapperStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651BB2892B28B00CB37F3 /* DJPriceWrapperStackView.m */; };
+		BEB652102892B28B00CB37F3 /* DJNewAddCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651BD2892B28B00CB37F3 /* DJNewAddCartView.m */; };
+		BEB652112892B28B00CB37F3 /* DJTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651C22892B28B00CB37F3 /* DJTagView.m */; };
+		BEB652122892B28B00CB37F3 /* LXSubCategoryPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651C42892B28B00CB37F3 /* LXSubCategoryPinView.m */; };
+		BEB652132892B28B00CB37F3 /* LXMyCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651C62892B28B00CB37F3 /* LXMyCollectionView.m */; };
+		BEB652142892B28B00CB37F3 /* LXClassifySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651C82892B28B00CB37F3 /* LXClassifySectionHeaderView.m */; };
+		BEB652152892B28B00CB37F3 /* LXClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651CB2892B28B00CB37F3 /* LXClassifyListBannerCell.m */; };
+		BEB652162892B28B00CB37F3 /* LXClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651CE2892B28B00CB37F3 /* LXClassifyRightCollectionCell.m */; };
+		BEB652172892B28B00CB37F3 /* LXSectionCategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651CF2892B28B00CB37F3 /* LXSectionCategoryHeaderView.m */; };
+		BEB652182892B28B00CB37F3 /* LX3rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651D32892B28B00CB37F3 /* LX3rdCategoryCell.m */; };
+		BEB652192892B28B00CB37F3 /* LX3rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651D42892B28B00CB37F3 /* LX3rdCategoryView.m */; };
+		BEB6521A2892B28B00CB37F3 /* DJO2OCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651D92892B28B00CB37F3 /* DJO2OCategoryListModel.m */; };
+		BEB6521B2892B28B00CB37F3 /* LXSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651DB2892B28B00CB37F3 /* LXSectionModel.m */; };
+		BEB6521C2892B28B00CB37F3 /* LXGoodBaseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651DF2892B28B00CB37F3 /* LXGoodBaseItemModel.m */; };
+		BEB6521D2892B28B00CB37F3 /* LXO2OGoodItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651E12892B28B00CB37F3 /* LXO2OGoodItemModel.m */; };
+		BEB6521E2892B28B00CB37F3 /* DJGoodsIdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651E42892B28B00CB37F3 /* DJGoodsIdsModel.m */; };
+		BEB6521F2892B28B00CB37F3 /* LXLHCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651E62892B28B00CB37F3 /* LXLHCategoryModel.m */; };
+		BEB652202892B28B00CB37F3 /* LXClassifyRightVCModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651E72892B28B00CB37F3 /* LXClassifyRightVCModel.m */; };
+		BEB652212892B28B00CB37F3 /* LXB2CGoodsItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651EA2892B28B00CB37F3 /* LXB2CGoodsItemListModel.m */; };
+		BEB652222892B28B00CB37F3 /* LXShopResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651EC2892B28B00CB37F3 /* LXShopResourceModel.m */; };
+		BEB652232892B28B00CB37F3 /* LXClassifyBaseCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651ED2892B28B00CB37F3 /* LXClassifyBaseCategoryModel.m */; };
+		BEB652242892B28B00CB37F3 /* LX1rdCategoryFoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651EF2892B28B00CB37F3 /* LX1rdCategoryFoldView.m */; };
+		BEB652252892B28B00CB37F3 /* LX1rdCategoryUnfoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651F02892B28B00CB37F3 /* LX1rdCategoryUnfoldView.m */; };
+		BEB652262892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651F12892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.m */; };
+		BEB652272892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651F52892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.m */; };
+		BEB652282892B28B00CB37F3 /* LX1rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651F72892B28B00CB37F3 /* LX1rdCategoryCell.m */; };
+		BEB652292892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651FE2892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.m */; };
+		BEB6522A2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB651FF2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.m */; };
+		BEB6522B2892B28B00CB37F3 /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB652002892B28B00CB37F3 /* JXCategoryTitleBackgroundView.m */; };
+		BEB6522C2892B28B00CB37F3 /* LXBase1rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB652022892B28B00CB37F3 /* LXBase1rdCategoryView.m */; };
 		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
 		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +194,91 @@
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
 		BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVM.m; sourceTree = "<group>"; };
+		BEB6519A2892B28B00CB37F3 /* DJClassifyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyMacro.h; sourceTree = "<group>"; };
+		BEB6519C2892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyRightSkeletonScreen.m; sourceTree = "<group>"; };
+		BEB6519D2892B28B00CB37F3 /* LXClassifySkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifySkeletonScreen.m; sourceTree = "<group>"; };
+		BEB6519E2892B28B00CB37F3 /* LXClassifyEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyEmptyView.m; sourceTree = "<group>"; };
+		BEB6519F2892B28B00CB37F3 /* LXClassifyEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyEmptyView.h; sourceTree = "<group>"; };
+		BEB651A02892B28B00CB37F3 /* LXClassifySkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifySkeletonScreen.h; sourceTree = "<group>"; };
+		BEB651A12892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyRightSkeletonScreen.h; sourceTree = "<group>"; };
+		BEB651A32892B28B00CB37F3 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
+		BEB651A42892B28B00CB37F3 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
+		BEB651A62892B28B00CB37F3 /* LXB2CClassifyVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXB2CClassifyVM.h; sourceTree = "<group>"; };
+		BEB651A72892B28B00CB37F3 /* LXB2CClassifyVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXB2CClassifyVM.m; sourceTree = "<group>"; };
+		BEB651A92892B28B00CB37F3 /* LXB2CClassifyWrapperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXB2CClassifyWrapperVC.h; sourceTree = "<group>"; };
+		BEB651AA2892B28B00CB37F3 /* LXClassifyWrapperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyWrapperVC.m; sourceTree = "<group>"; };
+		BEB651AB2892B28B00CB37F3 /* LXClassifyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyListVC.h; sourceTree = "<group>"; };
+		BEB651AC2892B28B00CB37F3 /* LXClassifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyVC.h; sourceTree = "<group>"; };
+		BEB651AD2892B28B00CB37F3 /* LXB2CClassifyWrapperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXB2CClassifyWrapperVC.m; sourceTree = "<group>"; };
+		BEB651AE2892B28B00CB37F3 /* LXClassifyWrapperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyWrapperVC.h; sourceTree = "<group>"; };
+		BEB651AF2892B28B00CB37F3 /* LXClassifyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListVC.m; sourceTree = "<group>"; };
+		BEB651B02892B28B00CB37F3 /* LXClassifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyVC.m; sourceTree = "<group>"; };
+		BEB651B22892B28B00CB37F3 /* LXClassifyListLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListLeftView.m; sourceTree = "<group>"; };
+		BEB651B32892B28B00CB37F3 /* LXClassifyListLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListLeftCell.m; sourceTree = "<group>"; };
+		BEB651B42892B28B00CB37F3 /* LXClassifyListLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyListLeftView.h; sourceTree = "<group>"; };
+		BEB651B52892B28B00CB37F3 /* LXClassifyListLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyListLeftCell.h; sourceTree = "<group>"; };
+		BEB651B72892B28B00CB37F3 /* LXClassifyListRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListRightVC.m; sourceTree = "<group>"; };
+		BEB651BA2892B28B00CB37F3 /* DJPriceWrapperStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJPriceWrapperStackView.h; sourceTree = "<group>"; };
+		BEB651BB2892B28B00CB37F3 /* DJPriceWrapperStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJPriceWrapperStackView.m; sourceTree = "<group>"; };
+		BEB651BD2892B28B00CB37F3 /* DJNewAddCartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNewAddCartView.m; sourceTree = "<group>"; };
+		BEB651BE2892B28B00CB37F3 /* DJNewAddCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNewAddCartView.h; sourceTree = "<group>"; };
+		BEB651BF2892B28B00CB37F3 /* LXMyCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMyCollectionView.h; sourceTree = "<group>"; };
+		BEB651C12892B28B00CB37F3 /* DJTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJTagView.h; sourceTree = "<group>"; };
+		BEB651C22892B28B00CB37F3 /* DJTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJTagView.m; sourceTree = "<group>"; };
+		BEB651C42892B28B00CB37F3 /* LXSubCategoryPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSubCategoryPinView.m; sourceTree = "<group>"; };
+		BEB651C52892B28B00CB37F3 /* LXSubCategoryPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSubCategoryPinView.h; sourceTree = "<group>"; };
+		BEB651C62892B28B00CB37F3 /* LXMyCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMyCollectionView.m; sourceTree = "<group>"; };
+		BEB651C82892B28B00CB37F3 /* LXClassifySectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifySectionHeaderView.m; sourceTree = "<group>"; };
+		BEB651C92892B28B00CB37F3 /* LXSectionCategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionCategoryHeaderView.h; sourceTree = "<group>"; };
+		BEB651CA2892B28B00CB37F3 /* LXClassifyRightCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyRightCollectionCell.h; sourceTree = "<group>"; };
+		BEB651CB2892B28B00CB37F3 /* LXClassifyListBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyListBannerCell.m; sourceTree = "<group>"; };
+		BEB651CC2892B28B00CB37F3 /* LXClassifySectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifySectionHeaderView.h; sourceTree = "<group>"; };
+		BEB651CD2892B28B00CB37F3 /* LXClassifyListBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyListBannerCell.h; sourceTree = "<group>"; };
+		BEB651CE2892B28B00CB37F3 /* LXClassifyRightCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyRightCollectionCell.m; sourceTree = "<group>"; };
+		BEB651CF2892B28B00CB37F3 /* LXSectionCategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionCategoryHeaderView.m; sourceTree = "<group>"; };
+		BEB651D12892B28B00CB37F3 /* LX3rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX3rdCategoryCell.h; sourceTree = "<group>"; };
+		BEB651D22892B28B00CB37F3 /* LX3rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX3rdCategoryView.h; sourceTree = "<group>"; };
+		BEB651D32892B28B00CB37F3 /* LX3rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX3rdCategoryCell.m; sourceTree = "<group>"; };
+		BEB651D42892B28B00CB37F3 /* LX3rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX3rdCategoryView.m; sourceTree = "<group>"; };
+		BEB651D52892B28B00CB37F3 /* LXClassifyListRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyListRightVC.h; sourceTree = "<group>"; };
+		BEB651D72892B28B00CB37F3 /* LXShopResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXShopResourceModel.h; sourceTree = "<group>"; };
+		BEB651D92892B28B00CB37F3 /* DJO2OCategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OCategoryListModel.m; sourceTree = "<group>"; };
+		BEB651DA2892B28B00CB37F3 /* DJO2OCategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OCategoryListModel.h; sourceTree = "<group>"; };
+		BEB651DB2892B28B00CB37F3 /* LXSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionModel.m; sourceTree = "<group>"; };
+		BEB651DC2892B28B00CB37F3 /* LXClassifyBaseCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyBaseCategoryModel.h; sourceTree = "<group>"; };
+		BEB651DD2892B28B00CB37F3 /* LXSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionModel.h; sourceTree = "<group>"; };
+		BEB651DF2892B28B00CB37F3 /* LXGoodBaseItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXGoodBaseItemModel.m; sourceTree = "<group>"; };
+		BEB651E02892B28B00CB37F3 /* DJGoodsIdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodsIdsModel.h; sourceTree = "<group>"; };
+		BEB651E12892B28B00CB37F3 /* LXO2OGoodItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXO2OGoodItemModel.m; sourceTree = "<group>"; };
+		BEB651E22892B28B00CB37F3 /* LXGoodBaseItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXGoodBaseItemModel.h; sourceTree = "<group>"; };
+		BEB651E32892B28B00CB37F3 /* LXO2OGoodItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXO2OGoodItemModel.h; sourceTree = "<group>"; };
+		BEB651E42892B28B00CB37F3 /* DJGoodsIdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodsIdsModel.m; sourceTree = "<group>"; };
+		BEB651E62892B28B00CB37F3 /* LXLHCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXLHCategoryModel.m; sourceTree = "<group>"; };
+		BEB651E72892B28B00CB37F3 /* LXClassifyRightVCModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyRightVCModel.m; sourceTree = "<group>"; };
+		BEB651E82892B28B00CB37F3 /* LXB2CGoodsItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXB2CGoodsItemListModel.h; sourceTree = "<group>"; };
+		BEB651E92892B28B00CB37F3 /* LXLHCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXLHCategoryModel.h; sourceTree = "<group>"; };
+		BEB651EA2892B28B00CB37F3 /* LXB2CGoodsItemListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXB2CGoodsItemListModel.m; sourceTree = "<group>"; };
+		BEB651EB2892B28B00CB37F3 /* LXClassifyRightVCModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyRightVCModel.h; sourceTree = "<group>"; };
+		BEB651EC2892B28B00CB37F3 /* LXShopResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXShopResourceModel.m; sourceTree = "<group>"; };
+		BEB651ED2892B28B00CB37F3 /* LXClassifyBaseCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyBaseCategoryModel.m; sourceTree = "<group>"; };
+		BEB651EF2892B28B00CB37F3 /* LX1rdCategoryFoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1rdCategoryFoldView.m; sourceTree = "<group>"; };
+		BEB651F02892B28B00CB37F3 /* LX1rdCategoryUnfoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1rdCategoryUnfoldView.m; sourceTree = "<group>"; };
+		BEB651F12892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1rdAllCategoryWrapperView.m; sourceTree = "<group>"; };
+		BEB651F22892B28B00CB37F3 /* LXBase1rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXBase1rdCategoryView.h; sourceTree = "<group>"; };
+		BEB651F42892B28B00CB37F3 /* LX1rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1rdCategoryCell.h; sourceTree = "<group>"; };
+		BEB651F52892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1rdCategoryUnfoldCell.m; sourceTree = "<group>"; };
+		BEB651F62892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1rdCategoryUnfoldCell.h; sourceTree = "<group>"; };
+		BEB651F72892B28B00CB37F3 /* LX1rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX1rdCategoryCell.m; sourceTree = "<group>"; };
+		BEB651F82892B28B00CB37F3 /* LX1rdCategoryUnfoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1rdCategoryUnfoldView.h; sourceTree = "<group>"; };
+		BEB651F92892B28B00CB37F3 /* LX1rdCategoryFoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1rdCategoryFoldView.h; sourceTree = "<group>"; };
+		BEB651FA2892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX1rdAllCategoryWrapperView.h; sourceTree = "<group>"; };
+		BEB651FC2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCell.h; sourceTree = "<group>"; };
+		BEB651FD2892B28B00CB37F3 /* JXCategoryTitleBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundView.h; sourceTree = "<group>"; };
+		BEB651FE2892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCellModel.m; sourceTree = "<group>"; };
+		BEB651FF2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCell.m; sourceTree = "<group>"; };
+		BEB652002892B28B00CB37F3 /* JXCategoryTitleBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundView.m; sourceTree = "<group>"; };
+		BEB652012892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCellModel.h; sourceTree = "<group>"; };
+		BEB652022892B28B00CB37F3 /* LXBase1rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXBase1rdCategoryView.m; sourceTree = "<group>"; };
 		BED144002844B22400DEA8EA /* LXCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
 		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
 		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
@@ -451,6 +578,7 @@
 		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
 			isa = PBXGroup;
 			children = (
+				BEB651992892B28B00CB37F3 /* DJNewClassify */,
 				BE7CAE54285D7F1C00A86665 /* Nested2 */,
 				BE888C4D285EAF2E0027F9FF /* Nest6 */,
 				BE7CAE67285D7F1C00A86665 /* Common */,
@@ -478,6 +606,258 @@
 				BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		BEB651992892B28B00CB37F3 /* DJNewClassify */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6519A2892B28B00CB37F3 /* DJClassifyMacro.h */,
+				BEB6519B2892B28B00CB37F3 /* SkeletonScreen */,
+				BEB651A22892B28B00CB37F3 /* Networking */,
+				BEB651A52892B28B00CB37F3 /* VM */,
+				BEB651A82892B28B00CB37F3 /* VC */,
+				BEB651B12892B28B00CB37F3 /* PanelLeft */,
+				BEB651B62892B28B00CB37F3 /* PanelRight */,
+				BEB651D62892B28B00CB37F3 /* Model */,
+				BEB651EE2892B28B00CB37F3 /* 1rdCategoryView */,
+			);
+			path = DJNewClassify;
+			sourceTree = "<group>";
+		};
+		BEB6519B2892B28B00CB37F3 /* SkeletonScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BEB6519C2892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.m */,
+				BEB6519D2892B28B00CB37F3 /* LXClassifySkeletonScreen.m */,
+				BEB6519E2892B28B00CB37F3 /* LXClassifyEmptyView.m */,
+				BEB6519F2892B28B00CB37F3 /* LXClassifyEmptyView.h */,
+				BEB651A02892B28B00CB37F3 /* LXClassifySkeletonScreen.h */,
+				BEB651A12892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.h */,
+			);
+			path = SkeletonScreen;
+			sourceTree = "<group>";
+		};
+		BEB651A22892B28B00CB37F3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651A32892B28B00CB37F3 /* CTAPIBaseManager+Rac.m */,
+				BEB651A42892B28B00CB37F3 /* CTAPIBaseManager+Rac.h */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BEB651A52892B28B00CB37F3 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651A62892B28B00CB37F3 /* LXB2CClassifyVM.h */,
+				BEB651A72892B28B00CB37F3 /* LXB2CClassifyVM.m */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BEB651A82892B28B00CB37F3 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651A92892B28B00CB37F3 /* LXB2CClassifyWrapperVC.h */,
+				BEB651AA2892B28B00CB37F3 /* LXClassifyWrapperVC.m */,
+				BEB651AB2892B28B00CB37F3 /* LXClassifyListVC.h */,
+				BEB651AC2892B28B00CB37F3 /* LXClassifyVC.h */,
+				BEB651AD2892B28B00CB37F3 /* LXB2CClassifyWrapperVC.m */,
+				BEB651AE2892B28B00CB37F3 /* LXClassifyWrapperVC.h */,
+				BEB651AF2892B28B00CB37F3 /* LXClassifyListVC.m */,
+				BEB651B02892B28B00CB37F3 /* LXClassifyVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BEB651B12892B28B00CB37F3 /* PanelLeft */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651B22892B28B00CB37F3 /* LXClassifyListLeftView.m */,
+				BEB651B32892B28B00CB37F3 /* LXClassifyListLeftCell.m */,
+				BEB651B42892B28B00CB37F3 /* LXClassifyListLeftView.h */,
+				BEB651B52892B28B00CB37F3 /* LXClassifyListLeftCell.h */,
+			);
+			path = PanelLeft;
+			sourceTree = "<group>";
+		};
+		BEB651B62892B28B00CB37F3 /* PanelRight */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651B72892B28B00CB37F3 /* LXClassifyListRightVC.m */,
+				BEB651B82892B28B00CB37F3 /* View */,
+				BEB651C72892B28B00CB37F3 /* Cell & HeaderFooter */,
+				BEB651D02892B28B00CB37F3 /* CategoryView */,
+				BEB651D52892B28B00CB37F3 /* LXClassifyListRightVC.h */,
+			);
+			path = PanelRight;
+			sourceTree = "<group>";
+		};
+		BEB651B82892B28B00CB37F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651B92892B28B00CB37F3 /* DJPriceWrapperView */,
+				BEB651BC2892B28B00CB37F3 /* DJNewAddCartView */,
+				BEB651BF2892B28B00CB37F3 /* LXMyCollectionView.h */,
+				BEB651C02892B28B00CB37F3 /* DJTagView */,
+				BEB651C32892B28B00CB37F3 /* PinView */,
+				BEB651C62892B28B00CB37F3 /* LXMyCollectionView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BEB651B92892B28B00CB37F3 /* DJPriceWrapperView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651BA2892B28B00CB37F3 /* DJPriceWrapperStackView.h */,
+				BEB651BB2892B28B00CB37F3 /* DJPriceWrapperStackView.m */,
+			);
+			path = DJPriceWrapperView;
+			sourceTree = "<group>";
+		};
+		BEB651BC2892B28B00CB37F3 /* DJNewAddCartView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651BD2892B28B00CB37F3 /* DJNewAddCartView.m */,
+				BEB651BE2892B28B00CB37F3 /* DJNewAddCartView.h */,
+			);
+			path = DJNewAddCartView;
+			sourceTree = "<group>";
+		};
+		BEB651C02892B28B00CB37F3 /* DJTagView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651C12892B28B00CB37F3 /* DJTagView.h */,
+				BEB651C22892B28B00CB37F3 /* DJTagView.m */,
+			);
+			path = DJTagView;
+			sourceTree = "<group>";
+		};
+		BEB651C32892B28B00CB37F3 /* PinView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651C42892B28B00CB37F3 /* LXSubCategoryPinView.m */,
+				BEB651C52892B28B00CB37F3 /* LXSubCategoryPinView.h */,
+			);
+			path = PinView;
+			sourceTree = "<group>";
+		};
+		BEB651C72892B28B00CB37F3 /* Cell & HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651C82892B28B00CB37F3 /* LXClassifySectionHeaderView.m */,
+				BEB651C92892B28B00CB37F3 /* LXSectionCategoryHeaderView.h */,
+				BEB651CA2892B28B00CB37F3 /* LXClassifyRightCollectionCell.h */,
+				BEB651CB2892B28B00CB37F3 /* LXClassifyListBannerCell.m */,
+				BEB651CC2892B28B00CB37F3 /* LXClassifySectionHeaderView.h */,
+				BEB651CD2892B28B00CB37F3 /* LXClassifyListBannerCell.h */,
+				BEB651CE2892B28B00CB37F3 /* LXClassifyRightCollectionCell.m */,
+				BEB651CF2892B28B00CB37F3 /* LXSectionCategoryHeaderView.m */,
+			);
+			path = "Cell & HeaderFooter";
+			sourceTree = "<group>";
+		};
+		BEB651D02892B28B00CB37F3 /* CategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651D12892B28B00CB37F3 /* LX3rdCategoryCell.h */,
+				BEB651D22892B28B00CB37F3 /* LX3rdCategoryView.h */,
+				BEB651D32892B28B00CB37F3 /* LX3rdCategoryCell.m */,
+				BEB651D42892B28B00CB37F3 /* LX3rdCategoryView.m */,
+			);
+			path = CategoryView;
+			sourceTree = "<group>";
+		};
+		BEB651D62892B28B00CB37F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651D72892B28B00CB37F3 /* LXShopResourceModel.h */,
+				BEB651D82892B28B00CB37F3 /* O2O */,
+				BEB651DB2892B28B00CB37F3 /* LXSectionModel.m */,
+				BEB651DC2892B28B00CB37F3 /* LXClassifyBaseCategoryModel.h */,
+				BEB651DD2892B28B00CB37F3 /* LXSectionModel.h */,
+				BEB651DE2892B28B00CB37F3 /* Goods */,
+				BEB651E52892B28B00CB37F3 /* LH */,
+				BEB651EC2892B28B00CB37F3 /* LXShopResourceModel.m */,
+				BEB651ED2892B28B00CB37F3 /* LXClassifyBaseCategoryModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEB651D82892B28B00CB37F3 /* O2O */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651D92892B28B00CB37F3 /* DJO2OCategoryListModel.m */,
+				BEB651DA2892B28B00CB37F3 /* DJO2OCategoryListModel.h */,
+			);
+			path = O2O;
+			sourceTree = "<group>";
+		};
+		BEB651DE2892B28B00CB37F3 /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651DF2892B28B00CB37F3 /* LXGoodBaseItemModel.m */,
+				BEB651E02892B28B00CB37F3 /* DJGoodsIdsModel.h */,
+				BEB651E12892B28B00CB37F3 /* LXO2OGoodItemModel.m */,
+				BEB651E22892B28B00CB37F3 /* LXGoodBaseItemModel.h */,
+				BEB651E32892B28B00CB37F3 /* LXO2OGoodItemModel.h */,
+				BEB651E42892B28B00CB37F3 /* DJGoodsIdsModel.m */,
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
+		BEB651E52892B28B00CB37F3 /* LH */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651E62892B28B00CB37F3 /* LXLHCategoryModel.m */,
+				BEB651E72892B28B00CB37F3 /* LXClassifyRightVCModel.m */,
+				BEB651E82892B28B00CB37F3 /* LXB2CGoodsItemListModel.h */,
+				BEB651E92892B28B00CB37F3 /* LXLHCategoryModel.h */,
+				BEB651EA2892B28B00CB37F3 /* LXB2CGoodsItemListModel.m */,
+				BEB651EB2892B28B00CB37F3 /* LXClassifyRightVCModel.h */,
+			);
+			path = LH;
+			sourceTree = "<group>";
+		};
+		BEB651EE2892B28B00CB37F3 /* 1rdCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651F22892B28B00CB37F3 /* LXBase1rdCategoryView.h */,
+				BEB652022892B28B00CB37F3 /* LXBase1rdCategoryView.m */,
+				BEB651F92892B28B00CB37F3 /* LX1rdCategoryFoldView.h */,
+				BEB651EF2892B28B00CB37F3 /* LX1rdCategoryFoldView.m */,
+				BEB651F82892B28B00CB37F3 /* LX1rdCategoryUnfoldView.h */,
+				BEB651F02892B28B00CB37F3 /* LX1rdCategoryUnfoldView.m */,
+				BEB651FA2892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.h */,
+				BEB651F12892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.m */,
+				BEB651F32892B28B00CB37F3 /* Cell */,
+				BEB651FB2892B28B00CB37F3 /* JX */,
+			);
+			path = 1rdCategoryView;
+			sourceTree = "<group>";
+		};
+		BEB651F32892B28B00CB37F3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651F42892B28B00CB37F3 /* LX1rdCategoryCell.h */,
+				BEB651F52892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.m */,
+				BEB651F62892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.h */,
+				BEB651F72892B28B00CB37F3 /* LX1rdCategoryCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEB651FB2892B28B00CB37F3 /* JX */ = {
+			isa = PBXGroup;
+			children = (
+				BEB651FC2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.h */,
+				BEB651FD2892B28B00CB37F3 /* JXCategoryTitleBackgroundView.h */,
+				BEB651FE2892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.m */,
+				BEB651FF2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.m */,
+				BEB652002892B28B00CB37F3 /* JXCategoryTitleBackgroundView.m */,
+				BEB652012892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.h */,
+			);
+			path = JX;
 			sourceTree = "<group>";
 		};
 		BED143FF2844B21000DEA8EA /* 05-28 */ = {
@@ -645,41 +1025,83 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB652272892B28B00CB37F3 /* LX1rdCategoryUnfoldCell.m in Sources */,
 				BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */,
 				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
 				BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */,
+				BEB6522A2892B28B00CB37F3 /* JXCategoryTitleBackgroundCell.m in Sources */,
+				BEB652142892B28B00CB37F3 /* LXClassifySectionHeaderView.m in Sources */,
+				BEB6520A2892B28B00CB37F3 /* LXClassifyListVC.m in Sources */,
+				BEB652062892B28B00CB37F3 /* CTAPIBaseManager+Rac.m in Sources */,
+				BEB652192892B28B00CB37F3 /* LX3rdCategoryView.m in Sources */,
+				BEB652032892B28B00CB37F3 /* LXClassifyRightSkeletonScreen.m in Sources */,
+				BEB652242892B28B00CB37F3 /* LX1rdCategoryFoldView.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
+				BEB652082892B28B00CB37F3 /* LXClassifyWrapperVC.m in Sources */,
+				BEB652152892B28B00CB37F3 /* LXClassifyListBannerCell.m in Sources */,
+				BEB652202892B28B00CB37F3 /* LXClassifyRightVCModel.m in Sources */,
 				BEA8062B2891078D00710636 /* DJYYZZFooterView.m in Sources */,
 				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
+				BEB652042892B28B00CB37F3 /* LXClassifySkeletonScreen.m in Sources */,
 				BEA8062D2891078D00710636 /* DJYYZZHeaderView.m in Sources */,
 				BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */,
+				BEB652092892B28B00CB37F3 /* LXB2CClassifyWrapperVC.m in Sources */,
+				BEB652252892B28B00CB37F3 /* LX1rdCategoryUnfoldView.m in Sources */,
 				BEA8062C2891078D00710636 /* DJYYZZInfoCell.m in Sources */,
 				BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */,
+				BEB652232892B28B00CB37F3 /* LXClassifyBaseCategoryModel.m in Sources */,
 				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
+				BEB6521F2892B28B00CB37F3 /* LXLHCategoryModel.m in Sources */,
 				BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */,
+				BEB652072892B28B00CB37F3 /* LXB2CClassifyVM.m in Sources */,
 				BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */,
+				BEB6521D2892B28B00CB37F3 /* LXO2OGoodItemModel.m in Sources */,
 				BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */,
 				BEA8061B2891056A00710636 /* LXYYZZVC.m in Sources */,
 				BE7CAE81285D7F1D00A86665 /* LXPaging2VC.m in Sources */,
+				BEB652132892B28B00CB37F3 /* LXMyCollectionView.m in Sources */,
+				BEB652172892B28B00CB37F3 /* LXSectionCategoryHeaderView.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
+				BEB652222892B28B00CB37F3 /* LXShopResourceModel.m in Sources */,
 				BE7CAE85285D7F1D00A86665 /* LXNestCell.m in Sources */,
 				BE7CAE89285D7F1D00A86665 /* LXPagingVC.m in Sources */,
 				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
+				BEB652122892B28B00CB37F3 /* LXSubCategoryPinView.m in Sources */,
+				BEB6522C2892B28B00CB37F3 /* LXBase1rdCategoryView.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
+				BEB6521C2892B28B00CB37F3 /* LXGoodBaseItemModel.m in Sources */,
 				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
+				BEB6520D2892B28B00CB37F3 /* LXClassifyListLeftCell.m in Sources */,
 				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
 				BEA806242891066D00710636 /* LXYYZZImageCell.m in Sources */,
+				BEB6521B2892B28B00CB37F3 /* LXSectionModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */,
 				BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */,
+				BEB6522B2892B28B00CB37F3 /* JXCategoryTitleBackgroundView.m in Sources */,
 				BE7CAE86285D7F1D00A86665 /* LXTableVC.m in Sources */,
+				BEB6520F2892B28B00CB37F3 /* DJPriceWrapperStackView.m in Sources */,
+				BEB652212892B28B00CB37F3 /* LXB2CGoodsItemListModel.m in Sources */,
+				BEB652262892B28B00CB37F3 /* LX1rdAllCategoryWrapperView.m in Sources */,
 				BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */,
+				BEB652282892B28B00CB37F3 /* LX1rdCategoryCell.m in Sources */,
+				BEB652052892B28B00CB37F3 /* LXClassifyEmptyView.m in Sources */,
+				BEB6520C2892B28B00CB37F3 /* LXClassifyListLeftView.m in Sources */,
+				BEB652102892B28B00CB37F3 /* DJNewAddCartView.m in Sources */,
+				BEB6520B2892B28B00CB37F3 /* LXClassifyVC.m in Sources */,
+				BEB6520E2892B28B00CB37F3 /* LXClassifyListRightVC.m in Sources */,
+				BEB6521E2892B28B00CB37F3 /* DJGoodsIdsModel.m in Sources */,
+				BEB652292892B28B00CB37F3 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
+				BEB652162892B28B00CB37F3 /* LXClassifyRightCollectionCell.m in Sources */,
 				BEA806312891131F00710636 /* DJYYZZInfoModel.m in Sources */,
+				BEB652112892B28B00CB37F3 /* DJTagView.m in Sources */,
 				BE7CAE84285D7F1D00A86665 /* LXSectionHeaderView.m in Sources */,
+				BEB652182892B28B00CB37F3 /* LX3rdCategoryCell.m in Sources */,
 				BE7CAE83285D7F1D00A86665 /* LXTableHeaderView.m in Sources */,
+				BEB6521A2892B28B00CB37F3 /* DJO2OCategoryListModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
