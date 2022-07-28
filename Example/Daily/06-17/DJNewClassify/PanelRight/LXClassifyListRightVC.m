@@ -229,7 +229,7 @@
         return cell;
     }
     LXClassifyRightCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXClassifyRightCollectionCell" forIndexPath:indexPath];
-    LXB2CGoodItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
+    LXGoodBaseItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
     [cell dataFill:itemModel];
     return cell;
 }
@@ -247,7 +247,7 @@
             return self.sectionCategoryHeaderView;
         } else {
             LXClassifySectionHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LXClassifySectionHeaderView" forIndexPath:indexPath];
-            LXLHCategoryModel *sectionModel = self.rightModel.categorys[indexPath.section];
+            LXClassifyBaseCategoryModel *sectionModel = self.rightModel.categorys[indexPath.section];
             [header dataFill:sectionModel];
             return header;
         }
@@ -269,7 +269,7 @@
     if(indexPath.section == kBannerSectionIdx) {
         return self.rightModel.f_shouldShowBanner ? CGSizeMake(width, kBannerSectionHeight) : CGSizeZero;
     }
-    LXB2CGoodItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
+    LXGoodBaseItemModel *itemModel = self.rightModel.f_goodsList.goodsInfoList[indexPath.row];
     return CGSizeMake(width, itemModel.f_cellHeight);
     // return CGSizeMake(width, 200);
 }

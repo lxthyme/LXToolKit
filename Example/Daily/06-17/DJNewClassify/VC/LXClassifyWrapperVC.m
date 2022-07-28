@@ -81,6 +81,7 @@ static const CGFloat kLabelAllWidth = 35.f;
                     tmp.f_idxType = LXSubCategoryIndexTypeLast;
                 }
                 tmp.f_categoryId = obj2.categoryId;
+                tmp.categorys = obj2.rywCategorys;
                 rightListModel[obj2.categoryId] = tmp;
             }];
             LXClassifyListModel *tmp = [[LXClassifyListModel alloc]init];
@@ -198,7 +199,7 @@ static const CGFloat kLabelAllWidth = 35.f;
         vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         self.classifyVCList[@(index)] = vc;
     }
-    DJO2OCategoryListModel *categoryModel = self.classifyModel.categorys[index];
+    LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.categorys[index];
     LXClassifyListModel *classifyListModel = self.classifyModel.classifyListModel[categoryModel.categoryId];
     [vc dataFill:classifyListModel];
     return vc;

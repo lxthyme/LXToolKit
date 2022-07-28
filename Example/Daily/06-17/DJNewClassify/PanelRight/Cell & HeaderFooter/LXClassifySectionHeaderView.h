@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXClassifySectionHeaderView : LXBaseCollectionReusableView {
 }
 
-- (void)dataFill:(LXLHCategoryModel *)model;
+- (void)dataFill:(LXClassifyBaseCategoryModel *)model;
 
 @end
 

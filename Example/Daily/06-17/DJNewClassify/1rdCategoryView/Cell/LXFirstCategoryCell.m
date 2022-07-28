@@ -61,10 +61,10 @@
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXLHCategoryModel *)categoryModel {
+- (void)dataFill:(DJO2OCategoryListModel *)categoryModel {
     self.labTitle.text = categoryModel.categoryName;
     // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
-    // [self.imgViewLogo setImage:[iBLImage imageNamed:categoryModel.imageNames]];
+    [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]];
 }
 
 #pragma mark -

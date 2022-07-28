@@ -7,7 +7,7 @@
 //
 #import <DJBusinessTools/LXBaseCollectionViewCell.h>
 
-#import "LXLHCategoryModel.h"
+#import "DJO2OCategoryListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)UIColor *normalTextColor;
 @property(nonatomic, strong)UIColor *selectedTextColor;
 
-- (void)dataFill:(LXLHCategoryModel *)categoryModel;
+- (void)dataFill:(DJO2OCategoryListModel *)categoryModel;
 
 /// 预置分类球样式属性
 - (void)prepareCategoryConfig;
 /// cell 高度
-- (CGFloat)cellHeight;
+// - (CGFloat)cellHeight;
 /// 配置分类球属性
 /// @param logoWidth 图标尺寸
 /// @param borderWidth 边框宽度

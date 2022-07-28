@@ -49,7 +49,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXB2CGoodItemModel *)item {
+- (void)dataFill:(LXGoodBaseItemModel *)item {
     /// 1. 标题
     self.labTitle.attributedText = item.f_titleAttributeString;
     /// 2. 副标题

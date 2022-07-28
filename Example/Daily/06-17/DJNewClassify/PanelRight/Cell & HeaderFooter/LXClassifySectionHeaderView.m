@@ -31,7 +31,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(LXLHCategoryModel *)model {
+- (void)dataFill:(LXClassifyBaseCategoryModel *)model {
     self.labTitle.text = model.categoryName;
 }
 

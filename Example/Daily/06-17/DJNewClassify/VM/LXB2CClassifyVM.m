@@ -51,6 +51,10 @@
     }];
     [self.searchGoodsIdsSubject subscribeNext:^(LXB2CGoodsItemListModel *x) {
         @strongify(self)
+        if(x.f_o2oIdsModel.count <= 0) {
+            [self.searchGoodsDetailsSubject sendNext:x];
+            return;
+        }
         NSDictionary *params = @{
             @"ids": x.f_o2oIdsModel.ids,
             @"shuffle": @"0",
@@ -131,6 +135,10 @@
     }];
 }
 - (void)loadSearchGoodsDetailsWithCategoryId:(NSString *)categoryId {
+    if(isEmptyString(categoryId)) {
+        [self.tmp_searchGoodsDetailsErrorSubject sendNext:[NSError errorWithDomain:@"999" code:999 userInfo:@{}]];
+        return;
+    }
     @weakify(self)
     NSDictionary *params = @{
         @"brandIds": @"",

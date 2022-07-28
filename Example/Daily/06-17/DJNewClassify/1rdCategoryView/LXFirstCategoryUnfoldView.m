@@ -22,7 +22,7 @@
     LXFirstCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXFirstCategoryUnfoldCell" forIndexPath:indexPath];
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
-    LXLHCategoryModel *categoryModel = self.dataList[indexPath.row];
+    DJO2OCategoryListModel *categoryModel = self.dataList[indexPath.row];
     [cell dataFill:categoryModel];
     return cell;
 }
