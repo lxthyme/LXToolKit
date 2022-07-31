@@ -18,20 +18,25 @@
 #import "LX1rdCategoryUnfoldView.h"
 #import "LXClassifyEmptyView.h"
 #import "DJClassifyMacro.h"
+#import "LXClassifySkeletonScreen.h"
+#import "LX1rdAllCategoryWrapperView.h"
 
 static const CGFloat kLabelAllWidth = 35.f;
 
 // TODO: 「lxthyme」💊
 @interface LXClassifyWrapperVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate/**, JXCategoryViewListContainer*/> {
 }
+@property(nonatomic, strong)UIStackView *topStackView;
 @property(nonatomic, strong)YYLabel *labAll;
 @property (nonatomic, strong)LX1rdCategoryFoldView *categoryView;
 @property (nonatomic, strong)LX1rdCategoryUnfoldView *allCategoryView;
+@property (nonatomic, strong)LX1rdAllCategoryWrapperView *allCategoryWrapperView;
 @property(nonatomic, strong)UIImageView *imgViewShadowLeft;
 @property(nonatomic, strong)UIImageView *imgViewShadowRight;
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)LXClassifyEmptyView *emptyView;
+@property(nonatomic, strong)LXClassifySkeletonScreen *classifySkeletonScreen;
 /// 页面状态
 @property(nonatomic, assign)LXViewStatus viewStatus;
 
@@ -48,7 +53,7 @@ static const CGFloat kLabelAllWidth = 35.f;
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
-    !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
+    // !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
     self.viewStatus = LXViewStatusLoading;
     [self prepareVM];
     [self prepareUI];
@@ -67,6 +72,14 @@ static const CGFloat kLabelAllWidth = 35.f;
         }
         self.viewStatus = LXViewStatusNormal;
         NSLog(@"categoryModelList: %@", x);
+        self.labAll.hidden = x.count <= 5;
+        CGFloat width = 0.f;
+        if(self.labAll.hidden) {
+            width = SCREEN_WIDTH;
+        } else {
+            width = SCREEN_WIDTH - kLabelAllWidth;
+        }
+        self.categoryView.collectionView.frame = CGRectMake(0, 0, width, kFirstCategoryFoldHeight);
         [self.categoryView dataFill:x];
         [self.allCategoryView dataFill:x];
         /// 一级级目录数据结构
@@ -106,7 +119,6 @@ static const CGFloat kLabelAllWidth = 35.f;
             classifyListModel.f_categorys = obj1.rywCategorys;
             classifyListModel.f_rightModelList = [rightModelList copy];
             classifyList[obj1.categoryId] = classifyListModel;
-            !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(YES);
         }];
         self.classifyModel.f_categorys = x;
         self.classifyModel.f_classifyList = [classifyList copy];
@@ -137,39 +149,6 @@ static const CGFloat kLabelAllWidth = 35.f;
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
-- (void)showFirstCategoryView {
-    if(!self.allMaskView.hidden) {
-        [self dismissFirstCategoryView];
-        return;
-    }
-    self.allMaskView.hidden = NO;
-    POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-    maskAnim.fromValue = @0.f;
-    maskAnim.toValue = @1.f;
-    [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
-    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    anim.fromValue = @(-200.f);
-    anim.toValue = @100.f;
-    anim.springBounciness = 0.f;
-    [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
-}
-- (void)dismissFirstCategoryView {
-    if(self.allMaskView.hidden) {
-        return;
-    }
-    self.allMaskView.hidden = NO;
-    POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
-    maskAnim.fromValue = @1.f;
-    maskAnim.toValue = @0.f;
-    [self.allMaskView.layer pop_addAnimation:maskAnim forKey:@"allMaskView.opacity"];
-    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    anim.fromValue = @100.f;
-    anim.toValue = @(-200.f);
-    anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-        self.allMaskView.hidden = YES;
-    };
-    [self.allCategoryView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
-}
 
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewListContainer
@@ -202,7 +181,7 @@ static const CGFloat kLabelAllWidth = 35.f;
 // }
 - (void)listDidDisappear {
     /// 容器在隐藏时, 隐藏各种弹窗
-    [self dismissFirstCategoryView];
+    [self.allCategoryWrapperView dismissFirstCategoryView];
     NSInteger idx = self.categoryView.selectedIndexPath.row;
     LXClassifyListVC *vc = self.classifyVCList[@(idx)];
     if(vc) {
@@ -248,7 +227,7 @@ static const CGFloat kLabelAllWidth = 35.f;
     [[self.allMaskView rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        [self dismissFirstCategoryView];
+        [self.allCategoryWrapperView dismissFirstCategoryView];
     }];
     [[[RACObserve(self.listContainerView.scrollView, contentOffset) distinctUntilChanged]
       throttle:0.3]
@@ -260,6 +239,7 @@ static const CGFloat kLabelAllWidth = 35.f;
         [self.categoryView selectItemAtIndex:page];
         [self.allCategoryView selectItemAtIndex:page];
         [self.listContainerView didClickSelectedItemAtIndex:page];
+        self.navigationController.interactivePopGestureRecognizer.enabled = (page == 0);
     }];
 
 }
@@ -267,8 +247,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
 
-    [self.view addSubview:self.categoryView];
-    [self.view addSubview:self.labAll];
+    [self.topStackView addArrangedSubview:self.categoryView];
+    [self.topStackView addArrangedSubview:self.labAll];
+    [self.view addSubview:self.topStackView];
     [self.view addSubview:self.imgViewShadowLeft];
     [self.view addSubview:self.imgViewShadowRight];
     [self.view addSubview:self.listContainerView];
@@ -276,20 +257,18 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self.allMaskView addSubview:self.allCategoryView];
     [self.view addSubview:self.allMaskView];
     [self.view addSubview:self.emptyView];
+    [self.view addSubview:self.classifySkeletonScreen];
 
     [self masonry];
 }
 #pragma mark Masonry
 - (void)masonry {
     MASAttachKeys(self.labAll, self.imgViewShadowLeft, self.imgViewShadowRight, self.listContainerView, self.categoryView)
-    [self.categoryView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(@0.f);
+    [self.topStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(@0.f);
         make.height.equalTo(@(kFirstCategoryFoldHeight));
     }];
     [self.labAll mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.categoryView);
-        make.left.equalTo(self.categoryView.mas_right);
-        make.right.equalTo(@0.f);
         make.width.equalTo(@(kLabelAllWidth));
     }];
     [self.imgViewShadowLeft mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -317,6 +296,9 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
+    [self.classifySkeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
 }
 #pragma mark getter / setter
 - (void)setViewStatus:(LXViewStatus)viewStatus {
@@ -326,14 +308,14 @@ static const CGFloat kLabelAllWidth = 35.f;
     _viewStatus = viewStatus;
 
     self.emptyView.hidden = YES;
-    // self.classifySkeletonScreen.hidden = YES;
+    self.classifySkeletonScreen.hidden = YES;
     switch (viewStatus) {
         case LXViewStatusUnknown:
             break;
         case LXViewStatusNormal:
             break;
         case LXViewStatusLoading:
-            // self.classifySkeletonScreen.hidden = NO;
+            self.classifySkeletonScreen.hidden = NO;
             break;
         case LXViewStatusNoData:
             self.emptyView.hidden = NO;
@@ -359,6 +341,15 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _classifyModel;
 }
+- (UIStackView *)topStackView {
+    if(!_topStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisHorizontal;
+        sv.spacing = 0.f;
+        _topStackView = sv;
+    }
+    return _topStackView;
+}
 - (YYLabel *)labAll {
     if(!_labAll){
         YYLabel *lab = [[YYLabel alloc]init];
@@ -381,9 +372,10 @@ static const CGFloat kLabelAllWidth = 35.f;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textVerticalAlignment = YYTextVerticalAlignmentCenter;
         lab.exclusionPaths = @[[UIBezierPath bezierPathWithRect:CGRectZero]];
+        lab.hidden = YES;
         WEAKSELF(self)
         lab.textTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-            [weakSelf showFirstCategoryView];
+            [weakSelf.allCategoryWrapperView showWithContainerView:self.allCategoryView topConstraint:self.categoryView.mas_top];
         };
 
         _labAll = lab;
@@ -429,8 +421,13 @@ static const CGFloat kLabelAllWidth = 35.f;
     }
     return _imgViewShadowRight;
 }
-
-
+- (LX1rdAllCategoryWrapperView *)allCategoryWrapperView {
+    if(!_allCategoryWrapperView){
+        LX1rdAllCategoryWrapperView *v = [[LX1rdAllCategoryWrapperView alloc]init];
+        _allCategoryWrapperView = v;
+    }
+    return _allCategoryWrapperView;
+}
 - (LX1rdCategoryUnfoldView *)allCategoryView {
     if(!_allCategoryView){
         LX1rdCategoryUnfoldView *v = [[LX1rdCategoryUnfoldView alloc]init];
@@ -439,8 +436,9 @@ static const CGFloat kLabelAllWidth = 35.f;
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.navigationController.interactivePopGestureRecognizer.enabled = (idx == 0);
                 [weakSelf.categoryView selectItemAtIndex:idx];
-                [weakSelf dismissFirstCategoryView];
+                [weakSelf.allCategoryWrapperView dismissFirstCategoryView];
                 [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
                 [weakSelf.listContainerView.scrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.scrollView.bounds.size.width, 0) animated:YES];
             });
@@ -475,5 +473,14 @@ static const CGFloat kLabelAllWidth = 35.f;
         _emptyView = v;
     }
     return _emptyView;
+}
+- (LXClassifySkeletonScreen *)classifySkeletonScreen {
+    if(!_classifySkeletonScreen){
+        LXClassifySkeletonScreen *v = [[LXClassifySkeletonScreen alloc]init];
+        v.panelTopView.hidden = YES;
+        v.hidden = YES;
+        _classifySkeletonScreen = v;
+    }
+    return _classifySkeletonScreen;
 }
 @end

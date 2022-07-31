@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 @property(nonatomic, strong)SDCycleScrollView *bannerView;
 @property (nonatomic, strong)LX3rdCategoryView *pinCategoryView;
 @property(nonatomic, strong)UIButton *btnAll;
-@property(nonatomic, strong)UIView *topView;
+@property(nonatomic, strong)UIStackView *topStackView;
 @property(nonatomic, strong)UIView *filterView;
 /// 即时达 最快30分钟
 @property(nonatomic, strong)UIButton *btnJiShiDa;
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGRect rect = self.topView.frame;
+    CGRect rect = self.topStackView.frame;
     if(!CGRectEqualToRect(rect, CGRectZero)) {
         !self.layoutSubviewsCallback ?: self.layoutSubviewsCallback(rect);
     }
@@ -73,7 +73,8 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
     ];
 
-    self.topView.hidden = categoryListModel.count <= 0;
+    self.topStackView.hidden = categoryListModel.count <= 0;
+    self.btnAll.hidden = categoryListModel.count <= 5;
     self.btnJiShiDa.hidden = !shouldShowJiShiDa;
     [self.pinCategoryView dataFill:categoryListModel];
 }
@@ -91,9 +92,9 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 
     // [self.wrapperStackView addArrangedSubview:self.bannerView];
 
-    [self.topView addSubview:self.pinCategoryView];
-    [self.topView addSubview:self.btnAll];
-    [self.wrapperStackView addArrangedSubview:self.topView];
+    [self.topStackView addArrangedSubview:self.pinCategoryView];
+    [self.topStackView addArrangedSubview:self.btnAll];
+    [self.wrapperStackView addArrangedSubview:self.topStackView];
 
     self.filterType = LXSubcategoryFilterTypeJiShiDa;
 
@@ -157,13 +158,13 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     //     make.height.equalTo(@(kBannerSectionHeight));
     // }];
     [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.equalTo(@0.f);
+        // make.top.left.bottom.equalTo(@0.f);
         make.height.equalTo(@(kPinCategoryViewHeight));
     }];
     [self.btnAll mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self.pinCategoryView);
-        make.left.equalTo(self.pinCategoryView.mas_right);
-        make.right.equalTo(@0.f);
+        // make.top.bottom.equalTo(self.pinCategoryView);
+        // make.left.equalTo(self.pinCategoryView.mas_right);
+        // make.right.equalTo(@0.f);
         make.width.equalTo(@35.f);
     }];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -251,12 +252,14 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
     return _bannerView;
 }
-- (UIView *)topView {
-    if(!_topView){
-        UIView *v = [[UIView alloc]init];
-        _topView = v;
+- (UIStackView *)topStackView {
+    if(!_topStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisHorizontal;
+        sv.spacing = 0.f;
+        _topStackView = sv;
     }
-    return _topView;
+    return _topStackView;
 }
 - (LX3rdCategoryView *)pinCategoryView {
     if(!_pinCategoryView){

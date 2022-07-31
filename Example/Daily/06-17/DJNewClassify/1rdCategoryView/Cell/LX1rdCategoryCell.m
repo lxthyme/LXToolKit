@@ -24,7 +24,8 @@
 @property(nonatomic, strong)UIImageView *imgViewBgLogo;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
 @property(nonatomic, strong)UIView *logView;
-@property(nonatomic, strong)LXLabel *labTitle;
+// @property(nonatomic, strong)LXLabel *labTitle;
+@property(nonatomic, strong)UIButton *btnTitle;
 
 @end
 
@@ -45,24 +46,30 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     // Configure the view for the selected state
+    self.btnTitle.selected = selected;
     if(selected) {
         // self.imgViewLogo.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
         self.logView.layer.borderWidth = kWPercentage(1.5f);
-        self.labTitle.backgroundColor = [UIColor colorWithHex:0xFF774F];
-        self.labTitle.textColor = self.selectedTextColor;
-        self.labTitle.font = [UIFont boldSystemFontOfSize:11.f];
+        self.btnTitle.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        // self.labTitle.textColor = self.selectedTextColor;
+        self.btnTitle.titleLabel.font = [UIFont boldSystemFontOfSize:11.f];
     } else {
         // self.imgViewLogo.layer.borderColor = [UIColor whiteColor].CGColor;
         self.logView.layer.borderWidth = 0.f;
-        self.labTitle.backgroundColor = [UIColor clearColor];
-        self.labTitle.textColor = self.normalTextColor;
-        self.labTitle.font = [UIFont systemFontOfSize:11.f];
+        self.btnTitle.backgroundColor = [UIColor clearColor];
+        // self.labTitle.textColor = self.normalTextColor;
+        self.btnTitle.titleLabel.font = [UIFont systemFontOfSize:11.f];
     }
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(DJO2OCategoryListModel *)categoryModel {
-    self.labTitle.text = categoryModel.categoryName;
+    NSString *categoryName = categoryModel.categoryName;
+    if(categoryName.length >= 4) {
+        categoryName = [categoryName substringWithRange:NSMakeRange(0, 4)];
+    }
+    // self.labTitle.text = categoryName;
+    [self.btnTitle setTitle:categoryName forState:UIControlStateNormal];
     // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
     [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]];
 }
@@ -102,10 +109,10 @@
                           labelHeight:kWPercentage(17.f)];
 }
 - (void)prepareUI {
-    [self.logView addSubview:self.imgViewBgLogo];
     [self.imgViewBgLogo addSubview:self.imgViewLogo];
+    [self.logView addSubview:self.imgViewBgLogo];
     [self.wrapperStackView addArrangedSubview:self.logView];
-    [self.wrapperStackView addArrangedSubview:self.labTitle];
+    [self.wrapperStackView addArrangedSubview:self.btnTitle];
     [self.contentView addSubview:self.wrapperStackView];
 
     [self masonry];
@@ -117,8 +124,9 @@
     }
     _selectedTextColor = selectedTextColor;
     if(self.isSelected) {
-        self.labTitle.textColor = selectedTextColor;
+        // self.labTitle.textColor = selectedTextColor;
     }
+    [self.btnTitle setTitleColor:selectedTextColor forState:UIControlStateSelected];
 }
 - (void)setNormalTextColor:(UIColor *)normalTextColor {
     if([normalTextColor isEqual:_normalTextColor]) {
@@ -126,8 +134,9 @@
     }
     _normalTextColor = normalTextColor;
     if(!self.isSelected) {
-        self.labTitle.textColor = normalTextColor;
+        // self.labTitle.textColor = normalTextColor;
     }
+    [self.btnTitle setTitleColor:normalTextColor forState:UIControlStateNormal];
 }
 #pragma mark Masonry
 - (void)masonry {
@@ -137,16 +146,24 @@
         make.left.greaterThanOrEqualTo(@0.f);
         make.bottom.right.lessThanOrEqualTo(@0.f);
     }];
-    [self.imgViewBgLogo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.logView).inset(__borderWidth);
-    }];
     [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.imgViewBgLogo).inset(__borderWidth);
         make.width.height.equalTo(@(__logoWidth));
     }];
-    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.imgViewBgLogo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.logView).inset(__borderWidth);
+    }];
+    // [self.logView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //     make.top.equalTo(@0.f);
+    //     make.centerX.equalTo(@0.f);
+    // }];
+    // [self.labTitle setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    // [self.labTitle setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.btnTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        // make.top.equalTo(self.logView.mas_bottom).offset(__wrapperSpacing);
+        // make.centerX.equalTo(@0.f);
         make.height.equalTo(@(__labelHeight));
-        make.width.greaterThanOrEqualTo(@(20.f));
+        // make.width.greaterThanOrEqualTo(@(25.f));
     }];
 }
 
@@ -198,21 +215,36 @@
     return _imgViewBgLogo;
 }
 
-- (LXLabel *)labTitle {
-    if(!_labTitle){
-        LXLabel *label = [[LXLabel alloc]init];
-        label.text = @"";
-        label.font = [UIFont systemFontOfSize:11.f];
-        label.textColor = [UIColor blackColor];
-        label.numberOfLines = 1;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.lineBreakMode = NSLineBreakByTruncatingTail;
-        label.clipsToBounds = YES;
-        label.layer.cornerRadius = __labelHeight / 2.f;
-        label.x_insets = UIEdgeInsetsMake(kWPercentage(1.f), kWPercentage(3.5f), kWPercentage(1.f), kWPercentage(3.5f));
+// - (LXLabel *)labTitle {
+//     if(!_labTitle){
+//         LXLabel *label = [[LXLabel alloc]init];
+//         label.text = @"";
+//         label.font = [UIFont systemFontOfSize:11.f];
+//         label.textColor = [UIColor blackColor];
+//         label.numberOfLines = 1;
+//         label.textAlignment = NSTextAlignmentCenter;
+//         label.lineBreakMode = NSLineBreakByTruncatingTail;
+//         label.clipsToBounds = YES;
+//         label.layer.cornerRadius = __labelHeight / 2.f;
+//         label.x_insets = UIEdgeInsetsMake(kWPercentage(1.f), kWPercentage(3.5f), kWPercentage(1.f), kWPercentage(3.5f));
+//
+//         _labTitle = label;
+//     }
+//     return _labTitle;
+// }
+- (UIButton *)btnTitle {
+    if(!_btnTitle){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.titleLabel.font = [UIFont systemFontOfSize:11.f];
+        btn.contentEdgeInsets = UIEdgeInsetsMake(kWPercentage(1.f), kWPercentage(5.f), kWPercentage(1.f), kWPercentage(5.f));
+        btn.userInteractionEnabled = NO;
+        btn.layer.cornerRadius = __labelHeight / 2.f;
 
-        _labTitle = label;
+        [btn setTitle:@"" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _btnTitle = btn;
     }
-    return _labTitle;
+    return _btnTitle;
 }
 @end

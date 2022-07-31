@@ -242,7 +242,9 @@
         [self formatGoodsList:NO];
     }
     NSInteger realIdx = idx;
-    if(self.classifyType == DJClassifyTypeO2O && !self.rightModel.f_showAll) {
+    if(self.classifyType == DJClassifyTypeO2O &&
+       !self.rightModel.f_showAll &&
+       idx > 0) {
         realIdx += 1;
     }
     if(realIdx >= 0 &&

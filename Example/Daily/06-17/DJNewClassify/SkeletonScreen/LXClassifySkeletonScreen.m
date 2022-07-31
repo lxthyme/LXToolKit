@@ -82,6 +82,7 @@
 
 @interface LXClassifySkeletonScreen() {
 }
+@property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UIView *panelTopView;
 @property(nonatomic, strong)UIView *searchView;
 @property(nonatomic, strong)LXCategorySkeletonScreen *categoryView1;
@@ -91,6 +92,7 @@
 @property(nonatomic, strong)LXCategorySkeletonScreen *categoryView5;
 @property(nonatomic, strong)LXCategorySkeletonScreen *categoryView6;
 
+@property(nonatomic, strong)UIView *classifyListView;
 @property(nonatomic, strong)UIView *panelLeftView;
 @property(nonatomic, strong)LXClassifyRightSkeletonScreen *panelRightView;
 
@@ -149,17 +151,22 @@
     [self.panelTopView addSubview:self.categoryView4];
     [self.panelTopView addSubview:self.categoryView5];
     [self.panelTopView addSubview:self.categoryView6];
-    [self addSubview:self.panelTopView];
+    [self.wrapperStackView addArrangedSubview:self.panelTopView];
 
-    [self addSubview:self.panelLeftView];
-    [self addSubview:self.panelRightView];
+    [self.classifyListView addSubview:self.panelLeftView];
+    [self.classifyListView addSubview:self.panelRightView];
+    [self.wrapperStackView addArrangedSubview:self.classifyListView];
 
     [self.panelBottomView addSubview:self.tabbarView1];
     [self.panelBottomView addSubview:self.tabbarView2];
     [self.panelBottomView addSubview:self.tabbarView3];
     [self.panelBottomView addSubview:self.tabbarView4];
     [self.panelBottomView addSubview:self.tabbarLineView];
-    [self addSubview:self.panelBottomView];
+    [self.wrapperStackView addArrangedSubview:self.panelBottomView];
+
+    [self addSubview:self.wrapperStackView];
+
+    self.panelBottomView.hidden = YES;
 
     [self masonry];
     [self masonryPanelTopView];
@@ -170,13 +177,14 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     CGFloat topPading = iPhoneX.xl_safeareaInsets.top + kWPercentage(44.f + 67.5f);
+    [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
     [self.panelTopView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(@0.f);
         make.height.equalTo(@(topPading));
     }];
     [self.panelLeftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.panelTopView.mas_bottom);
-        make.left.equalTo(@0.f);
+        make.top.left.bottom.equalTo(@0.f);
         make.width.equalTo(@(kWPercentage(50.f)));
     }];
     [self.panelRightView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -184,14 +192,7 @@
         make.left.equalTo(self.panelLeftView.mas_right);
         make.right.equalTo(@0.f);
     }];
-    MASViewAttribute *bottomAttribute = self.mas_bottom;
-    if (@available(iOS 11.0, *)) {
-        bottomAttribute = self.mas_safeAreaLayoutGuideBottom;
-    }
     [self.panelBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.panelLeftView.mas_bottom);
-        make.left.right.equalTo(@0.f);
-        make.bottom.equalTo(bottomAttribute);
         make.height.equalTo(@(kWPercentage(50.f)));
     }];
 }
@@ -258,6 +259,15 @@
 }
 
 #pragma mark Lazy Property
+- (UIStackView *)wrapperStackView {
+    if(!_wrapperStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisVertical;
+        sv.spacing = 0.f;
+        _wrapperStackView = sv;
+    }
+    return _wrapperStackView;
+}
 - (UIView *)panelTopView {
     if(!_panelTopView){
         UIView *v = [[UIView alloc]init];
@@ -274,6 +284,13 @@
         _searchView = v;
     }
     return _searchView;
+}
+- (UIView *)classifyListView {
+    if(!_classifyListView){
+        UIView *v = [[UIView alloc]init];
+        _classifyListView = v;
+    }
+    return _classifyListView;
 }
 - (UIView *)panelLeftView {
     if(!_panelLeftView){

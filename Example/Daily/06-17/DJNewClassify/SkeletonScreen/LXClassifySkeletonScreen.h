@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifySkeletonScreen: LXBaseView {
 }
+@property(nonatomic, strong, readonly)UIView *panelTopView;
 
 @end
 

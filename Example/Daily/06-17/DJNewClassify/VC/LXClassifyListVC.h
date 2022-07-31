@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
-@property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
+// @property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 
 - (void)dataFill:(LXClassifyListModel *)cateogryModel;
 - (void)updateGoodItem:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;

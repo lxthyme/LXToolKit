@@ -43,23 +43,23 @@
     [super viewWillAppear:YES];
     // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
     __navigationBarHidden = self.navigationController.navigationBarHidden;
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
     self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    // self.navigationController.navigationBar.hidden = __navigationBarHidden;
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
     // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-    self.navigationController.navigationBarHidden = __navigationBarHidden;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,7 +79,7 @@
     @weakify(self)
     [self.b2cVM.shopResourseSubject subscribeNext:^(LXShopResourceModel *shopResourceModel) {
         @strongify(self)
-        self.viewStatus = LXViewStatusNormal;
+        // self.viewStatus = LXViewStatusNormal;
         DJOnlineDeployList *onlineDeployItem = shopResourceModel.onlineDeployList.firstObject;
         NSMutableArray *titleList = [NSMutableArray array];
         DJStoreManager *gStore = [DJStoreManager sharedInstance];

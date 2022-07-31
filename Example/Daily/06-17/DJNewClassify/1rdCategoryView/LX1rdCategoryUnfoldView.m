@@ -11,7 +11,6 @@
 
 @interface LX1rdCategoryUnfoldView() {
 }
-@property(nonatomic, strong)UILabel *labTitle;
 
 @end
 
@@ -33,6 +32,9 @@
     CGFloat itemWidth = floor(width / 5.f);
     return CGSizeMake(itemWidth, kFirstCategoryUnfoldHeight);
 }
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return kWPercentage(20.f);
+}
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, kWPercentage(5.f), 0, kWPercentage(5.f));
 }
@@ -45,7 +47,6 @@
 - (void)prepareUI {
     self.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
 
-    [self addSubview:self.labTitle];
     [self addSubview:self.collectionView];
 
     [self masonry];
@@ -54,30 +55,10 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.labTitle mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@0.f);
-        make.left.equalTo(@(kWPercentage(15.f)));
-        make.right.equalTo(@(kWPercentage(-15.f)));
-        make.height.equalTo(@(kWPercentage(38.5f)));
-    }];
     [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.labTitle.mas_bottom);
-        make.left.right.bottom.equalTo(@0.f);
+        make.edges.equalTo(@0.f);
     }];
 }
 
 #pragma mark Lazy Property
-- (UILabel *)labTitle {
-    if(!_labTitle){
-        UILabel *label = [[UILabel alloc]init];
-        label.text = @"全部分类";
-        label.font = [UIFont boldSystemFontOfSize:kWPercentage(13.5f)];
-        label.textColor = [UIColor colorWithHex:0x333333];
-        label.numberOfLines = 1;
-        label.textAlignment = NSTextAlignmentLeft;
-        label.lineBreakMode = NSLineBreakByTruncatingTail;
-        _labTitle = label;
-    }
-    return _labTitle;
-}
 @end

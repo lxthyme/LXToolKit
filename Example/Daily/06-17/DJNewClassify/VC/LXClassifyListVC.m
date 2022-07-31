@@ -37,7 +37,7 @@
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
-    !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
+    // !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(NO);
     [self prepareUI];
 }
 
