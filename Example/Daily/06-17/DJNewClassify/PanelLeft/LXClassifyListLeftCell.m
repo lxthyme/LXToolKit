@@ -34,6 +34,10 @@
 }
 - (void)prepareForReuse {
     [super prepareForReuse];
+
+    self.labTitle.text = @"";
+    self.imgViewLogo.hidden = YES;
+    self.imgViewLogo.image = nil;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -60,8 +64,17 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSString *)title {
-    self.labTitle.text = title;
+- (void)dataFill:(NSString *)title logo:(NSString *)urlString {
+    NSString *tmp_title = title;
+    if(tmp_title.length >= 4) {
+        tmp_title = [tmp_title substringWithRange:NSMakeRange(0, 4)];
+    }
+    self.labTitle.text = tmp_title;
+
+    if(!isEmptyString(urlString)) {
+        self.imgViewLogo.hidden = NO;
+        [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:urlString]];
+    }
 }
 
 #pragma mark -
@@ -87,6 +100,8 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.greaterThanOrEqualTo(@(kWPercentage(10.f)));
+        make.right.lessThanOrEqualTo(@(kWPercentage(-10.f)));
         make.center.equalTo(@0.f);
         // make.height.equalTo(@20.f);
     }];
@@ -137,9 +152,9 @@
         label.text = @"";
         label.font = [UIFont systemFontOfSize:12.f];
         label.textColor = kNormalTextColor;
-        label.numberOfLines = 0;
+        label.numberOfLines = 1;
         label.textAlignment = NSTextAlignmentCenter;
-        label.lineBreakMode = NSLineBreakByTruncatingTail;
+        label.lineBreakMode = NSLineBreakByClipping;
         _labTitle = label;
     }
     return _labTitle;

@@ -7,7 +7,7 @@
 //
 #import "LX1rdAllCategoryWrapperView.h"
 
-#import <Masonry/Masonry.h>
+#import <pop/POP.h>
 
 @interface LX1rdAllCategoryWrapperView() {
 }

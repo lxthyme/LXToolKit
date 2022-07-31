@@ -22,11 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 默认为YES
 @property (nonatomic, assign) BOOL isHeaderRefreshed;
 
-- (void)viewWillAppear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewDidAppear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewWillDisappear:(BOOL)animated __attribute__((objc_requires_super));
-- (void)viewDidDisappear:(BOOL)animated NS_REQUIRES_SUPER;
-
 @end
 
 NS_ASSUME_NONNULL_END

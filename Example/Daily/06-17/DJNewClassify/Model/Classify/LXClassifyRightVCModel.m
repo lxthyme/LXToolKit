@@ -7,6 +7,26 @@
 //
 #import "LXClassifyRightVCModel.h"
 
+// @implementation LXO2OGoodsInfoModel
+// 
+// #pragma mark -
+// #pragma mark - 👀Public Actions
+// 
+// #pragma mark -
+// #pragma mark - 🔐Private Actions
+// 
+// @end
+
+@implementation LXClassifyGoodsInfoModel
+
+#pragma mark -
+#pragma mark - 👀Public Actions
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+
+@end
+
 @interface LXClassifyRightModel() {
 }
 

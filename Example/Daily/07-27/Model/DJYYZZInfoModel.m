@@ -13,7 +13,7 @@
 @end
 
 @implementation DJYYZZInfoModel
-+ (NSDictionary *)modelContainerPropertyGenericClass {
++ (NSDictionary *)modelCustomPropertyMapper {
     return @{
         @"t_id": @"id"
     };

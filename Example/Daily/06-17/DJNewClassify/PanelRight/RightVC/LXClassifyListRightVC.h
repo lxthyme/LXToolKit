@@ -2,9 +2,10 @@
 //  LXClassifyListRightVC.h
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/7/30.
+//  Created by lxthyme on 2022/6/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
+
 #import <DJBusinessTools/LXBaseVC.h>
 
 #import "DJClassifyMacro.h"
@@ -14,13 +15,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXClassifyListRightVC: LXBaseVC {
+@interface LXClassifyListRightVC : LXBaseVC {
 }
 @property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
-- (void)dataFill:(LXClassifyRightModel *)rightModel showAll:(BOOL)showAll;
+- (void)dataFill:(LXClassifyRightModel *)rightModel;
 
 - (void)dismissAllCategoryView;
 

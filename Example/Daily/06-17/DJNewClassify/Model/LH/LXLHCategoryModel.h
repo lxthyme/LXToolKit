@@ -10,8 +10,11 @@
 #import "LXClassifyBaseCategoryModel.h"
 
 typedef NS_ENUM(NSInteger, LXSubCategoryIndexType) {
+    /// 二级目录中间次序
     LXSubCategoryIndexTypeDefault,
+    /// 二级目录第一个
     LXSubCategoryIndexTypeFirst,
+    /// 二级目录最后一个
     LXSubCategoryIndexTypeLast
 };
 

@@ -17,8 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property (nonatomic, strong, readonly)LX3rdCategoryView *pinCategoryView;
 @property(nonatomic, copy)void (^toggleShowAll)(UIButton *btn);
+@property (nonatomic, copy) void(^layoutSubviewsCallback)(CGRect rect);
 
-- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel;
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel shouldShowJiShiDa:(BOOL)shouldShowJiShiDa;
 
 @end
 

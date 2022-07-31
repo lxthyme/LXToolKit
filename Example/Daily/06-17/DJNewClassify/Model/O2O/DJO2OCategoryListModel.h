@@ -6,6 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXClassifyBaseCategoryModel.h"
+#import "DJClassifyMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,11 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 二级分类
 @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *rywCategorys;
 /// 「only 二级目录」是否展示全部 1是 0否
-@property (nonatomic, strong)NSNumber *showAll;
+@property (nonatomic, assign)NSInteger showAll;
 /// 「only 二级目录」目录图标
 @property (nonatomic, copy)NSString *categoryIcon;
 /// 「only 二级目录」三级分类id集合，默认逗号隔开，无三级分类则为当前二级分类id（仅二级有这个参数）
 @property (nonatomic, copy)NSString *endCateIds;
+
+// @property(nonatomic, assign)LXClassifyGoodItemType f_itemType;
+/// 二级分类
+// @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *f_rywCategorys;
 
 @end
 

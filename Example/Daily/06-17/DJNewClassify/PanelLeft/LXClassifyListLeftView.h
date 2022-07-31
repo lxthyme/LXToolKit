@@ -8,6 +8,7 @@
 #import <DJBusinessTools/LXBaseView.h>
 
 #import "LXClassifyBaseCategoryModel.h"
+#import "DJClassifyMacro.h"
 
 typedef NS_ENUM(NSInteger, LXClassifyLeftScrollType) {
     LXClassifyLeftScrollTypePrevious = 1,
@@ -18,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXClassifyListLeftView : LXBaseView {
 }
+@property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 
 - (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)dataList;

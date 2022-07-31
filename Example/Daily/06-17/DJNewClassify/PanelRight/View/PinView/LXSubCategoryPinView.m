@@ -6,6 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXSubCategoryPinView.h"
+#import <SDCycleScrollView/SDCycleScrollView.h>
 
 /// filter 类型
 typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
@@ -19,9 +20,10 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     LXSubcategoryFilterTypeSale = 4
 };
 
-@interface LXSubCategoryPinView() {
+@interface LXSubCategoryPinView()<SDCycleScrollViewDelegate> {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
+@property(nonatomic, strong)SDCycleScrollView *bannerView;
 @property (nonatomic, strong)LX3rdCategoryView *pinCategoryView;
 @property(nonatomic, strong)UIButton *btnAll;
 @property(nonatomic, strong)UIView *topView;
@@ -52,16 +54,27 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
     }
     return self;
 }
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect rect = self.topView.frame;
+    if(!CGRectEqualToRect(rect, CGRectZero)) {
+        !self.layoutSubviewsCallback ?: self.layoutSubviewsCallback(rect);
+    }
+}
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel {
-    // self.subCateogryModel = subCateogryModel;
-    // NSArray *titleList = [[subCateogryModel.sectionList.rac_sequence skip:1]
-    //                                map:^id _Nullable(LXSectionModel * _Nullable value) {
-    //     return value.title;
-    // }].array;
+- (void)dataFill:(NSArray<LXClassifyBaseCategoryModel *> *)categoryListModel shouldShowJiShiDa:(BOOL)shouldShowJiShiDa {
+    self.bannerView.imageURLStringsGroup = @[
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
+    ];
+
     self.topView.hidden = categoryListModel.count <= 0;
+    self.btnJiShiDa.hidden = !shouldShowJiShiDa;
     [self.pinCategoryView dataFill:categoryListModel];
 }
 
@@ -75,6 +88,8 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
+
+    // [self.wrapperStackView addArrangedSubview:self.bannerView];
 
     [self.topView addSubview:self.pinCategoryView];
     [self.topView addSubview:self.btnAll];
@@ -138,6 +153,9 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         make.left.equalTo(@(kWPercentage(10.f)));
         make.right.equalTo(@(kWPercentage(-10.f)));
     }];
+    // [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //     make.height.equalTo(@(kBannerSectionHeight));
+    // }];
     [self.pinCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.equalTo(@0.f);
         make.height.equalTo(@(kPinCategoryViewHeight));
@@ -221,6 +239,17 @@ typedef NS_ENUM(NSInteger, LXSubcategoryFilterType) {
         _wrapperStackView = sv;
     }
     return _wrapperStackView;
+}
+- (SDCycleScrollView *)bannerView {
+    if(!_bannerView){
+        SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
+        v.delegate = self;
+        v.placeholderImage = [iBLImage imageNamed:@""];
+        v.layer.cornerRadius = kWPercentage(4.f);
+        v.clipsToBounds = YES;
+        _bannerView = v;
+    }
+    return _bannerView;
 }
 - (UIView *)topView {
     if(!_topView){

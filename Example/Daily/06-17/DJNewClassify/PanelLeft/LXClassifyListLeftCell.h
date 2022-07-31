@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXClassifyListLeftCell : LXBaseTableViewCell {
 }
 
-- (void)dataFill:(NSString *)title;
+- (void)dataFill:(NSString *)title logo:(NSString * _Nullable)urlString;
 
 @end
 

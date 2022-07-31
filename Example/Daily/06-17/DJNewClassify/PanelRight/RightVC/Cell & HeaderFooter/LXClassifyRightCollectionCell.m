@@ -32,8 +32,8 @@
 @implementation LXClassifyRightCollectionCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         [self prepareUI];
     }
@@ -53,8 +53,8 @@
     self.tagWrapperView.hidden = YES;
     self.td24HView.hidden = YES;
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
     // Configure the view for the selected state
 }
 

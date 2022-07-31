@@ -24,6 +24,15 @@ typedef NS_ENUM(NSInteger, LXViewStatus) {
     LXViewStatusOffline
 };
 
+typedef NS_ENUM(NSInteger, LXClassifyGoodItemType) {
+    // LXClassifyGoodItemTypeUnknown,
+    LXClassifyGoodItemTypeB2C,
+    LXClassifyGoodItemTypeO2O,
+    // LXClassifyGoodItemTypeBanner,
+    LXClassifyGoodItemTypePinCategoryView,
+    LXClassifyGoodItemTypeEmpty
+};
+
 // MARK: - 🔥一级分类配置
 typedef NS_ENUM(NSInteger, DJClassifyType) {
     DJClassifyTypeB2C = 1,
@@ -42,7 +51,7 @@ static const NSUInteger kBannerSectionIdx = 0;
 /// 三级分类页 banner 的高度
 #define kBannerSectionHeight kWPercentage(90.f)
 /// 三级分类页悬浮内容所在的 section
-static const NSUInteger kPinCategoryViewSectionIndex = 1;
+static const NSUInteger kPinCategoryViewSectionIndex = 0;
 
 /// 三级分类 view 高度
 #define kPinCategoryViewHeight kWPercentage(44.f)
@@ -74,3 +83,10 @@ static const NSUInteger kPinCategoryViewSectionIndex = 1;
 #define kPriceWrapperHeight kWPercentage(32.5f)
 
 #endif /* DJClassifyMacro_h */
+
+
+
+// TODO: 「lxthyme」💊
+/// 1. errorSubject sendNext:**LXViewStatus**
+/// 2. 没有三级目录 === 没有数据(现状: 没有三级目录, 但是有数据)
+// END

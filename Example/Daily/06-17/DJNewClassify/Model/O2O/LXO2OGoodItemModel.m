@@ -15,9 +15,10 @@
 @implementation LXO2OGoodItemModel
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-+ (NSDictionary *)modelContainerPropertyGenericClass {
++ (NSDictionary *)modelCustomPropertyMapper {
     return @{
         @"t_id": @"id"
+
     };
 }
 

@@ -17,8 +17,8 @@
 @implementation LXClassifyListBannerCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         [self prepareUI];
     }
@@ -27,8 +27,8 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
     // Configure the view for the selected state
 }
 

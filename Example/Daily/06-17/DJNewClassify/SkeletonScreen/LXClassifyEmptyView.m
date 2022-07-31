@@ -89,7 +89,7 @@
         make.bottom.centerX.equalTo(@0.f);
     }];
     [self.btnLeft mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(kWPercentage(27.f)));
+        make.top.equalTo(self.wrapperView.mas_bottom).offset(kWPercentage(27.f));
         make.left.equalTo(@(kWPercentage(59.f)));
         make.height.equalTo(@(kWPercentage(30.f)));
     }];

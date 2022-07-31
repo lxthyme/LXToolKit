@@ -8,6 +8,7 @@
 #import "LXClassifyListLeftView.h"
 
 #import "LXClassifyListLeftCell.h"
+#import "DJO2OCategoryListModel.h"
 
 @interface LXClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
@@ -93,7 +94,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LXClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LXClassifyListLeftCell" forIndexPath:indexPath];
     LXClassifyBaseCategoryModel *categoryModel = self.dataList[indexPath.row];
-    [cell dataFill:categoryModel.categoryName];
+    if(self.classifyType == DJClassifyTypeO2O) {
+        DJO2OCategoryListModel *tmp = (DJO2OCategoryListModel *)categoryModel;
+        [cell dataFill:categoryModel.categoryName logo:tmp.categoryIcon];
+    } else {
+        [cell dataFill:categoryModel.categoryName logo:nil];
+    }
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate

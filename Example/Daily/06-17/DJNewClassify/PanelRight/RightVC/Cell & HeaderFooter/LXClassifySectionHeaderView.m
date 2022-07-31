@@ -18,8 +18,8 @@
 @implementation LXClassifySectionHeaderView
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithReuseIdentifier:reuseIdentifier];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         [self prepareUI];
     }

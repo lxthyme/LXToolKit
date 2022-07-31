@@ -13,6 +13,7 @@
 
 #import "DJGoodsIdsModel.h"
 #import "LXO2OGoodItemModel.h"
+#import "LXClassifyRightVCModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,7 +39,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询 O2O 目录
 - (void)loadShopCategory;
 /// 查询 O2O 商品信息
-- (void)loadSearchGoodsDetailsWithCategoryId:(NSString *)categoryId;
+- (void)loadSearchGoodsDetailsWith:(NSString *)o2oCategoryId
+                        endCateIds:(NSString *)endCateIds
+                             isAll:(BOOL)isAll;
 /// 查询 B2C 目录
 - (void)loadProductSearchDoCategoryByLevOne;
 /// 查询 B2C 商品信息

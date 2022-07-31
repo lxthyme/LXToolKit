@@ -67,9 +67,6 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 
-    DJStoreManager *gStore = [DJStoreManager sharedInstance];
-    gStore.djHomeStyle = DAOJIA;
-
     [self prepareUI];
     [self bindVM];
     self.viewStatus = LXViewStatusLoading;
@@ -79,17 +76,13 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)bindVM {
-    DJStoreManager *gStore = [DJStoreManager sharedInstance];
-    gStore.djModuleType = FIRSTMEDICINE;
-    // gStore.djModuleType = COMMONTYPE;
-    // gStore.djHomeStyle = DAOJIA;
-
     @weakify(self)
-    [[self.b2cVM.shopResourseSubject delay:1.f] subscribeNext:^(LXShopResourceModel *shopResourceModel) {
+    [self.b2cVM.shopResourseSubject subscribeNext:^(LXShopResourceModel *shopResourceModel) {
         @strongify(self)
         self.viewStatus = LXViewStatusNormal;
         DJOnlineDeployList *onlineDeployItem = shopResourceModel.onlineDeployList.firstObject;
         NSMutableArray *titleList = [NSMutableArray array];
+        DJStoreManager *gStore = [DJStoreManager sharedInstance];
         if (gStore.djModuleType == FIRSTMEDICINE) {
             NSString *picDesc1 = onlineDeployItem.picDesc1;
             if(isEmptyString(picDesc1)) {
@@ -170,10 +163,10 @@
     } else {
         LXB2CClassifyWrapperVC *vc = [[LXB2CClassifyWrapperVC alloc]init];
         vc.b2cVM = self.b2cVM;
-        vc.toggleSkeletonScreenBlock = ^(BOOL isHidden) {
-            @strongify(self)
-            self.classifySkeletonScreen.hidden = isHidden;
-        };
+        // vc.toggleSkeletonScreenBlock = ^(BOOL isHidden) {
+        //     @strongify(self)
+        //     self.classifySkeletonScreen.hidden = isHidden;
+        // };
         return vc;
     }
 }

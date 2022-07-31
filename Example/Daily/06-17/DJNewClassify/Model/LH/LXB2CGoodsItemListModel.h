@@ -9,6 +9,7 @@
 #import "LXGoodBaseItemModel.h"
 #import "LXO2OGoodItemModel.h"
 #import "DJGoodsIdsModel.h"
+#import "DJO2OCategoryListModel.h"
 
 @class LXB2CGoodItemModel;
 
@@ -26,28 +27,35 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger totalPage;
 @property (nonatomic, assign)NSInteger pageNum;
 @property (nonatomic, assign)NSInteger pageSize;
-@property (nonatomic, copy)NSArray<LXGoodBaseItemModel *> *goodsInfoList;
-@property (nonatomic, copy)NSString *f_categoryId;
-
-/// 「only O2O」
-// @property (nonatomic, copy)NSArray<LXO2OGoodItemModel *> *f_o2oGoodsInfo;
-@property (nonatomic, strong)DJGoodsIdsModel *f_o2oIdsModel;
+@property (nonatomic, copy)NSArray<LXB2CGoodItemModel *> *goodsInfoList;
 
 @end
 
 @interface LXB2CGoodItemModel: LXGoodBaseItemModel {
 }
+// @property (nonatomic, copy)NSString *type;
+// @property (nonatomic, copy)NSString *goodsType;
 
 @property (nonatomic, assign)NSInteger sid;
 @property (nonatomic, copy)NSString *salesName;
 @property (nonatomic, copy)NSString *brandSid;
+// @property (nonatomic, copy)NSString *basePrice;
+// @property (nonatomic, copy)NSString *salePrice;
+// @property (nonatomic, copy)NSString *saleStockSum;
+// @property (nonatomic, copy)NSString *saleStockStatus;
+// @property (nonatomic, copy)NSString *limitBuyPersonSum;
 @property (nonatomic, strong)NSDictionary *pic;
+// @property (nonatomic, copy)NSString *marketOn;
+// @property (nonatomic, copy)NSString *priceType;
+// @property (nonatomic, copy)NSArray<DJGoodItemPopinfosList *> *popinfosList;
+// @property (nonatomic, copy)NSArray *previewList;
+// @property (nonatomic, copy)NSArray *xgList;
 @property (nonatomic, assign)NSInteger goodsScore;
 @property (nonatomic, assign)NSInteger secondaryScore;
 @property (nonatomic, assign)NSInteger score;
 @property (nonatomic, assign)NSInteger pageSortField;
 @property (nonatomic, assign)NSInteger rowNum;
-
+// @property (nonatomic, assign)NSInteger minBuyQuan;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -6,6 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBaseModel.h"
+#import "DJClassifyMacro.h"
 @class DJGoodItemPopinfosList;
 @class DJGoodItemRule;
 
@@ -38,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)RACSequence *f_popinfosList;
 @property(nonatomic, assign)CGFloat f_cellHeight;
 @property(nonatomic, assign)CGFloat f_titleMaxWidth;
+@property(nonatomic, assign)LXClassifyGoodItemType f_itemType;
 
 - (NSString *)xl_goodsName;
 

@@ -11,6 +11,7 @@
 #import <YYModel/YYModel.h>
 #import <JXCategoryView/JXCategoryView.h>
 #import <pop/POP.h>
+#import <BLNetworking/CTAPIBaseManager.h>
 
 #import "LXClassifyListVC.h"
 #import "LX1rdCategoryFoldView.h"
@@ -69,44 +70,65 @@ static const CGFloat kLabelAllWidth = 35.f;
         [self.categoryView dataFill:x];
         [self.allCategoryView dataFill:x];
         /// 一级级目录数据结构
-        NSMutableDictionary<NSString *, LXClassifyListModel *> *classifyListModel = [NSMutableDictionary dictionary];
+        NSMutableDictionary<NSString *, LXClassifyListModel *> *classifyList = [NSMutableDictionary dictionary];
         [x enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
             /// 二级级目录数据结构
-            NSMutableDictionary<NSString *, LXClassifyRightModel *> *rightListModel = [NSMutableDictionary dictionary];
+            NSMutableDictionary<NSString *, LXClassifyRightModel *> *rightModelList = [NSMutableDictionary dictionary];
             [obj1.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
-                LXClassifyRightModel *tmp = [[LXClassifyRightModel alloc]init];
+                /// section 0
+                // NSMutableArray *f_rywCategorys = [NSMutableArray array];
+                // DJO2OCategoryListModel *item = [[DJO2OCategoryListModel alloc]init];
+                // item.f_itemType = LXClassifyGoodItemTypeBanner;
+                // [f_rywCategorys addObject:item];
+                // [obj2.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                //     // obj.f_itemType = LXClassifyGoodItemTypeO2O;
+                // }];
+                // [f_rywCategorys addObjectsFromArray:obj2.rywCategorys];
+                // obj2.f_rywCategorys = [f_rywCategorys copy];
+
+                LXClassifyRightModel *rightModel = [[LXClassifyRightModel alloc]init];
                 if(idx2 == 0) {
-                    tmp.f_idxType = LXSubCategoryIndexTypeFirst;
-                } else if(idx2 == obj2.rywCategorys.count - 1) {
-                    tmp.f_idxType = LXSubCategoryIndexTypeLast;
+                    rightModel.f_idxType = LXSubCategoryIndexTypeFirst;
+                } else if(idx2 == obj1.rywCategorys.count - 1) {
+                    rightModel.f_idxType = LXSubCategoryIndexTypeLast;
                 }
-                tmp.f_categoryId = obj2.categoryId;
-                tmp.categorys = obj2.rywCategorys;
-                rightListModel[obj2.categoryId] = tmp;
+                rightModel.f_2rdCategoryId = obj2.categoryId;
+                rightModel.f_itemType = LXClassifyGoodItemTypeO2O;
+                rightModel.f_shouldShowBanner = YES;
+                // rightModel.f_shouldShowJiShiDa = YES;
+                rightModel.f_showAll = obj2.showAll == 1;
+                rightModel.f_categorys = obj2.rywCategorys;
+                rightModel.f_o2oCategoryModel = obj2;
+                rightModelList[obj2.categoryId] = rightModel;
             }];
-            LXClassifyListModel *tmp = [[LXClassifyListModel alloc]init];
-            tmp.f_categoryId = obj1.categoryId;
-            tmp.categorys = obj1.rywCategorys;
-            tmp.rightListModel = [rightListModel copy];
-            classifyListModel[obj1.categoryId] = tmp;
+            LXClassifyListModel *classifyListModel = [[LXClassifyListModel alloc]init];
+            classifyListModel.f_1rdCategoryId = obj1.categoryId;
+            classifyListModel.f_categorys = obj1.rywCategorys;
+            classifyListModel.f_rightModelList = [rightModelList copy];
+            classifyList[obj1.categoryId] = classifyListModel;
             !self.toggleSkeletonScreenBlock ?: self.toggleSkeletonScreenBlock(YES);
         }];
-        self.classifyModel.categorys = x;
-        self.classifyModel.classifyListModel = [classifyListModel copy];
+        self.classifyModel.f_categorys = x;
+        self.classifyModel.f_classifyList = [classifyList copy];
         [self.listContainerView reloadData];
     }];
     [self.b2cVM.shopCategoryErrorSubject subscribeNext:^(CTAPIBaseManager *apiManager) {
         self.viewStatus = LXViewStatusOffline;
         NSLog(@"error_productSearchDoCategoryByLevOneErrorSubject: %@", apiManager);
     }];
-    [self.b2cVM.searchGoodsDetailsSubject subscribeNext:^(LXB2CGoodsItemListModel *x) {
+    [self.b2cVM.searchGoodsDetailsSubject subscribeNext:^(RACTuple *x) {
+        NSString *o2oCategoryId = x.first;
+        BOOL isAll = [x.second boolValue];
+        NSArray<LXClassifyGoodsInfoModel *> *goodsInfoList = x.third;
         @strongify(self)
         NSLog(@"goodsList: %@", x);
         NSInteger idx = self.categoryView.selectedIndexPath.row;
         LXClassifyListVC *vc = self.classifyVCList[@(idx)];
-        [vc updateGoodItem:x];
-    }];
-    [self.b2cVM.searchGoodsDetailsErrorSubject subscribeNext:^(id x) {
+        if(isAll) {
+            [vc updateGoodItemOnlyAll:o2oCategoryId goodsInfoList:goodsInfoList];
+        } else {
+            [vc updateGoodItemAllSection:o2oCategoryId goodsInfoList:goodsInfoList];
+        }
     }];
 }
 
@@ -169,6 +191,15 @@ static const CGFloat kLabelAllWidth = 35.f;
 - (UIView *)listView {
     return self.view;
 }
+// - (void)listDidAppear {
+//     NSInteger idx = self.categoryView.selectedIndexPath.row;
+//     LXClassifyListVC *vc = self.classifyVCList[@(idx)];
+//     if(vc) {
+//         LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.f_categorys[idx];
+//         LXClassifyListModel *classifyListModel = self.classifyModel.f_classifyList[categoryModel.categoryId];
+//         [vc dataFill:classifyListModel];
+//     }
+// }
 - (void)listDidDisappear {
     /// 容器在隐藏时, 隐藏各种弹窗
     [self dismissFirstCategoryView];
@@ -188,7 +219,7 @@ static const CGFloat kLabelAllWidth = 35.f;
 #pragma mark -
 #pragma mark - ✈️JXCategoryListContainerViewDelegate
 - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView {
-    return self.classifyModel.categorys.count;
+    return self.classifyModel.f_categorys.count;
 }
 - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView initListForIndex:(NSInteger)index {
     LXClassifyListVC *vc = self.classifyVCList[@(index)];
@@ -199,8 +230,8 @@ static const CGFloat kLabelAllWidth = 35.f;
         vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
         self.classifyVCList[@(index)] = vc;
     }
-    LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.categorys[index];
-    LXClassifyListModel *classifyListModel = self.classifyModel.classifyListModel[categoryModel.categoryId];
+    LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.f_categorys[index];
+    LXClassifyListModel *classifyListModel = self.classifyModel.f_classifyList[categoryModel.categoryId];
     [vc dataFill:classifyListModel];
     return vc;
 }
@@ -370,8 +401,9 @@ static const CGFloat kLabelAllWidth = 35.f;
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.navigationController.interactivePopGestureRecognizer.enabled = (idx == 0);
                 [weakSelf.allCategoryView selectItemAtIndex:idx];
-                // [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
                 [weakSelf.listContainerView.scrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.scrollView.bounds.size.width, 0) animated:YES];
             });
         };
@@ -408,8 +440,8 @@ static const CGFloat kLabelAllWidth = 35.f;
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.categoryView selectItemAtIndex:idx];
-                // [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
                 [weakSelf dismissFirstCategoryView];
+                [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
                 [weakSelf.listContainerView.scrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.scrollView.bounds.size.width, 0) animated:YES];
             });
         };
