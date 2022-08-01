@@ -109,8 +109,11 @@
         if(self.rightModel.f_shouldShowBanner) {
             LXClassifyListBannerCell *banner = [[LXClassifyListBannerCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LXClassifyListBannerCell"];
             // banner.f_itemType = LXClassifyGoodItemTypeBanner;
-            banner.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight);
-            self.table.tableHeaderView = banner;
+            banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), CGRectGetWidth(self.table.frame) - kWPercentage(10.f * 2), kBannerSectionHeight);
+            UIView *tableHeaderView = [[UIView alloc]init];
+            tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight + kWPercentage(10.f));
+            [tableHeaderView addSubview:banner];
+            self.table.tableHeaderView = tableHeaderView;
 
             // self.pinView.frame = CGRectMake(0, 0, SCREEN_WIDTH - kLeftTableWidth, __pinViewHeight);
             // self.table.tableHeaderView = self.pinView;
@@ -250,18 +253,17 @@
     if(realIdx >= 0 &&
        realIdx < self.goodsList.count &&
        realIdx < [self.table numberOfSections]) {
-        // NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:realIdx];
-        // if(ip.section < [self.table numberOfSections] &&
-        //    ip.row < [self.table numberOfRowsInSection:ip.section]) {
-            // [self.table selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionTop];
+        if(realIdx == 0) {
+            [self.table setContentOffset:CGPointZero animated:YES];
+        } else {
             CGRect sectionRect = [self.table rectForSection:realIdx];
             CGPoint offset = CGPointMake(0, CGRectGetMinY(sectionRect) - __pinViewHeight);
             offset.y = MIN(offset.y, self.table.contentSize.height - CGRectGetHeight(self.table.frame));
             [self.table setContentOffset:offset animated:YES];
-        } else {
-            NSLog(@"-->3. ip invalid: (%ld)", realIdx);
         }
-    // }
+    } else {
+        NSLog(@"-->3. ip invalid: (%ld)", realIdx);
+    }
 }
 - (void)dismissAllCategoryView {
     if(self.allMaskView.hidden) {

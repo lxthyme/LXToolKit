@@ -138,7 +138,7 @@
         UITableView *t = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         t.tableHeaderView = [UIView new];
         t.tableFooterView = [UIView new];
-        t.backgroundColor = [UIColor lightGrayColor];
+        t.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         t.indicatorStyle = UIScrollViewIndicatorStyleDefault;
         t.separatorStyle = UITableViewCellSeparatorStyleNone;

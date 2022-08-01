@@ -39,9 +39,13 @@
     if(self = [super init]) {
         [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
         DJStoreManager *gStore = [DJStoreManager sharedInstance];
-        // gStore.djModuleType = FIRSTMEDICINE;
-        gStore.djModuleType = COMMONTYPE;
-        gStore.djHomeStyle = DAOJIA;
+        /// 仅即时达
+        gStore.djModuleType = FIRSTMEDICINE;
+        /// 即时达 + 超市精选
+        // gStore.djModuleType = COMMONTYPE;
+        // gStore.djHomeStyle = DAOJIA;
+        /// 超市精选
+        // gStore.djHomeStyle = LIANHUA;
         [self prepareUI];
         [self bindVM];
     }
@@ -129,6 +133,36 @@
         }];
     }];
 }
+/// 搜索框数据
+- (void)loadO2OSearch {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    NSString *resourceId = @"20220606";
+
+    @weakify(self)
+    [self.shopResourseAPIManager loadDataWithParams:@{
+        @"channelId": @1,
+        @"merchantId": gStore.merchantId,
+        @"resourceIds": resourceId,
+        @"status": @4,
+    } success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        BOOL success = boolFromObject(apiManager.response.content, @"success");
+        if(success) {
+            NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
+            NSArray<LXShopResourceModel *> *shopResourceList = [NSArray yy_modelArrayWithClass:[LXShopResourceModel class] json:obj];
+            LXShopResourceModel *shopResourceModel = [shopResourceList.rac_sequence filter:^BOOL(LXShopResourceModel *value) {
+                return [value.resourceId isEqualToString:resourceId];
+            }].head;
+            [self.o2oSearchSubject sendNext:shopResourceModel];
+        } else {
+            [self.o2oSearchErrorSubject sendNext:apiManager];
+        }
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.o2oSearchErrorSubject sendNext:apiManager];
+    }];
+}
+
 /// 查询分类标题
 - (void)loadShopResource {
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
@@ -311,6 +345,8 @@
     self.productSearchDoCategoryByLevOneErrorSubject = [RACSubject subject];
     self.v2SearchForLHApiSubject = [RACSubject subject];
     self.v2SearchForLHApiErrorSubject = [RACSubject subject];
+    self.o2oSearchSubject = [RACSubject subject];
+    self.o2oSearchErrorSubject = [RACSubject subject];
 }
 #pragma mark -
 #pragma mark Lazy Property

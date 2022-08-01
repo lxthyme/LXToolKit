@@ -314,7 +314,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
 
     [self addChildViewController:self.pageVC];
     LXClassifyListRightVC *vc = [self vcAtIdx:0];

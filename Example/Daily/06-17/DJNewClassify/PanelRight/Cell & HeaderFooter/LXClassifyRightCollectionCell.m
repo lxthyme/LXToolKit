@@ -203,7 +203,7 @@
     // MASAttachKeys(<#...#>)
     [self.imgViewGoodsLogo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.greaterThanOrEqualTo(@(kPadding));
-        make.left.equalTo(@0.f);
+        make.left.equalTo(@(kWPercentage(10.f)));
         make.bottom.lessThanOrEqualTo(@(kPadding));
         make.width.height.equalTo(@(kLogoWidth));
         make.centerY.equalTo(@0.f);
@@ -211,7 +211,7 @@
     [self.titleStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.greaterThanOrEqualTo(@(kPadding));
         make.left.equalTo(self.imgViewGoodsLogo.mas_right).offset(kPadding);
-        make.right.lessThanOrEqualTo(@0.f);
+        make.right.lessThanOrEqualTo(@(kWPercentage(-10.f)));
     }];
     [self.tagWrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kTagListHeight));
@@ -222,7 +222,7 @@
     }];
     [self.addCartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleStackView.mas_bottom).offset(kPadding);
-        make.right.equalTo(@0.f);
+        make.right.equalTo(@(kWPercentage(-10.f)));
         make.bottom.lessThanOrEqualTo(@(-kPadding));
     }];
 }
@@ -232,7 +232,7 @@
     if(!_imgViewGoodsLogo){
         UIImageView *iv = [[UIImageView alloc]init];
         iv.contentMode = UIViewContentModeScaleAspectFit;
-        iv.backgroundColor = [UIColor lightGrayColor];
+        iv.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         // iv.image = [UIImage imageNamed:@""];
         _imgViewGoodsLogo = iv;
     }

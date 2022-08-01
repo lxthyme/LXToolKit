@@ -31,6 +31,18 @@
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
 }
+#pragma mark -
+#pragma mark - 🌎LoadData
+- (void)dataFill {
+    self.bannerView.autoScroll = YES;
+    self.bannerView.imageURLStringsGroup = @[
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
+    ];
+}
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -43,13 +55,6 @@
 - (void)prepareUI {
     self.contentView.backgroundColor = [UIColor whiteColor];
 
-    self.bannerView.imageURLStringsGroup = @[
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
-    ];
     [self.contentView addSubview:self.bannerView];
 
     [self masonry];
@@ -67,6 +72,8 @@
 - (SDCycleScrollView *)bannerView {
     if(!_bannerView){
         SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
+        v.autoScrollTimeInterval = 3.f;
+        v.infiniteLoop = YES;
         v.delegate = self;
         v.placeholderImage = [iBLImage imageNamed:@""];
         v.layer.cornerRadius = kWPercentage(4.f);

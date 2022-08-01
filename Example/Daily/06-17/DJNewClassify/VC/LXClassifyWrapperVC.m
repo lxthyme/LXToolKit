@@ -59,6 +59,7 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self prepareUI];
     [self bindVM];
     [self.b2cVM loadShopCategory];
+    [self.b2cVM loadO2OSearch];
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
@@ -108,7 +109,7 @@ static const CGFloat kLabelAllWidth = 35.f;
                 rightModel.f_2rdCategoryId = obj2.categoryId;
                 rightModel.f_itemType = LXClassifyGoodItemTypeO2O;
                 rightModel.f_shouldShowBanner = YES;
-                // rightModel.f_shouldShowJiShiDa = YES;
+                rightModel.f_shouldShowJiShiDa = YES;
                 rightModel.f_showAll = obj2.showAll == 1;
                 rightModel.f_categorys = obj2.rywCategorys;
                 rightModel.f_o2oCategoryModel = obj2;
@@ -141,6 +142,9 @@ static const CGFloat kLabelAllWidth = 35.f;
         } else {
             [vc updateGoodItemAllSection:o2oCategoryId goodsInfoList:goodsInfoList];
         }
+    }];
+    [self.b2cVM.o2oSearchSubject subscribeNext:^(id x) {
+        NSLog(@"x: %@", x);
     }];
 }
 

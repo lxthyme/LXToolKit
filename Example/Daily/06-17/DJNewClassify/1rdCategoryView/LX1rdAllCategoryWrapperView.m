@@ -47,7 +47,7 @@
 #pragma mark - 🔐Private Actions
 - (void)showWithContainerView:(UIView *)containerView topConstraint:(MASViewAttribute *)topConstraint {
     if(self.superview) {
-        [self dismissFirstCategoryView];
+        [self dismissFirstCategoryViewAnimation];
         return;
     }
     [self.containerView addSubview:containerView];
@@ -66,10 +66,10 @@
     maskAnim.fromValue = @0.f;
     maskAnim.toValue = @1.f;
     [self.layer pop_addAnimation:maskAnim forKey:@"MaskView.opacity"];
-    // POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    // anim.fromValue = @(kWPercentage(-400.f));
-    // anim.springBounciness = 0.f;
-    // [self.wrapperView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+    anim.fromValue = @(kWPercentage(-400.f));
+    anim.springBounciness = 0.f;
+    [self.wrapperView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
 }
 - (void)dismissFirstCategoryView {
     if(!self.superview) {
@@ -78,7 +78,20 @@
     POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     maskAnim.fromValue = @1.f;
     maskAnim.toValue = @0.f;
+    maskAnim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        [self removeFromSuperview];
+    };
     [self.layer pop_addAnimation:maskAnim forKey:@"MaskView.opacity"];
+}
+- (void)dismissFirstCategoryViewAnimation {
+    if(!self.superview) {
+        return;
+    }
+    POPSpringAnimation *maskAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    maskAnim.fromValue = @1.f;
+    maskAnim.toValue = @0.f;
+    [self.layer pop_addAnimation:maskAnim forKey:@"MaskView.opacity"];
+
     POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
     anim.toValue = @(kWPercentage(-400.f));
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
@@ -91,7 +104,7 @@
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.backgroundColor = [UIColor colorWithHex:0x000000 alpha:0.7f];
-    [self addTarget:self action:@selector(dismissFirstCategoryView) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(dismissFirstCategoryViewAnimation) forControlEvents:UIControlEventTouchUpInside];
 
     [self.wrapperView addSubview:self.labTitle];
     [self.wrapperView addSubview:self.containerView];
@@ -181,7 +194,7 @@
 - (UIControl *)btnBottom {
     if(!_btnBottom){
         UIControl *v = [[UIControl alloc]init];
-        [v addTarget:self action:@selector(dismissFirstCategoryView) forControlEvents:UIControlEventTouchUpInside];
+        [v addTarget:self action:@selector(dismissFirstCategoryViewAnimation) forControlEvents:UIControlEventTouchUpInside];
         _btnBottom = v;
     }
     return _btnBottom;

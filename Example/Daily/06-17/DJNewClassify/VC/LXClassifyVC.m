@@ -16,24 +16,32 @@
 #import "LXB2CClassifyVM.h"
 #import <DJGlobalStoreManager/DJStoreManager.h>
 #import "DJClassifyMacro.h"
+#import "TXScrollLabelView.h"
 
 #define kCategoryHeight kWPercentage(44.f)
 
-@interface LXClassifyVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
+@interface LXClassifyVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate, TXScrollLabelViewDelegate> {
     BOOL __navigationBarHidden;
 }
 @property(nonatomic, strong)UIView *panelTopView;
-@property(nonatomic, strong)UITextField *tfSearch;
+/// 「即时达」
+@property(nonatomic, strong)TXScrollLabelView *tfSearch;
+/// 「即时达 + 超市精选」
 @property (nonatomic, strong)JXCategoryTitleView *categoryView;
 @property (nonatomic, strong)NSArray *titles;
-@property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
+/// 「超市精选」
+@property(nonatomic, strong)UILabel *labJingXuan;
 @property(nonatomic, strong)UIButton *btnSearch;
+
+@property (nonatomic, strong)JXCategoryListContainerView *listContainerView;
 @property(nonatomic, strong)UIView *separateLineView;
 @property(nonatomic, strong)LXClassifySkeletonScreen *classifySkeletonScreen;
 @property(nonatomic, strong)LXClassifyEmptyView *emptyView;
 /// 页面状态
 @property(nonatomic, assign)LXViewStatus viewStatus;
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
+/// 顶部搜索资源位🔍数据
+@property(nonatomic, strong)LXShopResourceModel *searchResourceModel;
 @end
 
 @implementation LXClassifyVC
@@ -83,7 +91,13 @@
         DJOnlineDeployList *onlineDeployItem = shopResourceModel.onlineDeployList.firstObject;
         NSMutableArray *titleList = [NSMutableArray array];
         DJStoreManager *gStore = [DJStoreManager sharedInstance];
+        self.tfSearch.hidden = YES;
+        self.categoryView.hidden = YES;
+        self.btnSearch.hidden = YES;
+        self.labJingXuan.hidden = YES;
         if (gStore.djModuleType == FIRSTMEDICINE) {
+            self.tfSearch.hidden = NO;
+
             NSString *picDesc1 = onlineDeployItem.picDesc1;
             if(isEmptyString(picDesc1)) {
                 picDesc1 = @"即时达";
@@ -91,12 +105,19 @@
             [titleList addObject:picDesc1];
         }else {
             if (gStore.djHomeStyle == LIANHUA) {
+                self.labJingXuan.hidden = NO;
+                self.btnSearch.hidden = NO;
+
                 NSString *picDesc2 = onlineDeployItem.picDesc2;
                 if(isEmptyString(picDesc2)) {
                     picDesc2 = @"优选市集";
                 }
                 [titleList addObject:picDesc2];
+                self.labJingXuan.text = picDesc2;
             }else {
+                self.categoryView.hidden = NO;
+                self.btnSearch.hidden = NO;
+
                 NSString *picDesc1 = onlineDeployItem.picDesc1;
                 if(isEmptyString(picDesc1)) {
                     picDesc1 = @"即时达";
@@ -107,24 +128,47 @@
                     picDesc2 = @"优选市集";
                 }
                 [titleList addObject:picDesc2];
+                self.labJingXuan.text = picDesc2;
             }
         }
         self.titles = [titleList copy];
         self.categoryView.titles = self.titles;
-        if(titleList.count == 1) {
-            self.categoryView.hidden = YES;
-            self.tfSearch.hidden = NO;
-        } else {
-            self.categoryView.hidden = NO;
-            self.tfSearch.hidden = YES;
-        }
+        // if(titleList.count == 1) {
+        //     self.categoryView.hidden = YES;
+        //     self.tfSearch.hidden = NO;
+        // } else {
+        //     self.categoryView.hidden = NO;
+        //     self.tfSearch.hidden = YES;
+        // }
         [self.categoryView reloadData];
         [self.listContainerView reloadData];
-        self.classifySkeletonScreen.hidden = YES;
+        self.viewStatus = LXViewStatusNormal;
     }];
     [self.b2cVM.shopResourseErrorSubject subscribeNext:^(id x) {
         @strongify(self)
         self.viewStatus = LXViewStatusOffline;
+    }];
+    [self.b2cVM.o2oSearchSubject subscribeNext:^(LXShopResourceModel *x) {
+        self.searchResourceModel = x;
+        NSArray *titleList = [[x.onlineDeployList.rac_sequence map:^id(DJOnlineDeployList *value) {
+            return value.picDesc1;
+        }] filter:^BOOL(NSString *value) {
+            return !isEmptyString(value);
+        }].array;
+        if(titleList.count <= 0) {
+            titleList = @[@"搜索您想买的商品"];
+        }
+        [self.tfSearch changeTextArray:titleList
+                                  type:TXScrollLabelViewTypeFlipNoRepeat
+                              velocity:2
+                               options:UIViewAnimationOptionCurveEaseInOut
+                                 inset:UIEdgeInsetsMake(kWPercentage(8), kWPercentage(40.f), 0, 0)];
+        self.tfSearch.frame = CGRectMake(kWPercentage(15.f), kWPercentage(6.f), SCREEN_WIDTH - kWPercentage(15.f * 2), kWPercentage(32.f));
+        if(titleList.count > 1) {
+            [self.tfSearch beginScrolling];
+        } else {
+            [self.tfSearch endScrolling];
+        }
     }];
 }
 
@@ -133,6 +177,14 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+
+#pragma mark -
+#pragma mark - ✈️TXScrollLabelViewDelegate
+- (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index {
+    if(index < self.searchResourceModel.onlineDeployList.count) {
+        DJOnlineDeployList *deployItem = self.searchResourceModel.onlineDeployList[index];
+    }
+}
 
 #pragma mark -
 #pragma mark - ✈️JXCategoryListContentViewDelegate
@@ -191,8 +243,9 @@
 
     [self.panelTopView addSubview:self.tfSearch];
     [self.categoryView addSubview:self.separateLineView];
-    [self.categoryView addSubview:self.btnSearch];
+    [self.panelTopView addSubview:self.btnSearch];
     [self.panelTopView addSubview:self.categoryView];
+    [self.panelTopView addSubview:self.labJingXuan];
     [self.view addSubview:self.panelTopView];
 
     [self.view addSubview:self.listContainerView];
@@ -255,8 +308,11 @@
     }];
     [self.btnSearch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@(kWPercentage(-15.f)));
-        make.centerY.equalTo(self.categoryView);
+        make.centerY.equalTo(@0.f);
         make.width.height.equalTo(@(kWPercentage(23.f)));
+    }];
+    [self.labJingXuan mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(@0.f);
     }];
     [self.listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.panelTopView.mas_bottom);
@@ -273,34 +329,72 @@
 - (UIView *)panelTopView {
     if(!_panelTopView){
         UIView *v = [[UIView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
+        v.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         _panelTopView = v;
     }
     return _panelTopView;
 }
-- (UITextField *)tfSearch {
+// - (UITextField *)tfSearch {
+//     if(!_tfSearch){
+//         //<UITextFieldDelegate>
+//         UITextField *tf = [[UITextField alloc]init];
+//         tf.placeholder = @"牛奶";
+//         tf.returnKeyType = UIReturnKeyDone;
+//         tf.keyboardType = UIKeyboardTypeDefault;
+//         tf.layer.cornerRadius = kWPercentage(16.f);
+//         tf.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+//         tf.layer.borderWidth = 1.f;
+//
+//         UIImageView *imgView = [[UIImageView alloc]init];
+//         imgView.image = [iBLImage imageNamed:@"icon_classify_search"];
+//         imgView.frame = CGRectMake(kWPercentage(15.f), kWPercentage(9.f), kWPercentage(14.f), kWPercentage(14.f));
+//         UIView *leftView = [[UIView alloc]init];
+//         leftView.frame = CGRectMake(0, 0, kWPercentage(39.f), kWPercentage(32.f));
+//         [leftView addSubview:imgView];
+//         tf.leftView = leftView;
+//         tf.leftViewMode = UITextFieldViewModeAlways;
+//
+//         _tfSearch = tf;
+//     }
+//     return _tfSearch;
+// }
+- (TXScrollLabelView *)tfSearch {
     if(!_tfSearch){
-        //<UITextFieldDelegate>
-        UITextField *tf = [[UITextField alloc]init];
-        tf.placeholder = @"牛奶";
-        tf.returnKeyType = UIReturnKeyDone;
-        tf.keyboardType = UIKeyboardTypeDefault;
-        tf.layer.cornerRadius = kWPercentage(16.f);
-        tf.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
-        tf.layer.borderWidth = 1.f;
+        TXScrollLabelView *v = [[TXScrollLabelView alloc]
+                                initWithTitle:@"搜索您想买的商品"
+                                type:TXScrollLabelViewTypeFlipNoRepeat
+                                velocity:2
+                                options:UIViewAnimationOptionCurveEaseInOut
+                                inset:UIEdgeInsetsMake(kWPercentage(8), kWPercentage(40.f), 0, 0)];
+        v.backgroundColor = [UIColor whiteColor];
+        v.layer.cornerRadius = kWPercentage(16.f);
+        v.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        v.layer.borderWidth = 1.f;
+        v.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+        v.scrollTitleColor = [UIColor colorWithHex:0x999999];
+        v.delegate = self;
 
         UIImageView *imgView = [[UIImageView alloc]init];
         imgView.image = [iBLImage imageNamed:@"icon_classify_search"];
         imgView.frame = CGRectMake(kWPercentage(15.f), kWPercentage(9.f), kWPercentage(14.f), kWPercentage(14.f));
-        UIView *leftView = [[UIView alloc]init];
-        leftView.frame = CGRectMake(0, 0, kWPercentage(39.f), kWPercentage(32.f));
-        [leftView addSubview:imgView];
-        tf.leftView = leftView;
-        tf.leftViewMode = UITextFieldViewModeAlways;
+        [v addSubview:imgView];
 
-        _tfSearch = tf;
+        _tfSearch = v;
     }
     return _tfSearch;
+}
+- (UILabel *)labJingXuan {
+    if(!_labJingXuan){
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"";
+        label.font = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
+        label.textColor = [UIColor colorWithHex:0x333333];
+        label.numberOfLines = 1;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.lineBreakMode = NSLineBreakByTruncatingTail;
+        _labJingXuan = label;
+    }
+    return _labJingXuan;
 }
 - (JXCategoryTitleView *)categoryView {
     if(!_categoryView){
@@ -342,7 +436,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.backgroundColor = [UIColor clearColor];
 
-        [btn setBackgroundImage:[UIImage imageNamed:@"icon_classify_search"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[iBLImage imageNamed:@"icon_classify_search"] forState:UIControlStateNormal];
         _btnSearch = btn;
     }
     return _btnSearch;
