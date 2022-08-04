@@ -28,11 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSArray *xgList;
 @property (nonatomic, assign)NSInteger minBuyQuan;
 
-@property (nonatomic, copy)NSString *subtitle233;
-@property (nonatomic, copy)NSString *tdType233;
-@property (nonatomic, copy)NSString *tdLable233;
+// @property (nonatomic, copy)NSString *subtitle233;
+// @property (nonatomic, copy)NSString *tdType233;
+// @property (nonatomic, copy)NSString *tdLable233;
 @property (nonatomic, assign)NSInteger num233;
-@property (nonatomic, copy)NSString *icon233;
+// @property (nonatomic, copy)NSString *icon233;
 @property(nonatomic, copy)NSAttributedString *f_titleAttributeString;
 @property(nonatomic, copy)NSAttributedString *f_subtitleAttributeString;
 /// RACSequence<DJGoodItemPopinfosList *>
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *ruleid;
 @property (nonatomic, copy)NSString *discountType;
 @property (nonatomic, copy)NSString *conditionType;
-@property (nonatomic, copy)NSString *ruletype;
+@property (nonatomic, assign)DJRuleType ruletype;
 @property (nonatomic, copy)NSString *ruleName;
 @property (nonatomic, copy)NSString *activityDesc;
 @property (nonatomic, copy)NSString *activityId;

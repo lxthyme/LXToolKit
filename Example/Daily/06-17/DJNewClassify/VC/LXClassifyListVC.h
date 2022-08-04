@@ -20,9 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 // @property(nonatomic, copy)void (^toggleSkeletonScreenBlock)(BOOL isHidden);
 
 - (void)dataFill:(LXClassifyListModel *)cateogryModel;
-- (void)updateGoodItem:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
-- (void)updateGoodItemOnlyAll:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
-- (void)updateGoodItemAllSection:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
+- (void)dataFillWithBannerInfo:(LXShopResourceModel *)bannerInfo categoryId:(NSString *)categoryId;
+- (void)updateGoodItem:(NSString *)categoryId
+         goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
+- (void)updateGoodItemOnlyAll:(NSString *)categoryId
+                goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
+- (void)updateGoodItemAllSection:(NSString *)categoryId
+                   goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList;
 
 @end
 

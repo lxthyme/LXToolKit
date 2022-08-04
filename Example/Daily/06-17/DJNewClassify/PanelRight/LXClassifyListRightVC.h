@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)LXB2CClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
-- (void)dataFill:(LXClassifyRightModel *)rightModel showAll:(BOOL)showAll;
+- (void)dataFillWithBannerInfo:(LXShopResourceModel *)bannerInfo;
+- (void)dataFill:(LXClassifyRightModel *)rightModel
+         showAll:(BOOL)showAll;
 
 - (void)dismissAllCategoryView;
 

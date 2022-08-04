@@ -59,7 +59,6 @@ static const CGFloat kLabelAllWidth = 35.f;
     [self prepareUI];
     [self bindVM];
     [self.b2cVM loadShopCategory];
-    [self.b2cVM loadO2OSearch];
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
@@ -106,12 +105,20 @@ static const CGFloat kLabelAllWidth = 35.f;
                 } else if(idx2 == obj1.rywCategorys.count - 1) {
                     rightModel.f_idxType = LXSubCategoryIndexTypeLast;
                 }
+                if(obj2.rywCategorys.count > 0) {
+                    rightModel.f_categorys = obj2.rywCategorys;
+                } else {
+                    obj2.showAll = 1;
+                    DJO2OCategoryListModel *all = [[DJO2OCategoryListModel alloc]init];
+                    all.categoryId = @"-1";
+                    all.categoryName = @"全部";
+                    rightModel.f_categorys = @[all];
+                }
                 rightModel.f_2rdCategoryId = obj2.categoryId;
                 rightModel.f_itemType = LXClassifyGoodItemTypeO2O;
                 rightModel.f_shouldShowBanner = YES;
                 rightModel.f_shouldShowJiShiDa = YES;
                 rightModel.f_showAll = obj2.showAll == 1;
-                rightModel.f_categorys = obj2.rywCategorys;
                 rightModel.f_o2oCategoryModel = obj2;
                 rightModelList[obj2.categoryId] = rightModel;
             }];
@@ -144,7 +151,17 @@ static const CGFloat kLabelAllWidth = 35.f;
         }
     }];
     [self.b2cVM.o2oSearchSubject subscribeNext:^(id x) {
+        @strongify(self)
         NSLog(@"x: %@", x);
+        // LXClassifyBaseCategoryModel *categoryModel = self.classifyModel.f_categorys[index];
+        // LXClassifyListModel *classifyListModel = self.classifyModel.f_classifyList[categoryModel.categoryId];
+    }];
+    [self.b2cVM.o2oBannerSubject subscribeNext:^(RACTuple *x) {
+        NSString *o2oCategoryId = x.first;
+        LXShopResourceModel *bannerInfo = x.second;
+        NSInteger idx = self.categoryView.selectedIndexPath.row;
+        LXClassifyListVC *vc = self.classifyVCList[@(idx)];
+        [vc dataFillWithBannerInfo:bannerInfo categoryId:o2oCategoryId];
     }];
 }
 

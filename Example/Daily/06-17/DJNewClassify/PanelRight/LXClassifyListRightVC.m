@@ -81,7 +81,27 @@
         NSLog(@"v2SearchForLHApiErrorSubject: %@", apiManager);
     }];
 }
-- (void)dataFill:(LXClassifyRightModel *)rightModel showAll:(BOOL)showAll {
+- (void)dataFillWithBannerInfo:(LXShopResourceModel *)bannerInfo {
+    NSArray<DJOnlineDeployList *> *onlineDeployList = bannerInfo.onlineDeployList;
+    if(!self.rightModel.f_shouldShowBanner || onlineDeployList.count <= 0) {
+        UIView *bannerView = [[UIView alloc]init];
+        bannerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), CGFLOAT_MIN);
+        self.table.tableHeaderView = bannerView;
+        [self.table reloadData];
+        return;
+    }
+    LXClassifyListBannerCell *banner = [[LXClassifyListBannerCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LXClassifyListBannerCell"];
+    // banner.f_itemType = LXClassifyGoodItemTypeBanner;
+    banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), CGRectGetWidth(self.table.frame) - kWPercentage(10.f * 2), kBannerSectionHeight);
+    [banner dataFill:self.rightModel.f_bannerInfo];
+    UIView *tableHeaderView = [[UIView alloc]init];
+    tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight + kWPercentage(10.f));
+    [tableHeaderView addSubview:banner];
+    self.table.tableHeaderView = tableHeaderView;
+    [self.table reloadData];
+}
+- (void)dataFill:(LXClassifyRightModel *)rightModel
+         showAll:(BOOL)showAll {
     self.rightModel = rightModel;
     [self.pinView dataFill:rightModel.f_categorys shouldShowJiShiDa:rightModel.f_shouldShowJiShiDa];
     [self.allCategoryView dataFill:rightModel.f_categorys];
@@ -96,9 +116,14 @@
     }
     __pinViewHeight = h;
 
-    [self formatGoodsList:showAll];
+    if(self.rightModel.pinIdx == 0) {
+        self.isAll = self.rightModel.f_showAll;
+    } else {
+        self.isAll = NO;
+    }
+    [self formatGoodsList];
 }
-- (void)formatGoodsList:(BOOL)showAll {
+- (void)formatGoodsList {
     BOOL __shouldRefresh = NO;
     NSMutableArray *goodsList = [NSMutableArray array];
     if(self.classifyType == DJClassifyTypeB2C) {
@@ -106,49 +131,31 @@
         __shouldRefresh = YES;
         [goodsList addObject:self.rightModel.f_goodsInfoModel];
     } else if(self.classifyType == DJClassifyTypeO2O) {
-        if(self.rightModel.f_shouldShowBanner) {
-            LXClassifyListBannerCell *banner = [[LXClassifyListBannerCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LXClassifyListBannerCell"];
-            // banner.f_itemType = LXClassifyGoodItemTypeBanner;
-            banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), CGRectGetWidth(self.table.frame) - kWPercentage(10.f * 2), kBannerSectionHeight);
-            UIView *tableHeaderView = [[UIView alloc]init];
-            tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight + kWPercentage(10.f));
-            [tableHeaderView addSubview:banner];
-            self.table.tableHeaderView = tableHeaderView;
-
-            // self.pinView.frame = CGRectMake(0, 0, SCREEN_WIDTH - kLeftTableWidth, __pinViewHeight);
-            // self.table.tableHeaderView = self.pinView;
-        } else {
-            self.table.tableHeaderView = [[UIView alloc]init];
-        }
         if(self.rightModel.f_categorys.count > 0) {
             LXClassifyGoodsInfoModel *goodsInfoModel = [[LXClassifyGoodsInfoModel alloc]init];
             goodsInfoModel.f_itemType = LXClassifyGoodItemTypePinCategoryView;
             [goodsList addObject:goodsInfoModel];
         }
-        if(showAll && self.rightModel.f_showAll) {
+        if(self.isAll) {
             if(self.rightModel.f_goodsInfoModel) {
                 NSLog(@"-->1. 切换到\"全部\"模式");
-                self.isAll = YES;
                 __shouldRefresh = YES;
                 [goodsList addObject:self.rightModel.f_goodsInfoModel];
             } else {
                 NSLog(@"-->1.1 开始请求 \"全部\" 数据");
                 DJO2OCategoryListModel *t2rdCategory = self.rightModel.f_o2oCategoryModel;
-                [self.b2cVM loadSearchGoodsDetailsWith:self.rightModel.f_2rdCategoryId
-                                            endCateIds:t2rdCategory.endCateIds
+                [self.b2cVM loadSearchGoodsDetailsWith:t2rdCategory
                                                  isAll:NO];
             }
         } else {
             if(self.rightModel.f_o2oGoodsInfoList) {
-                self.isAll = NO;
                 __shouldRefresh = YES;
                 [goodsList addObjectsFromArray:self.rightModel.f_o2oGoodsInfoList];
                 NSLog(@"-->2. 切换到\"分类\"模式");
             } else {
                 NSLog(@"-->1.1 开始请求 \"分类\" 数据");
                 DJO2OCategoryListModel *t2rdCategory = self.rightModel.f_o2oCategoryModel;
-                [self.b2cVM loadSearchGoodsDetailsWith:self.rightModel.f_2rdCategoryId
-                                            endCateIds:t2rdCategory.endCateIds
+                [self.b2cVM loadSearchGoodsDetailsWith:t2rdCategory
                                                  isAll:NO];
             }
         }
@@ -191,23 +198,30 @@
 
         [self.table reloadData];
         // __shouldRest = YES;
-        if(self.rightModel.f_showAll) {
-            if(showAll) {
-                /// 此时展示的是"全部"数据
-                [self.table setContentOffset:CGPointZero animated:YES];
-                [self.pinView.pinCategoryView selectItemAtIndex:0];
-            } else {
-                /// 此时有"全部", 但是要展示的是分类数据
-                // [self.table selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] animated:YES scrollPosition:UITableViewScrollPositionTop];
-                CGRect sectionRect = [self.table rectForSection:1];
+        NSInteger realIdx = self.rightModel.pinIdx;
+        NSInteger listIdx = self.rightModel.pinIdx;
+        if(!self.rightModel.f_showAll) {
+            listIdx += 1;
+        }
+        if(self.isAll) {
+            /// 此时展示的是"全部"数据
+            [self.table setContentOffset:CGPointZero animated:YES];
+            [self.pinView.pinCategoryView selectItemAtIndex:0];
+        } else if(!self.isAll && self.rightModel.pinIdx == 0) {
+            [self.table setContentOffset:CGPointZero animated:YES];
+            [self.pinView.pinCategoryView selectItemAtIndex:0];
+        } else {
+            /// 此时有"全部", 但是要展示的是分类数据
+            // [self.table selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] animated:YES scrollPosition:UITableViewScrollPositionTop];
+            if(listIdx < [self.table numberOfSections]) {
+                CGRect sectionRect = [self.table rectForSection:listIdx];
                 CGPoint offset = CGPointMake(0, CGRectGetMinY(sectionRect) - __pinViewHeight);
                 offset.y = MIN(offset.y, self.table.contentSize.height - CGRectGetHeight(self.table.frame));
                 [self.table setContentOffset:offset animated:YES];
-                [self.pinView.pinCategoryView selectItemAtIndex:1];
+                [self.pinView.pinCategoryView selectItemAtIndex:realIdx];
+            } else {
+                NSLog(@"-->3. ip invalid: (realIdx: %ld, listIdx: %ld)", realIdx, listIdx);
             }
-        } else {
-            [self.table setContentOffset:CGPointZero animated:YES];
-            [self.pinView.pinCategoryView selectItemAtIndex:0];
         }
 
         [self.table.mj_footer resetNoMoreData];
@@ -236,34 +250,35 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)selectItemAtIndex:(NSInteger)idx {
+    self.rightModel.pinIdx = idx;
     if(idx == 0 &&
-       self.rightModel.f_showAll &&
-       !self.isAll) {
-        [self formatGoodsList:YES];
-    } else if(idx != 0 &&
-              self.isAll){
-        [self formatGoodsList:NO];
-    }
-    NSInteger realIdx = idx;
-    if(self.classifyType == DJClassifyTypeO2O &&
-       !self.rightModel.f_showAll &&
-       idx > 0) {
-        realIdx += 1;
-    }
-    if(realIdx >= 0 &&
-       realIdx < self.goodsList.count &&
-       realIdx < [self.table numberOfSections]) {
-        if(realIdx == 0) {
-            [self.table setContentOffset:CGPointZero animated:YES];
-        } else {
-            CGRect sectionRect = [self.table rectForSection:realIdx];
-            CGPoint offset = CGPointMake(0, CGRectGetMinY(sectionRect) - __pinViewHeight);
-            offset.y = MIN(offset.y, self.table.contentSize.height - CGRectGetHeight(self.table.frame));
-            [self.table setContentOffset:offset animated:YES];
-        }
+       self.rightModel.f_showAll) {
+        self.isAll = self.rightModel.f_showAll;
+        [self formatGoodsList];
     } else {
-        NSLog(@"-->3. ip invalid: (%ld)", realIdx);
+        self.isAll = NO;
+        [self formatGoodsList];
     }
+    // NSInteger realIdx = idx;
+    // if(self.classifyType == DJClassifyTypeO2O &&
+    //    !self.rightModel.f_showAll &&
+    //    idx > 0) {
+    //     realIdx += 1;
+    // }
+    // if(realIdx >= 0 &&
+    //    realIdx < self.goodsList.count &&
+    //    realIdx < [self.table numberOfSections]) {
+    //     if(realIdx == 0) {
+    //         [self.table setContentOffset:CGPointZero animated:YES];
+    //     } else {
+    //         CGRect sectionRect = [self.table rectForSection:realIdx];
+    //         CGPoint offset = CGPointMake(0, CGRectGetMinY(sectionRect) - __pinViewHeight);
+    //         offset.y = MIN(offset.y, self.table.contentSize.height - CGRectGetHeight(self.table.frame));
+    //         [self.table setContentOffset:offset animated:YES];
+    //     }
+    // } else {
+    //     NSLog(@"-->3. ip invalid: (%ld)", realIdx);
+    // }
 }
 - (void)dismissAllCategoryView {
     if(self.allMaskView.hidden) {
@@ -474,7 +489,7 @@
             return CGFLOAT_MIN;
         }
         case LXClassifyGoodItemTypeO2O: {
-            if(goodsInfo.f_o2oCategoryMdeol) {
+            if(!self.isAll && goodsInfo.f_o2oCategoryMdeol) {
                 return kWPercentage(44.f);
             } else {
                 return CGFLOAT_MIN;
@@ -495,7 +510,7 @@
     LXClassifyGoodsInfoModel *goodsInfo = self.goodsList[section];
     switch (goodsInfo.f_itemType) {
         case LXClassifyGoodItemTypeO2O: {
-            if(goodsInfo.f_o2oCategoryMdeol) {
+            if(!self.isAll && goodsInfo.f_o2oCategoryMdeol) {
                 LXClassifySectionHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"LXClassifySectionHeaderView"];
                 LXClassifyBaseCategoryModel *sectionModel = goodsInfo.f_o2oCategoryMdeol;
                 [header dataFill:sectionModel];
@@ -614,6 +629,8 @@
 }
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
     [self.view addSubview:self.table];
     [self.allMaskView addSubview:self.allCategoryView];
@@ -689,13 +706,13 @@
         };
         v.pinCategoryView.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(idx >= 0 && idx < weakSelf.goodsList.count) {
+                // if(idx >= 0 && idx < weakSelf.goodsList.count) {
                     [weakSelf.allCategoryView selectItemAtIndex:idx];
                     [weakSelf selectItemAtIndex:idx];
                     [weakSelf dismissAllCategoryView];
                     // CGRect sectionRect = [weakSelf.collectionView.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx]].frame;
                     // weakSelf.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:idx] atScrollPosition:<#(UICollectionViewScrollPosition)#> animated:<#(BOOL)#>
-                }
+                // }
             });
         };
         v.toggleShowAll = ^(UIButton * _Nonnull btn) {
@@ -731,11 +748,11 @@
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(idx >= 0 && idx < weakSelf.goodsList.count) {
+                // if(idx >= 0 && idx < weakSelf.goodsList.count) {
                     [weakSelf.pinView.pinCategoryView selectItemAtIndex:idx];
                     [weakSelf selectItemAtIndex:idx];
                     [weakSelf dismissAllCategoryView];
-                }
+                // }
             });
         };
         _allCategoryView = v;

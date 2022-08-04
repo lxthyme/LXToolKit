@@ -21,6 +21,7 @@
 /// tag List
 @property(nonatomic, strong)UIView *tagWrapperView;
 /// 24H 发货
+@property(nonatomic, strong)UIView *td24HWrapperView;
 @property(nonatomic, strong)DJTagView *td24HView;
 @property(nonatomic, strong)UIStackView *priceWrapperStackView;
 @property(nonatomic, strong)DJPriceWrapperStackView *topPriceStackView;
@@ -51,7 +52,7 @@
         [v removeFromSuperview];
     }
     self.tagWrapperView.hidden = YES;
-    self.td24HView.hidden = YES;
+    self.td24HWrapperView.hidden = YES;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -88,9 +89,9 @@
     self.labTitle.attributedText = item.f_titleAttributeString;
     /// 2. 副标题
     self.labSubtitle.attributedText = item.f_subtitleAttributeString;
-    self.labSubtitle.hidden = isEmptyString(item.subtitle233);
+    self.labSubtitle.hidden = isEmptyString(item.pointTitle);
     /// 3. tagList
-    __block CGFloat yPoint = 0.f;
+    __block CGFloat xPoint = 0.f;
     self.tagWrapperView.hidden = item.f_popinfosList.array.count <= 0;
     for(UIView *v in self.tagWrapperView.subviews) {
         [v removeFromSuperview];
@@ -98,24 +99,24 @@
     for (DJGoodItemPopinfosList *tmp in item.f_popinfosList.array) {
         DJTagView *tagView = [[DJTagView alloc]init];
         CGRect frame = CGRectMake(0, 0, 0, 0);
-        frame.origin.y = yPoint;
+        frame.origin.x = xPoint;
         frame.size.width = CGRectGetWidth(tmp.f_textRect) + kTagListHPadding * 2;
         frame.size.height = kTagListHeight;
         tagView.frame = frame;
-        yPoint = CGRectGetMaxX(frame) + kTagListInterval;
+        xPoint = CGRectGetMaxX(frame) + kTagListInterval;
         [tagView dataFill:tmp];
         [self.tagWrapperView addSubview:tagView];
     }
     /// 4. 24H 发货
-    if([item.tdType233 isEqualToString:@"2"]) {
+    if([item.tdType isEqualToString:@"2"]) {
         DJGoodItemPopinfosList *popInfoItem = [[DJGoodItemPopinfosList alloc]init];
         [popInfoItem didFinishTransformFromDictionary];
-        popInfoItem.f_text = isEmptyString(item.tdLable233) ? @"24H发货" : item.tdLable233;
+        popInfoItem.f_text = isEmptyString(item.tdLable) ? @"24H发货" : item.tdLable;
         popInfoItem.f_textColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
         popInfoItem.f_borderColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
         popInfoItem.f_cornerRadius = kTagListHeight / 2.f;
         [popInfoItem makeTextAttribute];
-        self.td24HView.hidden = NO;
+        self.td24HWrapperView.hidden = NO;
         [self.td24HView dataFill:popInfoItem];
     }
     /// 5.价格
@@ -132,9 +133,9 @@
     self.labTitle.attributedText = item.f_titleAttributeString;
     /// 2. 副标题
     self.labSubtitle.attributedText = item.f_subtitleAttributeString;
-    self.labSubtitle.hidden = isEmptyString(item.subtitle233);
+    self.labSubtitle.hidden = YES;
     /// 3. tagList
-    __block CGFloat yPoint = 0.f;
+    __block CGFloat xPoint = 0.f;
     self.tagWrapperView.hidden = item.f_popinfosList.array.count <= 0;
     for(UIView *v in self.tagWrapperView.subviews) {
         [v removeFromSuperview];
@@ -142,25 +143,25 @@
     for (DJGoodItemPopinfosList *tmp in item.f_popinfosList.array) {
         DJTagView *tagView = [[DJTagView alloc]init];
         CGRect frame = CGRectMake(0, 0, 0, 0);
-        frame.origin.y = yPoint;
+        frame.origin.x = xPoint;
         frame.size.width = CGRectGetWidth(tmp.f_textRect) + kTagListHPadding * 2;
         frame.size.height = kTagListHeight;
         tagView.frame = frame;
-        yPoint = CGRectGetMaxX(frame) + kTagListInterval;
+        xPoint = CGRectGetMaxX(frame) + kTagListInterval;
         [tagView dataFill:tmp];
         [self.tagWrapperView addSubview:tagView];
     }
     /// 4. 24H 发货
-    if([item.tdType233 isEqualToString:@"2"]) {
-        DJGoodItemPopinfosList *popInfoItem = [[DJGoodItemPopinfosList alloc]init];
-        [popInfoItem didFinishTransformFromDictionary];
-        popInfoItem.f_text = isEmptyString(item.tdLable233) ? @"24H发货" : item.tdLable233;
-        popInfoItem.f_textColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
-        popInfoItem.f_borderColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
-        popInfoItem.f_cornerRadius = kTagListHeight / 2.f;
-        [popInfoItem makeTextAttribute];
-        [self.td24HView dataFill:popInfoItem];
-    }
+    // if([item.tdType233 isEqualToString:@"2"]) {
+    //     DJGoodItemPopinfosList *popInfoItem = [[DJGoodItemPopinfosList alloc]init];
+    //     [popInfoItem didFinishTransformFromDictionary];
+    //     popInfoItem.f_text = isEmptyString(item.tdLable233) ? @"24H发货" : item.tdLable233;
+    //     popInfoItem.f_textColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
+    //     popInfoItem.f_borderColor = [UIColor colorWithHex:0x55C9BA alpha:1.f];
+    //     popInfoItem.f_cornerRadius = kTagListHeight / 2.f;
+    //     [popInfoItem makeTextAttribute];
+    //     [self.td24HView dataFill:popInfoItem];
+    // }
     /// 5.价格
     [self.topPriceStackView dataFill:@"" price:@"¥9900.80"];
     [self.bottomPriceStackView dataFill:@"" price:@"¥46.90"];
@@ -187,6 +188,10 @@
     [self.titleStackView addArrangedSubview:self.labTitle];
     [self.titleStackView addArrangedSubview:self.labSubtitle];
     [self.titleStackView addArrangedSubview:self.tagWrapperView];
+
+    [self.td24HWrapperView addSubview:self.td24HView];
+    [self.titleStackView addArrangedSubview:self.td24HWrapperView];
+
     [self.contentView addSubview:self.titleStackView];
 
     [self.priceWrapperStackView addArrangedSubview:self.topPriceStackView];
@@ -209,12 +214,18 @@
         make.centerY.equalTo(@0.f);
     }];
     [self.titleStackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.greaterThanOrEqualTo(@(kPadding));
+        make.top.equalTo(@(kPadding));
         make.left.equalTo(self.imgViewGoodsLogo.mas_right).offset(kPadding);
-        make.right.lessThanOrEqualTo(@(kWPercentage(-10.f)));
+        make.right.equalTo(@(kWPercentage(-10.f)));
     }];
     [self.tagWrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kTagListHeight));
+    }];
+    [self.td24HWrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(kTagListHeight));
+    }];
+    [self.td24HView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.equalTo(@0.f);
     }];
     [self.priceWrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleStackView);
@@ -276,6 +287,14 @@
         _tagWrapperView = v;
     }
     return _tagWrapperView;
+}
+- (UIView *)td24HWrapperView {
+    if(!_td24HWrapperView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor whiteColor];
+        _td24HWrapperView = v;
+    }
+    return _td24HWrapperView;
 }
 - (DJTagView *)td24HView {
     if(!_td24HView){

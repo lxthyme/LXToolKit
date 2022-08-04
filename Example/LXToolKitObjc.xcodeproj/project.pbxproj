@@ -96,6 +96,8 @@
 		BEB653DA2892B48000CB37F3 /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653AF2892B48000CB37F3 /* JXCategoryTitleBackgroundCellModel.m */; };
 		BEB653DB2892B48000CB37F3 /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653B02892B48000CB37F3 /* JXCategoryTitleBackgroundCell.m */; };
 		BEB653DC2892B48000CB37F3 /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653B12892B48000CB37F3 /* JXCategoryTitleBackgroundView.m */; };
+		BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */; };
+		BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */; };
 		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
 		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
 		BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */; };
@@ -283,6 +285,10 @@
 		BEB653B02892B48000CB37F3 /* JXCategoryTitleBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCell.m; sourceTree = "<group>"; };
 		BEB653B12892B48000CB37F3 /* JXCategoryTitleBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundView.m; sourceTree = "<group>"; };
 		BEB653B22892B48000CB37F3 /* JXCategoryTitleBackgroundCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCellModel.h; sourceTree = "<group>"; };
+		BECDDA1D28978D45002A0BE9 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		BECDDA1E28978D45002A0BE9 /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
+		BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
 		BED144002844B22400DEA8EA /* LXCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
 		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
 		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
@@ -595,6 +601,7 @@
 		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
 			isa = PBXGroup;
 			children = (
+				BECDDA1C28978D45002A0BE9 /* TXScrollLabelView */,
 				BEB653492892B48000CB37F3 /* DJNewClassify */,
 				BE7CAE54285D7F1C00A86665 /* Nested2 */,
 				BE888C4D285EAF2E0027F9FF /* Nest6 */,
@@ -870,6 +877,17 @@
 			path = JX;
 			sourceTree = "<group>";
 		};
+		BECDDA1C28978D45002A0BE9 /* TXScrollLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				BECDDA1D28978D45002A0BE9 /* TXScrollLabelView.h */,
+				BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */,
+				BECDDA1E28978D45002A0BE9 /* UIView+TXFrame.h */,
+				BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */,
+			);
+			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
 		BED143FF2844B21000DEA8EA /* 05-28 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1047,6 +1065,7 @@
 				BEB653B82892B48000CB37F3 /* LXClassifyWrapperVC.m in Sources */,
 				BEB653C82892B48000CB37F3 /* LX3rdCategoryView.m in Sources */,
 				BEB1BD012895757C0037D09F /* LXSectionCategoryHeaderView.m in Sources */,
+				BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */,
 				BEB653D02892B48000CB37F3 /* LXClassifyRightVCModel.m in Sources */,
 				BEA8062B2891078D00710636 /* DJYYZZFooterView.m in Sources */,
 				BEB653D72892B48000CB37F3 /* LX1rdCategoryUnfoldCell.m in Sources */,
@@ -1087,6 +1106,7 @@
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
 				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
+				BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */,
 				BEB653BD2892B48000CB37F3 /* LXClassifyListLeftCell.m in Sources */,
 				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
 				BEB653CB2892B48000CB37F3 /* LXSectionModel.m in Sources */,

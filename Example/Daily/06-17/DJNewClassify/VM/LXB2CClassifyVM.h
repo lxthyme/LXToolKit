@@ -40,17 +40,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// o2o 搜索资源位
 @property(nonatomic, strong)RACSubject *o2oSearchSubject;
 @property(nonatomic, strong)RACSubject *o2oSearchErrorSubject;
+/// (O2O)二级目录 banner 资源位
+@property(nonatomic, strong)RACSubject *o2oBannerSubject;
+@property(nonatomic, strong)RACSubject *o2oBannerErrorSubject;
 
 /// 查询分类标题
 - (void)loadShopResource;
 /// 查询 O2O 目录
 - (void)loadShopCategory;
 /// 查询 O2O 商品信息
-- (void)loadSearchGoodsDetailsWith:(NSString *)o2oCategoryId
-                        endCateIds:(NSString *)endCateIds
+- (void) loadSearchGoodsDetailsWith:(DJO2OCategoryListModel *)o2oCategoryModel
                              isAll:(BOOL)isAll;
-/// 搜索框数据
+/// (O2O)搜索框数据
 - (void)loadO2OSearch;
+/// (O2O)二级目录 banner 资源位
+- (void)loadO2OBannerWithResourceId:(NSString *)resourceId categoryId:(NSString *)categoryId;
 
 /// 查询 B2C 目录
 - (void)loadProductSearchDoCategoryByLevOne;

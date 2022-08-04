@@ -33,15 +33,15 @@
 }
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill {
+- (void)dataFill:(LXShopResourceModel *)bannerInfo {
     self.bannerView.autoScroll = YES;
-    self.bannerView.imageURLStringsGroup = @[
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
-    ];
+    self.bannerView.imageURLStringsGroup = [[bannerInfo.onlineDeployList.rac_sequence
+                                             filter:^BOOL(DJOnlineDeployList *value) {
+        return !isEmptyString(value.picUrl);
+    }]
+                                            map:^id(DJOnlineDeployList *value) {
+        return value.picUrl;
+    }].array;
 }
 
 #pragma mark -

@@ -12,6 +12,7 @@
 
 @interface DJTagView() {
 }
+@property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
 @property(nonatomic, strong)LXLabel *labTitle;
 
@@ -40,6 +41,13 @@
         bgColor = [UIColor whiteColor];
     }
     self.labTitle.backgroundColor = bgColor;
+
+    if([popInfoItem.buyMember isEqualToString:@"1"]) {
+        self.imgViewLogo.hidden = NO;
+        self.imgViewLogo.image = [iBLImage imageNamed:@"dj_plus_member"];
+    } else {
+        self.imgViewLogo.hidden = YES;
+    }
 }
 
 #pragma mark -
@@ -53,7 +61,9 @@
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.labTitle];
+    [self.wrapperStackView addArrangedSubview:self.imgViewLogo];
+    [self.wrapperStackView addArrangedSubview:self.labTitle];
+    [self addSubview:self.wrapperStackView];
 
     [self masonry];
 }
@@ -61,16 +71,33 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(kWPercentage(15.f)));
+    }];
+    [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
+        // make.top.greaterThanOrEqualTo(@0.f);
+        // make.bottom.lessThanOrEqualTo(@0.f);
+        // make.centerY.equalTo(@0.f);
+        make.height.equalTo(@15.f);
     }];
 }
 
 #pragma mark Lazy Property
+- (UIStackView *)wrapperStackView {
+    if(!_wrapperStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisHorizontal;
+        sv.spacing = 0.f;
+        _wrapperStackView = sv;
+    }
+    return _wrapperStackView;
+}
 - (LXLabel *)labTitle {
     if(!_labTitle){
         LXLabel *label = [[LXLabel alloc]init];
         label.text = @"";
+        label.x_insets = UIEdgeInsetsMake(kWPercentage(2.f), kWPercentage(4.f), kWPercentage(2.f), kWPercentage(4.f));
         label.numberOfLines = 1;
         label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;

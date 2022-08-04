@@ -21,12 +21,6 @@
 
 @interface LXB2CClassifyVM()/**<CTAPIManagerParamSource, CTAPIManagerCallBackDelegate>*/ {
 }
-@property (nonatomic, strong)DJNewHomeShopResourseAPIManager *shopResourseAPIManager;
-@property (nonatomic, strong)BLProductSearchDoCategoryByLevOneApiManager *productSearchDoCategoryByLevOneApiManager;
-@property (nonatomic, strong)DJNewClassifyListSearchForLHAPIManager *v2SearchForLHApiManager;
-@property (nonatomic, strong)DJNewClassifyKdjShopCategoryAPIManager *shopCategoryAPIManager;
-@property (nonatomic, strong)DJGoodsSearchBatchCateGoodsAPIManager *searchBatchCateGoodsAPIManager;
-@property (nonatomic, strong)DJGoodsSearchGoodsDetailsAPIManager *searchGoodsDetailsAPIManager;
 
 @property(nonatomic, strong)RACSubject *searchGoodsIdsSubject;
 @property(nonatomic, strong)RACSubject *searchGoodsIdsErrorSubject;
@@ -87,7 +81,7 @@
             @"skuType": @0,
             @"fromApp": @"IOS"
         };
-        [self.searchGoodsDetailsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
+        [DJGoodsSearchGoodsDetailsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
             @strongify(self)
             // TODO: 「lxthyme」💊 1. success 判断, 2. goodsList 为空判断
             NSDictionary *obj = dictionaryFromObject(apiManager.response.content, @"obj");
@@ -139,7 +133,7 @@
     NSString *resourceId = @"20220606";
 
     @weakify(self)
-    [self.shopResourseAPIManager loadDataWithParams:@{
+    [DJNewHomeShopResourseAPIManager loadDataWithParams:@{
         @"channelId": @1,
         @"merchantId": gStore.merchantId,
         @"resourceIds": resourceId,
@@ -162,6 +156,34 @@
         [self.o2oSearchErrorSubject sendNext:apiManager];
     }];
 }
+- (void)loadO2OBannerWithResourceId:(NSString *)resourceId categoryId:(NSString *)categoryId {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+
+    @weakify(self)
+    [DJNewHomeShopResourseAPIManager loadDataWithParams:@{
+        @"channelId": @1,
+        @"merchantId": gStore.merchantId,
+        @"resourceIds": resourceId,
+        @"status": @4,
+    } success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        BOOL success = boolFromObject(apiManager.response.content, @"success");
+        if(success) {
+            NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
+            NSArray<LXShopResourceModel *> *shopResourceList = [NSArray yy_modelArrayWithClass:[LXShopResourceModel class] json:obj];
+            LXShopResourceModel *shopResourceModel = [shopResourceList.rac_sequence filter:^BOOL(LXShopResourceModel *value) {
+                return [value.resourceId isEqualToString:resourceId];
+            }].head;
+            RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:@[categoryId, shopResourceModel]];
+            [self.o2oBannerSubject sendNext:tuple];
+        } else {
+            [self.o2oBannerErrorSubject sendNext:apiManager];
+        }
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.o2oBannerErrorSubject sendNext:apiManager];
+    }];
+}
 
 /// 查询分类标题
 - (void)loadShopResource {
@@ -169,7 +191,7 @@
     NSString *resourceId = @"2019724";
 
     @weakify(self)
-    [self.shopResourseAPIManager loadDataWithParams:@{
+    [DJNewHomeShopResourseAPIManager loadDataWithParams:@{
         @"channelId": @1,
         @"merchantId": gStore.merchantId,
         @"resourceIds": resourceId,
@@ -196,7 +218,7 @@
 /// 查询 O2O 目录
 - (void)loadShopCategory {
     @weakify(self)
-    [self.shopCategoryAPIManager loadDataWithParams:@{
+    [DJNewClassifyKdjShopCategoryAPIManager loadDataWithParams:@{
         @"bizId": @"2020",
         @"fromApp": @"IOS",
         @"merchantId": @"2020007780ENT23234",
@@ -220,10 +242,19 @@
 }
 
 /// O2O 商品信息
-- (void)loadSearchGoodsDetailsWith:(NSString *)o2oCategoryId
-                        endCateIds:(NSString *)endCateIds
+- (void) loadSearchGoodsDetailsWith:(DJO2OCategoryListModel *)o2oCategoryModel
                              isAll:(BOOL)isAll {
-    if(isEmptyString(o2oCategoryId) || isEmptyString(endCateIds)) {
+    NSString *endCateIds = [[[o2oCategoryModel.rywCategorys.rac_sequence
+                              filter:^BOOL(DJO2OCategoryListModel *value) {
+        return ![value.categoryId isEqualToString:@"-1"];
+    }]
+                             map:^id(DJO2OCategoryListModel *value) {
+        return value.categoryId;
+    }].array componentsJoinedByString:@","];
+    if(isAll && isEmptyString(endCateIds)) {
+        endCateIds = o2oCategoryModel.categoryId;
+    }
+    if(isEmptyString(o2oCategoryModel.categoryId) || isEmptyString(endCateIds)) {
         [self.searchGoodsIdsErrorSubject sendNext:[NSError errorWithDomain:@"999" code:999 userInfo:@{}]];
         return;
     }
@@ -236,7 +267,7 @@
         @"tdType": @"1",
         @"cateFlag": isAll ? @"1" : @"0",
     };
-    [self.searchBatchCateGoodsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
+    [DJGoodsSearchBatchCateGoodsAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
         @strongify(self)
         // TODO: 「lxthyme」💊 1. success 判断, 2. idsList 为空判断
         NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
@@ -245,11 +276,11 @@
             NSArray<LXClassifyGoodsInfoModel *> *f_goodsInfoList = [idsListModel.rac_sequence map:^id(DJGoodsIdsModel *value) {
                 LXClassifyGoodsInfoModel *goodsInfoModel = [[LXClassifyGoodsInfoModel alloc]init];
                 goodsInfoModel.f_itemType = LXClassifyGoodItemTypeO2O;
-                goodsInfoModel.f_2rdCategoryId = o2oCategoryId;
+                goodsInfoModel.f_2rdCategoryId = o2oCategoryModel.categoryId;
                 goodsInfoModel.f_o2oGoodsInfo = value;
                 return goodsInfoModel;
             }].array;
-            RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:@[o2oCategoryId, @(isAll), f_goodsInfoList]];
+            RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:@[o2oCategoryModel.categoryId, @(isAll), f_goodsInfoList]];
             [self.searchGoodsIdsSubject sendNext:tuple];
         } else {
             [self.searchGoodsIdsErrorSubject sendNext:apiManager];
@@ -263,7 +294,7 @@
 /// 查询 B2C 目录
 - (void)loadProductSearchDoCategoryByLevOne {
     @weakify(self)
-    [self.productSearchDoCategoryByLevOneApiManager loadDataWithParams:@{
+    [BLProductSearchDoCategoryByLevOneApiManager loadDataWithParams:@{
         @"parentId": @"9999300920818"
     } success:^(CTAPIBaseManager *apiManager) {
         @strongify(self)
@@ -289,7 +320,7 @@
         return;
     }
     @weakify(self)
-    [self.v2SearchForLHApiManager loadDataWithParams:@{
+    [DJNewClassifyListSearchForLHAPIManager loadDataWithParams:@{
         @"categorySid": categorySid,
         @"sorTye": @"0",
         @"pageSize": @"20",
@@ -347,6 +378,8 @@
     self.v2SearchForLHApiErrorSubject = [RACSubject subject];
     self.o2oSearchSubject = [RACSubject subject];
     self.o2oSearchErrorSubject = [RACSubject subject];
+    self.o2oBannerSubject = [RACSubject subject];
+    self.o2oBannerErrorSubject = [RACSubject subject];
 }
 #pragma mark -
 #pragma mark Lazy Property
@@ -378,52 +411,5 @@
 //     }
 //     return _v2SearchForLHApiCommand;
 // }
--(BLProductSearchDoCategoryByLevOneApiManager *)productSearchDoCategoryByLevOneApiManager {
-    if (!_productSearchDoCategoryByLevOneApiManager) {
-        BLProductSearchDoCategoryByLevOneApiManager *api = [[BLProductSearchDoCategoryByLevOneApiManager alloc]init];
-        // api.delegate = self;
-        // api.paramSource = self;
-        _productSearchDoCategoryByLevOneApiManager = api;
-    }
-    return _productSearchDoCategoryByLevOneApiManager;
-}
-- (DJNewClassifyListSearchForLHAPIManager *)v2SearchForLHApiManager {
-    if (!_v2SearchForLHApiManager) {
-        DJNewClassifyListSearchForLHAPIManager *api = [[DJNewClassifyListSearchForLHAPIManager alloc] init];
-        // api.delegate = self;
-        // api.paramSource = self;
-        _v2SearchForLHApiManager = api;
-    }
-    return _v2SearchForLHApiManager;
-}
-- (DJNewHomeShopResourseAPIManager *)shopResourseAPIManager {
-    if (!_shopResourseAPIManager) {
-        DJNewHomeShopResourseAPIManager *api = [[DJNewHomeShopResourseAPIManager alloc] init];
-        // api.delegate = self;
-        // api.paramSource = self;
-        _shopResourseAPIManager = api;
-    }
-    return _shopResourseAPIManager;
-}
-- (DJNewClassifyKdjShopCategoryAPIManager *)shopCategoryAPIManager {
-    if(!_shopCategoryAPIManager){
-        DJNewClassifyKdjShopCategoryAPIManager *v = [[DJNewClassifyKdjShopCategoryAPIManager alloc]init];
-        _shopCategoryAPIManager = v;
-    }
-    return _shopCategoryAPIManager;
-}
-- (DJGoodsSearchBatchCateGoodsAPIManager *)searchBatchCateGoodsAPIManager {
-    if(!_searchBatchCateGoodsAPIManager){
-        DJGoodsSearchBatchCateGoodsAPIManager *v = [[DJGoodsSearchBatchCateGoodsAPIManager alloc]init];
-        _searchBatchCateGoodsAPIManager = v;
-    }
-    return _searchBatchCateGoodsAPIManager;
-}
-- (DJGoodsSearchGoodsDetailsAPIManager *)searchGoodsDetailsAPIManager {
-    if(!_searchGoodsDetailsAPIManager){
-        DJGoodsSearchGoodsDetailsAPIManager *v = [[DJGoodsSearchGoodsDetailsAPIManager alloc]init];
-        _searchGoodsDetailsAPIManager = v;
-    }
-    return _searchGoodsDetailsAPIManager;
-}
+
 @end

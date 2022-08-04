@@ -9,6 +9,7 @@
 #import "LXLHCategoryModel.h"
 #import "DJO2OCategoryListModel.h"
 #import "LXClassifyBaseCategoryModel.h"
+#import "LXShopResourceModel.h"
 
 typedef NS_ENUM(NSInteger, LXClassifyRightCellType) {
     LXClassifyRightVCCellTypeBanner = 1,
@@ -76,11 +77,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign)BOOL f_shouldShowJiShiDa;
 /// showAll
 @property(nonatomic, assign)BOOL f_showAll;
+/// 当前定位的 section
+@property(nonatomic, assign)NSInteger pinIdx;
 
 /// 三级级目录数据
 @property (nonatomic, copy)NSArray<LXClassifyBaseCategoryModel *> *f_categorys;
 @property (nonatomic, strong)LXLHCategoryModel *f_b2cCategoryModel;
 @property (nonatomic, strong)DJO2OCategoryListModel *f_o2oCategoryModel;
+/// 「only O2O」banner 数据
+@property(nonatomic, strong)LXShopResourceModel *f_bannerInfo;
 /// 「only B2C」商品信息
 @property(nonatomic, strong)LXClassifyGoodsInfoModel *f_goodsInfoModel;
 /// 「only O2O」all section 商品信息

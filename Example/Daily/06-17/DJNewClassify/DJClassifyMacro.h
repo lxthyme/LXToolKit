@@ -39,6 +39,11 @@ typedef NS_ENUM(NSInteger, DJClassifyType) {
     DJClassifyTypeO2O = 2,
 };
 
+typedef NS_ENUM(NSInteger, DJRuleType) {
+    DJRuleTypeUnknown,
+    DJRuleType12 = 12,
+};
+
 // MARK: - 🔥二级分类配置
 
 /// 分类页左侧列表宽度

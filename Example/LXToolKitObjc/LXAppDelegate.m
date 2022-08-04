@@ -22,6 +22,14 @@
 
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
+
+    // 设置一个全局的 debug option 来显示排版结果。
+    // YYTextDebugOption *debugOptions = [YYTextDebugOption new];
+    // debugOptions.baselineColor = [UIColor redColor];
+    // debugOptions.CTFrameBorderColor = [UIColor redColor];
+    // debugOptions.CTLineFillColor = [UIColor colorWithRed:0.000 green:0.463 blue:1.000 alpha:0.180];
+    // debugOptions.CGGlyphBorderColor = [UIColor colorWithRed:1.000 green:0.524 blue:0.000 alpha:0.200];
+    // [YYTextDebugOption setSharedDebugOption:debugOptions];
     return YES;
 }
 

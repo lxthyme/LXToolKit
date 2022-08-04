@@ -96,9 +96,20 @@
                 }].head;
                 if(categoryModel && [categoryModel isKindOfClass:[DJO2OCategoryListModel class]]) {
                     DJO2OCategoryListModel *o2oCategoryModel = (DJO2OCategoryListModel *)categoryModel;
-                    [self.b2cVM loadSearchGoodsDetailsWith:o2oCategoryModel.categoryId
-                                                endCateIds:o2oCategoryModel.endCateIds
+                    [self.b2cVM loadSearchGoodsDetailsWith:o2oCategoryModel
                                                      isAll:o2oCategoryModel.showAll == 1];
+                }
+            }
+            if(rightModel.f_bannerInfo) {
+                LXClassifyListRightVC *vc = [self vcAtIdx:idx];
+                [vc dataFillWithBannerInfo:rightModel.f_bannerInfo];
+                // hadFilled = YES;
+            } else {
+                NSString *resourceId = rightModel.f_o2oCategoryModel.resourceId;
+                if(!isEmptyString(resourceId)) {
+                    [self.b2cVM loadO2OBannerWithResourceId:resourceId categoryId:rightModel.f_o2oCategoryModel.categoryId];
+                } else {
+                    rightModel.f_bannerInfo = [[LXShopResourceModel alloc]init];
                 }
             }
         }
@@ -109,7 +120,8 @@
             break;
     }
 }
-- (void)updateGoodItem:(NSString *)categoryId goodsInfoList:(LXClassifyGoodsInfoModel *)goodsInfoList {
+- (void)updateGoodItem:(NSString *)categoryId
+         goodsInfoList:(LXClassifyGoodsInfoModel *)goodsInfoList {
     LXClassifyRightModel *rightModel = self.classifyListModel.f_rightModelList[categoryId];
     NSMutableDictionary *categoryMap = [NSMutableDictionary dictionary];
     for (LXClassifyBaseCategoryModel *item in rightModel.f_categorys) {
@@ -128,7 +140,16 @@
                     categoryId:categoryId
                        showAll:YES];
 }
-- (void)updateGoodItemOnlyAll:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList {
+- (void)dataFillWithBannerInfo:(LXShopResourceModel *)bannerInfo
+                    categoryId:(NSString *)categoryId {
+    LXClassifyRightModel *rightModel = self.classifyListModel.f_rightModelList[categoryId];
+    rightModel.f_bannerInfo = bannerInfo;
+    NSInteger idx = self.pageVC.viewControllers.firstObject.view.tag;
+    LXClassifyListRightVC *vc = [self vcAtIdx:idx];
+    [vc dataFillWithBannerInfo:bannerInfo];
+}
+- (void)updateGoodItemOnlyAll:(NSString *)categoryId
+                goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList {
     LXClassifyRightModel *rightModel = self.classifyListModel.f_rightModelList[categoryId];
     NSMutableDictionary *categoryMap = [NSMutableDictionary dictionary];
     for (LXClassifyBaseCategoryModel *item in rightModel.f_categorys) {
@@ -147,7 +168,8 @@
                     categoryId:categoryId
                        showAll:YES];
 }
-- (void)updateGoodItemAllSection:(NSString *)categoryId goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList {
+- (void)updateGoodItemAllSection:(NSString *)categoryId
+                   goodsInfoList:(NSArray<LXClassifyGoodsInfoModel *> *)goodsInfoList {
     LXClassifyRightModel *rightModel = self.classifyListModel.f_rightModelList[categoryId];
     NSMutableDictionary *categoryMap = [NSMutableDictionary dictionary];
     for (LXClassifyBaseCategoryModel *item in rightModel.f_categorys) {

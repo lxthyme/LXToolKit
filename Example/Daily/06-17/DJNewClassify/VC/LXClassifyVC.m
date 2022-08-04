@@ -79,6 +79,10 @@
     [self bindVM];
     self.viewStatus = LXViewStatusLoading;
     [self.b2cVM loadShopResource];
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    if (gStore.djModuleType == FIRSTMEDICINE) {
+        [self.b2cVM loadO2OSearch];
+    }
 }
 
 #pragma mark -
@@ -167,6 +171,7 @@
         if(titleList.count > 1) {
             [self.tfSearch beginScrolling];
         } else {
+            [self.tfSearch beginScrolling];
             [self.tfSearch endScrolling];
         }
     }];
