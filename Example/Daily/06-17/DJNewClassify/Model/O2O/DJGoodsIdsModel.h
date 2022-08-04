@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBaseModel.h"
-#import "LXO2OGoodItemModel.h"
+#import "DJO2OGoodItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSArray<NSString *> *docNos;
 
 @property (nonatomic, copy)NSString *f_2rdCategoryId;
-@property (nonatomic, copy)NSArray<LXO2OGoodItemModel *> *f_goodsList;
+@property (nonatomic, copy)NSArray<DJO2OGoodItemModel *> *f_goodsList;
 
 @end
 

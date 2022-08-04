@@ -5,13 +5,13 @@
 //  Created by lxthyme on 2022/7/28.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "LXClassifyBaseCategoryModel.h"
+#import "DJClassifyBaseCategoryModel.h"
 #import "DJClassifyMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// O2O 分类
-@interface DJO2OCategoryListModel: LXClassifyBaseCategoryModel {
+@interface DJO2OCategoryListModel: DJClassifyBaseCategoryModel {
 }
 /// 分类ID
 // @property (nonatomic, copy)NSString *categoryId;
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 「only 二级目录」三级分类id集合，默认逗号隔开，无三级分类则为当前二级分类id（仅二级有这个参数）
 @property (nonatomic, copy)NSString *endCateIds;
 
-// @property(nonatomic, assign)LXClassifyGoodItemType f_itemType;
+// @property(nonatomic, assign)DJClassifyGoodItemType f_itemType;
 /// 二级分类
 // @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *f_rywCategorys;
 
