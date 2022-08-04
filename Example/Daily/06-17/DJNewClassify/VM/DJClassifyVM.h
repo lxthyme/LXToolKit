@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "DJLHCategoryModel.h"
+#import "DJB2CCategoryModel.h"
 #import "DJB2CGoodsItemListModel.h"
 #import "DJShopResourceModel.h"
 #import "DJO2OCategoryListModel.h"

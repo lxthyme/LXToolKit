@@ -276,6 +276,7 @@
         label.numberOfLines = 2;
         label.textAlignment = NSTextAlignmentLeft;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
+        label.hidden = YES;
         _labSubtitle = label;
     }
     return _labSubtitle;
@@ -284,6 +285,7 @@
     if(!_tagWrapperView){
         UIView *v = [[UIView alloc]init];
         v.backgroundColor = [UIColor whiteColor];
+        v.hidden = YES;
         _tagWrapperView = v;
     }
     return _tagWrapperView;
@@ -292,6 +294,7 @@
     if(!_td24HWrapperView){
         UIView *v = [[UIView alloc]init];
         v.backgroundColor = [UIColor whiteColor];
+        v.hidden = YES;
         _td24HWrapperView = v;
     }
     return _td24HWrapperView;

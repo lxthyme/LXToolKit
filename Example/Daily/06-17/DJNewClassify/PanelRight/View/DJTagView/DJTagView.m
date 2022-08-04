@@ -72,7 +72,7 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(@(kWPercentage(15.f)));
+        make.width.equalTo(@(kWPercentage(14.f)));
     }];
     [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
@@ -93,6 +93,16 @@
     }
     return _wrapperStackView;
 }
+- (UIImageView *)imgViewLogo {
+    if(!_imgViewLogo){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        // iv.image = [UIImage imageNamed:@""];
+        _imgViewLogo = iv;
+    }
+    return _imgViewLogo;
+}
+
 - (LXLabel *)labTitle {
     if(!_labTitle){
         LXLabel *label = [[LXLabel alloc]init];

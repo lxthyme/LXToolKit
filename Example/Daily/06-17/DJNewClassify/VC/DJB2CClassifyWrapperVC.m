@@ -64,7 +64,7 @@ static const CGFloat kLabelAllWidth = 35.f;
 #pragma mark - 🌎LoadData
 - (void)bindVM {
     @weakify(self)
-    [self.b2cVM.productSearchDoCategoryByLevOneSubject subscribeNext:^(NSArray<DJLHCategoryModel *> *categoryModelList) {
+    [self.b2cVM.productSearchDoCategoryByLevOneSubject subscribeNext:^(NSArray<DJB2CCategoryModel *> *categoryModelList) {
         @strongify(self)
         if(categoryModelList.count <= 0) {
             self.viewStatus = DJViewStatusNoData;
@@ -76,10 +76,10 @@ static const CGFloat kLabelAllWidth = 35.f;
         [self.allCategoryView dataFill:categoryModelList];
         /// 一级级目录数据结构
         NSMutableDictionary<NSString *, DJClassifyListModel *> *classifyList = [NSMutableDictionary dictionary];
-        [categoryModelList enumerateObjectsUsingBlock:^(DJLHCategoryModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+        [categoryModelList enumerateObjectsUsingBlock:^(DJB2CCategoryModel * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
             /// 二级级目录数据结构
             NSMutableDictionary<NSString *, DJClassifyRightModel *> *rightModelList = [NSMutableDictionary dictionary];
-            [obj1.categorys enumerateObjectsUsingBlock:^(DJLHCategoryModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+            [obj1.categorys enumerateObjectsUsingBlock:^(DJB2CCategoryModel * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
                 DJClassifyRightModel *rightModel = [[DJClassifyRightModel alloc]init];
                 if(idx2 == 0) {
                     rightModel.f_idxType = DJSubCategoryIndexTypeFirst;

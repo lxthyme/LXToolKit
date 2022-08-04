@@ -1,23 +1,23 @@
 //
-//  DJLHCategoryModel.m
+//  DJB2CCategoryModel.m
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import "DJLHCategoryModel.h"
+#import "DJB2CCategoryModel.h"
 
-@interface DJLHCategoryModel() {
+@interface DJB2CCategoryModel() {
 }
 
 @end
 
-@implementation DJLHCategoryModel
+@implementation DJB2CCategoryModel
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{
-        @"categorys": [DJLHCategoryModel class]
+        @"categorys": [DJB2CCategoryModel class]
     };
 }
 

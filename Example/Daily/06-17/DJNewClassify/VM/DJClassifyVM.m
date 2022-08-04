@@ -302,7 +302,7 @@
         if([resultCode isEqualToString:@"200"]) {
             NSDictionary *resultInfo = dictionaryFromObject(apiManager.response.content, @"resultInfo");
             NSArray *categorys = arrayFromObject(resultInfo, @"categorys");
-            NSArray<DJLHCategoryModel *> *categoryModelList = [NSArray yy_modelArrayWithClass:[DJLHCategoryModel class] json:categorys];
+            NSArray<DJB2CCategoryModel *> *categoryModelList = [NSArray yy_modelArrayWithClass:[DJB2CCategoryModel class] json:categorys];
             [self.productSearchDoCategoryByLevOneSubject sendNext:categoryModelList];
             // [self.productSearchDoCategoryByLevOneSubject sendCompleted];
         } else {

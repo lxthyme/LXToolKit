@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <DJBusinessTools/LXBaseTableViewHeaderFooterView.h>
-#import "DJLHCategoryModel.h"
+#import "DJB2CCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

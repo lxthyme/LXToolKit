@@ -81,7 +81,7 @@
 		BEB653CC2892B48000CB37F3 /* DJGoodBaseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6538F2892B48000CB37F3 /* DJGoodBaseItemModel.m */; };
 		BEB653CD2892B48000CB37F3 /* DJO2OGoodItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653912892B48000CB37F3 /* DJO2OGoodItemModel.m */; };
 		BEB653CE2892B48000CB37F3 /* DJGoodsIdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653942892B48000CB37F3 /* DJGoodsIdsModel.m */; };
-		BEB653CF2892B48000CB37F3 /* DJLHCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653962892B48000CB37F3 /* DJLHCategoryModel.m */; };
+		BEB653CF2892B48000CB37F3 /* DJB2CCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653962892B48000CB37F3 /* DJB2CCategoryModel.m */; };
 		BEB653D02892B48000CB37F3 /* DJClassifyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB653972892B48000CB37F3 /* DJClassifyInfoModel.m */; };
 		BEB653D12892B48000CB37F3 /* DJB2CGoodsItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6539A2892B48000CB37F3 /* DJB2CGoodsItemListModel.m */; };
 		BEB653D22892B48000CB37F3 /* DJShopResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6539C2892B48000CB37F3 /* DJShopResourceModel.m */; };
@@ -256,10 +256,10 @@
 		BEB653922892B48000CB37F3 /* DJGoodBaseItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodBaseItemModel.h; sourceTree = "<group>"; };
 		BEB653932892B48000CB37F3 /* DJO2OGoodItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OGoodItemModel.h; sourceTree = "<group>"; };
 		BEB653942892B48000CB37F3 /* DJGoodsIdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodsIdsModel.m; sourceTree = "<group>"; };
-		BEB653962892B48000CB37F3 /* DJLHCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJLHCategoryModel.m; sourceTree = "<group>"; };
+		BEB653962892B48000CB37F3 /* DJB2CCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CCategoryModel.m; sourceTree = "<group>"; };
 		BEB653972892B48000CB37F3 /* DJClassifyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyInfoModel.m; sourceTree = "<group>"; };
 		BEB653982892B48000CB37F3 /* DJB2CGoodsItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CGoodsItemListModel.h; sourceTree = "<group>"; };
-		BEB653992892B48000CB37F3 /* DJLHCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJLHCategoryModel.h; sourceTree = "<group>"; };
+		BEB653992892B48000CB37F3 /* DJB2CCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CCategoryModel.h; sourceTree = "<group>"; };
 		BEB6539A2892B48000CB37F3 /* DJB2CGoodsItemListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CGoodsItemListModel.m; sourceTree = "<group>"; };
 		BEB6539B2892B48000CB37F3 /* DJClassifyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyInfoModel.h; sourceTree = "<group>"; };
 		BEB6539C2892B48000CB37F3 /* DJShopResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopResourceModel.m; sourceTree = "<group>"; };
@@ -795,11 +795,11 @@
 			isa = PBXGroup;
 			children = (
 				BE66B5F0289437690022DF7A /* Classify */,
-				BEB653952892B48000CB37F3 /* LH */,
 				BEB6538C2892B48000CB37F3 /* DJClassifyBaseCategoryModel.h */,
 				BEB6539D2892B48000CB37F3 /* DJClassifyBaseCategoryModel.m */,
 				BEB653872892B48000CB37F3 /* DJShopResourceModel.h */,
 				BEB6539C2892B48000CB37F3 /* DJShopResourceModel.m */,
+				BEB653952892B48000CB37F3 /* B2C */,
 				BEB653882892B48000CB37F3 /* O2O */,
 			);
 			path = Model;
@@ -820,15 +820,15 @@
 			path = O2O;
 			sourceTree = "<group>";
 		};
-		BEB653952892B48000CB37F3 /* LH */ = {
+		BEB653952892B48000CB37F3 /* B2C */ = {
 			isa = PBXGroup;
 			children = (
 				BEB653982892B48000CB37F3 /* DJB2CGoodsItemListModel.h */,
 				BEB6539A2892B48000CB37F3 /* DJB2CGoodsItemListModel.m */,
-				BEB653992892B48000CB37F3 /* DJLHCategoryModel.h */,
-				BEB653962892B48000CB37F3 /* DJLHCategoryModel.m */,
+				BEB653992892B48000CB37F3 /* DJB2CCategoryModel.h */,
+				BEB653962892B48000CB37F3 /* DJB2CCategoryModel.m */,
 			);
-			path = LH;
+			path = B2C;
 			sourceTree = "<group>";
 		};
 		BEB6539E2892B48000CB37F3 /* 1rdCategoryView */ = {
@@ -1075,7 +1075,7 @@
 				BEB653D32892B48000CB37F3 /* DJClassifyBaseCategoryModel.m in Sources */,
 				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
-				BEB653CF2892B48000CB37F3 /* DJLHCategoryModel.m in Sources */,
+				BEB653CF2892B48000CB37F3 /* DJB2CCategoryModel.m in Sources */,
 				BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */,
 				BEB653B72892B48000CB37F3 /* DJClassifyVM.m in Sources */,
 				BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  DJLHCategoryModel.h
+//  DJB2CCategoryModel.h
 //  LXToolKitObjc_Example
 //
 //  Created by lxthyme on 2022/7/22.
@@ -20,10 +20,10 @@ typedef NS_ENUM(NSInteger, DJSubCategoryIndexType) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJLHCategoryModel: DJClassifyBaseCategoryModel {
+@interface DJB2CCategoryModel: DJClassifyBaseCategoryModel {
 }
 @property (nonatomic, assign)NSString *categoryColor;
-@property (nonatomic, copy)NSArray<DJLHCategoryModel *> *categorys;
+@property (nonatomic, copy)NSArray<DJB2CCategoryModel *> *categorys;
 @property (nonatomic, copy)NSString *showModel;
 @property (nonatomic, assign)NSInteger bestSelling;
 @property (nonatomic, copy)NSString *categoryPicture;

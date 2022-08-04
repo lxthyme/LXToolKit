@@ -34,7 +34,7 @@
 #pragma mark - 🌎LoadData
 - (void)dataFill:(NSArray<DJClassifyBaseCategoryModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
-    self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(DJLHCategoryModel * _Nullable value) {
+    self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(DJB2CCategoryModel * _Nullable value) {
         return value.categoryName;
     }].array;
     self.collectionView.hidden = NO;

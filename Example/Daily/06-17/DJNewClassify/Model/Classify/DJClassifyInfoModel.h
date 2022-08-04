@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBaseModel.h"
-#import "DJLHCategoryModel.h"
+#import "DJB2CCategoryModel.h"
 #import "DJO2OCategoryListModel.h"
 #import "DJClassifyBaseCategoryModel.h"
 #import "DJShopResourceModel.h"
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 // /// 对应三级目录的 categoryId
 // @property(nonatomic, copy)NSString *f_3rdCategoryId;
 /// 「only B2C」三级商品对应的二级分类数据
-@property(nonatomic, strong)DJLHCategoryModel *f_b2cCategoryMdeol;
+@property(nonatomic, strong)DJB2CCategoryModel *f_b2cCategoryMdeol;
 /// 「only B2C」
 /// 「only B2C」三级商品
 @property (nonatomic, strong)DJB2CGoodsItemListModel *f_b2CGoodsListModel;
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 三级级目录数据
 @property (nonatomic, copy)NSArray<DJClassifyBaseCategoryModel *> *f_categorys;
-@property (nonatomic, strong)DJLHCategoryModel *f_b2cCategoryModel;
+@property (nonatomic, strong)DJB2CCategoryModel *f_b2cCategoryModel;
 @property (nonatomic, strong)DJO2OCategoryListModel *f_o2oCategoryModel;
 /// 「only O2O」banner 数据
 @property(nonatomic, strong)DJShopResourceModel *f_bannerInfo;

@@ -66,9 +66,12 @@
     }
 
     /// 3. tagList
-    self.f_popinfosList = [[self.popinfosList.rac_sequence filter:^BOOL(DJGoodItemPopinfosList *value) {
+    __block CGFloat allWidth = 0.f;
+    self.f_popinfosList = [[[self.popinfosList.rac_sequence
+                             filter:^BOOL(DJGoodItemPopinfosList *value) {
         return value.ruletype != DJRuleType12;
-    }] map:^id(DJGoodItemPopinfosList *value) {
+    }]
+                            map:^id(DJGoodItemPopinfosList *value) {
         if([value.buyMember isEqualToString:@"1"]) {
             value.f_borderWidth = 0.f;
             value.f_cornerRadius = 3.f;
@@ -82,20 +85,15 @@
         }
         value.f_text = value.sLabel;
         [value makeTextAttribute];
-        return value;
-    }];
-    __block CGFloat allWidth = 0.f;
-    self.f_popinfosList = [[self.f_popinfosList
-                            map:^id(DJGoodItemPopinfosList *value) {
-        value.f_cornerRadius = kTagListHeight / 2.f;
-        [value makeTextAttribute];
+        if([value.buyMember isEqualToString:@"1"]) {
+            CGRect f_textRect = value.f_textRect;
+            f_textRect.size.width += kWPercentage(14.f);
+            value.f_textRect = f_textRect;
+        }
         return value;
     }]
                            filter:^BOOL(DJGoodItemPopinfosList *value) {
         allWidth += CGRectGetWidth(value.f_textRect) + kTagListHPadding * 2 + kTagListInterval;
-        if([value.buyMember isEqualToString:@"1"]) {
-            allWidth += kWPercentage(15.f);
-        }
         return (allWidth - kTagListInterval) <= maxWidth;
     }];
     if(self.f_popinfosList.array.count > 0) {

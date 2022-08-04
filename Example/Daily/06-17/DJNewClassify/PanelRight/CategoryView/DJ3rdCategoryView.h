@@ -7,7 +7,7 @@
 //
 #import <DJBusinessTools/LXBaseView.h>
 
-#import "DJLHCategoryModel.h"
+#import "DJB2CCategoryModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
