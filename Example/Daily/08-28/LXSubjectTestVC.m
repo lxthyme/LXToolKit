@@ -11,6 +11,9 @@
 
 @interface LXSubjectTestVC() {
 }
+@property(nonatomic, strong)RACSubject *subject;
+@property(nonatomic, strong)RACBehaviorSubject *behaviorSubject;
+@property(nonatomic, strong)RACReplaySubject *replaySubject;
 
 @end
 
@@ -21,28 +24,13 @@
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:YES];
-    // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
     // Do any additional setup after loading the view.
 
     [self prepareUI];
+    [self testSubject];
 }
 
 #pragma mark -
@@ -50,6 +38,36 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (void)testSubject {
+    self.subject = [RACSubject subject];
+    [self.subject subscribeNext:^(id x) {
+        NSLog(@"1-x: %@", x);
+    }];
+    [self.subject sendNext:@111];
+    [self.subject subscribeNext:^(id x) {
+        NSLog(@"2-x: %@", x);
+    }];
+    [self.subject sendNext:@222];
+    [self.subject subscribeNext:^(id x) {
+        NSLog(@"3-x: %@", x);
+    }];
+    [self.subject sendNext:@333];
+}
+- (void)testBehaviorSubject {
+    self.behaviorSubject = [RACBehaviorSubject behaviorSubjectWithDefaultValue:@0];
+    [self.behaviorSubject subscribeNext:^(id x) {
+        NSLog(@"1-x: %@", x);
+    }];
+    [self.behaviorSubject sendNext:@111];
+    [self.behaviorSubject subscribeNext:^(id x) {
+        NSLog(@"2-x: %@", x);
+    }];
+    [self.behaviorSubject sendNext:@222];
+    [self.behaviorSubject subscribeNext:^(id x) {
+        NSLog(@"3-x: %@", x);
+    }];
+    [self.behaviorSubject sendNext:@333];
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions

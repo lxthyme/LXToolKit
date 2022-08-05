@@ -99,6 +99,7 @@
 		BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */; };
 		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
 		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
+		BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */; };
 		BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -290,6 +291,8 @@
 		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
 		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
 		BED144042844B2AB00DEA8EA /* LXCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionCell.m; sourceTree = "<group>"; };
+		BED29D5C289CFA4B001A66CE /* LXSubjectTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSubjectTestVC.h; sourceTree = "<group>"; };
+		BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSubjectTestVC.m; sourceTree = "<group>"; };
 		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
 		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -541,6 +544,7 @@
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BED29D5B289CFA3A001A66CE /* 08-28 */,
 				BEA806182891055000710636 /* 07-27 */,
 				BE6777CA2887B3D200D622E2 /* 07-20 */,
 				BE7F412E286B01AB009D8A8A /* 06-28 */,
@@ -894,6 +898,15 @@
 			path = "05-28";
 			sourceTree = "<group>";
 		};
+		BED29D5B289CFA3A001A66CE /* 08-28 */ = {
+			isa = PBXGroup;
+			children = (
+				BED29D5C289CFA4B001A66CE /* LXSubjectTestVC.h */,
+				BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */,
+			);
+			path = "08-28";
+			sourceTree = "<group>";
+		};
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1099,6 +1112,7 @@
 				BEB653C22892B48000CB37F3 /* DJSubCategoryPinView.m in Sources */,
 				BEB653CC2892B48000CB37F3 /* DJGoodBaseItemModel.m in Sources */,
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
+				BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
 				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
 				BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */,
