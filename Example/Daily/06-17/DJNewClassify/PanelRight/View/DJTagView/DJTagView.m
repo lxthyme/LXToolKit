@@ -42,11 +42,12 @@
     }
     self.labTitle.backgroundColor = bgColor;
 
+    self.wrapperStackView.layer.cornerRadius = 0.f;
+    self.imgViewLogo.hidden = YES;
     if([popInfoItem.buyMember isEqualToString:@"1"]) {
         self.imgViewLogo.hidden = NO;
         self.imgViewLogo.image = [iBLImage imageNamed:@"dj_plus_member"];
-    } else {
-        self.imgViewLogo.hidden = YES;
+        self.wrapperStackView.layer.cornerRadius = kWPercentage(4.f);
     }
 }
 
@@ -87,6 +88,7 @@
 - (UIStackView *)wrapperStackView {
     if(!_wrapperStackView){
         UIStackView *sv = [[UIStackView alloc]init];
+        sv.clipsToBounds = YES;
         sv.axis = UILayoutConstraintAxisHorizontal;
         sv.spacing = 0.f;
         _wrapperStackView = sv;

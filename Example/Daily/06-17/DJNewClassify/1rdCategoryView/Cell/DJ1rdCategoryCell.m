@@ -71,7 +71,8 @@
     // self.labTitle.text = categoryName;
     [self.btnTitle setTitle:categoryName forState:UIControlStateNormal];
     // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
-    [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]];
+    [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]
+                        placeholderImage:[iBLImage imageNamed:@"icon_category_placeholder"]];
 }
 
 #pragma mark -
@@ -196,7 +197,7 @@
         UIImageView *iv = [[UIImageView alloc]init];
         iv.contentMode = UIViewContentModeScaleAspectFit;
         // iv.image = [UIImage imageNamed:@""];
-        iv.backgroundColor = [UIColor lightGrayColor];
+        iv.backgroundColor = [UIColor colorWithHex:0xF6F6F6];
         // iv.layer.borderColor = [UIColor whiteColor].CGColor;
         // iv.layer.borderWidth = kWPercentage(1.5f);
         iv.clipsToBounds = YES;

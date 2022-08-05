@@ -6,13 +6,14 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#import "DJO2OGoodItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJNewAddCartView: UIControl {
 }
 
-- (void)dataFill:(NSInteger)num;
+- (void)dataFill:(DJO2OGoodItemModel *)item;
 
 @end
 

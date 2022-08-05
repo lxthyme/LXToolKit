@@ -120,10 +120,10 @@
         [self.td24HView dataFill:popInfoItem];
     }
     /// 5.价格
-    [self.topPriceStackView dataFill:@"" price:@"¥9900.80"];
-    [self.bottomPriceStackView dataFill:@"" price:@"¥46.90"];
+    [self.topPriceStackView dataFillTopWith:item.salePrice priceType:item.priceType];
+    [self.bottomPriceStackView dataFillBottomWith:item];
     /// 6. 加车按钮
-    [self.addCartView dataFill:item.num233];
+    [self.addCartView dataFill:item];
 }
 - (void)dataFillWithB2C:(DJB2CGoodItemModel *)item {
     /// 1. logo
@@ -166,7 +166,7 @@
     [self.topPriceStackView dataFill:@"" price:@"¥9900.80"];
     [self.bottomPriceStackView dataFill:@"" price:@"¥46.90"];
     /// 6. 加车按钮
-    [self.addCartView dataFill:item.num233];
+    [self.addCartView dataFill:item];
 }
 
 #pragma mark -

@@ -7,7 +7,7 @@
 //
 #import "DJPriceWrapperStackView.h"
 
-#import <Masonry/Masonry.h>
+#import <BLCategories/UIColor+Hex.h>
 
 @interface DJPriceWrapperStackView() {
 }
@@ -32,6 +32,69 @@
     self.imgViewLogo.image = [iBLImage imageNamed:logo];
     self.imgViewLogo.hidden = logo.length <= 0;
     self.labTitle.text = price;
+}
+- (void)dataFillTopWith:(NSString *)price priceType:(DJGoodsPriceType)priceType {
+    NSDictionary *info = @{
+        /// 新人
+        @(DJGoodsPriceNewUserType): @"price_newUser",
+        //        @(DJGoodsPriceXianGouType): @"限购",
+        /// 到手
+        @(DJGoodsPriceRealType): @"price_daoShou",
+        /// 预售
+        @(DJGoodsPricePreSellType): @"price_yuShou",
+    };
+    self.imgViewLogo.hidden = YES;
+    if(priceType == DJGoodsPriceRealType ||
+       priceType == DJGoodsPricePreSellType ||
+       priceType == DJGoodsPriceNewUserType) {
+        UIImage *priceTagImg = [iBLImage imageNamed:info[@(priceType)]];
+        self.imgViewLogo.image = priceTagImg;
+        self.imgViewLogo.hidden = NO;
+    }
+
+    NSString *fmtPrice = [NSString stringWithFormat:@"¥%.2f", [price doubleValue]];
+    NSMutableAttributedString *fmtPriceAttr = [[NSMutableAttributedString alloc]
+                                               initWithString:fmtPrice
+                                               attributes:@{
+        NSFontAttributeName: [UIFont boldSystemFontOfSize:kWPercentage(17.f)],
+        NSForegroundColorAttributeName: [UIColor colorWithHex:0xFF4A4A]
+    }];
+    [fmtPriceAttr addAttributes:@{
+        NSFontAttributeName: [UIFont boldSystemFontOfSize:kWPercentage(9.f)]
+    } range:[fmtPrice rangeOfString:@"¥"]];
+    self.labTitle.attributedText = [fmtPriceAttr copy];
+}
+- (void)dataFillBottomWith:(DJO2OGoodItemModel *)item {
+    NSString *price = @"";
+
+    self.imgViewLogo.hidden = YES;
+    if(isEmptyString(item.plusPrice)) {
+        if([item.salePrice doubleValue] < [item.basePrice doubleValue]) {
+            price = item.basePrice;
+        }
+    } else {
+        price = item.plusPrice;
+        self.imgViewLogo.image = [iBLImage imageNamed:@"dj_plus"];
+    }
+    self.labTitle.hidden = YES;
+    self.hidden = YES;
+    if(!isEmptyString(price)) {
+        NSString *fmtPrice = [NSString stringWithFormat:@"¥%.2f", [price doubleValue]];
+        NSMutableAttributedString *fmtPriceAttr = [[NSMutableAttributedString alloc]
+                                                   initWithString:fmtPrice
+                                                   attributes:@{
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:kWPercentage(11.f)],
+            NSForegroundColorAttributeName: [UIColor colorWithHex:0x999999],
+            NSStrikethroughColorAttributeName: [UIColor colorWithHex:0x999999],
+            NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle)
+        }];
+        [fmtPriceAttr addAttributes:@{
+            NSFontAttributeName: [UIFont boldSystemFontOfSize:kWPercentage(9.f)]
+        } range:[fmtPrice rangeOfString:@"¥"]];
+        self.labTitle.attributedText = [fmtPriceAttr copy];
+        self.labTitle.hidden = NO;
+        self.hidden = NO;
+    }
 }
 
 #pragma mark -

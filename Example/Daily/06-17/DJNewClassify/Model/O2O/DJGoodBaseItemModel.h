@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *saleStockStatus;
 @property (nonatomic, copy)NSString *limitBuyPersonSum;
 @property (nonatomic, copy)NSString *marketOn;
-@property (nonatomic, copy)NSString *priceType;
+@property (nonatomic, assign)NSInteger priceType;
 @property (nonatomic, copy)NSArray<DJGoodItemPopinfosList *> *popinfosList;
 @property (nonatomic, copy)NSArray *previewList;
 @property (nonatomic, copy)NSArray *xgList;

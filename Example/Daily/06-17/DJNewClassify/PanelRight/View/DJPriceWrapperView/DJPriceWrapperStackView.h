@@ -6,6 +6,8 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBaseView.h"
+#import "DJO2OGoodItemModel.h"
+#import <DJBusinessTools/DJModuleProductCollectionViewCell.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)UILabel *labTitle;
 
 - (void)dataFill:(NSString *)logo price:(NSString *)price;
+- (void)dataFillTopWith:(NSString *)price priceType:(DJGoodsPriceType)priceType;
+- (void)dataFillBottomWith:(DJO2OGoodItemModel *)item;
 
 @end
 

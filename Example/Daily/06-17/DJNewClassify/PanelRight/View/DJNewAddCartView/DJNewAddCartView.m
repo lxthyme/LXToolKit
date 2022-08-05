@@ -9,6 +9,7 @@
 
 #import <DJBusinessTools/LXLabel.h>
 #import "DJClassifyMacro.h"
+#import <DJBusinessTools/DJGoodImageView.h>
 
 @interface DJNewAddCartView() {
 }
@@ -30,13 +31,53 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSInteger)num {
+- (void)dataFill:(DJO2OGoodItemModel *)item {
+    NSInteger num = 233;
     self.labNum.text = [NSString stringWithFormat:@"%ld", num];
     self.labNum.hidden = !(num > 0);
+    DJGoodImageViewLabelType type = [self getTypeFromGoodItem:item];
+    if(type == DJGoodImageViewLabelTypeSoldout) {
+        self.imgViewLogo.image =  [iBLImage imageNamed:@"DJ_addshopcart_black"];
+        self.imgViewLogo.userInteractionEnabled = NO;
+    } else {
+        self.imgViewLogo.image =  [iBLImage imageNamed:@"dj_addShoppingCart"];
+        self.imgViewLogo.userInteractionEnabled = YES;
+    }
 }
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (DJGoodImageViewLabelType )getTypeFromGoodItem:(DJO2OGoodItemModel *)item {
+    DJGoodImageViewLabelType type = DJGoodImageViewLabelTypeDefault;
+    NSInteger stockCount = -1;
+    if (item.saleStockSum) {
+        stockCount = [item.saleStockSum integerValue];;
+    }
+
+    if(stockCount < 3 && stockCount != -1){
+        type = DJGoodImageViewLabelTypeTension;
+    }
+
+    if(!isEmptyString(item.limitBuyPersonSum) &&
+       ![item.limitBuyPersonSum isEqualToString:@"0"]) {
+        type = DJGoodImageViewLabelTypeLimit;
+    }
+
+    if([item.saleStockStatus isEqualToString:@"0"]){
+        type = DJGoodImageViewLabelTypeSoldout;
+    }
+
+    if ([item.type isEqualToString:@"LH"] &&
+        type == DJGoodImageViewLabelTypeTension) {
+        if ([item.saleStockStatus integerValue] == 0) {
+            type = DJGoodImageViewLabelTypeSoldout;
+        }else{
+            type = DJGoodImageViewLabelTypeDefault;
+        }
+    }
+
+    return type;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
