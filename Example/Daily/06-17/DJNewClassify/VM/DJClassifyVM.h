@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// (O2O)搜索框数据
 - (void)loadO2OSearch;
 /// (O2O)二级目录 banner 资源位
-- (void)loadO2OBannerWithResourceId:(NSString *)resourceId categoryId:(NSString *)categoryId;
+- (void)loadO2OBannerWith:(DJO2OCategoryListModel *)t2Category;
 
 /// 查询 B2C 目录
 - (void)loadProductSearchDoCategoryByLevOne;

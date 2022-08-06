@@ -2,23 +2,23 @@
 //  DJClassifyListBannerCell.m
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/8/7.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "DJClassifyListBannerCell.h"
 
-#import <SDCycleScrollView/SDCycleScrollView.h>
+#import <Masonry/Masonry.h>
 
-@interface DJClassifyListBannerCell()<SDCycleScrollViewDelegate> {
+@interface DJClassifyListBannerCell() {
 }
-@property(nonatomic, strong)SDCycleScrollView *bannerView;
+
 @end
 
 @implementation DJClassifyListBannerCell
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         [self prepareUI];
     }
@@ -27,21 +27,9 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
     // Configure the view for the selected state
-}
-#pragma mark -
-#pragma mark - 🌎LoadData
-- (void)dataFill:(DJShopResourceModel *)bannerInfo {
-    self.bannerView.autoScroll = YES;
-    self.bannerView.imageURLStringsGroup = [[bannerInfo.onlineDeployList.rac_sequence
-                                             filter:^BOOL(DJOnlineDeployList *value) {
-        return !isEmptyString(value.picUrl);
-    }]
-                                            map:^id(DJOnlineDeployList *value) {
-        return value.picUrl;
-    }].array;
 }
 
 #pragma mark -
@@ -55,7 +43,7 @@
 - (void)prepareUI {
     self.contentView.backgroundColor = [UIColor whiteColor];
 
-    [self.contentView addSubview:self.bannerView];
+    // [self.<#contentView#> addSubview:self.<#table#>];
 
     [self masonry];
 }
@@ -63,24 +51,8 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
 }
 
 #pragma mark Lazy Property
-- (SDCycleScrollView *)bannerView {
-    if(!_bannerView){
-        SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
-        v.autoScrollTimeInterval = 3.f;
-        v.infiniteLoop = YES;
-        v.delegate = self;
-        v.placeholderImage = [iBLImage imageNamed:@""];
-        v.layer.cornerRadius = kWPercentage(4.f);
-        v.clipsToBounds = YES;
-        _bannerView = v;
-    }
-    return _bannerView;
-}
 
 @end

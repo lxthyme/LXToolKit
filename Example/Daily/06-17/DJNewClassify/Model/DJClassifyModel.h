@@ -62,8 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)DJO2OCategoryListModel *f_allO2OGoodsList;
 /// 2. 所有三级分类的商品信息
 @property (nonatomic, strong)NSArray<DJO2OCategoryListModel *> *f_allO2OSectionGoodsList;
-/// 3. banner 数据
-@property(nonatomic, strong)DJShopResourceModel *f_bannerInfo;
 
 /// 「only B2C」分类 & 商品信息
 @property (nonatomic, strong)DJB2CCategoryModel *f_b2cCategoryModel;

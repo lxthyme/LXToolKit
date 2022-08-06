@@ -2,18 +2,16 @@
 //  DJClassifyListBannerCell.h
 //  LXToolKitObjc_Example
 //
-//  Created by lxthyme on 2022/6/19.
+//  Created by lxthyme on 2022/8/7.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
-#import <DJBusinessTools/LXBaseTableViewCell.h>
-#import "DJShopResourceModel.h"
-
+#import <SDCycleScrollView/SDCollectionViewCell.h>
+// #import <SDWebImage/A>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJClassifyListBannerCell : LXBaseTableViewCell {
+@interface DJClassifyListBannerCell: SDCollectionViewCell {
 }
-
-- (void)dataFill:(DJShopResourceModel *)bannerInfo;
+@property (weak, nonatomic) UIImageView *imageView;
 
 @end
 

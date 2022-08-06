@@ -9,6 +9,7 @@
 #import "DJClassifyMacro.h"
 #import "DJO2OGoodItemModel.h"
 #import "DJGoodsIdsModel.h"
+#import "DJShopResourceModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,6 +53,9 @@ typedef NS_ENUM(NSInteger, DJO2OCategoryCateType) {
 @property (nonatomic, strong)DJGoodsIdsModel *f_idsList;
 /// 三级分类对应的商品列表
 @property (nonatomic, strong)NSArray<DJO2OGoodItemModel *> *f_goodsList;
+/// banner resource
+@property(nonatomic, assign)DJT3DataLoadedStatus f_bannerStatus;
+@property(nonatomic, strong)DJShopResourceModel *f_bannerResource;
 /// 数据加载状态
 // @property(nonatomic, assign)DJT3DataLoadedStatus f_dataLoadedStatus;
 @property (nonatomic, strong)DJO2OCategoryListModel *f_t2AllCategory;

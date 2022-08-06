@@ -20,6 +20,7 @@
 #import "DJSectionCategoryHeaderView.h"
 #import "DJSubCategoryPinView.h"
 #import "DJ3rdCategoryView.h"
+#import "DJClassifyListBannerView.h"
 
 @interface DJClassifyListRightVC()<UITableViewDataSource,UITableViewDelegate> {
     UIButton *__btnRotate;
@@ -71,9 +72,49 @@
         }
         
     }];
+    [self.b2cVM.o2oBannerSubject subscribeNext:^(DJO2OCategoryListModel *x) {
+        if([self.rightModel.f_t2Category isEqual:x]) {
+            [self dataFillWithBannerInfo];
+        }
+    }];
+}
+- (void)dataFillWithBannerInfo {
+    if(self.rightModel.f_t2Category.f_bannerResource) {
+        DJClassifyListBannerView *banner = [[DJClassifyListBannerView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DJClassifyListBannerView"];
+        // banner.f_itemType = DJClassifyGoodItemTypeBanner;
+        banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), CGRectGetWidth(self.table.frame) - kWPercentage(10.f * 2), kBannerSectionHeight);
+        [banner dataFill:self.rightModel.f_t2Category.f_bannerResource];
+        UIView *tableHeaderView = [[UIView alloc]init];
+        tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight + kWPercentage(10.f));
+        [tableHeaderView addSubview:banner];
+        self.table.tableHeaderView = tableHeaderView;
+        // [self.table reloadData];
+    } else {
+        [self.b2cVM loadO2OBannerWith:self.rightModel.f_t2Category];
+
+        UIView *bannerView = [[UIView alloc]init];
+        bannerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), CGFLOAT_MIN);
+        self.table.tableHeaderView = bannerView;
+    }
 }
 - (void)dataFill:(DJClassifyRightModel *)rightModel {
     self.rightModel = rightModel;
+    /// 1. banner
+    if(rightModel.f_t2Category.f_bannerResource) {
+        [self dataFillWithBannerInfo];
+    } else {
+        [self.b2cVM loadO2OBannerWith:rightModel.f_t2Category];
+    }
+    /// 2. 商品数据
+    __block BOOL showAll = NO;
+    [rightModel.f_t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(obj.cateType == DJO2OCategoryCateTypeAll) {
+            showAll = YES;
+            *stop = YES;
+            return;
+        }
+    }];
+
     NSInteger t3Idx = rightModel.f_pinIdx;
     DJO2OCategoryListModel *t3Category;
     if(rightModel.f_t2Category.rywCategorys.count <= 0 && t3Idx == 0) {
@@ -118,10 +159,12 @@
             }
         }];
         self.viewStatus = isEmpty ? DJViewStatusNoData : DJViewStatusNormal;
-        // self.table.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGFLOAT_MIN, CGFLOAT_MIN)];
         [self.table reloadData];
         CGRect rect = [self.table rectForSection:t3Idx];
-        [self.table setContentOffset:CGPointMake(0, MAX(0, CGRectGetMinY(rect))) animated:YES];
+        CGPoint offset = CGPointMake(0, CGRectGetMinY(rect));
+        offset.y -= __pinViewHeight;
+        offset.y = MAX(0, offset.y);
+        [self.table setContentOffset:offset animated:YES];
     } else {
         switch (t3Category.cateType) {
             case DJO2OCategoryCateTypeAll: {
@@ -346,7 +389,7 @@
 - (void)prepareCollectionView {
     [self.table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.table registerClass:[DJClassifyRightCollectionCell class] forCellReuseIdentifier:@"DJClassifyRightCollectionCell"];
-    // [self.table registerClass:[DJClassifyListBannerCell class] forCellReuseIdentifier:@"DJClassifyListBannerCell"];
+    // [self.table registerClass:[DJClassifyListBannerView class] forCellReuseIdentifier:@"DJClassifyListBannerView"];
     [self.table registerClass:[DJClassifySectionHeaderView class] forHeaderFooterViewReuseIdentifier:@"DJClassifySectionHeaderView"];
     [self.table registerClass:[DJSectionCategoryHeaderView class] forHeaderFooterViewReuseIdentifier:@"DJSectionCategoryHeaderView"];
 

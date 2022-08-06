@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)DJClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 
-- (void)dataFillWithBannerInfo:(DJShopResourceModel *)bannerInfo;
+// - (void)dataFillWithBannerInfo:(DJShopResourceModel *)bannerInfo;
 - (void)dataFill:(DJClassifyRightModel *)rightModel
          showAll:(BOOL)showAll;
 - (void)dataFill:(DJClassifyRightModel *)rightModel;

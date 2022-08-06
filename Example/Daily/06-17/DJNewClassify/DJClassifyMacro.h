@@ -65,18 +65,22 @@ typedef NS_ENUM(NSInteger, DJClassifyRightCellType) {
     DJClassifyRightVCCellTypeBanner = 1,
     DJClassifyRightVCCellTypeGoodsItem,
 };
-// typedef NS_ENUM(NSInteger, DJT3DataLoadedStatus) {
-//     /// 尚未开始加载
-//     DJT3DataLoadedStatusNotYet,
-//     /// 加载 idsList...
-//     DJT3DataLoadedStatusLoadingIdsList,
-//     /// 加载 goodsList...
-//     DJT3DataLoadedStatusLoadingGoodsList,
-//     /// 尚未开始加载 goodsList
-//     DJT3DataLoadedStatusGoodsListNotYet,
-//     /// 已经加载 goodsList
-//     DJT3DataLoadedStatusLoadedGoodsList,
-// };
+typedef NS_ENUM(NSInteger, DJT3DataLoadedStatus) {
+    /// 尚未开始加载
+    DJT3DataLoadedStatusNotYet = 0,
+    /// 加载 idsList...
+    // DJT3DataLoadedStatusLoadingIdsList,
+    /// 加载 goodsList...
+    // DJT3DataLoadedStatusLoadingGoodsList,
+    /// 尚未开始加载 goodsList
+    // DJT3DataLoadedStatusGoodsListNotYet,
+    /// 已经加载 goodsList
+    // DJT3DataLoadedStatusLoadedGoodsList,
+    /// 加载中
+    DJT3DataLoadedStatusLoading,
+    /// 加载完毕
+    DJT3DataLoadedStatusLoaded
+};
 
 /// 三级分类页 banner 所在的 section
 static const NSUInteger kBannerSectionIdx = 0;

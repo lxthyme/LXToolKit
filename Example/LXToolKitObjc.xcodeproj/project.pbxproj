@@ -75,7 +75,7 @@
 		BEDD8F4E289D76E70088778F /* DJTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F03289D76E70088778F /* DJTagView.m */; };
 		BEDD8F4F289D76E70088778F /* DJVerticalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F04289D76E70088778F /* DJVerticalTableView.m */; };
 		BEDD8F50289D76E70088778F /* DJSubCategoryPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F08289D76E70088778F /* DJSubCategoryPinView.m */; };
-		BEDD8F51289D76E70088778F /* DJClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F0C289D76E70088778F /* DJClassifyListBannerCell.m */; };
+		BEDD8F51289D76E70088778F /* DJClassifyListBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F0C289D76E70088778F /* DJClassifyListBannerView.m */; };
 		BEDD8F52289D76E70088778F /* DJClassifySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F0D289D76E70088778F /* DJClassifySectionHeaderView.m */; };
 		BEDD8F53289D76E70088778F /* DJClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F0E289D76E70088778F /* DJClassifyRightCollectionCell.m */; };
 		BEDD8F54289D76E70088778F /* DJSectionCategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F10289D76E70088778F /* DJSectionCategoryHeaderView.m */; };
@@ -101,6 +101,9 @@
 		BEDD8F68289D76E70088778F /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F3F289D76E70088778F /* JXCategoryTitleBackgroundView.m */; };
 		BEDD8F6B289D77550088778F /* DJClassifyListRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8F6A289D77550088778F /* DJClassifyListRightVC.m */; };
 		BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */; };
+		BEF372E3289ED92F00C9F248 /* DJClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF372E2289ED92F00C9F248 /* DJClassifyListBannerCell.m */; };
+		BEF3732E289EDF9200C9F248 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF3732A289EDF9200C9F248 /* FLAnimatedImage.m */; };
+		BEF3732F289EDF9200C9F248 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF3732B289EDF9200C9F248 /* FLAnimatedImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,10 +248,10 @@
 		BEDD8F08289D76E70088778F /* DJSubCategoryPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSubCategoryPinView.m; sourceTree = "<group>"; };
 		BEDD8F0A289D76E70088778F /* DJClassifyRightCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightCollectionCell.h; sourceTree = "<group>"; };
 		BEDD8F0B289D76E70088778F /* DJSectionCategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSectionCategoryHeaderView.h; sourceTree = "<group>"; };
-		BEDD8F0C289D76E70088778F /* DJClassifyListBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerCell.m; sourceTree = "<group>"; };
+		BEDD8F0C289D76E70088778F /* DJClassifyListBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerView.m; sourceTree = "<group>"; };
 		BEDD8F0D289D76E70088778F /* DJClassifySectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifySectionHeaderView.m; sourceTree = "<group>"; };
 		BEDD8F0E289D76E70088778F /* DJClassifyRightCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightCollectionCell.m; sourceTree = "<group>"; };
-		BEDD8F0F289D76E70088778F /* DJClassifyListBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerCell.h; sourceTree = "<group>"; };
+		BEDD8F0F289D76E70088778F /* DJClassifyListBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerView.h; sourceTree = "<group>"; };
 		BEDD8F10289D76E70088778F /* DJSectionCategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSectionCategoryHeaderView.m; sourceTree = "<group>"; };
 		BEDD8F11289D76E70088778F /* DJClassifySectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifySectionHeaderView.h; sourceTree = "<group>"; };
 		BEDD8F13289D76E70088778F /* DJ3rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ3rdCategoryCell.m; sourceTree = "<group>"; };
@@ -295,6 +298,12 @@
 		BEDD8F6A289D77550088778F /* DJClassifyListRightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListRightVC.m; sourceTree = "<group>"; };
 		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
+		BEF372E1289ED92F00C9F248 /* DJClassifyListBannerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerCell.h; sourceTree = "<group>"; };
+		BEF372E2289ED92F00C9F248 /* DJClassifyListBannerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerCell.m; sourceTree = "<group>"; };
+		BEF3732A289EDF9200C9F248 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		BEF3732B289EDF9200C9F248 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		BEF3732C289EDF9200C9F248 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		BEF3732D289EDF9200C9F248 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -421,6 +430,7 @@
 		BE5CB22C289D7C5B006722C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BEF37329289EDF9200C9F248 /* FLAnimatedImage */,
 				BE5CB22D289D7C73006722C2 /* DJClassifyHeaderView.h */,
 				BE5CB22E289D7C73006722C2 /* DJClassifyHeaderView.m */,
 			);
@@ -802,14 +812,16 @@
 		BEDD8F09289D76E70088778F /* Cell & HeaderFooter */ = {
 			isa = PBXGroup;
 			children = (
+				BEDD8F0F289D76E70088778F /* DJClassifyListBannerView.h */,
+				BEDD8F0C289D76E70088778F /* DJClassifyListBannerView.m */,
 				BEDD8F0A289D76E70088778F /* DJClassifyRightCollectionCell.h */,
-				BEDD8F0B289D76E70088778F /* DJSectionCategoryHeaderView.h */,
-				BEDD8F0C289D76E70088778F /* DJClassifyListBannerCell.m */,
-				BEDD8F0D289D76E70088778F /* DJClassifySectionHeaderView.m */,
 				BEDD8F0E289D76E70088778F /* DJClassifyRightCollectionCell.m */,
-				BEDD8F0F289D76E70088778F /* DJClassifyListBannerCell.h */,
-				BEDD8F10289D76E70088778F /* DJSectionCategoryHeaderView.m */,
 				BEDD8F11289D76E70088778F /* DJClassifySectionHeaderView.h */,
+				BEDD8F0D289D76E70088778F /* DJClassifySectionHeaderView.m */,
+				BEDD8F0B289D76E70088778F /* DJSectionCategoryHeaderView.h */,
+				BEDD8F10289D76E70088778F /* DJSectionCategoryHeaderView.m */,
+				BEF372E1289ED92F00C9F248 /* DJClassifyListBannerCell.h */,
+				BEF372E2289ED92F00C9F248 /* DJClassifyListBannerCell.m */,
 			);
 			path = "Cell & HeaderFooter";
 			sourceTree = "<group>";
@@ -905,6 +917,17 @@
 				BEDD8F40289D76E70088778F /* JXCategoryTitleBackgroundCellModel.h */,
 			);
 			path = JX;
+			sourceTree = "<group>";
+		};
+		BEF37329289EDF9200C9F248 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				BEF3732A289EDF9200C9F248 /* FLAnimatedImage.m */,
+				BEF3732B289EDF9200C9F248 /* FLAnimatedImageView.m */,
+				BEF3732C289EDF9200C9F248 /* FLAnimatedImage.h */,
+				BEF3732D289EDF9200C9F248 /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
@@ -1096,6 +1119,7 @@
 				BEDD8F43289D76E70088778F /* DJClassifySkeletonScreen.m in Sources */,
 				BEDD8F42289D76E70088778F /* DJClassifyEmptyView.m in Sources */,
 				BEA8061B2891056A00710636 /* LXYYZZVC.m in Sources */,
+				BEF3732F289EDF9200C9F248 /* FLAnimatedImageView.m in Sources */,
 				BEDD8F59289D76E70088778F /* DJGoodsIdsModel.m in Sources */,
 				BEDD8F61289D76E70088778F /* DJ1rdCategoryCell.m in Sources */,
 				BEDD8F50289D76E70088778F /* DJSubCategoryPinView.m in Sources */,
@@ -1114,6 +1138,7 @@
 				BEDD8F6B289D77550088778F /* DJClassifyListRightVC.m in Sources */,
 				BEDD8F52289D76E70088778F /* DJClassifySectionHeaderView.m in Sources */,
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
+				BEF372E3289ED92F00C9F248 /* DJClassifyListBannerCell.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
 				BEDD8EDC289D75930088778F /* CTAPIBaseManager+Rac.m in Sources */,
@@ -1125,7 +1150,8 @@
 				BEDD8F5C289D76E70088778F /* DJClassifyBaseCategoryModel.m in Sources */,
 				BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */,
 				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
-				BEDD8F51289D76E70088778F /* DJClassifyListBannerCell.m in Sources */,
+				BEDD8F51289D76E70088778F /* DJClassifyListBannerView.m in Sources */,
+				BEF3732E289EDF9200C9F248 /* FLAnimatedImage.m in Sources */,
 				BEA806242891066D00710636 /* LXYYZZImageCell.m in Sources */,
 				BEDD8F56289D76E70088778F /* DJ3rdCategoryView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
