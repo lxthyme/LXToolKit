@@ -34,7 +34,7 @@
     self.btnO2O.hidden = isEmptyString(o2oTitle);
     self.btnB2C.hidden = isEmptyString(b2cTitle);
     [self.btnO2O setTitle:o2oTitle forState:UIControlStateNormal];
-    [self.btnB2C setTitle:o2oTitle forState:UIControlStateNormal];
+    [self.btnB2C setTitle:b2cTitle forState:UIControlStateNormal];
 }
 
 #pragma mark -
@@ -46,19 +46,43 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareVM {
+    @weakify(self)
     [[[self.btnO2O rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.2]
-     subscribeNext:^(id x) {
-        NSLog(@"即时达: %@", x);
+     subscribeNext:^(UIControl *x) {
+        @strongify(self)
+        self.headerType = DJNewClassifyHeaderTypeO2O;
     }];
     [[[self.btnB2C rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.2]
-     subscribeNext:^(id x) {
-        NSLog(@"超市精选: %@", x);
+     subscribeNext:^(UIControl *x) {
+        @strongify(self)
+        self.headerType = DJNewClassifyHeaderTypeB2c;
+    }];
+    [[RACObserve(self, headerType)
+      distinctUntilChanged]
+     subscribeNext:^(NSNumber *x) {
+        @strongify(self)
+        self.btnO2O.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(14.f)];
+        self.btnB2C.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(14.f)];
+        self.btnO2O.selected = NO;
+        self.btnB2C.selected = NO;
+        switch ([x integerValue]) {
+            case DJNewClassifyHeaderTypeO2O: {
+                self.btnO2O.selected = YES;
+                self.btnO2O.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
+            }
+                break;
+            case DJNewClassifyHeaderTypeB2c: {
+                self.btnB2C.selected = YES;
+                self.btnB2C.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
+            }
+                break;
+        }
     }];
 }
 - (void)prepareUI {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
     self.axis = UILayoutConstraintAxisHorizontal;
     self.spacing = 0.f;
 

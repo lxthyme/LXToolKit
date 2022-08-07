@@ -8,18 +8,6 @@
 #import "DJSubCategoryPinView.h"
 // #import <SDCycleScrollView/SDCycleScrollView.h>
 
-/// filter 类型
-typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
-    /// 即时达
-    DJSubcategoryFilterTypeJiShiDa = 1,
-    /// 价格(递增)
-    DJSubcategoryFilterTypePriceAsc = 2,
-    /// 价格(递减)
-    DJSubcategoryFilterTypePriceDesc = 3,
-    /// 销量
-    DJSubcategoryFilterTypeSale = 4
-};
-
 @interface DJSubCategoryPinView() {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
@@ -37,9 +25,6 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
 @property(nonatomic, strong)UIImageView *imgViewArrowDown;
 /// 销量
 @property(nonatomic, strong)UIButton *btnSale;
-
-/// filter 类型
-@property(nonatomic, assign)DJSubcategoryFilterType filterType;
 
 @end
 
@@ -96,7 +81,7 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
     [self.topStackView addArrangedSubview:self.btnAll];
     [self.wrapperStackView addArrangedSubview:self.topStackView];
 
-    self.filterType = DJSubcategoryFilterTypeJiShiDa;
+    self.filterType = DJSubcategoryFilterTypeNone;
 
     [self.filterView addSubview:self.btnJiShiDa];
 
@@ -124,7 +109,7 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
       throttle:0.3]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        self.filterType = DJSubcategoryFilterTypeJiShiDa;
+        self.isJiShiDa = !x.isSelected;
     }];
     [[[self.priceWrapperView rac_signalForControlEvents:UIControlEventTouchUpInside]
       throttle:0.3]
@@ -132,6 +117,8 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
         @strongify(self)
         if(self.filterType == DJSubcategoryFilterTypePriceAsc) {
             self.filterType = DJSubcategoryFilterTypePriceDesc;
+        } else if(self.filterType == DJSubcategoryFilterTypePriceDesc) {
+            self.filterType = DJSubcategoryFilterTypeNone;
         } else {
             self.filterType = DJSubcategoryFilterTypePriceAsc;
         }
@@ -140,7 +127,11 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
       throttle:0.3]
      subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        self.filterType = DJSubcategoryFilterTypeSale;
+        if(x.isSelected) {
+            self.filterType = DJSubcategoryFilterTypeNone;
+        } else {
+            self.filterType = DJSubcategoryFilterTypeSale;
+        }
     }];
 }
 
@@ -198,23 +189,25 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
     }];
 }
 #pragma mark getter/setter
+- (void)setIsJiShiDa:(BOOL)isJiShiDa {
+    if(_isJiShiDa == isJiShiDa) {
+        return;
+    }
+    _isJiShiDa = isJiShiDa;
+    self.btnJiShiDa.selected = isJiShiDa;
+}
 - (void)setFilterType:(DJSubcategoryFilterType)filterType {
     if(_filterType == filterType) {
         return;
     }
     _filterType = filterType;
 
-    self.btnJiShiDa.selected = NO;
     self.btnSale.selected = NO;
     self.btnPrice.selected = NO;
     self.imgViewArrowUp.image = [iBLImage imageNamed:@"icon_arrowUp"];
     self.imgViewArrowDown.image = [iBLImage imageNamed:@"icon_arrowDown"];
     switch (_filterType) {
-        case DJSubcategoryFilterTypeJiShiDa: {
-            self.btnJiShiDa.selected = YES;
-
-        }
-            break;
+        case DJSubcategoryFilterTypeNone:break;
         case DJSubcategoryFilterTypePriceAsc: {
             self.btnPrice.selected = YES;
             self.imgViewArrowUp.image = [iBLImage imageNamed:@"icon_arrowUp_select"];

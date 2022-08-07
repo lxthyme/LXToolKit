@@ -9,8 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, DJNewClassifyHeaderType) {
+    DJNewClassifyHeaderTypeO2O = 1,
+    DJNewClassifyHeaderTypeB2c = 2,
+};
+
 @interface DJClassifyHeaderView: UIStackView {
 }
+@property(nonatomic, assign)DJNewClassifyHeaderType headerType;
 
 - (void)dataFill:(NSString *)o2oTitle b2cTitle:(NSString *)b2cTitle;
 

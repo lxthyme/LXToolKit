@@ -39,7 +39,7 @@
 @property(nonatomic, strong)DJClassifyRightModel *rightModel;
 @property(nonatomic, strong)NSArray<DJO2OCategoryListModel *> *t3CategoryList;
 @property(nonatomic, assign)CGRect pinCategoryRect;
-@property(nonatomic, strong)NSDictionary<NSString *, DJO2OGoodItemModel *> *allGoodsMap;
+@property(nonatomic, strong)NSDictionary<NSString *, DJGoodsList *> *allGoodsMap;
 
 @end
 
@@ -66,6 +66,25 @@
     [self prepareVM];
     [self prepareCollectionView];
     [self bindVM];
+
+    @weakify(self)
+    // self.queryCartDisposable = [RACSubject subject];
+    [self.b2cVM.shopCartVM.queryCartSubject
+      // takeUntil:self.queryCartDisposable]
+     // takeUntil:self.queryCartDisposable]
+     subscribeNext:^(DJQueryCartModel *x) {
+        @strongify(self)
+        NSMutableDictionary *allGoodsMap = [NSMutableDictionary dictionary];
+        [x.goodsGroupDtoList enumerateObjectsUsingBlock:^(DJGoodsGroupDtoList * _Nonnull obj1, NSUInteger idx1, BOOL * _Nonnull stop1) {
+            [obj1.goodsGroupList enumerateObjectsUsingBlock:^(DJGoodsGroupList * _Nonnull obj2, NSUInteger idx2, BOOL * _Nonnull stop2) {
+                [obj2.goodsList enumerateObjectsUsingBlock:^(DJGoodsList * _Nonnull obj3, NSUInteger idx3, BOOL * _Nonnull stop3) {
+                    allGoodsMap[obj3.goodsId] = obj3;
+                }];
+            }];
+        }];
+        self.allGoodsMap = [allGoodsMap copy];
+        [self.table reloadData];
+    }];
 }
 
 #pragma mark -
@@ -203,24 +222,37 @@
             if(!__hadAll && t3Idx >= 0) {
                 realIdx += 1;
             }
-            CGRect rect = [self.table rectForSection:realIdx];
-            CGPoint offset = CGPointMake(0, CGRectGetMinY(rect));
-            offset.y -= __pinViewHeight;
-            offset.y = MAX(0, offset.y);
-            [self.table setContentOffset:offset animated:YES];
+            if(realIdx < [self.table numberOfSections]) {
+                CGRect rect = [self.table rectForSection:realIdx];
+                CGPoint offset = CGPointMake(0, CGRectGetMinY(rect));
+                offset.y -= __pinViewHeight;
+                offset.y = MAX(0, offset.y);
+                [self.table setContentOffset:offset animated:YES];
+            } else {
+                [self.table setContentOffset:CGPointZero animated:YES];
+            }
         }
     } else {
         switch (t3Category.cateType) {
             case DJO2OCategoryCateTypeAll: {
-                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category isAll:YES];
+                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category
+                                                 isAll:YES
+                                            filterType:self.pinView.filterType
+                                             isJiShiDa:self.pinView.isJiShiDa];
             }
                 break;
             case DJO2OCategoryCateTypePromotion: {
-                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category isAll:NO];
+                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category
+                                                 isAll:NO
+                                            filterType:self.pinView.filterType
+                                             isJiShiDa:self.pinView.isJiShiDa];
             }
                 break;
             case DJO2OCategoryCateTypeNormal: {
-                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category isAll:NO];
+                [self.b2cVM loadSearchGoodsDetailsWith:rightModel.f_t2Category
+                                                 isAll:NO
+                                            filterType:self.pinView.filterType
+                                             isJiShiDa:self.pinView.isJiShiDa];
             }
                 break;
         }
@@ -307,24 +339,62 @@
 
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if(self.viewStatus == DJViewStatusOffline ||
+       self.viewStatus == DJViewStatusNoData) {
+        return 1;
+    }
     return self.t3CategoryList.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if(self.viewStatus == DJViewStatusOffline ||
+       self.viewStatus == DJViewStatusNoData) {
+        return 1;
+    }
     DJO2OCategoryListModel *t3Category = self.t3CategoryList[section];
     return t3Category.f_goodsList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.viewStatus == DJViewStatusOffline ||
+       self.viewStatus == DJViewStatusNoData) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+        DJClassifyEmptyView *emptyView = [[DJClassifyEmptyView alloc]init];
+        [cell addSubview:emptyView];
+        if(self.viewStatus == DJViewStatusOffline) {
+            [emptyView dataFillOfflineStyle];
+        } else if(self.viewStatus == DJViewStatusNoData) {
+            [emptyView dataFillEmptyStyle];
+        }
+        [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(@0.f);
+        }];
+        return cell;
+    }
     DJClassifyRightCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJClassifyRightCollectionCell" forIndexPath:indexPath];
     DJO2OCategoryListModel *t3Category = self.t3CategoryList[indexPath.section];
     DJO2OGoodItemModel *goodItem = t3Category.f_goodsList[indexPath.row];
-    // if(!isEmptyString(itemModel.goodsId)) {
-    //     goods = self.allGoodsMap[itemModel.goodsId];
-    // }
-    // [cell dataFillWithO2O:goodItem withNum:goods.goodsNumber];
-    [cell dataFillWithO2O:goodItem withNum:233];
+    DJGoodsList *shopItem;
+    if(!isEmptyString(goodItem.goodsId)) {
+        shopItem = self.allGoodsMap[goodItem.goodsId];
+    }
+    [cell dataFillWithO2O:goodItem withNum:shopItem.goodsNumber];
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.viewStatus == DJViewStatusOffline ||
+       self.viewStatus == DJViewStatusNoData) {
+        CGFloat h = CGRectGetHeight(tableView.frame);
+        h -= __pinViewHeight;
+        if(self.rightModel.f_t2Category.f_bannerResource) {
+            NSArray *onlineDeployList = self.rightModel.f_t2Category.f_bannerResource.onlineDeployList;
+            if(onlineDeployList.count > 0) {
+                h -= kBannerSectionHeight + kWPercentage(10.f);
+            }
+        }
+        return MAX(0, h);
+    }
+    return kT3RightCellHeight;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     DJO2OCategoryListModel *t3Category = self.t3CategoryList[section];
     switch (t3Category.f_categoryType) {
@@ -371,7 +441,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
+    if(self.viewStatus == DJViewStatusOffline ||
+       self.viewStatus == DJViewStatusNoData) {
+        return;
+    }
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
     NSDictionary *params = @{
         @"isByShopingCar": @(NO),
@@ -397,6 +470,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // CGFloat offsetY = scrollView.contentOffset.y;
     // NSLog(@"-->offsetY: %f", offsetY);
+    if(self.viewStatus == DJViewStatusNoData) {
+        return;
+    }
     CGRect sectionHeaderRect = [self.table rectForHeaderInSection:kPinCategoryViewSectionIndex];
     if (scrollView.contentOffset.y >= sectionHeaderRect.origin.y) {
         //当滚动的contentOffset.y大于了指定sectionHeader的y值，且还没有被添加到self.view上的时候，就需要切换superView
@@ -477,6 +553,39 @@
         @strongify(self)
         [self dismissAllCategoryView];
     }];
+    [[[RACObserve(self.pinView, isJiShiDa)
+                distinctUntilChanged]
+            throttle:0.1]
+    subscribeNext:^(NSNumber *x) {
+        @strongify(self)
+        if(!self.rightModel) {
+            return;
+        }
+        self.rightModel.f_t2Category.f_t2AllCategory.f_allStatus = DJT3DataLoadedStatusNotYet;
+        self.rightModel.f_t2Category.f_t2AllCategory.f_goodsList = nil;
+        [self.rightModel.f_t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.f_notAllStatus = DJT3DataLoadedStatusNotYet;
+            obj.f_goodsList = nil;
+        }];
+        [self dataFill:self.rightModel];
+    }];
+    [[[RACObserve(self.pinView, filterType)
+             distinctUntilChanged]
+            throttle:0.1]
+    subscribeNext:^(NSNumber *x) {
+        @strongify(self)
+        if(!self.rightModel) {
+            return;
+        }
+        self.rightModel.f_t2Category.f_t2AllCategory.f_allStatus = DJT3DataLoadedStatusNotYet;
+        self.rightModel.f_t2Category.f_t2AllCategory.f_goodsList = nil;
+        [self.rightModel.f_t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.f_notAllStatus = DJT3DataLoadedStatusNotYet;
+            obj.f_goodsList = nil;
+        }];
+        [self dataFill:self.rightModel];
+        NSLog(@"-->filterType: %ld", [x integerValue]);
+    }];
 }
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -487,7 +596,6 @@
     [self.allMaskView addSubview:self.allCategoryView];
     [self.view addSubview:self.allMaskView];
     [self.view addSubview:self.skeletonScreen];
-    [self.view addSubview:self.emptyView];
 
     [self masonry];
 }
@@ -496,9 +604,6 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.skeletonScreen mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
     [self.table mas_makeConstraints:^(MASConstraintMaker *make) {

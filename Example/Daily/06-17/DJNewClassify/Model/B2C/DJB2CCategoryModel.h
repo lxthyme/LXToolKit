@@ -39,7 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSArray<NSString *> *showNames;
 
 /// 三级分类对应的商品列表
-@property (nonatomic, strong)DJB2CGoodsItemListModel *f_goodsList;
+@property (nonatomic, strong)DJB2CGoodsItemListModel *_Nullable f_goodsList;
+@property(nonatomic, assign)DJT3DataLoadedStatus f_loadStatus;
 
 @end
 

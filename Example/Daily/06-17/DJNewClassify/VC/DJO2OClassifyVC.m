@@ -14,8 +14,6 @@
 #import "DJ1rdAllCategoryWrapperView.h"
 #import "DJClassifyListRightVC.h"
 
-#define kLabelAllWidth kWPercentage(35.f)
-
 @interface DJO2OClassifyVC()<UIPageViewControllerDelegate> {
 }
 @property(nonatomic, strong)UIStackView *topStackView;
@@ -426,12 +424,12 @@
         v.didSelectRowBlock = ^(NSInteger idx) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.navigationController.interactivePopGestureRecognizer.enabled = (idx == 0);
+                [weakSelf.categoryView selectItemAtIndex:idx];
                 if(idx >= 0 && idx < self.classifyModel.f_categorys.count) {
                     DJO2OCategoryListModel *t1Category = weakSelf.classifyModel.f_categorys[idx];
                     [weakSelf.rightVCList removeAllObjects];
                     [weakSelf.panelLeftView dataFill:t1Category.rywCategorys];
                 }
-                [weakSelf.categoryView selectItemAtIndex:idx];
                 [weakSelf.allCategoryWrapperView dismissFirstCategoryView];
                 // [weakSelf.listContainerView didClickSelectedItemAtIndex:idx];
                 // [weakSelf.listContainerView.scrollView setContentOffset:CGPointMake(idx * weakSelf.listContainerView.scrollView.bounds.size.width, 0) animated:YES];

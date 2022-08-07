@@ -10,6 +10,7 @@
 #import "DJB2CGoodsItemListModel.h"
 #import "DJShopResourceModel.h"
 #import "DJO2OCategoryListModel.h"
+#import <DJGlobalStoreManager/DJShopCartVM.h>
 
 #import "DJGoodsIdsModel.h"
 #import "DJO2OGoodItemModel.h"
@@ -20,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DJClassifyVM: NSObject {
 }
 @property(nonatomic, copy)NSString *shopId;
+@property(nonatomic, strong)DJShopCartVM *shopCartVM;
+
 @property(nonatomic, strong)RACCommand *productSearchDoCategoryByLevOneCommand;
 @property(nonatomic, strong)RACCommand *v2SearchForLHApiCommand;
 
@@ -51,7 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadShopCategory;
 /// 查询 O2O 商品信息
 - (void)loadSearchGoodsDetailsWith:(DJO2OCategoryListModel *)o2oCategoryModel
-                             isAll:(BOOL)isAll;
+                             isAll:(BOOL)isAll
+                        filterType:(DJSubcategoryFilterType)filterType
+                         isJiShiDa:(BOOL)isJiShiDa;
 /// (O2O)搜索框数据
 - (void)loadO2OSearch;
 /// (O2O)二级目录 banner 资源位
@@ -60,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 查询 B2C 目录
 - (void)loadProductSearchDoCategoryByLevOne;
 /// 查询 B2C 商品信息
-- (void)loadV2SearchForLHApi:(NSString *)categorySid;
+- (void)loadV2SearchForLHApi:(DJB2CCategoryModel *)t2Category filterType:(DJSubcategoryFilterType)filterType;
 @end
 
 NS_ASSUME_NONNULL_END

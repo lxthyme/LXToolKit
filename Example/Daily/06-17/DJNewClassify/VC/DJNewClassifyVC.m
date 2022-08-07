@@ -20,6 +20,7 @@
 @property(nonatomic, strong)UIStackView *containerStackView;
 @property(nonatomic, strong)DJClassifyHeaderView *headerView;
 @property(nonatomic, strong)UIView *wrapperView;
+@property(nonatomic, strong)UIPageViewController *pageVC;
 @property(nonatomic, strong)DJO2OClassifyVC *o2oVC;
 @property(nonatomic, strong)DJB2CClassifyVC *b2cVC;
 
@@ -46,13 +47,13 @@
     // self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
     self.navigationController.navigationBar.hidden = YES;
     /// 更新购物车数据
-    // [self.b2cVM.shopCartVM loadQueryCart];
+    [self.classifyVM.shopCartVM loadQueryCart];
     // DJStoreManager *gStore = [DJStoreManager sharedInstance];
-    // if(![self.b2cVM.shopId isEqualToString:gStore.shopId]) {
+    // if(![self.classifyVM.shopId isEqualToString:gStore.shopId]) {
     //     self.viewStatus = DJViewStatusLoading;
-    //     [self.b2cVM loadShopResource];
+    //     [self.classifyVM loadShopResource];
     //     if (gStore.djModuleType == FIRSTMEDICINE) {
-    //         [self.b2cVM loadO2OSearch];
+    //         [self.classifyVM loadO2OSearch];
     //     }
     // }
 }
@@ -72,6 +73,7 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
+    [self prepareVM];
     [self.classifyVM loadShopResource];
     [self bindVM];
 }
@@ -132,13 +134,38 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
+- (void)prepareVM {
+    @weakify(self)
+    [[RACObserve(self.headerView, headerType)
+      distinctUntilChanged]
+     subscribeNext:^(NSNumber *x) {
+        @strongify(self)
+        switch ([x integerValue]) {
+            case DJNewClassifyHeaderTypeO2O: {
+                [self.pageVC setViewControllers:@[self.o2oVC] direction:UIPageViewControllerNavigationDirectionReverse
+                                       animated:YES
+                                     completion:nil];
+            }
+                break;
+            case DJNewClassifyHeaderTypeB2c: {
+                [self.pageVC setViewControllers:@[self.b2cVC] direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:YES
+                                     completion:nil];
+            }
+                break;
+        }
+    }];
+}
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self addChildViewController:self.o2oVC];
+    [self.pageVC setViewControllers:@[self.o2oVC]
+                          direction:UIPageViewControllerNavigationDirectionForward
+                           animated:YES
+                         completion:nil];
 
-    [self.wrapperView addSubview:self.b2cVC.view];
-    [self.wrapperView addSubview:self.o2oVC.view];
+    [self.wrapperView addSubview:self.pageVC.view];
     [self.containerStackView addArrangedSubview:self.headerView];
     [self.containerStackView addArrangedSubview:self.wrapperView];
     [self.view addSubview:self.containerStackView];
@@ -156,10 +183,7 @@
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kWPercentage(44.f)));
     }];
-    [self.o2oVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
-    }];
-    [self.b2cVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.pageVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
 }
@@ -195,6 +219,21 @@
         _wrapperView = v;
     }
     return _wrapperView;
+}
+- (UIPageViewController *)pageVC {
+    if(!_pageVC){
+        UIPageViewController *v = [[UIPageViewController alloc]
+                                   initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                   navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                   options:@{
+            UIPageViewControllerOptionInterPageSpacingKey: @0.f
+        }];
+        v.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, 300);
+        // v.delegate = self;
+        // v.dataSource = self;
+        _pageVC = v;
+    }
+    return _pageVC;
 }
 - (DJO2OClassifyVC *)o2oVC {
     if(!_o2oVC){

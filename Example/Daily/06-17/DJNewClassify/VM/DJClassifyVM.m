@@ -38,10 +38,10 @@
         [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
         DJStoreManager *gStore = [DJStoreManager sharedInstance];
         /// 仅即时达
-        gStore.djModuleType = FIRSTMEDICINE;
+        // gStore.djModuleType = FIRSTMEDICINE;
         /// 即时达 + 超市精选
-        // gStore.djModuleType = COMMONTYPE;
-        // gStore.djHomeStyle = DAOJIA;
+        gStore.djModuleType = COMMONTYPE;
+        gStore.djHomeStyle = DAOJIA;
         /// 超市精选
         // gStore.djHomeStyle = LIANHUA;
         /// 初始化数据
@@ -83,6 +83,11 @@
             }];
         }
         if(idsList.count <= 0) {
+            if(isAll) {
+                t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
+            } else {
+                t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
+            }
             [self.searchGoodsIdsErrorSubject sendNext:[NSError errorWithDomain:@"999" code:-999 userInfo:@{}]];
             return;
         }
@@ -109,8 +114,10 @@
             }];
             /// 填充三级目录对应的商品数据
             if(isAll) {
+                t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
                 t2Category.f_t2AllCategory.f_goodsList = o2oGoodsListModel;
             } else {
+                t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
                 [t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     if(obj.cateType != DJO2OCategoryCateTypeAll) {
                         NSMutableArray *f_goodsList = [NSMutableArray array];
@@ -118,7 +125,10 @@
                             NSMutableArray *tmp = [[goodsId componentsSeparatedByString:@"_"] mutableCopy];
                             [tmp removeObjectAtIndex:0];
                             NSString *tmp_goodsId = [tmp componentsJoinedByString:@"_"];
-                            [f_goodsList addObject:goodsListMap[tmp_goodsId]];
+                            DJO2OGoodItemModel *item = goodsListMap[tmp_goodsId];
+                            if(item) {
+                                [f_goodsList addObject:item];
+                            }
                         }
                         obj.f_goodsList = [f_goodsList copy];
                     }
@@ -127,6 +137,11 @@
             [self.searchGoodsDetailsSubject sendNext:t2Category];
         } fail:^(CTAPIBaseManager *apiManager) {
             @strongify(self)
+            if(isAll) {
+                t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
+            } else {
+                t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
+            }
             [self.tmp_searchGoodsDetailsErrorSubject sendNext:apiManager];
         }];
     }];
@@ -256,7 +271,15 @@
 }
 
 /// O2O 商品信息
-- (void)loadSearchGoodsDetailsWith:(DJO2OCategoryListModel *)t2Category isAll:(BOOL)isAll {
+- (void)loadSearchGoodsDetailsWith:(DJO2OCategoryListModel *)t2Category
+                             isAll:(BOOL)isAll
+                        filterType:(DJSubcategoryFilterType)filterType
+                         isJiShiDa:(BOOL)isJiShiDa {
+    if(isAll && (t2Category.f_allStatus != DJT3DataLoadedStatusNotYet)) {
+        return;
+    } else if(!isAll && (t2Category.f_notAllStatus != DJT3DataLoadedStatusNotYet)) {
+        return;
+    }
     __block NSString *promCateId = @"";
     NSMutableArray *cateIdsList = [[[t2Category.rywCategorys.rac_sequence
                               filter:^BOOL(DJO2OCategoryListModel *value) {
@@ -272,20 +295,46 @@
     if(isAll && (cateIdsList.count <= 0)) {
         [cateIdsList addObject:t2Category.categoryId];
     }
+    if(isAll) {
+        t2Category.f_allStatus = DJT3DataLoadedStatusLoading;
+    } else {
+        t2Category.f_notAllStatus = DJT3DataLoadedStatusLoading;
+    }
     if(cateIdsList.count <= 0) {
+        if(isAll) {
+            t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
+        } else {
+            t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
+        }
         [self.searchGoodsIdsErrorSubject sendNext:[NSError errorWithDomain:@"999" code:999 userInfo:@{}]];
         return;
     }
     @weakify(self)
+    NSString *tdType = isJiShiDa ? @"0" : @"1";
+    NSString *sort = @"";
+    switch (filterType) {
+        case DJSubcategoryFilterTypeNone:
+            sort = @"goodsScore-desc";
+            break;
+        case DJSubcategoryFilterTypePriceAsc:
+            sort = @"salePrice-asc";
+            break;
+        case DJSubcategoryFilterTypePriceDesc:
+            sort = @"salePrice-desc";
+            break;
+        case DJSubcategoryFilterTypeSale:
+            sort = @"goodsScore-asc";
+            break;
+    }
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
     NSMutableDictionary *params = [@{
         @"merchantId": gStore.merchantId,
         @"storeCode": gStore.shopId,
         @"storeType": gStore.shopType,
         @"comId": gStore.comSid,
-        @"tdType": @"1",
+        @"tdType": tdType,
         @"cateIds": [cateIdsList componentsJoinedByString:@","],
-        @"sort": @"goodsScore-desc",
+        @"sort": sort,
         @"cateFlag": isAll ? @"1" : @"0",
     } mutableCopy];
     if(!isEmptyString(promCateId)) {
@@ -310,72 +359,107 @@
         if(idsListModel.count > 0) {
             [self.searchGoodsIdsSubject sendNext:[RACTuple tupleWithObjectsFromArray:@[@(isAll), t2Category]]];
         } else {
+            if(isAll) {
+                t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
+            } else {
+                t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
+            }
             [self.searchGoodsIdsErrorSubject sendNext:apiManager];
         }
     } fail:^(CTAPIBaseManager *apiManager) {
         @strongify(self)
+        if(isAll) {
+            t2Category.f_allStatus = DJT3DataLoadedStatusLoaded;
+        } else {
+            t2Category.f_notAllStatus = DJT3DataLoadedStatusLoaded;
+        }
         [self.searchGoodsIdsErrorSubject sendNext:apiManager];
     }];
 }
 
 /// 查询 B2C 目录
-// - (void)loadProductSearchDoCategoryByLevOne {
-//     @weakify(self)
-//     [BLProductSearchDoCategoryByLevOneApiManager loadDataWithParams:@{
-//         @"parentId": @"9999300920818"
-//     } success:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         NSString *resultCode = stringFromObject(apiManager.response.content, @"resultCode");
-//         if([resultCode isEqualToString:@"200"]) {
-//             NSDictionary *resultInfo = dictionaryFromObject(apiManager.response.content, @"resultInfo");
-//             NSArray *categorys = arrayFromObject(resultInfo, @"categorys");
-//             NSArray<DJB2CCategoryModel *> *categoryModelList = [NSArray yy_modelArrayWithClass:[DJB2CCategoryModel class] json:categorys];
-//             [self.productSearchDoCategoryByLevOneSubject sendNext:categoryModelList];
-//             // [self.productSearchDoCategoryByLevOneSubject sendCompleted];
-//         } else {
-//             [self.productSearchDoCategoryByLevOneErrorSubject sendNext:apiManager];
-//         }
-//     } fail:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         [self.productSearchDoCategoryByLevOneErrorSubject sendNext:apiManager];
-//     }];
-// }
+- (void)loadProductSearchDoCategoryByLevOne {
+    @weakify(self)
+    [BLProductSearchDoCategoryByLevOneApiManager loadDataWithParams:@{
+        @"parentId": @"9999300920818"
+    } success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        NSString *resultCode = stringFromObject(apiManager.response.content, @"resultCode");
+        if([resultCode isEqualToString:@"200"]) {
+            NSDictionary *resultInfo = dictionaryFromObject(apiManager.response.content, @"resultInfo");
+            NSArray *categorys = arrayFromObject(resultInfo, @"categorys");
+            NSArray<DJB2CCategoryModel *> *categoryModelList = [NSArray yy_modelArrayWithClass:[DJB2CCategoryModel class] json:categorys];
+            [self.productSearchDoCategoryByLevOneSubject sendNext:categoryModelList];
+            // [self.productSearchDoCategoryByLevOneSubject sendCompleted];
+        } else {
+            [self.productSearchDoCategoryByLevOneErrorSubject sendNext:apiManager];
+        }
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.productSearchDoCategoryByLevOneErrorSubject sendNext:apiManager];
+    }];
+}
 /// 根据 categorySid 查询 B2C 商品
-// - (void)loadV2SearchForLHApi:(NSString *)categorySid {
-//     if(isEmptyString(categorySid)) {
-//         [self.v2SearchForLHApiErrorSubject sendNext:[NSError errorWithDomain:@"999" code:999 userInfo:@{}]];
-//         return;
-//     }
-//     @weakify(self)
-//     [DJNewClassifyListSearchForLHAPIManager loadDataWithParams:@{
-//         @"categorySid": categorySid,
-//         @"sorTye": @"0",
-//         @"pageSize": @"20",
-//         @"sorCol": @"defSort",
-//         @"pageNo": @"1"
-//     } success:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         BOOL success = boolFromObject(apiManager.response.content, @"success");
-//         if(success) {
-//             NSDictionary *obj = dictionaryFromObject(apiManager.response.content, @"obj");
-//             DJB2CGoodsItemListModel *goodsListModel = [DJB2CGoodsItemListModel yy_modelWithDictionary:obj];
-//             [goodsListModel.goodsInfoList enumerateObjectsUsingBlock:^(DJGoodBaseItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                 obj.f_itemType = DJClassifyGoodItemTypeB2C;
-//             }];
-//             DJClassifyGoodsInfoModel *goodsInfoModel = [[DJClassifyGoodsInfoModel alloc]init];
-//             goodsInfoModel.f_itemType = DJClassifyGoodItemTypeB2C;
-//             goodsInfoModel.f_2rdCategoryId = categorySid;
-//             goodsInfoModel.f_b2CGoodsListModel = goodsListModel;
-//             RACTuple *tuple = [RACTuple tupleWithObjectsFromArray:@[categorySid, goodsInfoModel]];
-//             [self.v2SearchForLHApiSubject sendNext:tuple];
-//         } else {
-//             [self.v2SearchForLHApiErrorSubject sendNext:apiManager];
-//         }
-//     } fail:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         [self.v2SearchForLHApiErrorSubject sendNext:apiManager];
-//     }];
-// }
+- (void)loadV2SearchForLHApi:(DJB2CCategoryModel *)t2Category filterType:(DJSubcategoryFilterType)filterType {
+    if(t2Category.f_loadStatus != DJT3DataLoadedStatusNotYet) {
+        return;
+    }
+    t2Category.f_loadStatus = DJT3DataLoadedStatusLoading;
+    if(isEmptyString(t2Category.categoryId)) {
+        t2Category.f_loadStatus = DJT3DataLoadedStatusLoaded;
+        [self.v2SearchForLHApiErrorSubject sendNext:[NSError errorWithDomain:@"999" code:999 userInfo:@{}]];
+        return;
+    }
+    NSString *sorCol = @"";
+    NSString *sorTye = @"";
+    switch (filterType) {
+        case DJSubcategoryFilterTypeNone:
+            sorCol = @"defSort";
+            sorTye = @"";
+            break;
+        case DJSubcategoryFilterTypePriceAsc:
+            sorCol = @"pri";
+            sorTye = @"1";
+            break;
+        case DJSubcategoryFilterTypePriceDesc:
+            sorCol = @"pri";
+            sorTye = @"0";
+            break;
+        case DJSubcategoryFilterTypeSale:
+            sorCol = @"sal";
+            sorTye = @"";
+            break;
+    }
+    NSMutableDictionary *params = [@{
+        @"categorySid": t2Category.categoryId,
+        @"sorTye": @"0",
+        @"pageSize": @"30",
+        @"sorCol": sorCol,
+        @"pageNo": @"1"
+    } mutableCopy];
+    if(!isEmptyString(sorTye)) {
+        params[@"sorTye"] = sorTye;
+    }
+    @weakify(self)
+    [DJNewClassifyListSearchForLHAPIManager loadDataWithParams:params success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        BOOL success = boolFromObject(apiManager.response.content, @"success");
+        if(success) {
+            NSDictionary *obj = dictionaryFromObject(apiManager.response.content, @"obj");
+            DJB2CGoodsItemListModel *goodsListModel = [DJB2CGoodsItemListModel yy_modelWithDictionary:obj];
+            t2Category.f_goodsList = goodsListModel;
+            t2Category.f_loadStatus = DJT3DataLoadedStatusLoaded;
+            [self.v2SearchForLHApiSubject sendNext:t2Category];
+        } else {
+            t2Category.f_loadStatus = DJT3DataLoadedStatusLoaded;
+            [self.v2SearchForLHApiErrorSubject sendNext:apiManager];
+        }
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        t2Category.f_loadStatus = DJT3DataLoadedStatusLoaded;
+        [self.v2SearchForLHApiErrorSubject sendNext:apiManager];
+    }];
+}
 
 // - (void)loadAddCart {
 //     DJStoreManager *gStore = [DJStoreManager sharedInstance];
@@ -452,11 +536,11 @@
 //     }
 //     return _v2SearchForLHApiCommand;
 // }
-// - (DJShopCartVM *)shopCartVM {
-//     if(!_shopCartVM){
-//         DJShopCartVM *vm = [[DJShopCartVM alloc]init];
-//         _shopCartVM = vm;
-//     }
-//     return _shopCartVM;
-// }
+- (DJShopCartVM *)shopCartVM {
+    if(!_shopCartVM){
+        DJShopCartVM *vm = [[DJShopCartVM alloc]init];
+        _shopCartVM = vm;
+    }
+    return _shopCartVM;
+}
 @end

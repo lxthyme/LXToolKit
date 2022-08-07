@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///  所有三级级目录数据
 @property (nonatomic, copy)NSArray<DJClassifyBaseCategoryModel *> *f_categorys;
 
+/// 「only B2C」分类 & 商品信息
+@property (nonatomic, strong)DJB2CCategoryModel *f_t2B2CCategory;
 /// 「only O2O」
 @property (nonatomic, strong)DJO2OCategoryListModel *f_t2Category;
 // @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *f_t3o2orywCategorys;
@@ -63,8 +65,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 2. 所有三级分类的商品信息
 @property (nonatomic, strong)NSArray<DJO2OCategoryListModel *> *f_allO2OSectionGoodsList;
 
-/// 「only B2C」分类 & 商品信息
-@property (nonatomic, strong)DJB2CCategoryModel *f_b2cCategoryModel;
 @end
 
 @interface DJClassifyGoodsInfoModel: LXBaseModel {

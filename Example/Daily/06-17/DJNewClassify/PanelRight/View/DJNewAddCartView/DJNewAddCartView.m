@@ -38,9 +38,11 @@
     if(type == DJGoodImageViewLabelTypeSoldout) {
         self.imgViewLogo.image =  [iBLImage imageNamed:@"DJ_addshopcart_black"];
         self.imgViewLogo.userInteractionEnabled = NO;
+        self.labNum.backgroundColor = [UIColor colorWithHex:0xCCCCCC];
     } else {
         self.imgViewLogo.image =  [iBLImage imageNamed:@"dj_addShoppingCart"];
         self.imgViewLogo.userInteractionEnabled = YES;
+        self.labNum.backgroundColor = [UIColor colorWithHex:0xFF774F];
     }
 }
 

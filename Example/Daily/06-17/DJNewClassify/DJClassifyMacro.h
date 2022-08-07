@@ -58,6 +58,8 @@ typedef NS_ENUM(NSInteger, DJRuleType) {
 
 /// 分类页左侧列表宽度
 #define kLeftTableWidth kWPercentage(84.f)
+#define kLabelAllWidth kWPercentage(35.f)
+#define kB2CCategoryViewHeight kWPercentage(48.5f)
 
 // MARK: - 🔥三级分类配置
 
@@ -80,6 +82,19 @@ typedef NS_ENUM(NSInteger, DJT3DataLoadedStatus) {
     DJT3DataLoadedStatusLoading,
     /// 加载完毕
     DJT3DataLoadedStatusLoaded
+};
+
+/// filter 类型
+typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
+    DJSubcategoryFilterTypeNone = 0,
+    /// 即时达
+    // DJSubcategoryFilterTypeJiShiDa = 1,
+    /// 价格(递增)
+    DJSubcategoryFilterTypePriceAsc = 2,
+    /// 价格(递减)
+    DJSubcategoryFilterTypePriceDesc = 3,
+    /// 销量
+    DJSubcategoryFilterTypeSale = 4
 };
 
 /// 三级分类页 banner 所在的 section

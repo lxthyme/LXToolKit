@@ -52,6 +52,7 @@
 		BEA8062C2891078D00710636 /* DJYYZZInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA806272891078D00710636 /* DJYYZZInfoCell.m */; };
 		BEA8062D2891078D00710636 /* DJYYZZHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA8062A2891078D00710636 /* DJYYZZHeaderView.m */; };
 		BEA806312891131F00710636 /* DJYYZZInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA806302891131F00710636 /* DJYYZZInfoModel.m */; };
+		BEAA57E5289F6845004203A4 /* DJClassifyB2CRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAA57E4289F6845004203A4 /* DJClassifyB2CRightVC.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
 		BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */; };
@@ -197,6 +198,8 @@
 		BEA8062A2891078D00710636 /* DJYYZZHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJYYZZHeaderView.m; sourceTree = "<group>"; };
 		BEA8062F2891131F00710636 /* DJYYZZInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJYYZZInfoModel.h; sourceTree = "<group>"; };
 		BEA806302891131F00710636 /* DJYYZZInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJYYZZInfoModel.m; sourceTree = "<group>"; };
+		BEAA57E3289F6845004203A4 /* DJClassifyB2CRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyB2CRightVC.h; sourceTree = "<group>"; };
+		BEAA57E4289F6845004203A4 /* DJClassifyB2CRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyB2CRightVC.m; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
@@ -726,6 +729,8 @@
 				BEDD8EEC289D76E60088778F /* DJO2OClassifyVC.m */,
 				BEDD8F69289D77550088778F /* DJClassifyListRightVC.h */,
 				BEDD8F6A289D77550088778F /* DJClassifyListRightVC.m */,
+				BEAA57E3289F6845004203A4 /* DJClassifyB2CRightVC.h */,
+				BEAA57E4289F6845004203A4 /* DJClassifyB2CRightVC.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -754,13 +759,13 @@
 		BEDD8EF8289D76E70088778F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BEDD8EF9289D76E70088778F /* DJPriceWrapperView */,
-				BEDD8EFC289D76E70088778F /* DJVerticalTableView.h */,
+				BEDD8F05289D76E70088778F /* DJMyCollectionView.h */,
 				BEDD8EFD289D76E70088778F /* DJMyCollectionView.m */,
 				BEDD8EFE289D76E70088778F /* DJNewAddCartView */,
+				BEDD8EF9289D76E70088778F /* DJPriceWrapperView */,
 				BEDD8F01289D76E70088778F /* DJTagView */,
+				BEDD8EFC289D76E70088778F /* DJVerticalTableView.h */,
 				BEDD8F04289D76E70088778F /* DJVerticalTableView.m */,
-				BEDD8F05289D76E70088778F /* DJMyCollectionView.h */,
 				BEDD8F06289D76E70088778F /* PinView */,
 			);
 			path = View;
@@ -778,8 +783,8 @@
 		BEDD8EFE289D76E70088778F /* DJNewAddCartView */ = {
 			isa = PBXGroup;
 			children = (
-				BEDD8EFF289D76E70088778F /* DJNewAddCartView.m */,
 				BEDD8F00289D76E70088778F /* DJNewAddCartView.h */,
+				BEDD8EFF289D76E70088778F /* DJNewAddCartView.m */,
 			);
 			path = DJNewAddCartView;
 			sourceTree = "<group>";
@@ -1104,6 +1109,7 @@
 				BEDD8F59289D76E70088778F /* DJGoodsIdsModel.m in Sources */,
 				BEDD8F61289D76E70088778F /* DJ1rdCategoryCell.m in Sources */,
 				BEDD8F50289D76E70088778F /* DJSubCategoryPinView.m in Sources */,
+				BEAA57E5289F6845004203A4 /* DJClassifyB2CRightVC.m in Sources */,
 				BEDD8F4F289D76E70088778F /* DJVerticalTableView.m in Sources */,
 				BE5CB22F289D7C73006722C2 /* DJClassifyHeaderView.m in Sources */,
 				BEDD8F55289D76E70088778F /* DJ3rdCategoryCell.m in Sources */,
@@ -1307,6 +1313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 7.58.0;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
@@ -1319,6 +1326,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjc/LXToolKitObjc_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1330,6 +1338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 7.58.0;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
@@ -1341,6 +1350,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjc/LXToolKitObjc_Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
