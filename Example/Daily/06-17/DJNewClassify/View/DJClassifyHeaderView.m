@@ -33,8 +33,14 @@
 - (void)dataFill:(NSString *)o2oTitle b2cTitle:(NSString *)b2cTitle {
     self.btnO2O.hidden = isEmptyString(o2oTitle);
     self.btnB2C.hidden = isEmptyString(b2cTitle);
+    self.lineView.hidden = self.btnO2O.isHidden || self.btnB2C.isHidden;
     [self.btnO2O setTitle:o2oTitle forState:UIControlStateNormal];
     [self.btnB2C setTitle:b2cTitle forState:UIControlStateNormal];
+    if(isEmptyString(o2oTitle)) {
+        self.headerType = DJNewClassifyHeaderTypeB2c;
+    } else {
+        self.headerType = DJNewClassifyHeaderTypeO2O;
+    }
 }
 
 #pragma mark -
@@ -88,6 +94,7 @@
 
     [self addArrangedSubview:self.btnO2O];
     [self addArrangedSubview:self.btnB2C];
+    [self addSubview:self.btnSearch];
     [self addSubview:self.lineView];
 
     [self masonry];
@@ -104,6 +111,11 @@
         make.center.equalTo(@0.f);
         make.width.equalTo(@(kWPercentage(0.5f)));
         make.height.equalTo(@(kWPercentage(14.f)));
+    }];
+    [self.btnSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.centerY.equalTo(@0.f);
+        make.width.height.equalTo(@(kWPercentage(23.f)));
     }];
 }
 
@@ -142,6 +154,17 @@
         _lineView = v;
     }
     return _lineView;
+}
+- (UIButton *)btnSearch {
+    if(!_btnSearch){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor clearColor];
+
+        [btn setBackgroundImage:[iBLImage imageNamed:@"icon_classify_search"] forState:UIControlStateNormal];
+        _btnSearch = btn;
+    }
+    return _btnSearch;
 }
 
 @end

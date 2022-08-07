@@ -13,18 +13,24 @@
 #import "DJB2CClassifyVC.h"
 #import "DJClassifyVM.h"
 #import "DJClassifyHeaderView.h"
+#import "TXScrollLabelView.h"
 
-@interface DJNewClassifyVC() {
+@interface DJNewClassifyVC()<TXScrollLabelViewDelegate> {
     BOOL __navigationBarHidden;
 }
 @property(nonatomic, strong)UIStackView *containerStackView;
 @property(nonatomic, strong)DJClassifyHeaderView *headerView;
+/// 「即时达」
+@property(nonatomic, strong)TXScrollLabelView *tfSearch;
+@property(nonatomic, strong)UIView *panelTopView;
 @property(nonatomic, strong)UIView *wrapperView;
 @property(nonatomic, strong)UIPageViewController *pageVC;
 @property(nonatomic, strong)DJO2OClassifyVC *o2oVC;
 @property(nonatomic, strong)DJB2CClassifyVC *b2cVC;
 
 @property(nonatomic, strong)DJClassifyVM *classifyVM;
+/// 顶部搜索资源位🔍数据
+@property(nonatomic, strong)DJShopResourceModel *searchResourceModel;
 
 @end
 
@@ -88,27 +94,26 @@
         DJOnlineDeployList *onlineDeployItem = x.onlineDeployList.firstObject;
         NSString *o2oTitle = @"";
         NSString *b2cTitle = @"";
-        if (gStore.djModuleType == FIRSTMEDICINE) {
-            // self.tfSearch.hidden = NO;
 
+        self.tfSearch.hidden = YES;
+        self.headerView.hidden = YES;
+        if (gStore.djModuleType == FIRSTMEDICINE) {
             o2oTitle = onlineDeployItem.picDesc1;
             if(isEmptyString(o2oTitle)) {
                 o2oTitle = @"即时达";
             }
+
+            self.tfSearch.hidden = NO;
+            [self.classifyVM loadO2OSearch];
         }else {
             if (gStore.djHomeStyle == LIANHUA) {
-                // self.labJingXuan.hidden = NO;
-                // self.btnSearch.hidden = NO;
-
                 b2cTitle = onlineDeployItem.picDesc2;
                 if(isEmptyString(b2cTitle)) {
                     b2cTitle = @"优选市集";
                 }
-                // self.labJingXuan.text = picDesc2;
-            }else {
-                // self.categoryView.hidden = NO;
-                // self.btnSearch.hidden = NO;
 
+                self.headerView.hidden = NO;
+            }else {
                 o2oTitle = onlineDeployItem.picDesc1;
                 if(isEmptyString(o2oTitle)) {
                     o2oTitle = @"即时达";
@@ -117,12 +122,35 @@
                 if(isEmptyString(b2cTitle)) {
                     b2cTitle = @"优选市集";
                 }
-                // self.labJingXuan.text = picDesc2;
+
+                self.headerView.hidden = NO;
             }
         }
         [self.headerView dataFill:o2oTitle b2cTitle:b2cTitle];
-        self.headerView.hidden = isEmptyString(o2oTitle) || isEmptyString(b2cTitle);
         // self.titles = [titleList copy];
+    }];
+    [self.classifyVM.o2oSearchSubject subscribeNext:^(DJShopResourceModel *x) {
+        self.searchResourceModel = x;
+        NSArray *titleList = [[x.onlineDeployList.rac_sequence map:^id(DJOnlineDeployList *value) {
+            return value.picDesc1;
+        }] filter:^BOOL(NSString *value) {
+            return !isEmptyString(value);
+        }].array;
+        if(titleList.count <= 0) {
+            titleList = @[@"搜索您想买的商品"];
+        }
+        [self.tfSearch changeTextArray:titleList
+                                  type:TXScrollLabelViewTypeFlipNoRepeat
+                              velocity:2
+                               options:UIViewAnimationOptionCurveEaseInOut
+                                 inset:UIEdgeInsetsMake(kWPercentage(8), kWPercentage(40.f), 0, 0)];
+        self.tfSearch.frame = CGRectMake(kWPercentage(15.f), kWPercentage(6.f), SCREEN_WIDTH - kWPercentage(15.f * 2), kWPercentage(32.f));
+        if(titleList.count > 1) {
+            [self.tfSearch beginScrolling];
+        } else {
+            [self.tfSearch beginScrolling];
+            [self.tfSearch endScrolling];
+        }
     }];
 }
 
@@ -131,6 +159,14 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+
+#pragma mark -
+#pragma mark - ✈️TXScrollLabelViewDelegate
+- (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index {
+    if(index < self.searchResourceModel.onlineDeployList.count) {
+        DJOnlineDeployList *deployItem = self.searchResourceModel.onlineDeployList[index];
+    }
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
@@ -155,6 +191,11 @@
                 break;
         }
     }];
+    [[[self.headerView.btnSearch rac_signalForControlEvents:UIControlEventTouchUpInside]
+            throttle:0.2]
+    subscribeNext:^(id x) {
+        NSLog(@"x: 搜索");
+    }];
 }
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -165,8 +206,11 @@
                            animated:YES
                          completion:nil];
 
+    [self.panelTopView addSubview:self.headerView];
+    [self.panelTopView addSubview:self.tfSearch];
+    [self.containerStackView addArrangedSubview:self.panelTopView];
+
     [self.wrapperView addSubview:self.pageVC.view];
-    [self.containerStackView addArrangedSubview:self.headerView];
     [self.containerStackView addArrangedSubview:self.wrapperView];
     [self.view addSubview:self.containerStackView];
 
@@ -180,8 +224,17 @@
         make.top.equalTo(self.view.xl_safeAreaLayoutGuideTop);
         make.left.right.bottom.equalTo(@0.f);
     }];
-    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.panelTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kWPercentage(44.f)));
+    }];
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
+    [self.tfSearch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(kWPercentage(15.f)));
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.centerY.equalTo(@0.f);
+        make.height.equalTo(@(kWPercentage(32.f)));
     }];
     [self.pageVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
@@ -205,12 +258,47 @@
     }
     return _containerStackView;
 }
+- (UIView *)panelTopView {
+    if(!_panelTopView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
+        _panelTopView = v;
+    }
+    return _panelTopView;
+}
 - (DJClassifyHeaderView *)headerView {
     if(!_headerView){
         DJClassifyHeaderView *v = [[DJClassifyHeaderView alloc]init];
+        v.hidden = YES;
         _headerView = v;
     }
     return _headerView;
+}
+- (TXScrollLabelView *)tfSearch {
+    if(!_tfSearch){
+        TXScrollLabelView *v = [[TXScrollLabelView alloc]
+                                initWithTitle:@"搜索您想买的商品"
+                                type:TXScrollLabelViewTypeFlipNoRepeat
+                                velocity:2
+                                options:UIViewAnimationOptionCurveEaseInOut
+                                inset:UIEdgeInsetsMake(kWPercentage(8), kWPercentage(40.f), 0, 0)];
+        v.backgroundColor = [UIColor whiteColor];
+        v.layer.cornerRadius = kWPercentage(16.f);
+        v.layer.borderColor = [UIColor colorWithHex:0xFF774F].CGColor;
+        v.layer.borderWidth = 1.f;
+        v.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+        v.scrollTitleColor = [UIColor colorWithHex:0x999999];
+        v.hidden = YES;
+        v.delegate = self;
+
+        UIImageView *imgView = [[UIImageView alloc]init];
+        imgView.image = [iBLImage imageNamed:@"icon_classify_search"];
+        imgView.frame = CGRectMake(kWPercentage(15.f), kWPercentage(9.f), kWPercentage(14.f), kWPercentage(14.f));
+        [v addSubview:imgView];
+
+        _tfSearch = v;
+    }
+    return _tfSearch;
 }
 - (UIView *)wrapperView {
     if(!_wrapperView){

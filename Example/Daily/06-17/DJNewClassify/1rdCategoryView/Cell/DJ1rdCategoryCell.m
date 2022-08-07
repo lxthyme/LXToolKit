@@ -7,6 +7,7 @@
 //
 #import "DJ1rdCategoryCell.h"
 #import <DJBusinessTools/LXLabel.h>
+#import <YYImage/YYImage.h>
 
 @interface DJ1rdCategoryCell() {
     /// 边框宽度
@@ -22,7 +23,7 @@
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UIImageView *imgViewBgLogo;
-@property(nonatomic, strong)UIImageView *imgViewLogo;
+@property(nonatomic, strong)YYAnimatedImageView *imgViewLogo;
 @property(nonatomic, strong)UIView *logView;
 // @property(nonatomic, strong)LXLabel *labTitle;
 @property(nonatomic, strong)UIButton *btnTitle;
@@ -72,7 +73,10 @@
     [self.btnTitle setTitle:categoryName forState:UIControlStateNormal];
     // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
     [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]
-                        placeholderImage:[iBLImage imageNamed:@"icon_category_placeholder"]];
+                        placeholderImage:[iBLImage imageNamed:@"icon_category_placeholder"]
+                                animated:YES
+                       animationDuration:0.25
+                               completed:nil];
 }
 
 #pragma mark -
@@ -192,9 +196,9 @@
     }
     return _logView;
 }
-- (UIImageView *)imgViewLogo {
+- (YYAnimatedImageView *)imgViewLogo {
     if(!_imgViewLogo){
-        UIImageView *iv = [[UIImageView alloc]init];
+        YYAnimatedImageView *iv = [[YYAnimatedImageView alloc]init];
         iv.contentMode = UIViewContentModeScaleAspectFit;
         // iv.image = [UIImage imageNamed:@""];
         iv.backgroundColor = [UIColor colorWithHex:0xF6F6F6];

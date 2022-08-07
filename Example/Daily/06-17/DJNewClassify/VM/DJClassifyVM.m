@@ -38,10 +38,10 @@
         [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
         DJStoreManager *gStore = [DJStoreManager sharedInstance];
         /// 仅即时达
-        // gStore.djModuleType = FIRSTMEDICINE;
+        gStore.djModuleType = FIRSTMEDICINE;
         /// 即时达 + 超市精选
-        gStore.djModuleType = COMMONTYPE;
-        gStore.djHomeStyle = DAOJIA;
+        // gStore.djModuleType = COMMONTYPE;
+        // gStore.djHomeStyle = DAOJIA;
         /// 超市精选
         // gStore.djHomeStyle = LIANHUA;
         /// 初始化数据
@@ -147,34 +147,34 @@
     }];
 }
 /// 搜索框数据
-// - (void)loadO2OSearch {
-//     DJStoreManager *gStore = [DJStoreManager sharedInstance];
-//     NSString *resourceId = @"20220606";
-//
-//     @weakify(self)
-//     [DJNewHomeShopResourseAPIManager loadDataWithParams:@{
-//         @"channelId": @1,
-//         @"merchantId": gStore.merchantId,
-//         @"resourceIds": resourceId,
-//         @"status": @4,
-//     } success:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         BOOL success = boolFromObject(apiManager.response.content, @"success");
-//         if(success) {
-//             NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
-//             NSArray<DJShopResourceModel *> *shopResourceList = [NSArray yy_modelArrayWithClass:[DJShopResourceModel class] json:obj];
-//             DJShopResourceModel *shopResourceModel = [shopResourceList.rac_sequence filter:^BOOL(DJShopResourceModel *value) {
-//                 return [value.resourceId isEqualToString:resourceId];
-//             }].head;
-//             [self.o2oSearchSubject sendNext:shopResourceModel];
-//         } else {
-//             [self.o2oSearchErrorSubject sendNext:apiManager];
-//         }
-//     } fail:^(CTAPIBaseManager *apiManager) {
-//         @strongify(self)
-//         [self.o2oSearchErrorSubject sendNext:apiManager];
-//     }];
-// }
+- (void)loadO2OSearch {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    NSString *resourceId = @"20220606";
+
+    @weakify(self)
+    [DJNewHomeShopResourseAPIManager loadDataWithParams:@{
+        @"channelId": @1,
+        @"merchantId": gStore.merchantId,
+        @"resourceIds": resourceId,
+        @"status": @4,
+    } success:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        BOOL success = boolFromObject(apiManager.response.content, @"success");
+        if(success) {
+            NSArray *obj = arrayFromObject(apiManager.response.content, @"obj");
+            NSArray<DJShopResourceModel *> *shopResourceList = [NSArray yy_modelArrayWithClass:[DJShopResourceModel class] json:obj];
+            DJShopResourceModel *shopResourceModel = [shopResourceList.rac_sequence filter:^BOOL(DJShopResourceModel *value) {
+                return [value.resourceId isEqualToString:resourceId];
+            }].head;
+            [self.o2oSearchSubject sendNext:shopResourceModel];
+        } else {
+            [self.o2oSearchErrorSubject sendNext:apiManager];
+        }
+    } fail:^(CTAPIBaseManager *apiManager) {
+        @strongify(self)
+        [self.o2oSearchErrorSubject sendNext:apiManager];
+    }];
+}
 - (void)loadO2OBannerWith:(DJO2OCategoryListModel *)t2Category {
     if(t2Category.f_bannerStatus != DJT3DataLoadedStatusNotYet) {
         return;
