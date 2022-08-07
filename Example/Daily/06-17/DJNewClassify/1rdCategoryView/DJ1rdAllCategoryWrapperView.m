@@ -67,7 +67,9 @@
     maskAnim.toValue = @1.f;
     [self.layer pop_addAnimation:maskAnim forKey:@"MaskView.opacity"];
     POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
-    anim.fromValue = @(kWPercentage(-400.f));
+    CGFloat positionY = kWPercentage(266 + 38 * 2) / 2.f;
+    anim.fromValue = @(-positionY);
+    anim.toValue = @(positionY);
     anim.springBounciness = 0.f;
     [self.wrapperView.layer pop_addAnimation:anim forKey:@"allCategoryView.translation.y"];
 }

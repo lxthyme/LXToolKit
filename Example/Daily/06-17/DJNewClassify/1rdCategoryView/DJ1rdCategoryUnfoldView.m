@@ -56,7 +56,8 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.collectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+        make.top.left.right.equalTo(@0.f);
+        make.bottom.equalTo(@(kWPercentage(-10.f)));
     }];
 }
 

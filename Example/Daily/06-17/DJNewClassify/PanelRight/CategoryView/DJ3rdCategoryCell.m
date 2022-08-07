@@ -39,11 +39,8 @@
 #pragma mark - 🌎LoadData
 - (void)dataFill:(NSString *)title {
     [self toggleStyleBy:self.isSelected];
-    NSString *f_title = title;
-    if(title.length >= 4) {
-        f_title = [f_title substringWithRange:NSMakeRange(0, 4)];
-    }
-    self.labTitle.text = f_title;
+    self.labTitle.text = title;
+    self.labTitle.numberOfLines = self.isUnfold ? 0 : 1;
 }
 
 #pragma mark -

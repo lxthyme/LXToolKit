@@ -62,6 +62,13 @@ typedef NS_ENUM(NSInteger, DJO2OCategoryCateType) {
 @property(nonatomic, assign)DJT3DataLoadedStatus f_allStatus;
 @property(nonatomic, assign)DJT3DataLoadedStatus f_notAllStatus;
 @property (nonatomic, strong)DJO2OCategoryListModel *f_t2AllCategory;
+
+@property(nonatomic, assign)CGSize f_unfoldSize;
+@property(nonatomic, assign)CGSize f_foldSize;
+
+/// 计算三级目录 size
+- (void)calcCellSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

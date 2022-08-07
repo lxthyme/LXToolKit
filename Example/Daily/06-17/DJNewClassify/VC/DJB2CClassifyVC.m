@@ -311,6 +311,7 @@
 - (DJ3rdCategoryView *)categoryView {
     if(!_categoryView){
         DJ3rdCategoryView *v = [[DJ3rdCategoryView alloc]init];
+        v.headerType = DJNewClassifyHeaderTypeB2C;
         [v customized1rdCategoryViewStyle];
 
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -373,6 +374,7 @@
 - (DJ3rdCategoryView *)allCategoryView {
     if(!_allCategoryView){
         DJ3rdCategoryView *v = [[DJ3rdCategoryView alloc]init];
+        v.headerType = DJNewClassifyHeaderTypeB2C;
         [v customized1rdCategoryViewStyle];
 
         v.minimumLineSpacing = kWPercentage(7.5f);

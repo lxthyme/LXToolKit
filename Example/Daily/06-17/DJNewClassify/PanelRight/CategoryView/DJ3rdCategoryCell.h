@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJ3rdCategoryCell: LXBaseCollectionViewCell {
 }
+@property(nonatomic, assign)BOOL isUnfold;
 @property(nonatomic, strong)UIColor *bgColor;
 
 @property(nonatomic, strong)UIColor *textBGNormalColor;

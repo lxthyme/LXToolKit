@@ -8,6 +8,7 @@
 #import "DJ1rdCategoryCell.h"
 #import <DJBusinessTools/LXLabel.h>
 #import <YYImage/YYImage.h>
+#import <DJBusinessTools/NSString+ex.h>
 
 @interface DJ1rdCategoryCell() {
     /// 边框宽度
@@ -65,13 +66,7 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(DJO2OCategoryListModel *)categoryModel {
-    NSString *categoryName = categoryModel.categoryName;
-    if(categoryName.length >= 4) {
-        categoryName = [categoryName substringWithRange:NSMakeRange(0, 4)];
-    }
-    // self.labTitle.text = categoryName;
-    [self.btnTitle setTitle:categoryName forState:UIControlStateNormal];
-    // [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:@"https://loremflickr.com/200/200?random=1"] placeholderImage:nil];
+    [self.btnTitle setTitle:[categoryModel.categoryName xl_substringTo:10] forState:UIControlStateNormal];
     [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:categoryModel.categoryPicture]
                         placeholderImage:[iBLImage imageNamed:@"icon_category_placeholder"]
                                 animated:YES

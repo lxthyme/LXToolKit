@@ -129,6 +129,14 @@ static const NSUInteger kPinCategoryViewSectionIndex = 0;
 /// tag cell 间隔
 #define kTagListInterval kWPercentage(3.5f)
 
+#define kT3FoldMinimumLineSpacing kWPercentage(5.f)
+#define kT3FoldMinimumInteritemSpacing kWPercentage(5.f)
+#define kT3FoldSectionInset UIEdgeInsetsMake(kWPercentage(10.f), 0.f, kWPercentage(10.f), 0.f)
+
+#define kT3UnfoldMinimumLineSpacing kWPercentage(7.5f)
+#define kT3UnfoldMinimumInteritemSpacing kWPercentage(7.5f)
+#define kT3UnfoldSectionInset UIEdgeInsetsMake(0, kWPercentage(10.f), kWPercentage(15.f), kWPercentage(10.f))
+
 /// 添加购物车图标
 #define kAddCartNumHeight kWPercentage(12.f)
 #define kAddCartTopHeight kWPercentage(8.f)

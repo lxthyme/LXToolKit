@@ -103,7 +103,9 @@
                     all.categoryName = @"全部";
                 }
                 obj2.f_t2AllCategory = all;
-                
+
+                [obj2 calcCellSize];
+
                 DJClassifyRightModel *rightModel = [[DJClassifyRightModel alloc]init];
                 if(idx2 == 0) {
                     rightModel.f_idxType = DJSubCategoryIndexTypeFirst;

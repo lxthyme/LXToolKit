@@ -9,10 +9,11 @@
 
 #import "DJ3rdCategoryCell.h"
 #import "DJClassifyMacro.h"
+#import <DJBusinessTools/NSString+ex.h>
 
 @interface DJ3rdCategoryView()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
-@property(nonatomic, strong)NSArray<NSString *> *dataList;
+@property(nonatomic, strong)NSArray<DJO2OCategoryListModel *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 @property(nonatomic, strong)UICollectionViewFlowLayout *flowLayout;
 
@@ -32,11 +33,9 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(NSArray<DJClassifyBaseCategoryModel *> *)categoryListModel {
+- (void)dataFill:(NSArray<DJO2OCategoryListModel *> *)categoryListModel {
     // self.subCateogryModel = subCateogryModel;
-    self.dataList = [categoryListModel.rac_sequence map:^id _Nullable(DJB2CCategoryModel * _Nullable value) {
-        return value.categoryName;
-    }].array;
+    self.dataList = categoryListModel;
     self.collectionView.hidden = NO;
     [self.collectionView reloadData];
     if(self.dataList.count > 0 && self.collectionView.indexPathsForSelectedItems.count <= 0) {
@@ -107,13 +106,29 @@
     cell.textNormalFont = self.textNormalFont;
     cell.textSelectedFont = self.textSelectedFont;
     cell.contentView.layer.cornerRadius = self.cellCornerRadius;
-    [cell dataFill:self.dataList[indexPath.row]];
+    DJClassifyBaseCategoryModel *baseModel = self.dataList[indexPath.row];
+    if(self.headerType == DJNewClassifyHeaderTypeO2O) {
+        cell.isUnfold = self.isUnfold;
+        [cell dataFill:[baseModel.categoryName xl_substringTo:16]];
+    } else {
+        [cell dataFill:[baseModel.categoryName xl_substringTo:10]];
+    }
     return cell;
 }
 #pragma mark -
 #pragma mark - ✈️UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return self.itemSize;
+    DJClassifyBaseCategoryModel *baseModel = self.dataList[indexPath.row];
+    if(self.headerType == DJNewClassifyHeaderTypeO2O) {
+        DJO2OCategoryListModel *o2oCategoryModel = (DJO2OCategoryListModel *)baseModel;
+        if(self.isUnfold) {
+            return o2oCategoryModel.f_unfoldSize;
+        } else {
+            return o2oCategoryModel.f_foldSize;
+        }
+    } else {
+        return self.itemSize;
+    }
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return self.minimumLineSpacing;

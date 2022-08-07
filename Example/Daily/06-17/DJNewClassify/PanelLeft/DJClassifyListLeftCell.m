@@ -8,6 +8,7 @@
 #import "DJClassifyListLeftCell.h"
 
 #import <DJBusinessTools/UIView+ex.h>
+#import <DJBusinessTools/NSString+ex.h>
 
 #define kNormalTextColor [UIColor colorWithHex:0x333333]
 #define kSelectedTextColor [UIColor colorWithHex:0xFF774F]
@@ -65,16 +66,14 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(NSString *)title logo:(NSString *)urlString {
-    NSString *tmp_title = title;
-    if(tmp_title.length >= 4) {
-        tmp_title = [tmp_title substringWithRange:NSMakeRange(0, 4)];
-    }
-    self.labTitle.text = tmp_title;
 
     self.imgViewLogo.hidden = YES;
     if(!isEmptyString(urlString)) {
         self.imgViewLogo.hidden = NO;
         [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:urlString]];
+        self.labTitle.text = [title xl_substringTo:8];
+    } else {
+        self.labTitle.text = [title xl_substringTo:11];
     }
 }
 
@@ -101,8 +100,8 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.greaterThanOrEqualTo(@(kWPercentage(10.f)));
-        make.right.lessThanOrEqualTo(@(kWPercentage(-10.f)));
+        make.left.greaterThanOrEqualTo(@(kWPercentage(3.f)));
+        make.right.lessThanOrEqualTo(@(kWPercentage(-3.f)));
         make.center.equalTo(@0.f);
         // make.height.equalTo(@20.f);
     }];

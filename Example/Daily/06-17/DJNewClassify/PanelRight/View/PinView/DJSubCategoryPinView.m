@@ -257,12 +257,14 @@
 - (DJ3rdCategoryView *)pinCategoryView {
     if(!_pinCategoryView){
         DJ3rdCategoryView *v = [[DJ3rdCategoryView alloc]init];
+        v.headerType = DJNewClassifyHeaderTypeO2O;
         [v customized3rdCategoryViewStyle];
         v.flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [v.flowLayout prepareLayout];
-        v.minimumLineSpacing = kWPercentage(5.f);
-        v.minimumInteritemSpacing = kWPercentage(5.f);
-        v.sectionInset = UIEdgeInsetsMake(kWPercentage(10.f), 0.f, kWPercentage(10.f), 0.f);
+
+        v.minimumLineSpacing = kT3FoldMinimumLineSpacing;
+        v.minimumInteritemSpacing = kT3FoldMinimumLineSpacing;
+        v.sectionInset = kT3FoldSectionInset;
         v.itemSize = CGSizeMake(kWPercentage(68.f), kPinCategoryViewHeight - v.sectionInset.top - v.sectionInset.bottom);
 
         _pinCategoryView = v;

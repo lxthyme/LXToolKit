@@ -737,14 +737,15 @@
 - (DJ3rdCategoryView *)allCategoryView {
     if(!_allCategoryView){
         DJ3rdCategoryView *v = [[DJ3rdCategoryView alloc]init];
+        v.headerType = DJNewClassifyHeaderTypeO2O;
         [v customized3rdCategoryViewStyle];
-
-        v.minimumLineSpacing = kWPercentage(7.5f);
-        v.minimumInteritemSpacing = kWPercentage(7.5f);
-        v.sectionInset = UIEdgeInsetsMake(0, kWPercentage(10.f), kWPercentage(15.f), kWPercentage(10.f));
+        v.minimumLineSpacing = kT3UnfoldMinimumLineSpacing;
+        v.minimumInteritemSpacing = kT3UnfoldMinimumInteritemSpacing;
+        v.sectionInset = kT3UnfoldSectionInset;
         v.itemSize = CGSizeMake(kWPercentage(68.f), kPinCategoryViewHeight - v.sectionInset.top - v.sectionInset.bottom);
         CGFloat itemWidth = SCREEN_WIDTH - kLeftTableWidth - (v.sectionInset.left + v.sectionInset.right + v.minimumLineSpacing + v.minimumInteritemSpacing);
         itemWidth /= 3.f;
+        v.isUnfold = YES;
         v.itemSize = CGSizeMake(floorf(itemWidth), kWPercentage(35.f));
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {

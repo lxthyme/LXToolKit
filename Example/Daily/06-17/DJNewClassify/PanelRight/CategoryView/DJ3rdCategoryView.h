@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJ3rdCategoryView: LXBaseView {
 }
+@property(nonatomic, assign)DJNewClassifyHeaderType headerType;
+@property(nonatomic, assign)BOOL isUnfold;
 @property(nonatomic, assign)CGSize itemSize;
 @property(nonatomic, assign)CGFloat minimumLineSpacing;
 @property(nonatomic, assign)CGFloat minimumInteritemSpacing;
@@ -29,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong, readonly)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 
-- (void)dataFill:(NSArray<DJClassifyBaseCategoryModel *> *)categoryListModel;
+- (void)dataFill:(NSArray<DJO2OCategoryListModel *> *)categoryListModel;
 
 - (void)selectItemAtIndex:(NSInteger)idx;
 
