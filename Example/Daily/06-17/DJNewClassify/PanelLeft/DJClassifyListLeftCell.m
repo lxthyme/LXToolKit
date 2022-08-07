@@ -71,6 +71,7 @@
     }
     self.labTitle.text = tmp_title;
 
+    self.imgViewLogo.hidden = YES;
     if(!isEmptyString(urlString)) {
         self.imgViewLogo.hidden = NO;
         [self.imgViewLogo bl_setImageWithUrl:[NSURL URLWithString:urlString]];

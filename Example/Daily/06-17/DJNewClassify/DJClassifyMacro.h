@@ -44,10 +44,14 @@ typedef NS_ENUM(NSInteger, DJClassifyGoodItemType) {
 };
 
 // MARK: - 🔥一级分类配置
-typedef NS_ENUM(NSInteger, DJClassifyType) {
-    DJClassifyTypeB2C = 1,
-    DJClassifyTypeO2O = 2,
+typedef NS_ENUM(NSInteger, DJNewClassifyHeaderType) {
+    DJNewClassifyHeaderTypeO2O = 1,
+    DJNewClassifyHeaderTypeB2C = 2,
 };
+// typedef NS_ENUM(NSInteger, DJClassifyType) {
+//     DJClassifyTypeB2C = 1,
+//     DJClassifyTypeO2O = 2,
+// };
 
 typedef NS_ENUM(NSInteger, DJRuleType) {
     DJRuleTypeUnknown,

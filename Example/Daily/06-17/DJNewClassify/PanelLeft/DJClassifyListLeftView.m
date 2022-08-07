@@ -9,6 +9,7 @@
 
 #import "DJClassifyListLeftCell.h"
 #import "DJO2OCategoryListModel.h"
+#import "DJB2CCategoryModel.h"
 
 @interface DJClassifyListLeftView()<UITableViewDataSource,UITableViewDelegate> {
 }
@@ -96,10 +97,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DJClassifyListLeftCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJClassifyListLeftCell" forIndexPath:indexPath];
     DJClassifyBaseCategoryModel *categoryModel = self.dataList[indexPath.row];
-    if(self.classifyType == DJClassifyTypeO2O) {
+    if(self.headerType == DJNewClassifyHeaderTypeO2O) {
         DJO2OCategoryListModel *tmp = (DJO2OCategoryListModel *)categoryModel;
         [cell dataFill:categoryModel.categoryName logo:tmp.categoryIcon];
     } else {
+        // DJB2CCategoryModel *tmp = (DJB2CCategoryModel *)categoryModel;
         [cell dataFill:categoryModel.categoryName logo:nil];
     }
     return cell;

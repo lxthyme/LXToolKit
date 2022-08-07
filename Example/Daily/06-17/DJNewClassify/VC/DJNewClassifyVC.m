@@ -183,7 +183,7 @@
                                      completion:nil];
             }
                 break;
-            case DJNewClassifyHeaderTypeB2c: {
+            case DJNewClassifyHeaderTypeB2C: {
                 [self.pageVC setViewControllers:@[self.b2cVC] direction:UIPageViewControllerNavigationDirectionForward
                                        animated:YES
                                      completion:nil];

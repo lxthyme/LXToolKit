@@ -109,12 +109,12 @@
     if(self.rightModel.f_t2Category.f_bannerResource) {
         NSArray *onlineDeployList = self.rightModel.f_t2Category.f_bannerResource.onlineDeployList;
         if(onlineDeployList.count > 0) {
-            self.table.tableHeaderView = nil;
             DJClassifyListBannerView *banner = [[DJClassifyListBannerView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DJClassifyListBannerView"];
             // banner.f_itemType = DJClassifyGoodItemTypeBanner;
             banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), width - kWPercentage(10.f * 2), kBannerSectionHeight);
             [banner dataFill:self.rightModel.f_t2Category.f_bannerResource];
             UIView *tableHeaderView = [[UIView alloc]init];
+            tableHeaderView.backgroundColor = [UIColor whiteColor];
             tableHeaderView.frame = CGRectMake(0, 0, width, kBannerSectionHeight + kWPercentage(10.f));
             [tableHeaderView addSubview:banner];
             self.table.tableHeaderView = tableHeaderView;

@@ -37,7 +37,7 @@
     [self.btnO2O setTitle:o2oTitle forState:UIControlStateNormal];
     [self.btnB2C setTitle:b2cTitle forState:UIControlStateNormal];
     if(isEmptyString(o2oTitle)) {
-        self.headerType = DJNewClassifyHeaderTypeB2c;
+        self.headerType = DJNewClassifyHeaderTypeB2C;
     } else {
         self.headerType = DJNewClassifyHeaderTypeO2O;
     }
@@ -63,7 +63,7 @@
       throttle:0.2]
      subscribeNext:^(UIControl *x) {
         @strongify(self)
-        self.headerType = DJNewClassifyHeaderTypeB2c;
+        self.headerType = DJNewClassifyHeaderTypeB2C;
     }];
     [[RACObserve(self, headerType)
       distinctUntilChanged]
@@ -79,7 +79,7 @@
                 self.btnO2O.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
             }
                 break;
-            case DJNewClassifyHeaderTypeB2c: {
+            case DJNewClassifyHeaderTypeB2C: {
                 self.btnB2C.selected = YES;
                 self.btnB2C.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(16.f)];
             }

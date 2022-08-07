@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJClassifyListRightVC: LXBaseVC {
 }
-@property(nonatomic, assign)DJClassifyType classifyType;
+// @property(nonatomic, assign)DJClassifyType classifyType;
 @property(nonatomic, strong)DJClassifyVM *b2cVM;
 @property(nonatomic, copy)void (^refreshBlock)(BOOL isRefresh);
 

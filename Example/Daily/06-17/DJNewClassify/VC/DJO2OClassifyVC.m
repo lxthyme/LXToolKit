@@ -494,6 +494,7 @@
 - (DJClassifyListLeftView *)panelLeftView {
     if(!_panelLeftView){
         DJClassifyListLeftView *v = [[DJClassifyListLeftView alloc]init];
+        v.headerType = DJNewClassifyHeaderTypeO2O;
         WEAKSELF(self)
         v.didSelectRowBlock = ^(NSInteger idx) {
             // [weakSelf pageVCScrollToIdx:idx];

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJClassifyListLeftView : LXBaseView {
 }
-@property(nonatomic, assign)DJClassifyType classifyType;
+@property(nonatomic, assign)DJNewClassifyHeaderType headerType;
 @property(nonatomic, assign)NSInteger currentIdx;
 @property(nonatomic, copy)void (^didSelectRowBlock)(NSInteger idx);
 

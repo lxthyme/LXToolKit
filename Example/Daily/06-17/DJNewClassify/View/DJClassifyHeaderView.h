@@ -6,13 +6,9 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <DJBusinessTools/LXBaseView.h>
+#import "DJClassifyMacro.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, DJNewClassifyHeaderType) {
-    DJNewClassifyHeaderTypeO2O = 1,
-    DJNewClassifyHeaderTypeB2c = 2,
-};
 
 @interface DJClassifyHeaderView: UIStackView {
 }
