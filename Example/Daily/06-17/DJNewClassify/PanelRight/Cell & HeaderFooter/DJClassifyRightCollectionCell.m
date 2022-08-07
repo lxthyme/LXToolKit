@@ -62,22 +62,6 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-// - (void)dataFill:(DJGoodBaseItemModel *)item {
-//     switch (item.f_itemType) {
-//         case DJClassifyGoodItemTypeB2C: {
-//             DJB2CGoodItemModel *itemModel = (DJB2CGoodItemModel *)item;
-//             [self dataFillWithB2C:itemModel];
-//         }
-//             break;
-//         case DJClassifyGoodItemTypeO2O:{
-//             DJO2OGoodItemModel *itemModel = (DJO2OGoodItemModel *)item;
-//             [self dataFillWithO2O:itemModel];
-//         }
-//             break;
-//         default:
-//             break;
-//     }
-// }
 - (void)dataFillWithO2O:(DJO2OGoodItemModel *)item withNum:(NSInteger)num {
     /// 1. logo
     // [self.imgViewGoodsLogo yy_setImageWithURL:[NSURL URLWithString:item.goodsImage]
@@ -124,7 +108,16 @@
     [self.topPriceStackView dataFillTopWith:item.salePrice priceType:item.priceType];
     [self.bottomPriceStackView dataFillBottomWith:item];
     /// 6. 加车按钮
-    [self.addCartView dataFill:item num:num];
+    [self.addCartView dataFillWithO2O:item num:num];
+    /// 加车事件
+    @weakify(self)
+    [[[[self.addCartView.btnAdd rac_signalForControlEvents:UIControlEventTouchUpInside]
+                throttle:0.2]
+            takeUntil:self.rac_prepareForReuseSignal]
+    subscribeNext:^(id x) {
+        @strongify(self)
+        !self.addCartBlock ?: self.addCartBlock();
+    }];
 }
 - (void)dataFillWithB2C:(DJB2CGoodItemModel *)item withNum:(NSInteger)num {
     /// 1. logo
@@ -167,7 +160,16 @@
     [self.topPriceStackView dataFill:@"" price:@"¥9900.80"];
     [self.bottomPriceStackView dataFill:@"" price:@"¥46.90"];
     /// 6. 加车按钮
-    [self.addCartView dataFill:item num:num];
+    [self.addCartView dataFillWithB2C:item num:num];
+    /// 加车事件
+    @weakify(self)
+    [[[[self.addCartView.btnAdd rac_signalForControlEvents:UIControlEventTouchUpInside]
+                throttle:0.2]
+            takeUntil:self.rac_prepareForReuseSignal]
+    subscribeNext:^(id x) {
+        @strongify(self)
+        !self.addCartBlock ?: self.addCartBlock();
+    }];
 }
 
 #pragma mark -

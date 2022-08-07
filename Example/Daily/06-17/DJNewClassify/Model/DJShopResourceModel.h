@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger auditTime;
 @property (nonatomic, copy)NSString *status;
 @property (nonatomic, copy)NSString *jumpType;
+@property (nonatomic, copy)NSString *jumpUrl;
 @property (nonatomic, assign)NSInteger contentId;
 @property (nonatomic, copy)NSString *displayContent;
 @property (nonatomic, assign)NSInteger startTime;

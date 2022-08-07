@@ -7,7 +7,7 @@
 //
 #import "DJO2OClassifyVC.h"
 #import <YYModel/YYModel.h>
-
+#import <YYText/YYText.h>
 #import "DJ1rdCategoryFoldView.h"
 #import "DJ1rdCategoryUnfoldView.h"
 #import "DJClassifyListLeftView.h"

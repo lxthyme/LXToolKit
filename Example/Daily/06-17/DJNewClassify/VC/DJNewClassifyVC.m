@@ -9,11 +9,14 @@
 
 #import <Masonry/Masonry.h>
 #import <DJGlobalStoreManager/DJStoreManager.h>
+#import <BLBusinessCategoryRouterCenter/BLMediator+Sensor.h>
+#import <DJBusinessTools/UIView+MASSafeAreaLayoutGuide.h>
 #import "DJO2OClassifyVC.h"
 #import "DJB2CClassifyVC.h"
 #import "DJClassifyVM.h"
 #import "DJClassifyHeaderView.h"
 #import "TXScrollLabelView.h"
+#import "DJSeachResultViewController.h"
 
 @interface DJNewClassifyVC()<TXScrollLabelViewDelegate> {
     BOOL __navigationBarHidden;
@@ -54,14 +57,14 @@
     self.navigationController.navigationBar.hidden = YES;
     /// 更新购物车数据
     [self.classifyVM.shopCartVM loadQueryCart];
-    // DJStoreManager *gStore = [DJStoreManager sharedInstance];
-    // if(![self.classifyVM.shopId isEqualToString:gStore.shopId]) {
-    //     self.viewStatus = DJViewStatusLoading;
-    //     [self.classifyVM loadShopResource];
-    //     if (gStore.djModuleType == FIRSTMEDICINE) {
-    //         [self.classifyVM loadO2OSearch];
-    //     }
-    // }
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    if(![self.classifyVM.shopId isEqualToString:gStore.shopId]) {
+        // self.viewStatus = DJViewStatusLoading;
+        [self.classifyVM loadShopResource];
+        if (gStore.djModuleType == FIRSTMEDICINE) {
+            [self.classifyVM loadO2OSearch];
+        }
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
@@ -82,6 +85,7 @@
     [self prepareVM];
     [self.classifyVM loadShopResource];
     [self bindVM];
+    [self sensorPageView];
 }
 
 #pragma mark -
@@ -130,6 +134,7 @@
         // self.titles = [titleList copy];
     }];
     [self.classifyVM.o2oSearchSubject subscribeNext:^(DJShopResourceModel *x) {
+        @strongify(self)
         self.searchResourceModel = x;
         NSArray *titleList = [[x.onlineDeployList.rac_sequence map:^id(DJOnlineDeployList *value) {
             return value.picDesc1;
@@ -152,6 +157,14 @@
             [self.tfSearch endScrolling];
         }
     }];
+    [self.classifyVM.shopCartVM.o2oAddCartSubject subscribeNext:^(id x) {
+        @strongify(self)
+        [self.classifyVM.shopCartVM loadQueryCart];
+    }];
+    [self.classifyVM.shopCartVM.b2cAddCartSubject subscribeNext:^(id x) {
+        @strongify(self)
+        [self.classifyVM.shopCartVM loadQueryCart];
+    }];
 }
 
 #pragma mark -
@@ -161,10 +174,48 @@
 #pragma mark - 🔐Private Actions
 
 #pragma mark -
+#pragma mark - 🔐Private Actions
+/// 分类页 pageView 事件
+- (void)sensorPageView {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    NSString *pageId = @"";
+    if(gStore.djModuleType == FIRSTMEDICINE) {
+        pageId = [NSString stringWithFormat:@"APP_快到家O2O分类页_%@_%@", gStore.shopType, gStore.shopId];
+    } else {
+        if (gStore.djHomeStyle == LIANHUA) {
+            pageId = @"APP_快到家B2C分类页";
+        } else {
+            pageId = [NSString stringWithFormat:@"APP_快到家O2O和B2C分类页_%@_%@", gStore.shopType, gStore.shopId];
+        }
+    }
+    [[BLMediator sharedInstance]sensorTrackWithParams:@{
+        @"pageId": pageId,
+        @"categoryId": @"APP_FastDelivery",
+        @"flagType": @"业态id",
+        @"flagValue": @"",
+        @"businessType": @"门店id",
+        @"businessValue": @"",
+        @"additionType": @"是否来自ABtest",
+        @"additionValue": gStore.isAbTest ? @"是" : @"否",
+    }];
+}
+
+#pragma mark -
 #pragma mark - ✈️TXScrollLabelViewDelegate
 - (void)scrollLabelView:(TXScrollLabelView *)scrollLabelView didClickWithText:(NSString *)text atIndex:(NSInteger)index {
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
     if(index < self.searchResourceModel.onlineDeployList.count) {
         DJOnlineDeployList *deployItem = self.searchResourceModel.onlineDeployList[index];
+        NSDictionary *parm = @{
+            @"shopCode": gStore.merchantId,
+            @"storeCode": gStore.shopId,
+            @"seachtext": deployItem.picDesc1,
+            @"placeholderText": deployItem.picDesc1
+        };
+        DJSeachResultViewController *vc = [[DJSeachResultViewController alloc] init];
+        vc.onlineDeployItem = deployItem;
+        [vc configData:parm];
+        [self.navigationController pushViewController:vc animated:NO];
     }
 }
 
@@ -194,7 +245,10 @@
     [[[self.headerView.btnSearch rac_signalForControlEvents:UIControlEventTouchUpInside]
             throttle:0.2]
     subscribeNext:^(id x) {
+        @strongify(self)
         NSLog(@"x: 搜索");
+        DJSeachResultViewController *vc = [[DJSeachResultViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:NO];
     }];
 }
 - (void)prepareUI {
@@ -222,7 +276,8 @@
     // MASAttachKeys(<#...#>)
     [self.containerStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.xl_safeAreaLayoutGuideTop);
-        make.left.right.bottom.equalTo(@0.f);
+        make.left.right.equalTo(@0.f);
+        make.bottom.equalTo(self.view.xl_safeAreaLayoutGuideBottom).offset(kWPercentage(-50.f));
     }];
     [self.panelTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@(kWPercentage(44.f)));
@@ -289,7 +344,7 @@
         v.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
         v.scrollTitleColor = [UIColor colorWithHex:0x999999];
         v.hidden = YES;
-        v.delegate = self;
+        v.scrollLabelViewDelegate = self;
 
         UIImageView *imgView = [[UIImageView alloc]init];
         imgView.image = [iBLImage imageNamed:@"icon_classify_search"];

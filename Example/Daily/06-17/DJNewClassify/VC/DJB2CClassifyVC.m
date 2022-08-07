@@ -7,7 +7,7 @@
 //
 #import "DJB2CClassifyVC.h"
 #import <YYModel/YYModel.h>
-
+#import <YYText/YYText.h>
 #import "DJ3rdCategoryView.h"
 #import "DJClassifyListLeftView.h"
 #import "DJ1rdAllCategoryWrapperView.h"

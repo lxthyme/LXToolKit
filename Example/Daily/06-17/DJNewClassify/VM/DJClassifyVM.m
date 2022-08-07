@@ -17,11 +17,12 @@
 #import <BLRawAPIManager/DJNewShopCarAddCartAPIManager.h>
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "CTAPIBaseManager+Rac.h"
+// #import "CTAPIBaseManager+Rac.h"
 #import <DJGlobalStoreManager/DJStoreManager.h>
 #import <YYModel/YYModel.h>
 #import "DJClassifyMacro.h"
 
+#import <CTAppContext/CTAppContext.h>
 
 @interface DJClassifyVM()/**<CTAPIManagerParamSource, CTAPIManagerCallBackDelegate>*/ {
 }
@@ -35,21 +36,6 @@
 @implementation DJClassifyVM
 - (instancetype)init {
     if(self = [super init]) {
-        [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
-        DJStoreManager *gStore = [DJStoreManager sharedInstance];
-        /// 仅即时达
-        // gStore.djModuleType = FIRSTMEDICINE;
-        /// 即时达 + 超市精选
-        gStore.djModuleType = COMMONTYPE;
-        gStore.djHomeStyle = DAOJIA;
-        /// 超市精选
-        // gStore.djHomeStyle = LIANHUA;
-        /// 初始化数据
-        gStore.shopId = @"007780";
-        gStore.shopType = @"2020";
-        gStore.bizId = @"2020";
-        gStore.comSid = @"2000";
-        gStore.merchantId = @"2020007780ENT23234";
         [self prepareUI];
         [self bindVM];
     }

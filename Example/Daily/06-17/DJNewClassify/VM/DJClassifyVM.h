@@ -10,7 +10,7 @@
 #import "DJB2CGoodsItemListModel.h"
 #import "DJShopResourceModel.h"
 #import "DJO2OCategoryListModel.h"
-#import <DJGlobalStoreManager/DJShopCartVM.h>
+#import "DJShopCartVM.h"
 
 #import "DJGoodsIdsModel.h"
 #import "DJO2OGoodItemModel.h"

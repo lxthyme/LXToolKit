@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "DJClassifyListRightVC.h"
-
+#import <pop/POP.h>
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import <DJBusinessTools/iPhoneX.h>
@@ -21,6 +21,8 @@
 #import "DJSubCategoryPinView.h"
 #import "DJ3rdCategoryView.h"
 #import "DJClassifyListBannerView.h"
+#import "DJGoodDetailViewController.h"
+#import <DJBusinessTools/UIViewController+ex.h>
 
 @interface DJClassifyListRightVC()<UITableViewDataSource,UITableViewDelegate> {
     UIButton *__btnRotate;
@@ -372,6 +374,10 @@
     DJClassifyRightCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJClassifyRightCollectionCell" forIndexPath:indexPath];
     DJO2OCategoryListModel *t3Category = self.t3CategoryList[indexPath.section];
     DJO2OGoodItemModel *goodItem = t3Category.f_goodsList[indexPath.row];
+    WEAKSELF(self)
+    cell.addCartBlock = ^{
+        [weakSelf.b2cVM.shopCartVM addCartWithO2O:goodItem];
+    };
     DJGoodsList *shopItem;
     if(!isEmptyString(goodItem.goodsId)) {
         shopItem = self.allGoodsMap[goodItem.goodsId];
@@ -452,16 +458,16 @@
     };
     DJO2OCategoryListModel *t3Category = self.t3CategoryList[indexPath.section];
     DJO2OGoodItemModel *goodItem = t3Category.f_goodsList[indexPath.row];
-    // DJGoodDetailViewController *vc = [[DJGoodDetailViewController alloc]init];
-    // vc.params = params;
-    // vc.goodsId = itemModel.goodsId;
-    // vc.merchantId = gStore.merchantId;
-    // vc.shopId = gStore.shopId;
-    // vc.shopType = gStore.shopType;
-    // vc.districtCode = gStore.districtCode;
-    // vc.channelSign = @"";
-    // vc.tdType = @"1";
-    // [[self topViewController].navigationController pushViewController:vc animated:YES];
+    DJGoodDetailViewController *vc = [[DJGoodDetailViewController alloc]init];
+    vc.params = params;
+    vc.goodsId = goodItem.goodsId;
+    vc.merchantId = gStore.merchantId;
+    vc.shopId = gStore.shopId;
+    vc.shopType = gStore.shopType;
+    vc.districtCode = gStore.districtCode;
+    vc.channelSign = @"";
+    vc.tdType = @"1";
+    [[UIViewController topViewController].navigationController pushViewController:vc animated:YES];
 
 }
 

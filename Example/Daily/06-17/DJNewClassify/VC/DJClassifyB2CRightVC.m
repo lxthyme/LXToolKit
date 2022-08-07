@@ -11,6 +11,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import <DJBusinessTools/iPhoneX.h>
 #import <DJGlobalStoreManager/DJStoreManager.h>
+#import <BLBusinessCategoryRouterCenter/BLBusinessCategoryRouterCenter.h>
 
 #import "DJClassifyEmptyView.h"
 #import "DJClassifyRightSkeletonScreen.h"
@@ -83,8 +84,11 @@
             [self dataFill:self.rightModel];
         }
     }];
-    [self.b2cVM.v2SearchForLHApiErrorSubject subscribeNext:^(id x) {
-        self.viewStatus = DJViewStatusNoData;
+    [self.b2cVM.v2SearchForLHApiErrorSubject subscribeNext:^(CTAPIBaseManager *x) {
+        if(self.rightModel.f_t2B2CCategory.f_goodsList.goodsInfoList <= 0) {
+            self.viewStatus = DJViewStatusNoData;
+            [self.table reloadData];
+        }
     }];
 }
 - (void)dataFill:(DJClassifyRightModel *)rightModel {
@@ -150,6 +154,10 @@
     }
     DJClassifyRightCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJClassifyRightCollectionCell" forIndexPath:indexPath];
     DJB2CGoodItemModel *goodItem = self.rightModel.f_t2B2CCategory.f_goodsList.goodsInfoList[indexPath.row];
+    WEAKSELF(self)
+    cell.addCartBlock = ^{
+        [weakSelf.b2cVM.shopCartVM addCartWithB2C:goodItem];
+    };
     DJGoodsList *shopItem;
     NSString *goodsId = [NSString stringWithFormat:@"%ld", goodItem.sid];
     if(!isEmptyString(goodsId)) {
@@ -192,22 +200,11 @@
        self.viewStatus == DJViewStatusNoData) {
         return;
     }
-    DJStoreManager *gStore = [DJStoreManager sharedInstance];
-    NSDictionary *params = @{
-        @"isByShopingCar": @(NO),
-        @"goodsId": @""
-    };
-    // DJB2CGoodItemModel *goodItem = self.rightModel.f_t2B2CCategory.f_goodsList.goodsInfoList[indexPath.row];
-    // DJGoodDetailViewController *vc = [[DJGoodDetailViewController alloc]init];
-    // vc.params = params;
-    // vc.goodsId = itemModel.goodsId;
-    // vc.merchantId = gStore.merchantId;
-    // vc.shopId = gStore.shopId;
-    // vc.shopType = gStore.shopType;
-    // vc.districtCode = gStore.districtCode;
-    // vc.channelSign = @"";
-    // vc.tdType = @"1";
-    // [[self topViewController].navigationController pushViewController:vc animated:YES];
+    DJB2CGoodItemModel *goodItem = self.rightModel.f_t2B2CCategory.f_goodsList.goodsInfoList[indexPath.row];
+    if ([goodItem.type isEqualToString:@"LH"]) {
+        NSString *goodId = [NSString stringWithFormat:@"%ld", goodItem.sid];
+        [[BLMediator sharedInstance] BLGoodsDetail_goodsDetailViewControllerWithGoodsId:goodId];
+    }
 
 }
 

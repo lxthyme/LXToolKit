@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DJClassifyRightCollectionCell : LXBaseTableViewCell {
 }
+@property(nonatomic, copy)void (^addCartBlock)(void);
 
 - (void)dataFill:(DJGoodBaseItemModel *)item;
 - (void)dataFillWithO2O:(DJO2OGoodItemModel *)item withNum:(NSInteger)num;

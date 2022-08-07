@@ -53,6 +53,8 @@
 		BEA8062D2891078D00710636 /* DJYYZZHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA8062A2891078D00710636 /* DJYYZZHeaderView.m */; };
 		BEA806312891131F00710636 /* DJYYZZInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA806302891131F00710636 /* DJYYZZInfoModel.m */; };
 		BEAA57E5289F6845004203A4 /* DJClassifyB2CRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAA57E4289F6845004203A4 /* DJClassifyB2CRightVC.m */; };
+		BEAA8230289FC83A004203A4 /* DJShopCartVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAA822E289FC83A004203A4 /* DJShopCartVM.m */; };
+		BEAA8F7E289FD4DA004203A4 /* DJAddCartResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAA8F7D289FD4DA004203A4 /* DJAddCartResultModel.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
 		BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */; };
@@ -200,6 +202,10 @@
 		BEA806302891131F00710636 /* DJYYZZInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJYYZZInfoModel.m; sourceTree = "<group>"; };
 		BEAA57E3289F6845004203A4 /* DJClassifyB2CRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyB2CRightVC.h; sourceTree = "<group>"; };
 		BEAA57E4289F6845004203A4 /* DJClassifyB2CRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyB2CRightVC.m; sourceTree = "<group>"; };
+		BEAA822E289FC83A004203A4 /* DJShopCartVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopCartVM.m; sourceTree = "<group>"; };
+		BEAA822F289FC83A004203A4 /* DJShopCartVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJShopCartVM.h; sourceTree = "<group>"; };
+		BEAA8F7C289FD4DA004203A4 /* DJAddCartResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJAddCartResultModel.h; sourceTree = "<group>"; };
+		BEAA8F7D289FD4DA004203A4 /* DJAddCartResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJAddCartResultModel.m; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
@@ -621,6 +627,15 @@
 			path = "06-17";
 			sourceTree = "<group>";
 		};
+		BEAA8F7B289FD4C5004203A4 /* ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				BEAA8F7C289FD4DA004203A4 /* DJAddCartResultModel.h */,
+				BEAA8F7D289FD4DA004203A4 /* DJAddCartResultModel.m */,
+			);
+			path = ShopCart;
+			sourceTree = "<group>";
+		};
 		BEB56B35283E19F4003BAA77 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -714,6 +729,8 @@
 			children = (
 				BEDD8EE7289D76E60088778F /* DJClassifyVM.h */,
 				BEDD8EE8289D76E60088778F /* DJClassifyVM.m */,
+				BEAA822F289FC83A004203A4 /* DJShopCartVM.h */,
+				BEAA822E289FC83A004203A4 /* DJShopCartVM.m */,
 			);
 			path = VM;
 			sourceTree = "<group>";
@@ -838,6 +855,7 @@
 		BEDD8F17289D76E70088778F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BEAA8F7B289FD4C5004203A4 /* ShopCart */,
 				BEDD8F25289D76E70088778F /* B2C */,
 				BEDD8F18289D76E70088778F /* DJClassifyBaseCategoryModel.h */,
 				BEDD8F24289D76E70088778F /* DJClassifyBaseCategoryModel.m */,
@@ -1075,6 +1093,7 @@
 				BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */,
 				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
 				BEDD8F58289D76E70088778F /* DJGoodBaseItemModel.m in Sources */,
+				BEAA8F7E289FD4DA004203A4 /* DJAddCartResultModel.m in Sources */,
 				BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */,
 				BEDD8F4B289D76E70088778F /* DJPriceWrapperStackView.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
@@ -1093,6 +1112,7 @@
 				BEDD8F45289D76E70088778F /* DJNewClassifyVC.m in Sources */,
 				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
 				BEDD8F49289D76E70088778F /* DJClassifyListLeftView.m in Sources */,
+				BEAA8230289FC83A004203A4 /* DJShopCartVM.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
 				BEDD8F5D289D76E70088778F /* DJB2CGoodsItemListModel.m in Sources */,
 				BEDD8F60289D76E70088778F /* DJ1rdCategoryFoldView.m in Sources */,

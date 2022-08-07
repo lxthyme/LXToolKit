@@ -13,7 +13,6 @@
 
 @interface DJNewAddCartView() {
 }
-@property(nonatomic, strong)UIImageView *imgViewLogo;
 @property(nonatomic, strong)LXLabel *labNum;
 @property(nonatomic, strong)UIButton *btnMinBuy;
 
@@ -32,9 +31,9 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(DJO2OGoodItemModel *)item num:(NSInteger)num {
+- (void)dataFillWithO2O:(DJO2OGoodItemModel *)item num:(NSInteger)num {
     self.labNum.hidden = YES;
-    self.imgViewLogo.hidden = YES;
+    self.btnAdd.hidden = YES;
     self.btnMinBuy.hidden = YES;
     self.labNum.text = @"";
     if(item.minBuyQuan > 1) {
@@ -47,17 +46,47 @@
         [self.btnMinBuy setTitle:title forState:UIControlStateNormal];
     } else {
         self.labNum.hidden = NO;
-        self.imgViewLogo.hidden = NO;
+        self.btnAdd.hidden = NO;
         self.labNum.text = [NSString stringWithFormat:@"%ld", num];
         self.labNum.hidden = !(num > 0);
         DJGoodImageViewLabelType type = [self getTypeFromGoodItem:item];
         if(type == DJGoodImageViewLabelTypeSoldout) {
-            self.imgViewLogo.image =  [iBLImage imageNamed:@"DJ_addshopcart_black"];
-            self.imgViewLogo.userInteractionEnabled = NO;
+            [self.btnAdd setImage:[iBLImage imageNamed:@"DJ_addshopcart_black"] forState:UIControlStateNormal];
+            self.btnAdd.userInteractionEnabled = NO;
             self.labNum.backgroundColor = [UIColor colorWithHex:0xCCCCCC];
         } else {
-            self.imgViewLogo.image =  [iBLImage imageNamed:@"dj_addShoppingCart"];
-            self.imgViewLogo.userInteractionEnabled = YES;
+            [self.btnAdd setImage:[iBLImage imageNamed:@"dj_addShoppingCart"] forState:UIControlStateNormal];
+            self.btnAdd.userInteractionEnabled = YES;
+            self.labNum.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        }
+    }
+}
+- (void)dataFillWithB2C:(DJB2CGoodItemModel *)item num:(NSInteger)num {
+    self.labNum.hidden = YES;
+    self.btnAdd.hidden = YES;
+    self.btnMinBuy.hidden = YES;
+    self.labNum.text = @"";
+    if(item.minBuyQuan > 1) {
+        self.btnMinBuy.hidden = NO;
+        NSString *minBuySpec = item.minBuySpec;
+        if(isEmptyString(minBuySpec)) {
+            minBuySpec = @"件";
+        }
+        NSString *title = [NSString stringWithFormat:@"%ld%@起购", item.minBuyQuan, minBuySpec];
+        [self.btnMinBuy setTitle:title forState:UIControlStateNormal];
+    } else {
+        self.labNum.hidden = NO;
+        self.btnAdd.hidden = NO;
+        self.labNum.text = [NSString stringWithFormat:@"%ld", num];
+        self.labNum.hidden = !(num > 0);
+        DJGoodImageViewLabelType type = [self getTypeFromGoodItem:item];
+        if(type == DJGoodImageViewLabelTypeSoldout) {
+            [self.btnAdd setImage:[iBLImage imageNamed:@"DJ_addshopcart_black"] forState:UIControlStateNormal];
+            self.btnAdd.userInteractionEnabled = NO;
+            self.labNum.backgroundColor = [UIColor colorWithHex:0xCCCCCC];
+        } else {
+            [self.btnAdd setImage:[iBLImage imageNamed:@"dj_addShoppingCart"] forState:UIControlStateNormal];
+            self.btnAdd.userInteractionEnabled = YES;
             self.labNum.backgroundColor = [UIColor colorWithHex:0xFF774F];
         }
     }
@@ -65,7 +94,7 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-- (DJGoodImageViewLabelType )getTypeFromGoodItem:(DJO2OGoodItemModel *)item {
+- (DJGoodImageViewLabelType )getTypeFromGoodItem:(DJGoodBaseItemModel *)item {
     DJGoodImageViewLabelType type = DJGoodImageViewLabelTypeDefault;
     NSInteger stockCount = -1;
     if (item.saleStockSum) {
@@ -105,7 +134,7 @@
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.imgViewLogo];
+    [self addSubview:self.btnAdd];
     [self addSubview:self.labNum];
     [self addSubview:self.btnMinBuy];
 
@@ -115,7 +144,7 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.btnAdd mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(kAddCartTopHeight));
         make.left.greaterThanOrEqualTo(@0.f);
         make.bottom.equalTo(@0.f);
@@ -135,14 +164,15 @@
 }
 
 #pragma mark Lazy Property
-- (UIImageView *)imgViewLogo {
-    if(!_imgViewLogo){
-        UIImageView *iv = [[UIImageView alloc]init];
-        iv.contentMode = UIViewContentModeScaleAspectFit;
-        iv.image = [iBLImage imageNamed:@"icon_addCart"];
-        _imgViewLogo = iv;
+- (UIButton *)btnAdd {
+    if(!_btnAdd){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundImage:[iBLImage imageNamed:@"icon_addCart"] forState:UIControlStateNormal];
+        btn.contentEdgeInsets = UIEdgeInsetsZero;
+        _btnAdd = btn;
     }
-    return _imgViewLogo;
+    return _btnAdd;
 }
 - (LXLabel *)labNum {
     if(!_labNum){
