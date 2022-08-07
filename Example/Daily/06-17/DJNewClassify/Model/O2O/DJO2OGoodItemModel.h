@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *tdLable;
 @property (nonatomic, copy)NSString *mainTitle;
 // @property (nonatomic, assign)NSInteger minBuyQuan;
-@property (nonatomic, copy)NSString *minBuySpec;
+// @property (nonatomic, copy)NSString *minBuySpec;
 @property (nonatomic, copy)NSDictionary *pageCat;
 
 

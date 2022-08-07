@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSArray *previewList;
 @property (nonatomic, copy)NSArray *xgList;
 @property (nonatomic, assign)NSInteger minBuyQuan;
+@property (nonatomic, copy)NSString *minBuySpec;
 
 // @property (nonatomic, copy)NSString *subtitle233;
 // @property (nonatomic, copy)NSString *tdType233;
