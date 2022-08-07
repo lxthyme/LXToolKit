@@ -15,6 +15,8 @@
 @end
 
 @implementation DJClassifyListBannerCell
+@synthesize imageView = _imageView;
+
 #pragma mark -
 #pragma mark - 🛠Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -43,7 +45,9 @@
 - (void)prepareUI {
     self.contentView.backgroundColor = [UIColor whiteColor];
 
-    // [self.<#contentView#> addSubview:self.<#table#>];
+    YYAnimatedImageView *imgView = [[YYAnimatedImageView alloc]init];
+    _imageView = imgView;
+    [self.contentView addSubview:imgView];
 
     [self masonry];
 }
@@ -51,8 +55,10 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0.f);
+    }];
 }
 
 #pragma mark Lazy Property
-
 @end

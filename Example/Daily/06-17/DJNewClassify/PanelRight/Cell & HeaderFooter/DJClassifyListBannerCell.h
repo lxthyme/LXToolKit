@@ -6,12 +6,14 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <SDCycleScrollView/SDCollectionViewCell.h>
-// #import <SDWebImage/A>
+#import "FLAnimatedImageView.h"
+#import <YYImage/YYImage.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJClassifyListBannerCell: SDCollectionViewCell {
 }
-@property (weak, nonatomic) UIImageView *imageView;
+@property(nonatomic, weak)YYAnimatedImageView *imageView;
 
 @end
 

@@ -8,6 +8,7 @@
 #import "DJClassifyListBannerView.h"
 
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "DJClassifyListBannerCell.h"
 
 @interface DJClassifyListBannerView()<SDCycleScrollViewDelegate> {
 }
@@ -52,9 +53,16 @@
 
 #pragma mark -
 #pragma mark - ✈️SDCycleScrollViewDelegate
-// - (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
-//     // return <#expression#>;
-// }
+- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
+    return [DJClassifyListBannerCell class];
+}
+- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
+    if([cell isKindOfClass:[DJClassifyListBannerCell class]]) {
+        DJClassifyListBannerCell *bannerCell = (DJClassifyListBannerCell *)cell;
+        NSString *imagePath = self.bannerView.imageURLStringsGroup[index];
+        [bannerCell.imageView bl_setImageWithUrl:[NSURL URLWithString:imagePath] animated:YES];
+    }
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
