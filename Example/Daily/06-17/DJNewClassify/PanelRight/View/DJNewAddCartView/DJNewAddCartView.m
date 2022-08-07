@@ -15,6 +15,7 @@
 }
 @property(nonatomic, strong)UIImageView *imgViewLogo;
 @property(nonatomic, strong)LXLabel *labNum;
+@property(nonatomic, strong)UIButton *btnMinBuy;
 
 @end
 
@@ -32,17 +33,33 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(DJO2OGoodItemModel *)item num:(NSInteger)num {
-    self.labNum.text = [NSString stringWithFormat:@"%ld", num];
-    self.labNum.hidden = !(num > 0);
-    DJGoodImageViewLabelType type = [self getTypeFromGoodItem:item];
-    if(type == DJGoodImageViewLabelTypeSoldout) {
-        self.imgViewLogo.image =  [iBLImage imageNamed:@"DJ_addshopcart_black"];
-        self.imgViewLogo.userInteractionEnabled = NO;
-        self.labNum.backgroundColor = [UIColor colorWithHex:0xCCCCCC];
+    self.labNum.hidden = YES;
+    self.imgViewLogo.hidden = YES;
+    self.btnMinBuy.hidden = YES;
+    self.labNum.text = @"";
+    if(item.minBuyQuan > 1) {
+        self.btnMinBuy.hidden = NO;
+        NSString *minBuySpec = item.minBuySpec;
+        if(isEmptyString(minBuySpec)) {
+            minBuySpec = @"件";
+        }
+        NSString *title = [NSString stringWithFormat:@"%ld%@起购", item.minBuyQuan, minBuySpec];
+        [self.btnMinBuy setTitle:title forState:UIControlStateNormal];
     } else {
-        self.imgViewLogo.image =  [iBLImage imageNamed:@"dj_addShoppingCart"];
-        self.imgViewLogo.userInteractionEnabled = YES;
-        self.labNum.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        self.labNum.hidden = NO;
+        self.imgViewLogo.hidden = NO;
+        self.labNum.text = [NSString stringWithFormat:@"%ld", num];
+        self.labNum.hidden = !(num > 0);
+        DJGoodImageViewLabelType type = [self getTypeFromGoodItem:item];
+        if(type == DJGoodImageViewLabelTypeSoldout) {
+            self.imgViewLogo.image =  [iBLImage imageNamed:@"DJ_addshopcart_black"];
+            self.imgViewLogo.userInteractionEnabled = NO;
+            self.labNum.backgroundColor = [UIColor colorWithHex:0xCCCCCC];
+        } else {
+            self.imgViewLogo.image =  [iBLImage imageNamed:@"dj_addShoppingCart"];
+            self.imgViewLogo.userInteractionEnabled = YES;
+            self.labNum.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        }
     }
 }
 
@@ -90,6 +107,7 @@
 
     [self addSubview:self.imgViewLogo];
     [self addSubview:self.labNum];
+    [self addSubview:self.btnMinBuy];
 
     [self masonry];
 }
@@ -99,7 +117,8 @@
     // MASAttachKeys(<#...#>)
     [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(kAddCartTopHeight));
-        make.left.bottom.equalTo(@0.f);
+        make.left.greaterThanOrEqualTo(@0.f);
+        make.bottom.equalTo(@0.f);
         make.right.equalTo(@(kWPercentage(-5.f)));
         make.width.height.equalTo(@(kAddCartLogoHeight));
     }];
@@ -107,6 +126,11 @@
         make.top.right.equalTo(@0.f);
         make.width.greaterThanOrEqualTo(@(kAddCartNumHeight));
         make.height.equalTo(@(kAddCartNumHeight));
+    }];
+    [self.btnMinBuy mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.greaterThanOrEqualTo(@0.f);
+        make.left.right.bottom.equalTo(@0.f);
+        make.height.equalTo(@(kWPercentage(20.f)));
     }];
 }
 
@@ -123,7 +147,7 @@
 - (LXLabel *)labNum {
     if(!_labNum){
         LXLabel *label = [[LXLabel alloc]init];
-        label.x_insets = UIEdgeInsetsMake(0, kWPercentage(4.5f), 0, kWPercentage(4.5f));
+        // label.x_insets = UIEdgeInsetsMake(0, kWPercentage(4.5f), 0, kWPercentage(4.5f));
         label.text = @"";
         label.font = [UIFont boldSystemFontOfSize:kWPercentage(9.f)];
         label.textColor = [UIColor whiteColor];
@@ -139,5 +163,19 @@
     }
     return _labNum;
 }
+- (UIButton *)btnMinBuy {
+    if(!_btnMinBuy){
+        // 初始化一个 Button
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.backgroundColor = [UIColor colorWithHex:0xFF774F];
+        btn.titleLabel.font = [UIFont boldSystemFontOfSize:kWPercentage(12.f)];
+        btn.contentEdgeInsets = UIEdgeInsetsMake(kWPercentage(3.f), kWPercentage(7.5f), kWPercentage(3.f), kWPercentage(7.5f));
+        btn.layer.cornerRadius = kWPercentage(10.f);
 
+        [btn setTitle:@"" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _btnMinBuy = btn;
+    }
+    return _btnMinBuy;
+}
 @end

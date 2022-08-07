@@ -44,9 +44,9 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.labTitle];
+    [self.contentView addSubview:self.labTitle];
 
     [self masonry];
 }
@@ -55,7 +55,9 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self).inset(kWPercentage(10.f));
+        make.top.bottom.equalTo(self);//.inset(kWPercentage(10.f));
+        make.left.equalTo(@(kWPercentage(10.f)));
+        make.right.equalTo(@(kWPercentage(-10.f)));
     }];
 }
 

@@ -56,7 +56,7 @@
     @weakify(self)
     // self.queryCartDisposable = [RACSubject subject];
     [self.b2cVM.shopCartVM.queryCartSubject
-      // takeUntil:self.queryCartDisposable]
+     // takeUntil:self.queryCartDisposable]
      // takeUntil:self.queryCartDisposable]
      subscribeNext:^(DJQueryCartModel *x) {
         @strongify(self)

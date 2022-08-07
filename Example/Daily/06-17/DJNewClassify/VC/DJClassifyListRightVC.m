@@ -70,7 +70,7 @@
     @weakify(self)
     // self.queryCartDisposable = [RACSubject subject];
     [self.b2cVM.shopCartVM.queryCartSubject
-      // takeUntil:self.queryCartDisposable]
+     // takeUntil:self.queryCartDisposable]
      // takeUntil:self.queryCartDisposable]
      subscribeNext:^(DJQueryCartModel *x) {
         @strongify(self)
@@ -406,7 +406,7 @@
             if(t3Category.cateType == DJO2OCategoryCateTypeAll) {
                 return CGFLOAT_MIN;
             } else {
-                return kWPercentage(44.f);
+                return kWPercentage(24.f);
             }
         }
             break;

@@ -27,6 +27,7 @@
 @property(nonatomic, strong)DJPriceWrapperStackView *topPriceStackView;
 @property(nonatomic, strong)DJPriceWrapperStackView *bottomPriceStackView;
 @property(nonatomic, strong)DJNewAddCartView *addCartView;
+@property(nonatomic, strong)UIView *lineView;
 
 @end
 
@@ -199,6 +200,7 @@
     [self.contentView addSubview:self.priceWrapperStackView];
     
     [self.contentView addSubview:self.addCartView];
+    [self.contentView addSubview:self.lineView];
 
     [self masonry];
 }
@@ -232,9 +234,14 @@
         make.bottom.equalTo(@0.f).offset(-kPadding);
     }];
     [self.addCartView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleStackView.mas_bottom).offset(kPadding);
+        // make.top.equalTo(self.titleStackView.mas_bottom).offset(kPadding);
         make.right.equalTo(@(kWPercentage(-10.f)));
         make.bottom.lessThanOrEqualTo(@(-kPadding));
+    }];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.titleStackView);
+        make.bottom.equalTo(@0.f);
+        make.height.equalTo(@1.f);
     }];
 }
 
@@ -336,6 +343,13 @@
     }
     return _bottomPriceStackView;
 }
-
+- (UIView *)lineView {
+    if(!_lineView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xEEEEEE];
+        _lineView = v;
+    }
+    return _lineView;
+}
 
 @end

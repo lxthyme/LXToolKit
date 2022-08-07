@@ -38,10 +38,10 @@
         [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
         DJStoreManager *gStore = [DJStoreManager sharedInstance];
         /// 仅即时达
-        gStore.djModuleType = FIRSTMEDICINE;
+        // gStore.djModuleType = FIRSTMEDICINE;
         /// 即时达 + 超市精选
-        // gStore.djModuleType = COMMONTYPE;
-        // gStore.djHomeStyle = DAOJIA;
+        gStore.djModuleType = COMMONTYPE;
+        gStore.djHomeStyle = DAOJIA;
         /// 超市精选
         // gStore.djHomeStyle = LIANHUA;
         /// 初始化数据
