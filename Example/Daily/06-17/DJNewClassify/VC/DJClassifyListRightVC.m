@@ -33,6 +33,7 @@
 @property (nonatomic, strong)UIControl *allMaskView;
 @property (nonatomic, strong)DJ3rdCategoryView *allCategoryView;
 @property (nonatomic, strong)DJSectionCategoryHeaderView *sectionCategoryHeaderView;
+@property (nonatomic, strong)DJClassifyListBannerView *bannerView;
 /// 页面状态
 @property(nonatomic, assign)DJViewStatus viewStatus;
 @property(nonatomic, strong)DJClassifyRightModel *rightModel;
@@ -49,6 +50,12 @@
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if(self.bannerView) {
+        [self.bannerView.bannerView adjustWhenControllerViewWillAppera];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
@@ -79,33 +86,50 @@
     }];
 }
 - (void)dataFillWithBannerInfo {
+    CGFloat width = SCREEN_WIDTH - kLeftTableWidth;
     if(self.rightModel.f_t2Category.f_bannerResource) {
-        DJClassifyListBannerView *banner = [[DJClassifyListBannerView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DJClassifyListBannerView"];
-        // banner.f_itemType = DJClassifyGoodItemTypeBanner;
-        banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), CGRectGetWidth(self.table.frame) - kWPercentage(10.f * 2), kBannerSectionHeight);
-        [banner dataFill:self.rightModel.f_t2Category.f_bannerResource];
-        UIView *tableHeaderView = [[UIView alloc]init];
-        tableHeaderView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), kBannerSectionHeight + kWPercentage(10.f));
-        [tableHeaderView addSubview:banner];
-        self.table.tableHeaderView = tableHeaderView;
+        NSArray *onlineDeployList = self.rightModel.f_t2Category.f_bannerResource.onlineDeployList;
+        if(onlineDeployList.count > 0) {
+            self.table.tableHeaderView = nil;
+            DJClassifyListBannerView *banner = [[DJClassifyListBannerView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DJClassifyListBannerView"];
+            // banner.f_itemType = DJClassifyGoodItemTypeBanner;
+            banner.frame = CGRectMake(kWPercentage(10.f), kWPercentage(10.f), width - kWPercentage(10.f * 2), kBannerSectionHeight);
+            [banner dataFill:self.rightModel.f_t2Category.f_bannerResource];
+            UIView *tableHeaderView = [[UIView alloc]init];
+            tableHeaderView.frame = CGRectMake(0, 0, width, kBannerSectionHeight + kWPercentage(10.f));
+            [tableHeaderView addSubview:banner];
+            self.table.tableHeaderView = tableHeaderView;
+        } else if(self.rightModel.f_t2Category.f_bannerResource) {
+            UIView *bannerView = [[UIView alloc]init];
+            bannerView.frame = CGRectMake(0, 0, width, CGFLOAT_MIN);
+            self.table.tableHeaderView = bannerView;
+        }
         // [self.table reloadData];
     } else {
         [self.b2cVM loadO2OBannerWith:self.rightModel.f_t2Category];
 
         UIView *bannerView = [[UIView alloc]init];
-        bannerView.frame = CGRectMake(0, 0, CGRectGetWidth(self.table.frame), CGFLOAT_MIN);
+        bannerView.frame = CGRectMake(0, 0, width, CGFLOAT_MIN);
         self.table.tableHeaderView = bannerView;
     }
 }
 - (void)dataFill:(DJClassifyRightModel *)rightModel {
     self.rightModel = rightModel;
     /// 1. banner
-    if(rightModel.f_t2Category.f_bannerResource) {
-        [self dataFillWithBannerInfo];
+    [self dataFillWithBannerInfo];
+    /// 2. refresh 状态
+    if(rightModel.f_idxType == DJSubCategoryIndexTypeFirst) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.table.mj_header.state = MJRefreshStateNoMoreData;
+        });
+    } else if(rightModel.f_idxType == DJSubCategoryIndexTypeLast) {
+        [self.table.mj_footer endRefreshingWithNoMoreData];
     } else {
-        [self.b2cVM loadO2OBannerWith:rightModel.f_t2Category];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.table.mj_header.state = MJRefreshStateIdle;
+        });
     }
-    /// 2. 商品数据
+    /// 3. 商品数据
     __block BOOL showAll = NO;
     [rightModel.f_t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if(obj.cateType == DJO2OCategoryCateTypeAll) {
@@ -114,6 +138,7 @@
             return;
         }
     }];
+    rightModel.f_t2Category.f_showAll = showAll;
 
     NSInteger t3Idx = rightModel.f_pinIdx;
     DJO2OCategoryListModel *t3Category;
@@ -135,6 +160,7 @@
         __pinViewHeight = h;
         self.pinView.pinCategoryView.hidden = self.rightModel.f_t2Category.rywCategorys.count <= 0;
         [self.pinView dataFill:self.rightModel.f_t2Category.rywCategorys shouldShowJiShiDa:YES];
+        [self.pinView.pinCategoryView selectItemAtIndex:rightModel.f_pinIdx];
         [self.allCategoryView dataFill:self.rightModel.f_t2Category.rywCategorys];
 
         DJO2OCategoryListModel *pinCategory = [[DJO2OCategoryListModel alloc]init];
@@ -160,11 +186,29 @@
         }];
         self.viewStatus = isEmpty ? DJViewStatusNoData : DJViewStatusNormal;
         [self.table reloadData];
-        CGRect rect = [self.table rectForSection:t3Idx];
-        CGPoint offset = CGPointMake(0, CGRectGetMinY(rect));
-        offset.y -= __pinViewHeight;
-        offset.y = MAX(0, offset.y);
-        [self.table setContentOffset:offset animated:YES];
+
+        if(t3Idx == 0) {
+            [self.table setContentOffset:CGPointZero animated:YES];
+        } else {
+            __block BOOL __hadAll = NO;
+            [self.rightModel.f_t2Category.rywCategorys enumerateObjectsUsingBlock:^(DJO2OCategoryListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if(obj.cateType == DJO2OCategoryCateTypeAll) {
+                    __hadAll = YES;
+                    *stop = YES;
+                    return;
+                }
+            }];
+
+            NSInteger realIdx = t3Idx;
+            if(!__hadAll && t3Idx >= 0) {
+                realIdx += 1;
+            }
+            CGRect rect = [self.table rectForSection:realIdx];
+            CGPoint offset = CGPointMake(0, CGRectGetMinY(rect));
+            offset.y -= __pinViewHeight;
+            offset.y = MAX(0, offset.y);
+            [self.table setContentOffset:offset animated:YES];
+        }
     } else {
         switch (t3Category.cateType) {
             case DJO2OCategoryCateTypeAll: {
@@ -371,6 +415,9 @@
         //不是用户滚动的，比如setContentOffset等方法，引起的滚动不需要处理。
         return;
     }
+    if(self.rightModel.f_t2Category.f_showAll && self.rightModel.f_pinIdx == 0) {
+        return;
+    }
     //用户滚动的才处理
     //获取categoryView下面一点的所有布局信息，用于知道，当前最上方是显示的哪个section
     NSArray<NSIndexPath *>*topIndexPaths = [self.table indexPathsForRowsInRect:CGRectMake(0, scrollView.contentOffset.y + __pinViewHeight + 1, self.table.bounds.size.width, 200)];
@@ -515,7 +562,7 @@
         DJVerticalTableView *t = [[DJVerticalTableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         t.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGFLOAT_MIN, CGFLOAT_MIN)];
         t.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGFLOAT_MIN, CGFLOAT_MIN)];
-        t.backgroundColor = [UIColor whiteColor];
+        t.backgroundColor = [UIColor colorWithHex:0xF9F9F9];
         t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         t.indicatorStyle = UIScrollViewIndicatorStyleBlack;
         t.separatorStyle = UITableViewCellSeparatorStyleNone;

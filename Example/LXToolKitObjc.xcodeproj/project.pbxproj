@@ -822,10 +822,10 @@
 		BEDD8F12289D76E70088778F /* CategoryView */ = {
 			isa = PBXGroup;
 			children = (
-				BEDD8F13289D76E70088778F /* DJ3rdCategoryCell.m */,
-				BEDD8F14289D76E70088778F /* DJ3rdCategoryView.m */,
 				BEDD8F15289D76E70088778F /* DJ3rdCategoryCell.h */,
+				BEDD8F13289D76E70088778F /* DJ3rdCategoryCell.m */,
 				BEDD8F16289D76E70088778F /* DJ3rdCategoryView.h */,
+				BEDD8F14289D76E70088778F /* DJ3rdCategoryView.m */,
 			);
 			path = CategoryView;
 			sourceTree = "<group>";

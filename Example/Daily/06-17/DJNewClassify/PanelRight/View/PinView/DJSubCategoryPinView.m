@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "DJSubCategoryPinView.h"
-#import <SDCycleScrollView/SDCycleScrollView.h>
+// #import <SDCycleScrollView/SDCycleScrollView.h>
 
 /// filter 类型
 typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
@@ -20,10 +20,10 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
     DJSubcategoryFilterTypeSale = 4
 };
 
-@interface DJSubCategoryPinView()<SDCycleScrollViewDelegate> {
+@interface DJSubCategoryPinView() {
 }
 @property(nonatomic, strong)UIStackView *wrapperStackView;
-@property(nonatomic, strong)SDCycleScrollView *bannerView;
+// @property(nonatomic, strong)SDCycleScrollView *bannerView;
 @property (nonatomic, strong)DJ3rdCategoryView *pinCategoryView;
 @property(nonatomic, strong)UIButton *btnAll;
 @property(nonatomic, strong)UIStackView *topStackView;
@@ -65,13 +65,13 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill:(NSArray<DJClassifyBaseCategoryModel *> *)categoryListModel shouldShowJiShiDa:(BOOL)shouldShowJiShiDa {
-    self.bannerView.imageURLStringsGroup = @[
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
-        @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
-    ];
+    // self.bannerView.imageURLStringsGroup = @[
+    //     @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+    //     @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+    //     @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+    //     @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+    //     @"https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302"
+    // ];
 
     self.topStackView.hidden = categoryListModel.count <= 0;
     self.btnAll.hidden = categoryListModel.count <= 5;
@@ -241,17 +241,17 @@ typedef NS_ENUM(NSInteger, DJSubcategoryFilterType) {
     }
     return _wrapperStackView;
 }
-- (SDCycleScrollView *)bannerView {
-    if(!_bannerView){
-        SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
-        v.delegate = self;
-        v.placeholderImage = [iBLImage imageNamed:@""];
-        v.layer.cornerRadius = kWPercentage(4.f);
-        v.clipsToBounds = YES;
-        _bannerView = v;
-    }
-    return _bannerView;
-}
+// - (SDCycleScrollView *)bannerView {
+//     if(!_bannerView){
+//         SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
+//         v.delegate = self;
+//         v.placeholderImage = [iBLImage imageNamed:@""];
+//         v.layer.cornerRadius = kWPercentage(4.f);
+//         v.clipsToBounds = YES;
+//         _bannerView = v;
+//     }
+//     return _bannerView;
+// }
 - (UIStackView *)topStackView {
     if(!_topStackView){
         UIStackView *sv = [[UIStackView alloc]init];

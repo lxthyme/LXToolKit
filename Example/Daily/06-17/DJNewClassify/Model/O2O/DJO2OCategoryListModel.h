@@ -49,6 +49,7 @@ typedef NS_ENUM(NSInteger, DJO2OCategoryCateType) {
 /// 二级分类
 // @property (nonatomic, copy)NSArray<DJO2OCategoryListModel *> *f_rywCategorys;
 
+@property(nonatomic, assign)BOOL f_showAll;
 @property(nonatomic, assign)DJClassifyCategoryType f_categoryType;
 @property (nonatomic, strong)DJGoodsIdsModel *f_idsList;
 /// 三级分类对应的商品列表

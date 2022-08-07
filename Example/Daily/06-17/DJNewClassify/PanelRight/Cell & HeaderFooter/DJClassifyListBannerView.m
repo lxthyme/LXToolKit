@@ -12,7 +12,7 @@
 
 @interface DJClassifyListBannerView()<SDCycleScrollViewDelegate> {
 }
-@property(nonatomic, strong)SDCycleScrollView *bannerView;
+
 @end
 
 @implementation DJClassifyListBannerView

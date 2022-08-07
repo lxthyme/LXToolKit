@@ -6,7 +6,6 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <SDCycleScrollView/SDCollectionViewCell.h>
-#import "FLAnimatedImageView.h"
 #import <YYImage/YYImage.h>
 
 NS_ASSUME_NONNULL_BEGIN
