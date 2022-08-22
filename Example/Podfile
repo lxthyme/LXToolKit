@@ -1,6 +1,6 @@
 source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 # source 'https://gitlab.bl.com/iOS/BLRepositories_bin.git'
-# source 'https://cdn.cocoapods.org'
+source 'https://cdn.cocoapods.org'
 
 inhibit_all_warnings!
 platform :ios, '9.0'
@@ -15,6 +15,7 @@ target 'LXToolKitObjc_Example' do
 
   pod 'DJBusinessTools', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessTools'
   pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
+  #pod 'DJBusinessModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModule'
 
   #target 'LXToolKitObjc_Tests' do
     inherit! :search_paths
@@ -45,6 +46,8 @@ target 'LXToolKitObjc_Example' do
     pod 'YYModel'
     pod 'pop'
     pod 'IBLProgressHud'
+
+    pod 'JXPageControl'
     
   #end
 end
