@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOS 15, *)
 enum RainbowAttribute: CodableAttributedStringKey, MarkdownDecodableAttributedStringKey {
     enum Value: String, Codable {
         case plain
@@ -18,6 +19,7 @@ enum RainbowAttribute: CodableAttributedStringKey, MarkdownDecodableAttributedSt
     public static var name = "rainbow"
 }
 
+@available(iOS 15, *)
 extension AttributeScopes {
     struct CaffeAppAttributes: AttributeScope {
         let rainbow: RainbowAttribute
@@ -28,4 +30,5 @@ extension AttributeScopes {
     var caffeApp: CaffeAppAttributes.Type { CaffeAppAttributes.self }
 }
 
+@available(iOS 15, *)
 let header = AttributedString(localized: "^[Fast & Delicious](rainbow: 'extreme') Food", including: \.caffeApp)

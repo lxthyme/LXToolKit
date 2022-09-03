@@ -131,7 +131,7 @@ class LibsManager: NSObject {
 
     func setupAnalytics() {
         FirebaseApp.configure()
-        Mixpanel.initialize(token: Keys.mixpanel.apiKey)
+        Mixpanel.initialize(token: Keys.mixpanel.apiKey, trackAutomaticEvents: true)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
     }
 

@@ -147,8 +147,6 @@
 		BE51ADC125370944005D0F10 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51ADC025370944005D0F10 /* NotificationViewController.swift */; };
 		BE51ADC425370944005D0F10 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE51ADC225370944005D0F10 /* MainInterface.storyboard */; };
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA60B259ABB9B00526193 /* RxSwift.framework */; };
-		BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6AA612259ABBA100526193 /* RxCocoa.framework */; };
 		BE6C8F5C27BDEA850019AEC0 /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5A27BDEA840019AEC0 /* DefaultTableViewCellViewModel.swift */; };
 		BE6C8F5D27BDEA850019AEC0 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5B27BDEA840019AEC0 /* DefaultTableViewCell.swift */; };
 		BE6C8F5F27BDED470019AEC0 /* LXEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6C8F5E27BDED470019AEC0 /* LXEventCell.swift */; };
@@ -163,7 +161,6 @@
 		BE8A97D1260B35A700A32116 /* Localizabled.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE8A97D3260B35A700A32116 /* Localizabled.strings */; };
 		BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F1249C9C7700F942E6 /* LXNewUserFloat.swift */; };
 		BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9C58F3249C9E3C00F942E6 /* LXDashboardListModel.swift */; };
-		BEA1A124258A02EC00E03DA3 /* LXToolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEA1A123258A02EC00E03DA3 /* LXToolKit.framework */; };
 		BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2454626F335290098707A /* LXButtonTestVC.swift */; };
 		BEA245C226F335290098707A /* LXStackTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2454826F335290098707A /* LXStackTestVC.swift */; };
 		BEA245C326F335290098707A /* LXStackTestVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEA2454926F335290098707A /* LXStackTestVC.xib */; };
@@ -735,10 +732,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE6AA613259ABBA100526193 /* RxCocoa.framework in Frameworks */,
-				BEA1A124258A02EC00E03DA3 /* LXToolKit.framework in Frameworks */,
 				5E878754FE0291C2AD807604 /* Pods_LXToolKit_Exam.framework in Frameworks */,
-				BE6AA60C259ABB9B00526193 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2175,6 +2169,7 @@
 				BEA9379B24E110120048D644 /* Swiftlint */,
 				BEC2D4F725233A02004C91B6 /* Embed App Extensions */,
 				BE827C5D2609EE01009D18D0 /* SwiftLint */,
+				AE47A30F072A880E41BCC8FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2467,6 +2462,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE47A30F072A880E41BCC8FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKit_Exam/Pods-LXToolKit_Exam-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BE827C462609EA32009D18D0 /* R.swift */ = {
