@@ -8,6 +8,7 @@
 
 import UIKit
 import LXToolKit
+import DJBusinessModuleSwift
 
 class ViewController: LXBaseTableViewVC {
     // MARK: 📌UI
@@ -71,7 +72,8 @@ class ViewController: LXBaseTableViewVC {
             .login(vm: LXLoginVM(with: provider)),
             .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
             .LXWebViewTestVC(viewModel: vm),
-            .LXYYLabelMoreTestVC(viewModel: vm)
+            .LXYYLabelMoreTestVC(viewModel: vm),
+            .HomeViewController(viewModel: vm)
         ], toSection: "2022")
         return snapshot
     }()

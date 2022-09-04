@@ -28,7 +28,7 @@ This library contains some useful category and extension kits
   s.source           = { :git => 'https://github.com/lxthyme/LXToolKit.git', :tag => "v#{s.version.to_s}" }
   # s.social_media_url = 'https://twitter.com/lxthyme'
   # s.default_subspec = "Core"
-  s.ios.deployment_target = '12.0'
+  s.ios.deployment_target = '10.0'
   s.swift_versions = '5.1'
   s.cocoapods_version = '>= 1.4.0'
 
