@@ -8,7 +8,7 @@
 
 import UIKit
 import Hero
-import Rswift
+import RswiftResources
 import RxTheme
 
 open class LXNavigationController: UINavigationController {

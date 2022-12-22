@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Rswift
+import RswiftResources
 import SnapKit
 import Hero
 import Localize_Swift

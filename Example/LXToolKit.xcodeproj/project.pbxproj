@@ -785,6 +785,8 @@
 				BE8A39CD25B2B3830062E388 /* Macro */,
 				BEC2D3812521E187004C91B6 /* LXMVVMSample */,
 				BEC2D3752521DC0B004C91B6 /* MVVM */,
+				BEB6DF2728C6E3FA0020AE49 /* SwiftHub */,
+				BEB6DF2628C6E3F50020AE49 /* RxNetworks */,
 				BE258D8D25189837008E2777 /* Kit */,
 				BE4299442518770200CFCF53 /* Daily */,
 				BE03B9E82849A26200BA688A /* WWDC */,
@@ -951,8 +953,8 @@
 		BE4299442518770200CFCF53 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEDB698929505ADB004A076B /* 12-19_pop */,
 				BEC3CBF52832219E0084B393 /* 05-16 */,
-				BE467CC928055A310054260D /* 04-12 */,
 				BE32083527E47BCD0052A6AF /* 03-18 */,
 				BECC391E27DF1BC9006B7906 /* 03-14 */,
 				BEBE303E27C605A2008D8BB1 /* 02-23 */,
@@ -973,13 +975,6 @@
 				BE461187253D9A9600E93AB4 /* Info.plist */,
 			);
 			path = Today;
-			sourceTree = "<group>";
-		};
-		BE467CC928055A310054260D /* 04-12 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "04-12";
 			sourceTree = "<group>";
 		};
 		BE472B7D27BA2D8C00D8F170 /* 02-14-SwiftHub */ = {
@@ -1725,6 +1720,20 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		BEB6DF2628C6E3F50020AE49 /* RxNetworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RxNetworks;
+			sourceTree = "<group>";
+		};
+		BEB6DF2728C6E3FA0020AE49 /* SwiftHub */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SwiftHub;
+			sourceTree = "<group>";
+		};
 		BEBE303E27C605A2008D8BB1 /* 02-23 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1886,6 +1895,13 @@
 				BECC391F27DF1CBB006B7906 /* LXWebViewTestVC.swift */,
 			);
 			path = "03-14";
+			sourceTree = "<group>";
+		};
+		BEDB698929505ADB004A076B /* 12-19_pop */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "12-19_pop";
 			sourceTree = "<group>";
 		};
 		BEF15B7C2799433500D26B02 /* 01-20 */ = {
@@ -2471,7 +2487,6 @@
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
@@ -2508,7 +2523,7 @@
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
@@ -2552,7 +2567,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
@@ -2589,7 +2603,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PryntTrimmerView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RswiftResources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
