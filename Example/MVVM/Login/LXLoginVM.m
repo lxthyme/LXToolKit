@@ -7,11 +7,11 @@
 //
 
 #import "LXLoginVM.h"
-#import <BLRawAPIManager/DJNewShopCarSubmitCartAPIManager.h>
+// #import <BLRawAPIManager/DJNewShopCarSubmitCartAPIManager.h>
 
 @interface LXLoginVM() {
 }
-@property(nonatomic, strong)DJNewShopCarSubmitCartAPIManager *djNewShopCarSubmitCartAPIManager;
+// @property(nonatomic, strong)DJNewShopCarSubmitCartAPIManager *djNewShopCarSubmitCartAPIManager;
 
 @end
 
@@ -45,25 +45,25 @@
 
 #pragma mark -
 #pragma mark Lazy Property
-- (RACCommand *)loginCommand {
-    if(!_loginCommand){
-        @weakify(self)
-        RACCommand *cmd = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            @strongify(self)
-            self.djNewShopCarSubmitCartAPIManager.finalParamsToCall = @{};
-            return [[[self.djNewShopCarSubmitCartAPIManager rac_requestSignal] doNext:^(CTAPIBaseManager *_Nullable apiManager) {
-                self.f_result = apiManager.response.content;
-            }] materialize];
-        }];
-        _loginCommand = cmd;
-    }
-    return _loginCommand;
-}
+// - (RACCommand *)loginCommand {
+//     if(!_loginCommand){
+//         @weakify(self)
+//         RACCommand *cmd = [[RACCommand alloc]initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+//             @strongify(self)
+//             self.djNewShopCarSubmitCartAPIManager.finalParamsToCall = @{};
+//             return [[[self.djNewShopCarSubmitCartAPIManager rac_requestSignal] doNext:^(CTAPIBaseManager *_Nullable apiManager) {
+//                 self.f_result = apiManager.response.content;
+//             }] materialize];
+//         }];
+//         _loginCommand = cmd;
+//     }
+//     return _loginCommand;
+// }
 
-- (DJNewShopCarSubmitCartAPIManager *)djNewShopCarSubmitCartAPIManager {
-    if(!_djNewShopCarSubmitCartAPIManager){
-        _djNewShopCarSubmitCartAPIManager = [[DJNewShopCarSubmitCartAPIManager alloc]init];
-    }
-    return _djNewShopCarSubmitCartAPIManager;
-}
+// - (DJNewShopCarSubmitCartAPIManager *)djNewShopCarSubmitCartAPIManager {
+//     if(!_djNewShopCarSubmitCartAPIManager){
+//         _djNewShopCarSubmitCartAPIManager = [[DJNewShopCarSubmitCartAPIManager alloc]init];
+//     }
+//     return _djNewShopCarSubmitCartAPIManager;
+// }
 @end

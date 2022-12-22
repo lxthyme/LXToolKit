@@ -9,7 +9,7 @@
 #import "LXLoginVC.h"
 #import "LXLoginVM.h"
 #import <Masonry/Masonry.h>
-#import <DJBusinessTools/LXButton.h>
+#import <LXToolKitObjc/LXButton.h>
 // #import <LXToolKitObjc/LXButton.h>
 
 @interface LXLoginVC() {
@@ -65,26 +65,26 @@
     @weakify(self);
     [[[self.btnLogin rac_signalForControlEvents:UIControlEventTouchUpInside]throttle:1.f]subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        [self.vm.loginCommand execute:nil];
+        // [self.vm.loginCommand execute:nil];
         [self.view endEditing:YES];
     }];
-    [[self.vm.loginCommand.executing skip:1] subscribeNext:^(NSNumber * _Nullable x) {
-        @strongify(self)
-        // if(x.boolValue) {
-        //     [self.btnLogin startLoading];
-        // } else {
-        //     [self.btnLogin stopLoading];
-        // }
-        NSLog(@"-->X: %@-%@", x, self.vm.f_result);
-    }];
-    [self.vm.loginCommand.executionSignals subscribeNext:^(RACSignal *_Nullable signal) {
-        @strongify(self);
-        [[signal dematerialize] subscribeNext:^(id  _Nullable x) {
-            NSLog(@"[2]Next-X: %@", x);
-        } error:^(NSError * _Nullable error) {
-            NSLog(@"[2]Error: %@", error);
-        }];
-    }];
+    // [[self.vm.loginCommand.executing skip:1] subscribeNext:^(NSNumber * _Nullable x) {
+    //     @strongify(self)
+    //     // if(x.boolValue) {
+    //     //     [self.btnLogin startLoading];
+    //     // } else {
+    //     //     [self.btnLogin stopLoading];
+    //     // }
+    //     NSLog(@"-->X: %@-%@", x, self.vm.f_result);
+    // }];
+    // [self.vm.loginCommand.executionSignals subscribeNext:^(RACSignal *_Nullable signal) {
+    //     @strongify(self);
+    //     [[signal dematerialize] subscribeNext:^(id  _Nullable x) {
+    //         NSLog(@"[2]Next-X: %@", x);
+    //     } error:^(NSError * _Nullable error) {
+    //         NSLog(@"[2]Error: %@", error);
+    //     }];
+    // }];
 }
 
 #pragma mark -
