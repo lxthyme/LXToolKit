@@ -14,6 +14,7 @@
 }
 @property(nonatomic, strong)SDCycleScrollView *bannerView;
 @property(nonatomic, strong)UICollectionView *dotCollectionView;
+@property(nonatomic, strong)UIImageView *imgViewTabbar;
 @property(nonatomic, assign)NSInteger currentIdx;
 
 @end
@@ -38,6 +39,9 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill {
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.imgViewTabbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
+    [self.imgViewTabbar bl_setImageWithUrl:[NSURL URLWithString:@"https://Img.iblimg.com/fast2home-2/images/kdj/index/2022/03/785364561.png"]];
     self.bannerView.imageURLStringsGroup = @[
         @"https://unsplash.it/400/200/?random",
         @"https://unsplash.it/400/200/?random",
@@ -98,6 +102,7 @@
 
     [self.view addSubview:self.bannerView];
     [self.view addSubview:self.dotCollectionView];
+    [self.view addSubview:self.imgViewTabbar];
 
     [self masonry];
 }
@@ -116,6 +121,11 @@
         make.bottom.equalTo(self.bannerView.mas_bottom).offset(-10.f);
         make.height.equalTo(@(kWPercentage(4.f)));
         make.width.equalTo(@200.f);
+    }];
+    [self.imgViewTabbar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bannerView.mas_bottom).offset(20.f);
+        make.left.right.equalTo(@0.f);
+        make.height.equalTo(@55.f);
     }];
 }
 
@@ -165,4 +175,14 @@
     }
     return _dotCollectionView;
 }
+- (UIImageView *)imgViewTabbar {
+    if(!_imgViewTabbar){
+        UIImageView *iv = [[UIImageView alloc]init];
+        // iv.contentMode = UIViewContentModeScaleAspectFit;
+        // iv.image = [UIImage imageNamed:@""];
+        _imgViewTabbar = iv;
+    }
+    return _imgViewTabbar;
+}
+
 @end

@@ -18,9 +18,6 @@
 @end
 
 @implementation LXSubjectTestVC
-- (void)dealloc {
-    NSLog(@"🛠DEALLOC: %@", NSStringFromClass([self class]));
-}
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
@@ -30,7 +27,9 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
-    [self testSubject];
+    // [self testSubject];
+    [self testLogger];
+    [self testFloat];
 }
 
 #pragma mark -
@@ -38,6 +37,14 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (void)testLogger {
+    dlog(@"1:%@-%.f", @"233", 4.f);
+    xlog(@"2");
+    commonlog(@"3");
+}
+- (void)testFloat {
+    NSLog(@"%@", [@8.4 stringValue]);
+}
 - (void)testSubject {
     self.subject = [RACSubject subject];
     [self.subject subscribeNext:^(id x) {

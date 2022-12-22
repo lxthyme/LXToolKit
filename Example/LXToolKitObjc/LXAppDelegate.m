@@ -18,6 +18,8 @@
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
 
+    [DDLog addLogger:[DDOSLogger sharedInstance]];
+
     LXBaseNavigationController *nav = [[LXBaseNavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
 
     [self.window setRootViewController:nav];
