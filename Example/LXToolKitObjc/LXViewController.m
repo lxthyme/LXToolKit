@@ -108,7 +108,8 @@
             @"LXTestBorderVC",
             @"LXYYZZVC",
             @"LXSubjectTestVC",
-            @"LXBannerTestVC"
+            @"LXBannerTestVC",
+            @"DJprepareForReuseSignalTestVC",
         ];
     }
     return _dataList;

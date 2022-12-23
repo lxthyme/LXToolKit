@@ -55,6 +55,8 @@
 		BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */; };
 		BEDD8EDC289D75930088778F /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8EDA289D75930088778F /* CTAPIBaseManager+Rac.m */; };
 		BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */; };
+		BEEDDAE92954515200835633 /* DJprepareForReuseSignalTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */; };
+		BEEDDAED295451F100835633 /* LXprepareForReuseSignalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +158,10 @@
 		BEDD8EDB289D75930088778F /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
 		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
+		BEEDDAE72954515200835633 /* DJprepareForReuseSignalTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJprepareForReuseSignalTestVC.h; sourceTree = "<group>"; };
+		BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJprepareForReuseSignalTestVC.m; sourceTree = "<group>"; };
+		BEEDDAEB295451F100835633 /* LXprepareForReuseSignalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXprepareForReuseSignalCell.h; sourceTree = "<group>"; };
+		BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXprepareForReuseSignalCell.m; sourceTree = "<group>"; };
 		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +402,7 @@
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BEEDDAE62954513900835633 /* 12-22 */,
 				BED29D5B289CFA3A001A66CE /* 08-28 */,
 				BE6777CA2887B3D200D622E2 /* 07-20 */,
 				BE7F412E286B01AB009D8A8A /* 06-28 */,
@@ -489,6 +496,25 @@
 				BEDD8EDB289D75930088778F /* CTAPIBaseManager+Rac.h */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		BEEDDAE62954513900835633 /* 12-22 */ = {
+			isa = PBXGroup;
+			children = (
+				BEEDDAE72954515200835633 /* DJprepareForReuseSignalTestVC.h */,
+				BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */,
+				BEEDDAEA295451DA00835633 /* Cell */,
+			);
+			path = "12-22";
+			sourceTree = "<group>";
+		};
+		BEEDDAEA295451DA00835633 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEEDDAEB295451F100835633 /* LXprepareForReuseSignalCell.h */,
+				BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
@@ -654,6 +680,8 @@
 				BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */,
 				BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */,
 				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
+				BEEDDAED295451F100835633 /* LXprepareForReuseSignalCell.m in Sources */,
+				BEEDDAE92954515200835633 /* DJprepareForReuseSignalTestVC.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
 				BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */,
 				BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */,
