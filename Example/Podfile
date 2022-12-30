@@ -1,6 +1,6 @@
 source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 # source 'https://gitlab.bl.com/iOS/BLRepositories_bin.git'
-# source 'https://cdn.cocoapods.org'
+source 'https://cdn.cocoapods.org'
 
 inhibit_all_warnings!
 platform :ios, '9.0'
@@ -13,20 +13,21 @@ install! 'cocoapods',
 target 'LXToolKitObjc_Example' do
   pod 'LXToolKitObjc', :path => '../'
 
-  pod 'DJBusinessTools', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessTools'
-  pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
+  # pod 'DJBusinessTools', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessTools'
+  #pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
+  #pod 'DJBusinessModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModule'
 
   #target 'LXToolKitObjc_Tests' do
     inherit! :search_paths
 
     # pod 'MWPhotoBrowser', :git => 'git@github.com:mwaterfall/MWPhotoBrowser.git'
-    pod 'MWPhotoBrowser'
+    # pod 'MWPhotoBrowser'
 
-    pod 'BLNetworking', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLNetworking'
-    pod 'BLAPIManagers'#, :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLAPIManagers'
-    pod 'BLRawAPIManager', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLRawAPIManager'
-    pod 'DJiOSAppImages', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJiOSAppImages'
-    pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
+    # pod 'BLNetworking', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLNetworking'
+    # pod 'BLAPIManagers'#, :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLAPIManagers'
+    # pod 'BLRawAPIManager', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLRawAPIManager'
+    # pod 'DJiOSAppImages', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJiOSAppImages'
+    # pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
 
     pod 'Masonry'
     pod 'YTKNetwork', :git => 'git@github.com:yuantiku/YTKNetwork.git'
@@ -45,6 +46,8 @@ target 'LXToolKitObjc_Example' do
     pod 'YYModel'
     pod 'pop'
     pod 'IBLProgressHud'
+
+    pod 'JXPageControl'
     
   #end
 end

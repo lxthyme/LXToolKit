@@ -31,7 +31,11 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 armv7s arm64' }
   s.source_files = 'LXToolKitObjc/**/*'
-  
+  # s.source_files = {
+  #     'LXToolKitObjc' => ['LXToolKitObjc/**/*'],
+  #     'DJBusinessTools' => ['../..//Work/BL/DaoJia/DJBusinessTools/DJBusinessTools/Classes/**/*']
+  # }
+
   # s.resource_bundles = {
   #   'LXToolKitObjc' => ['LXToolKitObjc/Assets/*.png']
   # }
@@ -40,6 +44,7 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'Masonry'
+  s.dependency 'CocoaLumberjack'
   # s.dependency 'ReactiveObjC'
   s.dependency 'ReactiveCocoa', '2.5'
 

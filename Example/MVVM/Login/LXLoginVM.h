@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)NSString *pwdConfirm;
 @property(nonatomic, assign)BOOL isLoginEnabled;
 
-@property(nonatomic, strong)RACCommand *loginCommand;
+// @property(nonatomic, strong)RACCommand *loginCommand;
 
 @end
 

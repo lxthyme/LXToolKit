@@ -37,7 +37,9 @@
 #import <BLImage/iBLImage.h>
 #import <pop/POP.h>
 
+// typedef DJBusinessTools LXToolKitObjc;
+
 #import "UIView+border.h"
-#import <DJBusinessTools/DJBusinessTools.h>
+#import <LXToolKitObjc/DJBusinessTools.h>
 
 #import "UIWindow+JXSafeArea.h"
