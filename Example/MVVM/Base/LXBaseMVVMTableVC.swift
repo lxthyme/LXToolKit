@@ -12,7 +12,7 @@ import RxCocoa
 import KafkaRefresh
 import NSObject_Rx
 import DZNEmptyDataSet
-import Rswift
+import RswiftResources
 import Toast_Swift
 import LXToolKit
 

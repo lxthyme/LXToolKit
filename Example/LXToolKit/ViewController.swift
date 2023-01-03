@@ -34,8 +34,12 @@ class ViewController: LXBaseTableViewVC {
     //         .LXTable0120VC(viewModel: vm)
     //     ]
     // }()
+    private var _dataSource: UITableViewDataSource?
     @available(iOS 14.0, *)
-    private lazy var dataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> = {
+    private var dataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> {
+        if let ds = _dataSource as? UITableViewDiffableDataSource<String, LXNavigator.Scene> {
+            return ds
+        }
         let dataSource = UITableViewDiffableDataSource<String, LXNavigator.Scene>.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
@@ -45,10 +49,15 @@ class ViewController: LXBaseTableViewVC {
             return cell
         }
         dataSource.defaultRowAnimation = .fade
+        _dataSource = dataSource
         return dataSource
-    }()
+    }
+    private var _dataSnapshot: Any?
     @available(iOS 13.0, *)
-    private lazy var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> = {
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> {
+        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> {
+            return ds
+        }
         let staging = Configs.Network.useStaging
         let githubProvider = staging
             ? GithubNetworking.stubbingNetworking()
@@ -75,8 +84,9 @@ class ViewController: LXBaseTableViewVC {
             .LXYYLabelMoreTestVC(viewModel: vm),
             .HomeViewController(viewModel: vm)
         ], toSection: "2022")
+        _dataSnapshot = snapshot
         return snapshot
-    }()
+    }
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -481,6 +491,7 @@ extension ViewController: UITableViewDelegate {
             navigator.show(segue: scene, sender: self)
         } else {
             // Fallback on earlier versions
+            dlog("-->Error!")
         }
 
     }

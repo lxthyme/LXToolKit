@@ -156,3 +156,19 @@ public extension Swifty where Base == UIButton.Configuration.TitleAlignment {
         }
     }
 }
+
+public extension Swifty where Base: UIButton {
+    func centerTextAndImage(spacing: CGFloat) {
+        let insetAmount = spacing / 2
+        let isRTL = UIView.userInterfaceLayoutDirection(for: base.semanticContentAttribute) == .rightToLeft
+        if isRTL {
+            base.imageEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+            base.titleEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+            base.contentEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: -insetAmount)
+        } else {
+            base.imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
+            base.titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
+            base.contentEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: insetAmount)
+        }
+    }
+}

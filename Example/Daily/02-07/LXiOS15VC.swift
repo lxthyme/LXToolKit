@@ -32,28 +32,37 @@ class LXiOS15VC: LXBaseMVVMTableVC {
         return ds
     }()
     // MARK: 🔗Vaiables
+    private var _dataSource: UITableViewDataSource?
     @available(iOS 14.0, *)
-    private lazy var dataSource: UITableViewDiffableDataSource<String, NSInteger> = {
+    private var dataSource: UITableViewDiffableDataSource<String, NSInteger> {
+        if let ds = _dataSource as? UITableViewDiffableDataSource<String, NSInteger> {
+            return ds
+        }
         let dataSource = UITableViewDiffableDataSource<String, NSInteger>(tableView: table) { tableView, indexPath, idx in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = "\(idx)_"
+            content.text = "\(idx)"
             cell.contentConfiguration = content
             return cell
         }
         // dataSource.did
         dataSource.defaultRowAnimation = .fade
         return dataSource
-    }()
+    }
+    private var _dataSnapshot: Any?
     @available(iOS 13.0, *)
-    private lazy var dataSnapshot: NSDiffableDataSourceSnapshot<String, NSInteger> = {
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, NSInteger> {
+        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, NSInteger> {
+            return ds
+        }
         var snapshot = NSDiffableDataSourceSnapshot<String, NSInteger>()
         snapshot.appendSections(["1", "3", "5"])
         snapshot.appendItems([11, 13, 15], toSection: "1")
         snapshot.appendItems([31, 33, 35], toSection: "3")
         snapshot.appendItems([51, 53, 55], toSection: "5")
+        _dataSnapshot = snapshot
         return snapshot
-    }()
+    }
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
