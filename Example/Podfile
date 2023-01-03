@@ -220,6 +220,9 @@ pod 'Alamofire', :git => 'git@github.com:Alamofire/Alamofire.git'
 pod 'MBProgressHUD'#, :modular_headers => true
 pod 'GoogleUtilities'#, :modular_headers => true
 
+# Ads
+pod 'Google-Mobile-Ads-SDK', '~> 9.0'
+
 end
 
 post_install do |installer|

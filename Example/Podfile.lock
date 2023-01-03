@@ -84,6 +84,9 @@ PODS:
   - FLEX (4.7.0)
   - FloatingPanel (2.5.3)
   - FunctionalObjC (1.0.2)
+  - Google-Mobile-Ads-SDK (9.9.0):
+    - GoogleAppMeasurement (< 10.0, >= 7.0)
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleAppMeasurement (9.5.0):
     - GoogleAppMeasurement/AdIdSupport (= 9.5.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
@@ -108,6 +111,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUserMessagingPlatform (2.0.0)
   - GoogleUtilities (7.7.0):
     - GoogleUtilities/AppDelegateSwizzler (= 7.7.0)
     - GoogleUtilities/Environment (= 7.7.0)
@@ -396,6 +400,7 @@ DEPENDENCIES:
   - FLEX
   - FloatingPanel
   - FunctionalObjC
+  - Google-Mobile-Ads-SDK (~> 9.0)
   - GoogleUtilities
   - HandyJSON
   - Hero
@@ -475,8 +480,10 @@ SPEC REPOS:
     - FLEX
     - FloatingPanel
     - FunctionalObjC
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
     - HandyJSON
     - Hero
@@ -584,8 +591,10 @@ SPEC CHECKSUMS:
   FLEX: bdc9ac7d4a239e3d04c298c01221203257d63a80
   FloatingPanel: 3cee815e9ded75b632543fa73ab655a1ef941452
   FunctionalObjC: bd6aaa4b69abea0a5ac0e860a052c1ebebd5311c
+  Google-Mobile-Ads-SDK: 8822993da940ab920bad131b5bffce7eb3f62c6a
   GoogleAppMeasurement: 6ee231473fbd75c11221dfce489894334024eead
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleUserMessagingPlatform: ab890ce5f6620f293a21b6bdd82e416a2c73aeca
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   Hero: c69009dbc9e2f0472e081adc644dba05fcedae72
@@ -647,6 +656,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZLPhotoBrowser: 329ce19ac36da8fa9a163e878f88479bf1a11461
 
-PODFILE CHECKSUM: bf755c018255cb96a30f67c2b94710900d6f3bdb
+PODFILE CHECKSUM: d0212e6fca2a7a141c31ba4dff6d4732a2f8ee4f
 
 COCOAPODS: 1.11.3
