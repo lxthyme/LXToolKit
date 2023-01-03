@@ -4,1026 +4,4893 @@
 //
 
 import Foundation
-import RswiftResources
+import Rswift
 import UIKit
 
-private class BundleFinder {}
-let R = _R(bundle: Bundle(for: BundleFinder.self))
+/// This `R` struct is generated and contains references to static resources.
+struct R: Rswift.Validatable {
+  fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap { Locale(identifier: $0) } ?? Locale.current
+  fileprivate static let hostingBundle = Bundle(for: R.Class.self)
 
-struct _R {
-  let bundle: Foundation.Bundle
+  /// Find first language and bundle for which the table exists
+  fileprivate static func localeBundle(tableName: String, preferredLanguages: [String]) -> (Foundation.Locale, Foundation.Bundle)? {
+    // Filter preferredLanguages to localizations, use first locale
+    var languages = preferredLanguages
+      .map { Locale(identifier: $0) }
+      .prefix(1)
+      .flatMap { locale -> [String] in
+        if hostingBundle.localizations.contains(locale.identifier) {
+          if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
+            return [locale.identifier, language]
+          } else {
+            return [locale.identifier]
+          }
+        } else if let language = locale.languageCode, hostingBundle.localizations.contains(language) {
+          return [language]
+        } else {
+          return []
+        }
+      }
 
-  let entitlements = entitlements()
+    // If there's no languages, use development language as backstop
+    if languages.isEmpty {
+      if let developmentLocalization = hostingBundle.developmentLocalization {
+        languages = [developmentLocalization]
+      }
+    } else {
+      // Insert Base as second item (between locale identifier and languageCode)
+      languages.insert("Base", at: 1)
 
-  var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
-  var image: image { .init(bundle: bundle) }
-  var file: file { .init(bundle: bundle) }
-  var nib: nib { .init(bundle: bundle) }
-  var storyboard: storyboard { .init(bundle: bundle) }
+      // Add development language as backstop
+      if let developmentLocalization = hostingBundle.developmentLocalization {
+        languages.append(developmentLocalization)
+      }
+    }
 
-  func string(bundle: Foundation.Bundle) -> string {
-    .init(bundle: bundle, preferredLanguages: nil, locale: nil)
-  }
-  func string(locale: Foundation.Locale) -> string {
-    .init(bundle: bundle, preferredLanguages: nil, locale: locale)
-  }
-  func string(preferredLanguages: [String], locale: Locale? = nil) -> string {
-    .init(bundle: bundle, preferredLanguages: preferredLanguages, locale: locale)
-  }
-  func image(bundle: Foundation.Bundle) -> image {
-    .init(bundle: bundle)
-  }
-  func file(bundle: Foundation.Bundle) -> file {
-    .init(bundle: bundle)
-  }
-  func nib(bundle: Foundation.Bundle) -> nib {
-    .init(bundle: bundle)
-  }
-  func storyboard(bundle: Foundation.Bundle) -> storyboard {
-    .init(bundle: bundle)
-  }
-  func validate() throws {
-    try self.nib.validate()
-    try self.storyboard.validate()
-  }
+    // Find first language for which table exists
+    // Note: key might not exist in chosen language (in that case, key will be shown)
+    for language in languages {
+      if let lproj = hostingBundle.url(forResource: language, withExtension: "lproj"),
+         let lbundle = Bundle(url: lproj)
+      {
+        let strings = lbundle.url(forResource: tableName, withExtension: "strings")
+        let stringsdict = lbundle.url(forResource: tableName, withExtension: "stringsdict")
 
-  struct project {
-    let developmentRegion = "en"
+        if strings != nil || stringsdict != nil {
+          return (Locale(identifier: language), lbundle)
+        }
+      }
+    }
+
+    // If table is available in main bundle, don't look for localized resources
+    let strings = hostingBundle.url(forResource: tableName, withExtension: "strings", subdirectory: nil, localization: nil)
+    let stringsdict = hostingBundle.url(forResource: tableName, withExtension: "stringsdict", subdirectory: nil, localization: nil)
+
+    if strings != nil || stringsdict != nil {
+      return (applicationLocale, hostingBundle)
+    }
+
+    // If table is not found for requested languages, key will be shown
+    return nil
   }
 
-  /// This `_R.string` struct is generated, and contains static references to 2 localization tables.
+  /// Load string from Info.plist file
+  fileprivate static func infoPlistString(path: [String], key: String) -> String? {
+    var dict = hostingBundle.infoDictionary
+    for step in path {
+      guard let obj = dict?[step] as? [String: Any] else { return nil }
+      dict = obj
+    }
+    return dict?[key] as? String
+  }
+
+  static func validate() throws {
+    try intern.validate()
+  }
+
+  #if os(iOS) || os(tvOS)
+  /// This `R.storyboard` struct is generated, and contains static references to 1 storyboards.
+  struct storyboard {
+    /// Storyboard `Main`.
+    static let main = _R.storyboard.main()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Main", bundle: ...)`
+    static func main(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+  #endif
+
+  /// This `R.entitlements` struct is generated, and contains static references to 2 properties.
+  struct entitlements {
+    static let apsEnvironment = infoPlistString(path: [], key: "aps-environment") ?? "development"
+
+    struct comAppleSecurityApplicationGroups {
+      static let groupComLxBl = infoPlistString(path: ["com.apple.security.application-groups"], key: "group.com.lx.bl") ?? "group.com.lx.bl"
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.file` struct is generated, and contains static references to 48 files.
+  struct file {
+    /// Resource file `EmptyArray.json`.
+    static let emptyArrayJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EmptyArray", pathExtension: "json")
+    /// Resource file `EmptyObject.json`.
+    static let emptyObjectJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EmptyObject", pathExtension: "json")
+    /// Resource file `Events.json`.
+    static let eventsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Events", pathExtension: "json")
+    /// Resource file `EventsOrganization.json`.
+    static let eventsOrganizationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EventsOrganization", pathExtension: "json")
+    /// Resource file `EventsRepository.json`.
+    static let eventsRepositoryJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EventsRepository", pathExtension: "json")
+    /// Resource file `EventsUserPerformed.json`.
+    static let eventsUserPerformedJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EventsUserPerformed", pathExtension: "json")
+    /// Resource file `EventsUserReceived.json`.
+    static let eventsUserReceivedJson = Rswift.FileResource(bundle: R.hostingBundle, name: "EventsUserReceived", pathExtension: "json")
+    /// Resource file `Languages.json`.
+    static let languagesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Languages", pathExtension: "json")
+    /// Resource file `Notifications.json`.
+    static let notificationsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Notifications", pathExtension: "json")
+    /// Resource file `NotificationsRepository.json`.
+    static let notificationsRepositoryJson = Rswift.FileResource(bundle: R.hostingBundle, name: "NotificationsRepository", pathExtension: "json")
+    /// Resource file `Organization.json`.
+    static let organizationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Organization", pathExtension: "json")
+    /// Resource file `Profile.json`.
+    static let profileJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Profile", pathExtension: "json")
+    /// Resource file `Repository.graphql`.
+    static let repositoryGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "Repository", pathExtension: "graphql")
+    /// Resource file `Repository.json`.
+    static let repositoryJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Repository", pathExtension: "json")
+    /// Resource file `RepositoryBranch.json`.
+    static let repositoryBranchJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryBranch", pathExtension: "json")
+    /// Resource file `RepositoryBranches.json`.
+    static let repositoryBranchesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryBranches", pathExtension: "json")
+    /// Resource file `RepositoryCommit.json`.
+    static let repositoryCommitJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryCommit", pathExtension: "json")
+    /// Resource file `RepositoryCommits.json`.
+    static let repositoryCommitsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryCommits", pathExtension: "json")
+    /// Resource file `RepositoryContents.json`.
+    static let repositoryContentsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryContents", pathExtension: "json")
+    /// Resource file `RepositoryContributors.json`.
+    static let repositoryContributorsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryContributors", pathExtension: "json")
+    /// Resource file `RepositoryForks.json`.
+    static let repositoryForksJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryForks", pathExtension: "json")
+    /// Resource file `RepositoryIssue.json`.
+    static let repositoryIssueJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryIssue", pathExtension: "json")
+    /// Resource file `RepositoryIssueComments.json`.
+    static let repositoryIssueCommentsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryIssueComments", pathExtension: "json")
+    /// Resource file `RepositoryIssues.json`.
+    static let repositoryIssuesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryIssues", pathExtension: "json")
+    /// Resource file `RepositoryNumberOfLines.json`.
+    static let repositoryNumberOfLinesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryNumberOfLines", pathExtension: "json")
+    /// Resource file `RepositoryPullRequest.json`.
+    static let repositoryPullRequestJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryPullRequest", pathExtension: "json")
+    /// Resource file `RepositoryPullRequestComments.json`.
+    static let repositoryPullRequestCommentsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryPullRequestComments", pathExtension: "json")
+    /// Resource file `RepositoryPullRequests.json`.
+    static let repositoryPullRequestsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryPullRequests", pathExtension: "json")
+    /// Resource file `RepositoryReadme.json`.
+    static let repositoryReadmeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryReadme", pathExtension: "json")
+    /// Resource file `RepositoryRelease.json`.
+    static let repositoryReleaseJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryRelease", pathExtension: "json")
+    /// Resource file `RepositoryReleases.json`.
+    static let repositoryReleasesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryReleases", pathExtension: "json")
+    /// Resource file `RepositorySearch.json`.
+    static let repositorySearchJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositorySearch", pathExtension: "json")
+    /// Resource file `RepositoryStargazers.json`.
+    static let repositoryStargazersJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryStargazers", pathExtension: "json")
+    /// Resource file `RepositoryTrendings.json`.
+    static let repositoryTrendingsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryTrendings", pathExtension: "json")
+    /// Resource file `RepositoryWatchers.json`.
+    static let repositoryWatchersJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RepositoryWatchers", pathExtension: "json")
+    /// Resource file `Search.graphql`.
+    static let searchGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "Search", pathExtension: "graphql")
+    /// Resource file `User.graphql`.
+    static let userGraphql = Rswift.FileResource(bundle: R.hostingBundle, name: "User", pathExtension: "graphql")
+    /// Resource file `User.json`.
+    static let userJson = Rswift.FileResource(bundle: R.hostingBundle, name: "User", pathExtension: "json")
+    /// Resource file `UserFollowers.json`.
+    static let userFollowersJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserFollowers", pathExtension: "json")
+    /// Resource file `UserFollowing.json`.
+    static let userFollowingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserFollowing", pathExtension: "json")
+    /// Resource file `UserRepositories.json`.
+    static let userRepositoriesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserRepositories", pathExtension: "json")
+    /// Resource file `UserRepositoriesStarred.json`.
+    static let userRepositoriesStarredJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserRepositoriesStarred", pathExtension: "json")
+    /// Resource file `UserRepositoriesWatching.json`.
+    static let userRepositoriesWatchingJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserRepositoriesWatching", pathExtension: "json")
+    /// Resource file `UserSearch.json`.
+    static let userSearchJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserSearch", pathExtension: "json")
+    /// Resource file `UserTrendings.json`.
+    static let userTrendingsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "UserTrendings", pathExtension: "json")
+    /// Resource file `loading.gif`.
+    static let loadingGif = Rswift.FileResource(bundle: R.hostingBundle, name: "loading", pathExtension: "gif")
+    /// Resource file `photodata.bin`.
+    static let photodataBin = Rswift.FileResource(bundle: R.hostingBundle, name: "photodata", pathExtension: "bin")
+    /// Resource file `schema.json`.
+    static let schemaJson = Rswift.FileResource(bundle: R.hostingBundle, name: "schema", pathExtension: "json")
+
+    /// `bundle.url(forResource: "EmptyArray", withExtension: "json")`
+    static func emptyArrayJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.emptyArrayJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "EmptyObject", withExtension: "json")`
+    static func emptyObjectJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.emptyObjectJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Events", withExtension: "json")`
+    static func eventsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "EventsOrganization", withExtension: "json")`
+    static func eventsOrganizationJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventsOrganizationJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "EventsRepository", withExtension: "json")`
+    static func eventsRepositoryJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventsRepositoryJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "EventsUserPerformed", withExtension: "json")`
+    static func eventsUserPerformedJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventsUserPerformedJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "EventsUserReceived", withExtension: "json")`
+    static func eventsUserReceivedJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.eventsUserReceivedJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Languages", withExtension: "json")`
+    static func languagesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.languagesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Notifications", withExtension: "json")`
+    static func notificationsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notificationsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "NotificationsRepository", withExtension: "json")`
+    static func notificationsRepositoryJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notificationsRepositoryJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Organization", withExtension: "json")`
+    static func organizationJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.organizationJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Profile", withExtension: "json")`
+    static func profileJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.profileJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Repository", withExtension: "graphql")`
+    static func repositoryGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryGraphql
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Repository", withExtension: "json")`
+    static func repositoryJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryBranch", withExtension: "json")`
+    static func repositoryBranchJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryBranchJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryBranches", withExtension: "json")`
+    static func repositoryBranchesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryBranchesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryCommit", withExtension: "json")`
+    static func repositoryCommitJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryCommitJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryCommits", withExtension: "json")`
+    static func repositoryCommitsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryCommitsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryContents", withExtension: "json")`
+    static func repositoryContentsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryContentsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryContributors", withExtension: "json")`
+    static func repositoryContributorsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryContributorsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryForks", withExtension: "json")`
+    static func repositoryForksJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryForksJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryIssue", withExtension: "json")`
+    static func repositoryIssueJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryIssueJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryIssueComments", withExtension: "json")`
+    static func repositoryIssueCommentsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryIssueCommentsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryIssues", withExtension: "json")`
+    static func repositoryIssuesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryIssuesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryNumberOfLines", withExtension: "json")`
+    static func repositoryNumberOfLinesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryNumberOfLinesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryPullRequest", withExtension: "json")`
+    static func repositoryPullRequestJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryPullRequestJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryPullRequestComments", withExtension: "json")`
+    static func repositoryPullRequestCommentsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryPullRequestCommentsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryPullRequests", withExtension: "json")`
+    static func repositoryPullRequestsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryPullRequestsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryReadme", withExtension: "json")`
+    static func repositoryReadmeJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryReadmeJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryRelease", withExtension: "json")`
+    static func repositoryReleaseJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryReleaseJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryReleases", withExtension: "json")`
+    static func repositoryReleasesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryReleasesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositorySearch", withExtension: "json")`
+    static func repositorySearchJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositorySearchJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryStargazers", withExtension: "json")`
+    static func repositoryStargazersJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryStargazersJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryTrendings", withExtension: "json")`
+    static func repositoryTrendingsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryTrendingsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RepositoryWatchers", withExtension: "json")`
+    static func repositoryWatchersJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.repositoryWatchersJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Search", withExtension: "graphql")`
+    static func searchGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.searchGraphql
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "User", withExtension: "graphql")`
+    static func userGraphql(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userGraphql
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "User", withExtension: "json")`
+    static func userJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserFollowers", withExtension: "json")`
+    static func userFollowersJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userFollowersJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserFollowing", withExtension: "json")`
+    static func userFollowingJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userFollowingJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserRepositories", withExtension: "json")`
+    static func userRepositoriesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userRepositoriesJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserRepositoriesStarred", withExtension: "json")`
+    static func userRepositoriesStarredJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userRepositoriesStarredJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserRepositoriesWatching", withExtension: "json")`
+    static func userRepositoriesWatchingJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userRepositoriesWatchingJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserSearch", withExtension: "json")`
+    static func userSearchJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userSearchJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "UserTrendings", withExtension: "json")`
+    static func userTrendingsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.userTrendingsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "loading", withExtension: "gif")`
+    static func loadingGif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.loadingGif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "photodata", withExtension: "bin")`
+    static func photodataBin(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.photodataBin
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "schema", withExtension: "json")`
+    static func schemaJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.schemaJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 127 images.
+  struct image {
+    /// Image `egsong_video`.
+    static let egsong_video = Rswift.ImageResource(bundle: R.hostingBundle, name: "egsong_video")
+    /// Image `empty_placeholde_happy_image`.
+    static let empty_placeholde_happy_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "empty_placeholde_happy_image")
+    /// Image `empty_placeholde_image`.
+    static let empty_placeholde_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "empty_placeholde_image")
+    /// Image `icon_button_github`.
+    static let icon_button_github = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_github")
+    /// Image `icon_button_star`.
+    static let icon_button_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_star")
+    /// Image `icon_button_unstar`.
+    static let icon_button_unstar = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_unstar")
+    /// Image `icon_button_user_plus`.
+    static let icon_button_user_plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_user_plus")
+    /// Image `icon_button_user_x`.
+    static let icon_button_user_x = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_button_user_x")
+    /// Image `icon_cell_acknowledgements`.
+    static let icon_cell_acknowledgements = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_acknowledgements")
+    /// Image `icon_cell_badge_branch`.
+    static let icon_cell_badge_branch = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_branch")
+    /// Image `icon_cell_badge_collaborator`.
+    static let icon_cell_badge_collaborator = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_collaborator")
+    /// Image `icon_cell_badge_comment`.
+    static let icon_cell_badge_comment = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_comment")
+    /// Image `icon_cell_badge_commit`.
+    static let icon_cell_badge_commit = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_commit")
+    /// Image `icon_cell_badge_fork`.
+    static let icon_cell_badge_fork = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_fork")
+    /// Image `icon_cell_badge_issue`.
+    static let icon_cell_badge_issue = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_issue")
+    /// Image `icon_cell_badge_pull_request`.
+    static let icon_cell_badge_pull_request = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_pull_request")
+    /// Image `icon_cell_badge_push`.
+    static let icon_cell_badge_push = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_push")
+    /// Image `icon_cell_badge_repository`.
+    static let icon_cell_badge_repository = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_repository")
+    /// Image `icon_cell_badge_search`.
+    static let icon_cell_badge_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_search")
+    /// Image `icon_cell_badge_star`.
+    static let icon_cell_badge_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_star")
+    /// Image `icon_cell_badge_tag`.
+    static let icon_cell_badge_tag = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_tag")
+    /// Image `icon_cell_badge_trending`.
+    static let icon_cell_badge_trending = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_trending")
+    /// Image `icon_cell_badge_user`.
+    static let icon_cell_badge_user = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_badge_user")
+    /// Image `icon_cell_check`.
+    static let icon_cell_check = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_check")
+    /// Image `icon_cell_cloc`.
+    static let icon_cell_cloc = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_cloc")
+    /// Image `icon_cell_company`.
+    static let icon_cell_company = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_company")
+    /// Image `icon_cell_contact_no_image`.
+    static let icon_cell_contact_no_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_contact_no_image")
+    /// Image `icon_cell_created`.
+    static let icon_cell_created = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_created")
+    /// Image `icon_cell_dir`.
+    static let icon_cell_dir = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_dir")
+    /// Image `icon_cell_disclosure`.
+    static let icon_cell_disclosure = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_disclosure")
+    /// Image `icon_cell_events`.
+    static let icon_cell_events = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_events")
+    /// Image `icon_cell_file`.
+    static let icon_cell_file = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_file")
+    /// Image `icon_cell_frown`.
+    static let icon_cell_frown = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_frown")
+    /// Image `icon_cell_git_branch`.
+    static let icon_cell_git_branch = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_branch")
+    /// Image `icon_cell_git_commit`.
+    static let icon_cell_git_commit = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_commit")
+    /// Image `icon_cell_git_fork`.
+    static let icon_cell_git_fork = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_fork")
+    /// Image `icon_cell_git_language`.
+    static let icon_cell_git_language = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_language")
+    /// Image `icon_cell_git_merge`.
+    static let icon_cell_git_merge = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_merge")
+    /// Image `icon_cell_git_pull_request`.
+    static let icon_cell_git_pull_request = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_git_pull_request")
+    /// Image `icon_cell_issues`.
+    static let icon_cell_issues = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_issues")
+    /// Image `icon_cell_language`.
+    static let icon_cell_language = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_language")
+    /// Image `icon_cell_link`.
+    static let icon_cell_link = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_link")
+    /// Image `icon_cell_logout`.
+    static let icon_cell_logout = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_logout")
+    /// Image `icon_cell_night_mode`.
+    static let icon_cell_night_mode = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_night_mode")
+    /// Image `icon_cell_profile_summary`.
+    static let icon_cell_profile_summary = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_profile_summary")
+    /// Image `icon_cell_readme`.
+    static let icon_cell_readme = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_readme")
+    /// Image `icon_cell_releases`.
+    static let icon_cell_releases = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_releases")
+    /// Image `icon_cell_remove`.
+    static let icon_cell_remove = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_remove")
+    /// Image `icon_cell_size`.
+    static let icon_cell_size = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_size")
+    /// Image `icon_cell_smile`.
+    static let icon_cell_smile = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_smile")
+    /// Image `icon_cell_source`.
+    static let icon_cell_source = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_source")
+    /// Image `icon_cell_star`.
+    static let icon_cell_star = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_star")
+    /// Image `icon_cell_stars_history`.
+    static let icon_cell_stars_history = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_stars_history")
+    /// Image `icon_cell_submodule`.
+    static let icon_cell_submodule = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_submodule")
+    /// Image `icon_cell_theme`.
+    static let icon_cell_theme = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_theme")
+    /// Image `icon_cell_updated`.
+    static let icon_cell_updated = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_updated")
+    /// Image `icon_cell_whats_new`.
+    static let icon_cell_whats_new = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_cell_whats_new")
+    /// Image `icon_navigation_back`.
+    static let icon_navigation_back = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_back")
+    /// Image `icon_navigation_close`.
+    static let icon_navigation_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_close")
+    /// Image `icon_navigation_forward`.
+    static let icon_navigation_forward = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_forward")
+    /// Image `icon_navigation_github`.
+    static let icon_navigation_github = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_github")
+    /// Image `icon_navigation_history`.
+    static let icon_navigation_history = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_history")
+    /// Image `icon_navigation_language`.
+    static let icon_navigation_language = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_language")
+    /// Image `icon_navigation_refresh`.
+    static let icon_navigation_refresh = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_refresh")
+    /// Image `icon_navigation_stop`.
+    static let icon_navigation_stop = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_stop")
+    /// Image `icon_navigation_theme`.
+    static let icon_navigation_theme = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_theme")
+    /// Image `icon_navigation_web`.
+    static let icon_navigation_web = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_navigation_web")
+    /// Image `icon_tabbar_activity`.
+    static let icon_tabbar_activity = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_activity")
+    /// Image `icon_tabbar_login`.
+    static let icon_tabbar_login = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_login")
+    /// Image `icon_tabbar_news`.
+    static let icon_tabbar_news = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_news")
+    /// Image `icon_tabbar_profile`.
+    static let icon_tabbar_profile = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_profile")
+    /// Image `icon_tabbar_search`.
+    static let icon_tabbar_search = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_search")
+    /// Image `icon_tabbar_settings`.
+    static let icon_tabbar_settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_tabbar_settings")
+    /// Image `icon_toast_error`.
+    static let icon_toast_error = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_toast_error")
+    /// Image `icon_toast_success`.
+    static let icon_toast_success = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_toast_success")
+    /// Image `icon_toast_warning`.
+    static let icon_toast_warning = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_toast_warning")
+    /// Image `icon_whatsnew_cloc`.
+    static let icon_whatsnew_cloc = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_whatsnew_cloc")
+    /// Image `icon_whatsnew_github`.
+    static let icon_whatsnew_github = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_whatsnew_github")
+    /// Image `icon_whatsnew_theme`.
+    static let icon_whatsnew_theme = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_whatsnew_theme")
+    /// Image `icon_whatsnew_trending`.
+    static let icon_whatsnew_trending = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon_whatsnew_trending")
+    /// Image `image_no_result`.
+    static let image_no_result = Rswift.ImageResource(bundle: R.hostingBundle, name: "image_no_result")
+    /// Image `launch_image`.
+    static let launch_image = Rswift.ImageResource(bundle: R.hostingBundle, name: "launch_image")
+    /// Image `loading.gif`.
+    static let loadingGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "loading.gif")
+    /// Image `new`.
+    static let new = Rswift.ImageResource(bundle: R.hostingBundle, name: "new")
+    /// Image `option`.
+    static let option = Rswift.ImageResource(bundle: R.hostingBundle, name: "option")
+    /// Image `sign_bg`.
+    static let sign_bg = Rswift.ImageResource(bundle: R.hostingBundle, name: "sign_bg")
+    /// Image `zl_addPhoto`.
+    static let zl_addPhoto = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_addPhoto")
+    /// Image `zl_albumSelect`.
+    static let zl_albumSelect = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_albumSelect")
+    /// Image `zl_arrow_down`.
+    static let zl_arrow_down = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_arrow_down")
+    /// Image `zl_ashbin_open`.
+    static let zl_ashbin_open = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_ashbin_open")
+    /// Image `zl_ashbin`.
+    static let zl_ashbin = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_ashbin")
+    /// Image `zl_btn_circle`.
+    static let zl_btn_circle = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_btn_circle")
+    /// Image `zl_btn_original_circle`.
+    static let zl_btn_original_circle = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_btn_original_circle")
+    /// Image `zl_btn_original_selected`.
+    static let zl_btn_original_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_btn_original_selected")
+    /// Image `zl_btn_selected`.
+    static let zl_btn_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_btn_selected")
+    /// Image `zl_btn_unselected`.
+    static let zl_btn_unselected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_btn_unselected")
+    /// Image `zl_clip`.
+    static let zl_clip = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_clip")
+    /// Image `zl_close`.
+    static let zl_close = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_close")
+    /// Image `zl_defaultphoto`.
+    static let zl_defaultphoto = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_defaultphoto")
+    /// Image `zl_downArrow`.
+    static let zl_downArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_downArrow")
+    /// Image `zl_drawLine_selected`.
+    static let zl_drawLine_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_drawLine_selected")
+    /// Image `zl_drawLine`.
+    static let zl_drawLine = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_drawLine")
+    /// Image `zl_editImage_tag`.
+    static let zl_editImage_tag = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_editImage_tag")
+    /// Image `zl_filter_selected`.
+    static let zl_filter_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_filter_selected")
+    /// Image `zl_filter`.
+    static let zl_filter = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_filter")
+    /// Image `zl_focus`.
+    static let zl_focus = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_focus")
+    /// Image `zl_ic_left`.
+    static let zl_ic_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_ic_left")
+    /// Image `zl_ic_right`.
+    static let zl_ic_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_ic_right")
+    /// Image `zl_imageSticker`.
+    static let zl_imageSticker = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_imageSticker")
+    /// Image `zl_livePhoto`.
+    static let zl_livePhoto = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_livePhoto")
+    /// Image `zl_mosaic_selected`.
+    static let zl_mosaic_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_mosaic_selected")
+    /// Image `zl_mosaic`.
+    static let zl_mosaic = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_mosaic")
+    /// Image `zl_navBack`.
+    static let zl_navBack = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_navBack")
+    /// Image `zl_pauseButtonWhite`.
+    static let zl_pauseButtonWhite = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_pauseButtonWhite")
+    /// Image `zl_playButtonWhite`.
+    static let zl_playButtonWhite = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_playButtonWhite")
+    /// Image `zl_playVideo`.
+    static let zl_playVideo = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_playVideo")
+    /// Image `zl_retake`.
+    static let zl_retake = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_retake")
+    /// Image `zl_revoke_disable`.
+    static let zl_revoke_disable = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_revoke_disable")
+    /// Image `zl_revoke`.
+    static let zl_revoke = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_revoke")
+    /// Image `zl_right`.
+    static let zl_right = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_right")
+    /// Image `zl_rotateimage`.
+    static let zl_rotateimage = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_rotateimage")
+    /// Image `zl_shadow`.
+    static let zl_shadow = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_shadow")
+    /// Image `zl_takePhoto`.
+    static let zl_takePhoto = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_takePhoto")
+    /// Image `zl_textSticker`.
+    static let zl_textSticker = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_textSticker")
+    /// Image `zl_toggle_camera`.
+    static let zl_toggle_camera = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_toggle_camera")
+    /// Image `zl_videoLoadFailed`.
+    static let zl_videoLoadFailed = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_videoLoadFailed")
+    /// Image `zl_video`.
+    static let zl_video = Rswift.ImageResource(bundle: R.hostingBundle, name: "zl_video")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "egsong_video", bundle: ..., traitCollection: ...)`
+    static func egsong_video(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.egsong_video, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "empty_placeholde_happy_image", bundle: ..., traitCollection: ...)`
+    static func empty_placeholde_happy_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.empty_placeholde_happy_image, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "empty_placeholde_image", bundle: ..., traitCollection: ...)`
+    static func empty_placeholde_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.empty_placeholde_image, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_button_github", bundle: ..., traitCollection: ...)`
+    static func icon_button_github(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_github, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_button_star", bundle: ..., traitCollection: ...)`
+    static func icon_button_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_star, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_button_unstar", bundle: ..., traitCollection: ...)`
+    static func icon_button_unstar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_unstar, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_button_user_plus", bundle: ..., traitCollection: ...)`
+    static func icon_button_user_plus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_user_plus, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_button_user_x", bundle: ..., traitCollection: ...)`
+    static func icon_button_user_x(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_button_user_x, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_acknowledgements", bundle: ..., traitCollection: ...)`
+    static func icon_cell_acknowledgements(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_acknowledgements, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_branch", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_branch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_branch, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_collaborator", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_collaborator(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_collaborator, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_comment", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_comment(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_comment, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_commit", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_commit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_commit, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_fork", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_fork(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_fork, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_issue", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_issue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_issue, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_pull_request", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_pull_request(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_pull_request, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_push", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_push(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_push, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_repository", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_repository(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_repository, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_search", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_search, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_star", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_star, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_tag", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_tag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_tag, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_trending", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_trending(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_trending, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_badge_user", bundle: ..., traitCollection: ...)`
+    static func icon_cell_badge_user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_badge_user, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_check", bundle: ..., traitCollection: ...)`
+    static func icon_cell_check(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_check, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_cloc", bundle: ..., traitCollection: ...)`
+    static func icon_cell_cloc(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_cloc, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_company", bundle: ..., traitCollection: ...)`
+    static func icon_cell_company(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_company, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_contact_no_image", bundle: ..., traitCollection: ...)`
+    static func icon_cell_contact_no_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_contact_no_image, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_created", bundle: ..., traitCollection: ...)`
+    static func icon_cell_created(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_created, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_dir", bundle: ..., traitCollection: ...)`
+    static func icon_cell_dir(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_dir, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_disclosure", bundle: ..., traitCollection: ...)`
+    static func icon_cell_disclosure(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_disclosure, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_events", bundle: ..., traitCollection: ...)`
+    static func icon_cell_events(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_events, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_file", bundle: ..., traitCollection: ...)`
+    static func icon_cell_file(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_file, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_frown", bundle: ..., traitCollection: ...)`
+    static func icon_cell_frown(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_frown, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_branch", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_branch(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_branch, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_commit", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_commit(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_commit, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_fork", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_fork(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_fork, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_language", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_language(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_language, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_merge", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_merge(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_merge, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_git_pull_request", bundle: ..., traitCollection: ...)`
+    static func icon_cell_git_pull_request(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_git_pull_request, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_issues", bundle: ..., traitCollection: ...)`
+    static func icon_cell_issues(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_issues, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_language", bundle: ..., traitCollection: ...)`
+    static func icon_cell_language(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_language, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_link", bundle: ..., traitCollection: ...)`
+    static func icon_cell_link(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_link, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_logout", bundle: ..., traitCollection: ...)`
+    static func icon_cell_logout(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_logout, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_night_mode", bundle: ..., traitCollection: ...)`
+    static func icon_cell_night_mode(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_night_mode, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_profile_summary", bundle: ..., traitCollection: ...)`
+    static func icon_cell_profile_summary(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_profile_summary, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_readme", bundle: ..., traitCollection: ...)`
+    static func icon_cell_readme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_readme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_releases", bundle: ..., traitCollection: ...)`
+    static func icon_cell_releases(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_releases, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_remove", bundle: ..., traitCollection: ...)`
+    static func icon_cell_remove(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_remove, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_size", bundle: ..., traitCollection: ...)`
+    static func icon_cell_size(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_size, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_smile", bundle: ..., traitCollection: ...)`
+    static func icon_cell_smile(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_smile, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_source", bundle: ..., traitCollection: ...)`
+    static func icon_cell_source(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_source, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_star", bundle: ..., traitCollection: ...)`
+    static func icon_cell_star(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_star, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_stars_history", bundle: ..., traitCollection: ...)`
+    static func icon_cell_stars_history(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_stars_history, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_submodule", bundle: ..., traitCollection: ...)`
+    static func icon_cell_submodule(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_submodule, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_theme", bundle: ..., traitCollection: ...)`
+    static func icon_cell_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_theme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_updated", bundle: ..., traitCollection: ...)`
+    static func icon_cell_updated(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_updated, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_cell_whats_new", bundle: ..., traitCollection: ...)`
+    static func icon_cell_whats_new(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_cell_whats_new, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_back", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_back, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_close", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_close, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_forward", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_forward(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_forward, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_github", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_github(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_github, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_history", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_history(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_history, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_language", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_language(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_language, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_refresh", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_refresh(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_refresh, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_stop", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_stop(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_stop, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_theme", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_theme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_navigation_web", bundle: ..., traitCollection: ...)`
+    static func icon_navigation_web(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_navigation_web, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_activity", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_activity(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_activity, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_login", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_login(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_login, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_news", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_news(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_news, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_profile", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_profile(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_profile, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_search", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_search(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_search, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_tabbar_settings", bundle: ..., traitCollection: ...)`
+    static func icon_tabbar_settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_tabbar_settings, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_toast_error", bundle: ..., traitCollection: ...)`
+    static func icon_toast_error(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_toast_error, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_toast_success", bundle: ..., traitCollection: ...)`
+    static func icon_toast_success(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_toast_success, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_toast_warning", bundle: ..., traitCollection: ...)`
+    static func icon_toast_warning(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_toast_warning, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_whatsnew_cloc", bundle: ..., traitCollection: ...)`
+    static func icon_whatsnew_cloc(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_whatsnew_cloc, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_whatsnew_github", bundle: ..., traitCollection: ...)`
+    static func icon_whatsnew_github(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_whatsnew_github, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_whatsnew_theme", bundle: ..., traitCollection: ...)`
+    static func icon_whatsnew_theme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_whatsnew_theme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "icon_whatsnew_trending", bundle: ..., traitCollection: ...)`
+    static func icon_whatsnew_trending(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icon_whatsnew_trending, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "image_no_result", bundle: ..., traitCollection: ...)`
+    static func image_no_result(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.image_no_result, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "launch_image", bundle: ..., traitCollection: ...)`
+    static func launch_image(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.launch_image, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "loading.gif", bundle: ..., traitCollection: ...)`
+    static func loadingGif(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.loadingGif, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "new", bundle: ..., traitCollection: ...)`
+    static func new(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.new, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "option", bundle: ..., traitCollection: ...)`
+    static func option(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.option, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sign_bg", bundle: ..., traitCollection: ...)`
+    static func sign_bg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sign_bg, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_addPhoto", bundle: ..., traitCollection: ...)`
+    static func zl_addPhoto(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_addPhoto, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_albumSelect", bundle: ..., traitCollection: ...)`
+    static func zl_albumSelect(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_albumSelect, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_arrow_down", bundle: ..., traitCollection: ...)`
+    static func zl_arrow_down(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_arrow_down, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_ashbin", bundle: ..., traitCollection: ...)`
+    static func zl_ashbin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_ashbin, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_ashbin_open", bundle: ..., traitCollection: ...)`
+    static func zl_ashbin_open(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_ashbin_open, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_btn_circle", bundle: ..., traitCollection: ...)`
+    static func zl_btn_circle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_btn_circle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_btn_original_circle", bundle: ..., traitCollection: ...)`
+    static func zl_btn_original_circle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_btn_original_circle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_btn_original_selected", bundle: ..., traitCollection: ...)`
+    static func zl_btn_original_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_btn_original_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_btn_selected", bundle: ..., traitCollection: ...)`
+    static func zl_btn_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_btn_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_btn_unselected", bundle: ..., traitCollection: ...)`
+    static func zl_btn_unselected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_btn_unselected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_clip", bundle: ..., traitCollection: ...)`
+    static func zl_clip(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_clip, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_close", bundle: ..., traitCollection: ...)`
+    static func zl_close(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_close, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_defaultphoto", bundle: ..., traitCollection: ...)`
+    static func zl_defaultphoto(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_defaultphoto, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_downArrow", bundle: ..., traitCollection: ...)`
+    static func zl_downArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_downArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_drawLine", bundle: ..., traitCollection: ...)`
+    static func zl_drawLine(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_drawLine, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_drawLine_selected", bundle: ..., traitCollection: ...)`
+    static func zl_drawLine_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_drawLine_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_editImage_tag", bundle: ..., traitCollection: ...)`
+    static func zl_editImage_tag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_editImage_tag, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_filter", bundle: ..., traitCollection: ...)`
+    static func zl_filter(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_filter, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_filter_selected", bundle: ..., traitCollection: ...)`
+    static func zl_filter_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_filter_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_focus", bundle: ..., traitCollection: ...)`
+    static func zl_focus(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_focus, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_ic_left", bundle: ..., traitCollection: ...)`
+    static func zl_ic_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_ic_left, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_ic_right", bundle: ..., traitCollection: ...)`
+    static func zl_ic_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_ic_right, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_imageSticker", bundle: ..., traitCollection: ...)`
+    static func zl_imageSticker(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_imageSticker, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_livePhoto", bundle: ..., traitCollection: ...)`
+    static func zl_livePhoto(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_livePhoto, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_mosaic", bundle: ..., traitCollection: ...)`
+    static func zl_mosaic(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_mosaic, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_mosaic_selected", bundle: ..., traitCollection: ...)`
+    static func zl_mosaic_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_mosaic_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_navBack", bundle: ..., traitCollection: ...)`
+    static func zl_navBack(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_navBack, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_pauseButtonWhite", bundle: ..., traitCollection: ...)`
+    static func zl_pauseButtonWhite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_pauseButtonWhite, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_playButtonWhite", bundle: ..., traitCollection: ...)`
+    static func zl_playButtonWhite(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_playButtonWhite, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_playVideo", bundle: ..., traitCollection: ...)`
+    static func zl_playVideo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_playVideo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_retake", bundle: ..., traitCollection: ...)`
+    static func zl_retake(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_retake, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_revoke", bundle: ..., traitCollection: ...)`
+    static func zl_revoke(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_revoke, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_revoke_disable", bundle: ..., traitCollection: ...)`
+    static func zl_revoke_disable(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_revoke_disable, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_right", bundle: ..., traitCollection: ...)`
+    static func zl_right(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_right, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_rotateimage", bundle: ..., traitCollection: ...)`
+    static func zl_rotateimage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_rotateimage, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_shadow", bundle: ..., traitCollection: ...)`
+    static func zl_shadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_shadow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_takePhoto", bundle: ..., traitCollection: ...)`
+    static func zl_takePhoto(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_takePhoto, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_textSticker", bundle: ..., traitCollection: ...)`
+    static func zl_textSticker(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_textSticker, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_toggle_camera", bundle: ..., traitCollection: ...)`
+    static func zl_toggle_camera(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_toggle_camera, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_video", bundle: ..., traitCollection: ...)`
+    static func zl_video(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_video, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "zl_videoLoadFailed", bundle: ..., traitCollection: ...)`
+    static func zl_videoLoadFailed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.zl_videoLoadFailed, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  struct nib {
+    /// Nib `LXMessageCell`.
+    static let lxMessageCell = _R.nib._LXMessageCell()
+    /// Nib `LXMessageTestCell`.
+    static let lxMessageTestCell = _R.nib._LXMessageTestCell()
+    /// Nib `LXStackTestVC`.
+    static let lxStackTestVC = _R.nib._LXStackTestVC()
+    /// Nib `LaunchScreen`.
+    static let launchScreen = _R.nib._LaunchScreen()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "LXMessageCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.lxMessageCell) instead")
+    static func lxMessageCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.lxMessageCell)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "LXMessageTestCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.lxMessageTestCell) instead")
+    static func lxMessageTestCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.lxMessageTestCell)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "LXStackTestVC", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.lxStackTestVC) instead")
+    static func lxStackTestVC(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.lxStackTestVC)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "LaunchScreen", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.launchScreen) instead")
+    static func launchScreen(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.launchScreen)
+    }
+    #endif
+
+    static func launchScreen(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.launchScreen.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func lxMessageCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LXMessageCell? {
+      return R.nib.lxMessageCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LXMessageCell
+    }
+
+    static func lxMessageTestCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LXMessageTestCell? {
+      return R.nib.lxMessageTestCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LXMessageTestCell
+    }
+
+    static func lxStackTestVC(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.lxStackTestVC.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    let bundle: Foundation.Bundle
-    let preferredLanguages: [String]?
-    let locale: Locale?
-    var localizable: localizable { .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale)) }
-    var localizabled: localizabled { .init(source: .init(bundle: bundle, tableName: "Localizabled", preferredLanguages: preferredLanguages, locale: locale)) }
-
-    func localizable(preferredLanguages: [String]) -> localizable {
-      .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale))
-    }
-    func localizabled(preferredLanguages: [String]) -> localizabled {
-      .init(source: .init(bundle: bundle, tableName: "Localizabled", preferredLanguages: preferredLanguages, locale: locale))
-    }
-
-
-    /// This `_R.string.localizable` struct is generated, and contains static references to 0 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 160 localization keys.
     struct localizable {
-      let source: RswiftResources.StringResource.Source
-    }
-
-    /// This `_R.string.localizabled` struct is generated, and contains static references to 51 localization keys.
-    struct localizabled {
-      let source: RswiftResources.StringResource.Source
-
+      /// en translation: %@ repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let searchRepositoriesTotalCountTitle = Rswift.StringResource(key: "Search.RepositoriesTotalCount.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: %@ users
+      ///
+      /// Locales: en, zh-Hans
+      static let searchUsersTotalCountTitle = Rswift.StringResource(key: "Search.UsersTotalCount.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Account
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsAccountSectionTitle = Rswift.StringResource(key: "Settings.AccountSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Acknowledgements
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsAcknowledgementsTitle = Rswift.StringResource(key: "Settings.Acknowledgements.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Activities
+      ///
+      /// Locales: en, zh-Hans
+      static let homeTabBarNotificationsTitle = Rswift.StringResource(key: "Home.TabBar.Notifications.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Ads enabled
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsBannerTitle = Rswift.StringResource(key: "Settings.Banner.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All
+      ///
+      /// Locales: en, zh-Hans
+      static let languagesAllSectionTitle = Rswift.StringResource(key: "Languages.AllSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All
+      ///
+      /// Locales: en, zh-Hans
+      static let notificationsAllSegmentTitle = Rswift.StringResource(key: "Notifications.AllSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All Languages
+      ///
+      /// Locales: en, zh-Hans
+      static let languagesAllButtonTitle = Rswift.StringResource(key: "Languages.allButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: All notifications marked as read
+      ///
+      /// Locales: en, zh-Hans
+      static let notificationsMarkAsReadSuccess = Rswift.StringResource(key: "Notifications.MarkAsRead.Success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Are you sure want to log out from SwiftHub?
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsLogoutAlertMessage = Rswift.StringResource(key: "Settings.Logout.Alert.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Back
       ///
-      /// Key: Common.Back
+      /// Locales: en, zh-Hans
+      static let commonBack = Rswift.StringResource(key: "Common.Back", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Back online
       ///
       /// Locales: en, zh-Hans
-      var commonBack: RswiftResources.StringResource { .init(key: "Common.Back", tableName: "Localizabled", source: source, developmentValue: "Back", comment: nil) }
-
+      static let toastConnectionBackMessage = Rswift.StringResource(key: "Toast.ConnectionBack.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Basic
+      ///
+      /// Locales: en, zh-Hans
+      static let loginBasicSegmentTitle = Rswift.StringResource(key: "Login.BasicSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Best match
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesBestMatchTitle = Rswift.StringResource(key: "Search.SortRepositories.BestMatch.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Best match
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersBestMatchTitle = Rswift.StringResource(key: "Search.SortUsers.BestMatch.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Blog
+      ///
+      /// Locales: en, zh-Hans
+      static let userBlogCellTitle = Rswift.StringResource(key: "User.BlogCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Branches
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryBranchesCellTitle = Rswift.StringResource(key: "Repository.BranchesCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Cache Successfully Cleared
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsRemoveCacheAlertSuccessMessage = Rswift.StringResource(key: "Settings.RemoveCache.Alert.SuccessMessage", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Cancel
       ///
-      /// Key: Common.Cancel
-      ///
       /// Locales: en, zh-Hans
-      var commonCancel: RswiftResources.StringResource { .init(key: "Common.Cancel", tableName: "Localizabled", source: source, developmentValue: "Cancel", comment: nil) }
-
+      static let commonCancel = Rswift.StringResource(key: "Common.Cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Close
       ///
-      /// Key: Common.Close
+      /// Locales: en, zh-Hans
+      static let commonClose = Rswift.StringResource(key: "Common.Close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Closed
       ///
       /// Locales: en, zh-Hans
-      var commonClose: RswiftResources.StringResource { .init(key: "Common.Close", tableName: "Localizabled", source: source, developmentValue: "Close", comment: nil) }
-
+      static let issuesClosedSegmentTitle = Rswift.StringResource(key: "Issues.ClosedSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Color theme
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsThemeTitle = Rswift.StringResource(key: "Settings.Theme.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Color theme
+      ///
+      /// Locales: en, zh-Hans
+      static let themeNavigationTitle = Rswift.StringResource(key: "Theme.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Commits
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryCommitsCellTitle = Rswift.StringResource(key: "Repository.CommitsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Company
+      ///
+      /// Locales: en, zh-Hans
+      static let userCompanyCellTitle = Rswift.StringResource(key: "User.CompanyCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Continue
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewCompletionButtonTitle = Rswift.StringResource(key: "WhatsNew.CompletionButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Contributions
+      ///
+      /// Locales: en, zh-Hans
+      static let userContributionsCellTitle = Rswift.StringResource(key: "User.ContributionsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Contributors
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryContributorsCellTitle = Rswift.StringResource(key: "Repository.ContributorsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Contributors
+      ///
+      /// Locales: en, zh-Hans
+      static let usersContributorsNavigationTitle = Rswift.StringResource(key: "Users.ContributorsNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Count Lines of Code
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryCountLinesOfCodeCellTitle = Rswift.StringResource(key: "Repository.CountLinesOfCodeCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Count Lines of Code
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem1Title = Rswift.StringResource(key: "WhatsNew.Item1.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Created
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryCreatedCellTitle = Rswift.StringResource(key: "Repository.CreatedCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Created
+      ///
+      /// Locales: en, zh-Hans
+      static let userCreatedCellTitle = Rswift.StringResource(key: "User.CreatedCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Daily
+      ///
+      /// Locales: en, zh-Hans
+      static let searchDailySegmentTitle = Rswift.StringResource(key: "Search.DailySegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Delete
       ///
-      /// Key: Common.Delete
-      ///
       /// Locales: en, zh-Hans
-      var commonDelete: RswiftResources.StringResource { .init(key: "Common.Delete", tableName: "Localizabled", source: source, developmentValue: "Delete", comment: nil) }
-
+      static let commonDelete = Rswift.StringResource(key: "Common.Delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Done
       ///
-      /// Key: Common.Done
-      ///
       /// Locales: en, zh-Hans
-      var commonDone: RswiftResources.StringResource { .init(key: "Common.Done", tableName: "Localizabled", source: source, developmentValue: "Done", comment: nil) }
-
+      static let commonDone = Rswift.StringResource(key: "Common.Done", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Edit
       ///
-      /// Key: Common.Edit
-      ///
       /// Locales: en, zh-Hans
-      var commonEdit: RswiftResources.StringResource { .init(key: "Common.Edit", tableName: "Localizabled", source: source, developmentValue: "Edit", comment: nil) }
-
+      static let commonEdit = Rswift.StringResource(key: "Common.Edit", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Error
       ///
-      /// Key: Common.Error
-      ///
       /// Locales: en, zh-Hans
-      var commonError: RswiftResources.StringResource { .init(key: "Common.Error", tableName: "Localizabled", source: source, developmentValue: "Error", comment: nil) }
-
-      /// en translation: Next
-      ///
-      /// Key: Common.Next
-      ///
-      /// Locales: en, zh-Hans
-      var commonNext: RswiftResources.StringResource { .init(key: "Common.Next", tableName: "Localizabled", source: source, developmentValue: "Next", comment: nil) }
-
-      /// en translation: No
-      ///
-      /// Key: Common.No
-      ///
-      /// Locales: en, zh-Hans
-      var commonNo: RswiftResources.StringResource { .init(key: "Common.No", tableName: "Localizabled", source: source, developmentValue: "No", comment: nil) }
-
-      /// en translation: No Results
-      ///
-      /// Key: Common.NoResults
-      ///
-      /// Locales: en, zh-Hans
-      var commonNoResults: RswiftResources.StringResource { .init(key: "Common.NoResults", tableName: "Localizabled", source: source, developmentValue: "No Results", comment: nil) }
-
-      /// en translation: OK
-      ///
-      /// Key: Common.OK
-      ///
-      /// Locales: en, zh-Hans
-      var commonOK: RswiftResources.StringResource { .init(key: "Common.OK", tableName: "Localizabled", source: source, developmentValue: "OK", comment: nil) }
-
-      /// en translation: Reset
-      ///
-      /// Key: Common.Reset
-      ///
-      /// Locales: en, zh-Hans
-      var commonReset: RswiftResources.StringResource { .init(key: "Common.Reset", tableName: "Localizabled", source: source, developmentValue: "Reset", comment: nil) }
-
-      /// en translation: Save
-      ///
-      /// Key: Common.Save
-      ///
-      /// Locales: en, zh-Hans
-      var commonSave: RswiftResources.StringResource { .init(key: "Common.Save", tableName: "Localizabled", source: source, developmentValue: "Save", comment: nil) }
-
-      /// en translation: Search
-      ///
-      /// Key: Common.Search
-      ///
-      /// Locales: en, zh-Hans
-      var commonSearch: RswiftResources.StringResource { .init(key: "Common.Search", tableName: "Localizabled", source: source, developmentValue: "Search", comment: nil) }
-
-      /// en translation: Skip
-      ///
-      /// Key: Common.Skip
-      ///
-      /// Locales: en, zh-Hans
-      var commonSkip: RswiftResources.StringResource { .init(key: "Common.Skip", tableName: "Localizabled", source: source, developmentValue: "Skip", comment: nil) }
-
-      /// en translation: Success
-      ///
-      /// Key: Common.Success
-      ///
-      /// Locales: en, zh-Hans
-      var commonSuccess: RswiftResources.StringResource { .init(key: "Common.Success", tableName: "Localizabled", source: source, developmentValue: "Success", comment: nil) }
-
-      /// en translation: Yes
-      ///
-      /// Key: Common.Yes
-      ///
-      /// Locales: en, zh-Hans
-      var commonYes: RswiftResources.StringResource { .init(key: "Common.Yes", tableName: "Localizabled", source: source, developmentValue: "Yes", comment: nil) }
-
+      static let commonError = Rswift.StringResource(key: "Common.Error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Events
       ///
-      /// Key: Events.Navigation.Title
+      /// Locales: en, zh-Hans
+      static let eventsNavigationTitle = Rswift.StringResource(key: "Events.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Events
       ///
       /// Locales: en, zh-Hans
-      var eventsNavigationTitle: RswiftResources.StringResource { .init(key: "Events.Navigation.Title", tableName: "Localizabled", source: source, developmentValue: "Events", comment: nil) }
-
+      static let homeTabBarEventsTitle = Rswift.StringResource(key: "Home.TabBar.Events.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryEventsCellTitle = Rswift.StringResource(key: "Repository.EventsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static let userEventsCellTitle = Rswift.StringResource(key: "User.EventsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fewest followers
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersFewestFollowersTitle = Rswift.StringResource(key: "Search.SortUsers.FewestFollowers.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fewest forks
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesFewestForksTitle = Rswift.StringResource(key: "Search.SortRepositories.FewestForks.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fewest repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersFewestRepositoriesTitle = Rswift.StringResource(key: "Search.SortUsers.FewestRepositories.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Fewest stars
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesFewestStarsTitle = Rswift.StringResource(key: "Search.SortRepositories.FewestStars.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Followers
+      ///
+      /// Locales: en, zh-Hans
+      static let userFollowersButtonTitle = Rswift.StringResource(key: "User.FollowersButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Followers
+      ///
+      /// Locales: en, zh-Hans
+      static let usersFollowersNavigationTitle = Rswift.StringResource(key: "Users.FollowersNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Following
+      ///
+      /// Locales: en, zh-Hans
+      static let userFollowingButtonTitle = Rswift.StringResource(key: "User.FollowingButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Following
+      ///
+      /// Locales: en, zh-Hans
+      static let usersFollowingNavigationTitle = Rswift.StringResource(key: "Users.FollowingNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
+      ///
+      /// Locales: en, zh-Hans
+      static let loginDetailLabelText = Rswift.StringResource(key: "Login.DetailLabel.Text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Forked from
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryParentCellTitle = Rswift.StringResource(key: "Repository.ParentCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Forks
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoriesForksNavigationTitle = Rswift.StringResource(key: "Repositories.ForksNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Forks
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryForksButtonTitle = Rswift.StringResource(key: "Repository.ForksButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Global Search
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSearchBarPlaceholder = Rswift.StringResource(key: "Search.SearchBar.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Homepage
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryHomepageCellTitle = Rswift.StringResource(key: "Repository.HomepageCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Invite friends
+      ///
+      /// Locales: en, zh-Hans
+      static let contactsNavigationTitle = Rswift.StringResource(key: "Contacts.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Invite friends
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsContactsTitle = Rswift.StringResource(key: "Settings.Contacts.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Issues
+      ///
+      /// Locales: en, zh-Hans
+      static let issuesNavigationTitle = Rswift.StringResource(key: "Issues.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Issues
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryIssuesCellTitle = Rswift.StringResource(key: "Repository.IssuesCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static let languageNavigationTitle = Rswift.StringResource(key: "Language.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryLanguageCellTitle = Rswift.StringResource(key: "Repository.LanguageCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsLanguageTitle = Rswift.StringResource(key: "Settings.Language.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Languages
+      ///
+      /// Locales: en, zh-Hans
+      static let languagesNavigationTitle = Rswift.StringResource(key: "Languages.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Last recently updated
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesLastRecentlyUpdatedTitle = Rswift.StringResource(key: "Search.SortRepositories.LastRecentlyUpdated.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Least recently joined
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersLeastRecentlyJoinedTitle = Rswift.StringResource(key: "Search.SortUsers.LeastRecentlyJoined.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Log Out
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsLogOutTitle = Rswift.StringResource(key: "Settings.LogOut.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static let homeTabBarLoginTitle = Rswift.StringResource(key: "Home.TabBar.Login.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginBasicLoginButtonTitle = Rswift.StringResource(key: "Login.BasicLoginButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalLoginButtonTitle = Rswift.StringResource(key: "Login.PersonalLoginButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Logout
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsLogoutAlertConfirmButtonTitle = Rswift.StringResource(key: "Settings.Logout.Alert.ConfirmButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Monthly
+      ///
+      /// Locales: en, zh-Hans
+      static let searchMonthlySegmentTitle = Rswift.StringResource(key: "Search.MonthlySegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Most followers
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersMostFollowersTitle = Rswift.StringResource(key: "Search.SortUsers.MostFollowers.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Most forks
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesMostForksTitle = Rswift.StringResource(key: "Search.SortRepositories.MostForks.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Most recently joined
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersMostRecentlyJoinedTitle = Rswift.StringResource(key: "Search.SortUsers.MostRecentlyJoined.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Most repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortUsersMostRepositoriesTitle = Rswift.StringResource(key: "Search.SortUsers.MostRepositories.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Most stars
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSortRepositoriesMostStarsTitle = Rswift.StringResource(key: "Search.SortRepositories.MostStars.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My Notifications
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryNotificationsCellTitle = Rswift.StringResource(key: "Repository.NotificationsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: My Projects
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsProjectsSectionTitle = Rswift.StringResource(key: "Settings.ProjectsSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Next
+      ///
+      /// Locales: en, zh-Hans
+      static let commonNext = Rswift.StringResource(key: "Common.Next", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Night mode
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsNightModeTitle = Rswift.StringResource(key: "Settings.NightMode.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: No
+      ///
+      /// Locales: en, zh-Hans
+      static let commonNo = Rswift.StringResource(key: "Common.No", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: No Results
+      ///
+      /// Locales: en, zh-Hans
+      static let commonNoResults = Rswift.StringResource(key: "Common.NoResults", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: No connection
+      ///
+      /// Locales: en, zh-Hans
+      static let toastConnectionLostMessage = Rswift.StringResource(key: "Toast.ConnectionLost.Message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Notifications
+      ///
+      /// Locales: en, zh-Hans
+      static let notificationsNavigationTitle = Rswift.StringResource(key: "Notifications.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: OAuth
+      ///
+      /// Locales: en, zh-Hans
+      static let loginOAuthSegmentTitle = Rswift.StringResource(key: "Login.OAuthSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: OK
+      ///
+      /// Locales: en, zh-Hans
+      static let commonOK = Rswift.StringResource(key: "Common.OK", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Open
+      ///
+      /// Locales: en, zh-Hans
+      static let issuesOpenSegmentTitle = Rswift.StringResource(key: "Issues.OpenSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Open Source
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem3Title = Rswift.StringResource(key: "WhatsNew.Item3.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Organizations
+      ///
+      /// Locales: en, zh-Hans
+      static let userOrganizationsSectionTitle = Rswift.StringResource(key: "User.OrganizationsSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Participating
+      ///
+      /// Locales: en, zh-Hans
+      static let notificationsParticipatingSegmentTitle = Rswift.StringResource(key: "Notifications.ParticipatingSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Performed
       ///
-      /// Key: Events.PerformedSegment.Title
+      /// Locales: en, zh-Hans
+      static let eventsPerformedSegmentTitle = Rswift.StringResource(key: "Events.PerformedSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Personal
       ///
       /// Locales: en, zh-Hans
-      var eventsPerformedSegmentTitle: RswiftResources.StringResource { .init(key: "Events.PerformedSegment.Title", tableName: "Localizabled", source: source, developmentValue: "Performed", comment: nil) }
-
+      static let loginPersonalSegmentTitle = Rswift.StringResource(key: "Login.PersonalSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Personal Access Token
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalTitleLabelText = Rswift.StringResource(key: "Login.PersonalTitleLabel.Text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Pinned
+      ///
+      /// Locales: en, zh-Hans
+      static let userPinnedSectionTitle = Rswift.StringResource(key: "User.PinnedSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Please check your login or password
+      ///
+      /// Locales: en, zh-Hans
+      static let loginLoginFailedDescription = Rswift.StringResource(key: "Login.LoginFailed.Description", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Popular
+      ///
+      /// Locales: en, zh-Hans
+      static let languagesPopularSectionTitle = Rswift.StringResource(key: "Languages.PopularSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Preferences
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsPreferencesSectionTitle = Rswift.StringResource(key: "Settings.PreferencesSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Profile
+      ///
+      /// Locales: en, zh-Hans
+      static let homeTabBarProfileTitle = Rswift.StringResource(key: "Home.TabBar.Profile.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Profile Summary
+      ///
+      /// Locales: en, zh-Hans
+      static let userProfileSummaryCellTitle = Rswift.StringResource(key: "User.ProfileSummaryCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Pull Requests
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryPullRequestsCellTitle = Rswift.StringResource(key: "Repository.PullRequestsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Readme
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryReadmeCellTitle = Rswift.StringResource(key: "Repository.ReadmeCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
       /// en translation: Received
       ///
-      /// Key: Events.ReceivedSegment.Title
+      /// Locales: en, zh-Hans
+      static let eventsReceivedSegmentTitle = Rswift.StringResource(key: "Events.ReceivedSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Recently updated
       ///
       /// Locales: en, zh-Hans
-      var eventsReceivedSegmentTitle: RswiftResources.StringResource { .init(key: "Events.ReceivedSegment.Title", tableName: "Localizabled", source: source, developmentValue: "Received", comment: nil) }
+      static let searchSortRepositoriesRecentlyUpdatedTitle = Rswift.StringResource(key: "Search.SortRepositories.RecentlyUpdated.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Releases
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryReleasesCellTitle = Rswift.StringResource(key: "Repository.ReleasesCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Remove cache
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsRemoveCacheTitle = Rswift.StringResource(key: "Settings.RemoveCache.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoriesRepositoriesNavigationTitle = Rswift.StringResource(key: "Repositories.RepositoriesNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let searchRepositoriesSegmentTitle = Rswift.StringResource(key: "Search.RepositoriesSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let userRepositoriesButtonTitle = Rswift.StringResource(key: "User.RepositoriesButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Reset
+      ///
+      /// Locales: en, zh-Hans
+      static let commonReset = Rswift.StringResource(key: "Common.Reset", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Save
+      ///
+      /// Locales: en, zh-Hans
+      static let commonSave = Rswift.StringResource(key: "Common.Save", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static let commonSearch = Rswift.StringResource(key: "Common.Search", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static let homeTabBarSearchTitle = Rswift.StringResource(key: "Home.TabBar.Search.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSearchSectionTitle = Rswift.StringResource(key: "Search.SearchSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSearchSegmentTitle = Rswift.StringResource(key: "Search.SearchSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Search results for %@
+      ///
+      /// Locales: en, zh-Hans
+      static let searchSearchSectionWithLanguageTitle = Rswift.StringResource(key: "Search.SearchSectionWithLanguage.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: See what the GitHub community is most excited about today
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem4Subtitle = Rswift.StringResource(key: "WhatsNew.Item4.Subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Settings
+      ///
+      /// Locales: en, zh-Hans
+      static let contactsPermissionDeniedButton = Rswift.StringResource(key: "Contacts.PermissionDenied.Button", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Settings
+      ///
+      /// Locales: en, zh-Hans
+      static let homeTabBarSettingsTitle = Rswift.StringResource(key: "Home.TabBar.Settings.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Settings
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsNavigationTitle = Rswift.StringResource(key: "Settings.Navigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Sign in with Github
+      ///
+      /// Locales: en, zh-Hans
+      static let loginOAuthloginButtonTitle = Rswift.StringResource(key: "Login.OAuthloginButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Size
+      ///
+      /// Locales: en, zh-Hans
+      static let repositorySizeCellTitle = Rswift.StringResource(key: "Repository.SizeCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Skip
+      ///
+      /// Locales: en, zh-Hans
+      static let commonSkip = Rswift.StringResource(key: "Common.Skip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Source Code
+      ///
+      /// Locales: en, zh-Hans
+      static let repositorySourceCellTitle = Rswift.StringResource(key: "Repository.SourceCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Stargazers
+      ///
+      /// Locales: en, zh-Hans
+      static let usersStargazersNavigationTitle = Rswift.StringResource(key: "Users.StargazersNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Starred
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoriesStarredNavigationTitle = Rswift.StringResource(key: "Repositories.StarredNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Stars
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryStarsButtonTitle = Rswift.StringResource(key: "Repository.StarsButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Stars
+      ///
+      /// Locales: en, zh-Hans
+      static let userStarsCellTitle = Rswift.StringResource(key: "User.StarsCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Stars History
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryStarsHistoryCellTitle = Rswift.StringResource(key: "Repository.StarsHistoryCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Success
+      ///
+      /// Locales: en, zh-Hans
+      static let commonSuccess = Rswift.StringResource(key: "Common.Success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Support
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsSupportSectionTitle = Rswift.StringResource(key: "Settings.SupportSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: SwiftHub is open source Stars are welcome ★
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem3Subtitle = Rswift.StringResource(key: "WhatsNew.Item3.Subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Themes
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem2Title = Rswift.StringResource(key: "WhatsNew.Item2.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: These permissions are required %@
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalDetailLabelText = Rswift.StringResource(key: "Login.PersonalDetailLabel.Text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Tool for counting lines of code from repositories
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem1Subtitle = Rswift.StringResource(key: "WhatsNew.Item1.Subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trending
+      ///
+      /// Locales: en, zh-Hans
+      static let searchTrendingSectionTitle = Rswift.StringResource(key: "Search.TrendingSection.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trending
+      ///
+      /// Locales: en, zh-Hans
+      static let searchTrendingSegmentTitle = Rswift.StringResource(key: "Search.TrendingSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trending
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem4Title = Rswift.StringResource(key: "WhatsNew.Item4.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Trending results for %@
+      ///
+      /// Locales: en, zh-Hans
+      static let searchTrendingSectionWithLanguageTitle = Rswift.StringResource(key: "Search.TrendingSectionWithLanguage.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Unread
+      ///
+      /// Locales: en, zh-Hans
+      static let notificationsUnreadSegmentTitle = Rswift.StringResource(key: "Notifications.UnreadSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Updated
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryUpdatedCellTitle = Rswift.StringResource(key: "Repository.UpdatedCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Updated
+      ///
+      /// Locales: en, zh-Hans
+      static let userUpdatedCellTitle = Rswift.StringResource(key: "User.UpdatedCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Users
+      ///
+      /// Locales: en, zh-Hans
+      static let searchUsersSegmentTitle = Rswift.StringResource(key: "Search.UsersSegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: View on GitHub
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewDetailButtonTitle = Rswift.StringResource(key: "WhatsNew.DetailButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Watchers
+      ///
+      /// Locales: en, zh-Hans
+      static let repositoryWatchersButtonTitle = Rswift.StringResource(key: "Repository.WatchersButton.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Watchers
+      ///
+      /// Locales: en, zh-Hans
+      static let usersWatchersNavigationTitle = Rswift.StringResource(key: "Users.WatchersNavigation.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Watching
+      ///
+      /// Locales: en, zh-Hans
+      static let userWatchingCellTitle = Rswift.StringResource(key: "User.WatchingCell.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We can't continue without your  permission to access your contacts.  Try Again?
+      ///
+      /// Locales: en, zh-Hans
+      static let contactsPermissionDeniedDescription = Rswift.StringResource(key: "Contacts.PermissionDenied.Description", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: We need your permission!
+      ///
+      /// Locales: en, zh-Hans
+      static let contactsPermissionDeniedTitle = Rswift.StringResource(key: "Contacts.PermissionDenied.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Weekly
+      ///
+      /// Locales: en, zh-Hans
+      static let searchWeeklySegmentTitle = Rswift.StringResource(key: "Search.WeeklySegment.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Welcome to SwiftHub
+      ///
+      /// Locales: en, zh-Hans
+      static let loginTitleLabelText = Rswift.StringResource(key: "Login.TitleLabel.Text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Welcome to SwiftHub!
+      ///
+      /// Locales: en, zh-Hans
+      static let initialNoResults = Rswift.StringResource(key: "Initial.NoResults", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Whats New
+      ///
+      /// Locales: en, zh-Hans
+      static let settingsWhatsNewTitle = Rswift.StringResource(key: "Settings.WhatsNew.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Whats New
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewTitle = Rswift.StringResource(key: "WhatsNew.Title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: Yes
+      ///
+      /// Locales: en, zh-Hans
+      static let commonYes = Rswift.StringResource(key: "Common.Yes", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: You can apply different themes with Light and Dark modes
+      ///
+      /// Locales: en, zh-Hans
+      static let whatsNewItem2Subtitle = Rswift.StringResource(key: "WhatsNew.Item2.Subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: login
+      ///
+      /// Locales: en, zh-Hans
+      static let loginLoginTextFieldPlaceholder = Rswift.StringResource(key: "Login.LoginTextField.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: password
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPasswordTextFieldPlaceholder = Rswift.StringResource(key: "Login.PasswordTextField.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+      /// en translation: personal access token
+      ///
+      /// Locales: en, zh-Hans
+      static let loginPersonalTokenTextFieldPlaceholder = Rswift.StringResource(key: "Login.PersonalTokenTextField.Placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "zh-Hans"], comment: nil)
+
+      /// en translation: %@ repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func searchRepositoriesTotalCountTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Search.RepositoriesTotalCount.Title", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.RepositoriesTotalCount.Title"
+        }
+
+        let format = NSLocalizedString("Search.RepositoriesTotalCount.Title", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: %@ users
+      ///
+      /// Locales: en, zh-Hans
+      static func searchUsersTotalCountTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Search.UsersTotalCount.Title", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.UsersTotalCount.Title"
+        }
+
+        let format = NSLocalizedString("Search.UsersTotalCount.Title", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Account
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsAccountSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.AccountSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.AccountSection.Title"
+        }
+
+        return NSLocalizedString("Settings.AccountSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Acknowledgements
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsAcknowledgementsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Acknowledgements.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Acknowledgements.Title"
+        }
+
+        return NSLocalizedString("Settings.Acknowledgements.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Activities
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarNotificationsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Notifications.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Notifications.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Notifications.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Ads enabled
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsBannerTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Banner.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Banner.Title"
+        }
+
+        return NSLocalizedString("Settings.Banner.Title", bundle: bundle, comment: "")
+      }
 
       /// en translation: All
       ///
-      /// Key: Languages.AllSection.Title
-      ///
       /// Locales: en, zh-Hans
-      var languagesAllSectionTitle: RswiftResources.StringResource { .init(key: "Languages.AllSection.Title", tableName: "Localizabled", source: source, developmentValue: "All", comment: nil) }
+      static func languagesAllSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Languages.AllSection.Title", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: Languages
-      ///
-      /// Key: Languages.Navigation.Title
-      ///
-      /// Locales: en, zh-Hans
-      var languagesNavigationTitle: RswiftResources.StringResource { .init(key: "Languages.Navigation.Title", tableName: "Localizabled", source: source, developmentValue: "Languages", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Languages.AllSection.Title"
+        }
 
-      /// en translation: Popular
-      ///
-      /// Key: Languages.PopularSection.Title
+        return NSLocalizedString("Languages.AllSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: All
       ///
       /// Locales: en, zh-Hans
-      var languagesPopularSectionTitle: RswiftResources.StringResource { .init(key: "Languages.PopularSection.Title", tableName: "Localizabled", source: source, developmentValue: "Popular", comment: nil) }
+      static func notificationsAllSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Notifications.AllSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Notifications.AllSegment.Title"
+        }
+
+        return NSLocalizedString("Notifications.AllSegment.Title", bundle: bundle, comment: "")
+      }
 
       /// en translation: All Languages
       ///
-      /// Key: Languages.allButton.Title
-      ///
       /// Locales: en, zh-Hans
-      var languagesAllButtonTitle: RswiftResources.StringResource { .init(key: "Languages.allButton.Title", tableName: "Localizabled", source: source, developmentValue: "All Languages", comment: nil) }
+      static func languagesAllButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Languages.allButton.Title", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: Login
-      ///
-      /// Key: Login.BasicLoginButton.Title
-      ///
-      /// Locales: en, zh-Hans
-      var loginBasicLoginButtonTitle: RswiftResources.StringResource { .init(key: "Login.BasicLoginButton.Title", tableName: "Localizabled", source: source, developmentValue: "Login", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Languages.allButton.Title"
+        }
 
-      /// en translation: Basic
-      ///
-      /// Key: Login.BasicSegment.Title
-      ///
-      /// Locales: en, zh-Hans
-      var loginBasicSegmentTitle: RswiftResources.StringResource { .init(key: "Login.BasicSegment.Title", tableName: "Localizabled", source: source, developmentValue: "Basic", comment: nil) }
+        return NSLocalizedString("Languages.allButton.Title", bundle: bundle, comment: "")
+      }
 
-      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
-      ///
-      /// Key: Login.DetailLabel.Text
+      /// en translation: All notifications marked as read
       ///
       /// Locales: en, zh-Hans
-      var loginDetailLabelText: RswiftResources.StringResource { .init(key: "Login.DetailLabel.Text", tableName: "Localizabled", source: source, developmentValue: "For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour. \n\nFor unauthenticated requests, the rate limit allows for up to 60 requests per hour.", comment: nil) }
+      static func notificationsMarkAsReadSuccess(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Notifications.MarkAsRead.Success", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: Please check your login or password
-      ///
-      /// Key: Login.LoginFailed.Description
-      ///
-      /// Locales: en, zh-Hans
-      var loginLoginFailedDescription: RswiftResources.StringResource { .init(key: "Login.LoginFailed.Description", tableName: "Localizabled", source: source, developmentValue: "Please check your login or password", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Notifications.MarkAsRead.Success"
+        }
 
-      /// en translation: login
-      ///
-      /// Key: Login.LoginTextField.Placeholder
-      ///
-      /// Locales: en, zh-Hans
-      var loginLoginTextFieldPlaceholder: RswiftResources.StringResource { .init(key: "Login.LoginTextField.Placeholder", tableName: "Localizabled", source: source, developmentValue: "login", comment: nil) }
+        return NSLocalizedString("Notifications.MarkAsRead.Success", bundle: bundle, comment: "")
+      }
 
-      /// en translation: OAuth
-      ///
-      /// Key: Login.OAuthSegment.Title
+      /// en translation: Are you sure want to log out from SwiftHub?
       ///
       /// Locales: en, zh-Hans
-      var loginOAuthSegmentTitle: RswiftResources.StringResource { .init(key: "Login.OAuthSegment.Title", tableName: "Localizabled", source: source, developmentValue: "OAuth", comment: nil) }
+      static func settingsLogoutAlertMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Logout.Alert.Message", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: Sign in with Github
-      ///
-      /// Key: Login.OAuthloginButton.Title
-      ///
-      /// Locales: en, zh-Hans
-      var loginOAuthloginButtonTitle: RswiftResources.StringResource { .init(key: "Login.OAuthloginButton.Title", tableName: "Localizabled", source: source, developmentValue: "Sign in with Github", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Logout.Alert.Message"
+        }
 
-      /// en translation: password
-      ///
-      /// Key: Login.PasswordTextField.Placeholder
-      ///
-      /// Locales: en, zh-Hans
-      var loginPasswordTextFieldPlaceholder: RswiftResources.StringResource { .init(key: "Login.PasswordTextField.Placeholder", tableName: "Localizabled", source: source, developmentValue: "password", comment: nil) }
+        return NSLocalizedString("Settings.Logout.Alert.Message", bundle: bundle, comment: "")
+      }
 
-      /// en translation: These permissions are required %@
-      ///
-      /// Key: Login.PersonalDetailLabel.Text
+      /// en translation: Back
       ///
       /// Locales: en, zh-Hans
-      var loginPersonalDetailLabelText: RswiftResources.StringResource1<String> { .init(key: "Login.PersonalDetailLabel.Text", tableName: "Localizabled", source: source, developmentValue: "These permissions are required\n%@", comment: nil) }
+      static func commonBack(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Back", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: Login
-      ///
-      /// Key: Login.PersonalLoginButton.Title
-      ///
-      /// Locales: en, zh-Hans
-      var loginPersonalLoginButtonTitle: RswiftResources.StringResource { .init(key: "Login.PersonalLoginButton.Title", tableName: "Localizabled", source: source, developmentValue: "Login", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Back"
+        }
 
-      /// en translation: Personal
-      ///
-      /// Key: Login.PersonalSegment.Title
-      ///
-      /// Locales: en, zh-Hans
-      var loginPersonalSegmentTitle: RswiftResources.StringResource { .init(key: "Login.PersonalSegment.Title", tableName: "Localizabled", source: source, developmentValue: "Personal", comment: nil) }
-
-      /// en translation: Personal Access Token
-      ///
-      /// Key: Login.PersonalTitleLabel.Text
-      ///
-      /// Locales: en, zh-Hans
-      var loginPersonalTitleLabelText: RswiftResources.StringResource { .init(key: "Login.PersonalTitleLabel.Text", tableName: "Localizabled", source: source, developmentValue: "Personal Access Token", comment: nil) }
-
-      /// en translation: personal access token
-      ///
-      /// Key: Login.PersonalTokenTextField.Placeholder
-      ///
-      /// Locales: en, zh-Hans
-      var loginPersonalTokenTextFieldPlaceholder: RswiftResources.StringResource { .init(key: "Login.PersonalTokenTextField.Placeholder", tableName: "Localizabled", source: source, developmentValue: "personal access token", comment: nil) }
-
-      /// en translation: Welcome to SwiftHub
-      ///
-      /// Key: Login.TitleLabel.Text
-      ///
-      /// Locales: en, zh-Hans
-      var loginTitleLabelText: RswiftResources.StringResource { .init(key: "Login.TitleLabel.Text", tableName: "Localizabled", source: source, developmentValue: "Welcome to SwiftHub", comment: nil) }
+        return NSLocalizedString("Common.Back", bundle: bundle, comment: "")
+      }
 
       /// en translation: Back online
       ///
-      /// Key: Toast.ConnectionBack.Message
-      ///
       /// Locales: en, zh-Hans
-      var toastConnectionBackMessage: RswiftResources.StringResource { .init(key: "Toast.ConnectionBack.Message", tableName: "Localizabled", source: source, developmentValue: "Back online", comment: nil) }
+      static func toastConnectionBackMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Toast.ConnectionBack.Message", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: No connection
-      ///
-      /// Key: Toast.ConnectionLost.Message
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Toast.ConnectionBack.Message"
+        }
+
+        return NSLocalizedString("Toast.ConnectionBack.Message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Basic
       ///
       /// Locales: en, zh-Hans
-      var toastConnectionLostMessage: RswiftResources.StringResource { .init(key: "Toast.ConnectionLost.Message", tableName: "Localizabled", source: source, developmentValue: "No connection", comment: nil) }
+      static func loginBasicSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.BasicSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.BasicSegment.Title"
+        }
+
+        return NSLocalizedString("Login.BasicSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Best match
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesBestMatchTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.BestMatch.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.BestMatch.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.BestMatch.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Best match
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersBestMatchTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.BestMatch.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.BestMatch.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.BestMatch.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Blog
+      ///
+      /// Locales: en, zh-Hans
+      static func userBlogCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.BlogCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.BlogCell.Title"
+        }
+
+        return NSLocalizedString("User.BlogCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Branches
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryBranchesCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.BranchesCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.BranchesCell.Title"
+        }
+
+        return NSLocalizedString("Repository.BranchesCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cache Successfully Cleared
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsRemoveCacheAlertSuccessMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.RemoveCache.Alert.SuccessMessage", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.RemoveCache.Alert.SuccessMessage"
+        }
+
+        return NSLocalizedString("Settings.RemoveCache.Alert.SuccessMessage", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cancel
+      ///
+      /// Locales: en, zh-Hans
+      static func commonCancel(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Cancel", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Cancel"
+        }
+
+        return NSLocalizedString("Common.Cancel", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Close
+      ///
+      /// Locales: en, zh-Hans
+      static func commonClose(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Close", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Close"
+        }
+
+        return NSLocalizedString("Common.Close", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Closed
+      ///
+      /// Locales: en, zh-Hans
+      static func issuesClosedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Issues.ClosedSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Issues.ClosedSegment.Title"
+        }
+
+        return NSLocalizedString("Issues.ClosedSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Color theme
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsThemeTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Theme.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Theme.Title"
+        }
+
+        return NSLocalizedString("Settings.Theme.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Color theme
+      ///
+      /// Locales: en, zh-Hans
+      static func themeNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Theme.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Theme.Navigation.Title"
+        }
+
+        return NSLocalizedString("Theme.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Commits
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryCommitsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.CommitsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.CommitsCell.Title"
+        }
+
+        return NSLocalizedString("Repository.CommitsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Company
+      ///
+      /// Locales: en, zh-Hans
+      static func userCompanyCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.CompanyCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.CompanyCell.Title"
+        }
+
+        return NSLocalizedString("User.CompanyCell.Title", bundle: bundle, comment: "")
+      }
 
       /// en translation: Continue
       ///
-      /// Key: WhatsNew.CompletionButton.Title
-      ///
       /// Locales: en, zh-Hans
-      var whatsNewCompletionButtonTitle: RswiftResources.StringResource { .init(key: "WhatsNew.CompletionButton.Title", tableName: "Localizabled", source: source, developmentValue: "Continue", comment: nil) }
+      static func whatsNewCompletionButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.CompletionButton.Title", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: View on GitHub
-      ///
-      /// Key: WhatsNew.DetailButton.Title
-      ///
-      /// Locales: en, zh-Hans
-      var whatsNewDetailButtonTitle: RswiftResources.StringResource { .init(key: "WhatsNew.DetailButton.Title", tableName: "Localizabled", source: source, developmentValue: "View on GitHub", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.CompletionButton.Title"
+        }
 
-      /// en translation: Tool for counting lines of code from repositories
-      ///
-      /// Key: WhatsNew.Item1.Subtitle
+        return NSLocalizedString("WhatsNew.CompletionButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Contributions
       ///
       /// Locales: en, zh-Hans
-      var whatsNewItem1Subtitle: RswiftResources.StringResource { .init(key: "WhatsNew.Item1.Subtitle", tableName: "Localizabled", source: source, developmentValue: "Tool for counting lines of code from repositories", comment: nil) }
+      static func userContributionsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.ContributionsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.ContributionsCell.Title"
+        }
+
+        return NSLocalizedString("User.ContributionsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Contributors
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryContributorsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.ContributorsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.ContributorsCell.Title"
+        }
+
+        return NSLocalizedString("Repository.ContributorsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Contributors
+      ///
+      /// Locales: en, zh-Hans
+      static func usersContributorsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users.ContributorsNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users.ContributorsNavigation.Title"
+        }
+
+        return NSLocalizedString("Users.ContributorsNavigation.Title", bundle: bundle, comment: "")
+      }
 
       /// en translation: Count Lines of Code
       ///
-      /// Key: WhatsNew.Item1.Title
-      ///
       /// Locales: en, zh-Hans
-      var whatsNewItem1Title: RswiftResources.StringResource { .init(key: "WhatsNew.Item1.Title", tableName: "Localizabled", source: source, developmentValue: "Count Lines of Code", comment: nil) }
+      static func repositoryCountLinesOfCodeCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.CountLinesOfCodeCell.Title", bundle: hostingBundle, comment: "")
+        }
 
-      /// en translation: You can apply different themes with Light and Dark modes
-      ///
-      /// Key: WhatsNew.Item2.Subtitle
-      ///
-      /// Locales: en, zh-Hans
-      var whatsNewItem2Subtitle: RswiftResources.StringResource { .init(key: "WhatsNew.Item2.Subtitle", tableName: "Localizabled", source: source, developmentValue: "You can apply different themes with Light and Dark modes", comment: nil) }
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.CountLinesOfCodeCell.Title"
+        }
 
-      /// en translation: Themes
-      ///
-      /// Key: WhatsNew.Item2.Title
-      ///
-      /// Locales: en, zh-Hans
-      var whatsNewItem2Title: RswiftResources.StringResource { .init(key: "WhatsNew.Item2.Title", tableName: "Localizabled", source: source, developmentValue: "Themes", comment: nil) }
+        return NSLocalizedString("Repository.CountLinesOfCodeCell.Title", bundle: bundle, comment: "")
+      }
 
-      /// en translation: SwiftHub is open source Stars are welcome ★
-      ///
-      /// Key: WhatsNew.Item3.Subtitle
+      /// en translation: Count Lines of Code
       ///
       /// Locales: en, zh-Hans
-      var whatsNewItem3Subtitle: RswiftResources.StringResource { .init(key: "WhatsNew.Item3.Subtitle", tableName: "Localizabled", source: source, developmentValue: "SwiftHub is open source\nStars are welcome ★", comment: nil) }
+      static func whatsNewItem1Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item1.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item1.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.Item1.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Created
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryCreatedCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.CreatedCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.CreatedCell.Title"
+        }
+
+        return NSLocalizedString("Repository.CreatedCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Created
+      ///
+      /// Locales: en, zh-Hans
+      static func userCreatedCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.CreatedCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.CreatedCell.Title"
+        }
+
+        return NSLocalizedString("User.CreatedCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Daily
+      ///
+      /// Locales: en, zh-Hans
+      static func searchDailySegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.DailySegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.DailySegment.Title"
+        }
+
+        return NSLocalizedString("Search.DailySegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Delete
+      ///
+      /// Locales: en, zh-Hans
+      static func commonDelete(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Delete", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Delete"
+        }
+
+        return NSLocalizedString("Common.Delete", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Done
+      ///
+      /// Locales: en, zh-Hans
+      static func commonDone(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Done", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Done"
+        }
+
+        return NSLocalizedString("Common.Done", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Edit
+      ///
+      /// Locales: en, zh-Hans
+      static func commonEdit(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Edit", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Edit"
+        }
+
+        return NSLocalizedString("Common.Edit", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error
+      ///
+      /// Locales: en, zh-Hans
+      static func commonError(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Error"
+        }
+
+        return NSLocalizedString("Common.Error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Events.Navigation.Title"
+        }
+
+        return NSLocalizedString("Events.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarEventsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Events.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Events.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Events.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryEventsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.EventsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.EventsCell.Title"
+        }
+
+        return NSLocalizedString("Repository.EventsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Events
+      ///
+      /// Locales: en, zh-Hans
+      static func userEventsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.EventsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.EventsCell.Title"
+        }
+
+        return NSLocalizedString("User.EventsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Fewest followers
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersFewestFollowersTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.FewestFollowers.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.FewestFollowers.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.FewestFollowers.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Fewest forks
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesFewestForksTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.FewestForks.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.FewestForks.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.FewestForks.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Fewest repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersFewestRepositoriesTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.FewestRepositories.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.FewestRepositories.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.FewestRepositories.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Fewest stars
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesFewestStarsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.FewestStars.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.FewestStars.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.FewestStars.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Followers
+      ///
+      /// Locales: en, zh-Hans
+      static func userFollowersButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.FollowersButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.FollowersButton.Title"
+        }
+
+        return NSLocalizedString("User.FollowersButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Followers
+      ///
+      /// Locales: en, zh-Hans
+      static func usersFollowersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users.FollowersNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users.FollowersNavigation.Title"
+        }
+
+        return NSLocalizedString("Users.FollowersNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Following
+      ///
+      /// Locales: en, zh-Hans
+      static func userFollowingButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.FollowingButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.FollowingButton.Title"
+        }
+
+        return NSLocalizedString("User.FollowingButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Following
+      ///
+      /// Locales: en, zh-Hans
+      static func usersFollowingNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users.FollowingNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users.FollowingNavigation.Title"
+        }
+
+        return NSLocalizedString("Users.FollowingNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: For API requests using Basic Authentication or OAuth, you can make up to 5000 requests per hour.   For unauthenticated requests, the rate limit allows for up to 60 requests per hour.
+      ///
+      /// Locales: en, zh-Hans
+      static func loginDetailLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.DetailLabel.Text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.DetailLabel.Text"
+        }
+
+        return NSLocalizedString("Login.DetailLabel.Text", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Forked from
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryParentCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.ParentCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.ParentCell.Title"
+        }
+
+        return NSLocalizedString("Repository.ParentCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Forks
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoriesForksNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repositories.ForksNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repositories.ForksNavigation.Title"
+        }
+
+        return NSLocalizedString("Repositories.ForksNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Forks
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryForksButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.ForksButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.ForksButton.Title"
+        }
+
+        return NSLocalizedString("Repository.ForksButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Global Search
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSearchBarPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SearchBar.Placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SearchBar.Placeholder"
+        }
+
+        return NSLocalizedString("Search.SearchBar.Placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Homepage
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryHomepageCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.HomepageCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.HomepageCell.Title"
+        }
+
+        return NSLocalizedString("Repository.HomepageCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Invite friends
+      ///
+      /// Locales: en, zh-Hans
+      static func contactsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Contacts.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Contacts.Navigation.Title"
+        }
+
+        return NSLocalizedString("Contacts.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Invite friends
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsContactsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Contacts.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Contacts.Title"
+        }
+
+        return NSLocalizedString("Settings.Contacts.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Issues
+      ///
+      /// Locales: en, zh-Hans
+      static func issuesNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Issues.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Issues.Navigation.Title"
+        }
+
+        return NSLocalizedString("Issues.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Issues
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryIssuesCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.IssuesCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.IssuesCell.Title"
+        }
+
+        return NSLocalizedString("Repository.IssuesCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static func languageNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Language.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Language.Navigation.Title"
+        }
+
+        return NSLocalizedString("Language.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryLanguageCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.LanguageCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.LanguageCell.Title"
+        }
+
+        return NSLocalizedString("Repository.LanguageCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Language
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsLanguageTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Language.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Language.Title"
+        }
+
+        return NSLocalizedString("Settings.Language.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Languages
+      ///
+      /// Locales: en, zh-Hans
+      static func languagesNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Languages.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Languages.Navigation.Title"
+        }
+
+        return NSLocalizedString("Languages.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Last recently updated
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesLastRecentlyUpdatedTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.LastRecentlyUpdated.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.LastRecentlyUpdated.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.LastRecentlyUpdated.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Least recently joined
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersLeastRecentlyJoinedTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.LeastRecentlyJoined.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.LeastRecentlyJoined.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.LeastRecentlyJoined.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Log Out
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsLogOutTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.LogOut.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.LogOut.Title"
+        }
+
+        return NSLocalizedString("Settings.LogOut.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarLoginTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Login.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Login.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Login.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginBasicLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.BasicLoginButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.BasicLoginButton.Title"
+        }
+
+        return NSLocalizedString("Login.BasicLoginButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalLoginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalLoginButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalLoginButton.Title"
+        }
+
+        return NSLocalizedString("Login.PersonalLoginButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Logout
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsLogoutAlertConfirmButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Logout.Alert.ConfirmButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Logout.Alert.ConfirmButton.Title"
+        }
+
+        return NSLocalizedString("Settings.Logout.Alert.ConfirmButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Monthly
+      ///
+      /// Locales: en, zh-Hans
+      static func searchMonthlySegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.MonthlySegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.MonthlySegment.Title"
+        }
+
+        return NSLocalizedString("Search.MonthlySegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Most followers
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersMostFollowersTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.MostFollowers.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.MostFollowers.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.MostFollowers.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Most forks
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesMostForksTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.MostForks.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.MostForks.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.MostForks.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Most recently joined
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersMostRecentlyJoinedTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.MostRecentlyJoined.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.MostRecentlyJoined.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.MostRecentlyJoined.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Most repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortUsersMostRepositoriesTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortUsers.MostRepositories.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortUsers.MostRepositories.Title"
+        }
+
+        return NSLocalizedString("Search.SortUsers.MostRepositories.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Most stars
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesMostStarsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.MostStars.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.MostStars.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.MostStars.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: My Notifications
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryNotificationsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.NotificationsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.NotificationsCell.Title"
+        }
+
+        return NSLocalizedString("Repository.NotificationsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: My Projects
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsProjectsSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.ProjectsSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.ProjectsSection.Title"
+        }
+
+        return NSLocalizedString("Settings.ProjectsSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Next
+      ///
+      /// Locales: en, zh-Hans
+      static func commonNext(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Next", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Next"
+        }
+
+        return NSLocalizedString("Common.Next", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Night mode
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsNightModeTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.NightMode.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.NightMode.Title"
+        }
+
+        return NSLocalizedString("Settings.NightMode.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No
+      ///
+      /// Locales: en, zh-Hans
+      static func commonNo(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.No", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.No"
+        }
+
+        return NSLocalizedString("Common.No", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No Results
+      ///
+      /// Locales: en, zh-Hans
+      static func commonNoResults(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.NoResults", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.NoResults"
+        }
+
+        return NSLocalizedString("Common.NoResults", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No connection
+      ///
+      /// Locales: en, zh-Hans
+      static func toastConnectionLostMessage(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Toast.ConnectionLost.Message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Toast.ConnectionLost.Message"
+        }
+
+        return NSLocalizedString("Toast.ConnectionLost.Message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Notifications
+      ///
+      /// Locales: en, zh-Hans
+      static func notificationsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Notifications.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Notifications.Navigation.Title"
+        }
+
+        return NSLocalizedString("Notifications.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: OAuth
+      ///
+      /// Locales: en, zh-Hans
+      static func loginOAuthSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.OAuthSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.OAuthSegment.Title"
+        }
+
+        return NSLocalizedString("Login.OAuthSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: OK
+      ///
+      /// Locales: en, zh-Hans
+      static func commonOK(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.OK", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.OK"
+        }
+
+        return NSLocalizedString("Common.OK", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Open
+      ///
+      /// Locales: en, zh-Hans
+      static func issuesOpenSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Issues.OpenSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Issues.OpenSegment.Title"
+        }
+
+        return NSLocalizedString("Issues.OpenSegment.Title", bundle: bundle, comment: "")
+      }
 
       /// en translation: Open Source
       ///
-      /// Key: WhatsNew.Item3.Title
+      /// Locales: en, zh-Hans
+      static func whatsNewItem3Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item3.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item3.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.Item3.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Organizations
       ///
       /// Locales: en, zh-Hans
-      var whatsNewItem3Title: RswiftResources.StringResource { .init(key: "WhatsNew.Item3.Title", tableName: "Localizabled", source: source, developmentValue: "Open Source", comment: nil) }
+      static func userOrganizationsSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.OrganizationsSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.OrganizationsSection.Title"
+        }
+
+        return NSLocalizedString("User.OrganizationsSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Participating
+      ///
+      /// Locales: en, zh-Hans
+      static func notificationsParticipatingSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Notifications.ParticipatingSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Notifications.ParticipatingSegment.Title"
+        }
+
+        return NSLocalizedString("Notifications.ParticipatingSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Performed
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsPerformedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.PerformedSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Events.PerformedSegment.Title"
+        }
+
+        return NSLocalizedString("Events.PerformedSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Personal
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalSegment.Title"
+        }
+
+        return NSLocalizedString("Login.PersonalSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Personal Access Token
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalTitleLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalTitleLabel.Text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalTitleLabel.Text"
+        }
+
+        return NSLocalizedString("Login.PersonalTitleLabel.Text", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Pinned
+      ///
+      /// Locales: en, zh-Hans
+      static func userPinnedSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.PinnedSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.PinnedSection.Title"
+        }
+
+        return NSLocalizedString("User.PinnedSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please check your login or password
+      ///
+      /// Locales: en, zh-Hans
+      static func loginLoginFailedDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.LoginFailed.Description", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.LoginFailed.Description"
+        }
+
+        return NSLocalizedString("Login.LoginFailed.Description", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Popular
+      ///
+      /// Locales: en, zh-Hans
+      static func languagesPopularSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Languages.PopularSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Languages.PopularSection.Title"
+        }
+
+        return NSLocalizedString("Languages.PopularSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Preferences
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsPreferencesSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.PreferencesSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.PreferencesSection.Title"
+        }
+
+        return NSLocalizedString("Settings.PreferencesSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Profile
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarProfileTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Profile.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Profile.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Profile.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Profile Summary
+      ///
+      /// Locales: en, zh-Hans
+      static func userProfileSummaryCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.ProfileSummaryCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.ProfileSummaryCell.Title"
+        }
+
+        return NSLocalizedString("User.ProfileSummaryCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Pull Requests
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryPullRequestsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.PullRequestsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.PullRequestsCell.Title"
+        }
+
+        return NSLocalizedString("Repository.PullRequestsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Readme
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryReadmeCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.ReadmeCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.ReadmeCell.Title"
+        }
+
+        return NSLocalizedString("Repository.ReadmeCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Received
+      ///
+      /// Locales: en, zh-Hans
+      static func eventsReceivedSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Events.ReceivedSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Events.ReceivedSegment.Title"
+        }
+
+        return NSLocalizedString("Events.ReceivedSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Recently updated
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSortRepositoriesRecentlyUpdatedTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SortRepositories.RecentlyUpdated.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SortRepositories.RecentlyUpdated.Title"
+        }
+
+        return NSLocalizedString("Search.SortRepositories.RecentlyUpdated.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Releases
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryReleasesCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.ReleasesCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.ReleasesCell.Title"
+        }
+
+        return NSLocalizedString("Repository.ReleasesCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Remove cache
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsRemoveCacheTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.RemoveCache.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.RemoveCache.Title"
+        }
+
+        return NSLocalizedString("Settings.RemoveCache.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoriesRepositoriesNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repositories.RepositoriesNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repositories.RepositoriesNavigation.Title"
+        }
+
+        return NSLocalizedString("Repositories.RepositoriesNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func searchRepositoriesSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.RepositoriesSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.RepositoriesSegment.Title"
+        }
+
+        return NSLocalizedString("Search.RepositoriesSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func userRepositoriesButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.RepositoriesButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.RepositoriesButton.Title"
+        }
+
+        return NSLocalizedString("User.RepositoriesButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Reset
+      ///
+      /// Locales: en, zh-Hans
+      static func commonReset(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Reset", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Reset"
+        }
+
+        return NSLocalizedString("Common.Reset", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Save
+      ///
+      /// Locales: en, zh-Hans
+      static func commonSave(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Save", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Save"
+        }
+
+        return NSLocalizedString("Common.Save", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static func commonSearch(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Search", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Search"
+        }
+
+        return NSLocalizedString("Common.Search", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarSearchTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Search.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Search.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Search.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSearchSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SearchSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SearchSection.Title"
+        }
+
+        return NSLocalizedString("Search.SearchSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSearchSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.SearchSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SearchSegment.Title"
+        }
+
+        return NSLocalizedString("Search.SearchSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search results for %@
+      ///
+      /// Locales: en, zh-Hans
+      static func searchSearchSectionWithLanguageTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Search.SearchSectionWithLanguage.Title", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.SearchSectionWithLanguage.Title"
+        }
+
+        let format = NSLocalizedString("Search.SearchSectionWithLanguage.Title", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
 
       /// en translation: See what the GitHub community is most excited about today
       ///
-      /// Key: WhatsNew.Item4.Subtitle
+      /// Locales: en, zh-Hans
+      static func whatsNewItem4Subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item4.Subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item4.Subtitle"
+        }
+
+        return NSLocalizedString("WhatsNew.Item4.Subtitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Settings
       ///
       /// Locales: en, zh-Hans
-      var whatsNewItem4Subtitle: RswiftResources.StringResource { .init(key: "WhatsNew.Item4.Subtitle", tableName: "Localizabled", source: source, developmentValue: "See what the GitHub community is most excited about today", comment: nil) }
+      static func contactsPermissionDeniedButton(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Contacts.PermissionDenied.Button", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Contacts.PermissionDenied.Button"
+        }
+
+        return NSLocalizedString("Contacts.PermissionDenied.Button", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Settings
+      ///
+      /// Locales: en, zh-Hans
+      static func homeTabBarSettingsTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Home.TabBar.Settings.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Home.TabBar.Settings.Title"
+        }
+
+        return NSLocalizedString("Home.TabBar.Settings.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Settings
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.Navigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.Navigation.Title"
+        }
+
+        return NSLocalizedString("Settings.Navigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Sign in with Github
+      ///
+      /// Locales: en, zh-Hans
+      static func loginOAuthloginButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.OAuthloginButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.OAuthloginButton.Title"
+        }
+
+        return NSLocalizedString("Login.OAuthloginButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Size
+      ///
+      /// Locales: en, zh-Hans
+      static func repositorySizeCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.SizeCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.SizeCell.Title"
+        }
+
+        return NSLocalizedString("Repository.SizeCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Skip
+      ///
+      /// Locales: en, zh-Hans
+      static func commonSkip(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Skip", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Skip"
+        }
+
+        return NSLocalizedString("Common.Skip", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Source Code
+      ///
+      /// Locales: en, zh-Hans
+      static func repositorySourceCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.SourceCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.SourceCell.Title"
+        }
+
+        return NSLocalizedString("Repository.SourceCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Stargazers
+      ///
+      /// Locales: en, zh-Hans
+      static func usersStargazersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users.StargazersNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users.StargazersNavigation.Title"
+        }
+
+        return NSLocalizedString("Users.StargazersNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Starred
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoriesStarredNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repositories.StarredNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repositories.StarredNavigation.Title"
+        }
+
+        return NSLocalizedString("Repositories.StarredNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Stars
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryStarsButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.StarsButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.StarsButton.Title"
+        }
+
+        return NSLocalizedString("Repository.StarsButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Stars
+      ///
+      /// Locales: en, zh-Hans
+      static func userStarsCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.StarsCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.StarsCell.Title"
+        }
+
+        return NSLocalizedString("User.StarsCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Stars History
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryStarsHistoryCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.StarsHistoryCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.StarsHistoryCell.Title"
+        }
+
+        return NSLocalizedString("Repository.StarsHistoryCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Success
+      ///
+      /// Locales: en, zh-Hans
+      static func commonSuccess(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Success", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Success"
+        }
+
+        return NSLocalizedString("Common.Success", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Support
+      ///
+      /// Locales: en, zh-Hans
+      static func settingsSupportSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.SupportSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.SupportSection.Title"
+        }
+
+        return NSLocalizedString("Settings.SupportSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: SwiftHub is open source Stars are welcome ★
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewItem3Subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item3.Subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item3.Subtitle"
+        }
+
+        return NSLocalizedString("WhatsNew.Item3.Subtitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Themes
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewItem2Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item2.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item2.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.Item2.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: These permissions are required %@
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalDetailLabelText(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Login.PersonalDetailLabel.Text", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalDetailLabel.Text"
+        }
+
+        let format = NSLocalizedString("Login.PersonalDetailLabel.Text", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Tool for counting lines of code from repositories
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewItem1Subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item1.Subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item1.Subtitle"
+        }
+
+        return NSLocalizedString("WhatsNew.Item1.Subtitle", bundle: bundle, comment: "")
+      }
 
       /// en translation: Trending
       ///
-      /// Key: WhatsNew.Item4.Title
+      /// Locales: en, zh-Hans
+      static func searchTrendingSectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.TrendingSection.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.TrendingSection.Title"
+        }
+
+        return NSLocalizedString("Search.TrendingSection.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Trending
       ///
       /// Locales: en, zh-Hans
-      var whatsNewItem4Title: RswiftResources.StringResource { .init(key: "WhatsNew.Item4.Title", tableName: "Localizabled", source: source, developmentValue: "Trending", comment: nil) }
+      static func searchTrendingSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.TrendingSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.TrendingSegment.Title"
+        }
+
+        return NSLocalizedString("Search.TrendingSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Trending
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewItem4Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item4.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item4.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.Item4.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Trending results for %@
+      ///
+      /// Locales: en, zh-Hans
+      static func searchTrendingSectionWithLanguageTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("Search.TrendingSectionWithLanguage.Title", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.TrendingSectionWithLanguage.Title"
+        }
+
+        let format = NSLocalizedString("Search.TrendingSectionWithLanguage.Title", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Unread
+      ///
+      /// Locales: en, zh-Hans
+      static func notificationsUnreadSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Notifications.UnreadSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Notifications.UnreadSegment.Title"
+        }
+
+        return NSLocalizedString("Notifications.UnreadSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Updated
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryUpdatedCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.UpdatedCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.UpdatedCell.Title"
+        }
+
+        return NSLocalizedString("Repository.UpdatedCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Updated
+      ///
+      /// Locales: en, zh-Hans
+      static func userUpdatedCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.UpdatedCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.UpdatedCell.Title"
+        }
+
+        return NSLocalizedString("User.UpdatedCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Users
+      ///
+      /// Locales: en, zh-Hans
+      static func searchUsersSegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.UsersSegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.UsersSegment.Title"
+        }
+
+        return NSLocalizedString("Search.UsersSegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: View on GitHub
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewDetailButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.DetailButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.DetailButton.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.DetailButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Watchers
+      ///
+      /// Locales: en, zh-Hans
+      static func repositoryWatchersButtonTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Repository.WatchersButton.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Repository.WatchersButton.Title"
+        }
+
+        return NSLocalizedString("Repository.WatchersButton.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Watchers
+      ///
+      /// Locales: en, zh-Hans
+      static func usersWatchersNavigationTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Users.WatchersNavigation.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Users.WatchersNavigation.Title"
+        }
+
+        return NSLocalizedString("Users.WatchersNavigation.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Watching
+      ///
+      /// Locales: en, zh-Hans
+      static func userWatchingCellTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("User.WatchingCell.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "User.WatchingCell.Title"
+        }
+
+        return NSLocalizedString("User.WatchingCell.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: We can't continue without your  permission to access your contacts.  Try Again?
+      ///
+      /// Locales: en, zh-Hans
+      static func contactsPermissionDeniedDescription(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Contacts.PermissionDenied.Description", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Contacts.PermissionDenied.Description"
+        }
+
+        return NSLocalizedString("Contacts.PermissionDenied.Description", bundle: bundle, comment: "")
+      }
+
+      /// en translation: We need your permission!
+      ///
+      /// Locales: en, zh-Hans
+      static func contactsPermissionDeniedTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Contacts.PermissionDenied.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Contacts.PermissionDenied.Title"
+        }
+
+        return NSLocalizedString("Contacts.PermissionDenied.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Weekly
+      ///
+      /// Locales: en, zh-Hans
+      static func searchWeeklySegmentTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Search.WeeklySegment.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Search.WeeklySegment.Title"
+        }
+
+        return NSLocalizedString("Search.WeeklySegment.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Welcome to SwiftHub
+      ///
+      /// Locales: en, zh-Hans
+      static func loginTitleLabelText(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.TitleLabel.Text", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.TitleLabel.Text"
+        }
+
+        return NSLocalizedString("Login.TitleLabel.Text", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Welcome to SwiftHub!
+      ///
+      /// Locales: en, zh-Hans
+      static func initialNoResults(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Initial.NoResults", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Initial.NoResults"
+        }
+
+        return NSLocalizedString("Initial.NoResults", bundle: bundle, comment: "")
+      }
 
       /// en translation: Whats New
       ///
-      /// Key: WhatsNew.Title
+      /// Locales: en, zh-Hans
+      static func settingsWhatsNewTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Settings.WhatsNew.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Settings.WhatsNew.Title"
+        }
+
+        return NSLocalizedString("Settings.WhatsNew.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Whats New
       ///
       /// Locales: en, zh-Hans
-      var whatsNewTitle: RswiftResources.StringResource { .init(key: "WhatsNew.Title", tableName: "Localizabled", source: source, developmentValue: "Whats New", comment: nil) }
-    }
-  }
-
-  /// This `_R.image` struct is generated, and contains static references to 127 images.
-  struct image {
-    let bundle: Foundation.Bundle
-
-    /// Image `egsong_video`.
-    var egsong_video: RswiftResources.ImageResource { .init(name: "egsong_video", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `empty_placeholde_happy_image`.
-    var empty_placeholde_happy_image: RswiftResources.ImageResource { .init(name: "empty_placeholde_happy_image", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `empty_placeholde_image`.
-    var empty_placeholde_image: RswiftResources.ImageResource { .init(name: "empty_placeholde_image", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_button_github`.
-    var icon_button_github: RswiftResources.ImageResource { .init(name: "icon_button_github", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_button_star`.
-    var icon_button_star: RswiftResources.ImageResource { .init(name: "icon_button_star", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_button_unstar`.
-    var icon_button_unstar: RswiftResources.ImageResource { .init(name: "icon_button_unstar", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_button_user_plus`.
-    var icon_button_user_plus: RswiftResources.ImageResource { .init(name: "icon_button_user_plus", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_button_user_x`.
-    var icon_button_user_x: RswiftResources.ImageResource { .init(name: "icon_button_user_x", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_acknowledgements`.
-    var icon_cell_acknowledgements: RswiftResources.ImageResource { .init(name: "icon_cell_acknowledgements", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_branch`.
-    var icon_cell_badge_branch: RswiftResources.ImageResource { .init(name: "icon_cell_badge_branch", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_collaborator`.
-    var icon_cell_badge_collaborator: RswiftResources.ImageResource { .init(name: "icon_cell_badge_collaborator", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_comment`.
-    var icon_cell_badge_comment: RswiftResources.ImageResource { .init(name: "icon_cell_badge_comment", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_commit`.
-    var icon_cell_badge_commit: RswiftResources.ImageResource { .init(name: "icon_cell_badge_commit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_fork`.
-    var icon_cell_badge_fork: RswiftResources.ImageResource { .init(name: "icon_cell_badge_fork", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_issue`.
-    var icon_cell_badge_issue: RswiftResources.ImageResource { .init(name: "icon_cell_badge_issue", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_pull_request`.
-    var icon_cell_badge_pull_request: RswiftResources.ImageResource { .init(name: "icon_cell_badge_pull_request", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_push`.
-    var icon_cell_badge_push: RswiftResources.ImageResource { .init(name: "icon_cell_badge_push", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_repository`.
-    var icon_cell_badge_repository: RswiftResources.ImageResource { .init(name: "icon_cell_badge_repository", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_search`.
-    var icon_cell_badge_search: RswiftResources.ImageResource { .init(name: "icon_cell_badge_search", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_star`.
-    var icon_cell_badge_star: RswiftResources.ImageResource { .init(name: "icon_cell_badge_star", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_tag`.
-    var icon_cell_badge_tag: RswiftResources.ImageResource { .init(name: "icon_cell_badge_tag", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_trending`.
-    var icon_cell_badge_trending: RswiftResources.ImageResource { .init(name: "icon_cell_badge_trending", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_badge_user`.
-    var icon_cell_badge_user: RswiftResources.ImageResource { .init(name: "icon_cell_badge_user", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_check`.
-    var icon_cell_check: RswiftResources.ImageResource { .init(name: "icon_cell_check", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_cloc`.
-    var icon_cell_cloc: RswiftResources.ImageResource { .init(name: "icon_cell_cloc", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_company`.
-    var icon_cell_company: RswiftResources.ImageResource { .init(name: "icon_cell_company", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_contact_no_image`.
-    var icon_cell_contact_no_image: RswiftResources.ImageResource { .init(name: "icon_cell_contact_no_image", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_created`.
-    var icon_cell_created: RswiftResources.ImageResource { .init(name: "icon_cell_created", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_dir`.
-    var icon_cell_dir: RswiftResources.ImageResource { .init(name: "icon_cell_dir", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_disclosure`.
-    var icon_cell_disclosure: RswiftResources.ImageResource { .init(name: "icon_cell_disclosure", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_events`.
-    var icon_cell_events: RswiftResources.ImageResource { .init(name: "icon_cell_events", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_file`.
-    var icon_cell_file: RswiftResources.ImageResource { .init(name: "icon_cell_file", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_frown`.
-    var icon_cell_frown: RswiftResources.ImageResource { .init(name: "icon_cell_frown", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_branch`.
-    var icon_cell_git_branch: RswiftResources.ImageResource { .init(name: "icon_cell_git_branch", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_commit`.
-    var icon_cell_git_commit: RswiftResources.ImageResource { .init(name: "icon_cell_git_commit", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_fork`.
-    var icon_cell_git_fork: RswiftResources.ImageResource { .init(name: "icon_cell_git_fork", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_language`.
-    var icon_cell_git_language: RswiftResources.ImageResource { .init(name: "icon_cell_git_language", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_merge`.
-    var icon_cell_git_merge: RswiftResources.ImageResource { .init(name: "icon_cell_git_merge", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_git_pull_request`.
-    var icon_cell_git_pull_request: RswiftResources.ImageResource { .init(name: "icon_cell_git_pull_request", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_issues`.
-    var icon_cell_issues: RswiftResources.ImageResource { .init(name: "icon_cell_issues", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_language`.
-    var icon_cell_language: RswiftResources.ImageResource { .init(name: "icon_cell_language", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_link`.
-    var icon_cell_link: RswiftResources.ImageResource { .init(name: "icon_cell_link", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_logout`.
-    var icon_cell_logout: RswiftResources.ImageResource { .init(name: "icon_cell_logout", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_night_mode`.
-    var icon_cell_night_mode: RswiftResources.ImageResource { .init(name: "icon_cell_night_mode", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_profile_summary`.
-    var icon_cell_profile_summary: RswiftResources.ImageResource { .init(name: "icon_cell_profile_summary", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_readme`.
-    var icon_cell_readme: RswiftResources.ImageResource { .init(name: "icon_cell_readme", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_releases`.
-    var icon_cell_releases: RswiftResources.ImageResource { .init(name: "icon_cell_releases", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_remove`.
-    var icon_cell_remove: RswiftResources.ImageResource { .init(name: "icon_cell_remove", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_size`.
-    var icon_cell_size: RswiftResources.ImageResource { .init(name: "icon_cell_size", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_smile`.
-    var icon_cell_smile: RswiftResources.ImageResource { .init(name: "icon_cell_smile", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_source`.
-    var icon_cell_source: RswiftResources.ImageResource { .init(name: "icon_cell_source", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_star`.
-    var icon_cell_star: RswiftResources.ImageResource { .init(name: "icon_cell_star", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_stars_history`.
-    var icon_cell_stars_history: RswiftResources.ImageResource { .init(name: "icon_cell_stars_history", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_submodule`.
-    var icon_cell_submodule: RswiftResources.ImageResource { .init(name: "icon_cell_submodule", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_theme`.
-    var icon_cell_theme: RswiftResources.ImageResource { .init(name: "icon_cell_theme", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_updated`.
-    var icon_cell_updated: RswiftResources.ImageResource { .init(name: "icon_cell_updated", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_cell_whats_new`.
-    var icon_cell_whats_new: RswiftResources.ImageResource { .init(name: "icon_cell_whats_new", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_back`.
-    var icon_navigation_back: RswiftResources.ImageResource { .init(name: "icon_navigation_back", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_close`.
-    var icon_navigation_close: RswiftResources.ImageResource { .init(name: "icon_navigation_close", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_forward`.
-    var icon_navigation_forward: RswiftResources.ImageResource { .init(name: "icon_navigation_forward", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_github`.
-    var icon_navigation_github: RswiftResources.ImageResource { .init(name: "icon_navigation_github", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_history`.
-    var icon_navigation_history: RswiftResources.ImageResource { .init(name: "icon_navigation_history", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_language`.
-    var icon_navigation_language: RswiftResources.ImageResource { .init(name: "icon_navigation_language", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_refresh`.
-    var icon_navigation_refresh: RswiftResources.ImageResource { .init(name: "icon_navigation_refresh", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_stop`.
-    var icon_navigation_stop: RswiftResources.ImageResource { .init(name: "icon_navigation_stop", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_theme`.
-    var icon_navigation_theme: RswiftResources.ImageResource { .init(name: "icon_navigation_theme", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_navigation_web`.
-    var icon_navigation_web: RswiftResources.ImageResource { .init(name: "icon_navigation_web", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_activity`.
-    var icon_tabbar_activity: RswiftResources.ImageResource { .init(name: "icon_tabbar_activity", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_login`.
-    var icon_tabbar_login: RswiftResources.ImageResource { .init(name: "icon_tabbar_login", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_news`.
-    var icon_tabbar_news: RswiftResources.ImageResource { .init(name: "icon_tabbar_news", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_profile`.
-    var icon_tabbar_profile: RswiftResources.ImageResource { .init(name: "icon_tabbar_profile", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_search`.
-    var icon_tabbar_search: RswiftResources.ImageResource { .init(name: "icon_tabbar_search", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_tabbar_settings`.
-    var icon_tabbar_settings: RswiftResources.ImageResource { .init(name: "icon_tabbar_settings", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_toast_error`.
-    var icon_toast_error: RswiftResources.ImageResource { .init(name: "icon_toast_error", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_toast_success`.
-    var icon_toast_success: RswiftResources.ImageResource { .init(name: "icon_toast_success", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_toast_warning`.
-    var icon_toast_warning: RswiftResources.ImageResource { .init(name: "icon_toast_warning", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_whatsnew_cloc`.
-    var icon_whatsnew_cloc: RswiftResources.ImageResource { .init(name: "icon_whatsnew_cloc", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_whatsnew_github`.
-    var icon_whatsnew_github: RswiftResources.ImageResource { .init(name: "icon_whatsnew_github", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_whatsnew_theme`.
-    var icon_whatsnew_theme: RswiftResources.ImageResource { .init(name: "icon_whatsnew_theme", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon_whatsnew_trending`.
-    var icon_whatsnew_trending: RswiftResources.ImageResource { .init(name: "icon_whatsnew_trending", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `image_no_result`.
-    var image_no_result: RswiftResources.ImageResource { .init(name: "image_no_result", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `launch_image`.
-    var launch_image: RswiftResources.ImageResource { .init(name: "launch_image", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `loading.gif`.
-    var loadingGif: RswiftResources.ImageResource { .init(name: "loading.gif", path: [], bundle: bundle, locale: LocaleReference.none, onDemandResourceTags: nil) }
-
-    /// Image `new`.
-    var new: RswiftResources.ImageResource { .init(name: "new", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `option`.
-    var option: RswiftResources.ImageResource { .init(name: "option", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `sign_bg`.
-    var sign_bg: RswiftResources.ImageResource { .init(name: "sign_bg", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_addPhoto`.
-    var zl_addPhoto: RswiftResources.ImageResource { .init(name: "zl_addPhoto", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_albumSelect`.
-    var zl_albumSelect: RswiftResources.ImageResource { .init(name: "zl_albumSelect", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_arrow_down`.
-    var zl_arrow_down: RswiftResources.ImageResource { .init(name: "zl_arrow_down", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_ashbin`.
-    var zl_ashbin: RswiftResources.ImageResource { .init(name: "zl_ashbin", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_ashbin_open`.
-    var zl_ashbin_open: RswiftResources.ImageResource { .init(name: "zl_ashbin_open", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_btn_circle`.
-    var zl_btn_circle: RswiftResources.ImageResource { .init(name: "zl_btn_circle", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_btn_original_circle`.
-    var zl_btn_original_circle: RswiftResources.ImageResource { .init(name: "zl_btn_original_circle", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_btn_original_selected`.
-    var zl_btn_original_selected: RswiftResources.ImageResource { .init(name: "zl_btn_original_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_btn_selected`.
-    var zl_btn_selected: RswiftResources.ImageResource { .init(name: "zl_btn_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_btn_unselected`.
-    var zl_btn_unselected: RswiftResources.ImageResource { .init(name: "zl_btn_unselected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_clip`.
-    var zl_clip: RswiftResources.ImageResource { .init(name: "zl_clip", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_close`.
-    var zl_close: RswiftResources.ImageResource { .init(name: "zl_close", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_defaultphoto`.
-    var zl_defaultphoto: RswiftResources.ImageResource { .init(name: "zl_defaultphoto", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_downArrow`.
-    var zl_downArrow: RswiftResources.ImageResource { .init(name: "zl_downArrow", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_drawLine`.
-    var zl_drawLine: RswiftResources.ImageResource { .init(name: "zl_drawLine", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_drawLine_selected`.
-    var zl_drawLine_selected: RswiftResources.ImageResource { .init(name: "zl_drawLine_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_editImage_tag`.
-    var zl_editImage_tag: RswiftResources.ImageResource { .init(name: "zl_editImage_tag", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_filter`.
-    var zl_filter: RswiftResources.ImageResource { .init(name: "zl_filter", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_filter_selected`.
-    var zl_filter_selected: RswiftResources.ImageResource { .init(name: "zl_filter_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_focus`.
-    var zl_focus: RswiftResources.ImageResource { .init(name: "zl_focus", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_ic_left`.
-    var zl_ic_left: RswiftResources.ImageResource { .init(name: "zl_ic_left", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_ic_right`.
-    var zl_ic_right: RswiftResources.ImageResource { .init(name: "zl_ic_right", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_imageSticker`.
-    var zl_imageSticker: RswiftResources.ImageResource { .init(name: "zl_imageSticker", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_livePhoto`.
-    var zl_livePhoto: RswiftResources.ImageResource { .init(name: "zl_livePhoto", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_mosaic`.
-    var zl_mosaic: RswiftResources.ImageResource { .init(name: "zl_mosaic", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_mosaic_selected`.
-    var zl_mosaic_selected: RswiftResources.ImageResource { .init(name: "zl_mosaic_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_navBack`.
-    var zl_navBack: RswiftResources.ImageResource { .init(name: "zl_navBack", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_pauseButtonWhite`.
-    var zl_pauseButtonWhite: RswiftResources.ImageResource { .init(name: "zl_pauseButtonWhite", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_playButtonWhite`.
-    var zl_playButtonWhite: RswiftResources.ImageResource { .init(name: "zl_playButtonWhite", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_playVideo`.
-    var zl_playVideo: RswiftResources.ImageResource { .init(name: "zl_playVideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_retake`.
-    var zl_retake: RswiftResources.ImageResource { .init(name: "zl_retake", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_revoke`.
-    var zl_revoke: RswiftResources.ImageResource { .init(name: "zl_revoke", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_revoke_disable`.
-    var zl_revoke_disable: RswiftResources.ImageResource { .init(name: "zl_revoke_disable", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_right`.
-    var zl_right: RswiftResources.ImageResource { .init(name: "zl_right", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_rotateimage`.
-    var zl_rotateimage: RswiftResources.ImageResource { .init(name: "zl_rotateimage", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_shadow`.
-    var zl_shadow: RswiftResources.ImageResource { .init(name: "zl_shadow", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_takePhoto`.
-    var zl_takePhoto: RswiftResources.ImageResource { .init(name: "zl_takePhoto", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_textSticker`.
-    var zl_textSticker: RswiftResources.ImageResource { .init(name: "zl_textSticker", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_toggle_camera`.
-    var zl_toggle_camera: RswiftResources.ImageResource { .init(name: "zl_toggle_camera", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_video`.
-    var zl_video: RswiftResources.ImageResource { .init(name: "zl_video", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `zl_videoLoadFailed`.
-    var zl_videoLoadFailed: RswiftResources.ImageResource { .init(name: "zl_videoLoadFailed", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-  }
-
-  /// This `_R.entitlements` struct is generated, and contains static references to 1 properties.
-  struct entitlements {
-    let apsEnvironment: String = "development"
-    let comAppleSecurityApplicationGroups = comAppleSecurityApplicationGroups()
-    struct comAppleSecurityApplicationGroups {
-      let groupComLxBl: String = "group.com.lx.bl"
-    }
-  }
-
-  /// This `_R.file` struct is generated, and contains static references to 48 resource files.
-  struct file {
-    let bundle: Foundation.Bundle
-
-    /// Resource file `EmptyArray.json`.
-    var emptyArrayJson: RswiftResources.FileResource { .init(name: "EmptyArray", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `EmptyObject.json`.
-    var emptyObjectJson: RswiftResources.FileResource { .init(name: "EmptyObject", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Events.json`.
-    var eventsJson: RswiftResources.FileResource { .init(name: "Events", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `EventsOrganization.json`.
-    var eventsOrganizationJson: RswiftResources.FileResource { .init(name: "EventsOrganization", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `EventsRepository.json`.
-    var eventsRepositoryJson: RswiftResources.FileResource { .init(name: "EventsRepository", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `EventsUserPerformed.json`.
-    var eventsUserPerformedJson: RswiftResources.FileResource { .init(name: "EventsUserPerformed", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `EventsUserReceived.json`.
-    var eventsUserReceivedJson: RswiftResources.FileResource { .init(name: "EventsUserReceived", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Languages.json`.
-    var languagesJson: RswiftResources.FileResource { .init(name: "Languages", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Notifications.json`.
-    var notificationsJson: RswiftResources.FileResource { .init(name: "Notifications", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `NotificationsRepository.json`.
-    var notificationsRepositoryJson: RswiftResources.FileResource { .init(name: "NotificationsRepository", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Organization.json`.
-    var organizationJson: RswiftResources.FileResource { .init(name: "Organization", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Profile.json`.
-    var profileJson: RswiftResources.FileResource { .init(name: "Profile", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Repository.graphql`.
-    var repositoryGraphql: RswiftResources.FileResource { .init(name: "Repository", pathExtension: "graphql", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Repository.json`.
-    var repositoryJson: RswiftResources.FileResource { .init(name: "Repository", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryBranch.json`.
-    var repositoryBranchJson: RswiftResources.FileResource { .init(name: "RepositoryBranch", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryBranches.json`.
-    var repositoryBranchesJson: RswiftResources.FileResource { .init(name: "RepositoryBranches", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryCommit.json`.
-    var repositoryCommitJson: RswiftResources.FileResource { .init(name: "RepositoryCommit", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryCommits.json`.
-    var repositoryCommitsJson: RswiftResources.FileResource { .init(name: "RepositoryCommits", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryContents.json`.
-    var repositoryContentsJson: RswiftResources.FileResource { .init(name: "RepositoryContents", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryContributors.json`.
-    var repositoryContributorsJson: RswiftResources.FileResource { .init(name: "RepositoryContributors", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryForks.json`.
-    var repositoryForksJson: RswiftResources.FileResource { .init(name: "RepositoryForks", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryIssue.json`.
-    var repositoryIssueJson: RswiftResources.FileResource { .init(name: "RepositoryIssue", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryIssueComments.json`.
-    var repositoryIssueCommentsJson: RswiftResources.FileResource { .init(name: "RepositoryIssueComments", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryIssues.json`.
-    var repositoryIssuesJson: RswiftResources.FileResource { .init(name: "RepositoryIssues", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryNumberOfLines.json`.
-    var repositoryNumberOfLinesJson: RswiftResources.FileResource { .init(name: "RepositoryNumberOfLines", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryPullRequest.json`.
-    var repositoryPullRequestJson: RswiftResources.FileResource { .init(name: "RepositoryPullRequest", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryPullRequestComments.json`.
-    var repositoryPullRequestCommentsJson: RswiftResources.FileResource { .init(name: "RepositoryPullRequestComments", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryPullRequests.json`.
-    var repositoryPullRequestsJson: RswiftResources.FileResource { .init(name: "RepositoryPullRequests", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryReadme.json`.
-    var repositoryReadmeJson: RswiftResources.FileResource { .init(name: "RepositoryReadme", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryRelease.json`.
-    var repositoryReleaseJson: RswiftResources.FileResource { .init(name: "RepositoryRelease", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryReleases.json`.
-    var repositoryReleasesJson: RswiftResources.FileResource { .init(name: "RepositoryReleases", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositorySearch.json`.
-    var repositorySearchJson: RswiftResources.FileResource { .init(name: "RepositorySearch", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryStargazers.json`.
-    var repositoryStargazersJson: RswiftResources.FileResource { .init(name: "RepositoryStargazers", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryTrendings.json`.
-    var repositoryTrendingsJson: RswiftResources.FileResource { .init(name: "RepositoryTrendings", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `RepositoryWatchers.json`.
-    var repositoryWatchersJson: RswiftResources.FileResource { .init(name: "RepositoryWatchers", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `Search.graphql`.
-    var searchGraphql: RswiftResources.FileResource { .init(name: "Search", pathExtension: "graphql", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `User.graphql`.
-    var userGraphql: RswiftResources.FileResource { .init(name: "User", pathExtension: "graphql", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `User.json`.
-    var userJson: RswiftResources.FileResource { .init(name: "User", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserFollowers.json`.
-    var userFollowersJson: RswiftResources.FileResource { .init(name: "UserFollowers", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserFollowing.json`.
-    var userFollowingJson: RswiftResources.FileResource { .init(name: "UserFollowing", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserRepositories.json`.
-    var userRepositoriesJson: RswiftResources.FileResource { .init(name: "UserRepositories", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserRepositoriesStarred.json`.
-    var userRepositoriesStarredJson: RswiftResources.FileResource { .init(name: "UserRepositoriesStarred", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserRepositoriesWatching.json`.
-    var userRepositoriesWatchingJson: RswiftResources.FileResource { .init(name: "UserRepositoriesWatching", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserSearch.json`.
-    var userSearchJson: RswiftResources.FileResource { .init(name: "UserSearch", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `UserTrendings.json`.
-    var userTrendingsJson: RswiftResources.FileResource { .init(name: "UserTrendings", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `loading.gif`.
-    var loadingGif: RswiftResources.FileResource { .init(name: "loading", pathExtension: "gif", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `photodata.bin`.
-    var photodataBin: RswiftResources.FileResource { .init(name: "photodata", pathExtension: "bin", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `schema.json`.
-    var schemaJson: RswiftResources.FileResource { .init(name: "schema", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
-  }
-
-  /// This `_R.nib` struct is generated, and contains static references to 4 nibs.
-  struct nib {
-    let bundle: Foundation.Bundle
-
-    /// Nib `LaunchScreen`.
-    var launchScreen: RswiftResources.NibReference<UIKit.UIView> { .init(name: "LaunchScreen", bundle: bundle) }
-
-    /// Nib `LXMessageCell`.
-    var lxMessageCell: RswiftResources.NibReference<LXMessageCell> { .init(name: "LXMessageCell", bundle: bundle) }
-
-    /// Nib `LXMessageTestCell`.
-    var lxMessageTestCell: RswiftResources.NibReference<LXMessageTestCell> { .init(name: "LXMessageTestCell", bundle: bundle) }
-
-    /// Nib `LXStackTestVC`.
-    var lxStackTestVC: RswiftResources.NibReference<UIKit.UIView> { .init(name: "LXStackTestVC", bundle: bundle) }
-
-    func validate() throws {
-      if UIKit.UIImage(named: "11", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named '11' is used in nib 'LXMessageCell', but couldn't be loaded.") }
-      if UIKit.UIImage(named: "option", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'option' is used in nib 'LXMessageCell', but couldn't be loaded.") }
-    }
-  }
-
-  /// This `_R.storyboard` struct is generated, and contains static references to 1 storyboards.
-  struct storyboard {
-    let bundle: Foundation.Bundle
-    var main: main { .init(bundle: bundle) }
-
-    func main(bundle: Foundation.Bundle) -> main {
-      .init(bundle: bundle)
-    }
-    func validate() throws {
-      try self.main.validate()
+      static func whatsNewTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Title"
+        }
+
+        return NSLocalizedString("WhatsNew.Title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Yes
+      ///
+      /// Locales: en, zh-Hans
+      static func commonYes(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Common.Yes", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Common.Yes"
+        }
+
+        return NSLocalizedString("Common.Yes", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You can apply different themes with Light and Dark modes
+      ///
+      /// Locales: en, zh-Hans
+      static func whatsNewItem2Subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("WhatsNew.Item2.Subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "WhatsNew.Item2.Subtitle"
+        }
+
+        return NSLocalizedString("WhatsNew.Item2.Subtitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: login
+      ///
+      /// Locales: en, zh-Hans
+      static func loginLoginTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.LoginTextField.Placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.LoginTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.LoginTextField.Placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: password
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPasswordTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PasswordTextField.Placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PasswordTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.PasswordTextField.Placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: personal access token
+      ///
+      /// Locales: en, zh-Hans
+      static func loginPersonalTokenTextFieldPlaceholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Login.PersonalTokenTextField.Placeholder"
+        }
+
+        return NSLocalizedString("Login.PersonalTokenTextField.Placeholder", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
     }
 
+    fileprivate init() {}
+  }
 
-    /// Storyboard `Main`.
-    struct main: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {
+  fileprivate struct intern: Rswift.Validatable {
+    fileprivate static func validate() throws {
+      try _R.validate()
+    }
+
+    fileprivate init() {}
+  }
+
+  fileprivate class Class {}
+
+  fileprivate init() {}
+}
+
+struct _R: Rswift.Validatable {
+  static func validate() throws {
+    #if os(iOS) || os(tvOS)
+    try nib.validate()
+    #endif
+    #if os(iOS) || os(tvOS)
+    try storyboard.validate()
+    #endif
+  }
+
+  #if os(iOS) || os(tvOS)
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _LXMessageCell.validate()
+    }
+
+    struct _LXMessageCell: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "LXMessageCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LXMessageCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LXMessageCell
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "11", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '11' is used in nib 'LXMessageCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "option", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'option' is used in nib 'LXMessageCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _LXMessageTestCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "LXMessageTestCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> LXMessageTestCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? LXMessageTestCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _LXStackTestVC: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "LXStackTestVC"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _LaunchScreen: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "LaunchScreen"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+  #endif
+
+  #if os(iOS) || os(tvOS)
+  struct storyboard: Rswift.Validatable {
+    static func validate() throws {
+      #if os(iOS) || os(tvOS)
+      try main.validate()
+      #endif
+    }
+
+    #if os(iOS) || os(tvOS)
+    struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
       typealias InitialController = UIKit.UINavigationController
 
-      let bundle: Foundation.Bundle
-
+      let bundle = R.hostingBundle
       let name = "Main"
-      func validate() throws {
 
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
+
+      fileprivate init() {}
     }
+    #endif
+
+    fileprivate init() {}
   }
+  #endif
+
+  fileprivate init() {}
 }

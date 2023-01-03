@@ -18,7 +18,7 @@ import SVProgressHUD
 struct LXEmptyDataSet: Equatable {
     var identifier = "233"
     var btnTap = PublishSubject<Void>()
-    var title = R.string.localizabled.commonNoResults()
+    var title = R.string.localizable.commonNoResults()
     var description = ""
     var img = R.image.image_no_result()
     var imgTintColor = BehaviorRelay<UIColor?>(value: nil)
@@ -42,7 +42,7 @@ open class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
     public let error = PublishSubject<ApiError>()
 
     public let emptyDataSetButtonTap = PublishSubject<Void>()
-    public var emptyDataSetTitle = R.string.localizabled.commonNoResults()
+    public var emptyDataSetTitle = R.string.localizable.commonNoResults()
     public var emptyDataSetDescription = ""
     public var emptyDataSetImage = R.image.image_no_result()
     public var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
@@ -88,7 +88,7 @@ open class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
         viewModel?.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
 
         languageChanged.subscribe(onNext: { [weak self] () in
-            self?.emptyDataSetTitle = R.string.localizabled.commonNoResults()
+            self?.emptyDataSetTitle = R.string.localizable.commonNoResults()
         }).disposed(by: rx.disposeBag)
 
         isLoading.subscribe(onNext: { isLoading in
