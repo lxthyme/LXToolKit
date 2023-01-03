@@ -110,6 +110,8 @@
             @"LXSubjectTestVC",
             @"LXBannerTestVC",
             @"DJprepareForReuseSignalTestVC",
+            @"LXShadowVC",
+            @"LXStackViewTestVC",
         ];
     }
     return _dataList;

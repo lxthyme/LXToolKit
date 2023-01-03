@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BE10C436295AC31700798607 /* LXShadowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C435295AC31700798607 /* LXShadowVC.m */; };
 		BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */; };
 		BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CF2887B3FB00D622E2 /* UIView+border.m */; };
 		BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */; };
@@ -46,6 +47,8 @@
 		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
 		BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234AB285EDDC400ABB71B /* LXMyTableView.m */; };
 		BE959A7628A621D8002930C9 /* LXBannerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE959A7528A621D8002930C9 /* LXBannerTestVC.m */; };
+		BE96DA0D295BDA640029268F /* LXStackViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */; };
+		BE96DA10295BDB280029268F /* LXStackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE96DA0F295BDB280029268F /* LXStackViewCell.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
 		BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */; };
@@ -94,6 +97,8 @@
 		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BE10C434295AC31700798607 /* LXShadowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXShadowVC.h; sourceTree = "<group>"; };
+		BE10C435295AC31700798607 /* LXShadowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXShadowVC.m; sourceTree = "<group>"; };
 		BE6777CB2887B3E100D622E2 /* LXTestBorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestBorderVC.h; sourceTree = "<group>"; };
 		BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestBorderVC.m; sourceTree = "<group>"; };
 		BE6777CE2887B3FB00D622E2 /* UIView+border.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+border.h"; sourceTree = "<group>"; };
@@ -140,6 +145,10 @@
 		BE9234AB285EDDC400ABB71B /* LXMyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyTableView.m; sourceTree = "<group>"; };
 		BE959A7428A621D8002930C9 /* LXBannerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBannerTestVC.h; sourceTree = "<group>"; };
 		BE959A7528A621D8002930C9 /* LXBannerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBannerTestVC.m; sourceTree = "<group>"; };
+		BE96DA0B295BDA640029268F /* LXStackViewTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStackViewTestVC.h; sourceTree = "<group>"; };
+		BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStackViewTestVC.m; sourceTree = "<group>"; };
+		BE96DA0E295BDB280029268F /* LXStackViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStackViewCell.h; sourceTree = "<group>"; };
+		BE96DA0F295BDB280029268F /* LXStackViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStackViewCell.m; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
@@ -285,6 +294,19 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BE10C431295AC2F300798607 /* 12-26 */ = {
+			isa = PBXGroup;
+			children = (
+				BE10C434295AC31700798607 /* LXShadowVC.h */,
+				BE10C435295AC31700798607 /* LXShadowVC.m */,
+				BE96DA0B295BDA640029268F /* LXStackViewTestVC.h */,
+				BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */,
+				BE96DA0E295BDB280029268F /* LXStackViewCell.h */,
+				BE96DA0F295BDB280029268F /* LXStackViewCell.m */,
+			);
+			path = "12-26";
+			sourceTree = "<group>";
+		};
 		BE6777CA2887B3D200D622E2 /* 07-20 */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +424,7 @@
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE10C431295AC2F300798607 /* 12-26 */,
 				BEEDDAE62954513900835633 /* 12-22 */,
 				BED29D5B289CFA3A001A66CE /* 08-28 */,
 				BE6777CA2887B3D200D622E2 /* 07-20 */,
@@ -677,10 +700,12 @@
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
 				BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */,
 				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
+				BE10C436295AC31700798607 /* LXShadowVC.m in Sources */,
 				BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */,
 				BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */,
 				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
 				BEEDDAED295451F100835633 /* LXprepareForReuseSignalCell.m in Sources */,
+				BE96DA0D295BDA640029268F /* LXStackViewTestVC.m in Sources */,
 				BEEDDAE92954515200835633 /* DJprepareForReuseSignalTestVC.m in Sources */,
 				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
 				BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */,
@@ -694,6 +719,7 @@
 				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
 				BE959A7628A621D8002930C9 /* LXBannerTestVC.m in Sources */,
 				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
+				BE96DA10295BDB280029268F /* LXStackViewCell.m in Sources */,
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
 				BEDD8EDC289D75930088778F /* CTAPIBaseManager+Rac.m in Sources */,
 				BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */,
