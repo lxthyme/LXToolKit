@@ -44,6 +44,7 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
+    [self testArray];
 }
 
 #pragma mark -
@@ -54,6 +55,10 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)testArray {
+    NSArray *a = @[@1, @2, @3, @4, @5, @6, @7, @8, @9, @10];
+    NSLog(@"a: %@", a);
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
