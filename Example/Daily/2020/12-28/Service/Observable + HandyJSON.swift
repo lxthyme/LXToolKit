@@ -23,7 +23,7 @@ extension ObservableType where Element == Any {
             .map { response -> String in
                 guard let res = response as? String,
                       res.count > 0 else {
-                          throw ApiError.serializeError(response: nil, error: nil)
+                    throw ApiError.serverError(response: ErrorResponse())
                 }
                 return res
             }
@@ -32,7 +32,7 @@ extension ObservableType where Element == Any {
         return filterNetworkErrorAndMapJSON()
             .map { response -> T in
                 guard let model = T.deserialize(from: response, designatedPath: path) else {
-                    throw ApiError.serializeError(response: nil, error: nil)
+                    throw ApiError.serverError(response: ErrorResponse())
                 }
                 return model
             }

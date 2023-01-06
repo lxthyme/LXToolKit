@@ -39,7 +39,7 @@ open class LXBaseMVVMVC: LXBaseVC, LXNavigatable {
     public var navigator: LXNavigator!
 
     public let isLoading = BehaviorRelay(value: false)
-    public let error = PublishSubject<ApiError>()
+    let error = PublishSubject<ApiError>()
 
     public let emptyDataSetButtonTap = PublishSubject<Void>()
     public var emptyDataSetTitle = R.string.localizable.commonNoResults()

@@ -60,7 +60,7 @@ private extension LXBaseVM {
                 let errorResponse = error as? MoyaError
                 if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
                    let _ = Mapper<ErrorResponse>().map(JSON: body) {
-                    return ApiError.serverError(response: errorResponse?.response, error: error)
+                    return ApiError.serverError(response: ErrorResponse())
                 }
             } catch {
                 print(error)

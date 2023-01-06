@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.bounds = UIScreen.main.bounds
         window?.backgroundColor = UIColor.white
 
-        let vc = ViewController()
+        let vc = LXViewController()
         let nav = UINavigationController(rootViewController: vc)
         window?.rootViewController = nav
 

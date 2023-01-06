@@ -40,7 +40,7 @@ extension LXSlideImageView {
         }
     }
     @discardableResult
-    func presentFullScreenControllerForIos13(from vc: UIViewController) -> FullScreenSlideshowViewController {
+    override func presentFullScreenControllerForIos13(from vc: UIViewController) -> FullScreenSlideshowViewController {
         let fullscreen = FullScreenSlideshowViewController()
         fullscreen.pageSelected = {[weak self] page in
             self?.setCurrentPage(page, animated: false)
