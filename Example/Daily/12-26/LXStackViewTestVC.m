@@ -63,13 +63,19 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LXStackViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LXStackViewCell" forIndexPath:indexPath];
-    cell.labTitle.text = [NSString stringWithFormat:@"Row: %ld", indexPath.row];
+    cell.labTitle.text = self.dataList[indexPath.row];
     return cell;
 }
 #pragma mark -
 #pragma mark - ✈️UICollectionViewDelegateFlowLayout
 
 #pragma mark - ✈️UICollectionViewDelegate
+// - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//     // if(indexPath.row <= 5) {
+//     //     return CGSizeMake(300, 50.f);
+//     // }
+//     return UICollectionViewFlowLayoutAutomaticSize;
+// }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     NSLog(@"--->didSelectItemAtIndexPath: %ld", indexPath.row);
@@ -100,8 +106,22 @@
 - (NSArray<NSString *> *)dataList {
     if(!_dataList){
         NSMutableArray *arr = [NSMutableArray array];
+        NSArray *templ = @[
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        @"马来西亚进口 福多巧克力瑞士卷 108g",
+        ];
         for (NSInteger i = 0; i < 20; i++) {
-            [arr addObject:[NSString stringWithFormat:@"row: %ld", i]];
+            [arr addObject:[NSString stringWithFormat:@"row: %ld: %@", i,
+                            [[templ subarrayWithRange:NSMakeRange(0, i % templ.count)] componentsJoinedByString:@" | "]
+                           ]];
         }
         _dataList = [arr copy];
     }
@@ -112,8 +132,8 @@
         CGRect collectFrame = CGRectZero;
         CGSize itemSize = CGSizeMake(414, 120);
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.estimatedItemSize = CGSizeZero;
-        flowLayout.itemSize = itemSize;
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+        flowLayout.itemSize = UICollectionViewFlowLayoutAutomaticSize;
         flowLayout.minimumLineSpacing = 0.f;
         flowLayout.minimumInteritemSpacing = 0.f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;

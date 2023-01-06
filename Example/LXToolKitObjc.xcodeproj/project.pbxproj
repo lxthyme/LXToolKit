@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		BE10C436295AC31700798607 /* LXShadowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C435295AC31700798607 /* LXShadowVC.m */; };
+		BE17640C2966AC7E0031C309 /* DJZitiRuleTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */; };
 		BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */; };
 		BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CF2887B3FB00D622E2 /* UIView+border.m */; };
 		BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */; };
@@ -99,6 +100,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE10C434295AC31700798607 /* LXShadowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXShadowVC.h; sourceTree = "<group>"; };
 		BE10C435295AC31700798607 /* LXShadowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXShadowVC.m; sourceTree = "<group>"; };
+		BE17640A2966AC7E0031C309 /* DJZitiRuleTipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJZitiRuleTipModel.h; sourceTree = "<group>"; };
+		BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJZitiRuleTipModel.m; sourceTree = "<group>"; };
 		BE6777CB2887B3E100D622E2 /* LXTestBorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestBorderVC.h; sourceTree = "<group>"; };
 		BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestBorderVC.m; sourceTree = "<group>"; };
 		BE6777CE2887B3FB00D622E2 /* UIView+border.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+border.h"; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */,
 				BE96DA0E295BDB280029268F /* LXStackViewCell.h */,
 				BE96DA0F295BDB280029268F /* LXStackViewCell.m */,
+				BE17640A2966AC7E0031C309 /* DJZitiRuleTipModel.h */,
+				BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */,
 			);
 			path = "12-26";
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
 				BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */,
 				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
+				BE17640C2966AC7E0031C309 /* DJZitiRuleTipModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */,
 				BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */,

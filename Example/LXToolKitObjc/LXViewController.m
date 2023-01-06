@@ -82,7 +82,7 @@
 #pragma mark Lazy Property
 - (NSArray *)dataList {
     if(!_dataList){
-        _dataList = @[
+        NSArray *list = @[
             @"LXLoginVC",
             @"LX0527VC",
             @"LXCollectionVC",
@@ -113,6 +113,7 @@
             @"LXShadowVC",
             @"LXStackViewTestVC",
         ];
+        _dataList = [[list reverseObjectEnumerator] allObjects];
     }
     return _dataList;
 }

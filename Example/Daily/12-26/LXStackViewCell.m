@@ -42,7 +42,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor RandomColor];
 
     [self.contentView addSubview:self.self.wrapperStackView];
     [self.contentView addSubview:self.labTitle];
@@ -55,10 +55,12 @@
     // MASAttachKeys(<#...#>)
     [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(@0.f);
+        make.width.equalTo(@(SCREEN_WIDTH));
+        make.height.equalTo(@20.f);
     }];
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.wrapperStackView.mas_bottom);
-        make.left.bottom.equalTo(@0.f);
+        make.left.right.bottom.equalTo(@0.f);
     }];
 }
 
@@ -80,7 +82,7 @@
         label.text = @"";
         label.font = [UIFont systemFontOfSize:20];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [UIColor cyanColor];
+        // label.backgroundColor = [UIColor cyanColor];
         label.numberOfLines = 0;
         label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
