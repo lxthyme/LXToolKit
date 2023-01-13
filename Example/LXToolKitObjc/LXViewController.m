@@ -112,6 +112,7 @@
             @"DJprepareForReuseSignalTestVC",
             @"LXShadowVC",
             @"LXStackViewTestVC",
+            @"LXURLCompVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }
