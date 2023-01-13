@@ -37,8 +37,8 @@
     CGContextAddLineToPoint(context,_endPoint.x, _endPoint.y);
     CGContextClosePath(context);//路径结束标志，不写默认封闭
     CGContextSetLineWidth(context, 0);
-    [_color setFill]; //设置填充色
-    [_color setStroke];//边框也设置为_color，否则为默认的黑色
+    // [_color setFill]; //设置填充色
+    // [_color setStroke];//边框也设置为_color，否则为默认的黑色
     CGContextDrawPath(context, kCGPathFillStroke);//绘制路径path
 }
 #pragma mark -
