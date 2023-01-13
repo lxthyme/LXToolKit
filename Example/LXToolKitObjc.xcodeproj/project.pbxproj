@@ -23,45 +23,152 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		BE10C436295AC31700798607 /* LXShadowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE10C435295AC31700798607 /* LXShadowVC.m */; };
-		BE17640C2966AC7E0031C309 /* DJZitiRuleTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */; };
-		BE253DC729681A9500FE3574 /* LXArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE253DC629681A9500FE3574 /* LXArrowView.m */; };
-		BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */; };
-		BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6777CF2887B3FB00D622E2 /* UIView+border.m */; };
-		BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */; };
-		BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE58285D7F1C00A86665 /* LXList2VC.m */; };
-		BE7CAE81285D7F1D00A86665 /* LXPaging2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE59285D7F1C00A86665 /* LXPaging2VC.m */; };
-		BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE5A285D7F1C00A86665 /* LXNested2VC.m */; };
-		BE7CAE83285D7F1D00A86665 /* LXTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE61285D7F1C00A86665 /* LXTableHeaderView.m */; };
-		BE7CAE84285D7F1D00A86665 /* LXSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE62285D7F1C00A86665 /* LXSectionHeaderView.m */; };
-		BE7CAE85285D7F1D00A86665 /* LXNestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE63285D7F1C00A86665 /* LXNestCell.m */; };
-		BE7CAE86285D7F1D00A86665 /* LXTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE65285D7F1C00A86665 /* LXTableVC.m */; };
-		BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE66285D7F1C00A86665 /* LXNest5VC.m */; };
-		BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE68285D7F1C00A86665 /* LXListViewController.m */; };
-		BE7CAE89285D7F1D00A86665 /* LXPagingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE69285D7F1C00A86665 /* LXPagingVC.m */; };
-		BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE6B285D7F1C00A86665 /* UIWindow+JXSafeArea.m */; };
-		BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE6D285D7F1C00A86665 /* LXBaseNavigationController.m */; };
-		BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */; };
-		BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F4130286B01C5009D8A8A /* LXTestModel.m */; };
-		BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */; };
-		BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C4F285EAF450027F9FF /* LXNest6VC.m */; };
-		BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE888C82285ECB010027F9FF /* LXPageCell.m */; };
-		BE894F24284065780022EF57 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE894F23284065780022EF57 /* LX0527VC.m */; };
-		BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9234AB285EDDC400ABB71B /* LXMyTableView.m */; };
-		BE959A7628A621D8002930C9 /* LXBannerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE959A7528A621D8002930C9 /* LXBannerTestVC.m */; };
-		BE96DA0D295BDA640029268F /* LXStackViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */; };
-		BE96DA10295BDB280029268F /* LXStackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE96DA0F295BDB280029268F /* LXStackViewCell.m */; };
+		BE48F893296FF9CA00235F14 /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F730296FF9CA00235F14 /* LXCollectionVC.m */; };
+		BE48F894296FF9CA00235F14 /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F731296FF9CA00235F14 /* LXCollectionCell.m */; };
+		BE48F895296FF9CA00235F14 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F735296FF9CA00235F14 /* LX0527VC.m */; };
+		BE48F896296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F738296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m */; };
+		BE48F897296FF9CA00235F14 /* LXprepareForReuseSignalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F73B296FF9CA00235F14 /* LXprepareForReuseSignalCell.m */; };
+		BE48F898296FF9CA00235F14 /* LXSubjectTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F73E296FF9CA00235F14 /* LXSubjectTestVC.m */; };
+		BE48F899296FF9CA00235F14 /* LXBannerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F73F296FF9CA00235F14 /* LXBannerTestVC.m */; };
+		BE48F89A296FF9CA00235F14 /* LXTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F743296FF9CA00235F14 /* LXTestModel.m */; };
+		BE48F89B296FF9CA00235F14 /* LXTestModelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F744296FF9CA00235F14 /* LXTestModelVC.m */; };
+		BE48F89C296FF9CA00235F14 /* LXTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F74E296FF9CA00235F14 /* LXTableHeaderView.m */; };
+		BE48F89D296FF9CA00235F14 /* LXSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F74F296FF9CA00235F14 /* LXSectionHeaderView.m */; };
+		BE48F89E296FF9CA00235F14 /* LXNestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F750296FF9CA00235F14 /* LXNestCell.m */; };
+		BE48F89F296FF9CA00235F14 /* LXTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F752296FF9CA00235F14 /* LXTableVC.m */; };
+		BE48F8A0296FF9CA00235F14 /* LXNest5VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F753296FF9CA00235F14 /* LXNest5VC.m */; };
+		BE48F8A1296FF9CA00235F14 /* LXPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F756296FF9CA00235F14 /* LXPageVC.m */; };
+		BE48F8A2296FF9CA00235F14 /* LXPageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F757296FF9CA00235F14 /* LXPageListView.m */; };
+		BE48F8A3296FF9CA00235F14 /* LXRecommendListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F75D296FF9CA00235F14 /* LXRecommendListView.m */; };
+		BE48F8A4296FF9CA00235F14 /* LXHotListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F75E296FF9CA00235F14 /* LXHotListView.m */; };
+		BE48F8A5296FF9CA00235F14 /* LXNest4VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F75F296FF9CA00235F14 /* LXNest4VC.m */; };
+		BE48F8A6296FF9CA00235F14 /* LXNest6VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F763296FF9CA00235F14 /* LXNest6VC.m */; };
+		BE48F8A7296FF9CA00235F14 /* LXHeaderListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F765296FF9CA00235F14 /* LXHeaderListView.m */; };
+		BE48F8A8296FF9CA00235F14 /* LXNestedListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F766296FF9CA00235F14 /* LXNestedListVC.m */; };
+		BE48F8A9296FF9CA00235F14 /* LXNestedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F76A296FF9CA00235F14 /* LXNestedVC.m */; };
+		BE48F8AA296FF9CA00235F14 /* LXNestedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F76B296FF9CA00235F14 /* LXNestedListView.m */; };
+		BE48F8AB296FF9CA00235F14 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F76E296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */; };
+		BE48F8AC296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F773296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */; };
+		BE48F8AD296FF9CA00235F14 /* DJClassifyEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F774296FF9CA00235F14 /* DJClassifyEmptyView.m */; };
+		BE48F8AE296FF9CA00235F14 /* DJClassifySkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F775296FF9CA00235F14 /* DJClassifySkeletonScreen.m */; };
+		BE48F8AF296FF9CA00235F14 /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F77A296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */; };
+		BE48F8B0296FF9CA00235F14 /* DJClassifyVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F77E296FF9CA00235F14 /* DJClassifyVM.m */; };
+		BE48F8B1296FF9CA00235F14 /* DJO2OClassifyWrapperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F780296FF9CA00235F14 /* DJO2OClassifyWrapperVC.m */; };
+		BE48F8B2296FF9CA00235F14 /* DJClassifyListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F781296FF9CA00235F14 /* DJClassifyListVC.m */; };
+		BE48F8B3296FF9CA00235F14 /* DJB2CClassifyWrapperVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F783296FF9CA00235F14 /* DJB2CClassifyWrapperVC.m */; };
+		BE48F8B4296FF9CA00235F14 /* DJClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F787296FF9CA00235F14 /* DJClassifyVC.m */; };
+		BE48F8B5296FF9CA00235F14 /* DJClassifyListLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F78B296FF9CA00235F14 /* DJClassifyListLeftCell.m */; };
+		BE48F8B6296FF9CA00235F14 /* DJClassifyListLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F78C296FF9CA00235F14 /* DJClassifyListLeftView.m */; };
+		BE48F8B7296FF9CA00235F14 /* DJClassifyListRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F78F296FF9CA00235F14 /* DJClassifyListRightVC.m */; };
+		BE48F8B8296FF9CA00235F14 /* DJPriceWrapperStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F793296FF9CA00235F14 /* DJPriceWrapperStackView.m */; };
+		BE48F8B9296FF9CA00235F14 /* DJMyCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F795296FF9CA00235F14 /* DJMyCollectionView.m */; };
+		BE48F8BA296FF9CA00235F14 /* DJNewAddCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F797296FF9CA00235F14 /* DJNewAddCartView.m */; };
+		BE48F8BB296FF9CA00235F14 /* DJTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F79B296FF9CA00235F14 /* DJTagView.m */; };
+		BE48F8BC296FF9CA00235F14 /* DJVerticalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F79C296FF9CA00235F14 /* DJVerticalTableView.m */; };
+		BE48F8BD296FF9CA00235F14 /* DJSubCategoryPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7A0296FF9CA00235F14 /* DJSubCategoryPinView.m */; };
+		BE48F8BE296FF9CA00235F14 /* DJClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7A4296FF9CA00235F14 /* DJClassifyListBannerCell.m */; };
+		BE48F8BF296FF9CA00235F14 /* DJClassifySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7A5296FF9CA00235F14 /* DJClassifySectionHeaderView.m */; };
+		BE48F8C0296FF9CA00235F14 /* DJClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7A6296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */; };
+		BE48F8C1296FF9CA00235F14 /* DJSectionCategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7A8296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */; };
+		BE48F8C2296FF9CA00235F14 /* DJ3rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7AB296FF9CA00235F14 /* DJ3rdCategoryCell.m */; };
+		BE48F8C3296FF9CA00235F14 /* DJ3rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7AC296FF9CA00235F14 /* DJ3rdCategoryView.m */; };
+		BE48F8C4296FF9CA00235F14 /* DJClassifyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7B2296FF9CA00235F14 /* DJClassifyInfoModel.m */; };
+		BE48F8C5296FF9CA00235F14 /* DJO2OCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7B5296FF9CA00235F14 /* DJO2OCategoryListModel.m */; };
+		BE48F8C6296FF9CA00235F14 /* DJGoodBaseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7B6296FF9CA00235F14 /* DJGoodBaseItemModel.m */; };
+		BE48F8C7296FF9CA00235F14 /* DJGoodsIdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7BB296FF9CA00235F14 /* DJGoodsIdsModel.m */; };
+		BE48F8C8296FF9CA00235F14 /* DJO2OGoodItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7BC296FF9CA00235F14 /* DJO2OGoodItemModel.m */; };
+		BE48F8C9296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7BE296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */; };
+		BE48F8CA296FF9CA00235F14 /* DJB2CGoodsItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7C1296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */; };
+		BE48F8CB296FF9CA00235F14 /* DJB2CCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7C2296FF9CA00235F14 /* DJB2CCategoryModel.m */; };
+		BE48F8CC296FF9CA00235F14 /* DJShopResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7C4296FF9CA00235F14 /* DJShopResourceModel.m */; };
+		BE48F8CD296FF9CA00235F14 /* DJ1rdCategoryFoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7CA296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */; };
+		BE48F8CE296FF9CA00235F14 /* DJ1rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7CE296FF9CA00235F14 /* DJ1rdCategoryCell.m */; };
+		BE48F8CF296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7CF296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */; };
+		BE48F8D0296FF9CA00235F14 /* DJBase1rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D0296FF9CA00235F14 /* DJBase1rdCategoryView.m */; };
+		BE48F8D1296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D1296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */; };
+		BE48F8D2296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D2296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */; };
+		BE48F8D3296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D6296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */; };
+		BE48F8D4296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D7296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */; };
+		BE48F8D5296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7D8296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */; };
+		BE48F8D6296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7DD296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */; };
+		BE48F8D7296FF9CA00235F14 /* DJClassifyEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7DE296FF9CA00235F14 /* DJClassifyEmptyView.m */; };
+		BE48F8D8296FF9CA00235F14 /* DJClassifySkeletonScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7DF296FF9CA00235F14 /* DJClassifySkeletonScreen.m */; };
+		BE48F8D9296FF9CA00235F14 /* DJClassifyKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7E5296FF9CA00235F14 /* DJClassifyKit.m */; };
+		BE48F8DA296FF9CA00235F14 /* DJSensorKit.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7E7296FF9CA00235F14 /* DJSensorKit.m */; };
+		BE48F8DB296FF9CA00235F14 /* Sensor.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7E9296FF9CA00235F14 /* Sensor.m */; };
+		BE48F8DC296FF9CA00235F14 /* NSObject+resourceJump.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7EB296FF9CA00235F14 /* NSObject+resourceJump.m */; };
+		BE48F8DD296FF9CA00235F14 /* DJShopCartVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7ED296FF9CA00235F14 /* DJShopCartVM.m */; };
+		BE48F8DE296FF9CA00235F14 /* DJClassifyVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7F0296FF9CA00235F14 /* DJClassifyVM.m */; };
+		BE48F8DF296FF9CA00235F14 /* DJNewClassifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7F3296FF9CA00235F14 /* DJNewClassifyVC.m */; };
+		BE48F8E0296FF9CA00235F14 /* DJClassifyB2CVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7F4296FF9CA00235F14 /* DJClassifyB2CVC.m */; };
+		BE48F8E1296FF9CA00235F14 /* DJClassifyO2OVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7F6296FF9CA00235F14 /* DJClassifyO2OVC.m */; };
+		BE48F8E2296FF9CA00235F14 /* DJClassifyB2CRightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7F7296FF9CA00235F14 /* DJClassifyB2CRightVC.m */; };
+		BE48F8E3296FF9CA00235F14 /* DJClassifyO2ORightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7FB296FF9CA00235F14 /* DJClassifyO2ORightVC.m */; };
+		BE48F8E4296FF9CA00235F14 /* DJClassifyListLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F7FF296FF9CA00235F14 /* DJClassifyListLeftCell.m */; };
+		BE48F8E5296FF9CA00235F14 /* DJClassifyListLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F800296FF9CA00235F14 /* DJClassifyListLeftView.m */; };
+		BE48F8E6296FF9CA00235F14 /* DJPriceWrapperStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F805296FF9CA00235F14 /* DJPriceWrapperStackView.m */; };
+		BE48F8E7296FF9CA00235F14 /* DJMyCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F807296FF9CA00235F14 /* DJMyCollectionView.m */; };
+		BE48F8E8296FF9CA00235F14 /* DJNewAddCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F809296FF9CA00235F14 /* DJNewAddCartView.m */; };
+		BE48F8E9296FF9CA00235F14 /* DJTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F80D296FF9CA00235F14 /* DJTagView.m */; };
+		BE48F8EA296FF9CA00235F14 /* DJVerticalTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F80E296FF9CA00235F14 /* DJVerticalTableView.m */; };
+		BE48F8EB296FF9CA00235F14 /* DJSubCategoryPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F812296FF9CA00235F14 /* DJSubCategoryPinView.m */; };
+		BE48F8EC296FF9CA00235F14 /* DJClassifyListBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F816296FF9CA00235F14 /* DJClassifyListBannerCell.m */; };
+		BE48F8ED296FF9CA00235F14 /* DJClassifyRightShowLastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F817296FF9CA00235F14 /* DJClassifyRightShowLastCell.m */; };
+		BE48F8EE296FF9CA00235F14 /* DJClassifyListBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F818296FF9CA00235F14 /* DJClassifyListBannerView.m */; };
+		BE48F8EF296FF9CA00235F14 /* DJClassifySectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F819296FF9CA00235F14 /* DJClassifySectionHeaderView.m */; };
+		BE48F8F0296FF9CA00235F14 /* DJClassifyRightCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F81A296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */; };
+		BE48F8F1296FF9CA00235F14 /* DJSectionCategoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F81D296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */; };
+		BE48F8F2296FF9CA00235F14 /* DJ3rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F821296FF9CA00235F14 /* DJ3rdCategoryCell.m */; };
+		BE48F8F3296FF9CA00235F14 /* DJ3rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F822296FF9CA00235F14 /* DJ3rdCategoryView.m */; };
+		BE48F8F4296FF9CA00235F14 /* DJSearchDpWordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F827296FF9CA00235F14 /* DJSearchDpWordModel.m */; };
+		BE48F8F5296FF9CB00235F14 /* DJO2OCategoryListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F829296FF9CA00235F14 /* DJO2OCategoryListModel.m */; };
+		BE48F8F6296FF9CB00235F14 /* DJGoodBaseItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F82A296FF9CA00235F14 /* DJGoodBaseItemModel.m */; };
+		BE48F8F7296FF9CB00235F14 /* DJGoodsIdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F82F296FF9CA00235F14 /* DJGoodsIdsModel.m */; };
+		BE48F8F8296FF9CB00235F14 /* DJO2OGoodItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F830296FF9CA00235F14 /* DJO2OGoodItemModel.m */; };
+		BE48F8F9296FF9CB00235F14 /* DJShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F833296FF9CA00235F14 /* DJShopDetailModel.m */; };
+		BE48F8FA296FF9CB00235F14 /* DJClassifyBaseCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F835296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */; };
+		BE48F8FB296FF9CB00235F14 /* DJB2CAddCartResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F837296FF9CA00235F14 /* DJB2CAddCartResultModel.m */; };
+		BE48F8FC296FF9CB00235F14 /* DJAddCartResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F83A296FF9CA00235F14 /* DJAddCartResultModel.m */; };
+		BE48F8FD296FF9CB00235F14 /* DJB2CGoodsItemListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F83D296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */; };
+		BE48F8FE296FF9CB00235F14 /* DJB2CCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F83E296FF9CA00235F14 /* DJB2CCategoryModel.m */; };
+		BE48F8FF296FF9CB00235F14 /* DJShopResourceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F840296FF9CA00235F14 /* DJShopResourceModel.m */; };
+		BE48F900296FF9CB00235F14 /* DJClassifyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F844296FF9CA00235F14 /* DJClassifyHeaderView.m */; };
+		BE48F901296FF9CB00235F14 /* DJ1rdCategoryFoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F84A296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */; };
+		BE48F902296FF9CB00235F14 /* DJ1rdCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F84E296FF9CA00235F14 /* DJ1rdCategoryCell.m */; };
+		BE48F903296FF9CB00235F14 /* DJ1rdCategoryUnfoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F84F296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */; };
+		BE48F904296FF9CB00235F14 /* DJBase1rdCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F850296FF9CA00235F14 /* DJBase1rdCategoryView.m */; };
+		BE48F905296FF9CB00235F14 /* DJ1rdCategoryUnfoldView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F851296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */; };
+		BE48F906296FF9CB00235F14 /* DJ1rdAllCategoryWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F852296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */; };
+		BE48F907296FF9CB00235F14 /* JXCategoryTitleBackgroundCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F856296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */; };
+		BE48F908296FF9CB00235F14 /* JXCategoryTitleBackgroundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F857296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */; };
+		BE48F909296FF9CB00235F14 /* JXCategoryTitleBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F858296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */; };
+		BE48F90A296FF9CB00235F14 /* LXListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F85B296FF9CA00235F14 /* LXListViewController.m */; };
+		BE48F90B296FF9CB00235F14 /* LXPagingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F85C296FF9CA00235F14 /* LXPagingVC.m */; };
+		BE48F90C296FF9CB00235F14 /* UIWindow+JXSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F85E296FF9CA00235F14 /* UIWindow+JXSafeArea.m */; };
+		BE48F90D296FF9CB00235F14 /* LXBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F860296FF9CA00235F14 /* LXBaseNavigationController.m */; };
+		BE48F90E296FF9CB00235F14 /* LXClassifyList2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F865296FF9CA00235F14 /* LXClassifyList2VC.m */; };
+		BE48F90F296FF9CB00235F14 /* LXClassifyMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F866296FF9CA00235F14 /* LXClassifyMainVC.m */; };
+		BE48F910296FF9CB00235F14 /* LXNest6VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F86A296FF9CA00235F14 /* LXNest6VC.m */; };
+		BE48F911296FF9CB00235F14 /* LXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F86D296FF9CA00235F14 /* LXHeaderView.m */; };
+		BE48F912296FF9CB00235F14 /* LXList2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F872296FF9CA00235F14 /* LXList2VC.m */; };
+		BE48F913296FF9CB00235F14 /* LXPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F876296FF9CA00235F14 /* LXPageCell.m */; };
+		BE48F914296FF9CB00235F14 /* LXMyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F877296FF9CA00235F14 /* LXMyTableView.m */; };
+		BE48F915296FF9CB00235F14 /* LXPaging2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F878296FF9CA00235F14 /* LXPaging2VC.m */; };
+		BE48F916296FF9CB00235F14 /* LXNested2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F879296FF9CA00235F14 /* LXNested2VC.m */; };
+		BE48F917296FF9CB00235F14 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F87D296FF9CA00235F14 /* TXScrollLabelView.m */; };
+		BE48F918296FF9CB00235F14 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F87E296FF9CA00235F14 /* UIView+TXFrame.m */; };
+		BE48F919296FF9CB00235F14 /* LXNaHiddenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F880296FF9CA00235F14 /* LXNaHiddenVC.m */; };
+		BE48F91A296FF9CB00235F14 /* LXShadowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F883296FF9CA00235F14 /* LXShadowVC.m */; };
+		BE48F91B296FF9CB00235F14 /* LXStackViewTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F887296FF9CA00235F14 /* LXStackViewTestVC.m */; };
+		BE48F91C296FF9CB00235F14 /* LXStackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F889296FF9CA00235F14 /* LXStackViewCell.m */; };
+		BE48F91D296FF9CB00235F14 /* LXArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F88A296FF9CA00235F14 /* LXArrowView.m */; };
+		BE48F91E296FF9CB00235F14 /* DJZitiRuleTipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F88B296FF9CA00235F14 /* DJZitiRuleTipModel.m */; };
+		BE48F91F296FF9CB00235F14 /* UIView+border.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F88E296FF9CA00235F14 /* UIView+border.m */; };
+		BE48F920296FF9CB00235F14 /* LXTestBorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F890296FF9CA00235F14 /* LXTestBorderVC.m */; };
+		BE48F924296FF9E200235F14 /* LXURLCompVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F923296FF9E200235F14 /* LXURLCompVC.m */; };
 		BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */; };
 		BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */; };
-		BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */; };
-		BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */; };
-		BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144012844B22400DEA8EA /* LXCollectionVC.m */; };
-		BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BED144042844B2AB00DEA8EA /* LXCollectionCell.m */; };
-		BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */; };
-		BEDD8EDC289D75930088778F /* CTAPIBaseManager+Rac.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD8EDA289D75930088778F /* CTAPIBaseManager+Rac.m */; };
 		BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */; };
-		BEEDDAE92954515200835633 /* DJprepareForReuseSignalTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */; };
-		BEEDDAED295451F100835633 /* LXprepareForReuseSignalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,84 +206,300 @@
 		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BE10C434295AC31700798607 /* LXShadowVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXShadowVC.h; sourceTree = "<group>"; };
-		BE10C435295AC31700798607 /* LXShadowVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXShadowVC.m; sourceTree = "<group>"; };
-		BE17640A2966AC7E0031C309 /* DJZitiRuleTipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJZitiRuleTipModel.h; sourceTree = "<group>"; };
-		BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJZitiRuleTipModel.m; sourceTree = "<group>"; };
-		BE253DC529681A9500FE3574 /* LXArrowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXArrowView.h; sourceTree = "<group>"; };
-		BE253DC629681A9500FE3574 /* LXArrowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXArrowView.m; sourceTree = "<group>"; };
-		BE6777CB2887B3E100D622E2 /* LXTestBorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestBorderVC.h; sourceTree = "<group>"; };
-		BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestBorderVC.m; sourceTree = "<group>"; };
-		BE6777CE2887B3FB00D622E2 /* UIView+border.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+border.h"; sourceTree = "<group>"; };
-		BE6777CF2887B3FB00D622E2 /* UIView+border.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+border.m"; sourceTree = "<group>"; };
-		BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNaHiddenVC.m; sourceTree = "<group>"; };
-		BE7CAE43285D7F1C00A86665 /* LXNaHiddenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNaHiddenVC.h; sourceTree = "<group>"; };
-		BE7CAE55285D7F1C00A86665 /* LXList2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXList2VC.h; sourceTree = "<group>"; };
-		BE7CAE56285D7F1C00A86665 /* LXPaging2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPaging2VC.h; sourceTree = "<group>"; };
-		BE7CAE57285D7F1C00A86665 /* LXNested2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNested2VC.h; sourceTree = "<group>"; };
-		BE7CAE58285D7F1C00A86665 /* LXList2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXList2VC.m; sourceTree = "<group>"; };
-		BE7CAE59285D7F1C00A86665 /* LXPaging2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPaging2VC.m; sourceTree = "<group>"; };
-		BE7CAE5A285D7F1C00A86665 /* LXNested2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNested2VC.m; sourceTree = "<group>"; };
-		BE7CAE5C285D7F1C00A86665 /* LXNest5VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNest5VC.h; sourceTree = "<group>"; };
-		BE7CAE5D285D7F1C00A86665 /* LXTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableVC.h; sourceTree = "<group>"; };
-		BE7CAE5F285D7F1C00A86665 /* LXNestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNestCell.h; sourceTree = "<group>"; };
-		BE7CAE60285D7F1C00A86665 /* LXSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionHeaderView.h; sourceTree = "<group>"; };
-		BE7CAE61285D7F1C00A86665 /* LXTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTableHeaderView.m; sourceTree = "<group>"; };
-		BE7CAE62285D7F1C00A86665 /* LXSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionHeaderView.m; sourceTree = "<group>"; };
-		BE7CAE63285D7F1C00A86665 /* LXNestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNestCell.m; sourceTree = "<group>"; };
-		BE7CAE64285D7F1C00A86665 /* LXTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableHeaderView.h; sourceTree = "<group>"; };
-		BE7CAE65285D7F1C00A86665 /* LXTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTableVC.m; sourceTree = "<group>"; };
-		BE7CAE66285D7F1C00A86665 /* LXNest5VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNest5VC.m; sourceTree = "<group>"; };
-		BE7CAE68285D7F1C00A86665 /* LXListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXListViewController.m; sourceTree = "<group>"; };
-		BE7CAE69285D7F1C00A86665 /* LXPagingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPagingVC.m; sourceTree = "<group>"; };
-		BE7CAE6A285D7F1C00A86665 /* LXBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXBaseNavigationController.h; sourceTree = "<group>"; };
-		BE7CAE6B285D7F1C00A86665 /* UIWindow+JXSafeArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+JXSafeArea.m"; sourceTree = "<group>"; };
-		BE7CAE6C285D7F1C00A86665 /* LXListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXListViewController.h; sourceTree = "<group>"; };
-		BE7CAE6D285D7F1C00A86665 /* LXBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXBaseNavigationController.m; sourceTree = "<group>"; };
-		BE7CAE6E285D7F1C00A86665 /* LXPagingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPagingVC.h; sourceTree = "<group>"; };
-		BE7CAE6F285D7F1C00A86665 /* UIWindow+JXSafeArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+JXSafeArea.h"; sourceTree = "<group>"; };
-		BE7CAE74285D7F1C00A86665 /* LXHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHeaderView.h; sourceTree = "<group>"; };
-		BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
-		BE7F412F286B01C5009D8A8A /* LXTestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestModel.h; sourceTree = "<group>"; };
-		BE7F4130286B01C5009D8A8A /* LXTestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestModel.m; sourceTree = "<group>"; };
-		BE7F4132286B01D2009D8A8A /* LXTestModelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTestModelVC.h; sourceTree = "<group>"; };
-		BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTestModelVC.m; sourceTree = "<group>"; };
-		BE888C4E285EAF450027F9FF /* LXNest6VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXNest6VC.h; sourceTree = "<group>"; };
-		BE888C4F285EAF450027F9FF /* LXNest6VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXNest6VC.m; sourceTree = "<group>"; };
-		BE888C81285ECB010027F9FF /* LXPageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXPageCell.h; sourceTree = "<group>"; };
-		BE888C82285ECB010027F9FF /* LXPageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXPageCell.m; sourceTree = "<group>"; };
-		BE894F22284065780022EF57 /* LX0527VC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LX0527VC.h; sourceTree = "<group>"; };
-		BE894F23284065780022EF57 /* LX0527VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
-		BE9234AA285EDDC400ABB71B /* LXMyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXMyTableView.h; sourceTree = "<group>"; };
-		BE9234AB285EDDC400ABB71B /* LXMyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXMyTableView.m; sourceTree = "<group>"; };
-		BE959A7428A621D8002930C9 /* LXBannerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXBannerTestVC.h; sourceTree = "<group>"; };
-		BE959A7528A621D8002930C9 /* LXBannerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXBannerTestVC.m; sourceTree = "<group>"; };
-		BE96DA0B295BDA640029268F /* LXStackViewTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStackViewTestVC.h; sourceTree = "<group>"; };
-		BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStackViewTestVC.m; sourceTree = "<group>"; };
-		BE96DA0E295BDB280029268F /* LXStackViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXStackViewCell.h; sourceTree = "<group>"; };
-		BE96DA0F295BDB280029268F /* LXStackViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXStackViewCell.m; sourceTree = "<group>"; };
+		BE48F730296FF9CA00235F14 /* LXCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
+		BE48F731296FF9CA00235F14 /* LXCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionCell.m; sourceTree = "<group>"; };
+		BE48F732296FF9CA00235F14 /* LXCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
+		BE48F733296FF9CA00235F14 /* LXCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
+		BE48F735296FF9CA00235F14 /* LX0527VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LX0527VC.m; sourceTree = "<group>"; };
+		BE48F736296FF9CA00235F14 /* LX0527VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LX0527VC.h; sourceTree = "<group>"; };
+		BE48F738296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJprepareForReuseSignalTestVC.m; sourceTree = "<group>"; };
+		BE48F73A296FF9CA00235F14 /* LXprepareForReuseSignalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXprepareForReuseSignalCell.h; sourceTree = "<group>"; };
+		BE48F73B296FF9CA00235F14 /* LXprepareForReuseSignalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXprepareForReuseSignalCell.m; sourceTree = "<group>"; };
+		BE48F73C296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJprepareForReuseSignalTestVC.h; sourceTree = "<group>"; };
+		BE48F73E296FF9CA00235F14 /* LXSubjectTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSubjectTestVC.m; sourceTree = "<group>"; };
+		BE48F73F296FF9CA00235F14 /* LXBannerTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXBannerTestVC.m; sourceTree = "<group>"; };
+		BE48F740296FF9CA00235F14 /* LXSubjectTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSubjectTestVC.h; sourceTree = "<group>"; };
+		BE48F741296FF9CA00235F14 /* LXBannerTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXBannerTestVC.h; sourceTree = "<group>"; };
+		BE48F743296FF9CA00235F14 /* LXTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTestModel.m; sourceTree = "<group>"; };
+		BE48F744296FF9CA00235F14 /* LXTestModelVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTestModelVC.m; sourceTree = "<group>"; };
+		BE48F745296FF9CA00235F14 /* LXTestModelVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTestModelVC.h; sourceTree = "<group>"; };
+		BE48F746296FF9CA00235F14 /* LXTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTestModel.h; sourceTree = "<group>"; };
+		BE48F749296FF9CA00235F14 /* LXNest5VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNest5VC.h; sourceTree = "<group>"; };
+		BE48F74A296FF9CA00235F14 /* LXTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableVC.h; sourceTree = "<group>"; };
+		BE48F74C296FF9CA00235F14 /* LXNestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNestCell.h; sourceTree = "<group>"; };
+		BE48F74D296FF9CA00235F14 /* LXSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSectionHeaderView.h; sourceTree = "<group>"; };
+		BE48F74E296FF9CA00235F14 /* LXTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTableHeaderView.m; sourceTree = "<group>"; };
+		BE48F74F296FF9CA00235F14 /* LXSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSectionHeaderView.m; sourceTree = "<group>"; };
+		BE48F750296FF9CA00235F14 /* LXNestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNestCell.m; sourceTree = "<group>"; };
+		BE48F751296FF9CA00235F14 /* LXTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTableHeaderView.h; sourceTree = "<group>"; };
+		BE48F752296FF9CA00235F14 /* LXTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTableVC.m; sourceTree = "<group>"; };
+		BE48F753296FF9CA00235F14 /* LXNest5VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNest5VC.m; sourceTree = "<group>"; };
+		BE48F756296FF9CA00235F14 /* LXPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageVC.m; sourceTree = "<group>"; };
+		BE48F757296FF9CA00235F14 /* LXPageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageListView.m; sourceTree = "<group>"; };
+		BE48F758296FF9CA00235F14 /* LXPageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageListView.h; sourceTree = "<group>"; };
+		BE48F759296FF9CA00235F14 /* LXPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageVC.h; sourceTree = "<group>"; };
+		BE48F75B296FF9CA00235F14 /* LXNest4VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNest4VC.h; sourceTree = "<group>"; };
+		BE48F75C296FF9CA00235F14 /* LXHotListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHotListView.h; sourceTree = "<group>"; };
+		BE48F75D296FF9CA00235F14 /* LXRecommendListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRecommendListView.m; sourceTree = "<group>"; };
+		BE48F75E296FF9CA00235F14 /* LXHotListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHotListView.m; sourceTree = "<group>"; };
+		BE48F75F296FF9CA00235F14 /* LXNest4VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNest4VC.m; sourceTree = "<group>"; };
+		BE48F760296FF9CA00235F14 /* LXRecommendListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXRecommendListView.h; sourceTree = "<group>"; };
+		BE48F762296FF9CA00235F14 /* LXNest6VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNest6VC.h; sourceTree = "<group>"; };
+		BE48F763296FF9CA00235F14 /* LXNest6VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNest6VC.m; sourceTree = "<group>"; };
+		BE48F765296FF9CA00235F14 /* LXHeaderListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderListView.m; sourceTree = "<group>"; };
+		BE48F766296FF9CA00235F14 /* LXNestedListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNestedListVC.m; sourceTree = "<group>"; };
+		BE48F767296FF9CA00235F14 /* LXNestedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNestedListView.h; sourceTree = "<group>"; };
+		BE48F768296FF9CA00235F14 /* LXNestedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNestedVC.h; sourceTree = "<group>"; };
+		BE48F769296FF9CA00235F14 /* LXHeaderListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHeaderListView.h; sourceTree = "<group>"; };
+		BE48F76A296FF9CA00235F14 /* LXNestedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNestedVC.m; sourceTree = "<group>"; };
+		BE48F76B296FF9CA00235F14 /* LXNestedListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNestedListView.m; sourceTree = "<group>"; };
+		BE48F76C296FF9CA00235F14 /* LXNestedListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNestedListVC.h; sourceTree = "<group>"; };
+		BE48F76E296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
+		BE48F76F296FF9CA00235F14 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
+		BE48F771296FF9CA00235F14 /* DJClassifyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyMacro.h; sourceTree = "<group>"; };
+		BE48F773296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightSkeletonScreen.m; sourceTree = "<group>"; };
+		BE48F774296FF9CA00235F14 /* DJClassifyEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyEmptyView.m; sourceTree = "<group>"; };
+		BE48F775296FF9CA00235F14 /* DJClassifySkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifySkeletonScreen.m; sourceTree = "<group>"; };
+		BE48F776296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightSkeletonScreen.h; sourceTree = "<group>"; };
+		BE48F777296FF9CA00235F14 /* DJClassifyEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyEmptyView.h; sourceTree = "<group>"; };
+		BE48F778296FF9CA00235F14 /* DJClassifySkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifySkeletonScreen.h; sourceTree = "<group>"; };
+		BE48F77A296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
+		BE48F77B296FF9CA00235F14 /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
+		BE48F77D296FF9CA00235F14 /* DJClassifyVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyVM.h; sourceTree = "<group>"; };
+		BE48F77E296FF9CA00235F14 /* DJClassifyVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyVM.m; sourceTree = "<group>"; };
+		BE48F780296FF9CA00235F14 /* DJO2OClassifyWrapperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OClassifyWrapperVC.m; sourceTree = "<group>"; };
+		BE48F781296FF9CA00235F14 /* DJClassifyListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListVC.m; sourceTree = "<group>"; };
+		BE48F782296FF9CA00235F14 /* DJClassifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyVC.h; sourceTree = "<group>"; };
+		BE48F783296FF9CA00235F14 /* DJB2CClassifyWrapperVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CClassifyWrapperVC.m; sourceTree = "<group>"; };
+		BE48F784296FF9CA00235F14 /* DJClassifyListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListVC.h; sourceTree = "<group>"; };
+		BE48F785296FF9CA00235F14 /* DJO2OClassifyWrapperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OClassifyWrapperVC.h; sourceTree = "<group>"; };
+		BE48F786296FF9CA00235F14 /* DJB2CClassifyWrapperVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CClassifyWrapperVC.h; sourceTree = "<group>"; };
+		BE48F787296FF9CA00235F14 /* DJClassifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyVC.m; sourceTree = "<group>"; };
+		BE48F789296FF9CA00235F14 /* DJClassifyListLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListLeftCell.h; sourceTree = "<group>"; };
+		BE48F78A296FF9CA00235F14 /* DJClassifyListLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListLeftView.h; sourceTree = "<group>"; };
+		BE48F78B296FF9CA00235F14 /* DJClassifyListLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListLeftCell.m; sourceTree = "<group>"; };
+		BE48F78C296FF9CA00235F14 /* DJClassifyListLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListLeftView.m; sourceTree = "<group>"; };
+		BE48F78E296FF9CA00235F14 /* DJClassifyListRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListRightVC.h; sourceTree = "<group>"; };
+		BE48F78F296FF9CA00235F14 /* DJClassifyListRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListRightVC.m; sourceTree = "<group>"; };
+		BE48F792296FF9CA00235F14 /* DJPriceWrapperStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJPriceWrapperStackView.h; sourceTree = "<group>"; };
+		BE48F793296FF9CA00235F14 /* DJPriceWrapperStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJPriceWrapperStackView.m; sourceTree = "<group>"; };
+		BE48F794296FF9CA00235F14 /* DJVerticalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJVerticalTableView.h; sourceTree = "<group>"; };
+		BE48F795296FF9CA00235F14 /* DJMyCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJMyCollectionView.m; sourceTree = "<group>"; };
+		BE48F797296FF9CA00235F14 /* DJNewAddCartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNewAddCartView.m; sourceTree = "<group>"; };
+		BE48F798296FF9CA00235F14 /* DJNewAddCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNewAddCartView.h; sourceTree = "<group>"; };
+		BE48F79A296FF9CA00235F14 /* DJTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJTagView.h; sourceTree = "<group>"; };
+		BE48F79B296FF9CA00235F14 /* DJTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJTagView.m; sourceTree = "<group>"; };
+		BE48F79C296FF9CA00235F14 /* DJVerticalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJVerticalTableView.m; sourceTree = "<group>"; };
+		BE48F79D296FF9CA00235F14 /* DJMyCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJMyCollectionView.h; sourceTree = "<group>"; };
+		BE48F79F296FF9CA00235F14 /* DJSubCategoryPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSubCategoryPinView.h; sourceTree = "<group>"; };
+		BE48F7A0296FF9CA00235F14 /* DJSubCategoryPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSubCategoryPinView.m; sourceTree = "<group>"; };
+		BE48F7A2296FF9CA00235F14 /* DJClassifyRightCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightCollectionCell.h; sourceTree = "<group>"; };
+		BE48F7A3296FF9CA00235F14 /* DJSectionCategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSectionCategoryHeaderView.h; sourceTree = "<group>"; };
+		BE48F7A4296FF9CA00235F14 /* DJClassifyListBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerCell.m; sourceTree = "<group>"; };
+		BE48F7A5296FF9CA00235F14 /* DJClassifySectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifySectionHeaderView.m; sourceTree = "<group>"; };
+		BE48F7A6296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightCollectionCell.m; sourceTree = "<group>"; };
+		BE48F7A7296FF9CA00235F14 /* DJClassifyListBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerCell.h; sourceTree = "<group>"; };
+		BE48F7A8296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSectionCategoryHeaderView.m; sourceTree = "<group>"; };
+		BE48F7A9296FF9CA00235F14 /* DJClassifySectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifySectionHeaderView.h; sourceTree = "<group>"; };
+		BE48F7AB296FF9CA00235F14 /* DJ3rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ3rdCategoryCell.m; sourceTree = "<group>"; };
+		BE48F7AC296FF9CA00235F14 /* DJ3rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ3rdCategoryView.m; sourceTree = "<group>"; };
+		BE48F7AD296FF9CA00235F14 /* DJ3rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ3rdCategoryCell.h; sourceTree = "<group>"; };
+		BE48F7AE296FF9CA00235F14 /* DJ3rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ3rdCategoryView.h; sourceTree = "<group>"; };
+		BE48F7B0296FF9CA00235F14 /* DJClassifyBaseCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyBaseCategoryModel.h; sourceTree = "<group>"; };
+		BE48F7B2296FF9CA00235F14 /* DJClassifyInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyInfoModel.m; sourceTree = "<group>"; };
+		BE48F7B3296FF9CA00235F14 /* DJClassifyInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyInfoModel.h; sourceTree = "<group>"; };
+		BE48F7B5296FF9CA00235F14 /* DJO2OCategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OCategoryListModel.m; sourceTree = "<group>"; };
+		BE48F7B6296FF9CA00235F14 /* DJGoodBaseItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodBaseItemModel.m; sourceTree = "<group>"; };
+		BE48F7B7296FF9CA00235F14 /* DJGoodsIdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodsIdsModel.h; sourceTree = "<group>"; };
+		BE48F7B8296FF9CA00235F14 /* DJO2OGoodItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OGoodItemModel.h; sourceTree = "<group>"; };
+		BE48F7B9296FF9CA00235F14 /* DJGoodBaseItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodBaseItemModel.h; sourceTree = "<group>"; };
+		BE48F7BA296FF9CA00235F14 /* DJO2OCategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OCategoryListModel.h; sourceTree = "<group>"; };
+		BE48F7BB296FF9CA00235F14 /* DJGoodsIdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodsIdsModel.m; sourceTree = "<group>"; };
+		BE48F7BC296FF9CA00235F14 /* DJO2OGoodItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OGoodItemModel.m; sourceTree = "<group>"; };
+		BE48F7BD296FF9CA00235F14 /* DJShopResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJShopResourceModel.h; sourceTree = "<group>"; };
+		BE48F7BE296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyBaseCategoryModel.m; sourceTree = "<group>"; };
+		BE48F7C0296FF9CA00235F14 /* DJB2CCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CCategoryModel.h; sourceTree = "<group>"; };
+		BE48F7C1296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CGoodsItemListModel.m; sourceTree = "<group>"; };
+		BE48F7C2296FF9CA00235F14 /* DJB2CCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CCategoryModel.m; sourceTree = "<group>"; };
+		BE48F7C3296FF9CA00235F14 /* DJB2CGoodsItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CGoodsItemListModel.h; sourceTree = "<group>"; };
+		BE48F7C4296FF9CA00235F14 /* DJShopResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopResourceModel.m; sourceTree = "<group>"; };
+		BE48F7C6296FF9CA00235F14 /* DJBase1rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJBase1rdCategoryView.h; sourceTree = "<group>"; };
+		BE48F7C7296FF9CA00235F14 /* DJ1rdCategoryFoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryFoldView.h; sourceTree = "<group>"; };
+		BE48F7C8296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdAllCategoryWrapperView.h; sourceTree = "<group>"; };
+		BE48F7C9296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryUnfoldView.h; sourceTree = "<group>"; };
+		BE48F7CA296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryFoldView.m; sourceTree = "<group>"; };
+		BE48F7CC296FF9CA00235F14 /* DJ1rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryCell.h; sourceTree = "<group>"; };
+		BE48F7CD296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryUnfoldCell.h; sourceTree = "<group>"; };
+		BE48F7CE296FF9CA00235F14 /* DJ1rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryCell.m; sourceTree = "<group>"; };
+		BE48F7CF296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryUnfoldCell.m; sourceTree = "<group>"; };
+		BE48F7D0296FF9CA00235F14 /* DJBase1rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJBase1rdCategoryView.m; sourceTree = "<group>"; };
+		BE48F7D1296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryUnfoldView.m; sourceTree = "<group>"; };
+		BE48F7D2296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdAllCategoryWrapperView.m; sourceTree = "<group>"; };
+		BE48F7D4296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCell.h; sourceTree = "<group>"; };
+		BE48F7D5296FF9CA00235F14 /* JXCategoryTitleBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundView.h; sourceTree = "<group>"; };
+		BE48F7D6296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCellModel.m; sourceTree = "<group>"; };
+		BE48F7D7296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCell.m; sourceTree = "<group>"; };
+		BE48F7D8296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundView.m; sourceTree = "<group>"; };
+		BE48F7D9296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCellModel.h; sourceTree = "<group>"; };
+		BE48F7DB296FF9CA00235F14 /* DJClassifyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyMacro.h; sourceTree = "<group>"; };
+		BE48F7DD296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightSkeletonScreen.m; sourceTree = "<group>"; };
+		BE48F7DE296FF9CA00235F14 /* DJClassifyEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyEmptyView.m; sourceTree = "<group>"; };
+		BE48F7DF296FF9CA00235F14 /* DJClassifySkeletonScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifySkeletonScreen.m; sourceTree = "<group>"; };
+		BE48F7E0296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightSkeletonScreen.h; sourceTree = "<group>"; };
+		BE48F7E1296FF9CA00235F14 /* DJClassifyEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyEmptyView.h; sourceTree = "<group>"; };
+		BE48F7E2296FF9CA00235F14 /* DJClassifySkeletonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifySkeletonScreen.h; sourceTree = "<group>"; };
+		BE48F7E4296FF9CA00235F14 /* NSObject+resourceJump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+resourceJump.h"; sourceTree = "<group>"; };
+		BE48F7E5296FF9CA00235F14 /* DJClassifyKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyKit.m; sourceTree = "<group>"; };
+		BE48F7E6296FF9CA00235F14 /* Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
+		BE48F7E7296FF9CA00235F14 /* DJSensorKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSensorKit.m; sourceTree = "<group>"; };
+		BE48F7E8296FF9CA00235F14 /* DJSensorKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSensorKit.h; sourceTree = "<group>"; };
+		BE48F7E9296FF9CA00235F14 /* Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensor.m; sourceTree = "<group>"; };
+		BE48F7EA296FF9CA00235F14 /* DJClassifyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyKit.h; sourceTree = "<group>"; };
+		BE48F7EB296FF9CA00235F14 /* NSObject+resourceJump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+resourceJump.m"; sourceTree = "<group>"; };
+		BE48F7ED296FF9CA00235F14 /* DJShopCartVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopCartVM.m; sourceTree = "<group>"; };
+		BE48F7EE296FF9CA00235F14 /* DJClassifyVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyVM.h; sourceTree = "<group>"; };
+		BE48F7EF296FF9CA00235F14 /* DJShopCartVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJShopCartVM.h; sourceTree = "<group>"; };
+		BE48F7F0296FF9CA00235F14 /* DJClassifyVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyVM.m; sourceTree = "<group>"; };
+		BE48F7F2296FF9CA00235F14 /* DJClassifyB2CRightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyB2CRightVC.h; sourceTree = "<group>"; };
+		BE48F7F3296FF9CA00235F14 /* DJNewClassifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNewClassifyVC.m; sourceTree = "<group>"; };
+		BE48F7F4296FF9CA00235F14 /* DJClassifyB2CVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyB2CVC.m; sourceTree = "<group>"; };
+		BE48F7F5296FF9CA00235F14 /* DJClassifyO2ORightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyO2ORightVC.h; sourceTree = "<group>"; };
+		BE48F7F6296FF9CA00235F14 /* DJClassifyO2OVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyO2OVC.m; sourceTree = "<group>"; };
+		BE48F7F7296FF9CA00235F14 /* DJClassifyB2CRightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyB2CRightVC.m; sourceTree = "<group>"; };
+		BE48F7F8296FF9CA00235F14 /* DJNewClassifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNewClassifyVC.h; sourceTree = "<group>"; };
+		BE48F7F9296FF9CA00235F14 /* DJClassifyB2CVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyB2CVC.h; sourceTree = "<group>"; };
+		BE48F7FA296FF9CA00235F14 /* DJClassifyO2OVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyO2OVC.h; sourceTree = "<group>"; };
+		BE48F7FB296FF9CA00235F14 /* DJClassifyO2ORightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyO2ORightVC.m; sourceTree = "<group>"; };
+		BE48F7FD296FF9CA00235F14 /* DJClassifyListLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListLeftCell.h; sourceTree = "<group>"; };
+		BE48F7FE296FF9CA00235F14 /* DJClassifyListLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListLeftView.h; sourceTree = "<group>"; };
+		BE48F7FF296FF9CA00235F14 /* DJClassifyListLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListLeftCell.m; sourceTree = "<group>"; };
+		BE48F800296FF9CA00235F14 /* DJClassifyListLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListLeftView.m; sourceTree = "<group>"; };
+		BE48F804296FF9CA00235F14 /* DJPriceWrapperStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJPriceWrapperStackView.h; sourceTree = "<group>"; };
+		BE48F805296FF9CA00235F14 /* DJPriceWrapperStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJPriceWrapperStackView.m; sourceTree = "<group>"; };
+		BE48F806296FF9CA00235F14 /* DJVerticalTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJVerticalTableView.h; sourceTree = "<group>"; };
+		BE48F807296FF9CA00235F14 /* DJMyCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJMyCollectionView.m; sourceTree = "<group>"; };
+		BE48F809296FF9CA00235F14 /* DJNewAddCartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJNewAddCartView.m; sourceTree = "<group>"; };
+		BE48F80A296FF9CA00235F14 /* DJNewAddCartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJNewAddCartView.h; sourceTree = "<group>"; };
+		BE48F80C296FF9CA00235F14 /* DJTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJTagView.h; sourceTree = "<group>"; };
+		BE48F80D296FF9CA00235F14 /* DJTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJTagView.m; sourceTree = "<group>"; };
+		BE48F80E296FF9CA00235F14 /* DJVerticalTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJVerticalTableView.m; sourceTree = "<group>"; };
+		BE48F80F296FF9CA00235F14 /* DJMyCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJMyCollectionView.h; sourceTree = "<group>"; };
+		BE48F811296FF9CA00235F14 /* DJSubCategoryPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSubCategoryPinView.h; sourceTree = "<group>"; };
+		BE48F812296FF9CA00235F14 /* DJSubCategoryPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSubCategoryPinView.m; sourceTree = "<group>"; };
+		BE48F814296FF9CA00235F14 /* DJClassifyRightCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightCollectionCell.h; sourceTree = "<group>"; };
+		BE48F815296FF9CA00235F14 /* DJSectionCategoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSectionCategoryHeaderView.h; sourceTree = "<group>"; };
+		BE48F816296FF9CA00235F14 /* DJClassifyListBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerCell.m; sourceTree = "<group>"; };
+		BE48F817296FF9CA00235F14 /* DJClassifyRightShowLastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightShowLastCell.m; sourceTree = "<group>"; };
+		BE48F818296FF9CA00235F14 /* DJClassifyListBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyListBannerView.m; sourceTree = "<group>"; };
+		BE48F819296FF9CA00235F14 /* DJClassifySectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifySectionHeaderView.m; sourceTree = "<group>"; };
+		BE48F81A296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyRightCollectionCell.m; sourceTree = "<group>"; };
+		BE48F81B296FF9CA00235F14 /* DJClassifyRightShowLastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyRightShowLastCell.h; sourceTree = "<group>"; };
+		BE48F81C296FF9CA00235F14 /* DJClassifyListBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerCell.h; sourceTree = "<group>"; };
+		BE48F81D296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSectionCategoryHeaderView.m; sourceTree = "<group>"; };
+		BE48F81E296FF9CA00235F14 /* DJClassifySectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifySectionHeaderView.h; sourceTree = "<group>"; };
+		BE48F81F296FF9CA00235F14 /* DJClassifyListBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyListBannerView.h; sourceTree = "<group>"; };
+		BE48F821296FF9CA00235F14 /* DJ3rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ3rdCategoryCell.m; sourceTree = "<group>"; };
+		BE48F822296FF9CA00235F14 /* DJ3rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ3rdCategoryView.m; sourceTree = "<group>"; };
+		BE48F823296FF9CA00235F14 /* DJ3rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ3rdCategoryCell.h; sourceTree = "<group>"; };
+		BE48F824296FF9CA00235F14 /* DJ3rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ3rdCategoryView.h; sourceTree = "<group>"; };
+		BE48F826296FF9CA00235F14 /* DJClassifyBaseCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyBaseCategoryModel.h; sourceTree = "<group>"; };
+		BE48F827296FF9CA00235F14 /* DJSearchDpWordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJSearchDpWordModel.m; sourceTree = "<group>"; };
+		BE48F829296FF9CA00235F14 /* DJO2OCategoryListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OCategoryListModel.m; sourceTree = "<group>"; };
+		BE48F82A296FF9CA00235F14 /* DJGoodBaseItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodBaseItemModel.m; sourceTree = "<group>"; };
+		BE48F82B296FF9CA00235F14 /* DJGoodsIdsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodsIdsModel.h; sourceTree = "<group>"; };
+		BE48F82C296FF9CA00235F14 /* DJO2OGoodItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OGoodItemModel.h; sourceTree = "<group>"; };
+		BE48F82D296FF9CA00235F14 /* DJGoodBaseItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJGoodBaseItemModel.h; sourceTree = "<group>"; };
+		BE48F82E296FF9CA00235F14 /* DJO2OCategoryListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJO2OCategoryListModel.h; sourceTree = "<group>"; };
+		BE48F82F296FF9CA00235F14 /* DJGoodsIdsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJGoodsIdsModel.m; sourceTree = "<group>"; };
+		BE48F830296FF9CA00235F14 /* DJO2OGoodItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJO2OGoodItemModel.m; sourceTree = "<group>"; };
+		BE48F831296FF9CA00235F14 /* DJShopResourceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJShopResourceModel.h; sourceTree = "<group>"; };
+		BE48F833296FF9CA00235F14 /* DJShopDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopDetailModel.m; sourceTree = "<group>"; };
+		BE48F834296FF9CA00235F14 /* DJShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJShopDetailModel.h; sourceTree = "<group>"; };
+		BE48F835296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyBaseCategoryModel.m; sourceTree = "<group>"; };
+		BE48F837296FF9CA00235F14 /* DJB2CAddCartResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CAddCartResultModel.m; sourceTree = "<group>"; };
+		BE48F838296FF9CA00235F14 /* DJAddCartResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJAddCartResultModel.h; sourceTree = "<group>"; };
+		BE48F839296FF9CA00235F14 /* DJB2CAddCartResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CAddCartResultModel.h; sourceTree = "<group>"; };
+		BE48F83A296FF9CA00235F14 /* DJAddCartResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJAddCartResultModel.m; sourceTree = "<group>"; };
+		BE48F83C296FF9CA00235F14 /* DJB2CCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CCategoryModel.h; sourceTree = "<group>"; };
+		BE48F83D296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CGoodsItemListModel.m; sourceTree = "<group>"; };
+		BE48F83E296FF9CA00235F14 /* DJB2CCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJB2CCategoryModel.m; sourceTree = "<group>"; };
+		BE48F83F296FF9CA00235F14 /* DJB2CGoodsItemListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJB2CGoodsItemListModel.h; sourceTree = "<group>"; };
+		BE48F840296FF9CA00235F14 /* DJShopResourceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJShopResourceModel.m; sourceTree = "<group>"; };
+		BE48F841296FF9CA00235F14 /* DJSearchDpWordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJSearchDpWordModel.h; sourceTree = "<group>"; };
+		BE48F843296FF9CA00235F14 /* DJClassifyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJClassifyHeaderView.h; sourceTree = "<group>"; };
+		BE48F844296FF9CA00235F14 /* DJClassifyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJClassifyHeaderView.m; sourceTree = "<group>"; };
+		BE48F846296FF9CA00235F14 /* DJBase1rdCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJBase1rdCategoryView.h; sourceTree = "<group>"; };
+		BE48F847296FF9CA00235F14 /* DJ1rdCategoryFoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryFoldView.h; sourceTree = "<group>"; };
+		BE48F848296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdAllCategoryWrapperView.h; sourceTree = "<group>"; };
+		BE48F849296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryUnfoldView.h; sourceTree = "<group>"; };
+		BE48F84A296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryFoldView.m; sourceTree = "<group>"; };
+		BE48F84C296FF9CA00235F14 /* DJ1rdCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryCell.h; sourceTree = "<group>"; };
+		BE48F84D296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJ1rdCategoryUnfoldCell.h; sourceTree = "<group>"; };
+		BE48F84E296FF9CA00235F14 /* DJ1rdCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryCell.m; sourceTree = "<group>"; };
+		BE48F84F296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryUnfoldCell.m; sourceTree = "<group>"; };
+		BE48F850296FF9CA00235F14 /* DJBase1rdCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJBase1rdCategoryView.m; sourceTree = "<group>"; };
+		BE48F851296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdCategoryUnfoldView.m; sourceTree = "<group>"; };
+		BE48F852296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJ1rdAllCategoryWrapperView.m; sourceTree = "<group>"; };
+		BE48F854296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCell.h; sourceTree = "<group>"; };
+		BE48F855296FF9CA00235F14 /* JXCategoryTitleBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundView.h; sourceTree = "<group>"; };
+		BE48F856296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCellModel.m; sourceTree = "<group>"; };
+		BE48F857296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundCell.m; sourceTree = "<group>"; };
+		BE48F858296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXCategoryTitleBackgroundView.m; sourceTree = "<group>"; };
+		BE48F859296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXCategoryTitleBackgroundCellModel.h; sourceTree = "<group>"; };
+		BE48F85B296FF9CA00235F14 /* LXListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXListViewController.m; sourceTree = "<group>"; };
+		BE48F85C296FF9CA00235F14 /* LXPagingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPagingVC.m; sourceTree = "<group>"; };
+		BE48F85D296FF9CA00235F14 /* LXBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXBaseNavigationController.h; sourceTree = "<group>"; };
+		BE48F85E296FF9CA00235F14 /* UIWindow+JXSafeArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+JXSafeArea.m"; sourceTree = "<group>"; };
+		BE48F85F296FF9CA00235F14 /* LXListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXListViewController.h; sourceTree = "<group>"; };
+		BE48F860296FF9CA00235F14 /* LXBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXBaseNavigationController.m; sourceTree = "<group>"; };
+		BE48F861296FF9CA00235F14 /* LXPagingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPagingVC.h; sourceTree = "<group>"; };
+		BE48F862296FF9CA00235F14 /* UIWindow+JXSafeArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+JXSafeArea.h"; sourceTree = "<group>"; };
+		BE48F864296FF9CA00235F14 /* LXClassifyMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyMainVC.h; sourceTree = "<group>"; };
+		BE48F865296FF9CA00235F14 /* LXClassifyList2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyList2VC.m; sourceTree = "<group>"; };
+		BE48F866296FF9CA00235F14 /* LXClassifyMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXClassifyMainVC.m; sourceTree = "<group>"; };
+		BE48F867296FF9CA00235F14 /* LXClassifyList2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXClassifyList2VC.h; sourceTree = "<group>"; };
+		BE48F869296FF9CA00235F14 /* LXNest6VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNest6VC.h; sourceTree = "<group>"; };
+		BE48F86A296FF9CA00235F14 /* LXNest6VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNest6VC.m; sourceTree = "<group>"; };
+		BE48F86C296FF9CA00235F14 /* LXHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXHeaderView.h; sourceTree = "<group>"; };
+		BE48F86D296FF9CA00235F14 /* LXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXHeaderView.m; sourceTree = "<group>"; };
+		BE48F86F296FF9CA00235F14 /* LXList2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXList2VC.h; sourceTree = "<group>"; };
+		BE48F870296FF9CA00235F14 /* LXPaging2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPaging2VC.h; sourceTree = "<group>"; };
+		BE48F871296FF9CA00235F14 /* LXNested2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNested2VC.h; sourceTree = "<group>"; };
+		BE48F872296FF9CA00235F14 /* LXList2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXList2VC.m; sourceTree = "<group>"; };
+		BE48F874296FF9CA00235F14 /* LXPageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPageCell.h; sourceTree = "<group>"; };
+		BE48F875296FF9CA00235F14 /* LXMyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXMyTableView.h; sourceTree = "<group>"; };
+		BE48F876296FF9CA00235F14 /* LXPageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPageCell.m; sourceTree = "<group>"; };
+		BE48F877296FF9CA00235F14 /* LXMyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXMyTableView.m; sourceTree = "<group>"; };
+		BE48F878296FF9CA00235F14 /* LXPaging2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPaging2VC.m; sourceTree = "<group>"; };
+		BE48F879296FF9CA00235F14 /* LXNested2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNested2VC.m; sourceTree = "<group>"; };
+		BE48F87B296FF9CA00235F14 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
+		BE48F87C296FF9CA00235F14 /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
+		BE48F87D296FF9CA00235F14 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
+		BE48F87E296FF9CA00235F14 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
+		BE48F880296FF9CA00235F14 /* LXNaHiddenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXNaHiddenVC.m; sourceTree = "<group>"; };
+		BE48F881296FF9CA00235F14 /* LXNaHiddenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXNaHiddenVC.h; sourceTree = "<group>"; };
+		BE48F883296FF9CA00235F14 /* LXShadowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXShadowVC.m; sourceTree = "<group>"; };
+		BE48F884296FF9CA00235F14 /* LXArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXArrowView.h; sourceTree = "<group>"; };
+		BE48F885296FF9CA00235F14 /* LXStackViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStackViewCell.h; sourceTree = "<group>"; };
+		BE48F886296FF9CA00235F14 /* DJZitiRuleTipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJZitiRuleTipModel.h; sourceTree = "<group>"; };
+		BE48F887296FF9CA00235F14 /* LXStackViewTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStackViewTestVC.m; sourceTree = "<group>"; };
+		BE48F888296FF9CA00235F14 /* LXShadowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXShadowVC.h; sourceTree = "<group>"; };
+		BE48F889296FF9CA00235F14 /* LXStackViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXStackViewCell.m; sourceTree = "<group>"; };
+		BE48F88A296FF9CA00235F14 /* LXArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXArrowView.m; sourceTree = "<group>"; };
+		BE48F88B296FF9CA00235F14 /* DJZitiRuleTipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJZitiRuleTipModel.m; sourceTree = "<group>"; };
+		BE48F88C296FF9CA00235F14 /* LXStackViewTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXStackViewTestVC.h; sourceTree = "<group>"; };
+		BE48F88E296FF9CA00235F14 /* UIView+border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+border.m"; sourceTree = "<group>"; };
+		BE48F88F296FF9CA00235F14 /* LXTestBorderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXTestBorderVC.h; sourceTree = "<group>"; };
+		BE48F890296FF9CA00235F14 /* LXTestBorderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXTestBorderVC.m; sourceTree = "<group>"; };
+		BE48F891296FF9CA00235F14 /* UIView+border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+border.h"; sourceTree = "<group>"; };
+		BE48F922296FF9E200235F14 /* LXURLCompVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXURLCompVC.h; sourceTree = "<group>"; };
+		BE48F923296FF9E200235F14 /* LXURLCompVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXURLCompVC.m; sourceTree = "<group>"; };
 		BEB56B37283E1A0F003BAA77 /* LXLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVC.h; sourceTree = "<group>"; };
 		BEB56B38283E1A0F003BAA77 /* LXLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVC.m; sourceTree = "<group>"; };
 		BEB56B3A283E1A77003BAA77 /* LXLoginVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoginVM.h; sourceTree = "<group>"; };
 		BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoginVM.m; sourceTree = "<group>"; };
-		BECDDA1D28978D45002A0BE9 /* TXScrollLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXScrollLabelView.h; sourceTree = "<group>"; };
-		BECDDA1E28978D45002A0BE9 /* UIView+TXFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TXFrame.h"; sourceTree = "<group>"; };
-		BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXScrollLabelView.m; sourceTree = "<group>"; };
-		BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TXFrame.m"; sourceTree = "<group>"; };
-		BED144002844B22400DEA8EA /* LXCollectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
-		BED144012844B22400DEA8EA /* LXCollectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
-		BED144032844B2AB00DEA8EA /* LXCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionCell.h; sourceTree = "<group>"; };
-		BED144042844B2AB00DEA8EA /* LXCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionCell.m; sourceTree = "<group>"; };
-		BED29D5C289CFA4B001A66CE /* LXSubjectTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSubjectTestVC.h; sourceTree = "<group>"; };
-		BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSubjectTestVC.m; sourceTree = "<group>"; };
-		BEDD8EDA289D75930088778F /* CTAPIBaseManager+Rac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CTAPIBaseManager+Rac.m"; sourceTree = "<group>"; };
-		BEDD8EDB289D75930088778F /* CTAPIBaseManager+Rac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CTAPIBaseManager+Rac.h"; sourceTree = "<group>"; };
 		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
-		BEEDDAE72954515200835633 /* DJprepareForReuseSignalTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJprepareForReuseSignalTestVC.h; sourceTree = "<group>"; };
-		BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJprepareForReuseSignalTestVC.m; sourceTree = "<group>"; };
-		BEEDDAEB295451F100835633 /* LXprepareForReuseSignalCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXprepareForReuseSignalCell.h; sourceTree = "<group>"; };
-		BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXprepareForReuseSignalCell.m; sourceTree = "<group>"; };
 		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -300,174 +623,875 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		BE10C431295AC2F300798607 /* 12-26 */ = {
+		BE48F72E296FF9CA00235F14 /* 2022 */ = {
 			isa = PBXGroup;
 			children = (
-				BE10C434295AC31700798607 /* LXShadowVC.h */,
-				BE10C435295AC31700798607 /* LXShadowVC.m */,
-				BE253DC529681A9500FE3574 /* LXArrowView.h */,
-				BE253DC629681A9500FE3574 /* LXArrowView.m */,
-				BE96DA0B295BDA640029268F /* LXStackViewTestVC.h */,
-				BE96DA0C295BDA640029268F /* LXStackViewTestVC.m */,
-				BE96DA0E295BDB280029268F /* LXStackViewCell.h */,
-				BE96DA0F295BDB280029268F /* LXStackViewCell.m */,
-				BE17640A2966AC7E0031C309 /* DJZitiRuleTipModel.h */,
-				BE17640B2966AC7E0031C309 /* DJZitiRuleTipModel.m */,
+				BE48F72F296FF9CA00235F14 /* 05-28 */,
+				BE48F734296FF9CA00235F14 /* 05-27 */,
+				BE48F737296FF9CA00235F14 /* 12-22 */,
+				BE48F73D296FF9CA00235F14 /* 08-28 */,
+				BE48F742296FF9CA00235F14 /* 06-28 */,
+				BE48F747296FF9CA00235F14 /* 06-17 */,
+				BE48F882296FF9CA00235F14 /* 12-26 */,
+				BE48F88D296FF9CA00235F14 /* 07-20 */,
 			);
-			path = "12-26";
+			path = 2022;
 			sourceTree = "<group>";
 		};
-		BE6777CA2887B3D200D622E2 /* 07-20 */ = {
+		BE48F72F296FF9CA00235F14 /* 05-28 */ = {
 			isa = PBXGroup;
 			children = (
-				BE6777CB2887B3E100D622E2 /* LXTestBorderVC.h */,
-				BE6777CC2887B3E100D622E2 /* LXTestBorderVC.m */,
-				BE6777CE2887B3FB00D622E2 /* UIView+border.h */,
-				BE6777CF2887B3FB00D622E2 /* UIView+border.m */,
+				BE48F730296FF9CA00235F14 /* LXCollectionVC.m */,
+				BE48F731296FF9CA00235F14 /* LXCollectionCell.m */,
+				BE48F732296FF9CA00235F14 /* LXCollectionVC.h */,
+				BE48F733296FF9CA00235F14 /* LXCollectionCell.h */,
 			);
-			path = "07-20";
+			path = "05-28";
 			sourceTree = "<group>";
 		};
-		BE7CAE41285D7F1C00A86665 /* NavHidden */ = {
+		BE48F734296FF9CA00235F14 /* 05-27 */ = {
 			isa = PBXGroup;
 			children = (
-				BE7CAE42285D7F1C00A86665 /* LXNaHiddenVC.m */,
-				BE7CAE43285D7F1C00A86665 /* LXNaHiddenVC.h */,
+				BE48F735296FF9CA00235F14 /* LX0527VC.m */,
+				BE48F736296FF9CA00235F14 /* LX0527VC.h */,
 			);
-			path = NavHidden;
+			path = "05-27";
 			sourceTree = "<group>";
 		};
-		BE7CAE54285D7F1C00A86665 /* Nested2 */ = {
+		BE48F737296FF9CA00235F14 /* 12-22 */ = {
 			isa = PBXGroup;
 			children = (
-				BE888C80285ECAEC0027F9FF /* View */,
-				BE7CAE57285D7F1C00A86665 /* LXNested2VC.h */,
-				BE7CAE5A285D7F1C00A86665 /* LXNested2VC.m */,
-				BE7CAE55285D7F1C00A86665 /* LXList2VC.h */,
-				BE7CAE58285D7F1C00A86665 /* LXList2VC.m */,
-				BE7CAE56285D7F1C00A86665 /* LXPaging2VC.h */,
-				BE7CAE59285D7F1C00A86665 /* LXPaging2VC.m */,
+				BE48F738296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m */,
+				BE48F739296FF9CA00235F14 /* Cell */,
+				BE48F73C296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.h */,
 			);
-			path = Nested2;
+			path = "12-22";
 			sourceTree = "<group>";
 		};
-		BE7CAE5B285D7F1C00A86665 /* Nest5 */ = {
+		BE48F739296FF9CA00235F14 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				BE7CAE5C285D7F1C00A86665 /* LXNest5VC.h */,
-				BE7CAE5D285D7F1C00A86665 /* LXTableVC.h */,
-				BE7CAE5E285D7F1C00A86665 /* View */,
-				BE7CAE65285D7F1C00A86665 /* LXTableVC.m */,
-				BE7CAE66285D7F1C00A86665 /* LXNest5VC.m */,
+				BE48F73A296FF9CA00235F14 /* LXprepareForReuseSignalCell.h */,
+				BE48F73B296FF9CA00235F14 /* LXprepareForReuseSignalCell.m */,
 			);
-			path = Nest5;
+			path = Cell;
 			sourceTree = "<group>";
 		};
-		BE7CAE5E285D7F1C00A86665 /* View */ = {
+		BE48F73D296FF9CA00235F14 /* 08-28 */ = {
 			isa = PBXGroup;
 			children = (
-				BE7CAE5F285D7F1C00A86665 /* LXNestCell.h */,
-				BE7CAE60285D7F1C00A86665 /* LXSectionHeaderView.h */,
-				BE7CAE61285D7F1C00A86665 /* LXTableHeaderView.m */,
-				BE7CAE62285D7F1C00A86665 /* LXSectionHeaderView.m */,
-				BE7CAE63285D7F1C00A86665 /* LXNestCell.m */,
-				BE7CAE64285D7F1C00A86665 /* LXTableHeaderView.h */,
+				BE48F73E296FF9CA00235F14 /* LXSubjectTestVC.m */,
+				BE48F73F296FF9CA00235F14 /* LXBannerTestVC.m */,
+				BE48F740296FF9CA00235F14 /* LXSubjectTestVC.h */,
+				BE48F741296FF9CA00235F14 /* LXBannerTestVC.h */,
 			);
-			path = View;
+			path = "08-28";
 			sourceTree = "<group>";
 		};
-		BE7CAE67285D7F1C00A86665 /* Common */ = {
+		BE48F742296FF9CA00235F14 /* 06-28 */ = {
 			isa = PBXGroup;
 			children = (
-				BE7CAE68285D7F1C00A86665 /* LXListViewController.m */,
-				BE7CAE69285D7F1C00A86665 /* LXPagingVC.m */,
-				BE7CAE6A285D7F1C00A86665 /* LXBaseNavigationController.h */,
-				BE7CAE6B285D7F1C00A86665 /* UIWindow+JXSafeArea.m */,
-				BE7CAE6C285D7F1C00A86665 /* LXListViewController.h */,
-				BE7CAE6D285D7F1C00A86665 /* LXBaseNavigationController.m */,
-				BE7CAE6E285D7F1C00A86665 /* LXPagingVC.h */,
-				BE7CAE6F285D7F1C00A86665 /* UIWindow+JXSafeArea.h */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		BE7CAE73285D7F1C00A86665 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BE7CAE74285D7F1C00A86665 /* LXHeaderView.h */,
-				BE7CAE75285D7F1C00A86665 /* LXHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BE7F412E286B01AB009D8A8A /* 06-28 */ = {
-			isa = PBXGroup;
-			children = (
-				BE7F412F286B01C5009D8A8A /* LXTestModel.h */,
-				BE7F4130286B01C5009D8A8A /* LXTestModel.m */,
-				BE7F4132286B01D2009D8A8A /* LXTestModelVC.h */,
-				BE7F4133286B01D2009D8A8A /* LXTestModelVC.m */,
+				BE48F743296FF9CA00235F14 /* LXTestModel.m */,
+				BE48F744296FF9CA00235F14 /* LXTestModelVC.m */,
+				BE48F745296FF9CA00235F14 /* LXTestModelVC.h */,
+				BE48F746296FF9CA00235F14 /* LXTestModel.h */,
 			);
 			path = "06-28";
 			sourceTree = "<group>";
 		};
-		BE888C4D285EAF2E0027F9FF /* Nest6 */ = {
+		BE48F747296FF9CA00235F14 /* 06-17 */ = {
 			isa = PBXGroup;
 			children = (
-				BE888C4E285EAF450027F9FF /* LXNest6VC.h */,
-				BE888C4F285EAF450027F9FF /* LXNest6VC.m */,
+				BE48F748296FF9CA00235F14 /* Nest5 */,
+				BE48F754296FF9CA00235F14 /* __ex */,
+				BE48F76D296FF9CA00235F14 /* Networking */,
+				BE48F770296FF9CA00235F14 /* DJNewClassify2 */,
+				BE48F7DA296FF9CA00235F14 /* DJNewClassify */,
+				BE48F85A296FF9CA00235F14 /* Common */,
+				BE48F863296FF9CA00235F14 /* Classify2 */,
+				BE48F868296FF9CA00235F14 /* Nest6 */,
+				BE48F86B296FF9CA00235F14 /* View */,
+				BE48F86E296FF9CA00235F14 /* Nested2 */,
+				BE48F87A296FF9CA00235F14 /* TXScrollLabelView */,
+				BE48F87F296FF9CA00235F14 /* NavHidden */,
+			);
+			path = "06-17";
+			sourceTree = "<group>";
+		};
+		BE48F748296FF9CA00235F14 /* Nest5 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F749296FF9CA00235F14 /* LXNest5VC.h */,
+				BE48F74A296FF9CA00235F14 /* LXTableVC.h */,
+				BE48F74B296FF9CA00235F14 /* View */,
+				BE48F752296FF9CA00235F14 /* LXTableVC.m */,
+				BE48F753296FF9CA00235F14 /* LXNest5VC.m */,
+			);
+			path = Nest5;
+			sourceTree = "<group>";
+		};
+		BE48F74B296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F74C296FF9CA00235F14 /* LXNestCell.h */,
+				BE48F74D296FF9CA00235F14 /* LXSectionHeaderView.h */,
+				BE48F74E296FF9CA00235F14 /* LXTableHeaderView.m */,
+				BE48F74F296FF9CA00235F14 /* LXSectionHeaderView.m */,
+				BE48F750296FF9CA00235F14 /* LXNestCell.m */,
+				BE48F751296FF9CA00235F14 /* LXTableHeaderView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F754296FF9CA00235F14 /* __ex */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F755296FF9CA00235F14 /* Nest3 */,
+				BE48F75A296FF9CA00235F14 /* Nest4 */,
+				BE48F761296FF9CA00235F14 /* Nest6 */,
+				BE48F764296FF9CA00235F14 /* Nested */,
+			);
+			path = __ex;
+			sourceTree = "<group>";
+		};
+		BE48F755296FF9CA00235F14 /* Nest3 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F756296FF9CA00235F14 /* LXPageVC.m */,
+				BE48F757296FF9CA00235F14 /* LXPageListView.m */,
+				BE48F758296FF9CA00235F14 /* LXPageListView.h */,
+				BE48F759296FF9CA00235F14 /* LXPageVC.h */,
+			);
+			path = Nest3;
+			sourceTree = "<group>";
+		};
+		BE48F75A296FF9CA00235F14 /* Nest4 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F75B296FF9CA00235F14 /* LXNest4VC.h */,
+				BE48F75C296FF9CA00235F14 /* LXHotListView.h */,
+				BE48F75D296FF9CA00235F14 /* LXRecommendListView.m */,
+				BE48F75E296FF9CA00235F14 /* LXHotListView.m */,
+				BE48F75F296FF9CA00235F14 /* LXNest4VC.m */,
+				BE48F760296FF9CA00235F14 /* LXRecommendListView.h */,
+			);
+			path = Nest4;
+			sourceTree = "<group>";
+		};
+		BE48F761296FF9CA00235F14 /* Nest6 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F762296FF9CA00235F14 /* LXNest6VC.h */,
+				BE48F763296FF9CA00235F14 /* LXNest6VC.m */,
 			);
 			path = Nest6;
 			sourceTree = "<group>";
 		};
-		BE888C80285ECAEC0027F9FF /* View */ = {
+		BE48F764296FF9CA00235F14 /* Nested */ = {
 			isa = PBXGroup;
 			children = (
-				BE888C81285ECB010027F9FF /* LXPageCell.h */,
-				BE888C82285ECB010027F9FF /* LXPageCell.m */,
-				BE9234AA285EDDC400ABB71B /* LXMyTableView.h */,
-				BE9234AB285EDDC400ABB71B /* LXMyTableView.m */,
+				BE48F765296FF9CA00235F14 /* LXHeaderListView.m */,
+				BE48F766296FF9CA00235F14 /* LXNestedListVC.m */,
+				BE48F767296FF9CA00235F14 /* LXNestedListView.h */,
+				BE48F768296FF9CA00235F14 /* LXNestedVC.h */,
+				BE48F769296FF9CA00235F14 /* LXHeaderListView.h */,
+				BE48F76A296FF9CA00235F14 /* LXNestedVC.m */,
+				BE48F76B296FF9CA00235F14 /* LXNestedListView.m */,
+				BE48F76C296FF9CA00235F14 /* LXNestedListVC.h */,
+			);
+			path = Nested;
+			sourceTree = "<group>";
+		};
+		BE48F76D296FF9CA00235F14 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F76E296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */,
+				BE48F76F296FF9CA00235F14 /* CTAPIBaseManager+Rac.h */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BE48F770296FF9CA00235F14 /* DJNewClassify2 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F771296FF9CA00235F14 /* DJClassifyMacro.h */,
+				BE48F772296FF9CA00235F14 /* SkeletonScreen */,
+				BE48F779296FF9CA00235F14 /* Networking */,
+				BE48F77C296FF9CA00235F14 /* VM */,
+				BE48F77F296FF9CA00235F14 /* VC */,
+				BE48F788296FF9CA00235F14 /* PanelLeft */,
+				BE48F78D296FF9CA00235F14 /* PanelRight */,
+				BE48F7AF296FF9CA00235F14 /* Model */,
+				BE48F7C5296FF9CA00235F14 /* 1rdCategoryView */,
+			);
+			path = DJNewClassify2;
+			sourceTree = "<group>";
+		};
+		BE48F772296FF9CA00235F14 /* SkeletonScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F773296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */,
+				BE48F774296FF9CA00235F14 /* DJClassifyEmptyView.m */,
+				BE48F775296FF9CA00235F14 /* DJClassifySkeletonScreen.m */,
+				BE48F776296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.h */,
+				BE48F777296FF9CA00235F14 /* DJClassifyEmptyView.h */,
+				BE48F778296FF9CA00235F14 /* DJClassifySkeletonScreen.h */,
+			);
+			path = SkeletonScreen;
+			sourceTree = "<group>";
+		};
+		BE48F779296FF9CA00235F14 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F77A296FF9CA00235F14 /* CTAPIBaseManager+Rac.m */,
+				BE48F77B296FF9CA00235F14 /* CTAPIBaseManager+Rac.h */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BE48F77C296FF9CA00235F14 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F77D296FF9CA00235F14 /* DJClassifyVM.h */,
+				BE48F77E296FF9CA00235F14 /* DJClassifyVM.m */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BE48F77F296FF9CA00235F14 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F780296FF9CA00235F14 /* DJO2OClassifyWrapperVC.m */,
+				BE48F781296FF9CA00235F14 /* DJClassifyListVC.m */,
+				BE48F782296FF9CA00235F14 /* DJClassifyVC.h */,
+				BE48F783296FF9CA00235F14 /* DJB2CClassifyWrapperVC.m */,
+				BE48F784296FF9CA00235F14 /* DJClassifyListVC.h */,
+				BE48F785296FF9CA00235F14 /* DJO2OClassifyWrapperVC.h */,
+				BE48F786296FF9CA00235F14 /* DJB2CClassifyWrapperVC.h */,
+				BE48F787296FF9CA00235F14 /* DJClassifyVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BE48F788296FF9CA00235F14 /* PanelLeft */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F789296FF9CA00235F14 /* DJClassifyListLeftCell.h */,
+				BE48F78A296FF9CA00235F14 /* DJClassifyListLeftView.h */,
+				BE48F78B296FF9CA00235F14 /* DJClassifyListLeftCell.m */,
+				BE48F78C296FF9CA00235F14 /* DJClassifyListLeftView.m */,
+			);
+			path = PanelLeft;
+			sourceTree = "<group>";
+		};
+		BE48F78D296FF9CA00235F14 /* PanelRight */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F78E296FF9CA00235F14 /* DJClassifyListRightVC.h */,
+				BE48F78F296FF9CA00235F14 /* DJClassifyListRightVC.m */,
+				BE48F790296FF9CA00235F14 /* View */,
+				BE48F7A1296FF9CA00235F14 /* Cell & HeaderFooter */,
+				BE48F7AA296FF9CA00235F14 /* CategoryView */,
+			);
+			path = PanelRight;
+			sourceTree = "<group>";
+		};
+		BE48F790296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F791296FF9CA00235F14 /* DJPriceWrapperView */,
+				BE48F794296FF9CA00235F14 /* DJVerticalTableView.h */,
+				BE48F795296FF9CA00235F14 /* DJMyCollectionView.m */,
+				BE48F796296FF9CA00235F14 /* DJNewAddCartView */,
+				BE48F799296FF9CA00235F14 /* DJTagView */,
+				BE48F79C296FF9CA00235F14 /* DJVerticalTableView.m */,
+				BE48F79D296FF9CA00235F14 /* DJMyCollectionView.h */,
+				BE48F79E296FF9CA00235F14 /* PinView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F791296FF9CA00235F14 /* DJPriceWrapperView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F792296FF9CA00235F14 /* DJPriceWrapperStackView.h */,
+				BE48F793296FF9CA00235F14 /* DJPriceWrapperStackView.m */,
+			);
+			path = DJPriceWrapperView;
+			sourceTree = "<group>";
+		};
+		BE48F796296FF9CA00235F14 /* DJNewAddCartView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F797296FF9CA00235F14 /* DJNewAddCartView.m */,
+				BE48F798296FF9CA00235F14 /* DJNewAddCartView.h */,
+			);
+			path = DJNewAddCartView;
+			sourceTree = "<group>";
+		};
+		BE48F799296FF9CA00235F14 /* DJTagView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F79A296FF9CA00235F14 /* DJTagView.h */,
+				BE48F79B296FF9CA00235F14 /* DJTagView.m */,
+			);
+			path = DJTagView;
+			sourceTree = "<group>";
+		};
+		BE48F79E296FF9CA00235F14 /* PinView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F79F296FF9CA00235F14 /* DJSubCategoryPinView.h */,
+				BE48F7A0296FF9CA00235F14 /* DJSubCategoryPinView.m */,
+			);
+			path = PinView;
+			sourceTree = "<group>";
+		};
+		BE48F7A1296FF9CA00235F14 /* Cell & HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7A2296FF9CA00235F14 /* DJClassifyRightCollectionCell.h */,
+				BE48F7A3296FF9CA00235F14 /* DJSectionCategoryHeaderView.h */,
+				BE48F7A4296FF9CA00235F14 /* DJClassifyListBannerCell.m */,
+				BE48F7A5296FF9CA00235F14 /* DJClassifySectionHeaderView.m */,
+				BE48F7A6296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */,
+				BE48F7A7296FF9CA00235F14 /* DJClassifyListBannerCell.h */,
+				BE48F7A8296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */,
+				BE48F7A9296FF9CA00235F14 /* DJClassifySectionHeaderView.h */,
+			);
+			path = "Cell & HeaderFooter";
+			sourceTree = "<group>";
+		};
+		BE48F7AA296FF9CA00235F14 /* CategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7AB296FF9CA00235F14 /* DJ3rdCategoryCell.m */,
+				BE48F7AC296FF9CA00235F14 /* DJ3rdCategoryView.m */,
+				BE48F7AD296FF9CA00235F14 /* DJ3rdCategoryCell.h */,
+				BE48F7AE296FF9CA00235F14 /* DJ3rdCategoryView.h */,
+			);
+			path = CategoryView;
+			sourceTree = "<group>";
+		};
+		BE48F7AF296FF9CA00235F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7B0296FF9CA00235F14 /* DJClassifyBaseCategoryModel.h */,
+				BE48F7B1296FF9CA00235F14 /* Classify */,
+				BE48F7B4296FF9CA00235F14 /* O2O */,
+				BE48F7BD296FF9CA00235F14 /* DJShopResourceModel.h */,
+				BE48F7BE296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */,
+				BE48F7BF296FF9CA00235F14 /* B2C */,
+				BE48F7C4296FF9CA00235F14 /* DJShopResourceModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE48F7B1296FF9CA00235F14 /* Classify */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7B2296FF9CA00235F14 /* DJClassifyInfoModel.m */,
+				BE48F7B3296FF9CA00235F14 /* DJClassifyInfoModel.h */,
+			);
+			path = Classify;
+			sourceTree = "<group>";
+		};
+		BE48F7B4296FF9CA00235F14 /* O2O */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7B5296FF9CA00235F14 /* DJO2OCategoryListModel.m */,
+				BE48F7B6296FF9CA00235F14 /* DJGoodBaseItemModel.m */,
+				BE48F7B7296FF9CA00235F14 /* DJGoodsIdsModel.h */,
+				BE48F7B8296FF9CA00235F14 /* DJO2OGoodItemModel.h */,
+				BE48F7B9296FF9CA00235F14 /* DJGoodBaseItemModel.h */,
+				BE48F7BA296FF9CA00235F14 /* DJO2OCategoryListModel.h */,
+				BE48F7BB296FF9CA00235F14 /* DJGoodsIdsModel.m */,
+				BE48F7BC296FF9CA00235F14 /* DJO2OGoodItemModel.m */,
+			);
+			path = O2O;
+			sourceTree = "<group>";
+		};
+		BE48F7BF296FF9CA00235F14 /* B2C */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7C0296FF9CA00235F14 /* DJB2CCategoryModel.h */,
+				BE48F7C1296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */,
+				BE48F7C2296FF9CA00235F14 /* DJB2CCategoryModel.m */,
+				BE48F7C3296FF9CA00235F14 /* DJB2CGoodsItemListModel.h */,
+			);
+			path = B2C;
+			sourceTree = "<group>";
+		};
+		BE48F7C5296FF9CA00235F14 /* 1rdCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7C6296FF9CA00235F14 /* DJBase1rdCategoryView.h */,
+				BE48F7C7296FF9CA00235F14 /* DJ1rdCategoryFoldView.h */,
+				BE48F7C8296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.h */,
+				BE48F7C9296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.h */,
+				BE48F7CA296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */,
+				BE48F7CB296FF9CA00235F14 /* Cell */,
+				BE48F7D0296FF9CA00235F14 /* DJBase1rdCategoryView.m */,
+				BE48F7D1296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */,
+				BE48F7D2296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */,
+				BE48F7D3296FF9CA00235F14 /* JX */,
+			);
+			path = 1rdCategoryView;
+			sourceTree = "<group>";
+		};
+		BE48F7CB296FF9CA00235F14 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7CC296FF9CA00235F14 /* DJ1rdCategoryCell.h */,
+				BE48F7CD296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.h */,
+				BE48F7CE296FF9CA00235F14 /* DJ1rdCategoryCell.m */,
+				BE48F7CF296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BE48F7D3296FF9CA00235F14 /* JX */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7D4296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.h */,
+				BE48F7D5296FF9CA00235F14 /* JXCategoryTitleBackgroundView.h */,
+				BE48F7D6296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */,
+				BE48F7D7296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */,
+				BE48F7D8296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */,
+				BE48F7D9296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.h */,
+			);
+			path = JX;
+			sourceTree = "<group>";
+		};
+		BE48F7DA296FF9CA00235F14 /* DJNewClassify */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7DB296FF9CA00235F14 /* DJClassifyMacro.h */,
+				BE48F7DC296FF9CA00235F14 /* SkeletonScreen */,
+				BE48F7E3296FF9CA00235F14 /* Kit */,
+				BE48F7EC296FF9CA00235F14 /* VM */,
+				BE48F7F1296FF9CA00235F14 /* VC */,
+				BE48F7FC296FF9CA00235F14 /* PanelLeft */,
+				BE48F801296FF9CA00235F14 /* PanelRight */,
+				BE48F825296FF9CA00235F14 /* Model */,
+				BE48F842296FF9CA00235F14 /* View */,
+				BE48F845296FF9CA00235F14 /* 1rdCategoryView */,
+			);
+			path = DJNewClassify;
+			sourceTree = "<group>";
+		};
+		BE48F7DC296FF9CA00235F14 /* SkeletonScreen */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7DD296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m */,
+				BE48F7DE296FF9CA00235F14 /* DJClassifyEmptyView.m */,
+				BE48F7DF296FF9CA00235F14 /* DJClassifySkeletonScreen.m */,
+				BE48F7E0296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.h */,
+				BE48F7E1296FF9CA00235F14 /* DJClassifyEmptyView.h */,
+				BE48F7E2296FF9CA00235F14 /* DJClassifySkeletonScreen.h */,
+			);
+			path = SkeletonScreen;
+			sourceTree = "<group>";
+		};
+		BE48F7E3296FF9CA00235F14 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7E4296FF9CA00235F14 /* NSObject+resourceJump.h */,
+				BE48F7E5296FF9CA00235F14 /* DJClassifyKit.m */,
+				BE48F7E6296FF9CA00235F14 /* Sensor.h */,
+				BE48F7E7296FF9CA00235F14 /* DJSensorKit.m */,
+				BE48F7E8296FF9CA00235F14 /* DJSensorKit.h */,
+				BE48F7E9296FF9CA00235F14 /* Sensor.m */,
+				BE48F7EA296FF9CA00235F14 /* DJClassifyKit.h */,
+				BE48F7EB296FF9CA00235F14 /* NSObject+resourceJump.m */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		BE48F7EC296FF9CA00235F14 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7ED296FF9CA00235F14 /* DJShopCartVM.m */,
+				BE48F7EE296FF9CA00235F14 /* DJClassifyVM.h */,
+				BE48F7EF296FF9CA00235F14 /* DJShopCartVM.h */,
+				BE48F7F0296FF9CA00235F14 /* DJClassifyVM.m */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		BE48F7F1296FF9CA00235F14 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7F2296FF9CA00235F14 /* DJClassifyB2CRightVC.h */,
+				BE48F7F3296FF9CA00235F14 /* DJNewClassifyVC.m */,
+				BE48F7F4296FF9CA00235F14 /* DJClassifyB2CVC.m */,
+				BE48F7F5296FF9CA00235F14 /* DJClassifyO2ORightVC.h */,
+				BE48F7F6296FF9CA00235F14 /* DJClassifyO2OVC.m */,
+				BE48F7F7296FF9CA00235F14 /* DJClassifyB2CRightVC.m */,
+				BE48F7F8296FF9CA00235F14 /* DJNewClassifyVC.h */,
+				BE48F7F9296FF9CA00235F14 /* DJClassifyB2CVC.h */,
+				BE48F7FA296FF9CA00235F14 /* DJClassifyO2OVC.h */,
+				BE48F7FB296FF9CA00235F14 /* DJClassifyO2ORightVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		BE48F7FC296FF9CA00235F14 /* PanelLeft */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F7FD296FF9CA00235F14 /* DJClassifyListLeftCell.h */,
+				BE48F7FE296FF9CA00235F14 /* DJClassifyListLeftView.h */,
+				BE48F7FF296FF9CA00235F14 /* DJClassifyListLeftCell.m */,
+				BE48F800296FF9CA00235F14 /* DJClassifyListLeftView.m */,
+			);
+			path = PanelLeft;
+			sourceTree = "<group>";
+		};
+		BE48F801296FF9CA00235F14 /* PanelRight */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F802296FF9CA00235F14 /* View */,
+				BE48F813296FF9CA00235F14 /* Cell & HeaderFooter */,
+				BE48F820296FF9CA00235F14 /* CategoryView */,
+			);
+			path = PanelRight;
+			sourceTree = "<group>";
+		};
+		BE48F802296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F803296FF9CA00235F14 /* DJPriceWrapperView */,
+				BE48F806296FF9CA00235F14 /* DJVerticalTableView.h */,
+				BE48F807296FF9CA00235F14 /* DJMyCollectionView.m */,
+				BE48F808296FF9CA00235F14 /* DJNewAddCartView */,
+				BE48F80B296FF9CA00235F14 /* DJTagView */,
+				BE48F80E296FF9CA00235F14 /* DJVerticalTableView.m */,
+				BE48F80F296FF9CA00235F14 /* DJMyCollectionView.h */,
+				BE48F810296FF9CA00235F14 /* PinView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F803296FF9CA00235F14 /* DJPriceWrapperView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F804296FF9CA00235F14 /* DJPriceWrapperStackView.h */,
+				BE48F805296FF9CA00235F14 /* DJPriceWrapperStackView.m */,
+			);
+			path = DJPriceWrapperView;
+			sourceTree = "<group>";
+		};
+		BE48F808296FF9CA00235F14 /* DJNewAddCartView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F809296FF9CA00235F14 /* DJNewAddCartView.m */,
+				BE48F80A296FF9CA00235F14 /* DJNewAddCartView.h */,
+			);
+			path = DJNewAddCartView;
+			sourceTree = "<group>";
+		};
+		BE48F80B296FF9CA00235F14 /* DJTagView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F80C296FF9CA00235F14 /* DJTagView.h */,
+				BE48F80D296FF9CA00235F14 /* DJTagView.m */,
+			);
+			path = DJTagView;
+			sourceTree = "<group>";
+		};
+		BE48F810296FF9CA00235F14 /* PinView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F811296FF9CA00235F14 /* DJSubCategoryPinView.h */,
+				BE48F812296FF9CA00235F14 /* DJSubCategoryPinView.m */,
+			);
+			path = PinView;
+			sourceTree = "<group>";
+		};
+		BE48F813296FF9CA00235F14 /* Cell & HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F814296FF9CA00235F14 /* DJClassifyRightCollectionCell.h */,
+				BE48F815296FF9CA00235F14 /* DJSectionCategoryHeaderView.h */,
+				BE48F816296FF9CA00235F14 /* DJClassifyListBannerCell.m */,
+				BE48F817296FF9CA00235F14 /* DJClassifyRightShowLastCell.m */,
+				BE48F818296FF9CA00235F14 /* DJClassifyListBannerView.m */,
+				BE48F819296FF9CA00235F14 /* DJClassifySectionHeaderView.m */,
+				BE48F81A296FF9CA00235F14 /* DJClassifyRightCollectionCell.m */,
+				BE48F81B296FF9CA00235F14 /* DJClassifyRightShowLastCell.h */,
+				BE48F81C296FF9CA00235F14 /* DJClassifyListBannerCell.h */,
+				BE48F81D296FF9CA00235F14 /* DJSectionCategoryHeaderView.m */,
+				BE48F81E296FF9CA00235F14 /* DJClassifySectionHeaderView.h */,
+				BE48F81F296FF9CA00235F14 /* DJClassifyListBannerView.h */,
+			);
+			path = "Cell & HeaderFooter";
+			sourceTree = "<group>";
+		};
+		BE48F820296FF9CA00235F14 /* CategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F821296FF9CA00235F14 /* DJ3rdCategoryCell.m */,
+				BE48F822296FF9CA00235F14 /* DJ3rdCategoryView.m */,
+				BE48F823296FF9CA00235F14 /* DJ3rdCategoryCell.h */,
+				BE48F824296FF9CA00235F14 /* DJ3rdCategoryView.h */,
+			);
+			path = CategoryView;
+			sourceTree = "<group>";
+		};
+		BE48F825296FF9CA00235F14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F826296FF9CA00235F14 /* DJClassifyBaseCategoryModel.h */,
+				BE48F827296FF9CA00235F14 /* DJSearchDpWordModel.m */,
+				BE48F828296FF9CA00235F14 /* O2O */,
+				BE48F831296FF9CA00235F14 /* DJShopResourceModel.h */,
+				BE48F832296FF9CA00235F14 /* Shop */,
+				BE48F835296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m */,
+				BE48F836296FF9CA00235F14 /* ShopCart */,
+				BE48F83B296FF9CA00235F14 /* B2C */,
+				BE48F840296FF9CA00235F14 /* DJShopResourceModel.m */,
+				BE48F841296FF9CA00235F14 /* DJSearchDpWordModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE48F828296FF9CA00235F14 /* O2O */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F829296FF9CA00235F14 /* DJO2OCategoryListModel.m */,
+				BE48F82A296FF9CA00235F14 /* DJGoodBaseItemModel.m */,
+				BE48F82B296FF9CA00235F14 /* DJGoodsIdsModel.h */,
+				BE48F82C296FF9CA00235F14 /* DJO2OGoodItemModel.h */,
+				BE48F82D296FF9CA00235F14 /* DJGoodBaseItemModel.h */,
+				BE48F82E296FF9CA00235F14 /* DJO2OCategoryListModel.h */,
+				BE48F82F296FF9CA00235F14 /* DJGoodsIdsModel.m */,
+				BE48F830296FF9CA00235F14 /* DJO2OGoodItemModel.m */,
+			);
+			path = O2O;
+			sourceTree = "<group>";
+		};
+		BE48F832296FF9CA00235F14 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F833296FF9CA00235F14 /* DJShopDetailModel.m */,
+				BE48F834296FF9CA00235F14 /* DJShopDetailModel.h */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		BE48F836296FF9CA00235F14 /* ShopCart */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F837296FF9CA00235F14 /* DJB2CAddCartResultModel.m */,
+				BE48F838296FF9CA00235F14 /* DJAddCartResultModel.h */,
+				BE48F839296FF9CA00235F14 /* DJB2CAddCartResultModel.h */,
+				BE48F83A296FF9CA00235F14 /* DJAddCartResultModel.m */,
+			);
+			path = ShopCart;
+			sourceTree = "<group>";
+		};
+		BE48F83B296FF9CA00235F14 /* B2C */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F83C296FF9CA00235F14 /* DJB2CCategoryModel.h */,
+				BE48F83D296FF9CA00235F14 /* DJB2CGoodsItemListModel.m */,
+				BE48F83E296FF9CA00235F14 /* DJB2CCategoryModel.m */,
+				BE48F83F296FF9CA00235F14 /* DJB2CGoodsItemListModel.h */,
+			);
+			path = B2C;
+			sourceTree = "<group>";
+		};
+		BE48F842296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F843296FF9CA00235F14 /* DJClassifyHeaderView.h */,
+				BE48F844296FF9CA00235F14 /* DJClassifyHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F845296FF9CA00235F14 /* 1rdCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F846296FF9CA00235F14 /* DJBase1rdCategoryView.h */,
+				BE48F847296FF9CA00235F14 /* DJ1rdCategoryFoldView.h */,
+				BE48F848296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.h */,
+				BE48F849296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.h */,
+				BE48F84A296FF9CA00235F14 /* DJ1rdCategoryFoldView.m */,
+				BE48F84B296FF9CA00235F14 /* Cell */,
+				BE48F850296FF9CA00235F14 /* DJBase1rdCategoryView.m */,
+				BE48F851296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m */,
+				BE48F852296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m */,
+				BE48F853296FF9CA00235F14 /* JX */,
+			);
+			path = 1rdCategoryView;
+			sourceTree = "<group>";
+		};
+		BE48F84B296FF9CA00235F14 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F84C296FF9CA00235F14 /* DJ1rdCategoryCell.h */,
+				BE48F84D296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.h */,
+				BE48F84E296FF9CA00235F14 /* DJ1rdCategoryCell.m */,
+				BE48F84F296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BE48F853296FF9CA00235F14 /* JX */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F854296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.h */,
+				BE48F855296FF9CA00235F14 /* JXCategoryTitleBackgroundView.h */,
+				BE48F856296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m */,
+				BE48F857296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m */,
+				BE48F858296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m */,
+				BE48F859296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.h */,
+			);
+			path = JX;
+			sourceTree = "<group>";
+		};
+		BE48F85A296FF9CA00235F14 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F85B296FF9CA00235F14 /* LXListViewController.m */,
+				BE48F85C296FF9CA00235F14 /* LXPagingVC.m */,
+				BE48F85D296FF9CA00235F14 /* LXBaseNavigationController.h */,
+				BE48F85E296FF9CA00235F14 /* UIWindow+JXSafeArea.m */,
+				BE48F85F296FF9CA00235F14 /* LXListViewController.h */,
+				BE48F860296FF9CA00235F14 /* LXBaseNavigationController.m */,
+				BE48F861296FF9CA00235F14 /* LXPagingVC.h */,
+				BE48F862296FF9CA00235F14 /* UIWindow+JXSafeArea.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BE48F863296FF9CA00235F14 /* Classify2 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F864296FF9CA00235F14 /* LXClassifyMainVC.h */,
+				BE48F865296FF9CA00235F14 /* LXClassifyList2VC.m */,
+				BE48F866296FF9CA00235F14 /* LXClassifyMainVC.m */,
+				BE48F867296FF9CA00235F14 /* LXClassifyList2VC.h */,
+			);
+			path = Classify2;
+			sourceTree = "<group>";
+		};
+		BE48F868296FF9CA00235F14 /* Nest6 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F869296FF9CA00235F14 /* LXNest6VC.h */,
+				BE48F86A296FF9CA00235F14 /* LXNest6VC.m */,
+			);
+			path = Nest6;
+			sourceTree = "<group>";
+		};
+		BE48F86B296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F86C296FF9CA00235F14 /* LXHeaderView.h */,
+				BE48F86D296FF9CA00235F14 /* LXHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F86E296FF9CA00235F14 /* Nested2 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F86F296FF9CA00235F14 /* LXList2VC.h */,
+				BE48F870296FF9CA00235F14 /* LXPaging2VC.h */,
+				BE48F871296FF9CA00235F14 /* LXNested2VC.h */,
+				BE48F872296FF9CA00235F14 /* LXList2VC.m */,
+				BE48F873296FF9CA00235F14 /* View */,
+				BE48F878296FF9CA00235F14 /* LXPaging2VC.m */,
+				BE48F879296FF9CA00235F14 /* LXNested2VC.m */,
+			);
+			path = Nested2;
+			sourceTree = "<group>";
+		};
+		BE48F873296FF9CA00235F14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F874296FF9CA00235F14 /* LXPageCell.h */,
+				BE48F875296FF9CA00235F14 /* LXMyTableView.h */,
+				BE48F876296FF9CA00235F14 /* LXPageCell.m */,
+				BE48F877296FF9CA00235F14 /* LXMyTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE48F87A296FF9CA00235F14 /* TXScrollLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F87B296FF9CA00235F14 /* TXScrollLabelView.h */,
+				BE48F87C296FF9CA00235F14 /* UIView+TXFrame.h */,
+				BE48F87D296FF9CA00235F14 /* TXScrollLabelView.m */,
+				BE48F87E296FF9CA00235F14 /* UIView+TXFrame.m */,
+			);
+			path = TXScrollLabelView;
+			sourceTree = "<group>";
+		};
+		BE48F87F296FF9CA00235F14 /* NavHidden */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F880296FF9CA00235F14 /* LXNaHiddenVC.m */,
+				BE48F881296FF9CA00235F14 /* LXNaHiddenVC.h */,
+			);
+			path = NavHidden;
+			sourceTree = "<group>";
+		};
+		BE48F882296FF9CA00235F14 /* 12-26 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F883296FF9CA00235F14 /* LXShadowVC.m */,
+				BE48F884296FF9CA00235F14 /* LXArrowView.h */,
+				BE48F885296FF9CA00235F14 /* LXStackViewCell.h */,
+				BE48F886296FF9CA00235F14 /* DJZitiRuleTipModel.h */,
+				BE48F887296FF9CA00235F14 /* LXStackViewTestVC.m */,
+				BE48F888296FF9CA00235F14 /* LXShadowVC.h */,
+				BE48F889296FF9CA00235F14 /* LXStackViewCell.m */,
+				BE48F88A296FF9CA00235F14 /* LXArrowView.m */,
+				BE48F88B296FF9CA00235F14 /* DJZitiRuleTipModel.m */,
+				BE48F88C296FF9CA00235F14 /* LXStackViewTestVC.h */,
+			);
+			path = "12-26";
+			sourceTree = "<group>";
+		};
+		BE48F88D296FF9CA00235F14 /* 07-20 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F88E296FF9CA00235F14 /* UIView+border.m */,
+				BE48F88F296FF9CA00235F14 /* LXTestBorderVC.h */,
+				BE48F890296FF9CA00235F14 /* LXTestBorderVC.m */,
+				BE48F891296FF9CA00235F14 /* UIView+border.h */,
+			);
+			path = "07-20";
+			sourceTree = "<group>";
+		};
+		BE48F892296FF9CA00235F14 /* 2023 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F921296FF9D400235F14 /* 01-12 */,
+			);
+			path = 2023;
+			sourceTree = "<group>";
+		};
+		BE48F921296FF9D400235F14 /* 01-12 */ = {
+			isa = PBXGroup;
+			children = (
+				BE48F922296FF9E200235F14 /* LXURLCompVC.h */,
+				BE48F923296FF9E200235F14 /* LXURLCompVC.m */,
+			);
+			path = "01-12";
 			sourceTree = "<group>";
 		};
 		BE894F20284065510022EF57 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
-				BE10C431295AC2F300798607 /* 12-26 */,
-				BEEDDAE62954513900835633 /* 12-22 */,
-				BED29D5B289CFA3A001A66CE /* 08-28 */,
-				BE6777CA2887B3D200D622E2 /* 07-20 */,
-				BE7F412E286B01AB009D8A8A /* 06-28 */,
-				BEA96F76285C0CD70002AB73 /* 06-17 */,
-				BED143FF2844B21000DEA8EA /* 05-28 */,
-				BE894F212840655F0022EF57 /* 05-27 */,
+				BE48F72E296FF9CA00235F14 /* 2022 */,
+				BE48F892296FF9CA00235F14 /* 2023 */,
 			);
 			path = Daily;
-			sourceTree = "<group>";
-		};
-		BE894F212840655F0022EF57 /* 05-27 */ = {
-			isa = PBXGroup;
-			children = (
-				BE894F22284065780022EF57 /* LX0527VC.h */,
-				BE894F23284065780022EF57 /* LX0527VC.m */,
-			);
-			path = "05-27";
-			sourceTree = "<group>";
-		};
-		BEA96F76285C0CD70002AB73 /* 06-17 */ = {
-			isa = PBXGroup;
-			children = (
-				BEDD8ED9289D75930088778F /* Networking */,
-				BECDDA1C28978D45002A0BE9 /* TXScrollLabelView */,
-				BE7CAE54285D7F1C00A86665 /* Nested2 */,
-				BE888C4D285EAF2E0027F9FF /* Nest6 */,
-				BE7CAE67285D7F1C00A86665 /* Common */,
-				BE7CAE41285D7F1C00A86665 /* NavHidden */,
-				BE7CAE5B285D7F1C00A86665 /* Nest5 */,
-				BE7CAE73285D7F1C00A86665 /* View */,
-			);
-			path = "06-17";
 			sourceTree = "<group>";
 		};
 		BEB56B35283E19F4003BAA77 /* MVVM */ = {
@@ -487,67 +1511,6 @@
 				BEB56B3B283E1A77003BAA77 /* LXLoginVM.m */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		BECDDA1C28978D45002A0BE9 /* TXScrollLabelView */ = {
-			isa = PBXGroup;
-			children = (
-				BECDDA1D28978D45002A0BE9 /* TXScrollLabelView.h */,
-				BECDDA1F28978D45002A0BE9 /* TXScrollLabelView.m */,
-				BECDDA1E28978D45002A0BE9 /* UIView+TXFrame.h */,
-				BECDDA2028978D45002A0BE9 /* UIView+TXFrame.m */,
-			);
-			path = TXScrollLabelView;
-			sourceTree = "<group>";
-		};
-		BED143FF2844B21000DEA8EA /* 05-28 */ = {
-			isa = PBXGroup;
-			children = (
-				BED144002844B22400DEA8EA /* LXCollectionVC.h */,
-				BED144012844B22400DEA8EA /* LXCollectionVC.m */,
-				BED144032844B2AB00DEA8EA /* LXCollectionCell.h */,
-				BED144042844B2AB00DEA8EA /* LXCollectionCell.m */,
-			);
-			path = "05-28";
-			sourceTree = "<group>";
-		};
-		BED29D5B289CFA3A001A66CE /* 08-28 */ = {
-			isa = PBXGroup;
-			children = (
-				BED29D5C289CFA4B001A66CE /* LXSubjectTestVC.h */,
-				BED29D5D289CFA4B001A66CE /* LXSubjectTestVC.m */,
-				BE959A7428A621D8002930C9 /* LXBannerTestVC.h */,
-				BE959A7528A621D8002930C9 /* LXBannerTestVC.m */,
-			);
-			path = "08-28";
-			sourceTree = "<group>";
-		};
-		BEDD8ED9289D75930088778F /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				BEDD8EDA289D75930088778F /* CTAPIBaseManager+Rac.m */,
-				BEDD8EDB289D75930088778F /* CTAPIBaseManager+Rac.h */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		BEEDDAE62954513900835633 /* 12-22 */ = {
-			isa = PBXGroup;
-			children = (
-				BEEDDAE72954515200835633 /* DJprepareForReuseSignalTestVC.h */,
-				BEEDDAE82954515200835633 /* DJprepareForReuseSignalTestVC.m */,
-				BEEDDAEA295451DA00835633 /* Cell */,
-			);
-			path = "12-22";
-			sourceTree = "<group>";
-		};
-		BEEDDAEA295451DA00835633 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BEEDDAEB295451F100835633 /* LXprepareForReuseSignalCell.h */,
-				BEEDDAEC295451F100835633 /* LXprepareForReuseSignalCell.m */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
@@ -704,48 +1667,155 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE7F4134286B01D2009D8A8A /* LXTestModelVC.m in Sources */,
-				BE7CAE87285D7F1D00A86665 /* LXNest5VC.m in Sources */,
-				BE7F4131286B01C5009D8A8A /* LXTestModel.m in Sources */,
+				BE48F8B3296FF9CA00235F14 /* DJB2CClassifyWrapperVC.m in Sources */,
+				BE48F8B0296FF9CA00235F14 /* DJClassifyVM.m in Sources */,
+				BE48F903296FF9CB00235F14 /* DJ1rdCategoryUnfoldCell.m in Sources */,
+				BE48F8A5296FF9CA00235F14 /* LXNest4VC.m in Sources */,
+				BE48F8F7296FF9CB00235F14 /* DJGoodsIdsModel.m in Sources */,
+				BE48F924296FF9E200235F14 /* LXURLCompVC.m in Sources */,
+				BE48F8B8296FF9CA00235F14 /* DJPriceWrapperStackView.m in Sources */,
+				BE48F920296FF9CB00235F14 /* LXTestBorderVC.m in Sources */,
+				BE48F907296FF9CB00235F14 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
+				BE48F911296FF9CB00235F14 /* LXHeaderView.m in Sources */,
+				BE48F8F1296FF9CA00235F14 /* DJSectionCategoryHeaderView.m in Sources */,
+				BE48F8F0296FF9CA00235F14 /* DJClassifyRightCollectionCell.m in Sources */,
+				BE48F8B5296FF9CA00235F14 /* DJClassifyListLeftCell.m in Sources */,
+				BE48F8D6296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m in Sources */,
+				BE48F90E296FF9CB00235F14 /* LXClassifyList2VC.m in Sources */,
+				BE48F90C296FF9CB00235F14 /* UIWindow+JXSafeArea.m in Sources */,
+				BE48F8C5296FF9CA00235F14 /* DJO2OCategoryListModel.m in Sources */,
+				BE48F893296FF9CA00235F14 /* LXCollectionVC.m in Sources */,
+				BE48F8A1296FF9CA00235F14 /* LXPageVC.m in Sources */,
+				BE48F8BF296FF9CA00235F14 /* DJClassifySectionHeaderView.m in Sources */,
+				BE48F8AA296FF9CA00235F14 /* LXNestedListView.m in Sources */,
+				BE48F8B6296FF9CA00235F14 /* DJClassifyListLeftView.m in Sources */,
+				BE48F8DF296FF9CA00235F14 /* DJNewClassifyVC.m in Sources */,
+				BE48F8D0296FF9CA00235F14 /* DJBase1rdCategoryView.m in Sources */,
+				BE48F8F3296FF9CA00235F14 /* DJ3rdCategoryView.m in Sources */,
+				BE48F8A8296FF9CA00235F14 /* LXNestedListVC.m in Sources */,
+				BE48F8A6296FF9CA00235F14 /* LXNest6VC.m in Sources */,
+				BE48F89B296FF9CA00235F14 /* LXTestModelVC.m in Sources */,
+				BE48F901296FF9CB00235F14 /* DJ1rdCategoryFoldView.m in Sources */,
+				BE48F8C3296FF9CA00235F14 /* DJ3rdCategoryView.m in Sources */,
+				BE48F919296FF9CB00235F14 /* LXNaHiddenVC.m in Sources */,
+				BE48F910296FF9CB00235F14 /* LXNest6VC.m in Sources */,
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
-				BECDDA2228978D45002A0BE9 /* UIView+TXFrame.m in Sources */,
-				BE7CAE78285D7F1D00A86665 /* LXNaHiddenVC.m in Sources */,
-				BE10C436295AC31700798607 /* LXShadowVC.m in Sources */,
-				BE6777CD2887B3E100D622E2 /* LXTestBorderVC.m in Sources */,
-				BE7CAE82285D7F1D00A86665 /* LXNested2VC.m in Sources */,
-				BE6777D02887B3FB00D622E2 /* UIView+border.m in Sources */,
-				BEEDDAED295451F100835633 /* LXprepareForReuseSignalCell.m in Sources */,
-				BE96DA0D295BDA640029268F /* LXStackViewTestVC.m in Sources */,
-				BEEDDAE92954515200835633 /* DJprepareForReuseSignalTestVC.m in Sources */,
-				BE7CAE8B285D7F1D00A86665 /* LXBaseNavigationController.m in Sources */,
-				BE253DC729681A9500FE3574 /* LXArrowView.m in Sources */,
-				BE888C83285ECB010027F9FF /* LXPageCell.m in Sources */,
-				BE7CAE8A285D7F1D00A86665 /* UIWindow+JXSafeArea.m in Sources */,
+				BE48F8DA296FF9CA00235F14 /* DJSensorKit.m in Sources */,
+				BE48F917296FF9CB00235F14 /* TXScrollLabelView.m in Sources */,
+				BE48F8C7296FF9CA00235F14 /* DJGoodsIdsModel.m in Sources */,
+				BE48F8EA296FF9CA00235F14 /* DJVerticalTableView.m in Sources */,
+				BE48F8CC296FF9CA00235F14 /* DJShopResourceModel.m in Sources */,
+				BE48F8B7296FF9CA00235F14 /* DJClassifyListRightVC.m in Sources */,
+				BE48F91F296FF9CB00235F14 /* UIView+border.m in Sources */,
 				BEB56B3C283E1A77003BAA77 /* LXLoginVM.m in Sources */,
-				BE7CAE81285D7F1D00A86665 /* LXPaging2VC.m in Sources */,
+				BE48F8F9296FF9CB00235F14 /* DJShopDetailModel.m in Sources */,
+				BE48F8AC296FF9CA00235F14 /* DJClassifyRightSkeletonScreen.m in Sources */,
+				BE48F90D296FF9CB00235F14 /* LXBaseNavigationController.m in Sources */,
+				BE48F90A296FF9CB00235F14 /* LXListViewController.m in Sources */,
+				BE48F8D9296FF9CA00235F14 /* DJClassifyKit.m in Sources */,
+				BE48F896296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m in Sources */,
+				BE48F8E8296FF9CA00235F14 /* DJNewAddCartView.m in Sources */,
+				BE48F8FC296FF9CB00235F14 /* DJAddCartResultModel.m in Sources */,
+				BE48F8D5296FF9CA00235F14 /* JXCategoryTitleBackgroundView.m in Sources */,
+				BE48F8E9296FF9CA00235F14 /* DJTagView.m in Sources */,
+				BE48F8A9296FF9CA00235F14 /* LXNestedVC.m in Sources */,
+				BE48F8DD296FF9CA00235F14 /* DJShopCartVM.m in Sources */,
+				BE48F8FA296FF9CB00235F14 /* DJClassifyBaseCategoryModel.m in Sources */,
+				BE48F8E4296FF9CA00235F14 /* DJClassifyListLeftCell.m in Sources */,
+				BE48F8D8296FF9CA00235F14 /* DJClassifySkeletonScreen.m in Sources */,
+				BE48F8F6296FF9CB00235F14 /* DJGoodBaseItemModel.m in Sources */,
+				BE48F8E5296FF9CA00235F14 /* DJClassifyListLeftView.m in Sources */,
+				BE48F8DB296FF9CA00235F14 /* Sensor.m in Sources */,
+				BE48F8BD296FF9CA00235F14 /* DJSubCategoryPinView.m in Sources */,
+				BE48F8F5296FF9CB00235F14 /* DJO2OCategoryListModel.m in Sources */,
+				BE48F8BB296FF9CA00235F14 /* DJTagView.m in Sources */,
+				BE48F906296FF9CB00235F14 /* DJ1rdAllCategoryWrapperView.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
-				BE7CAE85285D7F1D00A86665 /* LXNestCell.m in Sources */,
-				BE7CAE89285D7F1D00A86665 /* LXPagingVC.m in Sources */,
-				BED144052844B2AB00DEA8EA /* LXCollectionCell.m in Sources */,
-				BED144022844B22400DEA8EA /* LXCollectionVC.m in Sources */,
-				BE959A7628A621D8002930C9 /* LXBannerTestVC.m in Sources */,
-				BE894F24284065780022EF57 /* LX0527VC.m in Sources */,
-				BE96DA10295BDB280029268F /* LXStackViewCell.m in Sources */,
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
-				BEDD8EDC289D75930088778F /* CTAPIBaseManager+Rac.m in Sources */,
-				BED29D5E289CFA4B001A66CE /* LXSubjectTestVC.m in Sources */,
+				BE48F8D4296FF9CA00235F14 /* JXCategoryTitleBackgroundCell.m in Sources */,
+				BE48F91B296FF9CB00235F14 /* LXStackViewTestVC.m in Sources */,
+				BE48F897296FF9CA00235F14 /* LXprepareForReuseSignalCell.m in Sources */,
+				BE48F8D1296FF9CA00235F14 /* DJ1rdCategoryUnfoldView.m in Sources */,
+				BE48F8C4296FF9CA00235F14 /* DJClassifyInfoModel.m in Sources */,
+				BE48F895296FF9CA00235F14 /* LX0527VC.m in Sources */,
+				BE48F89F296FF9CA00235F14 /* LXTableVC.m in Sources */,
+				BE48F89E296FF9CA00235F14 /* LXNestCell.m in Sources */,
+				BE48F899296FF9CA00235F14 /* LXBannerTestVC.m in Sources */,
+				BE48F90F296FF9CB00235F14 /* LXClassifyMainVC.m in Sources */,
+				BE48F918296FF9CB00235F14 /* UIView+TXFrame.m in Sources */,
+				BE48F8B2296FF9CA00235F14 /* DJClassifyListVC.m in Sources */,
+				BE48F8ED296FF9CA00235F14 /* DJClassifyRightShowLastCell.m in Sources */,
+				BE48F8E2296FF9CA00235F14 /* DJClassifyB2CRightVC.m in Sources */,
+				BE48F8EC296FF9CA00235F14 /* DJClassifyListBannerCell.m in Sources */,
+				BE48F8C6296FF9CA00235F14 /* DJGoodBaseItemModel.m in Sources */,
+				BE48F915296FF9CB00235F14 /* LXPaging2VC.m in Sources */,
+				BE48F8EE296FF9CA00235F14 /* DJClassifyListBannerView.m in Sources */,
+				BE48F908296FF9CB00235F14 /* JXCategoryTitleBackgroundCell.m in Sources */,
+				BE48F8CE296FF9CA00235F14 /* DJ1rdCategoryCell.m in Sources */,
+				BE48F8D3296FF9CA00235F14 /* JXCategoryTitleBackgroundCellModel.m in Sources */,
+				BE48F8C8296FF9CA00235F14 /* DJO2OGoodItemModel.m in Sources */,
+				BE48F8EB296FF9CA00235F14 /* DJSubCategoryPinView.m in Sources */,
+				BE48F8AB296FF9CA00235F14 /* CTAPIBaseManager+Rac.m in Sources */,
+				BE48F913296FF9CB00235F14 /* LXPageCell.m in Sources */,
+				BE48F8E1296FF9CA00235F14 /* DJClassifyO2OVC.m in Sources */,
+				BE48F905296FF9CB00235F14 /* DJ1rdCategoryUnfoldView.m in Sources */,
+				BE48F912296FF9CB00235F14 /* LXList2VC.m in Sources */,
+				BE48F8BA296FF9CA00235F14 /* DJNewAddCartView.m in Sources */,
+				BE48F8E3296FF9CA00235F14 /* DJClassifyO2ORightVC.m in Sources */,
+				BE48F8FB296FF9CB00235F14 /* DJB2CAddCartResultModel.m in Sources */,
+				BE48F8C2296FF9CA00235F14 /* DJ3rdCategoryCell.m in Sources */,
+				BE48F8E6296FF9CA00235F14 /* DJPriceWrapperStackView.m in Sources */,
+				BE48F8A3296FF9CA00235F14 /* LXRecommendListView.m in Sources */,
+				BE48F8F4296FF9CA00235F14 /* DJSearchDpWordModel.m in Sources */,
+				BE48F8A7296FF9CA00235F14 /* LXHeaderListView.m in Sources */,
+				BE48F8EF296FF9CA00235F14 /* DJClassifySectionHeaderView.m in Sources */,
+				BE48F8B1296FF9CA00235F14 /* DJO2OClassifyWrapperVC.m in Sources */,
+				BE48F8BE296FF9CA00235F14 /* DJClassifyListBannerCell.m in Sources */,
+				BE48F8C1296FF9CA00235F14 /* DJSectionCategoryHeaderView.m in Sources */,
+				BE48F8F2296FF9CA00235F14 /* DJ3rdCategoryCell.m in Sources */,
+				BE48F8A2296FF9CA00235F14 /* LXPageListView.m in Sources */,
+				BE48F8B9296FF9CA00235F14 /* DJMyCollectionView.m in Sources */,
+				BE48F900296FF9CB00235F14 /* DJClassifyHeaderView.m in Sources */,
+				BE48F91D296FF9CB00235F14 /* LXArrowView.m in Sources */,
+				BE48F8FE296FF9CB00235F14 /* DJB2CCategoryModel.m in Sources */,
+				BE48F894296FF9CA00235F14 /* LXCollectionCell.m in Sources */,
+				BE48F8CD296FF9CA00235F14 /* DJ1rdCategoryFoldView.m in Sources */,
+				BE48F8A4296FF9CA00235F14 /* LXHotListView.m in Sources */,
+				BE48F8AF296FF9CA00235F14 /* CTAPIBaseManager+Rac.m in Sources */,
+				BE48F8C0296FF9CA00235F14 /* DJClassifyRightCollectionCell.m in Sources */,
+				BE48F8E0296FF9CA00235F14 /* DJClassifyB2CVC.m in Sources */,
+				BE48F8E7296FF9CA00235F14 /* DJMyCollectionView.m in Sources */,
+				BE48F8AD296FF9CA00235F14 /* DJClassifyEmptyView.m in Sources */,
+				BE48F8DE296FF9CA00235F14 /* DJClassifyVM.m in Sources */,
+				BE48F914296FF9CB00235F14 /* LXMyTableView.m in Sources */,
+				BE48F89D296FF9CA00235F14 /* LXSectionHeaderView.m in Sources */,
+				BE48F8D2296FF9CA00235F14 /* DJ1rdAllCategoryWrapperView.m in Sources */,
+				BE48F8CF296FF9CA00235F14 /* DJ1rdCategoryUnfoldCell.m in Sources */,
+				BE48F8A0296FF9CA00235F14 /* LXNest5VC.m in Sources */,
+				BE48F8F8296FF9CB00235F14 /* DJO2OGoodItemModel.m in Sources */,
+				BE48F8FD296FF9CB00235F14 /* DJB2CGoodsItemListModel.m in Sources */,
+				BE48F898296FF9CA00235F14 /* LXSubjectTestVC.m in Sources */,
+				BE48F8D7296FF9CA00235F14 /* DJClassifyEmptyView.m in Sources */,
+				BE48F90B296FF9CB00235F14 /* LXPagingVC.m in Sources */,
+				BE48F8FF296FF9CB00235F14 /* DJShopResourceModel.m in Sources */,
+				BE48F8CA296FF9CA00235F14 /* DJB2CGoodsItemListModel.m in Sources */,
+				BE48F89A296FF9CA00235F14 /* LXTestModel.m in Sources */,
+				BE48F91C296FF9CB00235F14 /* LXStackViewCell.m in Sources */,
+				BE48F8AE296FF9CA00235F14 /* DJClassifySkeletonScreen.m in Sources */,
+				BE48F8BC296FF9CA00235F14 /* DJVerticalTableView.m in Sources */,
+				BE48F91A296FF9CB00235F14 /* LXShadowVC.m in Sources */,
+				BE48F8DC296FF9CA00235F14 /* NSObject+resourceJump.m in Sources */,
 				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
-				BE9234AC285EDDC400ABB71B /* LXMyTableView.m in Sources */,
-				BECDDA2128978D45002A0BE9 /* TXScrollLabelView.m in Sources */,
-				BE7CAE88285D7F1D00A86665 /* LXListViewController.m in Sources */,
-				BE17640C2966AC7E0031C309 /* DJZitiRuleTipModel.m in Sources */,
+				BE48F909296FF9CB00235F14 /* JXCategoryTitleBackgroundView.m in Sources */,
+				BE48F91E296FF9CB00235F14 /* DJZitiRuleTipModel.m in Sources */,
+				BE48F916296FF9CB00235F14 /* LXNested2VC.m in Sources */,
+				BE48F8CB296FF9CA00235F14 /* DJB2CCategoryModel.m in Sources */,
+				BE48F902296FF9CB00235F14 /* DJ1rdCategoryCell.m in Sources */,
+				BE48F904296FF9CB00235F14 /* DJBase1rdCategoryView.m in Sources */,
+				BE48F89C296FF9CA00235F14 /* LXTableHeaderView.m in Sources */,
+				BE48F8B4296FF9CA00235F14 /* DJClassifyVC.m in Sources */,
+				BE48F8C9296FF9CA00235F14 /* DJClassifyBaseCategoryModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				BE888C50285EAF450027F9FF /* LXNest6VC.m in Sources */,
-				BE7CAE80285D7F1D00A86665 /* LXList2VC.m in Sources */,
-				BE7CAE86285D7F1D00A86665 /* LXTableVC.m in Sources */,
-				BE7CAE8D285D7F1D00A86665 /* LXHeaderView.m in Sources */,
-				BE7CAE84285D7F1D00A86665 /* LXSectionHeaderView.m in Sources */,
-				BE7CAE83285D7F1D00A86665 /* LXTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
