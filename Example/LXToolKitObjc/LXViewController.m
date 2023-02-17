@@ -58,6 +58,7 @@
     if(cls) {
         UIViewController *vc = [[cls alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        // [self.navigationController presentViewController:vc animated:YES completion:nil];
     }
 }
 #pragma mark -
@@ -113,6 +114,7 @@
             @"LXShadowVC",
             @"LXStackViewTestVC",
             @"LXURLCompVC",
+            @"LXWebViewTestVC"
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }

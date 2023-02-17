@@ -112,7 +112,19 @@
 }
 - (void)testBtnStack {
     // self.imgViewLogo.image = [UIImage imageNamed:@""];
-    self.labTips.text = @"马来西亚进口 福多巧克力瑞士卷 108g";
+    NSString *text = @"马来西亚进口 福多巧克力瑞士卷 108g";
+    UIFont *font = [UIFont systemFontOfSize:20.f];
+    // font.lineHeight = 30.f;
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc]init];
+    style.lineHeightMultiple = 2;
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:text attributes:@{
+        NSFontAttributeName: font,
+        NSParagraphStyleAttributeName: style,
+    }];
+    // self.labTips.font = font;
+    self.labTips.text = text;
+    self.labTips.attributedText = attr;
+
 }
 
 #pragma mark -
@@ -227,7 +239,7 @@
         label.font = [UIFont systemFontOfSize:16.f];
         label.textColor = [UIColor blackColor];
         label.backgroundColor = [UIColor magentaColor];
-        label.numberOfLines = 1;
+        // label.numberOfLines = 1;
         // label.textAlignment = <#NSTextAlignmentCenter#>;
         // label.lineBreakMode = <#NSLineBreakByTruncatingTail#>;
         _labTips = label;

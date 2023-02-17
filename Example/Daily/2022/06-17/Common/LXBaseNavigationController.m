@@ -41,20 +41,20 @@
 
 #pragma mark -
 #pragma mark - ✈️UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    if(self.viewControllers.count == 1) {
-        return NO;
-    }
-    return YES;
-}
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
+// - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+//     if(self.viewControllers.count == 1) {
+//         return NO;
+//     }
+//     return YES;
+// }
+// - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//     return YES;
+// }
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.interactivePopGestureRecognizer.delegate = self;
+    // self.interactivePopGestureRecognizer.delegate = self;
 
     if (@available(iOS 13.0, *)) {
         // iOS15 系统下 push 后导航条变黑色 且 有卡顿
