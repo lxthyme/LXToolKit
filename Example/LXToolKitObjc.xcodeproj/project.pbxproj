@@ -324,10 +324,10 @@
 		BE48F72F296FF9CA00235F14 /* 05-28 */ = {
 			isa = PBXGroup;
 			children = (
-				BE48F730296FF9CA00235F14 /* LXCollectionVC.m */,
+				BE48F733296FF9CA00235F14 /* LXCollectionCell.h */,
 				BE48F731296FF9CA00235F14 /* LXCollectionCell.m */,
 				BE48F732296FF9CA00235F14 /* LXCollectionVC.h */,
-				BE48F733296FF9CA00235F14 /* LXCollectionCell.h */,
+				BE48F730296FF9CA00235F14 /* LXCollectionVC.m */,
 			);
 			path = "05-28";
 			sourceTree = "<group>";
