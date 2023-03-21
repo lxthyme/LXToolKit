@@ -9,6 +9,7 @@
 
 #import <Masonry/Masonry.h>
 #import <WebKit/WebKit.h>
+#import <SDWebImage/SDWebImageDownloader.h>
 
 @interface LXWebViewTestVC()<WKNavigationDelegate, UIGestureRecognizerDelegate> {
 }
@@ -45,7 +46,11 @@
     // Do any additional setup after loading the view.
 
     [self prepareUI];
-    [self dataFill];
+    // [self dataFill];
+    // [self asyncTest];
+    // [self asyncTest2];
+    // [self asyncTest3];
+    [self asyncTest4];
 }
 
 #pragma mark -
@@ -66,6 +71,81 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)asyncTest {
+    NSLog(@"-->1. ");
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t group = dispatch_group_create();
+    // dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        NSLog(@"-->2. ");
+        // dispatch_semaphore_signal(semaphore);
+        dispatch_group_leave(group);
+        // dispatch_sync(dispatch_get_main_queue(), ^{
+        //     // dispatch_semaphore_signal(semaphore);
+        //     dispatch_group_leave(group);
+        //     NSLog(@"-->3. ");
+        // });
+        NSLog(@"-->4. ");
+    });
+    // dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    // dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"-->5. ");
+}
+- (void)asyncTest2 {
+    NSLog(@"-->1. ");
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    __block UIImage *img;
+    NSString *url = @"https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg";
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url]
+                                                          options:SDWebImageDownloaderAllowInvalidSSLCertificates
+                                                         progress:nil
+                                                        completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+        NSLog(@"-->2. ");
+        img = image;
+        dispatch_group_leave(group);
+    }];
+    NSLog(@"-->3. ");
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"4. img: %@", img);
+}
+- (void)asyncTest3 {
+    NSOperationQueue *operation = [[NSOperationQueue alloc]init];
+    operation.maxConcurrentOperationCount = 1;
+    __block UIImage *img;
+    NSLog(@"-->1. ");
+    NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+        NSString *url = @"https://marketplace.canva.com/EAE-xnqWvJk/1/0/1600w/canva-retro-smoke-and-round-light-desktop-wallpapers-JLofAI27pCg.jpg";
+        NSLog(@"-->2. ");
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url]
+                                                              options:SDWebImageDownloaderAllowInvalidSSLCertificates
+                                                             progress:nil
+                                                            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            NSLog(@"-->3. ");
+            img = image;
+            // dispatch_group_leave(group);
+        }];
+        NSLog(@"-->4. ");
+    }];
+    NSLog(@"-->5. ");
+    // [operation addOperation:op1];
+    [operation addOperations:@[op1] waitUntilFinished:YES];
+    // operation sta
+    NSLog(@"-->6. ");
+}
+- (void)asyncTest4 {
+    dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"1");
+    dispatch_sync(concurrentQueue, ^(){
+        NSLog(@"2");
+        [NSThread sleepForTimeInterval:2];
+        NSLog(@"3");
+    });
+    NSLog(@"4");
+}
 - (void)swipeBack:(UIScreenEdgePanGestureRecognizer *)recognized {
     CGPoint point = [recognized translationInView:self.view];
     if(recognized.state == UIGestureRecognizerStateEnded) {
