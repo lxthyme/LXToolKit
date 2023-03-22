@@ -56,6 +56,7 @@ open class LXNavigator {
         case LXWebViewTestVC(viewModel: LXBaseVM)
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         case HomeViewController(viewModel: LXBaseVM)
+        case LXWebVC(viewModel: LXBaseVM)
     }
 
     enum Transition {
@@ -140,6 +141,8 @@ open class LXNavigator {
             return LXYYLabelMoreTestVC(viewModel: vm, navigator: self)
         case .HomeViewController(let vm):
             return HomeViewController()
+        case .LXWebVC(let vm):
+            return LXWebVC()
         }
     }
 
@@ -251,6 +254,8 @@ extension LXNavigator.Scene {
             tmp = (title: "YYLabel more 查看详情", desc: "---")
         case .HomeViewController:
             tmp = (title: "RxNetworks Demo", desc: "---")
+        case .LXWebVC:
+            tmp = (title: "LXWebVC", desc: "---")
         }
         return tmp
     }

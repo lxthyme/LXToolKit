@@ -82,7 +82,8 @@ class LXViewController: LXBaseTableViewVC {
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
             .LXWebViewTestVC(viewModel: vm),
             .LXYYLabelMoreTestVC(viewModel: vm),
-            .HomeViewController(viewModel: vm)
+            .HomeViewController(viewModel: vm),
+            .LXWebVC(viewModel: vm),
         ], toSection: "2022")
         _dataSnapshot = snapshot
         return snapshot
@@ -119,7 +120,8 @@ class LXViewController: LXBaseTableViewVC {
 //            LX0117VC()
             // LXCubeVC()
 //            LXRx0225VC()
-        LXLoggerTestVC()
+        // LXLoggerTestVC()
+        LXWebVC()
 
        // self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)
