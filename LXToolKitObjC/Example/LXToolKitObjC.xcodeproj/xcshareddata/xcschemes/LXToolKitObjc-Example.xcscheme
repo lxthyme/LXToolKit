@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "LXToolKitObjc_Example.app"
-               BlueprintName = "LXToolKitObjc_Example"
+               BuildableName = "LXToolKitObjC_Example.app"
+               BlueprintName = "LXToolKitObjC_Example"
                ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +31,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "LXToolKitObjc_Example.app"
-            BlueprintName = "LXToolKitObjc_Example"
+            BuildableName = "LXToolKitObjC_Example.app"
+            BlueprintName = "LXToolKitObjC_Example"
             ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -42,8 +42,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "LXToolKitObjc_Tests.xctest"
-               BlueprintName = "LXToolKitObjc_Tests"
+               BuildableName = "LXToolKitObjC_Tests.xctest"
+               BlueprintName = "LXToolKitObjC_Tests"
                ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "LXToolKitObjc_Example.app"
-            BlueprintName = "LXToolKitObjc_Example"
+            BuildableName = "LXToolKitObjC_Example.app"
+            BlueprintName = "LXToolKitObjC_Example"
             ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "LXToolKitObjc_Example.app"
-            BlueprintName = "LXToolKitObjc_Example"
+            BuildableName = "LXToolKitObjC_Example.app"
+            BlueprintName = "LXToolKitObjC_Example"
             ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

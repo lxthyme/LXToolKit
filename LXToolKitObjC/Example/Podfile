@@ -12,7 +12,7 @@ install! 'cocoapods',
            generate_multiple_pod_projects: true,
            deterministic_uuids: false
 
-target 'LXToolKitObjc_Example' do
+target 'LXToolKitObjC_Example' do
   pod 'LXToolKitObjC', :path => '../'
 
   # pod 'DJBusinessTools', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessTools'
