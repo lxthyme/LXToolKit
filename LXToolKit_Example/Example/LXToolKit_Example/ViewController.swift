@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import LXToolKit_Example
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let vc = LXToolKitTestVC()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
