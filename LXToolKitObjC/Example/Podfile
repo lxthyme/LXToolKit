@@ -13,7 +13,7 @@ install! 'cocoapods',
            deterministic_uuids: false
 
 target 'LXToolKitObjc_Example' do
-  pod 'LXToolKitObjc', :path => '../'
+  pod 'LXToolKitObjC', :path => '../'
 
   # pod 'DJBusinessTools', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessTools'
   #pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
@@ -31,34 +31,34 @@ target 'LXToolKitObjc_Example' do
     # pod 'DJiOSAppImages', :path=>'/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJiOSAppImages'
     # pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
 
-    pod 'Masonry'
-    pod 'YTKNetwork', :git => 'git@github.com:yuantiku/YTKNetwork.git'
+    # pod 'Masonry'
+    # pod 'YTKNetwork', :git => 'git@github.com:yuantiku/YTKNetwork.git'
     #pod 'ReactiveObjC'
-    pod 'ReactiveCocoa', '2.5'
+    # pod 'ReactiveCocoa', '2.5'
 
     #pod 'JXPageListView'
-    pod 'JXCategoryView', '1.3.12'
-    pod 'JXPagingView/Pager', '1.0.9'
-    pod 'MJRefresh'#, '3.4.0'
+    # pod 'JXCategoryView', '1.3.12'
+    # pod 'JXPagingView/Pager', '1.0.9'
+    # pod 'MJRefresh'#, '3.4.0'
     # pod 'FDFullscreenPopGesture', '1.1'
-    pod 'FDFullscreenPopGesture', :git => 'git@github.com:forkingdog/FDFullscreenPopGesture.git'
-    pod 'MBProgressHUD'
-    pod 'SDCycleScrollView', :git => 'git@github.com:gsdios/SDCycleScrollView.git'
-    pod 'YYText'
-    pod 'YYModel'
-    pod 'pop'
+    # pod 'FDFullscreenPopGesture', :git => 'git@github.com:forkingdog/FDFullscreenPopGesture.git'
+    # pod 'MBProgressHUD'
+    # pod 'SDCycleScrollView', :git => 'git@github.com:gsdios/SDCycleScrollView.git'
+    # pod 'YYText'
+    # pod 'YYModel'
+    # pod 'pop'
     #pod 'IBLProgressHud'
-    pod 'SDWebImage'
+    # pod 'SDWebImage'
 
-    pod 'JXPageControl'
+    # pod 'JXPageControl'
 
 
 
     # SwiftOC
-    pod 'DJObjcModule', :path => '../../DJObjcModule'
-    pod 'DJSwiftModule', :path => '../../DJSwiftModule'
-    pod 'DJBusinessModuleSwift', :path => '../../../../BL.repo/DaoJia/DJBusinessModuleSwift'
-    pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
+    # pod 'DJObjcModule', :path => '../../DJObjcModule'
+    # pod 'DJSwiftModule', :path => '../../DJSwiftModule'
+    # pod 'DJBusinessModuleSwift', :path => '../../../../BL.repo/DaoJia/DJBusinessModuleSwift'
+    # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
   #end
 end
 

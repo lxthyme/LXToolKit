@@ -8,7 +8,8 @@
 
 #import "LXAppDelegate.h"
 #import "LXViewController.h"
-#import "LXBaseNavigationController.h"
+// #import "LXBaseNavigationController.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @implementation LXAppDelegate
 
@@ -20,7 +21,7 @@
 
     [DDLog addLogger:[DDOSLogger sharedInstance]];
 
-    LXBaseNavigationController *nav = [[LXBaseNavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[LXViewController alloc]init]];
 
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
