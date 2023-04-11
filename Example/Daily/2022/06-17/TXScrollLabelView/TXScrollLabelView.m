@@ -15,7 +15,7 @@
 #define TXScrollLabelFont [UIFont systemFontOfSize:12]
 #import "TXScrollLabelView.h"
 #import <CoreText/CoreText.h>
-#import <BLCategories/UIColor+Hex.h>
+// #import <BLCategories/UIColor+Hex.h>
 
 static const NSInteger TXScrollDefaultTimeInterval = 2.0;//滚动默认时间
 
@@ -91,7 +91,7 @@ typedef NS_ENUM(NSInteger, TXScrollLabelType) {
     TXScrollLabel *label = [[TXScrollLabel alloc]init];
     label.numberOfLines = 1;
     label.font = TXScrollLabelFont;
-    label.textColor = [UIColor colorWithHex:0x999999];
+    label.textColor = [UIColor xl_colorWithHex:0x999999];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.textAlignment = NSTextAlignmentLeft;
     return label;

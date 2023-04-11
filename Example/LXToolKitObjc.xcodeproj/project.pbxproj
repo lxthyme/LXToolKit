@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		59ABB36C7F5DA5F22272775A /* libPods-LXToolKitObjc_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,8 +20,10 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6B56C2B6AFE16765AF695F08 /* Pods_LXToolKitObjc_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC0EF66BD97F168B45A20E5 /* Pods_LXToolKitObjc_Example.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		BE41EC1829E417C800F4D4F0 /* LXSwiftOCTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE41EC1729E417C800F4D4F0 /* LXSwiftOCTestVC.m */; };
 		BE48F893296FF9CA00235F14 /* LXCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F730296FF9CA00235F14 /* LXCollectionVC.m */; };
 		BE48F894296FF9CA00235F14 /* LXCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F731296FF9CA00235F14 /* LXCollectionCell.m */; };
 		BE48F895296FF9CA00235F14 /* LX0527VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE48F735296FF9CA00235F14 /* LX0527VC.m */; };
@@ -101,6 +102,9 @@
 		673F7E5E92AB9380778901A4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9DC0EF66BD97F168B45A20E5 /* Pods_LXToolKitObjc_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKitObjc_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE41EC1629E417C800F4D4F0 /* LXSwiftOCTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXSwiftOCTestVC.h; sourceTree = "<group>"; };
+		BE41EC1729E417C800F4D4F0 /* LXSwiftOCTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXSwiftOCTestVC.m; sourceTree = "<group>"; };
 		BE48F730296FF9CA00235F14 /* LXCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionVC.m; sourceTree = "<group>"; };
 		BE48F731296FF9CA00235F14 /* LXCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCollectionCell.m; sourceTree = "<group>"; };
 		BE48F732296FF9CA00235F14 /* LXCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCollectionVC.h; sourceTree = "<group>"; };
@@ -183,7 +187,6 @@
 		BEC42F62299615800000A828 /* LXWebViewTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXWebViewTestVC.m; sourceTree = "<group>"; };
 		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
-		BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXToolKitObjc_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,7 +199,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				59ABB36C7F5DA5F22272775A /* libPods-LXToolKitObjc_Example.a in Frameworks */,
+				6B56C2B6AFE16765AF695F08 /* Pods_LXToolKitObjc_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +219,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				BE41EC1529E417B700F4D4F0 /* SwiftOC */,
 				BE894F20284065510022EF57 /* Daily */,
 				BEB56B35283E19F4003BAA77 /* MVVM */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
@@ -243,7 +247,7 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				BF8B133A6C025C3611DA62F2 /* libPods-LXToolKitObjc_Example.a */,
+				9DC0EF66BD97F168B45A20E5 /* Pods_LXToolKitObjc_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +308,15 @@
 				60768611B5E99144AB3B6168 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		BE41EC1529E417B700F4D4F0 /* SwiftOC */ = {
+			isa = PBXGroup;
+			children = (
+				BE41EC1629E417C800F4D4F0 /* LXSwiftOCTestVC.h */,
+				BE41EC1729E417C800F4D4F0 /* LXSwiftOCTestVC.m */,
+			);
+			path = SwiftOC;
 			sourceTree = "<group>";
 		};
 		BE48F72E296FF9CA00235F14 /* 2022 */ = {
@@ -612,7 +625,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				6CDEA65985B6A912F7F36531 /* [CP] Copy Pods Resources */,
+				CE9B867A1C2E3C872D4DFA8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -702,19 +715,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6CDEA65985B6A912F7F36531 /* [CP] Copy Pods Resources */ = {
+		CE9B867A1C2E3C872D4DFA8E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E5D42D56566EAE530ED7D74F /* [CP] Check Pods Manifest.lock */ = {
@@ -761,6 +774,7 @@
 				BE48F90D296FF9CB00235F14 /* LXBaseNavigationController.m in Sources */,
 				BE48F90A296FF9CB00235F14 /* LXListViewController.m in Sources */,
 				BE48F896296FF9CA00235F14 /* DJprepareForReuseSignalTestVC.m in Sources */,
+				BE41EC1829E417C800F4D4F0 /* LXSwiftOCTestVC.m in Sources */,
 				BEB56B39283E1A0F003BAA77 /* LXLoginVC.m in Sources */,
 				BEDEAF332896DB6F00977AE3 /* LXSwiftVC.swift in Sources */,
 				BE48F91B296FF9CB00235F14 /* LXStackViewTestVC.m in Sources */,
@@ -954,6 +968,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
 				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 7.58.0;
 				MODULE_NAME = ExampleApp;
@@ -979,6 +994,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
 				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 7.58.0;
 				MODULE_NAME = ExampleApp;
@@ -1008,6 +1024,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1029,6 +1046,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

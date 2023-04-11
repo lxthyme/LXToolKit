@@ -42,7 +42,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.contentView.backgroundColor = [UIColor RandomColor];
+    // self.contentView.backgroundColor = [UIColor RandomColor];
 
     [self.contentView addSubview:self.self.wrapperStackView];
     [self.contentView addSubview:self.labTitle];

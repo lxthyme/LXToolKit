@@ -47,5 +47,8 @@ TODO: Add long description of the pod here.
   s.dependency 'CocoaLumberjack'
   # s.dependency 'ReactiveObjC'
   s.dependency 'ReactiveCocoa', '2.5'
+  s.dependency 'YYModel'
+  #s.dependency 'UIColor+Hex'
+  s.dependency 'Colours'
 
 end

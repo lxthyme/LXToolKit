@@ -94,7 +94,7 @@
         NSMutableAttributedString *attrTitle1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"·%@\n", obj.label] attributes:@{
             NSParagraphStyleAttributeName: style,
             NSFontAttributeName: font1,
-            NSForegroundColorAttributeName: [UIColor colorWithHex:0xFF774F]
+            NSForegroundColorAttributeName: [UIColor xl_colorWithHex:0xFF774F]
         }];
         [string appendAttributedString:attrTitle1];
 
@@ -104,7 +104,7 @@
         NSMutableAttributedString *attrSubTitle1 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", obj.value, isLast ? @"" : @"\n\n"] attributes:@{
             NSParagraphStyleAttributeName: style,
             NSFontAttributeName: font2,
-            NSForegroundColorAttributeName: [UIColor colorWithHex:0x666666]
+            NSForegroundColorAttributeName: [UIColor xl_colorWithHex:0x666666]
         }];
         [string appendAttributedString:attrSubTitle1];
     }];
@@ -178,7 +178,7 @@
     if(!_shadowView){
         UIView *v = [[UIView alloc]init];
         // v.backgroundColor = [UIColor whiteColor];
-        v.layer.shadowColor = [UIColor colorWithHex:0x000000 alpha:1.f].CGColor;
+        v.layer.shadowColor = [UIColor xl_colorWithHex:0x000000].CGColor;
         v.layer.shadowOffset = CGSizeMake(0, 2);
         v.layer.shadowOpacity = 1;
         v.layer.shadowRadius = kWPercentage(10.f);
@@ -194,7 +194,7 @@
     if(!_tvContent){// <#UITextViewDelegate#>
         UITextView *tv = [[UITextView alloc]init];
         tv.editable = NO;
-        tv.textColor = [UIColor colorWithHex:0x666666];
+        tv.textColor = [UIColor xl_colorWithHex:0x666666];
         tv.font = [UIFont systemFontOfSize:15];
         tv.returnKeyType = UIReturnKeyDone;
         tv.keyboardType = UIKeyboardTypeDefault;
