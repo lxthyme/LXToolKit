@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 
+@objc(LXBaseKitTableViewCell)
 open class LXBaseTableViewCell: UITableViewCell {
     deinit {
         dlog("---------- >>>TableViewCell: \(self.xl.xl_typeName)\t\tdeinit <<<----------")

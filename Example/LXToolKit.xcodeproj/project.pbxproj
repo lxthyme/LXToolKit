@@ -18,125 +18,18 @@
 		BE201D8427DB278300385445 /* LXBaseVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE201D8327DB278300385445 /* LXBaseVC2.swift */; };
 		BE21912827BF676D003CD138 /* LXSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912727BF676D003CD138 /* LXSegmentedControl.swift */; };
 		BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */; };
-		BE253C922967FEDB00FE3574 /* WhatsNewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C752967FEDB00FE3574 /* WhatsNewManager.swift */; };
 		BE253C932967FEDB00FE3574 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C762967FEDB00FE3574 /* LibsManager.swift */; };
-		BE253C942967FEDB00FE3574 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C772967FEDB00FE3574 /* ThemeManager.swift */; };
 		BE253C952967FEDB00FE3574 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C782967FEDB00FE3574 /* Reachability.swift */; };
 		BE253C962967FEDB00FE3574 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C792967FEDB00FE3574 /* AuthManager.swift */; };
 		BE253C972967FEDB00FE3574 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C7A2967FEDB00FE3574 /* LogManager.swift */; };
 		BE253C982967FEDB00FE3574 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C7B2967FEDB00FE3574 /* ContactsManager.swift */; };
 		BE253C992967FEDB00FE3574 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C7C2967FEDB00FE3574 /* AnalyticsManager.swift */; };
-		BE253C9A2967FEDB00FE3574 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C7E2967FEDB00FE3574 /* PullRequest.swift */; };
-		BE253C9B2967FEDB00FE3574 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C7F2967FEDB00FE3574 /* Language.swift */; };
-		BE253C9C2967FEDB00FE3574 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C802967FEDB00FE3574 /* Event.swift */; };
-		BE253C9D2967FEDB00FE3574 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C812967FEDB00FE3574 /* Branch.swift */; };
-		BE253C9E2967FEDB00FE3574 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C822967FEDB00FE3574 /* Comment.swift */; };
-		BE253C9F2967FEDB00FE3574 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C832967FEDB00FE3574 /* Milestone.swift */; };
-		BE253CA02967FEDB00FE3574 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C842967FEDB00FE3574 /* ISO8601DateTransform.swift */; };
-		BE253CA12967FEDB00FE3574 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C852967FEDB00FE3574 /* Commit.swift */; };
-		BE253CA22967FEDB00FE3574 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C862967FEDB00FE3574 /* State.swift */; };
-		BE253CA32967FEDB00FE3574 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C872967FEDB00FE3574 /* User.swift */; };
-		BE253CA42967FEDB00FE3574 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C882967FEDB00FE3574 /* SectionType.swift */; };
-		BE253CA52967FEDB00FE3574 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C892967FEDB00FE3574 /* License.swift */; };
-		BE253CA62967FEDB00FE3574 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8A2967FEDB00FE3574 /* Issue.swift */; };
-		BE253CA72967FEDB00FE3574 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8B2967FEDB00FE3574 /* Repository.swift */; };
-		BE253CA82967FEDB00FE3574 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8C2967FEDB00FE3574 /* Notification.swift */; };
-		BE253CA92967FEDC00FE3574 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8D2967FEDB00FE3574 /* Content.swift */; };
-		BE253CAA2967FEDC00FE3574 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8E2967FEDB00FE3574 /* Release.swift */; };
-		BE253CAB2967FEDC00FE3574 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C8F2967FEDB00FE3574 /* Committer.swift */; };
-		BE253CAC2967FEDC00FE3574 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C902967FEDB00FE3574 /* Token.swift */; };
-		BE253CAD2967FEDC00FE3574 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253C912967FEDB00FE3574 /* Contact.swift */; };
-		BE253CEB2967FF6100FE3574 /* User.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE253CB12967FF6000FE3574 /* User.graphql */; };
-		BE253CEC2967FF6100FE3574 /* Search.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE253CB22967FF6000FE3574 /* Search.graphql */; };
-		BE253CED2967FF6100FE3574 /* Repository.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE253CB32967FF6000FE3574 /* Repository.graphql */; };
-		BE253CEE2967FF6100FE3574 /* GraphApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CB42967FF6000FE3574 /* GraphApi.swift */; };
-		BE253CEF2967FF6100FE3574 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CB52967FF6000FE3574 /* schema.json */; };
-		BE253CF02967FF6100FE3574 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CB62967FF6000FE3574 /* API.swift */; };
-		BE253CF12967FF6100FE3574 /* Apollo+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CB72967FF6000FE3574 /* Apollo+Rx.swift */; };
-		BE253CF22967FF6100FE3574 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CB82967FF6000FE3574 /* Api.swift */; };
-		BE253CF32967FF6100FE3574 /* RepositorySearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CBB2967FF6000FE3574 /* RepositorySearch.json */; };
-		BE253CF42967FF6100FE3574 /* RepositoryTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CBC2967FF6000FE3574 /* RepositoryTrendings.json */; };
-		BE253CF52967FF6100FE3574 /* RepositoryPullRequests.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CBD2967FF6000FE3574 /* RepositoryPullRequests.json */; };
-		BE253CF62967FF6100FE3574 /* EventsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CBE2967FF6000FE3574 /* EventsRepository.json */; };
-		BE253CF72967FF6100FE3574 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CBF2967FF6000FE3574 /* Languages.json */; };
-		BE253CF82967FF6100FE3574 /* UserRepositories.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC02967FF6000FE3574 /* UserRepositories.json */; };
-		BE253CF92967FF6100FE3574 /* RepositoryRelease.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC12967FF6000FE3574 /* RepositoryRelease.json */; };
-		BE253CFA2967FF6100FE3574 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC22967FF6000FE3574 /* Events.json */; };
-		BE253CFB2967FF6100FE3574 /* RepositoryIssue.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC32967FF6000FE3574 /* RepositoryIssue.json */; };
-		BE253CFC2967FF6100FE3574 /* RepositoryBranch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC42967FF6000FE3574 /* RepositoryBranch.json */; };
-		BE253CFD2967FF6100FE3574 /* RepositoryPullRequestComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC52967FF6000FE3574 /* RepositoryPullRequestComments.json */; };
-		BE253CFE2967FF6100FE3574 /* RepositoryContributors.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC62967FF6000FE3574 /* RepositoryContributors.json */; };
-		BE253CFF2967FF6100FE3574 /* Repository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC72967FF6000FE3574 /* Repository.json */; };
-		BE253D002967FF6100FE3574 /* RepositoryStargazers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC82967FF6000FE3574 /* RepositoryStargazers.json */; };
-		BE253D012967FF6100FE3574 /* UserTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CC92967FF6000FE3574 /* UserTrendings.json */; };
-		BE253D022967FF6100FE3574 /* UserRepositoriesStarred.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCA2967FF6000FE3574 /* UserRepositoriesStarred.json */; };
-		BE253D032967FF6100FE3574 /* EmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCB2967FF6000FE3574 /* EmptyArray.json */; };
-		BE253D042967FF6100FE3574 /* EventsUserReceived.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCC2967FF6000FE3574 /* EventsUserReceived.json */; };
-		BE253D052967FF6100FE3574 /* UserRepositoriesWatching.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCD2967FF6000FE3574 /* UserRepositoriesWatching.json */; };
-		BE253D062967FF6100FE3574 /* UserSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCE2967FF6000FE3574 /* UserSearch.json */; };
-		BE253D072967FF6100FE3574 /* UserFollowers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CCF2967FF6000FE3574 /* UserFollowers.json */; };
-		BE253D082967FF6100FE3574 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD02967FF6000FE3574 /* User.json */; };
-		BE253D092967FF6100FE3574 /* EventsUserPerformed.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD12967FF6000FE3574 /* EventsUserPerformed.json */; };
-		BE253D0A2967FF6100FE3574 /* RepositoryIssues.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD22967FF6000FE3574 /* RepositoryIssues.json */; };
-		BE253D0B2967FF6100FE3574 /* Notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD32967FF6000FE3574 /* Notifications.json */; };
-		BE253D0C2967FF6100FE3574 /* RepositoryNumberOfLines.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD42967FF6000FE3574 /* RepositoryNumberOfLines.json */; };
-		BE253D0D2967FF6100FE3574 /* RepositoryIssueComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD52967FF6000FE3574 /* RepositoryIssueComments.json */; };
-		BE253D0E2967FF6100FE3574 /* Organization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD62967FF6000FE3574 /* Organization.json */; };
-		BE253D0F2967FF6100FE3574 /* RepositoryReadme.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD72967FF6000FE3574 /* RepositoryReadme.json */; };
-		BE253D102967FF6100FE3574 /* EmptyObject.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD82967FF6000FE3574 /* EmptyObject.json */; };
-		BE253D112967FF6100FE3574 /* RepositoryCommit.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CD92967FF6000FE3574 /* RepositoryCommit.json */; };
-		BE253D122967FF6100FE3574 /* UserFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDA2967FF6000FE3574 /* UserFollowing.json */; };
-		BE253D132967FF6100FE3574 /* RepositoryCommits.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDB2967FF6000FE3574 /* RepositoryCommits.json */; };
-		BE253D142967FF6100FE3574 /* NotificationsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDC2967FF6000FE3574 /* NotificationsRepository.json */; };
-		BE253D152967FF6100FE3574 /* RepositoryContents.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDD2967FF6000FE3574 /* RepositoryContents.json */; };
-		BE253D162967FF6100FE3574 /* RepositoryForks.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDE2967FF6000FE3574 /* RepositoryForks.json */; };
-		BE253D172967FF6100FE3574 /* RepositoryBranches.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CDF2967FF6000FE3574 /* RepositoryBranches.json */; };
-		BE253D182967FF6100FE3574 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CE02967FF6000FE3574 /* Profile.json */; };
-		BE253D192967FF6100FE3574 /* RepositoryReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CE12967FF6000FE3574 /* RepositoryReleases.json */; };
-		BE253D1A2967FF6100FE3574 /* RepositoryPullRequest.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CE22967FF6000FE3574 /* RepositoryPullRequest.json */; };
-		BE253D1B2967FF6100FE3574 /* RepositoryWatchers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CE32967FF6000FE3574 /* RepositoryWatchers.json */; };
-		BE253D1C2967FF6100FE3574 /* EventsOrganization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE253CE42967FF6000FE3574 /* EventsOrganization.json */; };
-		BE253D1D2967FF6100FE3574 /* CodetabsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CE52967FF6000FE3574 /* CodetabsApi.swift */; };
-		BE253D1E2967FF6100FE3574 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CE62967FF6000FE3574 /* GitHubAPI.swift */; };
-		BE253D1F2967FF6100FE3574 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CE72967FF6000FE3574 /* Networking.swift */; };
-		BE253D202967FF6100FE3574 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CE82967FF6000FE3574 /* RestApi.swift */; };
-		BE253D212967FF6100FE3574 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CE92967FF6000FE3574 /* ErrorResponse.swift */; };
-		BE253D222967FF6100FE3574 /* TrendingGithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253CEA2967FF6000FE3574 /* TrendingGithubAPI.swift */; };
-		BE253D462968115100FE3574 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D282968115100FE3574 /* Toolbar.swift */; };
-		BE253D472968115100FE3574 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D292968115100FE3574 /* ChatViewController.swift */; };
-		BE253D482968115100FE3574 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2A2968115100FE3574 /* Label.swift */; };
-		BE253D492968115100FE3574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2B2968115100FE3574 /* ViewController.swift */; };
-		BE253D4A2968115100FE3574 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2C2968115100FE3574 /* View.swift */; };
-		BE253D4B2968115100FE3574 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2D2968115100FE3574 /* PickerView.swift */; };
-		BE253D4C2968115100FE3574 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2E2968115100FE3574 /* CollectionView.swift */; };
-		BE253D4D2968115100FE3574 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D2F2968115100FE3574 /* StackView.swift */; };
-		BE253D4E2968115100FE3574 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D302968115100FE3574 /* SplitViewController.swift */; };
-		BE253D4F2968115100FE3574 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D312968115100FE3574 /* SegmentedControl.swift */; };
-		BE253D502968115100FE3574 /* SlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D322968115100FE3574 /* SlideImageView.swift */; };
-		BE253D512968115100FE3574 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D332968115100FE3574 /* CollectionViewCell.swift */; };
-		BE253D522968115100FE3574 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D342968115100FE3574 /* SearchBar.swift */; };
-		BE253D532968115100FE3574 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D352968115100FE3574 /* ScrollView.swift */; };
-		BE253D542968115100FE3574 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D362968115100FE3574 /* TableViewController.swift */; };
-		BE253D552968115100FE3574 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D372968115100FE3574 /* TableView.swift */; };
-		BE253D562968115100FE3574 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D382968115100FE3574 /* Switch.swift */; };
-		BE253D572968115100FE3574 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D392968115100FE3574 /* TextField.swift */; };
-		BE253D582968115100FE3574 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D3A2968115100FE3574 /* WebViewController.swift */; };
-		BE253D592968115100FE3574 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D3B2968115100FE3574 /* ViewModelType.swift */; };
-		BE253D5A2968115100FE3574 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D3D2968115100FE3574 /* TableViewCell.swift */; };
-		BE253D5B2968115100FE3574 /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D3E2968115100FE3574 /* DefaultTableViewCellViewModel.swift */; };
-		BE253D5C2968115100FE3574 /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D3F2968115100FE3574 /* TableViewCellViewModel.swift */; };
-		BE253D5D2968115100FE3574 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D402968115100FE3574 /* DefaultTableViewCell.swift */; };
-		BE253D5E2968115100FE3574 /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D412968115100FE3574 /* BarButtonItem.swift */; };
-		BE253D5F2968115100FE3574 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D422968115100FE3574 /* ImageView.swift */; };
-		BE253D602968115100FE3574 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D432968115100FE3574 /* Button.swift */; };
-		BE253D612968115100FE3574 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D442968115100FE3574 /* NavigationController.swift */; };
-		BE253D622968115100FE3574 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE253D452968115100FE3574 /* CollectionViewController.swift */; };
 		BE253DCD29682A9700FE3574 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE253DCC29682A9700FE3574 /* GoogleService-Info.plist */; };
 		BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9D2518A059008E2777 /* Moya + load.swift */; };
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
 		BE32083827E47C280052A6AF /* LXLoggerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32083727E47C280052A6AF /* LXLoggerTestVC.m */; };
-		BE36A09C29CAE7F8004EE461 /* AutoResizeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */; };
+		BE36A09C29CAE7F8004EE461 /* LXStrenchableWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */; };
 		BE36A09E29CAE91C004EE461 /* LXWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09D29CAE91C004EE461 /* LXWebVC.swift */; };
 		BE461180253D9A9600E93AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */; };
 		BE461183253D9A9600E93AB4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE461182253D9A9600E93AB4 /* TodayViewController.swift */; };
@@ -179,6 +72,108 @@
 		BE51ADC125370944005D0F10 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE51ADC025370944005D0F10 /* NotificationViewController.swift */; };
 		BE51ADC425370944005D0F10 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE51ADC225370944005D0F10 /* MainInterface.storyboard */; };
 		BE51ADC825370944005D0F10 /* Content.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BE51ADBA25370943005D0F10 /* Content.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE56AE6F29E52FCF00383E84 /* User.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0129E52FCF00383E84 /* User.graphql */; };
+		BE56AE7029E52FCF00383E84 /* Search.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0229E52FCF00383E84 /* Search.graphql */; };
+		BE56AE7129E52FCF00383E84 /* Repository.graphql in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0329E52FCF00383E84 /* Repository.graphql */; };
+		BE56AE7229E52FCF00383E84 /* GraphApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE0429E52FCF00383E84 /* GraphApi.swift */; };
+		BE56AE7329E52FCF00383E84 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0529E52FCF00383E84 /* schema.json */; };
+		BE56AE7429E52FCF00383E84 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE0629E52FCF00383E84 /* API.swift */; };
+		BE56AE7529E52FCF00383E84 /* Apollo+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE0729E52FCF00383E84 /* Apollo+Rx.swift */; };
+		BE56AE7629E52FCF00383E84 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE0829E52FCF00383E84 /* Api.swift */; };
+		BE56AE7729E52FCF00383E84 /* RepositorySearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0B29E52FCF00383E84 /* RepositorySearch.json */; };
+		BE56AE7829E52FCF00383E84 /* RepositoryTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0C29E52FCF00383E84 /* RepositoryTrendings.json */; };
+		BE56AE7929E52FCF00383E84 /* RepositoryPullRequests.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0D29E52FCF00383E84 /* RepositoryPullRequests.json */; };
+		BE56AE7A29E52FCF00383E84 /* EventsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0E29E52FCF00383E84 /* EventsRepository.json */; };
+		BE56AE7B29E52FCF00383E84 /* Languages.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE0F29E52FCF00383E84 /* Languages.json */; };
+		BE56AE7C29E52FCF00383E84 /* UserRepositories.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1029E52FCF00383E84 /* UserRepositories.json */; };
+		BE56AE7D29E52FCF00383E84 /* RepositoryRelease.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1129E52FCF00383E84 /* RepositoryRelease.json */; };
+		BE56AE7E29E52FCF00383E84 /* Events.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1229E52FCF00383E84 /* Events.json */; };
+		BE56AE7F29E52FCF00383E84 /* RepositoryIssue.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1329E52FCF00383E84 /* RepositoryIssue.json */; };
+		BE56AE8029E52FCF00383E84 /* RepositoryBranch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1429E52FCF00383E84 /* RepositoryBranch.json */; };
+		BE56AE8129E52FCF00383E84 /* RepositoryPullRequestComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1529E52FCF00383E84 /* RepositoryPullRequestComments.json */; };
+		BE56AE8229E52FCF00383E84 /* RepositoryContributors.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1629E52FCF00383E84 /* RepositoryContributors.json */; };
+		BE56AE8329E52FCF00383E84 /* Repository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1729E52FCF00383E84 /* Repository.json */; };
+		BE56AE8429E52FCF00383E84 /* RepositoryStargazers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1829E52FCF00383E84 /* RepositoryStargazers.json */; };
+		BE56AE8529E52FCF00383E84 /* UserTrendings.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1929E52FCF00383E84 /* UserTrendings.json */; };
+		BE56AE8629E52FCF00383E84 /* UserRepositoriesStarred.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1A29E52FCF00383E84 /* UserRepositoriesStarred.json */; };
+		BE56AE8729E52FCF00383E84 /* EmptyArray.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1B29E52FCF00383E84 /* EmptyArray.json */; };
+		BE56AE8829E52FCF00383E84 /* EventsUserReceived.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1C29E52FCF00383E84 /* EventsUserReceived.json */; };
+		BE56AE8929E52FCF00383E84 /* UserRepositoriesWatching.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1D29E52FCF00383E84 /* UserRepositoriesWatching.json */; };
+		BE56AE8A29E52FCF00383E84 /* UserSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1E29E52FCF00383E84 /* UserSearch.json */; };
+		BE56AE8B29E52FCF00383E84 /* UserFollowers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE1F29E52FCF00383E84 /* UserFollowers.json */; };
+		BE56AE8C29E52FCF00383E84 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2029E52FCF00383E84 /* User.json */; };
+		BE56AE8D29E52FCF00383E84 /* EventsUserPerformed.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2129E52FCF00383E84 /* EventsUserPerformed.json */; };
+		BE56AE8E29E52FCF00383E84 /* RepositoryIssues.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2229E52FCF00383E84 /* RepositoryIssues.json */; };
+		BE56AE8F29E52FCF00383E84 /* Notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2329E52FCF00383E84 /* Notifications.json */; };
+		BE56AE9029E52FCF00383E84 /* RepositoryNumberOfLines.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2429E52FCF00383E84 /* RepositoryNumberOfLines.json */; };
+		BE56AE9129E52FCF00383E84 /* RepositoryIssueComments.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2529E52FCF00383E84 /* RepositoryIssueComments.json */; };
+		BE56AE9229E52FCF00383E84 /* Organization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2629E52FCF00383E84 /* Organization.json */; };
+		BE56AE9329E52FD000383E84 /* RepositoryReadme.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2729E52FCF00383E84 /* RepositoryReadme.json */; };
+		BE56AE9429E52FD000383E84 /* EmptyObject.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2829E52FCF00383E84 /* EmptyObject.json */; };
+		BE56AE9529E52FD000383E84 /* RepositoryCommit.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2929E52FCF00383E84 /* RepositoryCommit.json */; };
+		BE56AE9629E52FD000383E84 /* UserFollowing.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2A29E52FCF00383E84 /* UserFollowing.json */; };
+		BE56AE9729E52FD000383E84 /* RepositoryCommits.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2B29E52FCF00383E84 /* RepositoryCommits.json */; };
+		BE56AE9829E52FD000383E84 /* NotificationsRepository.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2C29E52FCF00383E84 /* NotificationsRepository.json */; };
+		BE56AE9929E52FD000383E84 /* RepositoryContents.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2D29E52FCF00383E84 /* RepositoryContents.json */; };
+		BE56AE9A29E52FD000383E84 /* RepositoryForks.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2E29E52FCF00383E84 /* RepositoryForks.json */; };
+		BE56AE9B29E52FD000383E84 /* RepositoryBranches.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE2F29E52FCF00383E84 /* RepositoryBranches.json */; };
+		BE56AE9C29E52FD000383E84 /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE3029E52FCF00383E84 /* Profile.json */; };
+		BE56AE9D29E52FD000383E84 /* RepositoryReleases.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE3129E52FCF00383E84 /* RepositoryReleases.json */; };
+		BE56AE9E29E52FD000383E84 /* RepositoryPullRequest.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE3229E52FCF00383E84 /* RepositoryPullRequest.json */; };
+		BE56AE9F29E52FD000383E84 /* RepositoryWatchers.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE3329E52FCF00383E84 /* RepositoryWatchers.json */; };
+		BE56AEA029E52FD000383E84 /* EventsOrganization.json in Resources */ = {isa = PBXBuildFile; fileRef = BE56AE3429E52FCF00383E84 /* EventsOrganization.json */; };
+		BE56AEA129E52FD000383E84 /* CodetabsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3529E52FCF00383E84 /* CodetabsApi.swift */; };
+		BE56AEA229E52FD000383E84 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3629E52FCF00383E84 /* GitHubAPI.swift */; };
+		BE56AEA329E52FD000383E84 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3729E52FCF00383E84 /* Networking.swift */; };
+		BE56AEA429E52FD000383E84 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3829E52FCF00383E84 /* RestApi.swift */; };
+		BE56AEA529E52FD000383E84 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3929E52FCF00383E84 /* ErrorResponse.swift */; };
+		BE56AEA629E52FD000383E84 /* TrendingGithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3A29E52FCF00383E84 /* TrendingGithubAPI.swift */; };
+		BE56AEA729E52FD000383E84 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3C29E52FCF00383E84 /* Toolbar.swift */; };
+		BE56AEA829E52FD000383E84 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3D29E52FCF00383E84 /* ChatViewController.swift */; };
+		BE56AEA929E52FD000383E84 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE3E29E52FCF00383E84 /* Label.swift */; };
+		BE56AEAB29E52FD000383E84 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4029E52FCF00383E84 /* View.swift */; };
+		BE56AEAC29E52FD000383E84 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4129E52FCF00383E84 /* PickerView.swift */; };
+		BE56AEAD29E52FD000383E84 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4229E52FCF00383E84 /* CollectionView.swift */; };
+		BE56AEAE29E52FD000383E84 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4329E52FCF00383E84 /* StackView.swift */; };
+		BE56AEAF29E52FD000383E84 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4429E52FCF00383E84 /* SplitViewController.swift */; };
+		BE56AEB029E52FD000383E84 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4529E52FCF00383E84 /* SegmentedControl.swift */; };
+		BE56AEB129E52FD000383E84 /* SlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4629E52FCF00383E84 /* SlideImageView.swift */; };
+		BE56AEB229E52FD000383E84 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4729E52FCF00383E84 /* CollectionViewCell.swift */; };
+		BE56AEB329E52FD000383E84 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4829E52FCF00383E84 /* SearchBar.swift */; };
+		BE56AEB429E52FD000383E84 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4929E52FCF00383E84 /* ScrollView.swift */; };
+		BE56AEB629E52FD000383E84 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4B29E52FCF00383E84 /* TableView.swift */; };
+		BE56AEB729E52FD000383E84 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4C29E52FCF00383E84 /* Switch.swift */; };
+		BE56AEB829E52FD000383E84 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4D29E52FCF00383E84 /* TextField.swift */; };
+		BE56AEBA29E52FD000383E84 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE4F29E52FCF00383E84 /* ViewModelType.swift */; };
+		BE56AEBB29E52FD000383E84 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5129E52FCF00383E84 /* TableViewCell.swift */; };
+		BE56AEBC29E52FD000383E84 /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5229E52FCF00383E84 /* DefaultTableViewCellViewModel.swift */; };
+		BE56AEBD29E52FD000383E84 /* TableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5329E52FCF00383E84 /* TableViewCellViewModel.swift */; };
+		BE56AEBE29E52FD000383E84 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5429E52FCF00383E84 /* DefaultTableViewCell.swift */; };
+		BE56AEBF29E52FD000383E84 /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5529E52FCF00383E84 /* BarButtonItem.swift */; };
+		BE56AEC029E52FD000383E84 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5629E52FCF00383E84 /* ImageView.swift */; };
+		BE56AEC129E52FD000383E84 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5729E52FCF00383E84 /* Button.swift */; };
+		BE56AEC229E52FD000383E84 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5829E52FCF00383E84 /* NavigationController.swift */; };
+		BE56AEC429E52FD000383E84 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5B29E52FCF00383E84 /* PullRequest.swift */; };
+		BE56AEC529E52FD000383E84 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5C29E52FCF00383E84 /* Language.swift */; };
+		BE56AEC629E52FD000383E84 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5D29E52FCF00383E84 /* Event.swift */; };
+		BE56AEC729E52FD000383E84 /* Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5E29E52FCF00383E84 /* Branch.swift */; };
+		BE56AEC829E52FD000383E84 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE5F29E52FCF00383E84 /* Comment.swift */; };
+		BE56AEC929E52FD000383E84 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6029E52FCF00383E84 /* Milestone.swift */; };
+		BE56AECA29E52FD000383E84 /* ISO8601DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6129E52FCF00383E84 /* ISO8601DateTransform.swift */; };
+		BE56AECB29E52FD000383E84 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6229E52FCF00383E84 /* Commit.swift */; };
+		BE56AECC29E52FD000383E84 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6329E52FCF00383E84 /* State.swift */; };
+		BE56AECD29E52FD000383E84 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6429E52FCF00383E84 /* User.swift */; };
+		BE56AECE29E52FD000383E84 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6529E52FCF00383E84 /* SectionType.swift */; };
+		BE56AECF29E52FD000383E84 /* License.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6629E52FCF00383E84 /* License.swift */; };
+		BE56AED029E52FD000383E84 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6729E52FCF00383E84 /* Issue.swift */; };
+		BE56AED129E52FD000383E84 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6829E52FCF00383E84 /* Repository.swift */; };
+		BE56AED229E52FD000383E84 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6929E52FCF00383E84 /* Notification.swift */; };
+		BE56AED329E52FD000383E84 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6A29E52FCF00383E84 /* Content.swift */; };
+		BE56AED429E52FD000383E84 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6B29E52FCF00383E84 /* Release.swift */; };
+		BE56AED529E52FD000383E84 /* Committer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6C29E52FCF00383E84 /* Committer.swift */; };
+		BE56AED629E52FD000383E84 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6D29E52FCF00383E84 /* Token.swift */; };
+		BE56AED729E52FD000383E84 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AE6E29E52FCF00383E84 /* Contact.swift */; };
+		BE56AED929E5300D00383E84 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56AED829E5300D00383E84 /* ThemeManager.swift */; };
 		BE801F1327B0EE82007EDEBF /* LXiOS15VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE801F1227B0EE82007EDEBF /* LXiOS15VC.swift */; };
 		BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE827C4D2609EC24009D18D0 /* R.generated.swift */; };
 		BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE827C552609ECBA009D18D0 /* Icons.xcassets */; };
@@ -414,126 +409,19 @@
 		BE201D8327DB278300385445 /* LXBaseVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXBaseVC2.swift; sourceTree = "<group>"; };
 		BE21912727BF676D003CD138 /* LXSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSegmentedControl.swift; sourceTree = "<group>"; };
 		BE21912927BF6ADE003CD138 /* LXSlideImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSlideImageView.swift; sourceTree = "<group>"; };
-		BE253C752967FEDB00FE3574 /* WhatsNewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewManager.swift; sourceTree = "<group>"; };
 		BE253C762967FEDB00FE3574 /* LibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
-		BE253C772967FEDB00FE3574 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		BE253C782967FEDB00FE3574 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		BE253C792967FEDB00FE3574 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		BE253C7A2967FEDB00FE3574 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
 		BE253C7B2967FEDB00FE3574 /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		BE253C7C2967FEDB00FE3574 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
-		BE253C7E2967FEDB00FE3574 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
-		BE253C7F2967FEDB00FE3574 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		BE253C802967FEDB00FE3574 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		BE253C812967FEDB00FE3574 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
-		BE253C822967FEDB00FE3574 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		BE253C832967FEDB00FE3574 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
-		BE253C842967FEDB00FE3574 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
-		BE253C852967FEDB00FE3574 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
-		BE253C862967FEDB00FE3574 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		BE253C872967FEDB00FE3574 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BE253C882967FEDB00FE3574 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
-		BE253C892967FEDB00FE3574 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
-		BE253C8A2967FEDB00FE3574 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		BE253C8B2967FEDB00FE3574 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		BE253C8C2967FEDB00FE3574 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		BE253C8D2967FEDB00FE3574 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		BE253C8E2967FEDB00FE3574 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
-		BE253C8F2967FEDB00FE3574 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
-		BE253C902967FEDB00FE3574 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		BE253C912967FEDB00FE3574 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		BE253CB12967FF6000FE3574 /* User.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
-		BE253CB22967FF6000FE3574 /* Search.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Search.graphql; sourceTree = "<group>"; };
-		BE253CB32967FF6000FE3574 /* Repository.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Repository.graphql; sourceTree = "<group>"; };
-		BE253CB42967FF6000FE3574 /* GraphApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphApi.swift; sourceTree = "<group>"; };
-		BE253CB52967FF6000FE3574 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		BE253CB62967FF6000FE3574 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		BE253CB72967FF6000FE3574 /* Apollo+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apollo+Rx.swift"; sourceTree = "<group>"; };
-		BE253CB82967FF6000FE3574 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		BE253CBB2967FF6000FE3574 /* RepositorySearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositorySearch.json; sourceTree = "<group>"; };
-		BE253CBC2967FF6000FE3574 /* RepositoryTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryTrendings.json; sourceTree = "<group>"; };
-		BE253CBD2967FF6000FE3574 /* RepositoryPullRequests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequests.json; sourceTree = "<group>"; };
-		BE253CBE2967FF6000FE3574 /* EventsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsRepository.json; sourceTree = "<group>"; };
-		BE253CBF2967FF6000FE3574 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
-		BE253CC02967FF6000FE3574 /* UserRepositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositories.json; sourceTree = "<group>"; };
-		BE253CC12967FF6000FE3574 /* RepositoryRelease.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryRelease.json; sourceTree = "<group>"; };
-		BE253CC22967FF6000FE3574 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
-		BE253CC32967FF6000FE3574 /* RepositoryIssue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssue.json; sourceTree = "<group>"; };
-		BE253CC42967FF6000FE3574 /* RepositoryBranch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranch.json; sourceTree = "<group>"; };
-		BE253CC52967FF6000FE3574 /* RepositoryPullRequestComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequestComments.json; sourceTree = "<group>"; };
-		BE253CC62967FF6000FE3574 /* RepositoryContributors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContributors.json; sourceTree = "<group>"; };
-		BE253CC72967FF6000FE3574 /* Repository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Repository.json; sourceTree = "<group>"; };
-		BE253CC82967FF6000FE3574 /* RepositoryStargazers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryStargazers.json; sourceTree = "<group>"; };
-		BE253CC92967FF6000FE3574 /* UserTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTrendings.json; sourceTree = "<group>"; };
-		BE253CCA2967FF6000FE3574 /* UserRepositoriesStarred.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesStarred.json; sourceTree = "<group>"; };
-		BE253CCB2967FF6000FE3574 /* EmptyArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyArray.json; sourceTree = "<group>"; };
-		BE253CCC2967FF6000FE3574 /* EventsUserReceived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserReceived.json; sourceTree = "<group>"; };
-		BE253CCD2967FF6000FE3574 /* UserRepositoriesWatching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesWatching.json; sourceTree = "<group>"; };
-		BE253CCE2967FF6000FE3574 /* UserSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserSearch.json; sourceTree = "<group>"; };
-		BE253CCF2967FF6000FE3574 /* UserFollowers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowers.json; sourceTree = "<group>"; };
-		BE253CD02967FF6000FE3574 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
-		BE253CD12967FF6000FE3574 /* EventsUserPerformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserPerformed.json; sourceTree = "<group>"; };
-		BE253CD22967FF6000FE3574 /* RepositoryIssues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssues.json; sourceTree = "<group>"; };
-		BE253CD32967FF6000FE3574 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
-		BE253CD42967FF6000FE3574 /* RepositoryNumberOfLines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryNumberOfLines.json; sourceTree = "<group>"; };
-		BE253CD52967FF6000FE3574 /* RepositoryIssueComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssueComments.json; sourceTree = "<group>"; };
-		BE253CD62967FF6000FE3574 /* Organization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Organization.json; sourceTree = "<group>"; };
-		BE253CD72967FF6000FE3574 /* RepositoryReadme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReadme.json; sourceTree = "<group>"; };
-		BE253CD82967FF6000FE3574 /* EmptyObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyObject.json; sourceTree = "<group>"; };
-		BE253CD92967FF6000FE3574 /* RepositoryCommit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommit.json; sourceTree = "<group>"; };
-		BE253CDA2967FF6000FE3574 /* UserFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowing.json; sourceTree = "<group>"; };
-		BE253CDB2967FF6000FE3574 /* RepositoryCommits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommits.json; sourceTree = "<group>"; };
-		BE253CDC2967FF6000FE3574 /* NotificationsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationsRepository.json; sourceTree = "<group>"; };
-		BE253CDD2967FF6000FE3574 /* RepositoryContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContents.json; sourceTree = "<group>"; };
-		BE253CDE2967FF6000FE3574 /* RepositoryForks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryForks.json; sourceTree = "<group>"; };
-		BE253CDF2967FF6000FE3574 /* RepositoryBranches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranches.json; sourceTree = "<group>"; };
-		BE253CE02967FF6000FE3574 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
-		BE253CE12967FF6000FE3574 /* RepositoryReleases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReleases.json; sourceTree = "<group>"; };
-		BE253CE22967FF6000FE3574 /* RepositoryPullRequest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequest.json; sourceTree = "<group>"; };
-		BE253CE32967FF6000FE3574 /* RepositoryWatchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryWatchers.json; sourceTree = "<group>"; };
-		BE253CE42967FF6000FE3574 /* EventsOrganization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsOrganization.json; sourceTree = "<group>"; };
-		BE253CE52967FF6000FE3574 /* CodetabsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodetabsApi.swift; sourceTree = "<group>"; };
-		BE253CE62967FF6000FE3574 /* GitHubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		BE253CE72967FF6000FE3574 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		BE253CE82967FF6000FE3574 /* RestApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
-		BE253CE92967FF6000FE3574 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
-		BE253CEA2967FF6000FE3574 /* TrendingGithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGithubAPI.swift; sourceTree = "<group>"; };
-		BE253D282968115100FE3574 /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
-		BE253D292968115100FE3574 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		BE253D2A2968115100FE3574 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
-		BE253D2B2968115100FE3574 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BE253D2C2968115100FE3574 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		BE253D2D2968115100FE3574 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
-		BE253D2E2968115100FE3574 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		BE253D2F2968115100FE3574 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
-		BE253D302968115100FE3574 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		BE253D312968115100FE3574 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		BE253D322968115100FE3574 /* SlideImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideImageView.swift; sourceTree = "<group>"; };
-		BE253D332968115100FE3574 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		BE253D342968115100FE3574 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		BE253D352968115100FE3574 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
-		BE253D362968115100FE3574 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		BE253D372968115100FE3574 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		BE253D382968115100FE3574 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
-		BE253D392968115100FE3574 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		BE253D3A2968115100FE3574 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		BE253D3B2968115100FE3574 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		BE253D3D2968115100FE3574 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		BE253D3E2968115100FE3574 /* DefaultTableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCellViewModel.swift; sourceTree = "<group>"; };
-		BE253D3F2968115100FE3574 /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
-		BE253D402968115100FE3574 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
-		BE253D412968115100FE3574 /* BarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
-		BE253D422968115100FE3574 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		BE253D432968115100FE3574 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		BE253D442968115100FE3574 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		BE253D452968115100FE3574 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		BE253DCC29682A9700FE3574 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE258D9D2518A059008E2777 /* Moya + load.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moya + load.swift"; sourceTree = "<group>"; };
 		BE258D9F2518A07B008E2777 /* LxNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LxNetworkError.swift; sourceTree = "<group>"; };
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
 		BE32083627E47C280052A6AF /* LXLoggerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerTestVC.h; sourceTree = "<group>"; };
 		BE32083727E47C280052A6AF /* LXLoggerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoggerTestVC.m; sourceTree = "<group>"; };
-		BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoResizeWebView.swift; sourceTree = "<group>"; };
+		BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStrenchableWebView.swift; sourceTree = "<group>"; };
 		BE36A09D29CAE91C004EE461 /* LXWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXWebVC.swift; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -577,6 +465,108 @@
 		BE51ADC025370944005D0F10 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		BE51ADC325370944005D0F10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		BE51ADC525370944005D0F10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE56AE0129E52FCF00383E84 /* User.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = User.graphql; sourceTree = "<group>"; };
+		BE56AE0229E52FCF00383E84 /* Search.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Search.graphql; sourceTree = "<group>"; };
+		BE56AE0329E52FCF00383E84 /* Repository.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Repository.graphql; sourceTree = "<group>"; };
+		BE56AE0429E52FCF00383E84 /* GraphApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphApi.swift; sourceTree = "<group>"; };
+		BE56AE0529E52FCF00383E84 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		BE56AE0629E52FCF00383E84 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		BE56AE0729E52FCF00383E84 /* Apollo+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apollo+Rx.swift"; sourceTree = "<group>"; };
+		BE56AE0829E52FCF00383E84 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		BE56AE0B29E52FCF00383E84 /* RepositorySearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositorySearch.json; sourceTree = "<group>"; };
+		BE56AE0C29E52FCF00383E84 /* RepositoryTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryTrendings.json; sourceTree = "<group>"; };
+		BE56AE0D29E52FCF00383E84 /* RepositoryPullRequests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequests.json; sourceTree = "<group>"; };
+		BE56AE0E29E52FCF00383E84 /* EventsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsRepository.json; sourceTree = "<group>"; };
+		BE56AE0F29E52FCF00383E84 /* Languages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Languages.json; sourceTree = "<group>"; };
+		BE56AE1029E52FCF00383E84 /* UserRepositories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositories.json; sourceTree = "<group>"; };
+		BE56AE1129E52FCF00383E84 /* RepositoryRelease.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryRelease.json; sourceTree = "<group>"; };
+		BE56AE1229E52FCF00383E84 /* Events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Events.json; sourceTree = "<group>"; };
+		BE56AE1329E52FCF00383E84 /* RepositoryIssue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssue.json; sourceTree = "<group>"; };
+		BE56AE1429E52FCF00383E84 /* RepositoryBranch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranch.json; sourceTree = "<group>"; };
+		BE56AE1529E52FCF00383E84 /* RepositoryPullRequestComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequestComments.json; sourceTree = "<group>"; };
+		BE56AE1629E52FCF00383E84 /* RepositoryContributors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContributors.json; sourceTree = "<group>"; };
+		BE56AE1729E52FCF00383E84 /* Repository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Repository.json; sourceTree = "<group>"; };
+		BE56AE1829E52FCF00383E84 /* RepositoryStargazers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryStargazers.json; sourceTree = "<group>"; };
+		BE56AE1929E52FCF00383E84 /* UserTrendings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTrendings.json; sourceTree = "<group>"; };
+		BE56AE1A29E52FCF00383E84 /* UserRepositoriesStarred.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesStarred.json; sourceTree = "<group>"; };
+		BE56AE1B29E52FCF00383E84 /* EmptyArray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyArray.json; sourceTree = "<group>"; };
+		BE56AE1C29E52FCF00383E84 /* EventsUserReceived.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserReceived.json; sourceTree = "<group>"; };
+		BE56AE1D29E52FCF00383E84 /* UserRepositoriesWatching.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserRepositoriesWatching.json; sourceTree = "<group>"; };
+		BE56AE1E29E52FCF00383E84 /* UserSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserSearch.json; sourceTree = "<group>"; };
+		BE56AE1F29E52FCF00383E84 /* UserFollowers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowers.json; sourceTree = "<group>"; };
+		BE56AE2029E52FCF00383E84 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
+		BE56AE2129E52FCF00383E84 /* EventsUserPerformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsUserPerformed.json; sourceTree = "<group>"; };
+		BE56AE2229E52FCF00383E84 /* RepositoryIssues.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssues.json; sourceTree = "<group>"; };
+		BE56AE2329E52FCF00383E84 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
+		BE56AE2429E52FCF00383E84 /* RepositoryNumberOfLines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryNumberOfLines.json; sourceTree = "<group>"; };
+		BE56AE2529E52FCF00383E84 /* RepositoryIssueComments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryIssueComments.json; sourceTree = "<group>"; };
+		BE56AE2629E52FCF00383E84 /* Organization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Organization.json; sourceTree = "<group>"; };
+		BE56AE2729E52FCF00383E84 /* RepositoryReadme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReadme.json; sourceTree = "<group>"; };
+		BE56AE2829E52FCF00383E84 /* EmptyObject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmptyObject.json; sourceTree = "<group>"; };
+		BE56AE2929E52FCF00383E84 /* RepositoryCommit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommit.json; sourceTree = "<group>"; };
+		BE56AE2A29E52FCF00383E84 /* UserFollowing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserFollowing.json; sourceTree = "<group>"; };
+		BE56AE2B29E52FCF00383E84 /* RepositoryCommits.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryCommits.json; sourceTree = "<group>"; };
+		BE56AE2C29E52FCF00383E84 /* NotificationsRepository.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NotificationsRepository.json; sourceTree = "<group>"; };
+		BE56AE2D29E52FCF00383E84 /* RepositoryContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryContents.json; sourceTree = "<group>"; };
+		BE56AE2E29E52FCF00383E84 /* RepositoryForks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryForks.json; sourceTree = "<group>"; };
+		BE56AE2F29E52FCF00383E84 /* RepositoryBranches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryBranches.json; sourceTree = "<group>"; };
+		BE56AE3029E52FCF00383E84 /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		BE56AE3129E52FCF00383E84 /* RepositoryReleases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryReleases.json; sourceTree = "<group>"; };
+		BE56AE3229E52FCF00383E84 /* RepositoryPullRequest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryPullRequest.json; sourceTree = "<group>"; };
+		BE56AE3329E52FCF00383E84 /* RepositoryWatchers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RepositoryWatchers.json; sourceTree = "<group>"; };
+		BE56AE3429E52FCF00383E84 /* EventsOrganization.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EventsOrganization.json; sourceTree = "<group>"; };
+		BE56AE3529E52FCF00383E84 /* CodetabsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodetabsApi.swift; sourceTree = "<group>"; };
+		BE56AE3629E52FCF00383E84 /* GitHubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		BE56AE3729E52FCF00383E84 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		BE56AE3829E52FCF00383E84 /* RestApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
+		BE56AE3929E52FCF00383E84 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		BE56AE3A29E52FCF00383E84 /* TrendingGithubAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingGithubAPI.swift; sourceTree = "<group>"; };
+		BE56AE3C29E52FCF00383E84 /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		BE56AE3D29E52FCF00383E84 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		BE56AE3E29E52FCF00383E84 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		BE56AE4029E52FCF00383E84 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		BE56AE4129E52FCF00383E84 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		BE56AE4229E52FCF00383E84 /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		BE56AE4329E52FCF00383E84 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		BE56AE4429E52FCF00383E84 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		BE56AE4529E52FCF00383E84 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		BE56AE4629E52FCF00383E84 /* SlideImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideImageView.swift; sourceTree = "<group>"; };
+		BE56AE4729E52FCF00383E84 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		BE56AE4829E52FCF00383E84 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		BE56AE4929E52FCF00383E84 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		BE56AE4B29E52FCF00383E84 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		BE56AE4C29E52FCF00383E84 /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
+		BE56AE4D29E52FCF00383E84 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		BE56AE4F29E52FCF00383E84 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		BE56AE5129E52FCF00383E84 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BE56AE5229E52FCF00383E84 /* DefaultTableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		BE56AE5329E52FCF00383E84 /* TableViewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellViewModel.swift; sourceTree = "<group>"; };
+		BE56AE5429E52FCF00383E84 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
+		BE56AE5529E52FCF00383E84 /* BarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
+		BE56AE5629E52FCF00383E84 /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		BE56AE5729E52FCF00383E84 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		BE56AE5829E52FCF00383E84 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		BE56AE5B29E52FCF00383E84 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		BE56AE5C29E52FCF00383E84 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		BE56AE5D29E52FCF00383E84 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		BE56AE5E29E52FCF00383E84 /* Branch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branch.swift; sourceTree = "<group>"; };
+		BE56AE5F29E52FCF00383E84 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		BE56AE6029E52FCF00383E84 /* Milestone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		BE56AE6129E52FCF00383E84 /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
+		BE56AE6229E52FCF00383E84 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
+		BE56AE6329E52FCF00383E84 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		BE56AE6429E52FCF00383E84 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BE56AE6529E52FCF00383E84 /* SectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
+		BE56AE6629E52FCF00383E84 /* License.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = License.swift; sourceTree = "<group>"; };
+		BE56AE6729E52FCF00383E84 /* Issue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
+		BE56AE6829E52FCF00383E84 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		BE56AE6929E52FCF00383E84 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		BE56AE6A29E52FCF00383E84 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		BE56AE6B29E52FCF00383E84 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Release.swift; sourceTree = "<group>"; };
+		BE56AE6C29E52FCF00383E84 /* Committer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Committer.swift; sourceTree = "<group>"; };
+		BE56AE6D29E52FCF00383E84 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		BE56AE6E29E52FCF00383E84 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		BE56AED829E5300D00383E84 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThemeManager.swift; path = ../../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Managers/ThemeManager.swift; sourceTree = "<group>"; };
 		BE6AA60B259ABB9B00526193 /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6AA612259ABBA100526193 /* RxCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE7F5D22251B2FBA00813E0B /* LXStackViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStackViewVC.swift; sourceTree = "<group>"; };
@@ -941,10 +931,10 @@
 		BE253C732967FEDB00FE3574 /* SwiftHub */ = {
 			isa = PBXGroup;
 			children = (
-				BE253D272968115100FE3574 /* Common */,
-				BE253CAE2967FF6000FE3574 /* Networking */,
+				BE56AE3B29E52FCF00383E84 /* Common */,
+				BE56AE5A29E52FCF00383E84 /* Models */,
+				BE56ADFE29E52FCF00383E84 /* Networking */,
 				BE253C742967FEDB00FE3574 /* Managers */,
-				BE253C7D2967FEDB00FE3574 /* Models */,
 			);
 			path = SwiftHub;
 			sourceTree = "<group>";
@@ -952,9 +942,8 @@
 		BE253C742967FEDB00FE3574 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				BE253C752967FEDB00FE3574 /* WhatsNewManager.swift */,
+				BE56AED829E5300D00383E84 /* ThemeManager.swift */,
 				BE253C762967FEDB00FE3574 /* LibsManager.swift */,
-				BE253C772967FEDB00FE3574 /* ThemeManager.swift */,
 				BE253C782967FEDB00FE3574 /* Reachability.swift */,
 				BE253C792967FEDB00FE3574 /* AuthManager.swift */,
 				BE253C7A2967FEDB00FE3574 /* LogManager.swift */,
@@ -962,174 +951,6 @@
 				BE253C7C2967FEDB00FE3574 /* AnalyticsManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		BE253C7D2967FEDB00FE3574 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BE253C7E2967FEDB00FE3574 /* PullRequest.swift */,
-				BE253C7F2967FEDB00FE3574 /* Language.swift */,
-				BE253C802967FEDB00FE3574 /* Event.swift */,
-				BE253C812967FEDB00FE3574 /* Branch.swift */,
-				BE253C822967FEDB00FE3574 /* Comment.swift */,
-				BE253C832967FEDB00FE3574 /* Milestone.swift */,
-				BE253C842967FEDB00FE3574 /* ISO8601DateTransform.swift */,
-				BE253C852967FEDB00FE3574 /* Commit.swift */,
-				BE253C862967FEDB00FE3574 /* State.swift */,
-				BE253C872967FEDB00FE3574 /* User.swift */,
-				BE253C882967FEDB00FE3574 /* SectionType.swift */,
-				BE253C892967FEDB00FE3574 /* License.swift */,
-				BE253C8A2967FEDB00FE3574 /* Issue.swift */,
-				BE253C8B2967FEDB00FE3574 /* Repository.swift */,
-				BE253C8C2967FEDB00FE3574 /* Notification.swift */,
-				BE253C8D2967FEDB00FE3574 /* Content.swift */,
-				BE253C8E2967FEDB00FE3574 /* Release.swift */,
-				BE253C8F2967FEDB00FE3574 /* Committer.swift */,
-				BE253C902967FEDB00FE3574 /* Token.swift */,
-				BE253C912967FEDB00FE3574 /* Contact.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BE253CAE2967FF6000FE3574 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				BE253CAF2967FF6000FE3574 /* GraphQL */,
-				BE253CB82967FF6000FE3574 /* Api.swift */,
-				BE253CB92967FF6000FE3574 /* Rest */,
-			);
-			name = Networking;
-			path = ../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Networking;
-			sourceTree = "<group>";
-		};
-		BE253CAF2967FF6000FE3574 /* GraphQL */ = {
-			isa = PBXGroup;
-			children = (
-				BE253CB02967FF6000FE3574 /* Queries */,
-				BE253CB42967FF6000FE3574 /* GraphApi.swift */,
-				BE253CB52967FF6000FE3574 /* schema.json */,
-				BE253CB62967FF6000FE3574 /* API.swift */,
-				BE253CB72967FF6000FE3574 /* Apollo+Rx.swift */,
-			);
-			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		BE253CB02967FF6000FE3574 /* Queries */ = {
-			isa = PBXGroup;
-			children = (
-				BE253CB12967FF6000FE3574 /* User.graphql */,
-				BE253CB22967FF6000FE3574 /* Search.graphql */,
-				BE253CB32967FF6000FE3574 /* Repository.graphql */,
-			);
-			path = Queries;
-			sourceTree = "<group>";
-		};
-		BE253CB92967FF6000FE3574 /* Rest */ = {
-			isa = PBXGroup;
-			children = (
-				BE253CBA2967FF6000FE3574 /* Stubbed Responses */,
-				BE253CE52967FF6000FE3574 /* CodetabsApi.swift */,
-				BE253CE62967FF6000FE3574 /* GitHubAPI.swift */,
-				BE253CE72967FF6000FE3574 /* Networking.swift */,
-				BE253CE82967FF6000FE3574 /* RestApi.swift */,
-				BE253CE92967FF6000FE3574 /* ErrorResponse.swift */,
-				BE253CEA2967FF6000FE3574 /* TrendingGithubAPI.swift */,
-			);
-			path = Rest;
-			sourceTree = "<group>";
-		};
-		BE253CBA2967FF6000FE3574 /* Stubbed Responses */ = {
-			isa = PBXGroup;
-			children = (
-				BE253CBB2967FF6000FE3574 /* RepositorySearch.json */,
-				BE253CBC2967FF6000FE3574 /* RepositoryTrendings.json */,
-				BE253CBD2967FF6000FE3574 /* RepositoryPullRequests.json */,
-				BE253CBE2967FF6000FE3574 /* EventsRepository.json */,
-				BE253CBF2967FF6000FE3574 /* Languages.json */,
-				BE253CC02967FF6000FE3574 /* UserRepositories.json */,
-				BE253CC12967FF6000FE3574 /* RepositoryRelease.json */,
-				BE253CC22967FF6000FE3574 /* Events.json */,
-				BE253CC32967FF6000FE3574 /* RepositoryIssue.json */,
-				BE253CC42967FF6000FE3574 /* RepositoryBranch.json */,
-				BE253CC52967FF6000FE3574 /* RepositoryPullRequestComments.json */,
-				BE253CC62967FF6000FE3574 /* RepositoryContributors.json */,
-				BE253CC72967FF6000FE3574 /* Repository.json */,
-				BE253CC82967FF6000FE3574 /* RepositoryStargazers.json */,
-				BE253CC92967FF6000FE3574 /* UserTrendings.json */,
-				BE253CCA2967FF6000FE3574 /* UserRepositoriesStarred.json */,
-				BE253CCB2967FF6000FE3574 /* EmptyArray.json */,
-				BE253CCC2967FF6000FE3574 /* EventsUserReceived.json */,
-				BE253CCD2967FF6000FE3574 /* UserRepositoriesWatching.json */,
-				BE253CCE2967FF6000FE3574 /* UserSearch.json */,
-				BE253CCF2967FF6000FE3574 /* UserFollowers.json */,
-				BE253CD02967FF6000FE3574 /* User.json */,
-				BE253CD12967FF6000FE3574 /* EventsUserPerformed.json */,
-				BE253CD22967FF6000FE3574 /* RepositoryIssues.json */,
-				BE253CD32967FF6000FE3574 /* Notifications.json */,
-				BE253CD42967FF6000FE3574 /* RepositoryNumberOfLines.json */,
-				BE253CD52967FF6000FE3574 /* RepositoryIssueComments.json */,
-				BE253CD62967FF6000FE3574 /* Organization.json */,
-				BE253CD72967FF6000FE3574 /* RepositoryReadme.json */,
-				BE253CD82967FF6000FE3574 /* EmptyObject.json */,
-				BE253CD92967FF6000FE3574 /* RepositoryCommit.json */,
-				BE253CDA2967FF6000FE3574 /* UserFollowing.json */,
-				BE253CDB2967FF6000FE3574 /* RepositoryCommits.json */,
-				BE253CDC2967FF6000FE3574 /* NotificationsRepository.json */,
-				BE253CDD2967FF6000FE3574 /* RepositoryContents.json */,
-				BE253CDE2967FF6000FE3574 /* RepositoryForks.json */,
-				BE253CDF2967FF6000FE3574 /* RepositoryBranches.json */,
-				BE253CE02967FF6000FE3574 /* Profile.json */,
-				BE253CE12967FF6000FE3574 /* RepositoryReleases.json */,
-				BE253CE22967FF6000FE3574 /* RepositoryPullRequest.json */,
-				BE253CE32967FF6000FE3574 /* RepositoryWatchers.json */,
-				BE253CE42967FF6000FE3574 /* EventsOrganization.json */,
-			);
-			path = "Stubbed Responses";
-			sourceTree = "<group>";
-		};
-		BE253D272968115100FE3574 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				BE253D282968115100FE3574 /* Toolbar.swift */,
-				BE253D292968115100FE3574 /* ChatViewController.swift */,
-				BE253D2A2968115100FE3574 /* Label.swift */,
-				BE253D2B2968115100FE3574 /* ViewController.swift */,
-				BE253D2C2968115100FE3574 /* View.swift */,
-				BE253D2D2968115100FE3574 /* PickerView.swift */,
-				BE253D2E2968115100FE3574 /* CollectionView.swift */,
-				BE253D2F2968115100FE3574 /* StackView.swift */,
-				BE253D302968115100FE3574 /* SplitViewController.swift */,
-				BE253D312968115100FE3574 /* SegmentedControl.swift */,
-				BE253D322968115100FE3574 /* SlideImageView.swift */,
-				BE253D332968115100FE3574 /* CollectionViewCell.swift */,
-				BE253D342968115100FE3574 /* SearchBar.swift */,
-				BE253D352968115100FE3574 /* ScrollView.swift */,
-				BE253D362968115100FE3574 /* TableViewController.swift */,
-				BE253D372968115100FE3574 /* TableView.swift */,
-				BE253D382968115100FE3574 /* Switch.swift */,
-				BE253D392968115100FE3574 /* TextField.swift */,
-				BE253D3A2968115100FE3574 /* WebViewController.swift */,
-				BE253D3B2968115100FE3574 /* ViewModelType.swift */,
-				BE253D3C2968115100FE3574 /* Table View Cells */,
-				BE253D412968115100FE3574 /* BarButtonItem.swift */,
-				BE253D422968115100FE3574 /* ImageView.swift */,
-				BE253D432968115100FE3574 /* Button.swift */,
-				BE253D442968115100FE3574 /* NavigationController.swift */,
-				BE253D452968115100FE3574 /* CollectionViewController.swift */,
-			);
-			name = Common;
-			path = ../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Common;
-			sourceTree = "<group>";
-		};
-		BE253D3C2968115100FE3574 /* Table View Cells */ = {
-			isa = PBXGroup;
-			children = (
-				BE253D3D2968115100FE3574 /* TableViewCell.swift */,
-				BE253D3E2968115100FE3574 /* DefaultTableViewCellViewModel.swift */,
-				BE253D3F2968115100FE3574 /* TableViewCellViewModel.swift */,
-				BE253D402968115100FE3574 /* DefaultTableViewCell.swift */,
-			);
-			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		BE258D8D25189837008E2777 /* Kit */ = {
@@ -1203,7 +1024,7 @@
 		BE36A09A29CAE7C9004EE461 /* 03-22 */ = {
 			isa = PBXGroup;
 			children = (
-				BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */,
+				BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */,
 				BE36A09D29CAE91C004EE461 /* LXWebVC.swift */,
 			);
 			name = "03-22";
@@ -1367,6 +1188,171 @@
 				BE51ADC525370944005D0F10 /* Info.plist */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		BE56ADFE29E52FCF00383E84 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BE56ADFF29E52FCF00383E84 /* GraphQL */,
+				BE56AE0829E52FCF00383E84 /* Api.swift */,
+				BE56AE0929E52FCF00383E84 /* Rest */,
+			);
+			name = Networking;
+			path = ../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Networking;
+			sourceTree = "<group>";
+		};
+		BE56ADFF29E52FCF00383E84 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE0029E52FCF00383E84 /* Queries */,
+				BE56AE0429E52FCF00383E84 /* GraphApi.swift */,
+				BE56AE0529E52FCF00383E84 /* schema.json */,
+				BE56AE0629E52FCF00383E84 /* API.swift */,
+				BE56AE0729E52FCF00383E84 /* Apollo+Rx.swift */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		BE56AE0029E52FCF00383E84 /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE0129E52FCF00383E84 /* User.graphql */,
+				BE56AE0229E52FCF00383E84 /* Search.graphql */,
+				BE56AE0329E52FCF00383E84 /* Repository.graphql */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		BE56AE0929E52FCF00383E84 /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE0A29E52FCF00383E84 /* Stubbed Responses */,
+				BE56AE3529E52FCF00383E84 /* CodetabsApi.swift */,
+				BE56AE3629E52FCF00383E84 /* GitHubAPI.swift */,
+				BE56AE3729E52FCF00383E84 /* Networking.swift */,
+				BE56AE3829E52FCF00383E84 /* RestApi.swift */,
+				BE56AE3929E52FCF00383E84 /* ErrorResponse.swift */,
+				BE56AE3A29E52FCF00383E84 /* TrendingGithubAPI.swift */,
+			);
+			path = Rest;
+			sourceTree = "<group>";
+		};
+		BE56AE0A29E52FCF00383E84 /* Stubbed Responses */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE0B29E52FCF00383E84 /* RepositorySearch.json */,
+				BE56AE0C29E52FCF00383E84 /* RepositoryTrendings.json */,
+				BE56AE0D29E52FCF00383E84 /* RepositoryPullRequests.json */,
+				BE56AE0E29E52FCF00383E84 /* EventsRepository.json */,
+				BE56AE0F29E52FCF00383E84 /* Languages.json */,
+				BE56AE1029E52FCF00383E84 /* UserRepositories.json */,
+				BE56AE1129E52FCF00383E84 /* RepositoryRelease.json */,
+				BE56AE1229E52FCF00383E84 /* Events.json */,
+				BE56AE1329E52FCF00383E84 /* RepositoryIssue.json */,
+				BE56AE1429E52FCF00383E84 /* RepositoryBranch.json */,
+				BE56AE1529E52FCF00383E84 /* RepositoryPullRequestComments.json */,
+				BE56AE1629E52FCF00383E84 /* RepositoryContributors.json */,
+				BE56AE1729E52FCF00383E84 /* Repository.json */,
+				BE56AE1829E52FCF00383E84 /* RepositoryStargazers.json */,
+				BE56AE1929E52FCF00383E84 /* UserTrendings.json */,
+				BE56AE1A29E52FCF00383E84 /* UserRepositoriesStarred.json */,
+				BE56AE1B29E52FCF00383E84 /* EmptyArray.json */,
+				BE56AE1C29E52FCF00383E84 /* EventsUserReceived.json */,
+				BE56AE1D29E52FCF00383E84 /* UserRepositoriesWatching.json */,
+				BE56AE1E29E52FCF00383E84 /* UserSearch.json */,
+				BE56AE1F29E52FCF00383E84 /* UserFollowers.json */,
+				BE56AE2029E52FCF00383E84 /* User.json */,
+				BE56AE2129E52FCF00383E84 /* EventsUserPerformed.json */,
+				BE56AE2229E52FCF00383E84 /* RepositoryIssues.json */,
+				BE56AE2329E52FCF00383E84 /* Notifications.json */,
+				BE56AE2429E52FCF00383E84 /* RepositoryNumberOfLines.json */,
+				BE56AE2529E52FCF00383E84 /* RepositoryIssueComments.json */,
+				BE56AE2629E52FCF00383E84 /* Organization.json */,
+				BE56AE2729E52FCF00383E84 /* RepositoryReadme.json */,
+				BE56AE2829E52FCF00383E84 /* EmptyObject.json */,
+				BE56AE2929E52FCF00383E84 /* RepositoryCommit.json */,
+				BE56AE2A29E52FCF00383E84 /* UserFollowing.json */,
+				BE56AE2B29E52FCF00383E84 /* RepositoryCommits.json */,
+				BE56AE2C29E52FCF00383E84 /* NotificationsRepository.json */,
+				BE56AE2D29E52FCF00383E84 /* RepositoryContents.json */,
+				BE56AE2E29E52FCF00383E84 /* RepositoryForks.json */,
+				BE56AE2F29E52FCF00383E84 /* RepositoryBranches.json */,
+				BE56AE3029E52FCF00383E84 /* Profile.json */,
+				BE56AE3129E52FCF00383E84 /* RepositoryReleases.json */,
+				BE56AE3229E52FCF00383E84 /* RepositoryPullRequest.json */,
+				BE56AE3329E52FCF00383E84 /* RepositoryWatchers.json */,
+				BE56AE3429E52FCF00383E84 /* EventsOrganization.json */,
+			);
+			path = "Stubbed Responses";
+			sourceTree = "<group>";
+		};
+		BE56AE3B29E52FCF00383E84 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE3C29E52FCF00383E84 /* Toolbar.swift */,
+				BE56AE3D29E52FCF00383E84 /* ChatViewController.swift */,
+				BE56AE3E29E52FCF00383E84 /* Label.swift */,
+				BE56AE4029E52FCF00383E84 /* View.swift */,
+				BE56AE4129E52FCF00383E84 /* PickerView.swift */,
+				BE56AE4229E52FCF00383E84 /* CollectionView.swift */,
+				BE56AE4329E52FCF00383E84 /* StackView.swift */,
+				BE56AE4429E52FCF00383E84 /* SplitViewController.swift */,
+				BE56AE4529E52FCF00383E84 /* SegmentedControl.swift */,
+				BE56AE4629E52FCF00383E84 /* SlideImageView.swift */,
+				BE56AE4729E52FCF00383E84 /* CollectionViewCell.swift */,
+				BE56AE4829E52FCF00383E84 /* SearchBar.swift */,
+				BE56AE4929E52FCF00383E84 /* ScrollView.swift */,
+				BE56AE4B29E52FCF00383E84 /* TableView.swift */,
+				BE56AE4C29E52FCF00383E84 /* Switch.swift */,
+				BE56AE4D29E52FCF00383E84 /* TextField.swift */,
+				BE56AE4F29E52FCF00383E84 /* ViewModelType.swift */,
+				BE56AE5029E52FCF00383E84 /* Table View Cells */,
+				BE56AE5529E52FCF00383E84 /* BarButtonItem.swift */,
+				BE56AE5629E52FCF00383E84 /* ImageView.swift */,
+				BE56AE5729E52FCF00383E84 /* Button.swift */,
+				BE56AE5829E52FCF00383E84 /* NavigationController.swift */,
+			);
+			name = Common;
+			path = ../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Common;
+			sourceTree = "<group>";
+		};
+		BE56AE5029E52FCF00383E84 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE5129E52FCF00383E84 /* TableViewCell.swift */,
+				BE56AE5229E52FCF00383E84 /* DefaultTableViewCellViewModel.swift */,
+				BE56AE5329E52FCF00383E84 /* TableViewCellViewModel.swift */,
+				BE56AE5429E52FCF00383E84 /* DefaultTableViewCell.swift */,
+			);
+			path = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		BE56AE5A29E52FCF00383E84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE56AE5B29E52FCF00383E84 /* PullRequest.swift */,
+				BE56AE5C29E52FCF00383E84 /* Language.swift */,
+				BE56AE5D29E52FCF00383E84 /* Event.swift */,
+				BE56AE5E29E52FCF00383E84 /* Branch.swift */,
+				BE56AE5F29E52FCF00383E84 /* Comment.swift */,
+				BE56AE6029E52FCF00383E84 /* Milestone.swift */,
+				BE56AE6129E52FCF00383E84 /* ISO8601DateTransform.swift */,
+				BE56AE6229E52FCF00383E84 /* Commit.swift */,
+				BE56AE6329E52FCF00383E84 /* State.swift */,
+				BE56AE6429E52FCF00383E84 /* User.swift */,
+				BE56AE6529E52FCF00383E84 /* SectionType.swift */,
+				BE56AE6629E52FCF00383E84 /* License.swift */,
+				BE56AE6729E52FCF00383E84 /* Issue.swift */,
+				BE56AE6829E52FCF00383E84 /* Repository.swift */,
+				BE56AE6929E52FCF00383E84 /* Notification.swift */,
+				BE56AE6A29E52FCF00383E84 /* Content.swift */,
+				BE56AE6B29E52FCF00383E84 /* Release.swift */,
+				BE56AE6C29E52FCF00383E84 /* Committer.swift */,
+				BE56AE6D29E52FCF00383E84 /* Token.swift */,
+				BE56AE6E29E52FCF00383E84 /* Contact.swift */,
+			);
+			name = Models;
+			path = ../../../../_lxthyme.franework/iOS.framework/__MVVM/SwiftHub/SwiftHub/Models;
 			sourceTree = "<group>";
 		};
 		BE754980270174F100739312 /* Recovered References */ = {
@@ -2408,64 +2394,64 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE253CEB2967FF6100FE3574 /* User.graphql in Resources */,
-				BE253CF72967FF6100FE3574 /* Languages.json in Resources */,
-				BE253CEF2967FF6100FE3574 /* schema.json in Resources */,
-				BE253D0D2967FF6100FE3574 /* RepositoryIssueComments.json in Resources */,
+				BE56AE8629E52FCF00383E84 /* UserRepositoriesStarred.json in Resources */,
+				BE56AE7829E52FCF00383E84 /* RepositoryTrendings.json in Resources */,
+				BE56AE9929E52FD000383E84 /* RepositoryContents.json in Resources */,
+				BE56AE8229E52FCF00383E84 /* RepositoryContributors.json in Resources */,
 				BEA245C326F335290098707A /* LXStackTestVC.xib in Resources */,
-				BE253D162967FF6100FE3574 /* RepositoryForks.json in Resources */,
-				BE253CF32967FF6100FE3574 /* RepositorySearch.json in Resources */,
-				BE253D042967FF6100FE3574 /* EventsUserReceived.json in Resources */,
-				BE253D1C2967FF6100FE3574 /* EventsOrganization.json in Resources */,
-				BE253D1B2967FF6100FE3574 /* RepositoryWatchers.json in Resources */,
-				BE253D032967FF6100FE3574 /* EmptyArray.json in Resources */,
-				BE253D012967FF6100FE3574 /* UserTrendings.json in Resources */,
-				BE253D082967FF6100FE3574 /* User.json in Resources */,
+				BE56AE7029E52FCF00383E84 /* Search.graphql in Resources */,
 				BEA245E426F335290098707A /* photodata.bin in Resources */,
-				BE253D092967FF6100FE3574 /* EventsUserPerformed.json in Resources */,
 				BEF15C412799455400D26B02 /* Localizable.strings in Resources */,
-				BE253D072967FF6100FE3574 /* UserFollowers.json in Resources */,
-				BE253D022967FF6100FE3574 /* UserRepositoriesStarred.json in Resources */,
-				BE253D142967FF6100FE3574 /* NotificationsRepository.json in Resources */,
-				BE253D102967FF6100FE3574 /* EmptyObject.json in Resources */,
-				BE253D052967FF6100FE3574 /* UserRepositoriesWatching.json in Resources */,
-				BE253CFE2967FF6100FE3574 /* RepositoryContributors.json in Resources */,
-				BE253CF82967FF6100FE3574 /* UserRepositories.json in Resources */,
-				BE253CEC2967FF6100FE3574 /* Search.graphql in Resources */,
-				BE253D182967FF6100FE3574 /* Profile.json in Resources */,
-				BE253D152967FF6100FE3574 /* RepositoryContents.json in Resources */,
-				BE253D0F2967FF6100FE3574 /* RepositoryReadme.json in Resources */,
-				BE253CF62967FF6100FE3574 /* EventsRepository.json in Resources */,
-				BE253CFF2967FF6100FE3574 /* Repository.json in Resources */,
-				BE253D0B2967FF6100FE3574 /* Notifications.json in Resources */,
+				BE56AE7329E52FCF00383E84 /* schema.json in Resources */,
+				BE56AE8C29E52FCF00383E84 /* User.json in Resources */,
+				BE56AE9B29E52FD000383E84 /* RepositoryBranches.json in Resources */,
+				BE56AE8E29E52FCF00383E84 /* RepositoryIssues.json in Resources */,
+				BE56AE9129E52FCF00383E84 /* RepositoryIssueComments.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
-				BE253CF52967FF6100FE3574 /* RepositoryPullRequests.json in Resources */,
-				BE253CFA2967FF6100FE3574 /* Events.json in Resources */,
+				BE56AE8529E52FCF00383E84 /* UserTrendings.json in Resources */,
+				BE56AE8829E52FCF00383E84 /* EventsUserReceived.json in Resources */,
 				BE253DCD29682A9700FE3574 /* GoogleService-Info.plist in Resources */,
-				BE253CFB2967FF6100FE3574 /* RepositoryIssue.json in Resources */,
-				BE253D002967FF6100FE3574 /* RepositoryStargazers.json in Resources */,
-				BE253D192967FF6100FE3574 /* RepositoryReleases.json in Resources */,
+				BE56AE9C29E52FD000383E84 /* Profile.json in Resources */,
+				BE56AE6F29E52FCF00383E84 /* User.graphql in Resources */,
+				BE56AE9829E52FD000383E84 /* NotificationsRepository.json in Resources */,
+				BE56AE7729E52FCF00383E84 /* RepositorySearch.json in Resources */,
+				BE56AE7D29E52FCF00383E84 /* RepositoryRelease.json in Resources */,
+				BE56AE7B29E52FCF00383E84 /* Languages.json in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				BE253CF92967FF6100FE3574 /* RepositoryRelease.json in Resources */,
-				BE253CED2967FF6100FE3574 /* Repository.graphql in Resources */,
+				BE56AE9E29E52FD000383E84 /* RepositoryPullRequest.json in Resources */,
 				BE8A97D1260B35A700A32116 /* Localizable.strings in Resources */,
-				BE253CFD2967FF6100FE3574 /* RepositoryPullRequestComments.json in Resources */,
-				BE253D122967FF6100FE3574 /* UserFollowing.json in Resources */,
+				BE56AE7129E52FCF00383E84 /* Repository.graphql in Resources */,
+				BE56AEA029E52FD000383E84 /* EventsOrganization.json in Resources */,
+				BE56AE9429E52FD000383E84 /* EmptyObject.json in Resources */,
 				BEA245CA26F335290098707A /* LXMessageCell.xib in Resources */,
-				BE253D0E2967FF6100FE3574 /* Organization.json in Resources */,
+				BE56AE7E29E52FCF00383E84 /* Events.json in Resources */,
+				BE56AE8929E52FCF00383E84 /* UserRepositoriesWatching.json in Resources */,
+				BE56AE9629E52FD000383E84 /* UserFollowing.json in Resources */,
+				BE56AE7A29E52FCF00383E84 /* EventsRepository.json in Resources */,
+				BE56AE8329E52FCF00383E84 /* Repository.json in Resources */,
+				BE56AE8729E52FCF00383E84 /* EmptyArray.json in Resources */,
 				BEA245D026F335290098707A /* LXMessageTestCell.xib in Resources */,
-				BE253D172967FF6100FE3574 /* RepositoryBranches.json in Resources */,
-				BE253CFC2967FF6100FE3574 /* RepositoryBranch.json in Resources */,
-				BE253D0C2967FF6100FE3574 /* RepositoryNumberOfLines.json in Resources */,
 				BE827C562609ECBA009D18D0 /* Icons.xcassets in Resources */,
-				BE253D112967FF6100FE3574 /* RepositoryCommit.json in Resources */,
-				BE253D132967FF6100FE3574 /* RepositoryCommits.json in Resources */,
-				BE253CF42967FF6100FE3574 /* RepositoryTrendings.json in Resources */,
-				BE253D0A2967FF6100FE3574 /* RepositoryIssues.json in Resources */,
+				BE56AE9F29E52FD000383E84 /* RepositoryWatchers.json in Resources */,
+				BE56AE9229E52FCF00383E84 /* Organization.json in Resources */,
+				BE56AE9D29E52FD000383E84 /* RepositoryReleases.json in Resources */,
+				BE56AE7929E52FCF00383E84 /* RepositoryPullRequests.json in Resources */,
+				BE56AE8A29E52FCF00383E84 /* UserSearch.json in Resources */,
+				BE56AE8F29E52FCF00383E84 /* Notifications.json in Resources */,
+				BE56AE9529E52FD000383E84 /* RepositoryCommit.json in Resources */,
+				BE56AE8029E52FCF00383E84 /* RepositoryBranch.json in Resources */,
+				BE56AE8D29E52FCF00383E84 /* EventsUserPerformed.json in Resources */,
 				BEA245EA26F335290098707A /* loading.gif in Resources */,
+				BE56AE9029E52FCF00383E84 /* RepositoryNumberOfLines.json in Resources */,
+				BE56AE9329E52FD000383E84 /* RepositoryReadme.json in Resources */,
+				BE56AE7C29E52FCF00383E84 /* UserRepositories.json in Resources */,
+				BE56AE9A29E52FD000383E84 /* RepositoryForks.json in Resources */,
+				BE56AE8129E52FCF00383E84 /* RepositoryPullRequestComments.json in Resources */,
+				BE56AE8429E52FCF00383E84 /* RepositoryStargazers.json in Resources */,
+				BE56AE7F29E52FCF00383E84 /* RepositoryIssue.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				BE253D1A2967FF6100FE3574 /* RepositoryPullRequest.json in Resources */,
-				BE253D062967FF6100FE3574 /* UserSearch.json in Resources */,
+				BE56AE9729E52FD000383E84 /* RepositoryCommits.json in Resources */,
+				BE56AE8B29E52FCF00383E84 /* UserFollowers.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2752,84 +2738,88 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEA245F126F335290098707A /* LXSongVC.swift in Sources */,
-				BE253D4D2968115100FE3574 /* StackView.swift in Sources */,
+				BE56AE7229E52FCF00383E84 /* GraphApi.swift in Sources */,
 				BEA245DD26F335290098707A /* LXMusicVC.swift in Sources */,
-				BE253D4C2968115100FE3574 /* CollectionView.swift in Sources */,
+				BE56AECD29E52FD000383E84 /* User.swift in Sources */,
 				BE21912827BF676D003CD138 /* LXSegmentedControl.swift in Sources */,
-				BE253D612968115100FE3574 /* NavigationController.swift in Sources */,
 				BE827C4E2609EC24009D18D0 /* R.generated.swift in Sources */,
 				BE47509027BA51FB00D8F170 /* LXCustomLoggerFormatter.swift in Sources */,
 				BEA2460926F335290098707A /* temp.swift in Sources */,
 				BEA245EC26F335290098707A /* LXEmptyCell.swift in Sources */,
+				BE56AEC529E52FD000383E84 /* Language.swift in Sources */,
 				BE47509B27BA51FC00D8F170 /* LXBaseMVVMTableVC.swift in Sources */,
 				BEF15C4C2799455400D26B02 /* LXRx0225VC.swift in Sources */,
 				BE47508F27BA51FB00D8F170 /* LXBaseViewModel.swift in Sources */,
+				BE56AED429E52FD000383E84 /* Release.swift in Sources */,
 				BE4750AD27BA51FC00D8F170 /* Observable+Logging.swift in Sources */,
-				BE253CF12967FF6100FE3574 /* Apollo+Rx.swift in Sources */,
-				BE253D4A2968115100FE3574 /* View.swift in Sources */,
+				BE56AED629E52FD000383E84 /* Token.swift in Sources */,
 				BEA2461426F335290098707A /* DownloadableImage.swift in Sources */,
 				BEF15C432799455400D26B02 /* LXAlbumListModel.swift in Sources */,
+				BE56AEC629E52FD000383E84 /* Event.swift in Sources */,
 				BE47509627BA51FB00D8F170 /* ActivityIndicator.swift in Sources */,
 				BEF15CC32799455600D26B02 /* LXNestedCollectionView.swift in Sources */,
+				BE56AED229E52FD000383E84 /* Notification.swift in Sources */,
 				BEF15C492799455400D26B02 /* LXStack1206VC.m in Sources */,
 				BEA245DE26F335290098707A /* LXMusicModel.swift in Sources */,
 				BEA245D526F335290098707A /* LXMultiRequestTestVC.swift in Sources */,
-				BE253D5C2968115100FE3574 /* TableViewCellViewModel.swift in Sources */,
-				BE253D4B2968115100FE3574 /* PickerView.swift in Sources */,
 				BEA245F526F335290098707A /* UIScrollView + refresh.swift in Sources */,
+				BE56AEB729E52FD000383E84 /* Switch.swift in Sources */,
 				BEA245E926F335290098707A /* Theme.swift in Sources */,
+				BE56AEC229E52FD000383E84 /* NavigationController.swift in Sources */,
 				BE47509727BA51FC00D8F170 /* LXBaseMVVMTableCellVM.swift in Sources */,
+				BE56AEC729E52FD000383E84 /* Branch.swift in Sources */,
+				BE56AEC029E52FD000383E84 /* ImageView.swift in Sources */,
 				BEA245E026F335290098707A /* LXTTTTT.swift in Sources */,
-				BE253CA22967FEDB00FE3574 /* State.swift in Sources */,
-				BE253CA02967FEDB00FE3574 /* ISO8601DateTransform.swift in Sources */,
+				BE56AEAE29E52FD000383E84 /* StackView.swift in Sources */,
 				BEA245C726F335290098707A /* LXResolveTestObj.m in Sources */,
 				BE47509E27BA51FC00D8F170 /* LXBaseAPI.swift in Sources */,
 				BEA245E826F335290098707A /* UIImageView + Reactive.swift in Sources */,
-				BE253CA32967FEDB00FE3574 /* User.swift in Sources */,
 				BEA245DC26F335290098707A /* LXTestVC.swift in Sources */,
-				BE253D1F2967FF6100FE3574 /* Networking.swift in Sources */,
 				BEF15C3F2799455400D26B02 /* LXPhotoAlbumVC.swift in Sources */,
 				BEF15CBE2799455600D26B02 /* LXSectionHeaderTestView.m in Sources */,
-				BE253CA42967FEDB00FE3574 /* SectionType.swift in Sources */,
 				BE47508D27BA51FB00D8F170 /* APIManager.swift in Sources */,
 				BE47509A27BA51FC00D8F170 /* LXBaseMVVMVC.swift in Sources */,
 				BEA2460526F335290098707A /* Macro2.swift in Sources */,
 				BE253C992967FEDB00FE3574 /* AnalyticsManager.swift in Sources */,
 				BEA2460426F335290098707A /* UIImage + forceLazyDecompression.swift in Sources */,
+				BE56AE7429E52FCF00383E84 /* API.swift in Sources */,
 				BEF15CC72799455600D26B02 /* PHPhotoLibrary + requestAuthorization.swift in Sources */,
 				BEA245E226F335290098707A /* LXListItemCell.swift in Sources */,
-				BE253C922967FEDB00FE3574 /* WhatsNewManager.swift in Sources */,
 				BEA245CF26F335290098707A /* LXMessageTestCell.swift in Sources */,
 				BEA245EE26F335290098707A /* LXSongCellVM.swift in Sources */,
 				BEC2D3962521E289004C91B6 /* LXResultModel.swift in Sources */,
 				BEA245DA26F335290098707A /* LXRequiredVC.swift in Sources */,
 				BEA2460826F335290098707A /* LXWikipediaSearchCell.swift in Sources */,
 				BE253C962967FEDB00FE3574 /* AuthManager.swift in Sources */,
+				BE56AED129E52FD000383E84 /* Repository.swift in Sources */,
+				BE56AEA229E52FD000383E84 /* GitHubAPI.swift in Sources */,
 				BE47509927BA51FC00D8F170 /* LXBaseMVVMTableCell.swift in Sources */,
 				BEA2460026F335290098707A /* WikipediaAPI.swift in Sources */,
 				BEC818C32499C43B0002576B /* LXMainProvider.swift in Sources */,
 				BEA2460C26F335290098707A /* LXWikipediaImageSearchView.swift in Sources */,
 				BEA245ED26F335290098707A /* LXSongVM.swift in Sources */,
+				BE56AE7529E52FCF00383E84 /* Apollo+Rx.swift in Sources */,
+				BE56AEC829E52FD000383E84 /* Comment.swift in Sources */,
+				BE56AEBC29E52FD000383E84 /* DefaultTableViewCellViewModel.swift in Sources */,
 				BEA245F026F335290098707A /* LXMacro.swift in Sources */,
 				BEC818B5249868AD0002576B /* LXApiTestVC.swift in Sources */,
 				BEA245F226F335290098707A /* UIViewController + topVC.swift in Sources */,
 				BEA245D326F335290098707A /* LXDaily1117VC.swift in Sources */,
 				BEA245F726F335290098707A /* NSObject + Rx.swift in Sources */,
-				BE253CA92967FEDC00FE3574 /* Content.swift in Sources */,
 				BEA2460D26F335290098707A /* ImageService.swift in Sources */,
 				BE32083827E47C280052A6AF /* LXLoggerTestVC.m in Sources */,
 				BE4750B027BA51FC00D8F170 /* Foundation+SwiftHub.swift in Sources */,
 				BEF15C3E2799455400D26B02 /* ExampleViewController.swift in Sources */,
 				BE253C972967FEDB00FE3574 /* LogManager.swift in Sources */,
+				BE56AEA629E52FD000383E84 /* TrendingGithubAPI.swift in Sources */,
 				BEA245C626F335290098707A /* LXProxyTestVC.swift in Sources */,
 				BEA245E126F335290098707A /* LXLockTestVC.m in Sources */,
-				BE253CA62967FEDB00FE3574 /* Issue.swift in Sources */,
 				BE03B9EE2849A4EB00BA688A /* AttributedString.swift in Sources */,
-				BE253C9A2967FEDB00FE3574 /* PullRequest.swift in Sources */,
 				BEA245C126F335290098707A /* LXButtonTestVC.swift in Sources */,
+				BE56AEA729E52FD000383E84 /* Toolbar.swift in Sources */,
 				BEA245CD26F335290098707A /* LXKingfisherVC.m in Sources */,
+				BE56AEAC29E52FD000383E84 /* PickerView.swift in Sources */,
 				BE8A39CF25B2B3920062E388 /* Macro.swift in Sources */,
-				BE253D622968115100FE3574 /* CollectionViewController.swift in Sources */,
 				BEA245DB26F335290098707A /* LXPresentVC.swift in Sources */,
 				BEF15C402799455400D26B02 /* LXPickerVC.swift in Sources */,
 				BE4750AB27BA51FC00D8F170 /* KafkaRefresh+Rx.swift in Sources */,
@@ -2837,160 +2827,151 @@
 				BEA2460B26F335290098707A /* LXWikipediaImageSearchViewModel.swift in Sources */,
 				BEA245C526F335290098707A /* LXTransitionVC.swift in Sources */,
 				BE47509D27BA51FC00D8F170 /* Config.swift in Sources */,
+				BE56AEBE29E52FD000383E84 /* DefaultTableViewCell.swift in Sources */,
 				BEA245C826F335290098707A /* LXResolveIMPVC.swift in Sources */,
-				BE253D222967FF6100FE3574 /* TrendingGithubAPI.swift in Sources */,
-				BE253D532968115100FE3574 /* ScrollView.swift in Sources */,
-				BE253D1E2967FF6100FE3574 /* GitHubAPI.swift in Sources */,
-				BE253D572968115100FE3574 /* TextField.swift in Sources */,
 				BE47523427BA640700D8F170 /* LXBaseMVVMCollectionCellVM.swift in Sources */,
 				BEA245D426F335290098707A /* findCommonSuperview.swift in Sources */,
+				BE56AEB829E52FD000383E84 /* TextField.swift in Sources */,
 				BE47509527BA51FB00D8F170 /* ErrorTracker.swift in Sources */,
 				BEA245CC26F335290098707A /* LXStackMessageVC.swift in Sources */,
 				BEC412E227B205DA0007A6DB /* LXiOS15ButtonTestVC.swift in Sources */,
 				BEA2460726F335290098707A /* LXSingleImageCell.swift in Sources */,
 				BE4750A827BA51FC00D8F170 /* UIColor+SwiftHub.swift in Sources */,
 				BEC2D38B2521E187004C91B6 /* LXMVVMSampleDataSource.swift in Sources */,
-				BE253D5D2968115100FE3574 /* DefaultTableViewCell.swift in Sources */,
 				BEA245E526F335290098707A /* LXListItemModel.swift in Sources */,
 				BE253C952967FEDB00FE3574 /* Reachability.swift in Sources */,
+				BE56AED529E52FD000383E84 /* Committer.swift in Sources */,
+				BE56AED929E5300D00383E84 /* ThemeManager.swift in Sources */,
 				BEA245FF26F335290098707A /* Dependencies.swift in Sources */,
-				BE253CF22967FF6100FE3574 /* Api.swift in Sources */,
 				BE253C932967FEDB00FE3574 /* LibsManager.swift in Sources */,
 				BE47523227BA63EE00D8F170 /* LXBaseMVVMCollectionCell.swift in Sources */,
-				BE253D522968115100FE3574 /* SearchBar.swift in Sources */,
+				BE56AEC129E52FD000383E84 /* Button.swift in Sources */,
 				BEA245EB26F335290098707A /* UUHud.swift in Sources */,
-				BE253CA12967FEDB00FE3574 /* Commit.swift in Sources */,
 				BEA245EF26F335290098707A /* LXSongRecordCell.swift in Sources */,
 				BE4750B127BA51FC00D8F170 /* LXColors + mvvm.swift in Sources */,
-				BE253D512968115100FE3574 /* CollectionViewCell.swift in Sources */,
 				BEF15C4E2799455400D26B02 /* LX0324EventsVM.swift in Sources */,
 				607FACD81AFB9204008FA782 /* LXViewController.swift in Sources */,
-				BE253CAA2967FEDC00FE3574 /* Release.swift in Sources */,
+				BE56AECE29E52FD000383E84 /* SectionType.swift in Sources */,
+				BE56AEA429E52FD000383E84 /* RestApi.swift in Sources */,
 				BE47509C27BA51FC00D8F170 /* API + ex.swift in Sources */,
 				BEF15C482799455400D26B02 /* LXBaseVMVC2.swift in Sources */,
 				BECC392027DF1CBB006B7906 /* LXWebViewTestVC.swift in Sources */,
-				BE253D462968115100FE3574 /* Toolbar.swift in Sources */,
 				BE4750FE27BA51FC00D8F170 /* Logger.swift in Sources */,
+				BE56AEB129E52FD000383E84 /* SlideImageView.swift in Sources */,
 				BE9C58F4249C9E3C00F942E6 /* LXDashboardListModel.swift in Sources */,
+				BE56AECF29E52FD000383E84 /* License.swift in Sources */,
 				BEC818CC2499F6350002576B /* LXUserModel.swift in Sources */,
+				BE56AEB329E52FD000383E84 /* SearchBar.swift in Sources */,
 				BE47509427BA51FB00D8F170 /* LXNavigatable.swift in Sources */,
 				BE03B9EC2849A42700BA688A /* LXAttributedStringVC.swift in Sources */,
-				BE253D552968115100FE3574 /* TableView.swift in Sources */,
 				BEF15CBF2799455600D26B02 /* LXTableTestVC.m in Sources */,
 				BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */,
-				BE253D472968115100FE3574 /* ChatViewController.swift in Sources */,
-				BE253D202967FF6100FE3574 /* RestApi.swift in Sources */,
 				BEF15CC92799455600D26B02 /* LXClsListVC.swift in Sources */,
 				BEA245F826F335290098707A /* Observable + HandyJSON.swift in Sources */,
-				BE253D582968115100FE3574 /* WebViewController.swift in Sources */,
-				BE253C9C2967FEDB00FE3574 /* Event.swift in Sources */,
+				BE56AED729E52FD000383E84 /* Contact.swift in Sources */,
+				BE56AEA129E52FD000383E84 /* CodetabsApi.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				BEA9784F273A852500675B13 /* SampleNotificationDelegate.swift in Sources */,
 				BE4750AF27BA51FC00D8F170 /* UIFont+SwiftHub.swift in Sources */,
 				BEA245D926F335290098707A /* LXBaseRequiredVC.m in Sources */,
 				BEA245E626F335290098707A /* LXLightedDataSource.swift in Sources */,
-				BE253D562968115100FE3574 /* Switch.swift in Sources */,
 				BEA245D826F335290098707A /* LXRequiredVC1.m in Sources */,
 				BEF15CC42799455600D26B02 /* LXNestedTableVC.swift in Sources */,
 				BEA2461026F335290098707A /* HtmlParsing.swift in Sources */,
-				BE253D5A2968115100FE3574 /* TableViewCell.swift in Sources */,
 				BEA245C426F335290098707A /* LXImageTestVC.swift in Sources */,
 				BE8A94CD252427C400E20F14 /* AppDelegate + Notification.swift in Sources */,
 				BEA245FD26F335290098707A /* @_exported.swift in Sources */,
-				BE253C942967FEDB00FE3574 /* ThemeManager.swift in Sources */,
 				BEF15C3D2799455400D26B02 /* LX1019TestVC.m in Sources */,
 				BEF15C4A2799455400D26B02 /* LXCubeFaceView.swift in Sources */,
-				BE253C9D2967FEDB00FE3574 /* Branch.swift in Sources */,
 				BEC818C52499C6D00002576B /* API_ENV.swift in Sources */,
-				BE253CEE2967FF6100FE3574 /* GraphApi.swift in Sources */,
 				BE47509227BA51FB00D8F170 /* LXNavigationController.swift in Sources */,
-				BE253CAD2967FEDC00FE3574 /* Contact.swift in Sources */,
 				BEA245E326F335290098707A /* LXLightedVC.swift in Sources */,
-				BE253CA72967FEDB00FE3574 /* Repository.swift in Sources */,
+				BE56AEC429E52FD000383E84 /* PullRequest.swift in Sources */,
+				BE56AECC29E52FD000383E84 /* State.swift in Sources */,
 				BEA245FE26F335290098707A /* LXSearchResultViewModel.swift in Sources */,
 				BEC818B72499BA870002576B /* LXZenModel.swift in Sources */,
 				BEA2460A26F335290098707A /* LXWikipediaImageSearchVC.swift in Sources */,
+				BE56AED029E52FD000383E84 /* Issue.swift in Sources */,
 				BEC2D3902521E1A2004C91B6 /* LXMVVMSampleVM.swift in Sources */,
 				BEF15C442799455400D26B02 /* LXEmptyView.swift in Sources */,
 				BE9C58F2249C9C7700F942E6 /* LXNewUserFloat.swift in Sources */,
-				BE253D482968115100FE3574 /* Label.swift in Sources */,
-				BE253CF02967FF6100FE3574 /* API.swift in Sources */,
 				BEA245C226F335290098707A /* LXStackTestVC.swift in Sources */,
 				BEF15C4D2799455400D26B02 /* Refreshable.swift in Sources */,
 				BEA2460226F335290098707A /* WikipediaPage.swift in Sources */,
 				BEA245DF26F335290098707A /* LXMusicVM.swift in Sources */,
+				BE56AEBD29E52FD000383E84 /* TableViewCellViewModel.swift in Sources */,
+				BE56AEA529E52FD000383E84 /* ErrorResponse.swift in Sources */,
 				BE4750A927BA51FC00D8F170 /* UIView+Borders.swift in Sources */,
+				BE56AEBF29E52FD000383E84 /* BarButtonItem.swift in Sources */,
 				BE4750AC27BA51FC00D8F170 /* Kingfisher+Rx.swift in Sources */,
-				BE253D5F2968115100FE3574 /* ImageView.swift in Sources */,
+				BE56AEB629E52FD000383E84 /* TableView.swift in Sources */,
 				BEC2D38A2521E187004C91B6 /* LXMVVMSampleVC.swift in Sources */,
 				BEA245F926F335290098707A /* SongAPI.swift in Sources */,
 				BEA245D726F335290098707A /* LXTestStringVC.m in Sources */,
 				BEF15C472799455400D26B02 /* LX0117Model.swift in Sources */,
-				BE253D5B2968115100FE3574 /* DefaultTableViewCellViewModel.swift in Sources */,
-				BE253D5E2968115100FE3574 /* BarButtonItem.swift in Sources */,
 				BEA2460F26F335290098707A /* Wireframe.swift in Sources */,
-				BE253C9B2967FEDB00FE3574 /* Language.swift in Sources */,
 				BEC2D38C2521E187004C91B6 /* LXMVVMSampleModel.swift in Sources */,
 				BE47509827BA51FC00D8F170 /* LXBaseVM.swift in Sources */,
+				BE56AEAF29E52FD000383E84 /* SplitViewController.swift in Sources */,
 				BEA2460326F335290098707A /* LXKeyInstance.swift in Sources */,
 				BEA245FB26F335290098707A /* Reactive + RetryView.swift in Sources */,
 				BEF15C422799455400D26B02 /* LXPhotoCell.swift in Sources */,
-				BE253CA82967FEDB00FE3574 /* Notification.swift in Sources */,
-				BE253D492968115100FE3574 /* ViewController.swift in Sources */,
 				BEA245F626F335290098707A /* HUD + Observable.swift in Sources */,
 				BEA2461126F335290098707A /* UIImageView + DownloadableImage.swift in Sources */,
 				BE47508E27BA51FB00D8F170 /* XLLBaseModel.swift in Sources */,
 				BEF15CC02799455600D26B02 /* LXNestedCell.swift in Sources */,
 				BEA2460626F335290098707A /* UIApplication + ex.swift in Sources */,
 				BE4750AE27BA51FC00D8F170 /* Observable+Operators.swift in Sources */,
+				BE56AECA29E52FD000383E84 /* ISO8601DateTransform.swift in Sources */,
 				BE801F1327B0EE82007EDEBF /* LXiOS15VC.swift in Sources */,
-				BE253D4F2968115100FE3574 /* SegmentedControl.swift in Sources */,
 				BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */,
-				BE253CA52967FEDB00FE3574 /* License.swift in Sources */,
+				BE56AEB429E52FD000383E84 /* ScrollView.swift in Sources */,
+				BE56AED329E52FD000383E84 /* Content.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
 				BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */,
-				BE36A09C29CAE7F8004EE461 /* AutoResizeWebView.swift in Sources */,
+				BE36A09C29CAE7F8004EE461 /* LXStrenchableWebView.swift in Sources */,
 				BE47509127BA51FB00D8F170 /* Application.swift in Sources */,
+				BE56AEA329E52FD000383E84 /* Networking.swift in Sources */,
+				BE56AEA929E52FD000383E84 /* Label.swift in Sources */,
 				BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
 				BEF15C4B2799455400D26B02 /* LXCubeVC.swift in Sources */,
 				BEF15CC12799455600D26B02 /* LXNestedCollectionCell.swift in Sources */,
+				BE56AEB229E52FD000383E84 /* CollectionViewCell.swift in Sources */,
 				BEA245FC26F335290098707A /* LXSongRecordModel.swift in Sources */,
-				BE253D602968115100FE3574 /* Button.swift in Sources */,
-				BE253D4E2968115100FE3574 /* SplitViewController.swift in Sources */,
-				BE253D502968115100FE3574 /* SlideImageView.swift in Sources */,
 				BE4750AA27BA51FC00D8F170 /* UIView+SwiftHub.swift in Sources */,
 				BE4750A727BA51FC00D8F170 /* UIImage+SwiftHub.swift in Sources */,
 				BEBE304227C605CA008D8BB1 /* LXMasonryTestVCVC.swift in Sources */,
 				BEA245D126F335290098707A /* LXMessageCell.swift in Sources */,
+				BE56AEBB29E52FD000383E84 /* TableViewCell.swift in Sources */,
 				BE472AAB27BA151600D8F170 /* ReachabilityService.swift in Sources */,
+				BE56AEC929E52FD000383E84 /* Milestone.swift in Sources */,
 				BEF15CC22799455600D26B02 /* LXNestedTableView.swift in Sources */,
 				BEF15C4F2799455400D26B02 /* LX0324EventsVC.swift in Sources */,
-				BE253D1D2967FF6100FE3574 /* CodetabsApi.swift in Sources */,
-				BE253C9F2967FEDB00FE3574 /* Milestone.swift in Sources */,
 				BEF15B7E2799434F00D26B02 /* LXTable0120VC.swift in Sources */,
+				BE56AE7629E52FCF00383E84 /* Api.swift in Sources */,
+				BE56AEBA29E52FD000383E84 /* ViewModelType.swift in Sources */,
 				BE36A09E29CAE91C004EE461 /* LXWebVC.swift in Sources */,
 				BEA245D626F335290098707A /* LXOffScreenVC.swift in Sources */,
 				BEA245E726F335290098707A /* UIFont + ex.swift in Sources */,
 				BEA245CE26F335290098707A /* UIImage + emoticon.swift in Sources */,
-				BE253CAB2967FEDC00FE3574 /* Committer.swift in Sources */,
+				BE56AEA829E52FD000383E84 /* ChatViewController.swift in Sources */,
 				BEA245D226F335290098707A /* LXStackViewVC.swift in Sources */,
+				BE56AEAD29E52FD000383E84 /* CollectionView.swift in Sources */,
+				BE56AEAB29E52FD000383E84 /* View.swift in Sources */,
 				BEA245F326F335290098707A /* RetryView.swift in Sources */,
 				BEF15CCA2799455600D26B02 /* LXHugTestVC.m in Sources */,
 				BEA245C926F335290098707A /* LXPerson.m in Sources */,
 				BEF15CC82799455600D26B02 /* LX0114VC.swift in Sources */,
 				BE201D8427DB278300385445 /* LXBaseVC2.swift in Sources */,
-				BE253D592968115100FE3574 /* ViewModelType.swift in Sources */,
 				BEA245CB26F335290098707A /* LXSwiftView.swift in Sources */,
 				BEC2D38D2521E187004C91B6 /* LXMVVMSampleView.swift in Sources */,
 				BE253C982967FEDB00FE3574 /* ContactsManager.swift in Sources */,
+				BE56AECB29E52FD000383E84 /* Commit.swift in Sources */,
 				BEA2460126F335290098707A /* WikipediaSearchResult.swift in Sources */,
 				BEA245F426F335290098707A /* Service.swift in Sources */,
-				BE253C9E2967FEDB00FE3574 /* Comment.swift in Sources */,
-				BE253CAC2967FEDC00FE3574 /* Token.swift in Sources */,
-				BE253D212967FF6100FE3574 /* ErrorResponse.swift in Sources */,
 				BEF15C452799455400D26B02 /* LX0117VM.swift in Sources */,
-				BE253D542968115100FE3574 /* TableViewController.swift in Sources */,
+				BE56AEB029E52FD000383E84 /* SegmentedControl.swift in Sources */,
 				BEC3CBF7283221D40084B393 /* LXYYLabelMoreTestVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

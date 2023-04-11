@@ -18,6 +18,7 @@ PODS:
   - DateToolsSwift (5.0.0)
   - Differentiator (5.0.0)
   - DJBusinessModuleSwift (63):
+    - MBProgressHUD
     - RxCocoa
     - RxNetworks
     - SnapKit
@@ -556,7 +557,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 562f8eceb40e80796fffc668b0cad9313284cfa6
   DateToolsSwift: 4207ada6ad615d8dc076323d27037c94916dbfa6
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
-  DJBusinessModuleSwift: 420d66ed4cdf572029f9f5b8c7f5a8fb3f4ff5c5
+  DJBusinessModuleSwift: 9269e3f3a702945582c44aa6256598c80527f53e
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9

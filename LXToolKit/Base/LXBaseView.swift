@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+@objc(LXBaseKitView)
 open class LXBaseView: UIView {
     deinit {
         dlog("---------- >>>View: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
