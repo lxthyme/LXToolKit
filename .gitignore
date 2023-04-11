@@ -5,6 +5,8 @@ xcuserdata
 _Pods.xcodeproj
 Pods
 
+.swiftlint.yml
+
 # DJNewClassify2
 # DJNewClassify3
 # LXToolKitObjc/DJBusinessTools

@@ -1,4 +1,4 @@
-# OS X
+# macOS
 .DS_Store
 
 # Xcode
@@ -13,7 +13,6 @@ build/
 !default.perspectivev3
 xcuserdata/
 *.xccheckout
-profile
 *.moved-aside
 DerivedData
 *.hmap
@@ -30,27 +29,8 @@ Carthage/Build
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
+# 
 # Note: if you ignore the Pods directory, make sure to uncomment
 # `pod install` in .travis.yml
 #
-Pods/
-
-
-# App Code
-.idea
-# LXToolKit_Example.xml
-# .name
-# Example.iml
-# misc.xml
-# modules.xml
-# vcs.xml
-# xcode.xml
-
-# Swift Lint
-.swiftlint.yml
-
-# 多余文件
-# SlideImageView
-# 2021/03-23
-# 2020/09-25-LXWikipediaImageSearch/Services/Reachability
+# Pods/
