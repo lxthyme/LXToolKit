@@ -17,7 +17,7 @@
                BlueprintIdentifier = "6003F589195388D20070C39A"
                BuildableName = "LXToolKitObjc_Example.app"
                BlueprintName = "LXToolKitObjc_Example"
-               ReferencedContainer = "container:LXToolKitObjc.xcodeproj">
+               ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,7 +33,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "LXToolKitObjc_Example.app"
             BlueprintName = "LXToolKitObjc_Example"
-            ReferencedContainer = "container:LXToolKitObjc.xcodeproj">
+            ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -44,7 +44,7 @@
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
                BuildableName = "LXToolKitObjc_Tests.xctest"
                BlueprintName = "LXToolKitObjc_Tests"
-               ReferencedContainer = "container:LXToolKitObjc.xcodeproj">
+               ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -66,7 +66,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "LXToolKitObjc_Example.app"
             BlueprintName = "LXToolKitObjc_Example"
-            ReferencedContainer = "container:LXToolKitObjc.xcodeproj">
+            ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -83,7 +83,7 @@
             BlueprintIdentifier = "6003F589195388D20070C39A"
             BuildableName = "LXToolKitObjc_Example.app"
             BlueprintName = "LXToolKitObjc_Example"
-            ReferencedContainer = "container:LXToolKitObjc.xcodeproj">
+            ReferencedContainer = "container:LXToolKitObjC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
