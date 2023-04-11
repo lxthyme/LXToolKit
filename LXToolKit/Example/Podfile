@@ -1,0 +1,404 @@
+#inhibit_all_warnings!
+use_frameworks!
+# use_modular_headers!
+platform:ios, '12.0'
+
+source 'https://cdn.cocoapods.org'
+
+# install! 'cocoapods',
+#            disable_input_output_paths: true,
+#            generate_multiple_pod_projects: true,
+#            deterministic_uuids: false
+
+#install! 'cocoapods', :deterministic_uuids => false, :integrate_targets => false
+
+#target 'MaJia' do
+#  pod 'LXToolKit', :path => '../'
+#end
+target 'LXToolKit_Exam' do
+  pod 'LXToolKit', :path => '../'
+
+
+#  pod 'SwiftLint'
+#  pod 'RxSwift'
+pod 'RxCocoa'
+#pod 'Moya/RxSwift'
+#  pod 'Moya/RxSwift', '~> 13.0'
+# https://github.com/SDWebImage/SDWebImage
+pod 'SDWebImage'#, :modular_headers => true
+pod 'HandyJSON'
+pod 'ObjectMapper'
+#pod 'Kingfisher', '~>5.15'
+#pod 'RxCocoa'
+#pod 'MJRefresh'
+
+#pod 'Action'
+#pod 'RxSwiftExt'
+#pod 'Toast-Swift'
+# https://github.com/SVProgressHUD/SVProgressHUD
+pod 'SVProgressHUD'#, :modular_headers => true
+#pod 'MJRefresh'
+pod 'FLAnimatedImage'
+pod 'M80AttributedLabel'
+
+pod 'Action'
+
+#pod "SteviaLayout", "~>4.7.3"
+#pod "PryntTrimmerView", "~>4.0.2"
+# pod 'YPImagePicker'#, '~>3.5.0'
+# https://github.com/Yummypets/YPImagePicker
+pod 'YPImagePicker'
+
+
+#pod 'AKImageCropperView'
+
+#pod 'QRSources'
+pod 'PKHUD'
+pod 'ZLPhotoBrowser'
+pod 'TZImagePickerController'
+
+
+# SwiftHub
+# Pods for LXToolKit2
+
+# Networking
+# https://github.com/Moya/Moya
+pod 'Moya/RxSwift'
+# https://github.com/apollographql/apollo-ios
+# pod 'Apollo', '0.42.0'
+
+# Rx Extensions
+# https://github.com/RxSwiftCommunity/RxDataSources
+pod 'RxDataSources'
+# https://github.com/RxSwiftCommunity/RxSwiftExt
+pod 'RxSwiftExt'
+# https://github.com/RxSwiftCommunity/NSObject-Rx
+pod 'NSObject+Rx'
+# https://github.com/devxoul/RxViewController
+pod 'RxViewController'
+# https://github.com/RxSwiftCommunity/RxGesture
+pod 'RxGesture'
+# https://github.com/RxSwiftCommunity/RxOptional
+pod 'RxOptional'
+# https://github.com/RxSwiftCommunity/RxTheme
+pod 'RxTheme'
+
+# JSON Mapping
+# https://github.com/ivanbruel/Moya-ObjectMapper
+# pod 'Moya-ObjectMapper/RxSwift'
+
+# Image
+# https://github.com/onevcat/Kingfisher
+pod 'Kingfisher'
+
+# Date
+# https://github.com/MatthewYork/DateTools
+pod 'DateToolsSwift'
+# https://github.com/malcommac/SwiftDate
+pod 'SwiftDate'
+
+# Tools
+# https://github.com/mac-cain13/R.swift
+pod 'R.swift'
+# https://github.com/realm/SwiftLint
+pod 'SwiftLint'
+
+# Keychain
+# https://github.com/kishikawakatsumi/KeychainAccess
+pod 'KeychainAccess'
+
+# UI
+# https://github.com/ninjaprox/NVActivityIndicatorView
+pod 'NVActivityIndicatorView'
+pod 'NVActivityIndicatorView/Extended'
+# https://github.com/zvonicek/ImageSlideshow
+pod 'ImageSlideshow/Kingfisher'
+pod "ImageSlideshow/SDWebImage"
+# https://github.com/dzenbot/DZNEmptyDataSet
+pod 'DZNEmptyDataSet'
+# https://github.com/lkzhao/Hero
+pod 'Hero'
+# https://github.com/marmelroy/Localize-Swift
+pod 'Localize-Swift'
+# https://github.com/Ramotion/animated-tab-bar
+pod 'RAMAnimatedTabBarController'
+# https://github.com/vtourraine/AcknowList
+pod 'AcknowList'
+# https://github.com/OpenFeyn/KafkaRefresh
+pod 'KafkaRefresh'
+# https://github.com/SvenTiigi/WhatsNewKit
+pod 'WhatsNewKit'
+# https://github.com/raspu/Highlightr
+pod 'Highlightr'
+# https://github.com/AssistoLab/DropDown
+pod 'DropDown'
+# https://github.com/scalessec/Toast-Swift
+pod 'Toast-Swift'
+# https://github.com/HeshamMegid/HMSegmentedControl
+pod 'HMSegmentedControl'
+# https://github.com/SCENEE/FloatingPanel
+pod 'FloatingPanel'
+# https://github.com/MessageKit/MessageKit
+pod 'MessageKit'
+# https://github.com/mac-gallagher/MultiProgressView
+pod 'MultiProgressView'
+# https://github.com/danielgindi/Charts
+pod 'Charts'
+
+# Keyboard
+# https://github.com/hackiftekhar/IQKeyboardManager
+pod 'IQKeyboardManagerSwift'
+
+# Auto Layout
+# https://github.com/SnapKit/SnapKit
+pod 'SnapKit'
+
+# Code Quality
+# https://github.com/Flipboard/FLEX
+pod 'FLEX', :configurations => ['Debug']
+# https://github.com/SwifterSwift/SwifterSwift
+pod 'SwifterSwift'
+# https://github.com/Rightpoint/BonMot
+# pod 'BonMot'
+
+# Logging
+# https://github.com/CocoaLumberjack/CocoaLumberjack
+pod 'CocoaLumberjack/Swift'
+
+# Analytics
+# https://github.com/mixpanel/mixpanel-iphone
+pod 'Mixpanel-swift'
+
+# Ads
+#pod 'Google-Mobile-Ads-SDK', '~> 8.0'
+
+# Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+pod 'Firebase/Crashlytics'
+
+#pod 'LXToolKit'
+pod 'MJRefresh'
+#pod 'Cache', '~>7.0'
+#pod 'Cache', :git => "https://github.com/hyperoslo/Cache.git"
+pod 'YYCache'#, :modular_headers => true
+#pod "RxErrorTracker" # https://github.com/brunomorgado/RxErrorTracker
+
+#### Reactive
+#pod 'ReactiveCocoa'
+#pod 'ReactiveSwift'
+#pod 'ReactiveObjC'
+
+#pod 'PromiseKit'
+
+pod 'PromisesObjC'
+#pod 'PromisesSwift'
+pod 'FunctionalObjC'
+
+pod 'Masonry'
+pod 'Mantle'
+pod 'MJExtension'
+
+# pod 'YYKit'
+pod 'YYText'
+
+# https://github.com/apollographql/apollo-ios
+pod 'Apollo', '0.50.0'
+# https://github.com/ivanbruel/Moya-ObjectMapper
+pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
+
+pod 'libextobjc/EXTScope'
+
+# platform:ios, '10.0'
+pod 'DJBusinessModuleSwift', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModuleSwift'
+pod 'RxNetworks', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/RxNetworks'
+# pod 'RxNetworks', :git => 'git@github.com:yangKJ/RxNetworks.git'
+# pod 'Toast-Swift', :git => 'git@github.com:scalessec/Toast-Swift.git'
+# pod 'HandyJSON', :git => 'git@github.com:alibaba/HandyJSON.git'
+# pod 'Moya', :git => 'git@github.com:Moya/Moya.git'
+pod 'RxSwift', :git => 'git@github.com:ReactiveX/RxSwift.git'
+pod 'Alamofire', :git => 'git@github.com:Alamofire/Alamofire.git'
+pod 'MBProgressHUD'#, :modular_headers => true
+pod 'GoogleUtilities'#, :modular_headers => true
+
+# Ads
+# pod 'Google-Mobile-Ads-SDK', '~> 9.0'
+
+end
+
+avoid_warning_list = ['DJBusinessModule', 'DJBusinessTools', 'DJiOSAppImages', 'DJGlobalStoreManager', 'DJBusinessCategoryRouterCenter']
+post_install do |installer|
+ # installer.pods_project.targets.each do |target|
+ #  target.build_configurations.each do |config|
+ #    print(">>>: ", target, "\n")
+ #    if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
+ #      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+ #    end
+ #    if !avoid_warning_list.include?(pod.name)
+ #      config.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'
+ #      config.build_settings['GCC_WARN_UNUSED_VARIABLE'] = 'YES'
+ #    end
+ #   # config.build_settings['VALID_ARCHS'] = 'x86_64 arm64'
+ #  end
+ # end
+ installer.generated_projects.each do |project|
+  project.targets.each do |target|
+      print(">>>: ", target, "\n")
+      target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
+          config.build_settings['DEVELOPMENT_TEAM'] = '6C6JHMW46K'
+          # Apple Distribution
+          config.build_settings['CODE_SIGN_IDENTITY'] = 'iPhone Developer'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
+  end
+  project.build_configurations.each do |bc|
+    print("[bc]>>>: ", bc, "\n")
+      bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+  end
+end
+end
+
+# post_install do |installer|
+#   installer.generated_projects.each do |project|
+#       project.targets.each do |target|
+#           print(">>>: ", target, "\n")
+#           target.build_configurations.each do |config|
+#               config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+#           end
+#       end
+#       project.build_configurations.each do |bc|
+#         print("[bc]>>>: ", bc, "\n")
+#           bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+#       end
+#   end
+# end
+
+# static_frameworks = ['DJBusinessModuleSwift', 'RxNetworks', 'Toast-Swift', 'HandyJSON', 'Moya', 'RxSwift', 'Alamofire']
+# pre_install do |installer|
+#   installer.pod_targets.each do |pod|
+#     # 注意这里和上面的不同
+#     if !static_frameworks.include?(pod.name)
+#       def pod.static_framework?;
+#         true
+#       end
+#       def pod.build_type;
+#         Pod::BuildType.static_library
+#       end
+#     end
+#   end
+# end
+
+#pre_install do |installer|
+#  installer.analysis_result.specifications.each do |s|
+#    print(s, ": ", s.swift_version, "\n")
+##    if s.swift_version >= 4.2
+#      s.swift_version = '4.2'
+##    end
+##    s.swift_version = '4.2' unless s.swift_version
+#  end
+#end
+
+#post_install do |installer|
+#  installer.pods_project.build_configurations.each do |config|
+#    # Workaround for CocoaPods issue: https://github.com/CocoaPods/CocoaPods/issues/7606
+##    config.build_settings.delete('CODE_SIGNING_ALLOWED')
+##    config.build_settings.delete('CODE_SIGNING_REQUIRED')
+#
+#    # Do not need debug information for pods
+##    config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+#
+#    # Disable Code Coverage for Pods projects - only exclude ObjC pods
+##    config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
+##    config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = ['$(FRAMEWORK_SEARCH_PATHS)']
+#
+#    config.build_settings['SWIFT_VERSION'] = '4.2'
+#    print(config, " - ", config.build_settings['SWIFT_VERSION'], "\n")
+#  end
+#end
+
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#      target.build_configurations.each do |config|
+#
+#        config.build_settings['SWIFT_VERSION'] = '4.2'
+#        # print(target, " - ", config, " - ", config.build_settings['SWIFT_VERSION'], "\n")
+#    end
+#  end
+#end
+
+
+#inhibit_all_warnings!
+#use_frameworks!
+#platform:ios, '10.0'
+#
+##target 'MaJia' do
+##  pod 'LXToolKit', :path => '../'
+##end
+#target 'LXToolKit_Exam' do
+#  pod 'LXToolKit', :path => '../'
+#
+#  pod 'YPImagePicker'
+#
+##  pod 'SwiftLint'
+##  pod 'RxSwift'
+##  pod 'RxCocoa'
+#pod 'Moya/RxSwift'
+##  pod 'Moya/RxSwift', '~> 13.0'
+#pod 'SDWebImage', '~>5.10'B
+#pod 'HandyJSON'
+#pod 'Kingfisher', '~>5.15'
+#pod 'RxCocoa'
+#pod 'MJRefresh'
+#
+#pod 'Action'
+#pod 'RxSwiftExt'
+#pod 'Toast-Swift'
+#pod 'SVProgressHUD', '~>2.2'
+#pod 'MJRefresh'
+#pod 'FLAnimatedImage'
+#pod 'M80AttributedLabel'
+#
+#pod 'Action'
+#
+#pod 'Mantle'
+#pod 'MJExtension'
+#
+#end
+#
+##pre_install do |installer|
+##  installer.analysis_result.specifications.each do |s|
+##    print(s, ": ", s.swift_version, "\n")
+###    if s.swift_version >= 4.2
+##      s.swift_version = '4.2'
+###    end
+###    s.swift_version = '4.2' unless s.swift_version
+##  end
+##end
+#
+##post_install do |installer|
+##  installer.pods_project.build_configurations.each do |config|
+##    # Workaround for CocoaPods issue: https://github.com/CocoaPods/CocoaPods/issues/7606
+###    config.build_settings.delete('CODE_SIGNING_ALLOWED')
+###    config.build_settings.delete('CODE_SIGNING_REQUIRED')
+##
+##    # Do not need debug information for pods
+###    config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+##
+##    # Disable Code Coverage for Pods projects - only exclude ObjC pods
+###    config.build_settings['CLANG_ENABLE_CODE_COVERAGE'] = 'NO'
+###    config.build_settings['LD_RUNPATH_SEARCH_PATHS'] = ['$(FRAMEWORK_SEARCH_PATHS)']
+##
+##    config.build_settings['SWIFT_VERSION'] = '4.2'
+##    print(config, " - ", config.build_settings['SWIFT_VERSION'], "\n")
+##  end
+##end
+#
+##post_install do |installer|
+##  installer.pods_project.targets.each do |target|
+##      target.build_configurations.each do |config|
+##
+##        config.build_settings['SWIFT_VERSION'] = '4.2'
+##        # print(target, " - ", config, " - ", config.build_settings['SWIFT_VERSION'], "\n")
+##    end
+##  end
+##end
