@@ -6,7 +6,8 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXShadowVC.h"
-
+#import <LXToolKitObjC/LXMacro.h>
+#import <LXToolKitObjC/UIColor+ex.h>
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
 #import "DJZitiRuleTipModel.h"

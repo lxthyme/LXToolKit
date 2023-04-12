@@ -8,6 +8,7 @@
 #import "LXPageCell.h"
 
 #import "LXListViewController.h"
+#import <LXToolKitObjC/LXMacro.h>
 
 static const CGFloat JXheightForHeaderInSection = 50;
 

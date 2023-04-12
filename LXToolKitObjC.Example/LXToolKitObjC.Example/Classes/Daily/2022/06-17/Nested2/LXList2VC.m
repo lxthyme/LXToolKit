@@ -9,7 +9,7 @@
 #import "LXListViewController.h"
 #import "LXPageCell.h"
 #import "UIWindow+JXSafeArea.h"
-
+#import <LXToolKitObjC/LXMacro.h>
 static const NSInteger kSectionCount = 2;
 
 @interface LXList2VC()<UITableViewDataSource, UITableViewDelegate> {

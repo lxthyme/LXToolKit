@@ -10,7 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "UIWindow+JXSafeArea.h"
 #import <MJRefresh/MJRefresh.h>
-
+#import <LXToolKitObjC/LXMacro.h>
 
 @interface LXNaHiddenVC() {
 }

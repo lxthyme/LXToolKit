@@ -7,6 +7,7 @@
 //
 #import "LXPaging2VC.h"
 
+#import <LXToolKitObjC/LXMacro.h>
 #import <Masonry/Masonry.h>
 #import "LXList2VC.h"
 

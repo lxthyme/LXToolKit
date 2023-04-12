@@ -49,7 +49,10 @@ This library contains some useful category and extension kits
     :name => "#{s.module_name}.R.swift",
     :execution_position => :before_compile,
     :script => script_Rswift,
-    :output_files => ['$SRCROOT/R.generated.swift'],
+    :output_files => [
+      # '$SRCROOT/R.generated.swift',
+      "#{Dir.pwd}/#{s.module_name}/Classes/R.generated.swift"
+    ],
   }
 
   # s.frameworks = 'UIKit', 'MapKit'

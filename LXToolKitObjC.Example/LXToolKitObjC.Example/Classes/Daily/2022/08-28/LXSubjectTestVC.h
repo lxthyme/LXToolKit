@@ -6,6 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <LXToolKitObjc/LXBaseVC.h>
+#import <LXToolKitObjC/LXBaseVC.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

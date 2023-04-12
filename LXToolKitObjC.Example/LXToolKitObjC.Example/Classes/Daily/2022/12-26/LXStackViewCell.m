@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXStackViewCell.h"
-
+#import <LXToolKitObjC/LXMacro.h>
 #import <Masonry/Masonry.h>
 
 @interface LXStackViewCell() {

@@ -33,10 +33,21 @@ TODO: Add long description of the pod here.
   s.source_files = 'LXToolKit_Example/Classes/**/*'
 
   # s.resource_bundles = {
-  #   'LXToolKit_Example' => ['LXToolKit_Example/Assets/*.png']
+  #   'LXToolKit_Example' => [
+  #     # 'LXToolKit_Example/Assets/*.png',
+  #     "#{s.module_name}/Assets/*.xcassets",
+  #     "#{s.module_name}/Assets/*.strings",
+  #     "#{s.module_name}/*.json",
+  #   ]
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
+
+  s.resources = [
+    "#{s.module_name}/Assets/*.xcassets",
+    "#{s.module_name}/Assets/**/*.strings",
+    "#{s.module_name}/**/*.json",
+  ]
 
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
@@ -47,7 +58,10 @@ TODO: Add long description of the pod here.
     :name => "#{s.module_name}.R.swift",
     :execution_position => :before_compile,
     :script => script_Rswift,
-    :output_files => ['$SRCROOT/R.generated.swift'],
+    :output_files => [
+      # '$SRCROOT/R.generated.swift'
+      "#{Dir.pwd}/#{s.module_name}/Classes/R.generated.swift"
+    ],
   }
 
   # s.frameworks = 'UIKit', 'MapKit'

@@ -9,7 +9,8 @@
 #import <SDWebImage/SDWebImage.h>
 #import <Masonry/Masonry.h>
 #import <SDCycleScrollView/SDCycleScrollView.h>
-
+#import <LXToolKitObjC/LXMacro.h>
+#import <LXToolKitObjC/UIColor+ex.h>
 @interface LXBannerTestVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, SDCycleScrollViewDelegate> {
 }
 @property(nonatomic, strong)SDCycleScrollView *bannerView;

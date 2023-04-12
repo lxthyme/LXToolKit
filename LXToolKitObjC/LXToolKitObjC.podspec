@@ -44,14 +44,17 @@ TODO: Add long description of the pod here.
 
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
-  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  generated_path="#{Dir.pwd}/#{s.module_name}"
   "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
   CMD
   s.script_phase = {
     :name => "#{s.module_name}.R.swift",
     :execution_position => :before_compile,
     :script => script_Rswift,
-    :output_files => ['$SRCROOT/R.generated.swift'],
+    :output_files => [
+      # '$SRCROOT/R.generated.swift',
+      "#{Dir.pwd}/#{s.module_name}/R.generated.swift"
+    ],
   }
 
   # s.frameworks = 'UIKit', 'MapKit'
@@ -63,5 +66,6 @@ TODO: Add long description of the pod here.
   s.dependency 'YYModel'
   #s.dependency 'UIColor+Hex'
   s.dependency 'Colours'
+  s.dependency 'R.swift'
 
 end

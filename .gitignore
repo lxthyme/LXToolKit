@@ -1,4 +1,4 @@
-R.generated.swift
+# R.generated.swift
 
 xcuserdata
 
@@ -10,5 +10,16 @@ Pods
 # DJNewClassify2
 # DJNewClassify3
 # LXToolKitObjc/DJBusinessTools
+
+LXToolKit_Example/SwiftHub.bl
+LXToolKit_Example/SwiftHub.lx
+
+## SwiftHub 忽略的文件
+# ViewController
+# TableViewController
+# CollectionViewController
+# WebViewController
+# WhatsNewManager
+# AnalyticsManager
 
 backup

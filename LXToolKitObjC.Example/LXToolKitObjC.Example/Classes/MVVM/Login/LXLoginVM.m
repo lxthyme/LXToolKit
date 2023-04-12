@@ -8,6 +8,7 @@
 
 #import "LXLoginVM.h"
 // #import <BLRawAPIManager/DJNewShopCarSubmitCartAPIManager.h>
+#import <LXToolKitObjC/LXMacro.h>
 
 @interface LXLoginVM() {
 }

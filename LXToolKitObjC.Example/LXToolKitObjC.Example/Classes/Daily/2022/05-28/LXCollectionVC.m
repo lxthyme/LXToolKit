@@ -8,6 +8,7 @@
 
 #import "LXCollectionVC.h"
 #import "LXCollectionCell.h"
+#import <LXToolKitObjC/UIView+MASSafeAreaLayoutGuide.h>
 
 #define kCollectionCellIdentifier1 @"CellIdentifier1"
 #define kCollectionCellIdentifier2 @"CellIdentifier2"

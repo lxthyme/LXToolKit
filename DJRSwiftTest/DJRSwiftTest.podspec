@@ -68,7 +68,10 @@ TODO: Add long description of the pod here.
     # :script => '"$PODS_ROOT/R.swift/rswift" generate --access-level public "$SRCROOT/R.generated.swift"',
     # :script => '"$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/R.generated.swift"',
     # :script => '"$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift"',
-    :output_files => ['$SRCROOT/R.generated.swift'],
+    :output_files => [
+      # '$SRCROOT/R.generated.swift',
+      "#{Dir.pwd}/#{s.module_name}/Classes/R.generated.swift"
+    ],
     # :based_on_dependency_analysis => 0
     # :always_out_of_date => 1
   }
