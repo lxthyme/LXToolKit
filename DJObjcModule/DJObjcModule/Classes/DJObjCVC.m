@@ -57,7 +57,7 @@
 - (void)testM {
     // DJSwiftTest *test = [[DJSwiftTest alloc]init];
     // LXTestVC *testVC = [test testVC];
-    LXTestVC *testVC = [[LXTestVC alloc]init];
+    DJBusinessModuleSwiftVC *testVC = [[DJBusinessModuleSwiftVC alloc]init];
     [self.navigationController pushViewController:testVC animated:YES];
 }
 

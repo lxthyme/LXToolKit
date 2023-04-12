@@ -1,5 +1,5 @@
 //
-//  DJTestVC.swift
+//  DJRSwiftTestVC.swift
 //  Pods
 //
 //  Created by lxthyme on 2023/4/1.
@@ -7,23 +7,23 @@
 import UIKit
 // import Rswift
 
-class DJTestVC: UIViewController {
+open class DJRSwiftTestVC: UIViewController {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -33,20 +33,20 @@ class DJTestVC: UIViewController {
 }
 
 // MARK: 🌎LoadData
-extension DJTestVC {}
+extension DJRSwiftTestVC {}
 
 // MARK: 👀Public Actions
-extension DJTestVC {
+extension DJRSwiftTestVC {
     func testM() {
         // let img = R.file
     }
 }
 
 // MARK: 🔐Private Actions
-private extension DJTestVC {}
+private extension DJRSwiftTestVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension DJTestVC {
+private extension DJRSwiftTestVC {
     func prepareUI() {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"

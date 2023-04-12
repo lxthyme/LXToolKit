@@ -19,6 +19,7 @@ protocol LXViewModelType {
     func transform(input: Input) -> Output
 }
 
+@objc(LXBaseKitVM)
 open class LXBaseVM: NSObject {
     deinit {
         logDebug("\(type(of: self)): Deinited")

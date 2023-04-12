@@ -13,6 +13,7 @@ protocol LXViewModelType {
     func transform(input: Input) -> Output
 }
 
+@objc(LXBaseSwiftVM)
 open class LXBaseVM: NSObject {
     // MARK: 📌UI
     // MARK: 🔗Vaiables

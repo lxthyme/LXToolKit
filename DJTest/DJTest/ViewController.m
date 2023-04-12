@@ -7,12 +7,20 @@
 
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
+#import <DJObjcModule/DJObjCVC.h>
 #import "LXToolKit_Example-Swift.h"
+#import "DJRSwiftTest-Swift.h"
+#import "DJBusinessModuleSwift-Swift.h"
+#import "DJSwiftModule-Swift.h"
 #import <LXToolKitObjC_Example/LXToolKitObjCTestVC.h>
 
 typedef NS_ENUM(NSInteger, DJCellType) {
     DJCellTypeLXToolKit,
     DJCellTypeLXToolObjCKit,
+    DJCellTypeDJObjcModule,
+    DJCellTypeDJSwiftModule,
+    DJCellTypeDJBusinessModuleSwift,
+    DJCellTypeDJRSwiftTest,
 };
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate> {
@@ -42,6 +50,10 @@ typedef NS_ENUM(NSInteger, DJCellType) {
     self.dataList = @[
         @(DJCellTypeLXToolKit),
         @(DJCellTypeLXToolObjCKit),
+        @(DJCellTypeDJObjcModule),
+        @(DJCellTypeDJSwiftModule),
+        @(DJCellTypeDJBusinessModuleSwift),
+        @(DJCellTypeDJRSwiftTest),
     ];
     [self.table reloadData];
 }
@@ -55,10 +67,22 @@ typedef NS_ENUM(NSInteger, DJCellType) {
     NSString *title = [self.dataList[indexPath.row] stringValue];
     switch ([self.dataList[indexPath.row] integerValue]) {
         case DJCellTypeLXToolKit: {
-            title = @"DJCellTypeLXToolKit";
+            title = @"LXToolKit";
         } break;
         case DJCellTypeLXToolObjCKit: {
-            title = @"DJCellTypeLXToolObjCKit";
+            title = @"LXToolObjCKit";
+        } break;
+        case DJCellTypeDJObjcModule: {
+            title = @"DJObjcModule";
+        } break;
+        case DJCellTypeDJSwiftModule: {
+            title = @"DJSwiftModule";
+        } break;
+        case DJCellTypeDJBusinessModuleSwift: {
+            title = @"DJBusinessModuleSwift";
+        } break;
+        case DJCellTypeDJRSwiftTest: {
+            title = @"DJRSwiftTest";
         } break;
     }
     cell.textLabel.text = title;
@@ -74,6 +98,21 @@ typedef NS_ENUM(NSInteger, DJCellType) {
         } break;
         case DJCellTypeLXToolObjCKit: {
             vc = [[LXToolKitObjCTestVC alloc]init];
+        } break;
+        case DJCellTypeDJObjcModule: {
+            vc = [[DJObjCVC alloc]init];
+        } break;
+        case DJCellTypeDJSwiftModule: {
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            Application *app = [Application shared];
+            app.previousRootVC = window.rootViewController;
+            [app presentInitialScreenIn:window];
+        } break;
+        case DJCellTypeDJBusinessModuleSwift: {
+            vc = [[DJBusinessModuleSwiftVC alloc]init];
+        } break;
+        case DJCellTypeDJRSwiftTest: {
+            vc = [[DJRSwiftTestVC alloc]init];
         } break;
     }
     if(vc) {

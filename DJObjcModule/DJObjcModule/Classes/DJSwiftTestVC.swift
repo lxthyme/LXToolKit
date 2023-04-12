@@ -1,5 +1,5 @@
 //
-//  DJSwiftTest.swift
+//  DJSwiftTestVC.swift
 //  DJObjcModule
 //
 //  Created by lxthyme on 2023/3/31.
@@ -7,18 +7,18 @@
 import UIKit
 import DJBusinessModuleSwift
 
-open class DJSwiftTest: NSObject {
+open class DJSwiftTestVC: NSObject {
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
 }
 
 // MARK: 👀Public Actions
-public extension DJSwiftTest {
-    @objc func testVC() -> LXTestVC {
-        let testVC = LXTestVC()
+public extension DJSwiftTestVC {
+    @objc func testVC() -> DJBusinessModuleSwiftVC {
+        let testVC = DJBusinessModuleSwiftVC()
         return testVC
     }
 }
 
 // MARK: 🔐Private Actions
-private extension DJSwiftTest {}
+private extension DJSwiftTestVC {}

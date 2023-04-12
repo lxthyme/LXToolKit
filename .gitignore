@@ -7,6 +7,10 @@ Pods
 
 .swiftlint.yml
 
+R.generated.swift
+rswift.log
+.r.swift/release
+
 # DJNewClassify2
 # DJNewClassify3
 # LXToolKitObjc/DJBusinessTools
