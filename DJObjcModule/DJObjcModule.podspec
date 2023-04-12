@@ -59,4 +59,6 @@ TODO: Add long description of the pod here.
   s.dependency 'Masonry'
   s.dependency 'RxNetworks'
   s.dependency 'DJBusinessModuleSwift'
+  s.dependency 'R.swift'
+
 end

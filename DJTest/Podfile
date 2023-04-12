@@ -29,7 +29,7 @@ target 'DJTest' do
   # pod 'Mantle'
   # pod 'FirebaseCrashlytics'
   # pod 'ObjectMapper'
-  # pod 'R.swift'
+  pod 'R.swift', '~> 7.0'
   pod 'DJObjcModule', :path => '../DJObjcModule'
   pod 'DJSwiftModule', :path => '../DJSwiftModule'
   pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
@@ -56,3 +56,4 @@ post_install do |installer|
     end
   end
 end
+

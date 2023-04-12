@@ -42,7 +42,7 @@ This library contains some useful category and extension kits
 
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
-  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  generated_path="#{Dir.pwd}/#{s.module_name}"
   "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
   CMD
   s.script_phase = {
@@ -51,7 +51,7 @@ This library contains some useful category and extension kits
     :script => script_Rswift,
     :output_files => [
       # '$SRCROOT/R.generated.swift',
-      "#{Dir.pwd}/#{s.module_name}/Classes/R.generated.swift"
+      "#{Dir.pwd}/#{s.module_name}/R.generated.swift"
     ],
   }
 
