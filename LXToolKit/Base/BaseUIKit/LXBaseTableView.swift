@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objc(LXBaseKitTableView)
 open class LXBaseTableView: UITableView {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
