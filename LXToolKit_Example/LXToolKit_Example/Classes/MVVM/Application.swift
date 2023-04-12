@@ -51,9 +51,9 @@ final class Application: NSObject {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             if let user = User.currentUser(), let login = user.login {
-                analytics.identify(userId: login)
-                analytics.set(.name(value: user.name ?? ""))
-                analytics.set(.email(value: user.email ?? ""))
+                // analytics.identify(userId: login)
+                // analytics.set(.name(value: user.name ?? ""))
+                // analytics.set(.email(value: user.email ?? ""))
             }
             // TODO:「lxthyme」💊<#extra#>
             // let authorized = self?.authManager.token?.isValid ?? false

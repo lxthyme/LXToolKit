@@ -55,7 +55,7 @@ open class LXNavigator {
         case LXMasonryTestVCVC(viewModel: LXBaseVM)
         case LXWebViewTestVC(viewModel: LXBaseVM)
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
-        case HomeViewController(viewModel: LXBaseVM)
+        // case HomeViewController(viewModel: LXBaseVM)
         case LXWebVC(viewModel: LXBaseVM)
     }
 
@@ -139,8 +139,8 @@ open class LXNavigator {
             return LXWebViewTestVC(viewModel: vm, navigator: self)
         case .LXYYLabelMoreTestVC(let vm):
             return LXYYLabelMoreTestVC(viewModel: vm, navigator: self)
-        case .HomeViewController(let vm):
-            return HomeViewController()
+        // case .HomeViewController(let vm):
+        //     return HomeViewController()
         case .LXWebVC(let vm):
             return LXWebVC()
         }
@@ -252,8 +252,8 @@ extension LXNavigator.Scene {
             tmp = (title: "WebView 测试", desc: "---")
         case .LXYYLabelMoreTestVC:
             tmp = (title: "YYLabel more 查看详情", desc: "---")
-        case .HomeViewController:
-            tmp = (title: "RxNetworks Demo", desc: "---")
+        // case .HomeViewController:
+        //     tmp = (title: "RxNetworks Demo", desc: "---")
         case .LXWebVC:
             tmp = (title: "LXWebVC", desc: "---")
         }
