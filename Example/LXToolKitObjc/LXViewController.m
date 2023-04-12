@@ -114,7 +114,8 @@
             @"LXShadowVC",
             @"LXStackViewTestVC",
             @"LXURLCompVC",
-            @"LXWebViewTestVC"
+            @"LXWebViewTestVC",
+            @"LXSwiftOCTestVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }

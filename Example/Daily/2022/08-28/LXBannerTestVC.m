@@ -6,7 +6,7 @@
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import "LXBannerTestVC.h"
-
+#import <SDWebImage/SDWebImage.h>
 #import <Masonry/Masonry.h>
 #import <SDCycleScrollView/SDCycleScrollView.h>
 
@@ -41,7 +41,7 @@
 - (void)dataFill {
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.imgViewTabbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
-    [self.imgViewTabbar bl_setImageWithUrl:[NSURL URLWithString:@"https://Img.iblimg.com/fast2home-2/images/kdj/index/2022/03/785364561.png"]];
+    [self.imgViewTabbar sd_setImageWithURL:[NSURL URLWithString:@"https://Img.iblimg.com/fast2home-2/images/kdj/index/2022/03/785364561.png"]];
     self.bannerView.imageURLStringsGroup = @[
         @"https://unsplash.it/400/200/?random",
         @"https://unsplash.it/400/200/?random",
@@ -72,7 +72,7 @@
     cell.contentView.layer.cornerRadius = kWPercentage(2.f);
     cell.contentView.clipsToBounds = YES;
     if(self.currentIdx == indexPath.row) {
-        cell.contentView.backgroundColor = [UIColor colorWithHex:0xFFFFFF alpha:0.6f];
+        cell.contentView.backgroundColor = [[UIColor xl_colorWithHex:0xFFFFFF] colorWithAlphaComponent:0.6f];
     } else {
         cell.contentView.backgroundColor = [UIColor whiteColor];
     }
@@ -136,12 +136,12 @@
         v.autoScrollTimeInterval = 3.f;
         v.infiniteLoop = YES;
         v.delegate = self;
-        // v.placeholderImage = [iBLImage imageNamed:@""];
+        v.placeholderImage = [UIImage imageNamed:@""];
         v.layer.cornerRadius = kWPercentage(4.f);
         v.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
         v.pageControlDotSize = CGSizeMake(kWPercentage(9.f), kWPercentage(4.f));
-        v.currentPageDotImage = [iBLImage imageNamed:@"icon_classify_dot"];
-        v.pageDotImage = [iBLImage imageNamed:@"icon_classify_pageDot"];
+        v.currentPageDotImage = [UIImage imageNamed:@"icon_classify_dot"];
+        v.pageDotImage = [UIImage imageNamed:@"icon_classify_pageDot"];
         v.clipsToBounds = YES;
         v.showPageControl = NO;
         _bannerView = v;
