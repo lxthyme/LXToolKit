@@ -73,7 +73,7 @@ class LXViewController: LXBaseTableViewVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as! API)
         var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
-        snapshot.appendSections(["2022", "2021", "2020"])
+        snapshot.appendSections(["2023", "2022", "2021", "2020"])
         snapshot.appendItems([
             .LXiOS15VC(viewModel: vm),
             .LXTable0120VC(viewModel: vm),
@@ -82,9 +82,11 @@ class LXViewController: LXBaseTableViewVC {
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
             .LXWebViewTestVC(viewModel: vm),
             .LXYYLabelMoreTestVC(viewModel: vm),
-            .HomeViewController(viewModel: vm),
-            .LXWebVC(viewModel: vm),
+            .HomeViewController(viewModel: vm)
         ], toSection: "2022")
+        snapshot.appendItems([
+            .LXWebVC(viewModel: vm)
+        ], toSection: "2023")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -121,7 +123,8 @@ class LXViewController: LXBaseTableViewVC {
             // LXCubeVC()
 //            LXRx0225VC()
         // LXLoggerTestVC()
-        LXWebVC()
+        // LXWebVC()
+        UIViewController()
 
        // self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(testVC, animated: true, completion: nil)

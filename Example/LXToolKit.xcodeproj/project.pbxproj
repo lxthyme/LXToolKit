@@ -136,7 +136,7 @@
 		BE258DA02518A07B008E2777 /* LxNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258D9F2518A07B008E2777 /* LxNetworkError.swift */; };
 		BE258DA22518A10A008E2777 /* LXTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE258DA12518A10A008E2777 /* LXTargetType.swift */; };
 		BE32083827E47C280052A6AF /* LXLoggerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE32083727E47C280052A6AF /* LXLoggerTestVC.m */; };
-		BE36A09C29CAE7F8004EE461 /* AutoResizeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */; };
+		BE36A09C29CAE7F8004EE461 /* LXStrenchableWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */; };
 		BE36A09E29CAE91C004EE461 /* LXWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE36A09D29CAE91C004EE461 /* LXWebVC.swift */; };
 		BE461180253D9A9600E93AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */; };
 		BE461183253D9A9600E93AB4 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE461182253D9A9600E93AB4 /* TodayViewController.swift */; };
@@ -533,7 +533,7 @@
 		BE258DA12518A10A008E2777 /* LXTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTargetType.swift; sourceTree = "<group>"; };
 		BE32083627E47C280052A6AF /* LXLoggerTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXLoggerTestVC.h; sourceTree = "<group>"; };
 		BE32083727E47C280052A6AF /* LXLoggerTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXLoggerTestVC.m; sourceTree = "<group>"; };
-		BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoResizeWebView.swift; sourceTree = "<group>"; };
+		BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStrenchableWebView.swift; sourceTree = "<group>"; };
 		BE36A09D29CAE91C004EE461 /* LXWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXWebVC.swift; sourceTree = "<group>"; };
 		BE46117E253D9A9600E93AB4 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE46117F253D9A9600E93AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -1203,7 +1203,7 @@
 		BE36A09A29CAE7C9004EE461 /* 03-22 */ = {
 			isa = PBXGroup;
 			children = (
-				BE36A09B29CAE7F8004EE461 /* AutoResizeWebView.swift */,
+				BE36A09B29CAE7F8004EE461 /* LXStrenchableWebView.swift */,
 				BE36A09D29CAE91C004EE461 /* LXWebVC.swift */,
 			);
 			name = "03-22";
@@ -2949,7 +2949,7 @@
 				BE253CA52967FEDB00FE3574 /* License.swift in Sources */,
 				BE258D9E2518A059008E2777 /* Moya + load.swift in Sources */,
 				BE21912A27BF6ADE003CD138 /* LXSlideImageView.swift in Sources */,
-				BE36A09C29CAE7F8004EE461 /* AutoResizeWebView.swift in Sources */,
+				BE36A09C29CAE7F8004EE461 /* LXStrenchableWebView.swift in Sources */,
 				BE47509127BA51FB00D8F170 /* Application.swift in Sources */,
 				BEF15C462799455400D26B02 /* LX0117VC.swift in Sources */,
 				BEC818C92499F5130002576B /* LXUserProvider.swift in Sources */,
