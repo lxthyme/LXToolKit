@@ -39,6 +39,19 @@ This library contains some useful category and extension kits
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
+
+  script_Rswift = <<-CMD
+  rswift_path="$PODS_ROOT/R.swift/rswift"
+  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
+  CMD
+  s.script_phase = {
+    :name => "#{s.module_name}.R.swift",
+    :execution_position => :before_compile,
+    :script => script_Rswift,
+    :output_files => ['$SRCROOT/R.generated.swift'],
+  }
+
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   # https://github.com/Alamofire/Alamofire

@@ -41,22 +41,33 @@ TODO: Add long description of the pod here.
   ]
 
   # s.prepare_command = <<-CMD
-  # # rm -rf $SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift
-  # echo '-->DDD: ' $SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift
+  # # # rm -rf $SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift
+  # # # echo '-->DDD: ' $SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift
+  # # echo '-->PWD: ' $PWD
   # CMD
+
+  script_Rswift = <<-CMD
+  rswift_path="$PODS_ROOT/R.swift/rswift"
+  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
+  CMD
+  # p=$(pwd)
+  # echo "-->p: "$p
+  # echo "-->rswift_path: "$rswift_path
+  # echo "-->generated_path: "$generated_path
+  # echo "-->Dir.pwd: " #{Dir.pwd}
+  # echo "-->PODS_TARGET_SRCROOT: " ${PODS_TARGET_SRCROOT}
+  # echo "-->PROJECT_DIR: " ${PROJECT_DIR}
+  # echo "-->SOURCE_ROOT: " ${SOURCE_ROOT}
+  # echo "-->SRCROOT: " ${SRCROOT}
+  # echo "-->PROJECT_FILE_PATH: " ${PROJECT_FILE_PATH}
   s.script_phase = {
     :name => "#{s.module_name}.R.swift",
     :execution_position => :before_compile,
+    :script => script_Rswift,
     # :script => '"$PODS_ROOT/R.swift/rswift" generate --access-level public "$SRCROOT/R.generated.swift"',
     # :script => '"$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/R.generated.swift"',
     # :script => '"$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/../../DJRSwiftTest/Classes/R.generated.swift"',
-    :script => "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/../../#{s.module_name}/Classes/R.generated.swift\" > \"$SRCROOT/../../#{s.module_name}/Classes/rswift.log\"
-
-echo \"-->PROJECT_DIR: \" ${PROJECT_DIR}
-echo \"-->SRCROOT: \" ${SRCROOT}
-echo \"-->PROJECT_FILE_PATH: \" ${PROJECT_FILE_PATH}
-
-",
     :output_files => ['$SRCROOT/R.generated.swift'],
     # :based_on_dependency_analysis => 0
     # :always_out_of_date => 1

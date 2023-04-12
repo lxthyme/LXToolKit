@@ -30,6 +30,11 @@ target 'DJTest' do
   # pod 'FirebaseCrashlytics'
   # pod 'ObjectMapper'
   # pod 'R.swift'
+  pod 'DJObjcModule', :path => '../DJObjcModule'
+  pod 'DJSwiftModule', :path => '../DJSwiftModule'
+  pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
+  pod 'DJBusinessModuleSwift', :path => '../../../BL.repo/DaoJia/DJBusinessModuleSwift'
+
   pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC.Example'
 

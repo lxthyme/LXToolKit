@@ -45,20 +45,17 @@ TODO: Add long description of the pod here.
     'DJSwiftModule/Localizable.strings'
   ]
 
-  # s.script_phase = {
-  #   :name => "#{s.module_name}.R.swift",
-  #   :execution_position => :before_compile,
-  #   :script => "
-  # \"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/../../#{s.module_name}/Classes/R.generated.swift\" > \"$SRCROOT/../../#{s.module_name}/Classes/rswift.log\"
-
-  # echo \"-->rswift: \" ../.build/release/rswift
-  # echo \"-->PWD: \" $PWD
-  # echo \"-->SRCROOT: \" $SRCROOT
-  # ",
-  #   :output_files => ['$SRCROOT/R.generated.swift'],
-  #   # :focus => false
-  #   # :always_out_of_date => 1
-  # }
+  script_Rswift = <<-CMD
+  rswift_path="$PODS_ROOT/R.swift/rswift"
+  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
+  CMD
+  s.script_phase = {
+    :name => "#{s.module_name}.R.swift",
+    :execution_position => :before_compile,
+    :script => script_Rswift,
+    :output_files => ['$SRCROOT/R.generated.swift'],
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
