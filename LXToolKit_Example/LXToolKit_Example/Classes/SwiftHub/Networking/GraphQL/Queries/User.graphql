@@ -1,0 +1,167 @@
+query Viewer {
+    viewer {
+        id
+        name
+        login
+        avatarUrl
+        url
+        websiteUrl
+        bio
+        company
+        email
+        location
+        createdAt
+        updatedAt
+        viewerCanFollow
+        viewerIsFollowing
+        isViewer
+        followers {
+            totalCount
+        }
+        following {
+            totalCount
+        }
+        starredRepositories {
+            totalCount
+        }
+        issues {
+            totalCount
+        }
+        repositories {
+            totalCount
+        }
+        watching {
+            totalCount
+        }
+        contributionsCollection {
+            totalRepositoryContributions
+        }
+        pinnedItems(first: 6) {
+            nodes {
+              ... on Repository {
+                name
+                nameWithOwner
+                description
+                owner {
+                  avatarUrl
+                }
+                updatedAt
+                viewerHasStarred
+                primaryLanguage {
+                  name
+                  color
+                }
+                stargazers {
+                  totalCount
+                }
+              }
+            }
+        }
+        organizations(first: 10) {
+            nodes {
+                name
+                login
+                avatarUrl
+                ... on Organization {
+                    description
+                }
+            }
+        }
+        contributionsCollection {
+            contributionCalendar {
+                totalContributions
+                months {
+                    name
+                }
+                weeks {
+                    contributionDays {
+                        color
+                        contributionCount
+                    }
+                }
+            }
+        }
+    }
+}
+
+query User($login: String!) {
+    user(login: $login) {
+        name
+        login
+        avatarUrl
+        url
+        websiteUrl
+        bio
+        company
+        email
+        location
+        createdAt
+        updatedAt
+        viewerCanFollow
+        viewerIsFollowing
+        isViewer
+        followers {
+            totalCount
+        }
+        following {
+            totalCount
+        }
+        starredRepositories {
+            totalCount
+        }
+        issues {
+            totalCount
+        }
+        repositories {
+            totalCount
+        }
+        watching {
+            totalCount
+        }
+        pinnedItems(first: 6) {
+            nodes {
+              ... on Repository {
+                name
+                nameWithOwner
+                description
+                owner {
+                  avatarUrl
+                }
+                updatedAt
+                viewerHasStarred
+                primaryLanguage {
+                  name
+                  color
+                }
+                stargazers {
+                  totalCount
+                }
+              }
+            }
+        }
+        organizations(first: 10) {
+            nodes {
+                name
+                login
+                avatarUrl
+                ... on Organization {
+                    description
+                }
+            }
+        }
+        contributionsCollection {
+            contributionCalendar {
+                totalContributions
+                months {
+                    name
+                }
+                weeks {
+                    contributionDays {
+                        color
+                        contributionCount
+                    }
+                }
+            }
+        }
+    }
+}
