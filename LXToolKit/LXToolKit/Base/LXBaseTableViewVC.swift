@@ -21,11 +21,11 @@ extension LXBaseTableViewProtocol {
         t.sectionHeaderHeight = 0
         t.sectionFooterHeight = 0
         t.backgroundColor = .white
-        t.separatorStyle = .none
         t.keyboardDismissMode = .onDrag
         t.cellLayoutMarginsFollowReadableWidth = false
-        t.separatorColor = .clear
-        t.separatorInset = .zero
+        // t.separatorStyle = .none
+        // t.separatorColor = .clear
+        // t.separatorInset = .zero
         t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
 

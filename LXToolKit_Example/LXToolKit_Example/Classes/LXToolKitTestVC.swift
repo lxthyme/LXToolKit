@@ -7,6 +7,12 @@
 import UIKit
 import LXToolKit
 
+class DataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.snapshot().sectionIdentifiers[section];
+    }
+}
+
 open class LXToolKitTestVC: LXBaseTableViewVC {
     // MARK: 📌UI
     private var testVC = LXTestVC()
@@ -32,11 +38,11 @@ open class LXToolKitTestVC: LXBaseTableViewVC {
     // }()
     private var _dataSource: UITableViewDataSource?
     @available(iOS 14.0, *)
-    private var dataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> {
-        if let ds = _dataSource as? UITableViewDiffableDataSource<String, LXNavigator.Scene> {
+    private var dataSource: DataSource {
+        if let ds = _dataSource as? DataSource {
             return ds
         }
-        let dataSource = UITableViewDiffableDataSource<String, LXNavigator.Scene>.init(tableView: table) { tableView, indexPath, scene in
+        let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = "\(scene.info.title)"
@@ -67,7 +73,7 @@ open class LXToolKitTestVC: LXBaseTableViewVC {
         let provider = RestApi(githubProvider: githubProvider,
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as! API)
+        let vm = LXBaseVM(provider: provider as API)
         var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
         snapshot.appendSections(["2023", "2022", "2021", "2020"])
         snapshot.appendItems([

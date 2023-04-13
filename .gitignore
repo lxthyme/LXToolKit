@@ -1,5 +1,7 @@
 # R.generated.swift
 
+.DS_Store
+
 xcuserdata
 _Pods.xcodeproj
 Pods
@@ -15,6 +17,7 @@ rswift.log
 
 LXToolKit_Example/SwiftHub.bl
 LXToolKit_Example/SwiftHub.lx
+233/
 
 ## SwiftHub 忽略的文件
 # ViewController

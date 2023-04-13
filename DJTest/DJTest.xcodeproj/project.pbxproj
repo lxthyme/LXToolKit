@@ -58,7 +58,6 @@
 		BE541E6B29D6E2AA007E5155 = {
 			isa = PBXGroup;
 			children = (
-				BE566E5A29E5046100383E84 /* Module */,
 				BE541E7629D6E2AA007E5155 /* DJTest */,
 				BE541E7529D6E2AA007E5155 /* Products */,
 				D227E1243BBBEB79B0250E5B /* Pods */,
@@ -90,13 +89,6 @@
 				BE541E8929D6E2AB007E5155 /* main.m */,
 			);
 			path = DJTest;
-			sourceTree = "<group>";
-		};
-		BE566E5A29E5046100383E84 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Module;
 			sourceTree = "<group>";
 		};
 		D227E1243BBBEB79B0250E5B /* Pods */ = {
