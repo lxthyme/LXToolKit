@@ -18,7 +18,7 @@ private let assetDir: URL = {
     return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
 }()
 
-protocol API {
+protocol API: SwiftHubAPI {
     // MARK: - Authentication is optional
     func createAccessToken(clientId: String, clientSecret: String, code: String, redirectUri: String?, state: String?) -> Single<Token>
 

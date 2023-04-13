@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
 
         let libsManager = LibsManager.shared
-        libsManager.setupLibs(with: window)
+        libsManager.setupLibs()
 
         if Configs.Network.useStaging == true {
             // Logout
