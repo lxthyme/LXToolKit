@@ -12,10 +12,11 @@ import WebKit
 // See https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/AdoptingCocoaDesignPatterns.html for more details.
 private var observerContext = 0
 
+@objcMembers
 class LXStrenchableWebView: WKWebView {
 
     // Keep track of height which will change when the view is loaded.
-    var webViewHeight: CGFloat = 0.0
+    dynamic var webViewHeight: CGFloat = 0.0
 
     init(frame: CGRect) {
         let config = WKWebViewConfiguration()

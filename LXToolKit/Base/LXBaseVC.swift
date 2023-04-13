@@ -13,6 +13,7 @@ import Hero
 import Localize_Swift
 import SVProgressHUD
 
+@objc(LXBaseKitVC)
 open class LXBaseVC: UIViewController {
     deinit {
         dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")

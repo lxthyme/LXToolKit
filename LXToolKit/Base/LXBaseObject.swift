@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objc(LXBaseSwiftObject)
 open class LXBaseObject: NSObject {
     deinit {
         dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
