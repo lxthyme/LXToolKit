@@ -14,8 +14,8 @@ open class DJSwiftTestVC: NSObject {
 
 // MARK: 👀Public Actions
 public extension DJSwiftTestVC {
-    @objc func testVC() -> DJBusinessModuleSwiftVC {
-        let testVC = DJBusinessModuleSwiftVC()
+    @objc func testVC() -> LXTestVC {
+        let testVC = LXTestVC()
         return testVC
     }
 }

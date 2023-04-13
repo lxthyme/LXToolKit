@@ -36,13 +36,13 @@ TODO: Add long description of the pod here.
     'DJSwiftModule' => [
       'DJSwiftModule/Assets/*.xcassets',
       'DJSwiftModule/Assets/Stubbed Responses/*.json',
-      'DJSwiftModule/Localizable.strings'
+      'DJSwiftModule/Assets/**/*.strings'
     ]
   }
   s.resources = [
     'DJSwiftModule/Assets/*.xcassets',
     'DJSwiftModule/Assets/Stubbed Responses/*.json',
-    'DJSwiftModule/*.strings'
+    'DJSwiftModule/Assets/**/*.strings'
   ]
 
   script_Rswift = <<-CMD

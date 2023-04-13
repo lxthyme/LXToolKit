@@ -1,0 +1,60 @@
+source 'git@github.com:lxthyme/LXRepo_bin.git'
+# source 'git@github.com:lxthyme/LXRepo.git'
+source 'https://cdn.cocoapods.org'
+
+
+use_frameworks!
+# use_modular_headers!
+platform :ios, '12.0'
+
+plugin 'cocoapods-imy-bin'
+
+# 启用二进制
+use_binaries!
+
+target 'DJBusinessModuleSwift_Example' do
+# use_frameworks!
+# use_modular_headers!
+
+  # pod 'DJBusinessModuleSwift', :path => '../'
+  pod 'DJBusinessModuleSwift'
+
+  pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
+  pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
+  # pod 'YYCache', :source => 'https://cdn.cocoapods.org'
+  # pod 'MBProgressHUD', :source => 'https://cdn.cocoapods.org'
+  # pod 'RXNetworks', :modular_headers => true#, :linkage => :static
+  # pod 'YYCache'#, :modular_headers => true#, :linkage => :static
+  # pod 'MBProgressHUD'#, :modular_headers => true#, :linkage => :static
+
+  # target 'DJBusinessModuleSwift_Tests' do
+  #   inherit! :search_paths
+  # end
+end
+
+# pre_install do |installer|
+# Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+# end
+
+
+# post_install do |installer|
+#   installer.pods_project.targets.each do |target|
+#       target.build_configurations.each do |config|
+#       config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+#       # config.build_settings['VALID_ARCHS'] = 'arm64 arm64e x86_64'
+#           if config.name == 'Debug'
+#             config.build_settings["VALID_ARCHS"] = "arm64 arm64e x86_64 i386"
+#           else
+#             config.build_settings["VALID_ARCHS"] = "arm64 arm64e"
+#           end
+#       end
+#   end
+# end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+    end
+  end
+end
