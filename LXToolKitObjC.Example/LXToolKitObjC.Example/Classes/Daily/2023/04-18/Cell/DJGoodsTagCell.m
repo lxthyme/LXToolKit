@@ -6,12 +6,11 @@
 //
 #import "DJGoodsTagCell.h"
 #import <Masonry/Masonry.h>
-#import <LXToolKitObjc/LXLabel.h>
+#import <LXToolKitObjC/LXLabel.h>
 #import <DJRSwiftResource/DJRSwiftResource-Swift.h>
 
 @interface DJGoodsTagCell() {
 }
-@property(nonatomic, strong)UIStackView *contentStackView;
 @property(nonatomic, strong)UILabel *labTag;
 @property(nonatomic, strong)UIImageView *imgViewTag;
 @property(nonatomic, strong)LXLabel *labContent;
@@ -35,6 +34,10 @@
     [super setSelected:selected];
     // Configure the view for the selected state
 }
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    NSLog(@"-->layoutSubviews: %@\t%@", NSStringFromCGRect(self.contentView.frame), self);
+}
 
 #pragma mark -
 #pragma mark - 🌎LoadData
@@ -53,14 +56,14 @@
         self.imgViewTag.image = DJTest.dj_plus_member;
         self.backgroundColor = [UIColor xl_colorWithHexString:@"#F9C5A9"];
         self.labContent.textColor = [UIColor xl_colorWithHexString:@"#191B22"];
-        self.layer.borderWidth = 0.f;
+        self.contentView.layer.borderWidth = 0.f;
         self.labContent.text = plus;
     } else {
         self.labTag.hidden = NO;
         self.labTag.text = tag;
         self.backgroundColor = [[UIColor xl_colorWithHexString:@"#FF4515"]colorWithAlphaComponent:0.05f];
         self.labContent.textColor = [UIColor xl_colorWithHexString:@"#FF4515"];
-        self.layer.borderWidth = kFixed0_5;
+        self.contentView.layer.borderWidth = kFixed0_5;
         self.labContent.text = item[@"content"];
     }
 }
@@ -74,25 +77,27 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.backgroundColor = [UIColor whiteColor];
-    self.layer.cornerRadius = kWPercentage(3.f);
-    self.layer.borderColor = [UIColor xl_colorWithHexString:@"#FF4515"].CGColor;
-    self.layer.borderWidth = kFixed0_5;
-    self.clipsToBounds = YES;
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.layer.cornerRadius = kWPercentage(3.f);
+    self.contentView.layer.borderColor = [UIColor xl_colorWithHexString:@"#FF4515"].CGColor;
+    self.contentView.layer.borderWidth = kFixed0_5;
+    self.contentView.clipsToBounds = YES;
 
     [self.contentStackView addArrangedSubview:self.labTag];
     [self.contentStackView addArrangedSubview:self.imgViewTag];
     [self.contentStackView addArrangedSubview:self.labContent];
-    [self addSubview:self.contentStackView];
+    [self.contentView addSubview:self.contentStackView];
 
     [self masonry];
 }
 
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    MASAttachKeys(self.contentStackView, self.labTag,
+                  self.imgViewTag, self.labContent)
     [self.contentStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
+        make.height.equalTo(@(kDJGoodsTagViewHeight));
     }];
     [self.labTag mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(kWPercentage(14.f)));

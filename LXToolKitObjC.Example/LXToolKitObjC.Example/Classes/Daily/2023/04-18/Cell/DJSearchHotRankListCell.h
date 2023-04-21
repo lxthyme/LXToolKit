@@ -8,8 +8,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJSearchHotRankListCell: UICollectionViewCell {
+@interface DJSearchHotRankListCell: LXBaseCollectionViewCell {
 }
+- (void)dataFill:(NSArray *)list;
 
 @end
 

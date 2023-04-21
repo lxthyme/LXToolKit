@@ -8,11 +8,15 @@
 #import <DJRSwiftResource/DJRSwiftResource-Swift.h>
 #import <Masonry/Masonry.h>
 
+#import "DJSearchRankItemCell.h"
+
 @interface DJSearchHotRankListCell()<UITableViewDataSource, UITableViewDelegate> {
 }
 @property(nonatomic, strong)UIImageView *imgViewBg;
+@property(nonatomic, strong)UIImageView *imgViewLogo;
+@property(nonatomic, strong)UIImageView *imgViewTitle;
 @property(nonatomic, strong)UITableView *table;
-@property(nonatomic, copy)NSArray<NSString *> *dataList;
+@property(nonatomic, copy)NSArray<NSDictionary *> *dataList;
 @end
 
 @implementation DJSearchHotRankListCell
@@ -22,6 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self prepareUI];
+        [self prepareTableView];
     }
     return self;
 }
@@ -35,8 +40,13 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill {
-    self.imgViewBg.image = DJTest.icon_search_bg_hotRank;
+- (void)dataFill:(NSArray *)list {
+    UIImage *img = DJTest.icon_search_bg_hotRank;
+    self.imgViewBg.image = [img stretchableImageWithLeftCapWidth:img.size.width / 2.f topCapHeight:img.size.height / 2.f];
+    self.imgViewLogo.image = DJTest.icon_search_hot;
+    self.imgViewTitle.image = DJTest.icon_search_rankTitle;
+    self.dataList = list;
+    [self.table reloadData];
 }
 
 #pragma mark -
@@ -50,8 +60,9 @@
     return self.dataList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
-    cell.textLabel.text = self.dataList[indexPath.row];
+    DJSearchRankItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DJSearchRankItemCell" forIndexPath:indexPath];
+    NSDictionary *item = self.dataList[indexPath.row];
+    [cell dataFill:item];
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
@@ -61,20 +72,40 @@
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
+- (void)prepareTableView {
+    [self.table registerClass:[DJSearchRankItemCell class] forCellReuseIdentifier:@"DJSearchRankItemCell"];
+}
 - (void)prepareUI {
     self.backgroundColor = [UIColor whiteColor];
 
+    [self.imgViewBg addSubview:self.imgViewLogo];
+    [self.imgViewBg addSubview:self.imgViewTitle];
+    [self.imgViewBg addSubview:self.table];
     [self.contentView addSubview:self.imgViewBg];
-    [self.contentView addSubview:self.table];
 
     [self masonry];
 }
 
 #pragma mark Masonry
 - (void)masonry {
-    // MASAttachKeys(<#...#>)
+    [self setMas_key:@"DJSearchHotRankListCell"];
+    [self.contentView setMas_key:@"DJSearchHotRankListCell.contentView"];
+    MASAttachKeys(self.table, self.imgViewBg)
     [self.imgViewBg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+        make.top.bottom.equalTo(@0.f);
+        make.left.equalTo(@(kWPercentage(15.f)));
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.width.equalTo(@(SCREEN_WIDTH - kWPercentage(15.f * 2)));
+        // make.height.equalTo(@(kWPercentage(505.f)));
+        // make.height.equalTo(@505.f);
+    }];
+    [self.imgViewLogo mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(kWPercentage(10.f)));
+        make.centerY.equalTo(self.imgViewTitle);
+    }];
+    [self.imgViewTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(kWPercentage(13.f)));
+        make.left.equalTo(self.imgViewLogo.mas_right).offset(kWPercentage(8.f));
     }];
     [self.table mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsMake(kWPercentage(40.f), kWPercentage(10.f), kWPercentage(10.f), kWPercentage(10.f)));
@@ -85,11 +116,29 @@
 - (UIImageView *)imgViewBg {
     if(!_imgViewBg){
         UIImageView *iv = [[UIImageView alloc]init];
-        iv.contentMode = UIViewContentModeScaleAspectFit;
+        iv.contentMode = UIViewContentModeScaleToFill;
         // iv.image = [UIImage imageNamed:@""];
         _imgViewBg = iv;
     }
     return _imgViewBg;
+}
+- (UIImageView *)imgViewLogo {
+    if(!_imgViewLogo){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        // iv.image = [UIImage imageNamed:@""];
+        _imgViewLogo = iv;
+    }
+    return _imgViewLogo;
+}
+- (UIImageView *)imgViewTitle {
+    if(!_imgViewTitle){
+        UIImageView *iv = [[UIImageView alloc]init];
+        iv.contentMode = UIViewContentModeScaleAspectFit;
+        // iv.image = [UIImage imageNamed:@""];
+        _imgViewTitle = iv;
+    }
+    return _imgViewTitle;
 }
 
 - (UITableView *)table {
@@ -100,15 +149,17 @@
         t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         t.indicatorStyle = UIScrollViewIndicatorStyleDefault;
         t.separatorStyle = UITableViewCellSeparatorStyleNone;
-        t.estimatedRowHeight = 44.0f;
-        t.rowHeight = UITableViewAutomaticDimension;
+        t.estimatedRowHeight = kWPercentage(75.f);
+        t.rowHeight = kWPercentage(75.f);
         t.sectionHeaderHeight = 0.f;
         t.sectionFooterHeight = 0.f;
+        t.contentInset = UIEdgeInsetsMake(kWPercentage(10.f), 0, 0, kWPercentage(10.f));
         t.estimatedRowHeight = 0;
         t.estimatedSectionHeaderHeight = 0;
         t.estimatedSectionFooterHeight = 0;
         t.layer.cornerRadius = kWPercentage(13.f);
         t.clipsToBounds = YES;
+        t.scrollEnabled = NO;
 
         t.delegate = self;
         t.dataSource = self;

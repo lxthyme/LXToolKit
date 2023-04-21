@@ -5,13 +5,15 @@
 //  Created by lxthyme on 2023/4/18.
 //
 #import <UIKit/UIKit.h>
+#import <LXToolKitObjC/LXBaseCollectionViewCell.h>
 
-#define kGoodsTagViewHeight kWPercentage(14.f)
+#define kDJGoodsTagViewHeight kWPercentage(14.f)
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJGoodsTagCell: LXBaseCollectionViewCell {
 }
+@property(nonatomic, strong)UIStackView *contentStackView;
 
 - (void)dataFill:(NSDictionary *)item;
 
