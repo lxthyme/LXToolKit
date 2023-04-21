@@ -1,5 +1,5 @@
 //
-//  LXToolKitObjC.Example.h
+//  LXToolKitObjC_Example.h
 //  LXToolKitObjC.Example
 //
 //  Created by lxthyme on 2023/4/11.
@@ -8,6 +8,18 @@
 #ifndef LXToolKitObjC_Example_h
 #define LXToolKitObjC_Example_h
 
+#import <LXToolKitObjc/LXBaseObject.h>
+#import <LXToolKitObjc/LXBaseVC.h>
+#import <LXToolKitObjc/LXBaseView.h>
+#import <LXToolKitObjc/LXBaseModel.h>
+/// UICollectionView
+#import <LXToolKitObjc/LXBaseCollectionReusableView.h>
+#import <LXToolKitObjc/LXBaseCollectionView.h>
+#import <LXToolKitObjc/LXBaseCollectionViewCell.h>
+/// UITableView
+#import <LXToolKitObjc/LXBaseTableView.h>
+#import <LXToolKitObjc/LXBaseTableViewCell.h>
+#import <LXToolKitObjc/LXBaseTableViewHeaderFooterView.h>
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -29,7 +41,6 @@
 // #import <LXToolKitObjc/>
 // #import <LXToolKitObjc/>
 // #import <LXToolKitObjc/>
-// #import <LXToolKitObjc/>
-
+// #import "UIFont+ex.h"
 
 #endif /* LXToolKitObjC_Example_h */
