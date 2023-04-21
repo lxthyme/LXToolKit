@@ -1,6 +1,6 @@
 //
 //  LXToolKitObjC_Example.h
-//  LXToolKitObjC.Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2023/4/11.
 //

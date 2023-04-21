@@ -6,11 +6,11 @@ install! 'cocoapods',
            generate_multiple_pod_projects: true,
            deterministic_uuids: false
 
-target 'LXToolKitObjC.Example_Example' do
+target 'LXToolKitObjC_Example_Example' do
   pod 'LXToolKitObjC_Example', :path => '../'
   pod 'LXToolKitObjC', :path => '../../LXToolKitObjC'
 
-  target 'LXToolKitObjC.Example_Tests' do
+  target 'LXToolKitObjC_Example_Tests' do
     inherit! :search_paths
 
 

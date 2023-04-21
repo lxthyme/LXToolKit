@@ -1,13 +1,13 @@
 //
 //  LXViewController.m
-//  LXToolKitObjC.Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 04/11/2023.
 //  Copyright (c) 2023 lxthyme. All rights reserved.
 //
 
 #import "LXViewController.h"
-// #import <LXToolKitObjC_Example/LXToolKitObjC.Example.h>
+// #import <LXToolKitObjC_Example/LXToolKitObjC_Example.h>
 #import <LXToolKitObjC_Example/LXToolKitObjCTestVC.h>
 @interface LXViewController ()
 

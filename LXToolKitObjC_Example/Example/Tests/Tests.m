@@ -1,6 +1,6 @@
 //
-//  LXToolKitObjC.ExampleTests.m
-//  LXToolKitObjC.ExampleTests
+//  LXToolKitObjC_ExampleTests.m
+//  LXToolKitObjC_ExampleTests
 //
 //  Created by lxthyme on 04/11/2023.
 //  Copyright (c) 2023 lxthyme. All rights reserved.
@@ -32,4 +32,3 @@
 }
 
 @end
-

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:LXToolKitObjC.Example.xcodeproj">
+      location = "self:LXToolKitObjC_Example.xcodeproj">
    </FileRef>
 </Workspace>

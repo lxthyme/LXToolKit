@@ -32,7 +32,7 @@
 			containerPortal = 6003F582195388D10070C39A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = LXToolKitObjC.Example;
+			remoteInfo = LXToolKitObjC_Example;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -41,31 +41,31 @@
 		0B14FABEA58A7FFD796C5276 /* Pods_LXToolKitObjC_Example_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKitObjC_Example_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A5B428097C3849524CF6AC4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4F945501102A64F0E10392D1 /* LXToolKitObjC_Example.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjC_Example.podspec; path = ../LXToolKitObjC_Example.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC.Example_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC.Example_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC.Example_Tests/Pods-LXToolKitObjC.Example_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* LXToolKitObjC.Example_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXToolKitObjC.Example_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC_Example_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example_Tests.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example_Tests/Pods-LXToolKitObjC_Example_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6003F58A195388D20070C39A /* LXToolKitObjC_Example_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXToolKitObjC_Example_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F595195388D20070C39A /* LXToolKitObjC.Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LXToolKitObjC.Example-Info.plist"; sourceTree = "<group>"; };
+		6003F595195388D20070C39A /* LXToolKitObjC_Example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LXToolKitObjC_Example-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* LXToolKitObjC.Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjC.Example-Prefix.pch"; sourceTree = "<group>"; };
+		6003F59B195388D20070C39A /* LXToolKitObjC_Example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjC_Example-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* LXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* LXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* LXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* LXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* LXToolKitObjC.Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LXToolKitObjC.Example_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* LXToolKitObjC_Example_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LXToolKitObjC_Example_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC.Example_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC.Example_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC.Example_Example/Pods-LXToolKitObjC.Example_Example.release.xcconfig"; sourceTree = "<group>"; };
+		664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC_Example_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example_Example/Pods-LXToolKitObjC_Example_Example.release.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC.Example_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC.Example_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC.Example_Example/Pods-LXToolKitObjC.Example_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC.Example_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC.Example_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC.Example_Tests/Pods-LXToolKitObjC.Example_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC_Example_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example_Example/Pods-LXToolKitObjC_Example_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC_Example_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example_Tests/Pods-LXToolKitObjC_Example_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8B999A84883BB92DAE4000E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,10 +98,10 @@
 		538A1B414332FF168352D5DF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC.Example_Example.debug.xcconfig */,
-				664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC.Example_Example.release.xcconfig */,
-				E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC.Example_Tests.debug.xcconfig */,
-				5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC.Example_Tests.release.xcconfig */,
+				8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC_Example_Example.debug.xcconfig */,
+				664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC_Example_Example.release.xcconfig */,
+				E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC_Example_Tests.debug.xcconfig */,
+				5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC_Example_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* Example for LXToolKitObjC.Example */,
+				6003F593195388D20070C39A /* Example for LXToolKitObjC_Example */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -121,8 +121,8 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* LXToolKitObjC.Example_Example.app */,
-				6003F5AE195388D20070C39A /* LXToolKitObjC.Example_Tests.xctest */,
+				6003F58A195388D20070C39A /* LXToolKitObjC_Example_Example.app */,
+				6003F5AE195388D20070C39A /* LXToolKitObjC_Example_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* Example for LXToolKitObjC.Example */ = {
+		6003F593195388D20070C39A /* Example for LXToolKitObjC_Example */ = {
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* LXAppDelegate.h */,
@@ -152,17 +152,17 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "Example for LXToolKitObjC.Example";
-			path = LXToolKitObjC.Example;
+			name = "Example for LXToolKitObjC_Example";
+			path = LXToolKitObjC_Example;
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6003F595195388D20070C39A /* LXToolKitObjC.Example-Info.plist */,
+				6003F595195388D20070C39A /* LXToolKitObjC_Example-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* LXToolKitObjC.Example-Prefix.pch */,
+				6003F59B195388D20070C39A /* LXToolKitObjC_Example-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -199,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* LXToolKitObjC.Example_Example */ = {
+		6003F589195388D20070C39A /* LXToolKitObjC_Example_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC.Example_Example" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC_Example_Example" */;
 			buildPhases = (
 				7FC38077E53AD0967E854CBB /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
@@ -213,14 +213,14 @@
 			);
 			dependencies = (
 			);
-			name = LXToolKitObjC.Example_Example;
-			productName = LXToolKitObjC.Example;
-			productReference = 6003F58A195388D20070C39A /* LXToolKitObjC.Example_Example.app */;
+			name = LXToolKitObjC_Example_Example;
+			productName = LXToolKitObjC_Example;
+			productReference = 6003F58A195388D20070C39A /* LXToolKitObjC_Example_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6003F5AD195388D20070C39A /* LXToolKitObjC.Example_Tests */ = {
+		6003F5AD195388D20070C39A /* LXToolKitObjC_Example_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC.Example_Tests" */;
+			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC_Example_Tests" */;
 			buildPhases = (
 				FD835B6FC16A9394A4FB3C09 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
@@ -232,9 +232,9 @@
 			dependencies = (
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
-			name = LXToolKitObjC.Example_Tests;
-			productName = LXToolKitObjC.ExampleTests;
-			productReference = 6003F5AE195388D20070C39A /* LXToolKitObjC.Example_Tests.xctest */;
+			name = LXToolKitObjC_Example_Tests;
+			productName = LXToolKitObjC_ExampleTests;
+			productReference = 6003F5AE195388D20070C39A /* LXToolKitObjC_Example_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -255,7 +255,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "LXToolKitObjC.Example" */;
+			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "LXToolKitObjC_Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -269,8 +269,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* LXToolKitObjC.Example_Example */,
-				6003F5AD195388D20070C39A /* LXToolKitObjC.Example_Tests */,
+				6003F589195388D20070C39A /* LXToolKitObjC_Example_Example */,
+				6003F5AD195388D20070C39A /* LXToolKitObjC_Example_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -310,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjC.Example_Example/Pods-LXToolKitObjC.Example_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXToolKitObjC_Example_Example/Pods-LXToolKitObjC_Example_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7FC38077E53AD0967E854CBB /* [CP] Check Pods Manifest.lock */ = {
@@ -328,7 +328,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LXToolKitObjC.Example_Example-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LXToolKitObjC_Example_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -350,7 +350,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-LXToolKitObjC.Example_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-LXToolKitObjC_Example_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -383,7 +383,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* LXToolKitObjC.Example_Example */;
+			target = 6003F589195388D20070C39A /* LXToolKitObjC_Example_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -491,13 +491,13 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC.Example_Example.debug.xcconfig */;
+			baseConfigurationReference = 8943A7367EE3A953A14A5CB7 /* Pods-LXToolKitObjC_Example_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LXToolKitObjC.Example/LXToolKitObjC.Example-Prefix.pch";
-				INFOPLIST_FILE = "LXToolKitObjC.Example/LXToolKitObjC.Example-Info.plist";
+				GCC_PREFIX_HEADER = "LXToolKitObjC_Example/LXToolKitObjC_Example-Prefix.pch";
+				INFOPLIST_FILE = "LXToolKitObjC_Example/LXToolKitObjC_Example-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,13 +508,13 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC.Example_Example.release.xcconfig */;
+			baseConfigurationReference = 664716B05EE3F46A823306C8 /* Pods-LXToolKitObjC_Example_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LXToolKitObjC.Example/LXToolKitObjC.Example-Prefix.pch";
-				INFOPLIST_FILE = "LXToolKitObjC.Example/LXToolKitObjC.Example-Info.plist";
+				GCC_PREFIX_HEADER = "LXToolKitObjC_Example/LXToolKitObjC_Example-Prefix.pch";
+				INFOPLIST_FILE = "LXToolKitObjC_Example/LXToolKitObjC_Example-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -525,7 +525,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC.Example_Tests.debug.xcconfig */;
+			baseConfigurationReference = E6D14AD9A0526E8546BEC7BB /* Pods-LXToolKitObjC_Example_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -543,14 +543,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LXToolKitObjC.Example_Example.app/LXToolKitObjC.Example_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LXToolKitObjC_Example_Example.app/LXToolKitObjC_Example_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC.Example_Tests.release.xcconfig */;
+			baseConfigurationReference = 5775D8E48F11E3FE977D2C99 /* Pods-LXToolKitObjC_Example_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -564,7 +564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LXToolKitObjC.Example_Example.app/LXToolKitObjC.Example_Example";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LXToolKitObjC_Example_Example.app/LXToolKitObjC_Example_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -572,7 +572,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6003F585195388D10070C39A /* Build configuration list for PBXProject "LXToolKitObjC.Example" */ = {
+		6003F585195388D10070C39A /* Build configuration list for PBXProject "LXToolKitObjC_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5BD195388D20070C39A /* Debug */,
@@ -581,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC.Example_Example" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC_Example_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC.Example_Tests" */ = {
+		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LXToolKitObjC_Example_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
