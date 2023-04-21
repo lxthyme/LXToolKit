@@ -1,12 +1,12 @@
 //
 //  LXTestModel.h
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/6/28.
 //  Copyright © 2022 lxthyme. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import <LXToolKitObjc/LXBaseModel.h>
+#import <LXToolKitObjC/LXBaseModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface LXTestModel: LXBaseModel {

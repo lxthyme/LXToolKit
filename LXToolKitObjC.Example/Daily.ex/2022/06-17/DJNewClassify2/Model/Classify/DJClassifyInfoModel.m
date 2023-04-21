@@ -1,6 +1,6 @@
 //
 //  DJClassifyInfoModel.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/7/23.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -8,13 +8,13 @@
 #import "DJClassifyInfoModel.h"
 
 // @implementation LXO2OGoodsInfoModel
-// 
+//
 // #pragma mark -
 // #pragma mark - 👀Public Actions
-// 
+//
 // #pragma mark -
 // #pragma mark - 🔐Private Actions
-// 
+//
 // @end
 
 @implementation DJClassifyGoodsInfoModel

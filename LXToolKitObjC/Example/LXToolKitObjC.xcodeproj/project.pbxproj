@@ -32,20 +32,20 @@
 			containerPortal = 6003F582195388D10070C39A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = LXToolKitObjc;
+			remoteInfo = LXToolKitObjC;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjc_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.release.xcconfig"; sourceTree = "<group>"; };
+		1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjC_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example/Pods-LXToolKitObjC_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* LXToolKitObjC_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXToolKitObjC_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F595195388D20070C39A /* LXToolKitObjc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LXToolKitObjc-Info.plist"; sourceTree = "<group>"; };
+		6003F595195388D20070C39A /* LXToolKitObjC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LXToolKitObjC-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* LXToolKitObjc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc-Prefix.pch"; sourceTree = "<group>"; };
+		6003F59B195388D20070C39A /* LXToolKitObjC-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjC-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* LXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* LXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* LXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXViewController.h; sourceTree = "<group>"; };
@@ -63,10 +63,10 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74CF57B6E2B9678CF2417655 /* Pods-LXToolKitObjC_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example.release.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example/Pods-LXToolKitObjC_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjc_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEDEAF312896DB6F00977AE3 /* LXToolKitObjC_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LXToolKitObjC_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		BEDEAF322896DB6F00977AE3 /* LXSwiftVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSwiftVC.swift; sourceTree = "<group>"; };
-		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjc.podspec; path = ../LXToolKitObjc.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjc_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjc_Example/Pods-LXToolKitObjc_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		D2DE712A1CD14B02497CFBE0 /* LXToolKitObjC.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LXToolKitObjC.podspec; path = ../LXToolKitObjC.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjC_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXToolKitObjC_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXToolKitObjC_Example/Pods-LXToolKitObjC_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E821BC7E81ECF77957C2C691 /* Pods_LXToolKitObjC_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXToolKitObjC_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,19 +140,19 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				BEDEAF312896DB6F00977AE3 /* LXToolKitObjc_Example-Bridging-Header.h */,
+				BEDEAF312896DB6F00977AE3 /* LXToolKitObjC_Example-Bridging-Header.h */,
 			);
 			name = "Example for LXToolKitObjC";
-			path = LXToolKitObjc;
+			path = LXToolKitObjC;
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6003F595195388D20070C39A /* LXToolKitObjc-Info.plist */,
+				6003F595195388D20070C39A /* LXToolKitObjC-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* LXToolKitObjc-Prefix.pch */,
+				6003F59B195388D20070C39A /* LXToolKitObjC-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				D2DE712A1CD14B02497CFBE0 /* LXToolKitObjc.podspec */,
+				D2DE712A1CD14B02497CFBE0 /* LXToolKitObjC.podspec */,
 				673F7E5E92AB9380778901A4 /* README.md */,
 				60768611B5E99144AB3B6168 /* LICENSE */,
 			);
@@ -189,8 +189,8 @@
 		EE403D27D1ECFCC25FB2A600 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjc_Example.debug.xcconfig */,
-				1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjc_Example.release.xcconfig */,
+				E32A15C022D32EB5673A6BE2 /* Pods-LXToolKitObjC_Example.debug.xcconfig */,
+				1EA03F022E982B6C3C119175 /* Pods-LXToolKitObjC_Example.release.xcconfig */,
 				6F40C5E848073FCBEFC51481 /* Pods-LXToolKitObjC_Example.debug.xcconfig */,
 				74CF57B6E2B9678CF2417655 /* Pods-LXToolKitObjC_Example.release.xcconfig */,
 			);
@@ -215,7 +215,7 @@
 			dependencies = (
 			);
 			name = LXToolKitObjC_Example;
-			productName = LXToolKitObjc;
+			productName = LXToolKitObjC;
 			productReference = 6003F58A195388D20070C39A /* LXToolKitObjC_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -233,7 +233,7 @@
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
 			name = LXToolKitObjC_Tests;
-			productName = LXToolKitObjcTests;
+			productName = LXToolKitObjCTests;
 			productReference = 6003F5AE195388D20070C39A /* LXToolKitObjC_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -508,15 +508,15 @@
 				CURRENT_PROJECT_VERSION = 7.58.0;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
-				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
+				GCC_PREFIX_HEADER = "LXToolKitObjC/LXToolKitObjC-Prefix.pch";
+				INFOPLIST_FILE = "LXToolKitObjC/LXToolKitObjC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 7.58.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjc/LXToolKitObjc_Example-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjC/LXToolKitObjC_Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -534,15 +534,15 @@
 				CURRENT_PROJECT_VERSION = 7.58.0;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LXToolKitObjc/LXToolKitObjc-Prefix.pch";
-				INFOPLIST_FILE = "LXToolKitObjc/LXToolKitObjc-Info.plist";
+				GCC_PREFIX_HEADER = "LXToolKitObjC/LXToolKitObjC-Prefix.pch";
+				INFOPLIST_FILE = "LXToolKitObjC/LXToolKitObjC-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 7.58.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjc/LXToolKitObjc_Example-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LXToolKitObjC/LXToolKitObjC_Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

@@ -1,6 +1,6 @@
 //
 //  LXListViewController.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/6/17.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -209,7 +209,7 @@
         [t setKeyboardDismissMode:UIScrollViewKeyboardDismissModeOnDrag];
         [t setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         t.contentInset = UIEdgeInsetsMake(0, 0, UIApplication.sharedApplication.keyWindow.jx_layoutInsets.bottom, 0);
-        
+
         _tableView = t;
     }
     return _tableView;

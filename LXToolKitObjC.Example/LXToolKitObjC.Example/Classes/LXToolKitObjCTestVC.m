@@ -1,6 +1,6 @@
 //
 //  LXToolKitObjCTestVC.m
-//  LXToolKitObjc
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 05/25/2022.
 //  Copyright (c) 2022 lxthyme. All rights reserved.
@@ -65,7 +65,7 @@
 #pragma mark - 📌UI Prepare & Masonry
 - (void)prepareUI {
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.table];
     [self masonry];
@@ -116,6 +116,7 @@
             @"LXURLCompVC",
             @"LXWebViewTestVC",
             @"LXSwiftOCTestVC",
+            @"DJSearchResultVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }

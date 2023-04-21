@@ -1,6 +1,6 @@
 //
 //  DJ1rdCategoryUnfoldView.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/7/4.
 //  Copyright © 2022 lxthyme. All rights reserved.

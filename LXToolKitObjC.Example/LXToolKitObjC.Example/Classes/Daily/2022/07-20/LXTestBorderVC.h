@@ -1,6 +1,6 @@
 //
 //  LXTestBorderVC.h
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/7/20.
 //  Copyright © 2022 lxthyme. All rights reserved.

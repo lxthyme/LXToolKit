@@ -1,6 +1,6 @@
 //
 //  UIView+ex.h
-//  LXToolKitObjc
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/5/27.
 //

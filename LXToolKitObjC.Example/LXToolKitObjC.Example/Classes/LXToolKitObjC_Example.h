@@ -8,18 +8,18 @@
 #ifndef LXToolKitObjC_Example_h
 #define LXToolKitObjC_Example_h
 
-#import <LXToolKitObjc/LXBaseObject.h>
-#import <LXToolKitObjc/LXBaseVC.h>
-#import <LXToolKitObjc/LXBaseView.h>
-#import <LXToolKitObjc/LXBaseModel.h>
+#import <LXToolKitObjC/LXBaseObject.h>
+#import <LXToolKitObjC/LXBaseVC.h>
+#import <LXToolKitObjC/LXBaseView.h>
+#import <LXToolKitObjC/LXBaseModel.h>
 /// UICollectionView
-#import <LXToolKitObjc/LXBaseCollectionReusableView.h>
-#import <LXToolKitObjc/LXBaseCollectionView.h>
-#import <LXToolKitObjc/LXBaseCollectionViewCell.h>
+#import <LXToolKitObjC/LXBaseCollectionReusableView.h>
+#import <LXToolKitObjC/LXBaseCollectionView.h>
+#import <LXToolKitObjC/LXBaseCollectionViewCell.h>
 /// UITableView
-#import <LXToolKitObjc/LXBaseTableView.h>
-#import <LXToolKitObjc/LXBaseTableViewCell.h>
-#import <LXToolKitObjc/LXBaseTableViewHeaderFooterView.h>
+#import <LXToolKitObjC/LXBaseTableView.h>
+#import <LXToolKitObjC/LXBaseTableViewCell.h>
+#import <LXToolKitObjC/LXBaseTableViewHeaderFooterView.h>
 
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -32,15 +32,15 @@
 #import <JXCategoryView/JXCategoryView.h>
 #import <JXPagingView/JXPagerView.h>
 
-#import <LXToolKitObjc/LXToolKitObjc.h>
+#import <LXToolKitObjC/LXToolKitObjC.h>
 #import <LXToolKitObjC/LXMacro.h>
 #import <LXToolKitObjC/UIColor+ex.h>
 #import <LXToolKitObjC/LXBaseModel.h>
-#import <LXToolKitObjc/DJBusinessTools.h>
+#import <LXToolKitObjC/DJBusinessTools.h>
 // #import "UIWindow+JXSafeArea.h"
-// #import <LXToolKitObjc/>
-// #import <LXToolKitObjc/>
-// #import <LXToolKitObjc/>
+// #import <LXToolKitObjC/>
+// #import <LXToolKitObjC/>
+// #import <LXToolKitObjC/>
 // #import "UIFont+ex.h"
 
 #endif /* LXToolKitObjC_Example_h */

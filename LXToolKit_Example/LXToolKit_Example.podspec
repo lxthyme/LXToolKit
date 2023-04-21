@@ -32,14 +32,14 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'LXToolKit_Example/Classes/**/*'
 
-  # s.resource_bundles = {
-  #   'LXToolKit_Example' => [
-  #     # 'LXToolKit_Example/Assets/*.png',
-  #     "#{s.module_name}/Assets/*.xcassets",
-  #     "#{s.module_name}/Assets/*.strings",
-  #     "#{s.module_name}/*.json",
-  #   ]
-  # }
+  s.resource_bundles = {
+    'LXToolKit_Example' => [
+      # 'LXToolKit_Example/Assets/*.png',
+      "#{s.module_name}/Assets/*.xcassets",
+      "#{s.module_name}/Assets/**/*.strings",
+      "#{s.module_name}/**/*.json",
+    ]
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
 

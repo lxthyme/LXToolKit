@@ -1,12 +1,12 @@
 //
-//  LXToolKitObjc.h
-//  LXToolKitObjc
+//  LXToolKitObjC.h
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/5/27.
 //
 
-#ifndef LXToolKitObjc_h
-#define LXToolKitObjc_h
+#ifndef LXToolKitObjC_h
+#define LXToolKitObjC_h
 
 // #import "LXMacro.h"
 
@@ -27,5 +27,6 @@
 
 // #import "LXLabel.h"
 // #import "UIView+ex.h"
+#import "NSString+ex.h"
 
-#endif /* LXToolKitObjc_h */
+#endif /* LXToolKitObjC_h */

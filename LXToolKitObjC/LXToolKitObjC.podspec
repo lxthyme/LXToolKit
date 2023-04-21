@@ -67,5 +67,6 @@ TODO: Add long description of the pod here.
   #s.dependency 'UIColor+Hex'
   s.dependency 'Colours'
   s.dependency 'R.swift'
+  s.dependency 'IGListKit'
 
 end

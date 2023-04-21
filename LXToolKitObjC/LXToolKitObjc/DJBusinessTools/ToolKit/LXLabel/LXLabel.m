@@ -1,6 +1,6 @@
 //
 //  LXLabel.m
-//  LXToolKitObjc
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/7/1.
 //

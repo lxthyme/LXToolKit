@@ -81,7 +81,7 @@ This library contains some useful category and extension kits
   # s.dependency 'Firebase/Analytics'
   # s.dependency 'Firebase/Crashlytics'
   # s.dependency 'MessageKit'
-  # s.dependency 'KafkaRefresh'
+  s.dependency 'KafkaRefresh'
   # s.dependency 'Kingfisher'
   # s.dependency 'IQKeyboardManagerSwift'
 

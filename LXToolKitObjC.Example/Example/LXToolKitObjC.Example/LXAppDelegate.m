@@ -9,7 +9,7 @@
 #import "LXAppDelegate.h"
 #import "LXViewController.h"
 #import <CocoaLumberjack/CocoaLumberjack.h>
-#import <LXToolKitObjc_Example/LXBaseNavigationController.h>
+#import <LXToolKitObjC_Example/LXBaseNavigationController.h>
 
 @implementation LXAppDelegate
 

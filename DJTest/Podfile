@@ -13,7 +13,7 @@ target 'DJTest' do
   # pod 'DJObjcModule', :path => '../DJObjcModule'
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
   # pod 'LXToolKit', :path => '../LXToolKit'
-  # pod 'LXToolKitObjc', :path => '../LXToolKitObjC'
+  # pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   # pod 'DJBusinessModuleSwift', :path => '../../../BL.repo/DaoJia/DJBusinessModuleSwift'
 	# pod 'Masonry'
   # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
@@ -34,6 +34,7 @@ target 'DJTest' do
   pod 'DJSwiftModule', :path => '../DJSwiftModule'
   pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
   pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
+  pod 'DJRSwiftResource', :path => '../DJRSwiftResource'
 
   pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC.Example'

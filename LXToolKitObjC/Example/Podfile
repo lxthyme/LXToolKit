@@ -19,7 +19,7 @@ target 'LXToolKitObjC_Example' do
   #pod 'DJGlobalStoreManager', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJGlobalStoreManager'
   #pod 'DJBusinessModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModule'
 
-  #target 'LXToolKitObjc_Tests' do
+  #target 'LXToolKitObjC_Tests' do
     inherit! :search_paths
 
     # pod 'MWPhotoBrowser', :git => 'git@github.com:mwaterfall/MWPhotoBrowser.git'

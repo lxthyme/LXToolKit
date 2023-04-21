@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C2B0E11CDB5B12FCF8A0AE9 /* Pods_DJTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A8603741F4A5A61FCE5346 /* Pods_DJTest.framework */; };
+		BE09DBF929EF9400006F92D6 /* misans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE09DBF829EF9400006F92D6 /* misans.ttf */; };
 		BE541E7929D6E2AA007E5155 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE541E7829D6E2AA007E5155 /* AppDelegate.m */; };
 		BE541E7C29D6E2AA007E5155 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE541E7B29D6E2AA007E5155 /* SceneDelegate.m */; };
 		BE541E7F29D6E2AA007E5155 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE541E7E29D6E2AA007E5155 /* ViewController.m */; };
@@ -21,6 +22,7 @@
 		03A8603741F4A5A61FCE5346 /* Pods_DJTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39EE965D706C9CFBE9CC37C5 /* Pods-DJTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.debug.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.debug.xcconfig"; sourceTree = "<group>"; };
 		5D339BEB00EA8FA52E5D36E7 /* Pods-DJTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.release.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.release.xcconfig"; sourceTree = "<group>"; };
+		BE09DBF829EF9400006F92D6 /* misans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = misans.ttf; sourceTree = "<group>"; };
 		BE541E7429D6E2AA007E5155 /* DJTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE541E7729D6E2AA007E5155 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BE541E7829D6E2AA007E5155 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		BE541E7629D6E2AA007E5155 /* DJTest */ = {
 			isa = PBXGroup;
 			children = (
+				BE09DBF829EF9400006F92D6 /* misans.ttf */,
 				BE541E7729D6E2AA007E5155 /* AppDelegate.h */,
 				BE541E7829D6E2AA007E5155 /* AppDelegate.m */,
 				BE541E7A29D6E2AA007E5155 /* SceneDelegate.h */,
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE541E8729D6E2AB007E5155 /* LaunchScreen.storyboard in Resources */,
+				BE09DBF929EF9400006F92D6 /* misans.ttf in Resources */,
 				BE541E8429D6E2AB007E5155 /* Assets.xcassets in Resources */,
 				BE541E8229D6E2AA007E5155 /* Main.storyboard in Resources */,
 			);
@@ -386,7 +390,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6C6JHMW46K;
+				DEVELOPMENT_TEAM = 2KWAGZM2TW;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DJTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -416,7 +422,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6C6JHMW46K;
+				DEVELOPMENT_TEAM = 2KWAGZM2TW;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DJTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

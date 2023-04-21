@@ -18,7 +18,7 @@
 // #import <ReactiveCocoa/ReactiveCocoa.h>
 // #import "CTAPIBaseManager+Rac.h"
 //
-// #import <LXToolKitObjc/LXToolKitObjc.h>
+// #import <LXToolKitObjC/LXToolKitObjC.h>
 // #import <ReactiveCocoa/NSObject+RACDescription.h>
 //
 // #import <Masonry/Masonry.h>
@@ -37,9 +37,9 @@
 // #import <BLImage/iBLImage.h>
 // #import <pop/POP.h>
 
-// typedef DJBusinessTools LXToolKitObjc;
+// typedef DJBusinessTools LXToolKitObjC;
 
 // #import "UIView+border.h"
-// #import <LXToolKitObjc/DJBusinessTools.h>
+// #import <LXToolKitObjC/DJBusinessTools.h>
 //
 // #import "UIWindow+JXSafeArea.h"

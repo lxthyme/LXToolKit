@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 // #import <MMPopupView/MMPopupView.h>
-#import <LXToolKitObjc/LXButton.h>
+#import <LXToolKitObjC/LXButton.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

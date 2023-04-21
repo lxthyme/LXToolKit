@@ -1,6 +1,6 @@
 //
 //  LXStackViewTestVC.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/12/28.
 //  Copyright © 2022 lxthyme. All rights reserved.

@@ -30,20 +30,25 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.prefix_header_file = 'LXToolKitObjC.Example/Classes/LXToolKitObjC.Example.h'
-
+  # s.prefix_header_file = 'LXToolKitObjC.Example/Classes/LXToolKitObjC_Example.h'
+  s.prefix_header_contents = '#import "LXToolKitObjC_Example.h"'
   s.source_files = 'LXToolKitObjC.Example/Classes/**/*'
 
   # s.resource_bundles = {
   #   'LXToolKitObjC.Example' => ['LXToolKitObjC.Example/Assets/*.png']
   # }
+  s.resources = [
+    "LXToolKitObjC.Example/Assets/*.xcassets",
+    "LXToolKitObjC.Example/Assets/**/*.png",
+    "LXToolKitObjC.Example/Assets/*.strings"
+  ]
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
 
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
   generated_path="#{Dir.pwd}/LXToolKitObjC.Example/Classes"
-  "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
+  "${rswift_path}" generate --access-level public "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
   CMD
   s.script_phase = {
     :name => "#{s.module_name}.R.swift",
@@ -70,6 +75,6 @@ TODO: Add long description of the pod here.
   s.dependency 'pop'
   s.dependency 'SDCycleScrollView'
   s.dependency 'CocoaLumberjack'
-  # s.dependency ''
+  s.dependency 'DJRSwiftResource'
   # s.dependency ''
 end

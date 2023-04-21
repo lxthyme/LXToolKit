@@ -1,6 +1,6 @@
 //
 //  UIColor+ex.h
-//  LXToolKitObjc
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 2023/4/11.
 //

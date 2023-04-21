@@ -11,7 +11,7 @@
 // #import <HandyFrame/UIView+LayoutMethods.h>
 // #import <BLCategories/UIColor+Hex.h>
 // #import <BLImage/iBLImage.h>
-#import <LXToolKitObjc/DJMacro.h>
+#import <LXToolKitObjC/DJMacro.h>
 
 @interface LXCommonTableViewHeaderFooterView() {
 }

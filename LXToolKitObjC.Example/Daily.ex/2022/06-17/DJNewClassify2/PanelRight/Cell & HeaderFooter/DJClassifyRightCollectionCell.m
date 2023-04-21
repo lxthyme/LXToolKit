@@ -1,6 +1,6 @@
 //
 //  DJClassifyRightCollectionCell.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/6/19.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -197,7 +197,7 @@
     [self.priceWrapperStackView addArrangedSubview:self.topPriceStackView];
     [self.priceWrapperStackView addArrangedSubview:self.bottomPriceStackView];
     [self.contentView addSubview:self.priceWrapperStackView];
-    
+
     [self.contentView addSubview:self.addCartView];
 
     [self masonry];

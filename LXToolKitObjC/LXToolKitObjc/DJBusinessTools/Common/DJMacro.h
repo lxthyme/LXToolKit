@@ -30,6 +30,9 @@
 
 #define kBOOLString(__bool__) ((__bool__) ? @"YES" : @"NO")
 
+/// 像素对齐
+#define kFixed0_5 ([UIScreen mainScreen].scale >= 3 ? 0.75f : 0.5f)
+
 #define section1Height kWPercentage(35.f) + BL_STATUSBAR_HEIGHT
 /// 头部气泡超出边界 -5px
 #define section2Height (86.f - 5.f)

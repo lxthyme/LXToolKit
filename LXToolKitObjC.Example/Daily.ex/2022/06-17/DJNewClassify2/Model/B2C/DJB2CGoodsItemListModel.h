@@ -1,6 +1,6 @@
 //
 //  DJB2CGoodsItemListModel.h
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/7/22.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -59,4 +59,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-

@@ -1,6 +1,6 @@
 //
 //  LXCollectionCell.h
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/5/30.
 //  Copyright © 2022 lxthyme. All rights reserved.

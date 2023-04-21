@@ -1,6 +1,6 @@
 //
 //  LXLoginVC.m
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/5/25.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -9,8 +9,8 @@
 #import "LXLoginVC.h"
 #import "LXLoginVM.h"
 #import <Masonry/Masonry.h>
-#import <LXToolKitObjc/LXButton.h>
-#import <LXToolKitObjc/LXButton.h>
+#import <LXToolKitObjC/LXButton.h>
+#import <LXToolKitObjC/LXButton.h>
 
 @interface LXLoginVC() {
 }

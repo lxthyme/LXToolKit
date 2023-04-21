@@ -1,6 +1,6 @@
 //
 //  DJClassifyInfoModel.h
-//  LXToolKitObjc_Example
+//  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2022/7/23.
 //  Copyright © 2022 lxthyme. All rights reserved.
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 // }
 // @property (nonatomic, strong)DJO2OGoodItemModel *f_o2oGoodsList;
 // @property (nonatomic, strong)DJO2OCategoryListModel *f_o2oCategoryItem;
-// 
+//
 // @end
 
 @interface DJClassifyGoodsInfoModel: LXBaseModel {
@@ -50,13 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
 // /// O2O 商品信息("全部"分类)
 // // @property (nonatomic, strong)LXO2OGoodsInfoModel *f_allO2OGoodsInfoModel;
 // // @property (nonatomic, copy)NSArray<NSArray<DJGoodBaseItemModel *> *> *f_goodsInfoList;
-// 
+//
 // /// 「only O2O」
 // /// 是否是全部分类的数据
 // // @property(nonatomic, assign)BOOL f_isAll;
 // // @property (nonatomic, copy)NSArray<DJO2OGoodItemModel *> *f_o2oGoodsInfo;
-// 
-// 
+//
+//
 // // @property (nonatomic, strong)NSDictionary<NSString *, NSArray<NSString *> *> *f_o2oIdsListMap;
 // // @property (nonatomic, strong)DJO2OCategoryListModel *f_o2oCategoryItemModel;
 @end

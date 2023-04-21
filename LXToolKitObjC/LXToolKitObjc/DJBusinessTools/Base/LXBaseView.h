@@ -1,6 +1,6 @@
 //
 //  LXBaseView.h
-//  LXToolKitObjc
+//  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/6/22.
 //
