@@ -1,9 +1,8 @@
 //
 //  LogManager.swift
-//  SwiftHub
+//  test
 //
-//  Created by Khoren Markosyan on 1/4/17.
-//  Copyright © 2017 Khoren Markosyan. All rights reserved.
+//  Created by lxthyme on 2023/3/23.
 //
 
 import Foundation
@@ -32,6 +31,6 @@ public func logWarn(_ message: @autoclosure () -> String) {
 
 public func logResourcesCount() {
     #if DEBUG
-    // logDebug("RxSwift resources count: \(RxSwift.Resources.total)")
+    logDebug("RxSwift resources count: \(RxSwift.Resources.total)")
     #endif
 }

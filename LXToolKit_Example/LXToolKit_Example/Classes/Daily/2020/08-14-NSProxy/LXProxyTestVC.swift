@@ -93,17 +93,20 @@ private extension LXProxyTestVC {
 }
 
 // MARK: - UI Prepare & Masonry
-private extension LXProxyTestVC {
+extension LXProxyTestVC {
     func prepareTimer() {
         timer = Timer(timeInterval: 1, target: LXProxy(target: self), selector: #selector(timeAction(userInfo:)), userInfo: "233", repeats: true)
         if let t = timer {
             RunLoop.current.add(t, forMode: .common)
         }
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

@@ -1,42 +1,39 @@
 //
 //  AuthManager.swift
-//  SwiftHub
+//  test
 //
-//  Created by Sygnoos9 on 9/1/18.
-//  Copyright © 2018 Khoren Markosyan. All rights reserved.
+//  Created by lxthyme on 2023/3/23.
 //
-
-import Foundation
+import UIKit
 import KeychainAccess
-import ObjectMapper
+import HandyJSON
 import RxSwift
 import RxCocoa
 
 let loggedIn = BehaviorRelay<Bool>(value: false)
-
 class AuthManager {
-
-    /// The default singleton instance.
-    static let shared = AuthManager()
-
-    // MARK: - Properties
+    // MARK: 📌UI
+    // MARK: 🔗Vaiables
     fileprivate let tokenKey = "TokenKey"
-    fileprivate let keychain = Keychain(service: Configs.App.bundleIdentifier)
-
+    fileprivate let keychain = Keychain(service: AppConfig.App.bundleIdentifier)
     let tokenChanged = PublishSubject<Token?>()
-
+    // MARK: 🛠Life Cycle
+    static let shared = AuthManager()
     init() {
-        loggedIn.accept(hasValidToken)
+        loggedIn.accept(true)
     }
+}
 
+// MARK: 👀Public Actions
+extension AuthManager {
     var token: Token? {
         get {
-            guard let jsonString = keychain[tokenKey] else { return nil }
-            return Mapper<Token>().map(JSONString: jsonString)
+            guard let json = keychain[tokenKey] else { return nil }
+            return Token.deserialize(from: json)
         }
         set {
-            if let token = newValue, let jsonString = token.toJSONString() {
-                keychain[tokenKey] = jsonString
+            if let newValue, let json = token?.toJSONString() {
+                keychain[tokenKey] = json
             } else {
                 keychain[tokenKey] = nil
             }
@@ -44,20 +41,17 @@ class AuthManager {
             loggedIn.accept(hasValidToken)
         }
     }
-
     var hasValidToken: Bool {
         return token?.isValid == true
-    }
-
-    class func setToken(token: Token) {
-        AuthManager.shared.token = token
     }
 
     class func removeToken() {
         AuthManager.shared.token = nil
     }
-
     class func tokenValidated() {
         AuthManager.shared.token?.isValid = true
     }
 }
+
+// MARK: 🔐Private Actions
+private extension AuthManager {}

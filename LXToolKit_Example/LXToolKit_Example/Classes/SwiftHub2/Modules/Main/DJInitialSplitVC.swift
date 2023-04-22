@@ -1,26 +1,15 @@
 //
-//  LXBaseVC2.swift
-//  LXToolKit_Exam
+//  DJInitialSplitVC.swift
+//  test
 //
-//  Created by lxthyme on 2022/3/11.
-//  Copyright © 2022 CocoaPods. All rights reserved.
+//  Created by lxthyme on 2023/3/26.
 //
-
 import UIKit
-import LXToolKit
 
-class LXBaseVC2<VM: LXBaseVM>: LXBaseVC {
+class DJInitialSplitVC: LXBaseTableVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    var vm: LXBaseVM?
-    var navigator: LXNavigator!
     // MARK: 🛠Life Cycle
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    init(vm: VM?, navigator: LXNavigator) {
-        self.vm = vm
-        self.navigator = navigator
-        super.init(nibName: nil, bundle: nil)
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -43,23 +32,28 @@ class LXBaseVC2<VM: LXBaseVM>: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-extension LXBaseVC2 {}
+extension DJInitialSplitVC {
+    func dataFill() {}
+}
 
 // MARK: 👀Public Actions
-extension LXBaseVC2 {}
+extension DJInitialSplitVC {}
 
 // MARK: 🔐Private Actions
-private extension LXBaseVC2 {}
+private extension DJInitialSplitVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXBaseVC2 {
-    func prepareUI() {
+extension DJInitialSplitVC {
+    override func prepareUI() {
         self.view.backgroundColor = .white
+        emptyDataSet.title = R.string.localizable.initialNoResults()
+        table.headRefreshControl = nil
+        table.footRefreshControl = nil
 
         // [<#table#>].forEach(self.view.addSubview)
 
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {}
 }

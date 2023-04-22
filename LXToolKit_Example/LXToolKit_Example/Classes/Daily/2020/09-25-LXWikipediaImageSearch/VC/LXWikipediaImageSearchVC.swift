@@ -96,7 +96,6 @@ private extension MyView {
         table.rowHeight = 194
         table.xl.hideEmptyCells()
 
-        guard let disposeBag = self.vc?.disposeBag else { return }
         let table = self.table
 
         let api = DefaultWikipediaAPI.shared
@@ -120,12 +119,12 @@ private extension MyView {
             .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.xl.xl_identifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
                 cell.viewModel = vm
         }
-        .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         result
             .map { $0.count != 0 }
             .drive(self.labEmpty.rx.isHidden)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
 //        result
 //            .map { $0.count <= 0 }
@@ -133,8 +132,6 @@ private extension MyView {
 //            .disposed(by: disposeBag)
     }
     func prepareKeyboardDismissesOnScroll() {
-        guard let disposeBag = self.vc?.disposeBag else { return }
-
         table.rx.contentOffset
             .asDriver()
             .drive(onNext: {[weak self] _ in
@@ -143,10 +140,9 @@ private extension MyView {
                     self.searchBar.resignFirstResponder()
                 }
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     func prepareNavigateOnRowClick() {
-        let disposeBag = self.vc?.disposeBag ?? DisposeBag()
         let wireframe = DefaultWireframe.shared
 
         table.rx.modelSelected(LXSearchResultViewModel.self)
@@ -154,16 +150,15 @@ private extension MyView {
             .drive(onNext: { searchResult in
                 wireframe.open(url: searchResult.searchResult.url)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     func prepareActivityIndicatorsShow() {
-        guard let disposeBag = self.vc?.disposeBag else { return }
         Driver.combineLatest(
             DefaultWikipediaAPI.shared.loadingWikipediaData,
             DefaultImageService.shared.loadingImage) { $0 || $1 }
             .distinctUntilChanged()
             .drive(UIApplication.shared.rx.isNetworkActivityIndicatorVisible)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -240,11 +235,14 @@ extension LXWikipediaImageSearchVC {}
 private extension LXWikipediaImageSearchVC {}
 
 // MARK: - UI Prepare & Masonry
-private extension LXWikipediaImageSearchVC {
-    func prepareUI() {
+extension LXWikipediaImageSearchVC {
+    override func prepareUI() {
+        super.prepareUI()
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

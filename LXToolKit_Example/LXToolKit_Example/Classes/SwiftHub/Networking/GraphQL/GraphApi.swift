@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Apollo
 
-class GraphApi: SwiftHubAPI {
+class GraphApi: DJAllAPI {
 
     let restApi: RestApi
     let token: String
@@ -73,218 +73,218 @@ extension GraphApi {
         return restApi.downloadString(url: url)
     }
 
-    func downloadFile(url: URL, fileName: String?) -> Single<Void> {
-        return restApi.downloadFile(url: url, fileName: fileName)
-    }
+    // func downloadFile(url: URL, fileName: String?) -> Single<Void> {
+    //     return restApi.downloadFile(url: url, fileName: fileName)
+    // }
 
     // MARK: - Authentication is optional
 
-    func createAccessToken(clientId: String, clientSecret: String, code: String, redirectUri: String?, state: String?) -> Single<Token> {
-        return restApi.createAccessToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectUri: redirectUri, state: state)
-    }
+    // func createAccessToken(clientId: String, clientSecret: String, code: String, redirectUri: String?, state: String?) -> Single<Token> {
+    //     return restApi.createAccessToken(clientId: clientId, clientSecret: clientSecret, code: code, redirectUri: redirectUri, state: state)
+    // }
 
-    func searchRepositories(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<RepositorySearch> {
+    func searchRepositories(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<RepositorySearchModel> {
         let query = query + (sort.isNotEmpty ? " sort:\(sort)-\(order)": "")
         return client.rx.fetch(query: SearchRepositoriesQuery(query: query, before: endCursor))
-            .map { RepositorySearch(graph: $0.search) }
+            .map { RepositorySearchModel(graph: $0.search) }
     }
 
-    func watchers(fullname: String, page: Int) -> Single<[User]> {
-        return restApi.watchers(fullname: fullname, page: page)
-    }
+    // func watchers(fullname: String, page: Int) -> Single<[User]> {
+    //     return restApi.watchers(fullname: fullname, page: page)
+    // }
+    //
+    // func stargazers(fullname: String, page: Int) -> Single<[User]> {
+    //     return restApi.stargazers(fullname: fullname, page: page)
+    // }
+    //
+    // func forks(fullname: String, page: Int) -> Single<[Repository]> {
+    //     return restApi.forks(fullname: fullname, page: page)
+    // }
+    //
+    // func readme(fullname: String, ref: String?) -> Single<Content> {
+    //     return restApi.readme(fullname: fullname, ref: ref)
+    // }
+    //
+    // func contents(fullname: String, path: String, ref: String?) -> Single<[Content]> {
+    //     return restApi.contents(fullname: fullname, path: path, ref: ref)
+    // }
+    //
+    // func issues(fullname: String, state: String, page: Int) -> Single<[Issue]> {
+    //     return restApi.issues(fullname: fullname, state: state, page: page)
+    // }
+    //
+    // func issue(fullname: String, number: Int) -> Single<Issue> {
+    //     return restApi.issue(fullname: fullname, number: number)
+    // }
+    //
+    // func issueComments(fullname: String, number: Int, page: Int) -> Single<[Comment]> {
+    //     return restApi.issueComments(fullname: fullname, number: number, page: page)
+    // }
+    //
+    // func commits(fullname: String, page: Int) -> Single<[Commit]> {
+    //     return restApi.commits(fullname: fullname, page: page)
+    // }
+    //
+    // func commit(fullname: String, sha: String) -> Single<Commit> {
+    //     return restApi.commit(fullname: fullname, sha: sha)
+    // }
+    //
+    // func branches(fullname: String, page: Int) -> Single<[Branch]> {
+    //     return restApi.branches(fullname: fullname, page: page)
+    // }
+    //
+    // func branch(fullname: String, name: String) -> Single<Branch> {
+    //     return restApi.branch(fullname: fullname, name: name)
+    // }
+    //
+    // func releases(fullname: String, page: Int) -> Single<[Release]> {
+    //     return restApi.releases(fullname: fullname, page: page)
+    // }
+    //
+    // func release(fullname: String, releaseId: Int) -> Single<Release> {
+    //     return restApi.release(fullname: fullname, releaseId: releaseId)
+    // }
+    //
+    // func pullRequests(fullname: String, state: String, page: Int) -> Single<[PullRequest]> {
+    //     return restApi.pullRequests(fullname: fullname, state: state, page: page)
+    // }
+    //
+    // func pullRequest(fullname: String, number: Int) -> Single<PullRequest> {
+    //     return restApi.pullRequest(fullname: fullname, number: number)
+    // }
+    //
+    // func pullRequestComments(fullname: String, number: Int, page: Int) -> Single<[Comment]> {
+    //     return restApi.pullRequestComments(fullname: fullname, number: number, page: page)
+    // }
 
-    func stargazers(fullname: String, page: Int) -> Single<[User]> {
-        return restApi.stargazers(fullname: fullname, page: page)
-    }
+    // func contributors(fullname: String, page: Int) -> Single<[UserModel]> {
+    //     return restApi.contributors(fullname: fullname, page: page)
+    // }
+    //
+    // func repository(fullname: String, qualifiedName: String) -> Single<RepositoryModel> {
+    //     return client.rx.fetch(query: RepositoryQuery(owner: ownerName(from: fullname), name: repoName(from: fullname), qualifiedName: qualifiedName))
+    //         .map { Repository(graph: $0.repository) }
+    // }
 
-    func forks(fullname: String, page: Int) -> Single<[Repository]> {
-        return restApi.forks(fullname: fullname, page: page)
-    }
-
-    func readme(fullname: String, ref: String?) -> Single<Content> {
-        return restApi.readme(fullname: fullname, ref: ref)
-    }
-
-    func contents(fullname: String, path: String, ref: String?) -> Single<[Content]> {
-        return restApi.contents(fullname: fullname, path: path, ref: ref)
-    }
-
-    func issues(fullname: String, state: String, page: Int) -> Single<[Issue]> {
-        return restApi.issues(fullname: fullname, state: state, page: page)
-    }
-
-    func issue(fullname: String, number: Int) -> Single<Issue> {
-        return restApi.issue(fullname: fullname, number: number)
-    }
-
-    func issueComments(fullname: String, number: Int, page: Int) -> Single<[Comment]> {
-        return restApi.issueComments(fullname: fullname, number: number, page: page)
-    }
-
-    func commits(fullname: String, page: Int) -> Single<[Commit]> {
-        return restApi.commits(fullname: fullname, page: page)
-    }
-
-    func commit(fullname: String, sha: String) -> Single<Commit> {
-        return restApi.commit(fullname: fullname, sha: sha)
-    }
-
-    func branches(fullname: String, page: Int) -> Single<[Branch]> {
-        return restApi.branches(fullname: fullname, page: page)
-    }
-
-    func branch(fullname: String, name: String) -> Single<Branch> {
-        return restApi.branch(fullname: fullname, name: name)
-    }
-
-    func releases(fullname: String, page: Int) -> Single<[Release]> {
-        return restApi.releases(fullname: fullname, page: page)
-    }
-
-    func release(fullname: String, releaseId: Int) -> Single<Release> {
-        return restApi.release(fullname: fullname, releaseId: releaseId)
-    }
-
-    func pullRequests(fullname: String, state: String, page: Int) -> Single<[PullRequest]> {
-        return restApi.pullRequests(fullname: fullname, state: state, page: page)
-    }
-
-    func pullRequest(fullname: String, number: Int) -> Single<PullRequest> {
-        return restApi.pullRequest(fullname: fullname, number: number)
-    }
-
-    func pullRequestComments(fullname: String, number: Int, page: Int) -> Single<[Comment]> {
-        return restApi.pullRequestComments(fullname: fullname, number: number, page: page)
-    }
-
-    func contributors(fullname: String, page: Int) -> Single<[User]> {
-        return restApi.contributors(fullname: fullname, page: page)
-    }
-
-    func repository(fullname: String, qualifiedName: String) -> Single<Repository> {
-        return client.rx.fetch(query: RepositoryQuery(owner: ownerName(from: fullname), name: repoName(from: fullname), qualifiedName: qualifiedName))
-            .map { Repository(graph: $0.repository) }
-    }
-
-    func searchUsers(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<UserSearch> {
+    func searchUsers(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<UserSearchModel> {
         let query = query + (sort.isNotEmpty ? " sort:\(sort)-\(order)": "")
         return client.rx.fetch(query: SearchUsersQuery(query: query, before: endCursor))
-            .map { UserSearch(graph: $0.search) }
+            .map { UserSearchModel(graph: $0.search) }
     }
 
-    func user(owner: String) -> Single<User> {
-        return client.rx.fetch(query: UserQuery(login: owner))
-            .map { User(graph: $0.user) }
-    }
-
-    func organization(owner: String) -> Single<User> {
-        return restApi.organization(owner: owner)
-    }
-
-    func userRepositories(username: String, page: Int) -> Single<[Repository]> {
-        return restApi.userRepositories(username: username, page: page)
-    }
-
-    func userStarredRepositories(username: String, page: Int) -> Single<[Repository]> {
-        return restApi.userStarredRepositories(username: username, page: page)
-    }
-
-    func userWatchingRepositories(username: String, page: Int) -> Single<[Repository]> {
-        return restApi.userWatchingRepositories(username: username, page: page)
-    }
-
-    func userFollowers(username: String, page: Int) -> Single<[User]> {
-        return restApi.userFollowers(username: username, page: page)
-    }
-
-    func userFollowing(username: String, page: Int) -> Single<[User]> {
-        return restApi.userFollowing(username: username, page: page)
-    }
-
-    func events(page: Int) -> Single<[Event]> {
-        return restApi.events(page: page)
-    }
-
-    func repositoryEvents(owner: String, repo: String, page: Int) -> Single<[Event]> {
-        return restApi.repositoryEvents(owner: owner, repo: repo, page: page)
-    }
-
-    func userReceivedEvents(username: String, page: Int) -> Single<[Event]> {
-        return restApi.userReceivedEvents(username: username, page: page)
-    }
-
-    func userPerformedEvents(username: String, page: Int) -> Single<[Event]> {
-        return restApi.userPerformedEvents(username: username, page: page)
-    }
-
-    func organizationEvents(username: String, page: Int) -> Single<[Event]> {
-        return restApi.organizationEvents(username: username, page: page)
-    }
-
-    // MARK: - Authentication is required
-
-    func profile() -> Single<User> {
-        return client.rx.fetch(query: ViewerQuery())
-            .map { User(graph: $0.viewer) }
-    }
-
-    func notifications(all: Bool, participating: Bool, page: Int) -> Single<[Notification]> {
-        return restApi.notifications(all: all, participating: participating, page: page)
-    }
-
-    func repositoryNotifications(fullname: String, all: Bool, participating: Bool, page: Int) -> Single<[Notification]> {
-        return restApi.repositoryNotifications(fullname: fullname, all: all, participating: participating, page: page)
-    }
-
-    func markAsReadNotifications() -> Single<Void> {
-        return restApi.markAsReadNotifications()
-    }
-
-    func markAsReadRepositoryNotifications(fullname: String) -> Single<Void> {
-        return restApi.markAsReadRepositoryNotifications(fullname: fullname)
-    }
-
-    func checkStarring(fullname: String) -> Single<Void> {
-        return restApi.checkStarring(fullname: fullname)
-    }
-
-    func starRepository(fullname: String) -> Single<Void> {
-        return restApi.starRepository(fullname: fullname)
-    }
-
-    func unstarRepository(fullname: String) -> Single<Void> {
-        return restApi.unstarRepository(fullname: fullname)
-    }
-
-    func checkFollowing(username: String) -> Single<Void> {
-        return restApi.checkFollowing(username: username)
-    }
-
-    func followUser(username: String) -> Single<Void> {
-        return restApi.followUser(username: username)
-    }
-
-    func unfollowUser(username: String) -> Single<Void> {
-        return restApi.unfollowUser(username: username)
-    }
+    // func user(owner: String) -> Single<User> {
+    //     return client.rx.fetch(query: UserQuery(login: owner))
+    //         .map { User(graph: $0.user) }
+    // }
+    //
+    // func organization(owner: String) -> Single<User> {
+    //     return restApi.organization(owner: owner)
+    // }
+    //
+    // func userRepositories(username: String, page: Int) -> Single<[Repository]> {
+    //     return restApi.userRepositories(username: username, page: page)
+    // }
+    //
+    // func userStarredRepositories(username: String, page: Int) -> Single<[Repository]> {
+    //     return restApi.userStarredRepositories(username: username, page: page)
+    // }
+    //
+    // func userWatchingRepositories(username: String, page: Int) -> Single<[Repository]> {
+    //     return restApi.userWatchingRepositories(username: username, page: page)
+    // }
+    //
+    // func userFollowers(username: String, page: Int) -> Single<[User]> {
+    //     return restApi.userFollowers(username: username, page: page)
+    // }
+    //
+    // func userFollowing(username: String, page: Int) -> Single<[User]> {
+    //     return restApi.userFollowing(username: username, page: page)
+    // }
+    //
+    // func events(page: Int) -> Single<[Event]> {
+    //     return restApi.events(page: page)
+    // }
+    //
+    // func repositoryEvents(owner: String, repo: String, page: Int) -> Single<[Event]> {
+    //     return restApi.repositoryEvents(owner: owner, repo: repo, page: page)
+    // }
+    //
+    // func userReceivedEvents(username: String, page: Int) -> Single<[Event]> {
+    //     return restApi.userReceivedEvents(username: username, page: page)
+    // }
+    //
+    // func userPerformedEvents(username: String, page: Int) -> Single<[Event]> {
+    //     return restApi.userPerformedEvents(username: username, page: page)
+    // }
+    //
+    // func organizationEvents(username: String, page: Int) -> Single<[Event]> {
+    //     return restApi.organizationEvents(username: username, page: page)
+    // }
+    //
+    // // MARK: - Authentication is required
+    //
+    // func profile() -> Single<User> {
+    //     return client.rx.fetch(query: ViewerQuery())
+    //         .map { User(graph: $0.viewer) }
+    // }
+    //
+    // func notifications(all: Bool, participating: Bool, page: Int) -> Single<[Notification]> {
+    //     return restApi.notifications(all: all, participating: participating, page: page)
+    // }
+    //
+    // func repositoryNotifications(fullname: String, all: Bool, participating: Bool, page: Int) -> Single<[Notification]> {
+    //     return restApi.repositoryNotifications(fullname: fullname, all: all, participating: participating, page: page)
+    // }
+    //
+    // func markAsReadNotifications() -> Single<Void> {
+    //     return restApi.markAsReadNotifications()
+    // }
+    //
+    // func markAsReadRepositoryNotifications(fullname: String) -> Single<Void> {
+    //     return restApi.markAsReadRepositoryNotifications(fullname: fullname)
+    // }
+    //
+    // func checkStarring(fullname: String) -> Single<Void> {
+    //     return restApi.checkStarring(fullname: fullname)
+    // }
+    //
+    // func starRepository(fullname: String) -> Single<Void> {
+    //     return restApi.starRepository(fullname: fullname)
+    // }
+    //
+    // func unstarRepository(fullname: String) -> Single<Void> {
+    //     return restApi.unstarRepository(fullname: fullname)
+    // }
+    //
+    // func checkFollowing(username: String) -> Single<Void> {
+    //     return restApi.checkFollowing(username: username)
+    // }
+    //
+    // func followUser(username: String) -> Single<Void> {
+    //     return restApi.followUser(username: username)
+    // }
+    //
+    // func unfollowUser(username: String) -> Single<Void> {
+    //     return restApi.unfollowUser(username: username)
+    // }
 
     // MARK: - Trending
-    func trendingRepositories(language: String, since: String) -> Single<[TrendingRepository]> {
+    func trendingRepositories(language: String, since: String) -> Single<[TrendingRepositoryModel]> {
         return restApi.trendingRepositories(language: language, since: since)
     }
 
-    func trendingDevelopers(language: String, since: String) -> Single<[TrendingUser]> {
+    func trendingDevelopers(language: String, since: String) -> Single<[TrendingUserModel]> {
         return restApi.trendingDevelopers(language: language, since: since)
     }
 
-    func languages() -> Single<[Language]> {
+    func languages() -> Single<[LanguageModel]> {
         return restApi.languages()
     }
 
-    // MARK: - Codetabs
-    func numberOfLines(fullname: String) -> Single<[LanguageLines]> {
-        return restApi.numberOfLines(fullname: fullname)
-    }
+    // // MARK: - Codetabs
+    // func numberOfLines(fullname: String) -> Single<[LanguageLines]> {
+    //     return restApi.numberOfLines(fullname: fullname)
+    // }
 }
 
 extension GraphApi {

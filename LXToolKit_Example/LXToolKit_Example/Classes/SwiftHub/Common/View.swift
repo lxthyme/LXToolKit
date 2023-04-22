@@ -48,14 +48,14 @@ public class View: UIView {
     }
 }
 
-extension UIView {
-
-    var inset: CGFloat {
-        return Configs.BaseDimensions.inset
-    }
-
-    open func setPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
-        self.setContentHuggingPriority(priority, for: axis)
-        self.setContentCompressionResistancePriority(priority, for: axis)
-    }
-}
+// extension UIView {
+// 
+//     var inset: CGFloat {
+//         return AppConfig.BaseDimensions.inset
+//     }
+// 
+//     open func setPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) {
+//         self.setContentHuggingPriority(priority, for: axis)
+//         self.setContentCompressionResistancePriority(priority, for: axis)
+//     }
+// }

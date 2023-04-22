@@ -101,12 +101,15 @@ extension LXRequiredVC {}
 private extension LXRequiredVC {}
 
 // MARK: - UI Prepare & Masonry
-private extension LXRequiredVC {
-    func prepareUI() {
+extension LXRequiredVC {
+    override func prepareUI() {
+        super.prepareUI()
         myView.btnNext.backgroundColor = .red
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

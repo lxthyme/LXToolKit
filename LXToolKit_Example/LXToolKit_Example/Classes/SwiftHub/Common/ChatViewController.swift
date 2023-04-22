@@ -89,7 +89,7 @@ class ChatViewController: MessagesViewController {
     func configureMessageInputBar() {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.keyboardType = .twitter
-        messageInputBar.inputTextView.cornerRadius = Configs.BaseDimensions.cornerRadius
+        messageInputBar.inputTextView.cornerRadius = AppConfig.BaseDimensions.cornerRadius
 
         messageInputBar.backgroundView.theme.backgroundColor = themeService.attribute { $0.primary }
         messageInputBar.inputTextView.theme.backgroundColor = themeService.attribute { $0.primaryDark }
@@ -211,7 +211,7 @@ extension ChatViewController: MessagesDisplayDelegate {
             avatarView.isHidden = isNextMessageSameSender(at: indexPath)
             avatarView.kf.setImage(with: user.avatarUrl?.url)
             avatarView.borderColor = .secondary()
-            avatarView.borderWidth = Configs.BaseDimensions.borderWidth
+            avatarView.borderWidth = AppConfig.BaseDimensions.borderWidth
         }
     }
 }
@@ -254,7 +254,7 @@ extension ChatViewController: AutocompleteManagerDataSource {
         cell.imageViewEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         cell.imageView?.cornerRadius = 20
         cell.imageView?.borderColor = .secondary()
-        cell.imageView?.borderWidth = Configs.BaseDimensions.borderWidth
+        cell.imageView?.borderWidth = AppConfig.BaseDimensions.borderWidth
         cell.imageView?.clipsToBounds = true
         let attributedText = manager.attributedText(matching: session, fontSize: 15)
         attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.text(), range: NSRange(location: 0, length: attributedText.length))

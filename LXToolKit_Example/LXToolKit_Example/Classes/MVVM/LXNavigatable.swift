@@ -57,6 +57,8 @@ open class LXNavigator {
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         // case HomeViewController(viewModel: LXBaseVM)
         case LXWebVC(viewModel: LXBaseVM)
+        case test(vm: LXBaseVM)
+        case tabs(vm: DJHomeTabBarVM)
     }
 
     enum Transition {
@@ -128,21 +130,31 @@ open class LXNavigator {
         //     return LXEventsVC(viewModel: vm, navigator: self)
         /// LXToolKit_Exam
         case .LXiOS15VC(let vm):
-            let vc = LXiOS15VC(viewModel: vm, navigator: self)
+            let vc = LXiOS15VC(vm: vm, navigator: self)
             return vc
         case .LXTable0120VC(let vm):
-            let vc = LXTable0120VC(viewModel: vm, navigator: self)
+            let vc = LXTable0120VC(vm: vm, navigator: self)
             return vc
         case .LXMasonryTestVCVC(let vm):
-            return LXMasonryTestVCVC(viewModel: vm, navigator: self)
+            return LXMasonryTestVCVC(vm: vm, navigator: self)
         case .LXWebViewTestVC(let vm):
-            return LXWebViewTestVC(viewModel: vm, navigator: self)
+            return LXWebViewTestVC(vm: vm, navigator: self)
         case .LXYYLabelMoreTestVC(let vm):
-            return LXYYLabelMoreTestVC(viewModel: vm, navigator: self)
+            return LXYYLabelMoreTestVC(vm: vm, navigator: self)
         // case .HomeViewController(let vm):
         //     return HomeViewController()
-        case .LXWebVC(let vm):
+        case .LXWebVC:
             return LXWebVC()
+        case .test:
+            let vc = UIViewController()
+            vc.view.backgroundColor = .red
+            return vc
+        case .tabs(vm: let vm):
+            let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
+            let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
+            let splitVC = UISplitViewController()
+            splitVC.viewControllers = [rootVC , detailVC]
+            return splitVC
         }
     }
 
@@ -256,6 +268,10 @@ extension LXNavigator.Scene {
         //     tmp = (title: "RxNetworks Demo", desc: "---")
         case .LXWebVC:
             tmp = (title: "LXWebVC", desc: "---")
+        case .test:
+            tmp = (title: "test", desc: "---")
+        case .tabs:
+            tmp = (title: "DJHomeTabBarVC", desc: "---")
         }
         return tmp
     }

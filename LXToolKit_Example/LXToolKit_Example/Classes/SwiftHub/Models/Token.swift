@@ -1,13 +1,11 @@
 //
 //  Token.swift
-//  SwiftHub
+//  test
 //
-//  Created by Sygnoos9 on 9/1/18.
-//  Copyright © 2018 Khoren Markosyan. All rights reserved.
+//  Created by lxthyme on 2023/3/23.
 //
-
-import Foundation
-import ObjectMapper
+import UIKit
+// import HandyJSON
 
 enum TokenType {
     case basic(token: String)
@@ -25,8 +23,10 @@ enum TokenType {
     }
 }
 
-struct Token: Mappable {
+struct Token: HandyJSON {
 
+
+    // MARK: 🔗Vaiables
     var isValid = false
 
     // Basic
@@ -40,9 +40,7 @@ struct Token: Mappable {
     var tokenType: String?
     var scope: String?
 
-    init?(map: Map) {}
     init() {}
-
     init(basicToken: String) {
         self.basicToken = basicToken
     }
@@ -50,16 +48,10 @@ struct Token: Mappable {
     init(personalToken: String) {
         self.personalToken = personalToken
     }
+}
 
-    mutating func mapping(map: Map) {
-        isValid <- map["valid"]
-        basicToken <- map["basic_token"]
-        personalToken <- map["personal_token"]
-        accessToken <- map["access_token"]
-        tokenType <- map["token_type"]
-        scope <- map["scope"]
-    }
-
+// MARK: 👀Public Actions
+extension Token {
     func type() -> TokenType {
         if let token = basicToken {
             return .basic(token: token)
@@ -73,3 +65,6 @@ struct Token: Mappable {
         return .unauthorized
     }
 }
+
+// MARK: 🔐Private Actions
+private extension Token {}

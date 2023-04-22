@@ -12,7 +12,7 @@ import Foundation
 import YYText
 import LXToolKit
 
-class LXYYLabelMoreTestVC: LXBaseMVVMVC {
+class LXYYLabelMoreTestVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var labTitle: YYLabel = {
         let label = YYLabel()
@@ -73,7 +73,7 @@ extension LXYYLabelMoreTestVC {}
 extension LXYYLabelMoreTestVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXYYLabelMoreTestVC {
+extension LXYYLabelMoreTestVC {
     func prepareLabTitle() {
         let font = UIFont.systemFont(ofSize: 14)
         labTitle.numberOfLines = 3
@@ -106,7 +106,8 @@ private extension LXYYLabelMoreTestVC {
         let truncationToken = NSAttributedString.yy_attachmentString(withContent: labMore, contentMode: .center, attachmentSize: labMore.frame.size, alignTo: font, alignment: .center)
         labTitle.truncationToken = truncationToken
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         // self.view.backgroundColor = <#.white#>;
 
         prepareLabTitle()
@@ -114,7 +115,8 @@ private extension LXYYLabelMoreTestVC {
 
         masonry()
     }
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         labTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100);
             $0.left.equalToSuperview().offset(16);

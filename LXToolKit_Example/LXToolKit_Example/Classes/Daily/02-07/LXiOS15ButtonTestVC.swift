@@ -278,8 +278,9 @@ private extension LXiOS15ButtonTestVC {
 
 // MARK: - UI Prepare & Masonry
 @available(iOS 15.0, *)
-private extension LXiOS15ButtonTestVC {
-    func prepareUI() {
+extension LXiOS15ButtonTestVC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
 
         contentStackView.axis = .vertical
@@ -299,7 +300,8 @@ private extension LXiOS15ButtonTestVC {
         masonry()
     }
 
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
         self.contentStackView.snp.makeConstraints {
             $0.center.equalToSuperview()

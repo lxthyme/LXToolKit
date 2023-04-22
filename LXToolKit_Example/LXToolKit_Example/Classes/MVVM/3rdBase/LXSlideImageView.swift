@@ -66,7 +66,7 @@ private extension LXSlideImageView {
         contentScaleMode = .scaleAspectFit
         contentMode = .scaleAspectFit
         backgroundColor = UIColor.Material.grey100
-        layer.borderWidth = Configs.BaseDimensions.borderWidth
+        layer.borderWidth = AppConfig.BaseDimensions.borderWidth
         layer.borderColor = UIColor.white.cgColor
         slideshowInterval = 3
         hero.modifiers = [.arc]

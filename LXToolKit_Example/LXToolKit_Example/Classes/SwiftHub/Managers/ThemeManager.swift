@@ -252,7 +252,7 @@ extension Reactive where Base: UITableView {
     }
 }
 
-extension Reactive where Base: TableViewCell {
+extension Reactive where Base: LXBaseTableViewCell {
     var selectionColor: Binder<UIColor?> {
         return Binder(self.base) { view, attr in
             view.selectionColor = attr
@@ -260,13 +260,13 @@ extension Reactive where Base: TableViewCell {
     }
 }
 
-// extension Reactive where Base: ViewController {
-//     var emptyDataSetImageTintColorBinder: Binder<UIColor?> {
-//         return Binder(self.base) { view, attr in
-//             view.emptyDataSetImageTintColor.accept(attr)
-//         }
-//     }
-// }
+extension Reactive where Base: LXBaseVC {
+    var emptyDataSetImageTintColorBinder: Binder<UIColor?> {
+        return Binder(self.base) { view, attr in
+            view.emptyDataSet.imageTintColor.accept(attr)
+        }
+    }
+}
 
 extension Reactive where Base: RAMAnimatedTabBarItem {
     var iconColor: Binder<UIColor> {
@@ -383,7 +383,7 @@ extension ThemeProxy where Base: UITextField {
     }
 }
 
-extension ThemeProxy where Base: TableViewCell {
+extension ThemeProxy where Base: LXBaseTableViewCell {
     var selectionColor: ThemeAttribute<UIColor?> {
         get { fatalError("set only") }
         set {
@@ -396,18 +396,18 @@ extension ThemeProxy where Base: TableViewCell {
     }
 }
 
-// extension ThemeProxy where Base: ViewController {
-//     var emptyDataSetImageTintColorBinder: ThemeAttribute<UIColor?> {
-//         get { fatalError("set only") }
-//         set {
-//             let disposable = newValue.stream
-//                 .take(until: base.rx.deallocating)
-//                 .observe(on: MainScheduler.instance)
-//                 .bind(to: base.rx.emptyDataSetImageTintColorBinder)
-//             hold(disposable, for: "emptyDataSetImageTintColorBinder")
-//         }
-//     }
-// }
+extension ThemeProxy where Base: LXBaseVC {
+    var emptyDataSetImageTintColorBinder: ThemeAttribute<UIColor?> {
+        get { fatalError("set only") }
+        set {
+            let disposable = newValue.stream
+                .take(until: base.rx.deallocating)
+                .observe(on: MainScheduler.instance)
+                .bind(to: base.rx.emptyDataSetImageTintColorBinder)
+            hold(disposable, for: "emptyDataSetImageTintColorBinder")
+        }
+    }
+}
 
 extension ThemeProxy where Base: RAMAnimatedTabBarItem {
     var iconColor: ThemeAttribute<UIColor> {

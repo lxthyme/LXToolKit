@@ -12,7 +12,7 @@
 import UIKit
 import LXToolKit
 
-class LXTable0120VC: LXBaseMVVMTableVC {
+class LXTable0120VC: LXBaseTableVC {
     // MARK: 📌UI
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 20)
@@ -78,13 +78,15 @@ extension LXTable0120VC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXTable0120VC {
-    func prepareTableView() {
+extension LXTable0120VC {
+    override func prepareTableView() {
+        super.prepareTableView()
         table.delegate = self
         table.dataSource = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .cyan
         self.table.backgroundColor = .random
         prepareTableView()
@@ -94,7 +96,8 @@ private extension LXTable0120VC {
         masonry()
     }
 
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

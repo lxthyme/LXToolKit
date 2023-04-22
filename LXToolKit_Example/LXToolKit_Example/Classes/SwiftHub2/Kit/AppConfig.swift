@@ -1,13 +1,12 @@
 //
-//  Config.swift
-//  LXMVVMTest
+//  AppConfig.swift
+//  test
 //
-//  Created by lxthyme on 2022/2/11.
+//  Created by lxthyme on 2023/3/23.
 //
-import UIKit
+
 import Foundation
 
-// All keys are demonstrative and used for the test.
 enum Keys {
     case github, mixpanel, adMob
 
@@ -28,8 +27,7 @@ enum Keys {
     }
 }
 
-struct Configs {
-
+struct AppConfig {
     struct App {
         static let githubUrl = "https://github.com/khoren93/SwiftHub"
         static let githubScope = "user+repo+notifications+read:org"

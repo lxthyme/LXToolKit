@@ -1,16 +1,13 @@
 //
-//  DefaultTableViewCellViewModel.swift
-//  SwiftHub
+//  DJSearchDefaultCellVM.swift
+//  test
 //
-//  Created by Sygnoos9 on 6/23/19.
-//  Copyright © 2019 Khoren Markosyan. All rights reserved.
+//  Created by lxthyme on 2023/3/27.
 //
+import UIKit
 
-import Foundation
-import RxSwift
-import RxCocoa
-
-class DefaultTableViewCellViewModel: TableViewCellViewModel {
+class DJSearchDefaultCellVM: LXBaseTableViewCellVM {
+    // MARK: 🔗Vaiables
     let title = BehaviorRelay<String?>(value: nil)
     let detail = BehaviorRelay<String?>(value: nil)
     let secondDetail = BehaviorRelay<String?>(value: nil)
@@ -20,4 +17,11 @@ class DefaultTableViewCellViewModel: TableViewCellViewModel {
     let badge = BehaviorRelay<UIImage?>(value: nil)
     let badgeColor = BehaviorRelay<UIColor?>(value: nil)
     let hidesDisclosure = BehaviorRelay<Bool>(value: false)
+    // MARK: 🛠Life Cycle
 }
+
+// MARK: 👀Public Actions
+extension DJSearchDefaultCellVM {}
+
+// MARK: 🔐Private Actions
+private extension DJSearchDefaultCellVM {}

@@ -94,8 +94,9 @@ extension LXWebVC {
 private extension LXWebVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXWebVC {
-    func prepareVM() {
+extension LXWebVC {
+    override func prepareVM() {
+        super.prepareVM()
         btnTest.rx
             .controlEvent(.touchUpInside)
             .subscribe {[weak self] _ in
@@ -112,7 +113,8 @@ private extension LXWebVC {
             }
             .disposed(by: rx.disposeBag)
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
@@ -121,7 +123,8 @@ private extension LXWebVC {
         masonry()
     }
 
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         webView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.right.equalTo(0)

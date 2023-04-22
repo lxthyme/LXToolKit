@@ -11,7 +11,7 @@ import UIKit
 import WebKit
 import LXToolKit
 
-class LXWebViewTestVC: LXBaseMVVMVC {
+class LXWebViewTestVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var webView: WKWebView = {
         // swiftlint:disable line_length
@@ -132,8 +132,9 @@ extension LXWebViewTestVC: WKNavigationDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXWebViewTestVC {
-    func prepareUI() {
+extension LXWebViewTestVC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white;
         // webView.scrollView.rx.contentSize
         //     .subscribe(onNext: {[weak self] event in
@@ -144,7 +145,8 @@ private extension LXWebViewTestVC {
         [webView].forEach(self.view.addSubview)
         masonry()
     }
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         webView.snp.makeConstraints {
             $0.edges.width.equalToSuperview()
         }

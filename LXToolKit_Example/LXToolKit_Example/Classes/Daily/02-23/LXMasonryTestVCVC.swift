@@ -9,7 +9,7 @@
 import UIKit
 import LXToolKit
 
-class LXMasonryTestVCVC: LXBaseMVVMVC {
+class LXMasonryTestVCVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var panelView: UIView = {
         let v = UIView()
@@ -93,8 +93,9 @@ extension LXMasonryTestVCVC {}
 private extension LXMasonryTestVCVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXMasonryTestVCVC {
-    func prepareUI() {
+extension LXMasonryTestVCVC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
 
         [labPanelLeft, labPanelRight].forEach(panelView.addSubview)

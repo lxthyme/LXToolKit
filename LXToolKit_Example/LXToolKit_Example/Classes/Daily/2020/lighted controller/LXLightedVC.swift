@@ -131,17 +131,20 @@ extension LXLightedVC {}
 private extension LXLightedVC {}
 
 // MARK: - UI Prepare & Masonry
-private extension LXLightedVC {
+extension LXLightedVC {
     func prepareTable() {
         let photos = LXListItemModel().sortedPhotos()
         dataSource.dataList = photos
         myView.table.dataSource = dataSource
         myView.table.delegate = dataSource
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

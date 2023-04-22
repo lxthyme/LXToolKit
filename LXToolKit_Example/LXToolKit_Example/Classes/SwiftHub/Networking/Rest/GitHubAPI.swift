@@ -85,7 +85,7 @@ extension GithubAPI: TargetType, ProductAPIType {
         case .download(let url, _):
             return url
         default:
-            return Configs.Network.githubBaseUrl.url!
+            return AppConfig.Network.githubBaseUrl.url!
         }
     }
 

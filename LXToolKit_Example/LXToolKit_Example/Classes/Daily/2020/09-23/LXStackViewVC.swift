@@ -189,11 +189,14 @@ extension LXStackViewVC {}
 private extension LXStackViewVC {}
 
 // MARK: - 🍺UI Prepare & Masonryry
-private extension LXStackViewVC {
-    func prepareUI() {
+extension LXStackViewVC {
+    override func prepareUI() {
+        super.prepareUI()
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

@@ -78,7 +78,7 @@ class LXSongVC: LXBaseVC {
         return v
     }()
     // MARK: 🔗Vaiables
-    var vm: LXSongVM!
+    // var vm: LXSongVM!
     lazy var cell = LXSongRecordCell()
     var publish = PublishSubject<String>()
     // MARK: 🛠Life Cycle
@@ -135,7 +135,7 @@ private extension LXSongVC {
             .disposed(by: rx.disposeBag)
         self.collectionView.rx.retry
             .bind(to: vm.input.retry)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         vm.output.footerState
             .asDriver(onErrorJustReturn: (current: 0, pageSize: 18))
             .drive(self.collectionView.rx.footerEndRefreshWithNoMoreDataByPageSize)
@@ -255,8 +255,9 @@ extension LXSongVC: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXSongVC {
-    func prepareUI() {
+extension LXSongVC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = UIColor.white
         self.title = "Song Record"
 
@@ -264,7 +265,8 @@ private extension LXSongVC {
         masonry()
     }
 
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

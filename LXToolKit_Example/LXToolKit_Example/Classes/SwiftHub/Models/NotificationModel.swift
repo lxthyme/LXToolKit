@@ -10,7 +10,7 @@
 import Foundation
 import ObjectMapper
 
-struct Notification: Mappable {
+struct NotificationModel: Mappable {
 
     var id: String?
     var lastReadAt: Date?
@@ -38,8 +38,8 @@ struct Notification: Mappable {
     }
 }
 
-extension Notification: Equatable {
-    static func == (lhs: Notification, rhs: Notification) -> Bool {
+extension NotificationModel: Equatable {
+    static func == (lhs: NotificationModel, rhs: NotificationModel) -> Bool {
         return lhs.id == rhs.id
     }
 }

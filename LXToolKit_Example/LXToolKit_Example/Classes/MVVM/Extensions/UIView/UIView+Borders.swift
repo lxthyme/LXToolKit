@@ -21,7 +21,7 @@ extension UIView {
     }
 
     func defaultBorderDepth() -> CGFloat {
-        return Configs.BaseDimensions.borderWidth
+        return AppConfig.BaseDimensions.borderWidth
     }
 
     /// Add Border for side with default params

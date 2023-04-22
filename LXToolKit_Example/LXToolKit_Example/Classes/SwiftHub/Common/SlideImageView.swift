@@ -25,7 +25,7 @@ class SlideImageView: ImageSlideshow {
         contentScaleMode = .scaleAspectFit
         contentMode = .scaleAspectFill
         backgroundColor = UIColor.Material.grey100
-        borderWidth = Configs.BaseDimensions.borderWidth
+        borderWidth = AppConfig.BaseDimensions.borderWidth
         borderColor = .white
         slideshowInterval = 3
         hero.modifiers = [.arc]

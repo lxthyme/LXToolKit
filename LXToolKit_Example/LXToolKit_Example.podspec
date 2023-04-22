@@ -117,7 +117,7 @@ TODO: Add long description of the pod here.
   s.dependency 'WhatsNewKit'
   s.dependency 'RAMAnimatedTabBarController'
   s.dependency 'KafkaRefresh'
-  # s.dependency ''
+  s.dependency 'BonMot'
   # s.dependency ''
   # s.dependency ''
   # s.dependency ''

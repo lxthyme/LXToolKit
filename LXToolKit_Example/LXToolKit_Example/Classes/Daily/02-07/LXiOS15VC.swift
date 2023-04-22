@@ -25,7 +25,7 @@ private extension IOS15FitType {
     }
 }
 
-class LXiOS15VC: LXBaseMVVMTableVC {
+class LXiOS15VC: LXBaseTableVC {
     // MARK: 📌UI
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 20)
@@ -216,8 +216,9 @@ extension LXiOS15VC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXiOS15VC {
-    func prepareTableView() {
+extension LXiOS15VC {
+    override func prepareTableView() {
+        super.prepareTableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
         table.delegate = self
         if #available(iOS 14.0, *) {
@@ -227,7 +228,8 @@ private extension LXiOS15VC {
             table.dataSource = self
         }
     }
-    func prepareUI() {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
@@ -235,7 +237,8 @@ private extension LXiOS15VC {
         masonry()
     }
 
-    func masonry() {
+    override func masonry() {
+        super.masonry()
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

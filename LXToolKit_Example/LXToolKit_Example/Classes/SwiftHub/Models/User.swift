@@ -13,12 +13,12 @@ import KeychainAccess
 import MessageKit
 
 private let userKey = "CurrentUserKey"
-private let keychain = Keychain(service: Configs.App.bundleIdentifier)
+private let keychain = Keychain(service: AppConfig.App.bundleIdentifier)
 
-enum UserType: String {
-    case user = "User"
-    case organization = "Organization"
-}
+// enum UserType: String {
+//     case user = "User"
+//     case organization = "Organization"
+// }
 
 struct ContributionCalendar {
     var totalContributions: Int?
@@ -261,10 +261,10 @@ extension UserSearch {
     }
 }
 
-enum TrendingUserType: String {
-    case user
-    case organization
-}
+// enum TrendingUserType: String {
+//     case user
+//     case organization
+// }
 
 /// TrendingUser model
 struct TrendingUser: Mappable {

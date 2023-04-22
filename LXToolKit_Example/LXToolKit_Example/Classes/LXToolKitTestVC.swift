@@ -13,9 +13,9 @@ class DataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> {
     }
 }
 
-open class LXToolKitTestVC: LXBaseTableViewVC {
+open class LXToolKitTestVC: LXBaseTableVC {
     // MARK: 📌UI
-    private var testVC = LXTestVC()
+    // private var testVC = LXTestVC()
     // lazy var dataList: [LXNavigator.Scene] = {
     //     let staging = Configs.Network.useStaging
     //     let githubProvider = staging
@@ -60,7 +60,7 @@ open class LXToolKitTestVC: LXBaseTableViewVC {
         if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> {
             return ds
         }
-        let staging = Configs.Network.useStaging
+        let staging = AppConfig.Network.useStaging
         let githubProvider = staging
             ? GithubNetworking.stubbingNetworking()
             : GithubNetworking.defaultNetworking()
@@ -73,7 +73,7 @@ open class LXToolKitTestVC: LXBaseTableViewVC {
         let provider = RestApi(githubProvider: githubProvider,
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as API)
+        let vm = LXBaseVM(provider: provider as DJAllAPI)
         var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
         snapshot.appendSections(["2023", "2022", "2021", "2020"])
         snapshot.appendItems([
@@ -180,7 +180,7 @@ private extension LXToolKitTestVC {
 //             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
 //             navigator.show(segue: .events(vm: vm), sender: self)
 //         }
-        let staging = Configs.Network.useStaging
+        let staging = AppConfig.Network.useStaging
         let githubProvider = staging
             ? GithubNetworking.stubbingNetworking()
             : GithubNetworking.defaultNetworking()
@@ -515,8 +515,9 @@ extension LXToolKitTestVC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXToolKitTestVC {
-    func prepareTableView() {
+extension LXToolKitTestVC {
+    public override func prepareTableView() {
+        super.prepareTableView()
         table.delegate = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
         table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
@@ -529,7 +530,8 @@ private extension LXToolKitTestVC {
             // table.dataSource = self
         }
     }
-    func prepareUI() {
+    public override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
@@ -538,7 +540,8 @@ private extension LXToolKitTestVC {
         masonry()
     }
 
-    func masonry() {
+    public override func masonry() {
+        super.masonry()
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

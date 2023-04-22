@@ -1,19 +1,17 @@
 //
 //  Application.swift
-//  SwiftHub
+//  test
 //
-//  Created by Khoren Markosyan on 1/5/18.
-//  Copyright © 2018 Khoren Markosyan. All rights reserved.
+//  Created by lxthyme on 2023/3/23.
 //
 
-import UIKit
+import Foundation
 
 final class Application: NSObject {
     static let shared = Application()
 
     var window: UIWindow?
-
-    var provider: SwiftHubAPI?
+    var provider: DJAllAPI?
     let authManager: AuthManager
     let navigator: LXNavigator
 
@@ -25,14 +23,17 @@ final class Application: NSObject {
     }
 
     private func updateProvider() {
-        let staging = Configs.Network.useStaging
-        let githubProvider = staging ? GithubNetworking.stubbingNetworking(): GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging ? TrendingGithubNetworking.stubbingNetworking(): TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging ? CodetabsNetworking.stubbingNetworking(): CodetabsNetworking.defaultNetworking()
-        let restApi = RestApi(githubProvider: githubProvider, trendingGithubProvider: trendingGithubProvider, codetabsProvider: codetabsProvider)
+        let staging = AppConfig.Network.useStaging
+        let githubProvider: GithubNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
+        let trendingGithubProvider: TrendingGithubNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
+        let codetabsProvider: CodetabsNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
+        let restApi = RestApi(githubProvider: githubProvider,
+                              trendingGithubProvider: trendingGithubProvider,
+                              codetabsProvider: codetabsProvider)
         provider = restApi
 
-        if let token = authManager.token, Configs.Network.useStaging == false {
+        if let token = authManager.token,
+           !AppConfig.Network.useStaging {
             switch token.type() {
             case .oAuth(let token), .personal(let token):
                 provider = GraphApi(restApi: restApi, token: token)
@@ -40,32 +41,29 @@ final class Application: NSObject {
             }
         }
     }
+}
 
+// MARK: - 👀
+extension Application {
     func presentInitialScreen(in window: UIWindow?) {
         updateProvider()
-        guard let window = window, let provider = provider else { return }
+        guard let window, let provider else { return }
+
         self.window = window
 
-//        presentTestScreen(in: window)
-//        return
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            if let user = User.currentUser(), let login = user.login {
-                // analytics.identify(userId: login)
-                // analytics.set(.name(value: user.name ?? ""))
-                // analytics.set(.email(value: user.email ?? ""))
-            }
-            // TODO:「lxthyme」💊<#extra#>
-            // let authorized = self?.authManager.token?.isValid ?? false
-            // let viewModel = HomeTabBarViewModel(authorized: authorized, provider: provider)
-            // self?.navigator.show(segue: .tabs(viewModel: viewModel), sender: nil, transition: .root(in: window))
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
+            // if let user = UserModel.currentUser(),
+            //    let login = user.login {
+            // }
+            let authorized = self.authManager.token?.isValid ?? false
+            let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
+            self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }
 
-    func presentTestScreen(in window: UIWindow?) {
-        guard let window = window, let provider = provider else { return }
-        // TODO:「lxthyme」💊<#extra#>
-        // let viewModel = UserViewModel(user: User(), provider: provider)
-        // navigator.show(segue: .userDetails(viewModel: viewModel), sender: nil, transition: .root(in: window))
+    func presentTestScreen(in window: UIWindow) {
+        // guard let window, let provider else { return }
+        // let vm =
+        // navigator.show(segue: <#T##Navigator.Scene#>, sender: <#T##UIViewController?#>)
     }
 }

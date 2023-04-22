@@ -34,11 +34,11 @@ class TextField: UITextField {
         theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
 
         layer.masksToBounds = true
-        borderWidth = Configs.BaseDimensions.borderWidth
-        cornerRadius = Configs.BaseDimensions.cornerRadius
+        borderWidth = AppConfig.BaseDimensions.borderWidth
+        cornerRadius = AppConfig.BaseDimensions.cornerRadius
 
         snp.makeConstraints { (make) in
-            make.height.equalTo(Configs.BaseDimensions.textFieldHeight)
+            make.height.equalTo(AppConfig.BaseDimensions.textFieldHeight)
         }
     }
 }

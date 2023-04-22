@@ -28,7 +28,7 @@ class Toolbar: UIToolbar {
         theme.tintColor = themeService.attribute { $0.secondary }
 
         snp.makeConstraints { (make) in
-            make.height.equalTo(Configs.BaseDimensions.tableRowHeight)
+            make.height.equalTo(AppConfig.BaseDimensions.tableRowHeight)
         }
     }
 }

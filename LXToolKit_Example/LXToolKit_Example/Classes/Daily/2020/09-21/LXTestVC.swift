@@ -112,11 +112,14 @@ extension LXTestVC {}
 private extension LXTestVC {}
 
 // MARK: - 🍺UI Prepare & Masonryry
-private extension LXTestVC {
-    func prepareUI() {
+extension LXTestVC {
+    override func prepareUI() {
+        super.prepareUI()
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

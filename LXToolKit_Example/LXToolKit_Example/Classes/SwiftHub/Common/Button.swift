@@ -27,11 +27,11 @@ public class Button: UIButton {
 
         layer.masksToBounds = true
         titleLabel?.lineBreakMode = .byWordWrapping
-        cornerRadius = Configs.BaseDimensions.cornerRadius
+        cornerRadius = AppConfig.BaseDimensions.cornerRadius
 //        font = font?.withSize(14)
 
         snp.makeConstraints { (make) in
-            make.height.equalTo(Configs.BaseDimensions.buttonHeight)
+            make.height.equalTo(AppConfig.BaseDimensions.buttonHeight)
         }
 
         updateUI()
