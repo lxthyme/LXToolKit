@@ -78,7 +78,7 @@ class LXSongVC: LXBaseVC {
         return v
     }()
     // MARK: 🔗Vaiables
-    // var vm: LXSongVM!
+    var vm2: LXSongVM!
     lazy var cell = LXSongRecordCell()
     var publish = PublishSubject<String>()
     // MARK: 🛠Life Cycle
@@ -124,32 +124,32 @@ private extension LXSongVC {
     }
     @discardableResult
     func bindingInput() -> LXSongVC {
-        vm = LXSongVM(pageStatus: .songRecord,
+        vm2 = LXSongVM(pageStatus: .songRecord,
                       apiService: SongRecordListService(),
                       disposeBag: rx.disposeBag)
         self.collectionView.rx.headerRefreshing.asDriver()
-            .drive(vm.input.headerRefresh)
+            .drive(vm2.input.headerRefresh)
             .disposed(by: rx.disposeBag)
         self.collectionView.rx.footerRefresh.asDriver()
-            .drive(vm.input.footerRefresh)
+            .drive(vm2.input.footerRefresh)
             .disposed(by: rx.disposeBag)
         self.collectionView.rx.retry
-            .bind(to: vm.input.retry)
+            .bind(to: vm2.input.retry)
             .disposed(by: rx.disposeBag)
-        vm.output.footerState
+        vm2.output.footerState
             .asDriver(onErrorJustReturn: (current: 0, pageSize: 18))
             .drive(self.collectionView.rx.footerEndRefreshWithNoMoreDataByPageSize)
             .disposed(by: rx.disposeBag)
-        vm.output.emptyData
+        vm2.output.emptyData
             .asDriver(onErrorJustReturn: .success)
             .drive(self.collectionView.rx.isShowRetryView)
             .disposed(by: rx.disposeBag)
-//        publish.bind(to: self.vm.output.con)
+//        publish.bind(to: self.vm2.output.con)
         return self
     }
     @discardableResult
     func aimingOutput() -> LXSongVC {
-        vm.output.dataSource
+        vm2.output.dataSource
 //            .subscribe({ (<#Event<[LXSongCellVM]>#>) in
 //                <#code#>
 //            })
@@ -167,7 +167,7 @@ private extension LXSongVC {
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] ip in
                 guard let `self` = self,
-                      let ds = try? self.vm.output.dataSource.value(),
+                      let ds = try? self.vm2.output.dataSource.value(),
                       ds.count > 0 else { return }
                 let vc = LXTestVC()
 //                let record = ds[ip.row]
@@ -182,10 +182,10 @@ private extension LXSongVC {
 // MARK: - ✈️UICollectionViewDataSource
 extension LXSongVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return max(1, (try? self.vm.output.dataSource.value().count) ?? 0)
+        return max(1, (try? self.vm2.output.dataSource.value().count) ?? 0)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let count = try? self.vm.output.dataSource.value().count,
+        guard let count = try? self.vm2.output.dataSource.value().count,
               count > 0 else {
             // swiftlint:disable:next force_cast
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.xl.xl_identifier, for: indexPath) as! LXEmptyCell
@@ -197,7 +197,7 @@ extension LXSongVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.xl.xl_identifier, for: indexPath) as! LXSongRecordCell
         self.cell = cell
         // swiftlint:disable:previous force_cast
-        if let d = try? self.vm.output.dataSource.value()[indexPath.row] {
+        if let d = try? self.vm2.output.dataSource.value()[indexPath.row] {
             cell.bindResult(d)
         }
         return cell
@@ -229,7 +229,7 @@ extension LXSongVC: UICollectionViewDelegate {
 // MARK: - ✈️UICollectionViewDelegateFlowLayout
 extension LXSongVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let count = try? self.vm.output.dataSource.value().count,
+        guard let count = try? self.vm2.output.dataSource.value().count,
               count > 0 else {
             return collectionView.bounds.size
         }

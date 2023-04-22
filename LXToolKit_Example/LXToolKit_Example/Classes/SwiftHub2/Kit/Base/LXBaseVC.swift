@@ -38,6 +38,7 @@ struct LXEmptyDataSet {
     var allowScroll = true
 }
 
+@objc(LXBaseVC_KitEx)
 open class LXBaseVC: UIViewController, LXNavigatable {
     // MARK: 📌UI
     lazy var searchBar: UISearchBar = {

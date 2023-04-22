@@ -412,12 +412,12 @@ extension LXToolKitTestVC {
     @available(iOS 15.0.0, *)
     func testTask() {
 
-        withUnsafeCurrentTask { task in
-            print("task: \(task)")
-        }
-        Task {
-            await foo()
-        }
+        // withUnsafeCurrentTask { task in
+        //     print("task: \(task)")
+        // }
+        // Task {
+        //     await foo()
+        // }
     }
 }
 
@@ -427,7 +427,7 @@ extension LXToolKitTestVC {
     struct TaskGroupSample {
         func work(_ value: Int) async -> Int {
             print("Start work \(value)")
-            await Task.sleep(UInt64(value) * NSEC_PER_SEC)
+            // await Task.sleep(UInt64(value) * NSEC_PER_SEC)
             print("Work \(value) done!")
             return value
         }
