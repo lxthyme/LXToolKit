@@ -58,10 +58,10 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     var clearSelectionOnViewWillAppear = true
     public private(set) var style: UITableView.Style = UITableView.Style.plain
     // MARK: 🛠Life Cycle
-    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    init(vm: LXBaseVM?, navigator: LXNavigator, style: UITableView.Style = UITableView.Style.plain) {
+    // required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    convenience init(vm: LXBaseVM?, navigator: LXNavigator, style: UITableView.Style = UITableView.Style.plain) {
+        self.init(vm: vm, navigator: navigator)
         self.style = style
-        super.init(vm: vm, navigator: navigator)
     }
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

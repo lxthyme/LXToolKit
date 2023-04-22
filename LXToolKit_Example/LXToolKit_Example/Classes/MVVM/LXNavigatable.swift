@@ -12,7 +12,7 @@ import SafariServices
 // import DJBusinessModuleSwift
 
 protocol LXNavigatable {
-    var navigator: LXNavigator! { get set }
+    var navigator: LXNavigator { get set }
 }
 
 open class LXNavigator {

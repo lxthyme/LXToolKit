@@ -94,7 +94,7 @@ class DJHomeTabBarVC: RAMAnimatedTabBarController, LXNavigatable {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     var vm: DJHomeTabBarVM?
-    var navigator: LXNavigator!
+    var navigator: LXNavigator = .default
     // MARK: 🛠Life Cycle
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     init(vm: DJHomeTabBarVM?, navigator: LXNavigator) {

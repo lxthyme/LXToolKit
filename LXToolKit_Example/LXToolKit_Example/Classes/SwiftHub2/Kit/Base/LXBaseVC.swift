@@ -93,7 +93,7 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         return stackView
     }()
     // MARK: 🔗Vaiables
-    var navigator: LXNavigator!
+    var navigator: LXNavigator = .default
     var vm: LXBaseVM?
 
     let isLoading = BehaviorRelay(value: false)
@@ -128,16 +128,10 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         logDebug("\(type(of: self)): Deinited")
         LXPrint.resourcesCount()
     }
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    init(vm: LXBaseVM?, navigator: LXNavigator) {
+    public convenience init(vm: LXBaseVM?, navigator: LXNavigator) {
+        self.init(nibName: nil, bundle: nil)
         self.navigator = navigator
         self.vm = vm
-        super.init(nibName: nil, bundle: nil)
     }
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
