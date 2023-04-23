@@ -1,43 +1,30 @@
 //
 //  LXBaseLabel.swift
-//  test
+//  AcknowList
 //
-//  Created by lxthyme on 2023/3/25.
+//  Created by lxthyme on 2022/2/10.
 //
+
 import UIKit
 
-class LXBaseLabel: UILabel {
+open class LXBaseLabel: UILabel {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     var textInsets = UIEdgeInsets.zero {
         didSet { invalidateIntrinsicContentSize() }
     }
     // MARK: 🛠Life Cycle
-    override init(frame: CGRect) {
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public override init(frame: CGRect) {
         super.init(frame: frame)
-        makeUI()
-    }
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        makeUI()
-    }
 
-    func makeUI() {
-        layer.masksToBounds = true
-        numberOfLines = 1
-//        cornerRadius = Configs.BaseDimensions.cornerRadius
-        updateUI()
+        prepareUI()
     }
-
-    func updateUI() {
-        setNeedsDisplay()
-    }
-
 }
 
 // MARK: 👀Public Actions
 extension LXBaseLabel {
-    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         let insetRect = bounds.inset(by: textInsets)
         let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
         let invertedInsets = UIEdgeInsets(top: -textInsets.top,
@@ -47,7 +34,7 @@ extension LXBaseLabel {
         return textRect.inset(by: invertedInsets)
     }
 
-    override func drawText(in rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: textInsets))
     }
 
@@ -70,4 +57,20 @@ extension LXBaseLabel {
         get { return textInsets.bottom }
         set { textInsets.bottom = newValue }
     }
+}
+
+// MARK: 🔐Private Actions
+private extension LXBaseLabel {}
+
+// MARK: - 🍺UI Prepare & Masonry
+private extension LXBaseLabel {
+    func prepareUI() {
+        layer.masksToBounds = true
+
+        // [<#table#>].forEach(self.addSubview)
+
+        masonry()
+    }
+
+    func masonry() {}
 }

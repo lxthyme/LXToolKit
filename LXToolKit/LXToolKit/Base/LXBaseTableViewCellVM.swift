@@ -6,7 +6,6 @@
 //
 import UIKit
 
-@objc(LXBaseTableViewCellVMKitExample)
 open class LXBaseTableViewCellVM: NSObject {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
