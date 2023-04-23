@@ -26,3 +26,11 @@ public let XL_IS_iPhoneX: Bool = (
 // 导航栏+状态栏高度
 public let XL_NavBar_Height: CGFloat = XL_IS_iPhoneX ? 88.0 : 64.0
 
+struct Macro {
+    static let screen = UIScreen.main.bounds
+    static let screen_Width = Macro.screen.size.width
+    static let screen_Height = Macro.screen.size.height
+}
+
+let kScreenHeight: CGFloat = UIScreen.main.bounds.size.height
+let kScreenWidth: CGFloat = UIScreen.main.bounds.size.width

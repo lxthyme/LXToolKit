@@ -42,8 +42,12 @@ open class LXAnyModel: NSObject, HandyJSON {
     open override var debugDescription: String {
         return toJSONString(prettyPrint: true) ?? "NaN"
     }
-
-    /// override var debugDescription: String { return "" }
+    // func mapping(mapper: HelpingMapper) {
+    //     super.mapping(mapper: mapper)
+    // }
+    // override func didFinishMapping() {
+    //     super.didFinishMapping()
+    // }
 }
 // open class LXBaseModel: LXAnyModel, LXBaseModelProtocol {
 //     // MARK: 🔗Vaiables

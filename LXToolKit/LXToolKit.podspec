@@ -82,7 +82,7 @@ This library contains some useful category and extension kits
   # s.dependency 'Firebase/Crashlytics'
   # s.dependency 'MessageKit'
   s.dependency 'KafkaRefresh'
-  # s.dependency 'Kingfisher'
+  s.dependency 'Kingfisher'
   # s.dependency 'IQKeyboardManagerSwift'
 
   # Logging
@@ -103,7 +103,7 @@ This library contains some useful category and extension kits
   s.dependency 'Localize-Swift'
   s.dependency 'SVProgressHUD'
   # s.dependency 'RxTheme'
-  # s.dependency 'RxDataSources'
+  s.dependency 'RxDataSources'
   # s.dependency 'RAMAnimatedTabBarController'
   # s.dependency 'WhatsNewKit'
   # s.dependency ''
