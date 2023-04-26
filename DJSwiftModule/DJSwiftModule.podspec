@@ -104,4 +104,5 @@ TODO: Add long description of the pod here.
   s.dependency 'CocoaLumberjack/Swift', '~> 3.0'  # https://github.com/CocoaLumberjack/CocoaLumberjack
   s.dependency 'Mixpanel-swift', '~> 4.0'  # https://github.com/mixpanel/mixpanel-iphone
   s.dependency 'HandyJSON'
+  s.dependency 'LXToolKit'
 end

@@ -29,8 +29,8 @@ extension LXBaseTableView {}
 private extension LXBaseTableView {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXBaseTableView {
-    func prepareUI() {
+extension LXBaseTableView {
+    public func prepareUI() {
         self.backgroundColor = UIColor.white
         self.rowHeight = UITableView.automaticDimension
         self.estimatedRowHeight = 0
@@ -50,4 +50,5 @@ private extension LXBaseTableView {
 
         // self.xl.adapterWith(parentVC: self)
     }
+    public func masonry() {}
 }

@@ -1,39 +1,59 @@
 //
 //  LXBaseTableViewCell.swift
-//  Vaffle_demo
+//  test
 //
-//  Created by DamonJow on 2018/11/2.
-//  Copyright © 2018 DamonJow. All rights reserved.
+//  Created by lxthyme on 2023/3/26.
 //
-
 import UIKit
-import SnapKit
 
-@objc(LXBaseKitTableViewCell)
+@objc(LXBaseSwiftTableViewCell)
 open class LXBaseTableViewCell: UITableViewCell {
-    deinit {
-        dlog("---------- >>>TableViewCell: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
-    }
     // MARK: 📌UI
-    lazy var contentStackView: UIStackView = {
+    lazy var containerView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .clear
+        v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        return v
+    }()
+    lazy var containerStackView: UIStackView = {
         let v = UIStackView()
-        v.axis = .vertical
+        v.axis = .horizontal
         v.alignment = .center
         return v
     }()
     // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    public var baseModel: LXAnyModel? {
+    var inset: CGFloat = AppConfig.BaseDimensions.inset
+    var isSelection = false
+    var selectionColor: UIColor? {
         didSet {
-            if let m = baseModel {
-                dataFill(model: m)
-            }
+            setSelected(isSelected, animated: true)
         }
     }
+    // MARK: 🛠Life Cycle
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        // prepareUI()
+    }
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    open override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+        backgroundColor = selected ? selectionColor : .clear
+    }
 }
+
 // MARK: 🌎LoadData
-extension LXBaseTableViewCell {
-    func dataFill(model: LXAnyModel) { }
+public extension LXBaseTableViewCell {
+    @objc func bind(to vm: LXBaseTableViewCellVM) {}
 }
 
 // MARK: 👀Public Actions
@@ -43,16 +63,26 @@ extension LXBaseTableViewCell {}
 private extension LXBaseTableViewCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXBaseTableViewCell {
-    func prepareUI() {
+public extension LXBaseTableViewCell {
+    @objc func prepareVM() {}
+    @objc func prepareUI() {
         self.contentView.backgroundColor = .white
+        selectionStyle = .none
+        selectionColor = .clear
 
-        // [<#table#>].forEach(self.<#contentView#>.addSubview)
+        theme.selectionColor = themeService.attribute { $0.primary }
+        containerView.theme.backgroundColor = themeService.attribute { $0.primary }
 
-        masonry()
+        containerView.addSubview(containerStackView)
+        self.contentView.addSubview(containerView)
     }
 
-    func masonry() {
-        contentStackView.snp.setLabel("\(self.xl.xl_typeName).contentStackView")
+    @objc func masonry() {
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
+        }
+        containerStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(self.inset / 2)
+        }
     }
 }

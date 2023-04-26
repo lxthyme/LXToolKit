@@ -5,6 +5,7 @@
 //  Created by lxthyme on 2023/3/26.
 //
 import UIKit
+import LXToolKit
 
 class DJInitialSplitVC: LXBaseTableVC {
     // MARK: 📌UI
@@ -45,6 +46,7 @@ private extension DJInitialSplitVC {}
 // MARK: - 🍺UI Prepare & Masonry
 extension DJInitialSplitVC {
     override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         emptyDataSet.title = R.string.localizable.initialNoResults()
         table.headRefreshControl = nil
@@ -55,5 +57,7 @@ extension DJInitialSplitVC {
         masonry()
     }
 
-    override func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }
