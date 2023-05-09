@@ -98,7 +98,7 @@ This library contains some useful category and extension kits
   # s.dependency 'DropDown'
   # s.dependency 'Toast-Swift'
   # s.dependency 'NSObject+Rx'
-  # s.dependency 'DZNEmptyDataSet'
+  s.dependency 'DZNEmptyDataSet'
   s.dependency 'R.swift'
   s.dependency 'Localize-Swift'
   s.dependency 'SVProgressHUD'
