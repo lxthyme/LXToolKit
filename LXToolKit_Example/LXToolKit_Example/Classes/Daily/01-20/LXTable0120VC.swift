@@ -38,7 +38,30 @@ class LXTable0120VC: LXBaseTableVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - 🍺UI Prepare & Masonry
+    override func prepareTableView() {
+        super.prepareTableView()
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .cyan
+        self.table.backgroundColor = .random
+        prepareTableView()
+    
+        [self.table].forEach(self.view.addSubview)
+    
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: 🌎LoadData
@@ -74,32 +97,5 @@ extension LXTable0120VC: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension LXTable0120VC {
-    override func prepareTableView() {
-        super.prepareTableView()
-        table.delegate = self
-        table.dataSource = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .cyan
-        self.table.backgroundColor = .random
-        prepareTableView()
-
-        [self.table].forEach(self.view.addSubview)
-
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }

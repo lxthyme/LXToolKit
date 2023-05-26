@@ -6,8 +6,10 @@
 //
 import UIKit
 import KafkaRefresh
-
+import RxSwift
+import RxRelay
 import RxDataSources
+import Toast_Swift
 
 public protocol LXBaseTableViewProtocol {
     func lazyTableView(style: UITableView.Style) -> LXBaseTableView
@@ -45,21 +47,21 @@ extension LXBaseTableViewProtocol {
 open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    let headerRefreshTrigger = PublishSubject<Void>()
-    let footerRefreshTrigger = PublishSubject<Void>()
+    public let headerRefreshTrigger = PublishSubject<Void>()
+    public let footerRefreshTrigger = PublishSubject<Void>()
 
-    let isHeaderLoading = BehaviorRelay(value: false)
-    let isFooterLoading = BehaviorRelay(value: false)
+    public let isHeaderLoading = BehaviorRelay(value: false)
+    public let isFooterLoading = BehaviorRelay(value: false)
 
     public lazy var table: LXBaseTableView = {
         return lazyTableView(style: .plain)
     }()
 
-    var clearSelectionOnViewWillAppear = true
+    public var clearSelectionOnViewWillAppear = true
     public private(set) var style: UITableView.Style = UITableView.Style.plain
     // MARK: 🛠Life Cycle
     // required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    convenience init(vm: LXBaseVM?, navigator: LXNavigator, style: UITableView.Style = UITableView.Style.plain) {
+    convenience init(vm: LXBaseVM?, navigator: Navigator, style: UITableView.Style = UITableView.Style.plain) {
         self.init(vm: vm, navigator: navigator)
         self.style = style
     }
@@ -89,26 +91,8 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
         // prepareTableView()
         // prepareUI()
     }
-}
-
-// MARK: 🌎LoadData
-extension LXBaseTableVC {}
-
-// MARK: 👀Public Actions
-extension LXBaseTableVC {}
-
-// MARK: 🔐Private Actions
-private extension LXBaseTableVC {
-    func deselectSelectedRow() {
-        if let selectedIndexPaths = table.indexPathsForSelectedRows {
-            selectedIndexPaths.forEach { self.table.deselectRow(at: $0, animated: false) }
-        }
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-public extension LXBaseTableVC {
-    @objc func prepareTableView() {
+    // MARK: - 🍺UI Prepare & Masonry
+    open func prepareTableView() {
         table.emptyDataSetSource = self
         table.emptyDataSetDelegate = self
         table.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
@@ -128,12 +112,12 @@ public extension LXBaseTableVC {
         error.subscribe(onNext: { [weak self] error in
             self?.table.makeToast(error.description,
                                   title: error.title,
-                                  image: R.image.icon_toast_warning(),
+                                  image: nil,//R.image.icon_toast_warning(),
                                   completion: nil)
         })
         .disposed(by: rx.disposeBag)
     }
-    override func prepareVM() {
+    override open func prepareVM() {
         super.prepareVM()
         vm?.headerLoading.asObservable()
             .bind(to: isHeaderLoading)
@@ -151,7 +135,7 @@ public extension LXBaseTableVC {
         })
         .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
+    override open func prepareUI() {
         super.prepareUI()
         // self.view.backgroundColor = .white
         // contentStackView.spacing = 0
@@ -165,8 +149,23 @@ public extension LXBaseTableVC {
         }
     }
 
-    override func masonry() {
+    override open func masonry() {
         super.masonry()
         table.snp.setLabel("\(self.xl.xl_typeName).table")
+    }
+}
+
+// MARK: 🌎LoadData
+extension LXBaseTableVC {}
+
+// MARK: 👀Public Actions
+extension LXBaseTableVC {}
+
+// MARK: 🔐Private Actions
+private extension LXBaseTableVC {
+    func deselectSelectedRow() {
+        if let selectedIndexPaths = table.indexPathsForSelectedRows {
+            selectedIndexPaths.forEach { self.table.deselectRow(at: $0, animated: false) }
+        }
     }
 }

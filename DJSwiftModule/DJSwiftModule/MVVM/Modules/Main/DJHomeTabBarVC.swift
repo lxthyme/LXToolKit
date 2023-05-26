@@ -8,6 +8,7 @@
 import UIKit
 import RAMAnimatedTabBarController
 import RxSwift
+import LXToolKit
 
 enum DJHomeTabBarItem: Int {
     case search, news, notifications, settings, login

@@ -125,11 +125,11 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
 //            self.disposeBag = disposeBag
         }
     }
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        prepareUI()
-    }
+    // override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    //     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    //
+    //     prepareUI()
+    // }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -155,26 +155,26 @@ private extension LXWikipediaSearchCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXWikipediaSearchCell {
-    func prepareUI() {
-        [labTitle, labSubtitle, collectionView].forEach(self.contentView.addSubview)
-        masonry()
-    }
-
-    func masonry() {
-        let edges = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        labTitle.snp.makeConstraints {
-            $0.top.left.equalToSuperview().inset(edges)
-            $0.right.lessThanOrEqualToSuperview().offset(-16)
-        }
-        labSubtitle.snp.makeConstraints {
-            $0.top.equalTo(labTitle.snp.bottom).offset(8)
-            $0.left.equalTo(labTitle)
-            $0.right.lessThanOrEqualToSuperview().offset(-16)
-        }
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(labSubtitle.snp.bottom).offset(8)
-            $0.left.right.bottom.equalToSuperview()
-            $0.height.equalTo(120)
-        }
-    }
+    // func prepareUI() {
+    //     [labTitle, labSubtitle, collectionView].forEach(self.contentView.addSubview)
+    //     masonry()
+    // }
+    // 
+    // func masonry() {
+    //     let edges = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    //     labTitle.snp.makeConstraints {
+    //         $0.top.left.equalToSuperview().inset(edges)
+    //         $0.right.lessThanOrEqualToSuperview().offset(-16)
+    //     }
+    //     labSubtitle.snp.makeConstraints {
+    //         $0.top.equalTo(labTitle.snp.bottom).offset(8)
+    //         $0.left.equalTo(labTitle)
+    //         $0.right.lessThanOrEqualToSuperview().offset(-16)
+    //     }
+    //     collectionView.snp.makeConstraints {
+    //         $0.top.equalTo(labSubtitle.snp.bottom).offset(8)
+    //         $0.left.right.bottom.equalToSuperview()
+    //         $0.height.equalTo(120)
+    //     }
+    // }
 }

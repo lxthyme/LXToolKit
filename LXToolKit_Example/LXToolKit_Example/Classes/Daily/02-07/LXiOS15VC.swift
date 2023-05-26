@@ -83,7 +83,33 @@ class LXiOS15VC: LXBaseTableVC {
         prepareUI()
         prepareTableView()
     }
+    // MARK: - 🍺UI Prepare & Masonry
+    override public func prepareTableView() {
+        super.prepareTableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.delegate = self
+        if #available(iOS 14.0, *) {
+            dataSource.apply(dataSnapshot, animatingDifferences: true)
+        } else {
+            // Fallback on earlier versions
+            table.dataSource = self
+        }
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
 
+        [table].forEach(self.view.addSubview)
+        masonry()
+    }
+
+    override open func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: 🌎LoadData
@@ -211,36 +237,6 @@ extension LXiOS15VC: UITableViewDelegate {
                 // LXTable0120VC()
             let vc = LXiOS15ButtonTestVC()
             self.navigationController?.showDetailViewController(vc, sender: nil)
-        }
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension LXiOS15VC {
-    override func prepareTableView() {
-        super.prepareTableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.delegate = self
-        if #available(iOS 14.0, *) {
-            dataSource.apply(dataSnapshot, animatingDifferences: true)
-        } else {
-            // Fallback on earlier versions
-            table.dataSource = self
-        }
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-
-        [table].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
 }

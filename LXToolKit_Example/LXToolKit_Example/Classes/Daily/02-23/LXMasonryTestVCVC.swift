@@ -80,21 +80,7 @@ class LXMasonryTestVCVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
-}
-
-// MARK: 🌎LoadData
-extension LXMasonryTestVCVC {}
-
-// MARK: 👀Public Actions
-extension LXMasonryTestVCVC {}
-
-// MARK: 🔐Private Actions
-private extension LXMasonryTestVCVC {}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension LXMasonryTestVCVC {
-    override func prepareUI() {
+    override open func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white
 
@@ -111,6 +97,19 @@ extension LXMasonryTestVCVC {
         basicMasonryFit1_2()
         masonryFun2_5()
     }
+}
+
+// MARK: 🌎LoadData
+extension LXMasonryTestVCVC {}
+
+// MARK: 👀Public Actions
+extension LXMasonryTestVCVC {}
+
+// MARK: 🔐Private Actions
+private extension LXMasonryTestVCVC {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXMasonryTestVCVC {
 
     func basicMasonry() {
         labPanelLeft.snp.makeConstraints {

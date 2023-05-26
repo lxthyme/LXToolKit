@@ -6,6 +6,7 @@
 //
 #import "DJSearchResultVC.h"
 #import <Masonry/Masonry.h>
+#import <YYText/YYText.h>
 #import <DJRSwiftResource/DJRSwiftResource-Swift.h>
 #import "UICollectionViewLeftAlignedLayout.h"
 
@@ -26,6 +27,8 @@
 @property(nonatomic, strong)NSArray<NSDictionary *> *discoveryList;
 @property(nonatomic, strong)NSArray<NSDictionary *> *hotList;
 @property(nonatomic, assign)BOOL isUnFolding;
+
+@property(nonatomic, strong)YYLabel *lab2RD;
 
 @end
 
@@ -171,6 +174,36 @@
         }
     ];
     [self.collectionView reloadData];
+
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc]init];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    paragraphStyle.lineSpacing = kWPercentage(10.f);
+    [result appendAttributedString:[[NSAttributedString alloc]initWithString:@"也可试试" attributes:@{
+        NSParagraphStyleAttributeName:paragraphStyle,
+        NSForegroundColorAttributeName:[UIColor colorWithHex:0X666666],
+        NSFontAttributeName:[UIFont systemFontOfSize:kWPercentage(13.f)]
+    }]];
+    YYTextBorder *tagBorder = [[YYTextBorder alloc]init];
+    tagBorder.fillColor = [UIColor colorWithHex:0xF6F8FB];
+    tagBorder.cornerRadius = 22 / 2.f;
+    // YYTextHighlight *tagHighlight = [[YYTextHighlight alloc]init];
+    // [tagHighlight setBorder:tagBorder];
+    // tagHighlight.tapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+    //     NSLog(@"text[1]: %@", text.string);
+    // };
+    NSString *obj = @"羊蝎子火锅";
+    NSMutableAttributedString *tagAttr = [[NSMutableAttributedString alloc]initWithString:obj attributes:@{
+        NSFontAttributeName: [UIFont boldSystemFontOfSize:kWPercentage(13.f)]
+    }];
+    // [tagAttr yy_setTextHighlight:tagHighlight range:NSMakeRange(0, obj.length)];
+    [result appendAttributedString:tagAttr];
+
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(SCREEN_WIDTH, CGFLOAT_MAX)];
+    container.insets = UIEdgeInsetsMake(kWPercentage(20.f), kWPercentage(15.f), kWPercentage(10.f), kWPercentage(15.f));
+    YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:result];
+
+    self.lab2RD.textLayout = layout;
 }
 
 #pragma mark -
@@ -375,6 +408,7 @@
 
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.lab2RD];
 
     [self masonry];
 }
@@ -391,6 +425,11 @@
         make.top.equalTo(self.searchBar.mas_bottom);
         make.left.right.equalTo(@0.f);
         make.bottom.equalTo(self.view.xl_safeAreaLayoutGuideBottom);
+    }];
+    [self.lab2RD mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(kWPercentage(15.f)));
+        make.right.equalTo(@(kWPercentage(-15.f)));
+        make.centerY.equalTo(@0.f);
     }];
 }
 
@@ -448,5 +487,13 @@
         _historyTestCell = v;
     }
     return _historyTestCell;
+}
+- (YYLabel *)lab2RD {
+    if(!_lab2RD){
+        UILabel *label = [[UILabel alloc]init];
+        label.numberOfLines = 0;
+        _lab2RD = label;
+    }
+    return _lab2RD;
 }
 @end

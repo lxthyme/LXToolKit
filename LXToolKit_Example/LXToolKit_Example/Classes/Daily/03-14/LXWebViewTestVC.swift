@@ -60,7 +60,26 @@ class LXWebViewTestVC: LXBaseVC {
         prepareUI()
         bindViewModel()
     }
-    override func bindViewModel() {
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white;
+        // webView.scrollView.rx.contentSize
+        //     .subscribe(onNext: {[weak self] event in
+        //         guard let `self` = self else { return }
+        //         dlog("🛠1. onNext: \(event)")
+        //     })
+        //     .disposed(by: rx.disposeBag)
+        [webView].forEach(self.view.addSubview)
+        masonry()
+    }
+    override open func masonry() {
+        super.masonry()
+        webView.snp.makeConstraints {
+            $0.edges.width.equalToSuperview()
+        }
+    }
+    override open func bindViewModel() {
         super.bindViewModel()
         // guard let vm = viewModel as? LXWebViewTestVCVM else { return }
 
@@ -131,26 +150,7 @@ extension LXWebViewTestVC: WKNavigationDelegate {
     }
 }
 
-// MARK: - 🍺UI Prepare & Masonry
 extension LXWebViewTestVC {
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white;
-        // webView.scrollView.rx.contentSize
-        //     .subscribe(onNext: {[weak self] event in
-        //         guard let `self` = self else { return }
-        //         dlog("🛠1. onNext: \(event)")
-        //     })
-        //     .disposed(by: rx.disposeBag)
-        [webView].forEach(self.view.addSubview)
-        masonry()
-    }
-    override func masonry() {
-        super.masonry()
-        webView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
-        }
-    }
     func mockData() -> String {
         // swiftlint:disable line_length
         return """

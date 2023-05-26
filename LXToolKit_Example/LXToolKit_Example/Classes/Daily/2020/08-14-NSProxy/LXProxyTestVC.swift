@@ -77,6 +77,15 @@ class LXProxyTestVC: LXBaseVC {
         prepareTimer()
     }
 
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
@@ -99,14 +108,5 @@ extension LXProxyTestVC {
         if let t = timer {
             RunLoop.current.add(t, forMode: .common)
         }
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
     }
 }

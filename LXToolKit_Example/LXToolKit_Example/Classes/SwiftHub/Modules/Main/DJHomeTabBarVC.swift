@@ -9,6 +9,7 @@ import UIKit
 import RAMAnimatedTabBarController
 import RxSwift
 import Localize_Swift
+import LXToolKit
 
 enum DJHomeTabBarItem: Int {
     case search, news, notifications, settings, login
@@ -55,7 +56,7 @@ enum DJHomeTabBarItem: Int {
         return animation
     }
     
-    private func controller(with vm: LXBaseVM, navigator: LXNavigator) -> UIViewController {
+    private func controller(with vm: LXBaseVM, navigator: Navigator) -> UIViewController {
         switch self {
         case .search:
             let vc = DJSearchVC(vm: vm, navigator: navigator)
@@ -79,7 +80,7 @@ enum DJHomeTabBarItem: Int {
         }
     }
 
-    func getVC(with vm: LXBaseVM, navigator: LXNavigator) -> UIViewController {
+    func getVC(with vm: LXBaseVM, navigator: Navigator) -> UIViewController {
         let vc = controller(with: vm, navigator: navigator)
         let item = RAMAnimatedTabBarItem(title: title, image: image, tag: rawValue)
         item.animation = animation
@@ -90,14 +91,14 @@ enum DJHomeTabBarItem: Int {
     }
 }
 
-class DJHomeTabBarVC: RAMAnimatedTabBarController, LXNavigatable {
+class DJHomeTabBarVC: RAMAnimatedTabBarController, Navigatable {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     var vm: DJHomeTabBarVM?
-    var navigator: LXNavigator = .default
+    var navigator: Navigator = .default
     // MARK: 🛠Life Cycle
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    init(vm: DJHomeTabBarVM?, navigator: LXNavigator) {
+    init(vm: DJHomeTabBarVM?, navigator: Navigator) {
         self.vm = vm
         self.navigator = navigator
         super.init(nibName: nil, bundle: nil)

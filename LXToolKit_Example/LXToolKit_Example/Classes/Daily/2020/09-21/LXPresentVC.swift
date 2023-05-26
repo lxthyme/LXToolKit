@@ -99,6 +99,16 @@ class LXPresentVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
+    // MARK: - 🍺UI Prepare & Masonryry
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+
+    override open func masonry() {
+        super.masonry()
+    }
 
 }
 
@@ -110,16 +120,3 @@ extension LXPresentVC {}
 
 // MARK: 🔐Private Actions
 private extension LXPresentVC {}
-
-// MARK: - 🍺UI Prepare & Masonryry
-extension LXPresentVC {
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

@@ -10,30 +10,36 @@ import UIKit
 
 // MARK: Colors
 
-extension UIColor {
+public extension UIColor {
 
     static func primary() -> UIColor {
-        return themeService.type.associatedObject.primary
+        // return themeService.type.associatedObject.primary
+        return UIColor.random
     }
 
     static func primaryDark() -> UIColor {
-        return themeService.type.associatedObject.primaryDark
+        // return themeService.type.associatedObject.primaryDark
+        return UIColor.random
     }
 
     static func secondary() -> UIColor {
-        return themeService.type.associatedObject.secondary
+        // return themeService.type.associatedObject.secondary
+        return UIColor.random
     }
 
     static func secondaryDark() -> UIColor {
-        return themeService.type.associatedObject.secondaryDark
+        // return themeService.type.associatedObject.secondaryDark
+        return UIColor.random
     }
 
     static func separator() -> UIColor {
-        return themeService.type.associatedObject.separator
+        // return themeService.type.associatedObject.separator
+        return UIColor.random
     }
 
     static func text() -> UIColor {
-        return themeService.type.associatedObject.text
+        // return themeService.type.associatedObject.text
+        return UIColor.random
     }
 }
 

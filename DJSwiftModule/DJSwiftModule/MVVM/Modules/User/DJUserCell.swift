@@ -5,6 +5,7 @@
 //  Created by lxthyme on 2023/3/27.
 //
 import UIKit
+import LXToolKit
 
 class DJUserCell: DJSearchDefaultCell {
     // MARK: 📌UI
@@ -40,16 +41,27 @@ class DJUserCell: DJSearchDefaultCell {
 
         // Configure the view for the selected state
     }
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.contentView.backgroundColor = .white
 
-}
+        containerStackView.insertArrangedSubview(followButton, at: 2)
+        // [<#table#>].forEach(self.contentView.addSubview)
 
-// MARK: 🌎LoadData
-extension DJUserCell {
-    override func bind(to vm: LXBaseTableViewCellVM) {
+        masonry()
+    }
+
+    override open func masonry() {
+        super.masonry()
+    }
+
+    // MARK: 🌎LoadData
+    override open func bind(to vm: LXBaseTableViewCellVM) {
         super.bind(to: vm)
-
+    
         guard let vm = vm as? DJUserCellVM else { return }
-
+    
         vm.hidesFollowButton.asDriver()
             .drive(followButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
@@ -73,20 +85,3 @@ extension DJUserCell {}
 
 // MARK: 🔐Private Actions
 private extension DJUserCell {}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension DJUserCell {
-    override func prepareUI() {
-        super.prepareUI()
-        // self.contentView.backgroundColor = .white
-
-        containerStackView.insertArrangedSubview(followButton, at: 2)
-        // [<#table#>].forEach(self.contentView.addSubview)
-
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

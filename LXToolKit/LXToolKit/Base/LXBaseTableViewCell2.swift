@@ -6,12 +6,12 @@
 //
 import UIKit
 
-open class LXBaseTableViewCell: UITableViewCell {
+open class LXBaseTableViewCell2: UITableViewCell {
     // MARK: 📌UI
     lazy var containerView: UIView = {
         let v = UIView()
         v.backgroundColor = .clear
-        v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        // v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
         return v
     }()
     lazy var containerStackView: UIStackView = {
@@ -21,7 +21,8 @@ open class LXBaseTableViewCell: UITableViewCell {
         return v
     }()
     // MARK: 🔗Vaiables
-    var inset: CGFloat = AppConfig.BaseDimensions.inset
+    // var inset: CGFloat = AppConfig.BaseDimensions.inset
+    // var inset: CGFloat = 6
     var isSelection = false
     var selectionColor: UIColor? {
         didSet {
@@ -51,37 +52,37 @@ open class LXBaseTableViewCell: UITableViewCell {
 }
 
 // MARK: 🌎LoadData
-public extension LXBaseTableViewCell {
+public extension LXBaseTableViewCell2 {
     @objc func bind(to vm: LXBaseTableViewCellVM) {}
 }
 
 // MARK: 👀Public Actions
-extension LXBaseTableViewCell {}
+extension LXBaseTableViewCell2 {}
 
 // MARK: 🔐Private Actions
-private extension LXBaseTableViewCell {}
+private extension LXBaseTableViewCell2 {}
 
 // MARK: - 🍺UI Prepare & Masonry
-public extension LXBaseTableViewCell {
+public extension LXBaseTableViewCell2 {
     @objc func prepareVM() {}
     @objc func prepareUI() {
         self.contentView.backgroundColor = .white
         selectionStyle = .none
         selectionColor = .clear
 
-        theme.selectionColor = themeService.attribute { $0.primary }
-        containerView.theme.backgroundColor = themeService.attribute { $0.primary }
+        // theme.selectionColor = themeService.attribute { $0.primary }
+        // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
 
         containerView.addSubview(containerStackView)
         self.contentView.addSubview(containerView)
     }
 
     @objc func masonry() {
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
-        }
-        containerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(self.inset / 2)
-        }
+        // containerView.snp.makeConstraints {
+        //     $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
+        // }
+        // containerStackView.snp.makeConstraints {
+        //     $0.edges.equalToSuperview().inset(self.inset / 2)
+        // }
     }
 }

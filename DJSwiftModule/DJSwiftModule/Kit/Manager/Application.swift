@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LXToolKit
 
 final public class Application: NSObject {
     @objc public static let shared = Application()

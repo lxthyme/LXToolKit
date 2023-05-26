@@ -40,7 +40,8 @@ extension LXSlideImageView {
         }
     }
     @discardableResult
-    override func presentFullScreenControllerForIos13(from vc: UIViewController) -> FullScreenSlideshowViewController {
+    // override
+    func presentFullScreenControllerForIos13(from vc: UIViewController) -> FullScreenSlideshowViewController {
         let fullscreen = FullScreenSlideshowViewController()
         fullscreen.pageSelected = {[weak self] page in
             self?.setCurrentPage(page, animated: false)
@@ -66,7 +67,7 @@ private extension LXSlideImageView {
         contentScaleMode = .scaleAspectFit
         contentMode = .scaleAspectFit
         backgroundColor = UIColor.Material.grey100
-        layer.borderWidth = AppConfig.BaseDimensions.borderWidth
+        // layer.borderWidth = AppConfig.BaseDimensions.borderWidth
         layer.borderColor = UIColor.white.cgColor
         slideshowInterval = 3
         hero.modifiers = [.arc]

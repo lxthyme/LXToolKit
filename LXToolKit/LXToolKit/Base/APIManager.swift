@@ -9,36 +9,36 @@
 import Foundation
 import Moya
 
-enum APIManager {
+public enum APIManager {
     case recommend
     case search(name: String)
 }
 
 // MARK: - 👀
 extension APIManager: TargetType {
-    var baseURL: URL {
+    public var baseURL: URL {
         return URL(string: "")!
     }
 
-    var path: String {
+    public var path: String {
         switch self {
             case .recommend: return ""
             case .search: return ""
         }
     }
 
-    var method: Moya.Method {
+    public var method: Moya.Method {
         switch self {
             case .recommend: return .get
             case .search: return .post
         }
     }
 
-    var sampleData: Data {
+    public var sampleData: Data {
         return "".data(using: .utf8)!
     }
 
-    var task: Task {
+    public var task: Task {
         switch self {
             case .recommend:
                 return .requestPlain
@@ -49,7 +49,7 @@ extension APIManager: TargetType {
         }
     }
 
-    var headers: [String : String]? {
+    public var headers: [String : String]? {
         return [
             "Content-Type":"application/json",
             "version":"1.0.0"

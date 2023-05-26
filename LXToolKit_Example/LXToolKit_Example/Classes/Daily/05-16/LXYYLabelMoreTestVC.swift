@@ -45,7 +45,25 @@ class LXYYLabelMoreTestVC: LXBaseVC {
         prepareUI()
         bindViewModel()
     }
-    override func bindViewModel() {
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.view.backgroundColor = <#.white#>;
+
+        prepareLabTitle()
+        [labTitle].forEach(self.view.addSubview)
+
+        masonry()
+    }
+    override open func masonry() {
+        super.masonry()
+        labTitle.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100);
+            $0.left.equalToSuperview().offset(16);
+            $0.right.equalToSuperview().offset(-16);
+        }
+    }
+    override open func bindViewModel() {
         super.bindViewModel()
         // guard let vm = viewModel as? LXYYLabelMoreTestVCVM else { return }
 
@@ -59,9 +77,9 @@ class LXYYLabelMoreTestVC: LXBaseVC {
         //     }
         //     .disposed(by: rx.disposeBag)
     }
-    // override func updateUI() {
-    //     super.updateUI()
-    // }
+    open override func updateUI() {
+        super.updateUI()
+    }
 }
 // MARK: 🌎LoadData
 extension LXYYLabelMoreTestVC {}
@@ -105,22 +123,5 @@ extension LXYYLabelMoreTestVC {
         labMore.sizeToFit()
         let truncationToken = NSAttributedString.yy_attachmentString(withContent: labMore, contentMode: .center, attachmentSize: labMore.frame.size, alignTo: font, alignment: .center)
         labTitle.truncationToken = truncationToken
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        // self.view.backgroundColor = <#.white#>;
-
-        prepareLabTitle()
-        [labTitle].forEach(self.view.addSubview)
-
-        masonry()
-    }
-    override func masonry() {
-        super.masonry()
-        labTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100);
-            $0.left.equalToSuperview().offset(16);
-            $0.right.equalToSuperview().offset(-16);
-        }
     }
 }

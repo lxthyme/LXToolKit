@@ -101,27 +101,35 @@ class LXLightedVC: LXBaseVC {
         prepareUI()
         prepareTable()
     }
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
 
+    override open func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
 extension LXLightedVC {
     /// 触摸事件
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
-
-    /// 按压事件
-    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
-    override func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
-    override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
-
-    /// 运动事件
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
-    override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
+    // override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+    // override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {}
+    // override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
+    // override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
+    //
+    // /// 按压事件
+    // override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
+    // override func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
+    // override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
+    // override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {}
+    //
+    // /// 运动事件
+    // override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
+    // override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
+    // override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {}
 }
 
 // MARK: Public Actions
@@ -137,14 +145,5 @@ extension LXLightedVC {
         dataSource.dataList = photos
         myView.table.dataSource = dataSource
         myView.table.delegate = dataSource
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
     }
 }

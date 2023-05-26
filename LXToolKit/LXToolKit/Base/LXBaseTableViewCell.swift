@@ -9,29 +9,30 @@ import UIKit
 @objc(LXBaseSwiftTableViewCell)
 open class LXBaseTableViewCell: UITableViewCell {
     // MARK: 📌UI
-    lazy var containerView: UIView = {
+    public lazy var containerView: UIView = {
         let v = UIView()
         v.backgroundColor = .clear
-        v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        // v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
         return v
     }()
-    lazy var containerStackView: UIStackView = {
+    public lazy var containerStackView: UIStackView = {
         let v = UIStackView()
         v.axis = .horizontal
         v.alignment = .center
         return v
     }()
     // MARK: 🔗Vaiables
-    var inset: CGFloat = AppConfig.BaseDimensions.inset
-    var isSelection = false
-    var selectionColor: UIColor? {
+    // var inset: CGFloat = AppConfig.BaseDimensions.inset
+    public var inset: CGFloat = 6
+    public var isSelection = false
+    public var selectionColor: UIColor? {
         didSet {
             setSelected(isSelected, animated: true)
         }
     }
     // MARK: 🛠Life Cycle
-    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    public required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         // prepareUI()
@@ -49,35 +50,21 @@ open class LXBaseTableViewCell: UITableViewCell {
         // Configure the view for the selected state
         backgroundColor = selected ? selectionColor : .clear
     }
-}
-
-// MARK: 🌎LoadData
-public extension LXBaseTableViewCell {
-    @objc func bind(to vm: LXBaseTableViewCellVM) {}
-}
-
-// MARK: 👀Public Actions
-extension LXBaseTableViewCell {}
-
-// MARK: 🔐Private Actions
-private extension LXBaseTableViewCell {}
-
-// MARK: - 🍺UI Prepare & Masonry
-public extension LXBaseTableViewCell {
-    @objc func prepareVM() {}
-    @objc func prepareUI() {
+    // MARK: - 🍺UI Prepare & Masonry
+    open func prepareVM() {}
+    open func prepareUI() {
         self.contentView.backgroundColor = .white
         selectionStyle = .none
         selectionColor = .clear
 
-        theme.selectionColor = themeService.attribute { $0.primary }
-        containerView.theme.backgroundColor = themeService.attribute { $0.primary }
+        // theme.selectionColor = themeService.attribute { $0.primary }
+        // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
 
         containerView.addSubview(containerStackView)
         self.contentView.addSubview(containerView)
     }
 
-    @objc func masonry() {
+    open func masonry() {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
         }
@@ -85,4 +72,12 @@ public extension LXBaseTableViewCell {
             $0.edges.equalToSuperview().inset(self.inset / 2)
         }
     }
+    // MARK: 🌎LoadData
+    open func bind(to vm: LXBaseTableViewCellVM) {}
 }
+
+// MARK: 👀Public Actions
+extension LXBaseTableViewCell {}
+
+// MARK: 🔐Private Actions
+private extension LXBaseTableViewCell {}

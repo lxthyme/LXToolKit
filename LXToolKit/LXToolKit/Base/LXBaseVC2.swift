@@ -8,42 +8,46 @@ import UIKit
 import Hero
 import SVProgressHUD
 import DZNEmptyDataSet
+import RswiftResources
+import RxSwift
+import RxRelay
+import Localize_Swift
 
-struct LXEmptyDataSet {
-    var title: String? = R.string.localizable.commonNoResults()// {
-    //     didSet {
-    //         titleAttributeString = nil
-    //     }
-    // }
-    var titleAttributeString: NSAttributedString? = NSAttributedString(string: R.string.localizable.commonNoResults())// {
-    //     didSet {
-    //         title = nil
-    //     }
-    // }
-    var description: String?// {
-    //     didSet {
-    //         descriptionAttributeString = nil
-    //     }
-    // }
-    var descriptionAttributeString: NSAttributedString?// {
-    //     didSet {
-    //         description = nil
-    //     }
-    // }
-    var image: UIImage? = R.image.image_no_result()
-    var imageTintColor = BehaviorRelay<UIColor?>(value: nil)
-    let btnTapAction = PublishSubject<Void>()
-    var backgroundColor: UIColor = .clear
-    var verticalOffset: CGFloat = -60
-    var allowScroll = true
-}
+// struct LXEmptyDataSet {
+//     var title: String? = R.string.localizable.commonNoResults()// {
+//     //     didSet {
+//     //         titleAttributeString = nil
+//     //     }
+//     // }
+//     var titleAttributeString: NSAttributedString? = NSAttributedString(string: R.string.localizable.commonNoResults())// {
+//     //     didSet {
+//     //         title = nil
+//     //     }
+//     // }
+//     var description: String?// {
+//     //     didSet {
+//     //         descriptionAttributeString = nil
+//     //     }
+//     // }
+//     var descriptionAttributeString: NSAttributedString?// {
+//     //     didSet {
+//     //         description = nil
+//     //     }
+//     // }
+//     var image: UIImage? = R.image.image_no_result()
+//     var imageTintColor = BehaviorRelay<UIColor?>(value: nil)
+//     let btnTapAction = PublishSubject<Void>()
+//     var backgroundColor: UIColor = .clear
+//     var verticalOffset: CGFloat = -60
+//     var allowScroll = true
+// }
 
 @objc(LXBaseVC_KitEx)
-open class LXBaseVC: UIViewController, LXNavigatable {
+open class LXBaseVC2: UIViewController, Navigatable {
     // MARK: 📌UI
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = R.string.localizable.commonSearch()
+        sb.placeholder = ""//R.string.localizable.commonSearch()
         sb.isTranslucent = false
         sb.searchBarStyle = .minimal
 
@@ -51,8 +55,8 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         // theme.barTintColor = themeService.attribute { $0.primaryDark }
 
         if let tf = sb.textField {
-            tf.theme.textColor = themeService.attribute { $0.text }
-            tf.theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
+            // tf.theme.textColor = themeService.attribute { $0.text }
+            // tf.theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
         }
         sb.rx.textDidBeginEditing.asObservable().subscribe(onNext: { [weak self] () in
             sb.setShowsCancelButton(true, animated: true)
@@ -77,7 +81,7 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         return item
     }()
     lazy var closeBarButton: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.icon_navigation_close(),
+        let item = UIBarButtonItem(image: nil,//R.image.icon_navigation_close(),
                                    style: .plain,
                                    target: self,
                                    action: nil)
@@ -93,7 +97,7 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         return stackView
     }()
     // MARK: 🔗Vaiables
-    var navigator: LXNavigator = .default
+    public var navigator: Navigator = .default
     var vm: LXBaseVM?
 
     let isLoading = BehaviorRelay(value: false)
@@ -128,7 +132,7 @@ open class LXBaseVC: UIViewController, LXNavigatable {
         logDebug("\(type(of: self)): Deinited")
         LXPrint.resourcesCount()
     }
-    public convenience init(vm: LXBaseVM?, navigator: LXNavigator) {
+    public convenience init(vm: LXBaseVM?, navigator: Navigator) {
         self.init(nibName: nil, bundle: nil)
         self.navigator = navigator
         self.vm = vm
@@ -170,7 +174,7 @@ open class LXBaseVC: UIViewController, LXNavigatable {
     func updateUI() {}
 }
 
-public extension LXBaseVC {
+public extension LXBaseVC2 {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             motionShakeEvent.onNext(())
@@ -179,7 +183,7 @@ public extension LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-public extension LXBaseVC {
+public extension LXBaseVC2 {
     @objc func bindViewModel() {
         vm?.loading.asObservable()
             .bind(to: isLoading)
@@ -188,7 +192,7 @@ public extension LXBaseVC {
             .bind(to: error)
             .disposed(by: rx.disposeBag)
         languageChanged.subscribe(onNext: { [weak self] () in
-            self?.emptyDataSet.title = R.string.localizable.commonNoResults()
+            // self?.emptyDataSet.title = R.string.localizable.commonNoResults()
         })
             .disposed(by: rx.disposeBag)
 
@@ -200,7 +204,7 @@ public extension LXBaseVC {
 }
 
 // MARK: 👀Public Actions
-extension LXBaseVC {
+extension LXBaseVC2 {
     func startAnimating() {
         SVProgressHUD.show()
     }
@@ -210,7 +214,7 @@ extension LXBaseVC {
 }
 
 // MARK: 🔐Private Actions
-private extension LXBaseVC {
+private extension LXBaseVC2 {
     func adjustLeftBarButtonItem() {
         if self.navigationController?.viewControllers.count ?? 0 > 1 { // Pushed
             self.navigationItem.leftBarButtonItem = nil
@@ -221,7 +225,7 @@ private extension LXBaseVC {
 }
 
 // MARK: - 🔐Notification Action
-private extension LXBaseVC {
+private extension LXBaseVC2 {
     func orientationChanged() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.updateUI()
@@ -233,21 +237,21 @@ private extension LXBaseVC {
 }
 
 // MARK: - 👀Gesture Action
-private extension LXBaseVC {
+private extension LXBaseVC2 {
     @objc func handleOneFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized, canOpenFlex {
-            LibsManager.shared.showFlex()
+            // LibsManager.shared.showFlex()
         }
     }
     @objc func handleTwoFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized {
-            LibsManager.shared.showFlex()
+            // LibsManager.shared.showFlex()
             HeroDebugPlugin.isEnabled = !HeroDebugPlugin.isEnabled
         }
     }
 }
 // MARK: - ✈️DZNEmptyDataSetSource
-extension LXBaseVC: DZNEmptyDataSetSource {
+extension LXBaseVC2: DZNEmptyDataSetSource {
     public func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         if let attr = emptyDataSet.titleAttributeString {
             return attr
@@ -279,7 +283,7 @@ extension LXBaseVC: DZNEmptyDataSetSource {
 }
 
 // MARK: - ✈️DZNEmptyDataSetDelegate
-extension LXBaseVC: DZNEmptyDataSetDelegate {
+extension LXBaseVC2: DZNEmptyDataSetDelegate {
     public func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return !isLoading.value
     }
@@ -292,7 +296,7 @@ extension LXBaseVC: DZNEmptyDataSetDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXBaseVC {
+extension LXBaseVC2 {
     @objc func prepareNotification() {
         // Observe device orientation change
         NotificationCenter.default.rx
@@ -339,8 +343,8 @@ extension LXBaseVC {
         motionShakeEvent
             .subscribe(onNext: {[weak self] event in
                 // guard let `self` = self else { return }
-                let theme = themeService.type.toggled()
-                themeService.switch(theme)
+                // let theme = themeService.type.toggled()
+                // themeService.switch(theme)
                 dlog("🛠1. onNext: \(event)")
             })
             .disposed(by: rx.disposeBag)
@@ -357,10 +361,10 @@ extension LXBaseVC {
         hero.isEnabled = true
         navigationItem.backBarButtonItem = backBarButton
 
-        view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
-        backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
-        closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
-        theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
+        // view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
+        // backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
+        // closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
+        // theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
 
 
         self.view.addSubview(contentView)
@@ -377,9 +381,10 @@ extension LXBaseVC {
     }
 }
 
-extension LXBaseVC {
+extension LXBaseVC2 {
     var inset: CGFloat {
-        return AppConfig.BaseDimensions.inset
+        // return AppConfig.BaseDimensions.inset
+        return 6
     }
     func emptyView(withHeight height: CGFloat) -> UIView {
         let view = UIView()

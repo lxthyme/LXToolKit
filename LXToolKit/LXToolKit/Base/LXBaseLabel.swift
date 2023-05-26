@@ -10,7 +10,7 @@ import UIKit
 open class LXBaseLabel: UILabel {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    var textInsets = UIEdgeInsets.zero {
+    public var textInsets = UIEdgeInsets.zero {
         didSet { invalidateIntrinsicContentSize() }
     }
     // MARK: 🛠Life Cycle
@@ -38,22 +38,22 @@ extension LXBaseLabel {
         super.drawText(in: rect.inset(by: textInsets))
     }
 
-    var leftTextInset: CGFloat {
+    public var leftTextInset: CGFloat {
         get { return textInsets.left }
         set { textInsets.left = newValue }
     }
 
-    var rightTextInset: CGFloat {
+    public var rightTextInset: CGFloat {
         get { return textInsets.right }
         set { textInsets.right = newValue }
     }
 
-    var topTextInset: CGFloat {
+    public var topTextInset: CGFloat {
         get { return textInsets.top }
         set { textInsets.top = newValue }
     }
 
-    var bottomTextInset: CGFloat {
+    public var bottomTextInset: CGFloat {
         get { return textInsets.bottom }
         set { textInsets.bottom = newValue }
     }

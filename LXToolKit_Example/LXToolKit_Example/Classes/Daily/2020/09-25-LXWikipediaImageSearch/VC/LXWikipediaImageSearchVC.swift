@@ -222,7 +222,16 @@ class LXWikipediaImageSearchVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
@@ -233,16 +242,3 @@ extension LXWikipediaImageSearchVC {}
 
 // MARK: Private Actions
 private extension LXWikipediaImageSearchVC {}
-
-// MARK: - UI Prepare & Masonry
-extension LXWikipediaImageSearchVC {
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

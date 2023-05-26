@@ -70,7 +70,16 @@ class LXTransitionVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - UI Prepare & Masonry
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
@@ -218,18 +227,5 @@ extension LXTransitionVC: UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
-    }
-}
-
-// MARK: - UI Prepare & Masonry
-extension LXTransitionVC {
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
     }
 }

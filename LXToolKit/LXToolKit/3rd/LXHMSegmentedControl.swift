@@ -6,12 +6,14 @@
 //
 import UIKit
 import HMSegmentedControl
+import RxRelay
 
-class LXHMSegmentedControl: HMSegmentedControl {
+open class LXHMSegmentedControl: HMSegmentedControl {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    var inset: CGFloat = AppConfig.BaseDimensions.inset
-    let segmentSelection = BehaviorRelay<Int>(value: 0)
+    // var inset: CGFloat = AppConfig.BaseDimensions.inset
+    public var inset: CGFloat = 6
+    public let segmentSelection = BehaviorRelay<Int>(value: 0)
     // MARK: 🛠Life Cycle
 }
 
@@ -23,20 +25,20 @@ private extension LXHMSegmentedControl {}
 
 // MARK: - 🍺UI Prepare & Masonry
 extension LXHMSegmentedControl {
-    func prepareVM() {
-        themeService.typeStream.subscribe(onNext: { [weak self] (themeType) in
-            let theme = themeType.associatedObject
-            self?.backgroundColor = theme.primary
-            self?.selectionIndicatorColor = theme.secondary
-            let font = UIFont.systemFont(ofSize: 11)
-            self?.titleTextAttributes = [NSAttributedString.Key.font: font,
-                                         NSAttributedString.Key.foregroundColor: theme.text]
-            self?.selectedTitleTextAttributes = [NSAttributedString.Key.font: font,
-                                                 NSAttributedString.Key.foregroundColor: theme.secondary]
-            self?.setNeedsDisplay()
-        }).disposed(by: rx.disposeBag)
+    public func prepareVM() {
+        // themeService.typeStream.subscribe(onNext: { [weak self] (themeType) in
+        //     let theme = themeType.associatedObject
+        //     self?.backgroundColor = theme.primary
+        //     self?.selectionIndicatorColor = theme.secondary
+        //     let font = UIFont.systemFont(ofSize: 11)
+        //     self?.titleTextAttributes = [NSAttributedString.Key.font: font,
+        //                                  NSAttributedString.Key.foregroundColor: theme.text]
+        //     self?.selectedTitleTextAttributes = [NSAttributedString.Key.font: font,
+        //                                          NSAttributedString.Key.foregroundColor: theme.secondary]
+        //     self?.setNeedsDisplay()
+        // }).disposed(by: rx.disposeBag)
 
-        cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        // cornerRadius = AppConfig.BaseDimensions.cornerRadius
         imagePosition = .aboveText
         selectionStyle = .box
         selectionIndicatorLocation = .bottom
