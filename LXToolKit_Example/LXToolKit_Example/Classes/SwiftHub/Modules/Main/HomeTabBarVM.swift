@@ -20,7 +20,7 @@ class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
     let authorized: Bool
     let whatsNewManager: WhatsNewManager
 
-    init(authorized: Bool, provider: DJAllAPI) {
+    init(authorized: Bool, provider: DJAPI) {
         self.authorized = authorized
         self.whatsNewManager = WhatsNewManager.shared
         super.init(provider: provider)

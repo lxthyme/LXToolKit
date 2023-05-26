@@ -7,6 +7,7 @@
 
 import Foundation
 import WhatsNewKit
+import LXToolKit
 
 class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
     struct Input {
@@ -23,7 +24,7 @@ class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
     init(authorized: Bool, provider: DJAllAPI) {
         self.authorized = authorized
         self.whatsNewManager = WhatsNewManager.shared
-        super.init(provider: provider)
+        super.init(provider: provider as! LXToolKit.DJAPI)
     }
     func transform(input: Input) -> Output {
         let tabbarItems = Observable

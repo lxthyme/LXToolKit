@@ -93,36 +93,36 @@ private extension LXOffScreenVC {
 
 // MARK: - UI Prepare & Masonry
 extension LXOffScreenVC {
-    override func prepareUI() {
-        super.prepareUI()
-        self.edgesForExtendedLayout = []
-        self.automaticallyAdjustsScrollViewInsets = true
-        imgViewBG.snp.setLabel("imgViewBG")
-        imgViewBG1.snp.setLabel("imgViewBG1")
-        imgViewBG2.snp.setLabel("imgViewBG2")
-        [imgViewBG, imgViewBG1, imgViewBG2].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-//        imgViewBG.snp.makeConstraints {
-//            $0.edges.equalToSuperview().inset(inset)
-//        }
-        imgViewBG.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(inset)
-        }
-        imgViewBG1.snp.makeConstraints {
-            $0.top.equalTo(imgViewBG.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(imgViewBG)
-            $0.height.equalTo(imgViewBG)
-        }
-        imgViewBG2.snp.makeConstraints {
-            $0.top.equalTo(imgViewBG1.snp.bottom).offset(10)
-            $0.leading.trailing.equalTo(imgViewBG)
-            $0.bottom.equalToSuperview().offset(-10)
-            $0.height.equalTo(imgViewBG)
-        }
-    }
+//     override open func prepareUI() {
+//         super.prepareUI()
+//         self.edgesForExtendedLayout = []
+//         self.automaticallyAdjustsScrollViewInsets = true
+//         imgViewBG.snp.setLabel("imgViewBG")
+//         imgViewBG1.snp.setLabel("imgViewBG1")
+//         imgViewBG2.snp.setLabel("imgViewBG2")
+//         [imgViewBG, imgViewBG1, imgViewBG2].forEach(self.view.addSubview)
+//         masonry()
+//     }
+//
+//     override open func masonry() {
+//         super.masonry()
+//         let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+// //        imgViewBG.snp.makeConstraints {
+// //            $0.edges.equalToSuperview().inset(inset)
+// //        }
+//         imgViewBG.snp.makeConstraints {
+//             $0.top.leading.trailing.equalToSuperview().inset(inset)
+//         }
+//         imgViewBG1.snp.makeConstraints {
+//             $0.top.equalTo(imgViewBG.snp.bottom).offset(10)
+//             $0.leading.trailing.equalTo(imgViewBG)
+//             $0.height.equalTo(imgViewBG)
+//         }
+//         imgViewBG2.snp.makeConstraints {
+//             $0.top.equalTo(imgViewBG1.snp.bottom).offset(10)
+//             $0.leading.trailing.equalTo(imgViewBG)
+//             $0.bottom.equalToSuperview().offset(-10)
+//             $0.height.equalTo(imgViewBG)
+//         }
+//     }
 }

@@ -13,9 +13,9 @@ import HandyJSON
 
 import HandyJSON
 
-class LXBaseViewModel: NSObject {
-    let disposeBag = DisposeBag()
-    let provider = MoyaProvider<APIManager>(
+open class LXBaseViewModel: NSObject {
+    // let disposeBag = DisposeBag()
+    public let provider = MoyaProvider<APIManager>(
 //        endpointClosure: <#T##MoyaProvider<_>.EndpointClosure##MoyaProvider<_>.EndpointClosure##(_) -> Endpoint#>,
 //        requestClosure: <#T##MoyaProvider<_>.RequestClosure##MoyaProvider<_>.RequestClosure##(Endpoint, @escaping MoyaProvider<_>.RequestResultClosure) -> Void#>,
 //        stubClosure: <#T##MoyaProvider<_>.StubClosure##MoyaProvider<_>.StubClosure##(_) -> StubBehavior#>,

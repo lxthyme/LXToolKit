@@ -14,9 +14,9 @@ import RxTheme
 open class LXNavigationController: UINavigationController {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return globalStatusBarStyle.value
-    }
+    // open override var preferredStatusBarStyle: UIStatusBarStyle {
+    //     return globalStatusBarStyle.value
+    // }
     // MARK: 🛠Life Cycle
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,11 +63,11 @@ private extension LXNavigationController {
         hero.navigationAnimationType = .autoReverse(presenting: .slide(direction: .left))
 
         // navigationBar.isTranslucent = false
-        navigationBar.backIndicatorImage = R.image.icon_navigation_back()
-        navigationBar.backIndicatorTransitionMaskImage = R.image.icon_navigation_back()
+        // navigationBar.backIndicatorImage = R.image.icon_navigation_back()
+        // navigationBar.backIndicatorTransitionMaskImage = R.image.icon_navigation_back()
 
-        navigationBar.theme.tintColor = themeService.attribute { $0.secondary }
+        // navigationBar.theme.tintColor = themeService.attribute { $0.secondary }
         // navigationBar.theme.barTintColor = themeService.attribute { $0.primaryDark }
-        navigationBar.theme.titleTextAttributes = themeService.attribute { [NSAttributedString.Key.foregroundColor: $0.text] }
+        // navigationBar.theme.titleTextAttributes = themeService.attribute { [NSAttributedString.Key.foregroundColor: $0.text] }
     }
 }

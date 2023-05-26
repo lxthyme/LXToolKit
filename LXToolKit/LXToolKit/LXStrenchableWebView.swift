@@ -13,12 +13,12 @@ import WebKit
 private var observerContext = 0
 
 @objcMembers
-class LXStrenchableWebView: WKWebView {
+open class LXStrenchableWebView: WKWebView {
 
     // Keep track of height which will change when the view is loaded.
-    dynamic var webViewHeight: CGFloat = 0.0
+    public dynamic var webViewHeight: CGFloat = 0.0
 
-    init(frame: CGRect) {
+    public init(frame: CGRect) {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()
         config.preferences = preferences
@@ -26,11 +26,11 @@ class LXStrenchableWebView: WKWebView {
         super.init(frame: frame, configuration: config)
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
-    func setup() {
+    public func setup() {
         addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: &observerContext)
 
         scrollView.isScrollEnabled = false
@@ -39,7 +39,7 @@ class LXStrenchableWebView: WKWebView {
         scrollView.showsHorizontalScrollIndicator = false
     }
 
-    override var intrinsicContentSize: CGSize {
+    public override var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize
         size.height = webViewHeight
         return size
@@ -51,7 +51,7 @@ class LXStrenchableWebView: WKWebView {
 }
 
 extension LXStrenchableWebView {
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if context == &observerContext {
             if let _ = change?[.newKey] as? Double {
 

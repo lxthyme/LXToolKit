@@ -8,10 +8,10 @@
 import Foundation
 import HandyJSON
 
-class XLLBaseModel: NSObject, HandyJSON {
-    var code: Int?
-    var msg: String?
-    required override init() {}
+open class XLLBaseModel: NSObject, HandyJSON {
+    public var code: Int?
+    public var msg: String?
+    public required override init() {}
 
     // func mapping(mapper: HelpingMapper) {}
     // override var debugDescription: String { return "" }

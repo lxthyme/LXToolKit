@@ -10,7 +10,7 @@ import RxCocoa
 import ObjectMapper
 import Moya
 
-protocol LXViewModelType {
+public protocol LXViewModelType {
     associatedtype Input
     associatedtype Output
 
@@ -26,20 +26,21 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    let provider: DJAllAPI
-    var page = 1
 
-    let loading = ActivityIndicator()
-    let headerLoading = ActivityIndicator()
-    let footerLoading = ActivityIndicator()
+    public let provider: DJAPI
+    public var page = 1
 
-    let error = ErrorTracker()
-    let serverError = PublishSubject<Error>()
-    let parsedError = PublishSubject<ApiError>()
-    init(provider: DJAllAPI) {
+    public let loading = ActivityIndicator()
+    public let headerLoading = ActivityIndicator()
+    public let footerLoading = ActivityIndicator()
+
+    public let error = ErrorTracker()
+    public let serverError = PublishSubject<Error>()
+    public let parsedError = PublishSubject<ApiError>()
+    public init(provider: DJAPI) {
         self.provider = provider
         super.init()
-
+    
         prepareVM()
     }
 }
@@ -57,10 +58,10 @@ extension LXBaseVM {
             .map { error -> ApiError? in
                 do {
                     let errorResponse = error as? MoyaError
-                    if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
-                       let model = ErrorResponse.deserialize(from: body) {
-                        return ApiError.serverError(response: model)
-                    }
+                    // if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
+                    //    let model = ErrorResponse.deserialize(from: body) {
+                    //     return ApiError.serverError(response: model)
+                    // }
                 } catch {
                     print("error: \(error)")
                 }

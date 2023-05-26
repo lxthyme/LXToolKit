@@ -90,7 +90,7 @@ extension DJSearchVM: LXViewModelType {
                 let query = self.makeQuery()
                 let sort = sortRepositoryItem.sortValue
                 let order = sortRepositoryItem.orderValue
-                return self.provider.searchRepositories(query: query,
+                return (self.provider as! DJAllAPI).searchRepositories(query: query,
                                                         sort: sort,
                                                         order: order,
                                                         page: self.repositoriesPage,
@@ -124,7 +124,7 @@ extension DJSearchVM: LXViewModelType {
             let sort = self.sortRepositoryItem.value.sortValue
             let order = self.sortRepositoryItem.value.orderValue
             let endCursor = self.repositorySearchElements.value.endCursor
-            return self.provider.searchRepositories(query: query,
+            return (self.provider as! DJAllAPI).searchRepositories(query: query,
                                                     sort: sort,
                                                     order: order,
                                                     page: self.repositoriesPage,
@@ -157,7 +157,7 @@ extension DJSearchVM: LXViewModelType {
                 let query = self.makeQuery()
                 let sort = sortUserItem.sortValue
                 let order = sortUserItem.orderValue
-                return self.provider.searchUsers(query: query,
+                return (self.provider as! DJAllAPI).searchUsers(query: query,
                                                  sort: sort,
                                                  order: order,
                                                  page: self.usersPage,
@@ -190,7 +190,7 @@ extension DJSearchVM: LXViewModelType {
             let sort = self.sortUserItem.value.sortValue
             let order = self.sortUserItem.value.orderValue
             let endCursor = self.userSearchElements.value.endCursor
-            return self.provider.searchUsers(query: query,
+            return (self.provider as! DJAllAPI).searchUsers(query: query,
                                              sort: sort,
                                              order: order,
                                              page: self.usersPage,
@@ -221,7 +221,7 @@ extension DJSearchVM: LXViewModelType {
 
         Observable.just(())
             .flatMapLatest { () -> Observable<[LanguageModel]> in
-                return self.provider.languages()
+                return (self.provider as! DJAllAPI).languages()
                     .trackActivity(self.loading)
                     .trackError(self.error)
             }
@@ -251,7 +251,7 @@ extension DJSearchVM: LXViewModelType {
             .flatMapLatest { () -> Observable<RxSwift.Event<[TrendingRepositoryModel]>> in
                 let language = self.currentLanguage.value?.urlParam ?? ""
                 let since = trendingPeriodSegment.value.paramValue
-                return self.provider.trendingRepositories(language: language, since: since)
+                return (self.provider as! DJAllAPI).trendingRepositories(language: language, since: since)
                     .trackActivity(self.loading)
                     .trackActivity(self.headerLoading)
                     .trackError(self.error)
@@ -273,7 +273,7 @@ extension DJSearchVM: LXViewModelType {
                 }
                 let language = self.currentLanguage.value?.urlParam ?? ""
                 let since = trendingPeriodSegment.value.paramValue
-                return self.provider.trendingDevelopers(language: language, since: since)
+                return (self.provider as! DJAllAPI).trendingDevelopers(language: language, since: since)
                     .trackActivity(self.loading)
                     .trackActivity(self.headerLoading)
                     .trackError(self.error)
@@ -387,7 +387,7 @@ extension DJSearchVM: LXViewModelType {
         let languageSelection = input.languagesSelection
             .asDriver(onErrorJustReturn: ())
             .map { () -> DJLanguagesVM in
-                let vm = DJLanguagesVM(currentLanguage: self.currentLanguage.value, languages: languageElements.value, provider: self.provider)
+                let vm = DJLanguagesVM(currentLanguage: self.currentLanguage.value, languages: languageElements.value, provider: self.provider as! DJAllAPI)
                 vm.currentLanguage.skip(1)
                     .bind(to: self.currentLanguage)
                     .disposed(by: self.rx.disposeBag)

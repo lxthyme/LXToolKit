@@ -253,9 +253,9 @@ extension Reactive where Base: UITableView {
 }
 
 extension Reactive where Base: LXBaseTableViewCell {
-    var selectionColor: Binder<UIColor?> {
+    public var selectionColor: Binder<UIColor?> {
         return Binder(self.base) { view, attr in
-            view.selectionColor = attr
+            // view.selectionColor = attr
         }
     }
 }
@@ -263,7 +263,7 @@ extension Reactive where Base: LXBaseTableViewCell {
 extension Reactive where Base: LXBaseVC {
     var emptyDataSetImageTintColorBinder: Binder<UIColor?> {
         return Binder(self.base) { view, attr in
-            view.emptyDataSet.imageTintColor.accept(attr)
+            // view.emptyDataSet.imageTintColor.accept(attr)
         }
     }
 }
@@ -384,7 +384,7 @@ extension ThemeProxy where Base: UITextField {
 }
 
 extension ThemeProxy where Base: LXBaseTableViewCell {
-    var selectionColor: ThemeAttribute<UIColor?> {
+    public var selectionColor: ThemeAttribute<UIColor?> {
         get { fatalError("set only") }
         set {
             let disposable = newValue.stream

@@ -23,10 +23,10 @@ class LXSingleImageCell: LXBaseVMCollectionCell {
     // MARK: 🔗Vaiables
     var downloadableImage: Observable<DownloadableImage>? {
         didSet {
-            downloadableImage?
-                .asDriver(onErrorJustReturn: DownloadableImage.offlinePlaceholder)
-                .drive(imgView.rx.downloadableImageAnimated(.fade))
-                .disposed(by: self.disposeBag)
+            // downloadableImage?
+            //     .asDriver(onErrorJustReturn: DownloadableImage.offlinePlaceholder)
+            //     .drive(imgView.rx.downloadableImageAnimated(.fade))
+            //     .disposed(by: self.disposeBag)
         }
     }
     override init(frame: CGRect) {

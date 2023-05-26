@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class LXBaseMVVMCollectionCell: UICollectionViewCell {
     // MARK: 📌UI

@@ -103,7 +103,22 @@ class LXSongVC: LXBaseVC {
             .bindingInput()
             .aimingOutput()
     }
-
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = UIColor.white
+        self.title = "Song Record"
+    
+        [collectionView].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: 🌎LoadData
@@ -111,7 +126,7 @@ extension LXSongVC {}
 
 // MARK: 👀Public Actions
 extension LXSongVC {
-//    func 
+//    func
 }
 
 // MARK: 🔐Private Actions
@@ -251,24 +266,5 @@ extension LXSongVC: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 0)
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension LXSongVC {
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = UIColor.white
-        self.title = "Song Record"
-
-        [collectionView].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }

@@ -6,8 +6,9 @@
 //
 import UIKit
 // import RxSwift
+import LXToolKit
 
-public protocol DJAllAPI {
+public protocol DJAllAPI: LXToolKit.DJAPI {
     func downloadString(url: URL) -> Single<String>
     func searchRepositories(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<RepositorySearchModel>
     func searchUsers(query: String, sort: String, order: String, page: Int, endCursor: String?) -> Single<UserSearchModel>

@@ -161,7 +161,36 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
+    // MARK: - UI Prepare & Masonry
+    // @available(iOS 15.0, *)
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
 
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+        contentStackView.spacing = 5
+        [
+            segmentConfigurationStyle,
+            segmentButtonSize,
+            segmentCornerStyle,
+            segmentMacIdiomStyle,
+            segmentTitleAlignment,
+            segmentBaseForegroundColor,
+            segmentBaseBackgroundColor,
+            btnRender
+        ].forEach(self.contentStackView.addArrangedSubview)
+        self.view.addSubview(self.contentStackView)
+        masonry()
+    }
+
+    override open func masonry() {
+        super.masonry()
+        self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
+        self.contentStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
 }
 
 // MARK: LoadData
@@ -274,37 +303,4 @@ private extension LXiOS15ButtonTestVC {
     @objc func segmentBaseForegroundColorChanged(sender: UISegmentedControl) {}
     @objc func segmentBaseBackgroundColorChanged(sender: UISegmentedControl) {}
     @objc func btnRenderAction(sender: UIButton) {}
-}
-
-// MARK: - UI Prepare & Masonry
-@available(iOS 15.0, *)
-extension LXiOS15ButtonTestVC {
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-
-        contentStackView.axis = .vertical
-        contentStackView.alignment = .center
-        contentStackView.spacing = 5
-        [
-            segmentConfigurationStyle,
-            segmentButtonSize,
-            segmentCornerStyle,
-            segmentMacIdiomStyle,
-            segmentTitleAlignment,
-            segmentBaseForegroundColor,
-            segmentBaseBackgroundColor,
-            btnRender
-        ].forEach(self.contentStackView.addArrangedSubview)
-        self.view.addSubview(self.contentStackView)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
-        self.contentStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-    }
 }

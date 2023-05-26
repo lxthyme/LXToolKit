@@ -99,7 +99,16 @@ class LXTestVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - 🍺UI Prepare & Masonryry
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: 🌎LoadData
@@ -110,16 +119,3 @@ extension LXTestVC {}
 
 // MARK: 🔐Private Actions
 private extension LXTestVC {}
-
-// MARK: - 🍺UI Prepare & Masonryry
-extension LXTestVC {
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

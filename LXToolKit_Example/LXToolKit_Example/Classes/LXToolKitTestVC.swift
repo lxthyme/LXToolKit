@@ -7,7 +7,7 @@
 import UIKit
 import LXToolKit
 
-class DataSource: UITableViewDiffableDataSource<String, LXNavigator.Scene> {
+class DataSource: UITableViewDiffableDataSource<String, Navigator.Scene> {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.snapshot().sectionIdentifiers[section];
     }
@@ -56,8 +56,8 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     private var _dataSnapshot: Any?
     @available(iOS 13.0, *)
-    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> {
-        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXNavigator.Scene> {
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
+        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
             return ds
         }
         let staging = AppConfig.Network.useStaging
@@ -74,7 +74,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as DJAllAPI)
-        var snapshot = NSDiffableDataSourceSnapshot<String, LXNavigator.Scene>()
+        var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
         snapshot.appendSections(["2023", "2022", "2021", "2020"])
         snapshot.appendItems([
             .LXiOS15VC(viewModel: vm),
@@ -157,7 +157,37 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // testTask()
         // testTaskGroup()
     }
+    // MARK: - 🍺UI Prepare & Masonry
+    public override func prepareTableView() {
+        super.prepareTableView()
+        table.delegate = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        if #available(iOS 14.0, *) {
+            DispatchQueue.main.async {
+                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            // table.dataSource = self
+        }
+    }
+    open override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
 
+        [table].forEach(self.view.addSubview)
+
+        masonry()
+    }
+
+    open override func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
 }
 
 // MARK: 🌎LoadData
@@ -194,7 +224,7 @@ private extension LXToolKitTestVC {
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as! API)
-        let navigator = LXNavigator()
+        let navigator = Navigator.default
         navigator.show(segue: .LXiOS15VC(viewModel: vm), sender: self)
     }
     @objc func btnTestAction(sender: UIButton) {
@@ -504,46 +534,12 @@ extension LXToolKitTestVC: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if #available(iOS 14.0, *),
            let scene = dataSource.itemIdentifier(for: indexPath) {
-            let navigator = LXNavigator()
+            let navigator = Navigator.default
             navigator.show(segue: scene, sender: self)
         } else {
             // Fallback on earlier versions
             dlog("-->Error!")
         }
 
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension LXToolKitTestVC {
-    public override func prepareTableView() {
-        super.prepareTableView()
-        table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
-        if #available(iOS 14.0, *) {
-            DispatchQueue.main.async {
-                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
-            }
-        } else {
-            // Fallback on earlier versions
-            // table.dataSource = self
-        }
-    }
-    public override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-
-        [table].forEach(self.view.addSubview)
-
-        masonry()
-    }
-
-    public override func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }

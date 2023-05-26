@@ -84,12 +84,49 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
 
         // Configure the view for the selected state
     }
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareVM() {
+        super.prepareVM()
+        titleLabel.theme.textColor = themeService.attribute { $0.text }
+        detailLabel.theme.textColor = themeService.attribute { $0.textGray }
+        secondDetailLabel.theme.textColor = themeService.attribute { $0.text }
+        leftImageView.theme.tintColor = themeService.attribute { $0.secondary }
+        rightImageView.theme.tintColor = themeService.attribute { $0.secondary }
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.contentView.backgroundColor = .clear
 
-}
+        containerStackView.spacing = self.inset
+        [titleLabel, detailLabel, secondDetailLabel, self.attributedDetailLabel].forEach(textsStackView.addArrangedSubview)
+        [leftImageView, textsStackView, rightImageView].forEach(containerStackView.addArrangedSubview)
+        containerView.addSubview(containerStackView)
 
-// MARK: 🌎LoadData
-extension DJSearchDefaultCell {
-    override func bind(to vm: LXBaseTableViewCellVM) {
+        // masonry()
+
+        detailLabel.xl.setPriority(UILayoutPriority.defaultLow, for: NSLayoutConstraint.Axis.vertical)
+    }
+
+    override open func masonry() {
+        super.masonry()
+        containerStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: self.inset / 2, left: self.inset, bottom: self.inset / 2, right: self.inset))
+            $0.height.greaterThanOrEqualTo(AppConfig.BaseDimensions.tableRowHeight)
+        }
+        leftImageView.snp.makeConstraints({ (make) in
+            make.size.equalTo(50)
+        })
+        badgeImageView.snp.makeConstraints({ (make) in
+            make.bottom.left.equalTo(self.leftImageView)
+            make.size.equalTo(20)
+        })
+        rightImageView.snp.makeConstraints({ (make) in
+            make.width.equalTo(20)
+        })
+    }
+
+    // MARK: 🌎LoadData
+    override open func bind(to vm: LXBaseTableViewCellVM) {
         super.bind(to: vm)
         guard let vm = vm as? DJSearchDefaultCellVM  else { return }
 
@@ -136,46 +173,3 @@ extension DJSearchDefaultCell {}
 
 // MARK: 🔐Private Actions
 private extension DJSearchDefaultCell {}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension DJSearchDefaultCell {
-    override func prepareVM() {
-        super.prepareVM()
-        titleLabel.theme.textColor = themeService.attribute { $0.text }
-        detailLabel.theme.textColor = themeService.attribute { $0.textGray }
-        secondDetailLabel.theme.textColor = themeService.attribute { $0.text }
-        leftImageView.theme.tintColor = themeService.attribute { $0.secondary }
-        rightImageView.theme.tintColor = themeService.attribute { $0.secondary }
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        self.contentView.backgroundColor = .clear
-
-        containerStackView.spacing = self.inset
-        [titleLabel, detailLabel, secondDetailLabel, self.attributedDetailLabel].forEach(textsStackView.addArrangedSubview)
-        [leftImageView, textsStackView, rightImageView].forEach(containerStackView.addArrangedSubview)
-        containerView.addSubview(containerStackView)
-
-        // masonry()
-
-        detailLabel.setPriority(UILayoutPriority.defaultLow, for: NSLayoutConstraint.Axis.vertical)
-    }
-
-    override func masonry() {
-        super.masonry()
-        containerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: self.inset / 2, left: self.inset, bottom: self.inset / 2, right: self.inset))
-            $0.height.greaterThanOrEqualTo(AppConfig.BaseDimensions.tableRowHeight)
-        }
-        leftImageView.snp.makeConstraints({ (make) in
-            make.size.equalTo(50)
-        })
-        badgeImageView.snp.makeConstraints({ (make) in
-            make.bottom.left.equalTo(self.leftImageView)
-            make.size.equalTo(20)
-        })
-        rightImageView.snp.makeConstraints({ (make) in
-            make.width.equalTo(20)
-        })
-    }
-}

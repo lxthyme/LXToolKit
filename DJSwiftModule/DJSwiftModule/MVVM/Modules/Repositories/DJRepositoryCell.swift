@@ -5,6 +5,7 @@
 //  Created by lxthyme on 2023/3/27.
 //
 import UIKit
+import LXToolKit
 
 class DJRepositoryCell: DJSearchDefaultCell {
     // MARK: 📌UI
@@ -40,12 +41,22 @@ class DJRepositoryCell: DJSearchDefaultCell {
 
         // Configure the view for the selected state
     }
+    // MARK: - 🍺UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.contentView.backgroundColor = .white
 
-}
+        containerStackView.insertArrangedSubview(starButton, at: 2)
+        // [<#table#>].forEach(self.contentView.addSubview)
 
-// MARK: 🌎LoadData
-extension DJRepositoryCell {
-    override func bind(to vm: LXBaseTableViewCellVM) {
+        masonry()
+    }
+
+    override open func masonry() {
+        super.masonry()
+    }
+    // MARK: 🌎LoadData
+    override open func bind(to vm: LXBaseTableViewCellVM) {
         super.bind(to: vm)
         guard let vm = vm as? DJRepositoryCellVM else { return }
 
@@ -72,20 +83,3 @@ extension DJRepositoryCell {}
 
 // MARK: 🔐Private Actions
 private extension DJRepositoryCell {}
-
-// MARK: - 🍺UI Prepare & Masonry
-extension DJRepositoryCell {
-    override func prepareUI() {
-        super.prepareUI()
-        // self.contentView.backgroundColor = .white
-
-        containerStackView.insertArrangedSubview(starButton, at: 2)
-        // [<#table#>].forEach(self.contentView.addSubview)
-
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

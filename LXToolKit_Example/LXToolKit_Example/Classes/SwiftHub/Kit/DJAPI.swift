@@ -8,6 +8,7 @@ import UIKit
 // import RxSwift
 // import Moya
 // import SwifterSwift
+import LXToolKit
 
 protocol ProductApiType {
     var addXAuth: Bool { get }
@@ -18,7 +19,7 @@ private let assetDir: URL = {
     return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
 }()
 
-enum DJAPI {
+enum DJAPI: LXToolKit.DJAPI {
     case download(url: URL, fileName: String?)
     
     case searchRepositories(query: String, sort: String, order: String, page: Int)

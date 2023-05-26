@@ -12,6 +12,7 @@ import RxCocoa
 import RxTheme
 import RAMAnimatedTabBarController
 import KafkaRefresh
+import LXToolKit
 
 let globalStatusBarStyle = BehaviorRelay<UIStatusBarStyle>(value: .default)
 
@@ -263,7 +264,7 @@ extension Reactive where Base: LXBaseTableViewCell {
 extension Reactive where Base: LXBaseVC {
     var emptyDataSetImageTintColorBinder: Binder<UIColor?> {
         return Binder(self.base) { view, attr in
-            view.emptyDataSet.imageTintColor.accept(attr)
+            // view.emptyDataSet.imageTintColor.accept(attr)
         }
     }
 }

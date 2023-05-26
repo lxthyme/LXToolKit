@@ -32,7 +32,15 @@ class LXBaseCollectionViewVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        // masonry()
+    }
+    override open func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
@@ -73,14 +81,4 @@ private extension LXBaseCollectionViewVC {
         // cv.prefetchDataSource
         return cv
     }
-}
-
-// MARK: - UI Prepare & Masonry
-private extension LXBaseCollectionViewVC {
-    func prepareUI() {
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    func masonry() {}
 }

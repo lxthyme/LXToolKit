@@ -88,7 +88,17 @@ class LXRequiredVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-
+    // MARK: - UI Prepare & Masonry
+    override open func prepareUI() {
+        super.prepareUI()
+        myView.btnNext.backgroundColor = .red
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: LoadData
@@ -99,17 +109,3 @@ extension LXRequiredVC {}
 
 // MARK: Private Actions
 private extension LXRequiredVC {}
-
-// MARK: - UI Prepare & Masonry
-extension LXRequiredVC {
-    override func prepareUI() {
-        super.prepareUI()
-        myView.btnNext.backgroundColor = .red
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}

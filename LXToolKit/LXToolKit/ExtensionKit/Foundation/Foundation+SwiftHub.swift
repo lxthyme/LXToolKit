@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwifterSwift
 
 extension Int {
 
@@ -18,7 +19,7 @@ extension Int {
         return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .file)
     }
 
-    func kFormatted() -> String {
+    public func kFormatted() -> String {
         let sign = ((self < 0) ? "-" : "" )
         if self < 1000 {
             return "\(sign)\(self)"
@@ -38,6 +39,7 @@ extension StaticString {
     }
 
     func localizedFormat(_ arguments: CVarArg...) -> String {
-        return description.localizedFormat(arguments)
+        // return description.localizedFormat(arguments)
+        return ""
     }
 }

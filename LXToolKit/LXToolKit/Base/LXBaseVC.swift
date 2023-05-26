@@ -8,45 +8,47 @@ import UIKit
 import Hero
 import SVProgressHUD
 import DZNEmptyDataSet
+import RswiftResources
+import RxSwift
+import RxRelay
+import NSObject_Rx
+import Localize_Swift
 
-    deinit {
-        dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
-    }
-struct LXEmptyDataSet {
-    var title: String?// {
+public struct LXEmptyDataSet {
+    public var title: String?// = R.string.localizable.commonNoResults()// {
     //     didSet {
     //         titleAttributeString = nil
     //     }
     // }
-    var titleAttributeString: NSAttributedString? = NSAttributedString(string: R.string.localizable.commonNoResults())// {
+    public var titleAttributeString: NSAttributedString?// = NSAttributedString(string: R.string.localizable.commonNoResults())// {
     //     didSet {
     //         title = nil
     //     }
     // }
-    var description: String?// {
+    public var description: String?// {
     //     didSet {
     //         descriptionAttributeString = nil
     //     }
     // }
-    var descriptionAttributeString: NSAttributedString?// {
+    public var descriptionAttributeString: NSAttributedString?// {
     //     didSet {
     //         description = nil
     //     }
     // }
-    var image: UIImage? = R.image.image_no_result()
-    var imageTintColor = BehaviorRelay<UIColor?>(value: nil)
-    let btnTapAction = PublishSubject<Void>()
-    var backgroundColor: UIColor = .clear
-    var verticalOffset: CGFloat = -60
-    var allowScroll = true
+    public var image: UIImage?// = R.image.image_no_result()
+    public var imageTintColor = BehaviorRelay<UIColor?>(value: nil)
+    public let btnTapAction = PublishSubject<Void>()
+    public var backgroundColor: UIColor = .clear
+    public var verticalOffset: CGFloat = -60
+    public var allowScroll = true
 }
 
 @objc(LXBaseSwiftVC)
 open class LXBaseVC: UIViewController, Navigatable {
     // MARK: 📌UI
-    lazy var searchBar: UISearchBar = {
+    public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = R.string.localizable.commonSearch()
+        sb.placeholder = ""//R.string.localizable.commonSearch()
         sb.isTranslucent = false
         sb.searchBarStyle = .minimal
 
@@ -54,8 +56,8 @@ open class LXBaseVC: UIViewController, Navigatable {
         // theme.barTintColor = themeService.attribute { $0.primaryDark }
 
         if let tf = sb.textField {
-            tf.theme.textColor = themeService.attribute { $0.text }
-            tf.theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
+            // tf.theme.textColor = themeService.attribute { $0.text }
+            // tf.theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
         }
         sb.rx.textDidBeginEditing.asObservable().subscribe(onNext: { [weak self] () in
             sb.setShowsCancelButton(true, animated: true)
@@ -74,70 +76,75 @@ open class LXBaseVC: UIViewController, Navigatable {
         }).disposed(by: rx.disposeBag)
         return sb
     }()
-    lazy var backBarButton: UIBarButtonItem = {
+    public lazy var backBarButton: UIBarButtonItem = {
         let item = UIBarButtonItem()
         item.title = ""
         return item
     }()
-    lazy var closeBarButton: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.icon_navigation_close(),
+    public lazy var closeBarButton: UIBarButtonItem = {
+        let item = UIBarButtonItem(image: nil,//R.image.icon_navigation_close(),
                                    style: .plain,
                                    target: self,
                                    action: nil)
         return item
     }()
-    lazy var contentView: UIView = {
+    public lazy var contentView: UIView = {
         let view = UIView()
         return view
     }()
-    lazy var contentStackView: UIStackView = {
+    public lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [])
         stackView.spacing = 0
         return stackView
     }()
     // MARK: 🔗Vaiables
-    public var navigator: Navigator
-    var vm: LXBaseVM?
+    public var navigator: Navigator = .default
+    public var vm: LXBaseVM?
 
-    let isLoading = BehaviorRelay(value: false)
-    let error = PublishSubject<ApiError>()
+    public let isLoading = BehaviorRelay(value: false)
+    public let error = PublishSubject<ApiError>()
 
-    var automaticallyAdjustsLeftBarButtonItem = true
-    var canOpenFlex = true
+    public var automaticallyAdjustsLeftBarButtonItem = true
+    public var canOpenFlex = true
 
-    var navigationTitle: String = "" {
+    public var navigationTitle: String = "" {
         didSet {
             navigationItem.title = navigationTitle
         }
     }
 
-    let spaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    public let spaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
     // let emptySetButtonTap = PublishSubject<Void>()
     // var emptySetTitle = R.string.localizable.commonNoResults.key.localized()
     // var emptyDataSetDescription = ""
     // var emptyDataSetImage = R.image.image_no_result()
     // var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
-    var emptyDataSet = LXEmptyDataSet()
+    public var emptyDataSet = LXEmptyDataSet()
 
-    let languageChanged = BehaviorRelay<Void>(value: ())
+    public let languageChanged = BehaviorRelay<Void>(value: ())
 
-    let orientationEvent = PublishSubject<Void>()
-    let motionShakeEvent = PublishSubject<Void>()
+    public let orientationEvent = PublishSubject<Void>()
+    public let motionShakeEvent = PublishSubject<Void>()
 
 
     // MARK: 🛠Life Cycle
     deinit {
-        logDebug("\(type(of: self)): Deinited")
+        dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
         logResourcesCount()
     }
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    public init(vm: LXBaseVM?, navigator: Navigator) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    public convenience init(vm: LXBaseVM?, navigator: Navigator) {
+        self.init(nibName: nil, bundle: nil)
         self.navigator = navigator
         self.vm = vm
-        super.init(nibName: nil, bundle: nil)
+        // super.init(nibName: nil, bundle: nil)
+        // self.init(vm: <#T##LXBaseVM?#>, navigator: <#T##Navigator#>)
     }
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -173,20 +180,84 @@ open class LXBaseVC: UIViewController, Navigatable {
         // Dispose of any resources that can be recreated.
         logDebug("\(type(of: self)): Received Memory Warning")
     }
-    func updateUI() {}
-}
+    open func updateUI() {}
+    open func prepareNotification() {
+        NotificationCenter.default.rx
+            .notification(UIDevice.orientationDidChangeNotification)
+            .mapToVoid()
+            .bind(to: orientationEvent)
+            .disposed(by: rx.disposeBag)
+        NotificationCenter.default.rx
+            .notification(UIApplication.didBecomeActiveNotification)
+            .subscribe { [weak self] notification in
+                self?.didBecomeActive()
+            }
+            .disposed(by: rx.disposeBag)
+        NotificationCenter.default.rx
+            .notification(UIAccessibility.reduceMotionStatusDidChangeNotification)
+            .subscribe { notification in
+                print("Motion Status changed")
+            }
+            .disposed(by: rx.disposeBag)
+        NotificationCenter.default.rx
+            .notification(Notification.Name(LCLLanguageChangeNotification))
+            .subscribe { [weak self] notification in
+                self?.languageChanged.accept(())
+            }
+            .disposed(by: rx.disposeBag)
+        orientationEvent
+            .subscribe(onNext:  { [weak self] () in
+                self?.orientationChanged()
+            })
+            .disposed(by: rx.disposeBag)
+    }
+    open func prepareVM() {
+        closeBarButton.rx.tap.asObservable()
+            .subscribe(onNext:  { [weak self] () in
+                self?.navigator.dismiss(sender: self)
+            })
+            .disposed(by: rx.disposeBag)
 
-public extension LXBaseVC {
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            motionShakeEvent.onNext(())
+        motionShakeEvent
+            .subscribe(onNext: { () in
+                // let theme = themeService.type.toggled()
+                // themeService.switch(theme)
+            })
+            .disposed(by: rx.disposeBag)
+
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleOneFingerSwipe(swipeRecognizer:)))
+        swipeGesture.numberOfTouchesRequired = 1
+        self.view.addGestureRecognizer(swipeGesture)
+
+        let twoSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTwoFingerSwipe(swipeRecognizer:)))
+        twoSwipeGesture.numberOfTouchesRequired = 2
+        self.view.addGestureRecognizer(twoSwipeGesture)
+    }
+    open func prepareUI() {
+        self.view.backgroundColor = .white
+        hero.isEnabled = true
+        navigationItem.backBarButtonItem = backBarButton
+
+        // view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
+        // backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
+        // closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
+        // theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
+
+
+        self.view.addSubview(contentView)
+        self.contentView.addSubview(contentStackView)
+        updateUI()
+    }
+    open func masonry() {
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        contentStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
-}
-
-// MARK: 🌎LoadData
-public extension LXBaseVC {
-    @objc func bindViewModel() {
+    // MARK: 🌎LoadData
+    open func bindViewModel() {
         vm?.loading.asObservable()
             .bind(to: isLoading)
             .disposed(by: rx.disposeBag)
@@ -194,7 +265,7 @@ public extension LXBaseVC {
             .bind(to: error)
             .disposed(by: rx.disposeBag)
         languageChanged.subscribe(onNext: { [weak self] () in
-            self?.emptyDataSet.title = R.string.localizable.commonNoResults()
+            // self?.emptyDataSet.title = R.string.localizable.commonNoResults()
         })
             .disposed(by: rx.disposeBag)
 
@@ -202,6 +273,14 @@ public extension LXBaseVC {
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         })
             .disposed(by: rx.disposeBag)
+    }
+}
+
+public extension LXBaseVC {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            motionShakeEvent.onNext(())
+        }
     }
 }
 
@@ -238,12 +317,12 @@ private extension LXBaseVC {
     }
     @objc func handleOneFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized, canOpenFlex {
-            LibsManager.shared.showFlex()
+            // LibsManager.shared.showFlex()
         }
     }
     @objc func handleTwoFingerSwipe(swipeRecognizer: UISwipeGestureRecognizer) {
         if swipeRecognizer.state == .recognized {
-            LibsManager.shared.showFlex()
+            // LibsManager.shared.showFlex()
             HeroDebugPlugin.isEnabled = !HeroDebugPlugin.isEnabled
         }
     }
@@ -293,88 +372,10 @@ extension LXBaseVC: DZNEmptyDataSetDelegate {
     }
 }
 
-// MARK: - 🍺UI Prepare & Masonry
 extension LXBaseVC {
-    @objc func prepareNotification() {
-        NotificationCenter.default.rx
-            .notification(UIDevice.orientationDidChangeNotification)
-            .mapToVoid()
-            .bind(to: orientationEvent)
-            .disposed(by: rx.disposeBag)
-        NotificationCenter.default.rx
-            .notification(UIApplication.didBecomeActiveNotification)
-            .subscribe { [weak self] notification in
-                self?.didBecomeActive()
-            }
-            .disposed(by: rx.disposeBag)
-        NotificationCenter.default.rx
-            .notification(UIAccessibility.reduceMotionStatusDidChangeNotification)
-            .subscribe { notification in
-                print("Motion Status changed")
-            }
-            .disposed(by: rx.disposeBag)
-        NotificationCenter.default.rx
-            .notification(Notification.Name(LCLLanguageChangeNotification))
-            .subscribe { [weak self] notification in
-                self?.languageChanged.accept(())
-            }
-            .disposed(by: rx.disposeBag)
-        orientationEvent
-            .subscribe(onNext:  { [weak self] () in
-                self?.orientationChanged()
-            })
-            .disposed(by: rx.disposeBag)
-    }
-    @objc func prepareVM() {
-        closeBarButton.rx.tap.asObservable()
-            .subscribe(onNext:  { [weak self] () in
-                self?.navigator.dismiss(sender: self)
-            })
-            .disposed(by: rx.disposeBag)
-
-        motionShakeEvent
-            .subscribe(onNext: { () in
-                let theme = themeService.type.toggled()
-                themeService.switch(theme)
-            })
-            .disposed(by: rx.disposeBag)
-
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleOneFingerSwipe(swipeRecognizer:)))
-        swipeGesture.numberOfTouchesRequired = 1
-        self.view.addGestureRecognizer(swipeGesture)
-
-        let twoSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTwoFingerSwipe(swipeRecognizer:)))
-        twoSwipeGesture.numberOfTouchesRequired = 2
-        self.view.addGestureRecognizer(twoSwipeGesture)
-    }
-    @objc func prepareUI() {
-        self.view.backgroundColor = .white
-        hero.isEnabled = true
-        navigationItem.backBarButtonItem = backBarButton
-
-        view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
-        backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
-        closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
-        theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
-
-
-        self.view.addSubview(contentView)
-        self.contentView.addSubview(contentStackView)
-        updateUI()
-    }
-    @objc func masonry() {
-        contentView.snp.makeConstraints {
-            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
-        }
-        contentStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-}
-
-extension LXBaseVC {
-    var inset: CGFloat {
-        return AppConfig.BaseDimensions.inset
+    public var inset: CGFloat {
+        // return AppConfig.BaseDimensions.inset
+        return 6
     }
     func emptyView(withHeight height: CGFloat) -> UIView {
         let view = UIView()

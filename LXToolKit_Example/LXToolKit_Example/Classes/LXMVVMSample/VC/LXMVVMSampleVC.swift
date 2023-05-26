@@ -80,7 +80,15 @@ class LXMVVMSampleVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
 
+    open override func masonry() {
+        super.masonry()
+    }
 }
 
 // MARK: 🌎LoadData
@@ -91,16 +99,3 @@ extension LXMVVMSampleVC {}
 
 // MARK: 🔐Private Actions
 private extension LXMVVMSampleVC {}
-
-// MARK: - 🍺UI Prepare & Masonryry
-extension LXMVVMSampleVC {
-    override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-    }
-}
