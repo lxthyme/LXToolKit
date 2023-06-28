@@ -1,5 +1,5 @@
 use_frameworks!
-
+# use_modular_headers!
 ENV['SWIFT_VERSION'] = '5'
 platform :ios, '13.0'
 install! 'cocoapods',
@@ -30,10 +30,10 @@ target 'DJTest' do
   # pod 'FirebaseCrashlytics'
   # pod 'ObjectMapper'
   pod 'R.swift', '~> 7.0'
-  pod 'DJObjcModule', :path => '../DJObjcModule'
+  # pod 'DJObjcModule', :path => '../DJObjcModule'
   pod 'DJSwiftModule', :path => '../DJSwiftModule'
-  pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
-  pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
+  # pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
+  # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
   pod 'DJRSwiftResource', :path => '../DJRSwiftResource'
 
   pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
@@ -45,7 +45,37 @@ target 'DJTest' do
   pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   pod 'FLEX', :configurations => ['Debug']
 
+  # RxNetworks
+  # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
+  # pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
+  # pod 'RxNetworks'
+
 end
+
+# static_frameworks = [
+#   # 'DJBusinessModuleSwift',
+#   'RxNetworks',
+#   # 'Toast-Swift', 'HandyJSON', 'Moya', 'RxSwift', 'Alamofire',
+#   # 'FirebaseCrashlytics',
+#   # 'FirebaseCore',
+#   # 'GoogleUtilities', 'PromisesObjC',
+#   # 'FirebaseCoreDiagnostics', 'GoogleDataTransport', 'nanopb',
+#   # 'FirebaseCoreInternal',
+#   # 'FirebaseInstallations',
+#   ]
+#   pre_install do |installer|
+#     installer.pod_targets.each do |pod|
+#       # 注意这里和上面的不同
+#       if !static_frameworks.include?(pod.name)
+#         def pod.static_framework?;
+#           true
+#         end
+#         def pod.build_type;
+#           Pod::BuildType.static_library
+#         end
+#       end
+#     end
+#   end
 
 post_install do |installer|
   installer.generated_projects.each do |project|

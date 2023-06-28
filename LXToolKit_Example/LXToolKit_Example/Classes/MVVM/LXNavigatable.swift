@@ -59,6 +59,7 @@ extension Navigator {
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         // case HomeViewController(viewModel: LXBaseVM)
         case LXWebVC(viewModel: LXBaseVM)
+        case RxNetworksTestVC
         case test(vm: LXBaseVM)
         case tabs(vm: DJHomeTabBarVM)
     }
@@ -157,6 +158,8 @@ extension Navigator {
             let splitVC = UISplitViewController()
             splitVC.viewControllers = [rootVC , detailVC]
             return splitVC
+        case .RxNetworksTestVC:
+            return RxNetworksTestVC()
         }
     }
 
@@ -274,6 +277,8 @@ extension Navigator.Scene {
             tmp = (title: "test", desc: "---")
         case .tabs:
             tmp = (title: "DJHomeTabBarVC", desc: "---")
+        case .RxNetworksTestVC:
+            tmp = (title: "RxNetworksTestVC", desc: "---")
         }
         return tmp
     }
