@@ -12,6 +12,7 @@ import UIKit
 // import Moya
 // import Toast_Swift
 import SnapKit
+import RxNetworks
 // import YYCache
 
 open class RxNetworksTestVC: UIViewController {
@@ -61,8 +62,8 @@ extension RxNetworksTestVC {}
 // MARK: 🔐Private Actions
 private extension RxNetworksTestVC {
     @objc func btnRxNetworks(sender: UIButton) {
-        // let vc = HomeViewController()
-        // self.navigationController?.pushViewController(vc, animated: true)
+        let vc = HomeViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
