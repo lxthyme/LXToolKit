@@ -9,7 +9,7 @@
 #import "LXStack1206VC.h"
 #import <Masonry/Masonry.h>
 
-#define kWPercentage(a) (SCREEN_WIDTH *((a)/375.00))
+#define kWPercentage(a) (SCREEN_WIDTH *((a)/SCREEN_WIDTH))
 #define SCREEN_WIDTH ([[UIScreen mainScreen]bounds].size.width)
 
 #define kVPadding kWPercentage(10.f)

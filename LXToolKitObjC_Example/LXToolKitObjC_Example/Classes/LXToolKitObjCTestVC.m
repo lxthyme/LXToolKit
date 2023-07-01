@@ -117,6 +117,11 @@
             @"LXWebViewTestVC",
             @"LXSwiftOCTestVC",
             @"DJSearchResultVC",
+            @"LXUpdateLayoutVC",
+            @"LXPopTestVC",
+            @"LXNumberFormatterVC",
+            @"LXScrollVC",
+            @"LXCollectionTestVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }
