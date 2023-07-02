@@ -84,8 +84,9 @@ open class LXToolKitTestVC: LXBaseTableVC {
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
             .LXWebViewTestVC(viewModel: vm),
             .LXYYLabelMoreTestVC(viewModel: vm),
-            .RxNetworksTestVC
-            // .HomeViewController(viewModel: vm)
+            .RxNetworksTestVC,
+            // .HomeViewController(viewModel: vm),
+            .LXHandyJSONTestVC
         ], toSection: "2022")
         snapshot.appendItems([
             .LXWebVC(viewModel: vm)

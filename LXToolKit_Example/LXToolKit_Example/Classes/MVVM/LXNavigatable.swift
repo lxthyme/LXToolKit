@@ -62,6 +62,8 @@ extension Navigator {
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
         case tabs(vm: DJHomeTabBarVM)
+        /// Daily
+        case LXHandyJSONTestVC
     }
 
     // enum Transition {
@@ -160,6 +162,8 @@ extension Navigator {
             return splitVC
         case .RxNetworksTestVC:
             return RxNetworksTestVC()
+        case .LXHandyJSONTestVC:
+            return LXHandyJSONTestVC()
         }
     }
 
@@ -279,6 +283,8 @@ extension Navigator.Scene {
             tmp = (title: "DJHomeTabBarVC", desc: "---")
         case .RxNetworksTestVC:
             tmp = (title: "RxNetworksTestVC", desc: "---")
+        case .LXHandyJSONTestVC:
+            tmp = (title: "float testing", desc: "---")
         }
         return tmp
     }
