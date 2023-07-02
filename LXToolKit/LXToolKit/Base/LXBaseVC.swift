@@ -133,8 +133,11 @@ open class LXBaseVC: UIViewController, Navigatable {
         dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
         logResourcesCount()
     }
+    // public required init?(coder: NSCoder) {
+    //     fatalError("init(coder:) has not been implemented")
+    // }
     public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
