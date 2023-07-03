@@ -9,6 +9,15 @@ import HandyJSON
 
 class LXHandyJSONTestVC: LXBaseVC {
     // MARK: 📌UI
+    private lazy var titleTextview: UITextView = {
+        let tv = UITextView()
+        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.textColor = .black
+        tv.backgroundColor = .white
+        tv.isEditable = true
+        tv.textAlignment = .left
+        return tv
+    }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +40,24 @@ class LXHandyJSONTestVC: LXBaseVC {
 
         testFloat()
     }
+    override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
 
+        [titleTextview].forEach(self.view.addSubview)
+
+        masonry()
+    }
+
+    override func masonry() {
+        super.masonry()
+        titleTextview.snp.makeConstraints {
+            $0.top.equalTo(self.view.snp_topMargin)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalTo(self.view.snp_bottomMargin)
+        }
+    }
 }
 
 // MARK: 🌎LoadData
@@ -64,19 +90,10 @@ private extension LXHandyJSONTestVC {
         dlog("json: \(json)")
         dlog("model: \(model.debugDescription)")
         dlog("sum: \(sum ?? 0)")
+        titleTextview.text = model.debugDescription
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
 // extension LXHandyJSONTestVC {
-//     func prepareUI() {
-//         self.view.backgroundColor = .white
-//         // self.title = "<#title#>"
-//
-//         // [<#table#>].forEach(self.view.addSubview)
-//
-//         masonry()
-//     }
-//
-//     func masonry() {}
 // }
