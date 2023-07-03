@@ -1,5 +1,5 @@
 //
-//  AnimatedLoadingAPI.swift
+//  SharedAPI.swift
 //  RxNetworks_Example
 //
 //  Created by Condy on 2023/4/15.
@@ -8,11 +8,11 @@
 
 import RxNetworks
 
-enum AnimatedLoadingAPI {
+enum SharedAPI {
     case loading(String)
 }
 
-extension AnimatedLoadingAPI: NetworkAPI {
+extension SharedAPI: NetworkAPI {
     
     var ip: APIHost {
         return NetworkConfig.baseURL
@@ -33,8 +33,8 @@ extension AnimatedLoadingAPI: NetworkAPI {
     }
     
     var plugins: APIPlugins {
-        let options = AnimatedLoadingPlugin.Options(text: "正在加载...", delay: 1.2, autoHide: false)
-        let loading = AnimatedLoadingPlugin(options: options)
-        return [loading]
+        let loading = NetworkLoadingPlugin.init()
+        let shared = NetworkSharedPlugin()
+        return [loading, shared]
     }
 }

@@ -40,7 +40,7 @@ open class LXAnyModel: NSObject, HandyJSON {
     // MARK: 🛠Life Cycle
     required public override init() {}
     open override var debugDescription: String {
-        return toJSONString(prettyPrint: true) ?? "NaN"
+        return toJSONString(prettyPrint: true) ?? "--NaN-"
     }
     // func mapping(mapper: HelpingMapper) {
     //     super.mapping(mapper: mapper)

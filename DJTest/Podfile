@@ -48,7 +48,7 @@ target 'DJTest' do
   # RxNetworks
   # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
   # pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
-  # pod 'RxNetworks'
+  pod 'RxNetworks', '~>0.4'
 
 end
 
