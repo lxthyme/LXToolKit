@@ -7,6 +7,7 @@
 #import "LXCollectionTestVC.h"
 
 #import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
 #import "MyCollectionCell.h"
 
 @interface LXCollectionTestVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
@@ -78,6 +79,18 @@
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareCollectionView {
     [self.collectionView registerClass:[MyCollectionCell class] forCellWithReuseIdentifier:MyCollectionCell.xl_identifier];
+
+    WEAKSELF(self)
+    // self.collectionView.mj_header.ignoredScrollViewContentInsetTop = 100;
+    self.collectionView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        //dispatch_after
+        double delayInSeconds = 2.0f;
+        dispatch_time_t delayInNanoSeconds = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(delayInNanoSeconds, dispatch_get_global_queue(0, 0), ^{
+            [weakSelf.collectionView.mj_header endRefreshing];
+        });
+    }];
 }
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
