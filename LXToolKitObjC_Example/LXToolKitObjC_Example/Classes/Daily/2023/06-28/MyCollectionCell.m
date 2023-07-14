@@ -58,15 +58,17 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.wrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.centerX.equalTo(@0.f);
-        make.width.equalTo(@(SCREEN_WIDTH - kWPercentage(12.f * 2)));
+        // make.top.bottom.centerX.equalTo(@0.f);
+        // make.width.equalTo(@(SCREEN_WIDTH - kWPercentage(12.f * 2)));
+        make.edges.equalTo(@0.f);
+        make.height.equalTo(@50.f);
     }];
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(kWPercentage(15.f)));
         make.left.equalTo(@(kWPercentage(10.f)));
         make.right.equalTo(@(kWPercentage(-10.f)));
         make.bottom.equalTo(@(kWPercentage(-15.f)));
-        make.height.equalTo(@50.f);
+        // make.height.equalTo(@50.f);
     }];
 }
 

@@ -104,7 +104,9 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+        make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(100.f);
+        make.left.right.equalTo(@0.f);
+        make.height.equalTo(@50.f);
     }];
 }
 
@@ -127,7 +129,7 @@
         CGRect collectFrame = CGRectZero;
         CGSize itemSize = CGSizeZero;
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.estimatedItemSize = CGSizeMake(SCREEN_WIDTH - kWPercentage(12.f * 2), 340.f);
+        flowLayout.estimatedItemSize = CGSizeMake(40, 50.f);
         // flowLayout.itemSize = CGSizeZero;
         flowLayout.minimumLineSpacing = 0.f;
         flowLayout.minimumInteritemSpacing = 0.f;
