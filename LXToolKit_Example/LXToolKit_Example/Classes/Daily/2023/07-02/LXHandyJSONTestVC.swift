@@ -14,7 +14,7 @@ class LXHandyJSONTestVC: LXBaseVC {
         tv.font = UIFont.systemFont(ofSize: 14)
         tv.textColor = .black
         tv.backgroundColor = .white
-        tv.isEditable = true
+        tv.isEditable = false
         tv.textAlignment = .left
         return tv
     }()
@@ -68,6 +68,17 @@ extension LXHandyJSONTestVC {}
 
 // MARK: 🔐Private Actions
 private extension LXHandyJSONTestVC {
+    func testOpionArg() {
+        optionArg(t1: 1, t2: 2)
+        optionArg(t1: 1, t2: 2, t3: 3)
+        optionArg(t1: 1, t2: 2, t4: 3)
+        optionArg(t1: 1, t2: 2, t5: 3)
+        optionArg(t1: 1, t2: 2, t3: 3, t4: 4)
+        optionArg(t1: 1, t2: 2, t3: 3, t5: 4)
+        optionArg(t1: 1, t2: 2, t4: 3, t5: 4)
+    }
+    func optionArg(t1: Int, t2: Int, t3: Int = 1, t4: Int = 1, t5: Int = 1) {
+    }
     func testFloat() {
         /**
          .01, .02, .03, .04, .05, .06, .07, .08, .09,
@@ -78,18 +89,19 @@ private extension LXHandyJSONTestVC {
          .60, .61, .62, .63, .64, .65, .66, .67, .68, .69,
          .70, .71, .72, .73, .74, .75, .76, .77, .78, .79,
          .80, .81, .82, .83, .84, .85, .86, .87, .88, .89,
-         .91, .90, .93, .92, .95, .94, .97, .96, .99, .98,,
+         .91, .90, .93, .92, .95, .94, .97, .96, .99, .98,
          .100, .101, .102, .103, .104, .105, .106, .107, .108, .109
          */
-        let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { Float($0) }
-        let json: [String: [Float]] = [
+        let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { $0 }
+        let json: [String: [Double]] = [
             "f1": testNumberList
         ]
         guard let model = LXFloatTestModel.deserialize(from: json) else { return }
-        let sum = model.f1?.prefix(3).reduce(0, +)
+        // let sum = model.f1?.prefix(3).reduce(0, +)
         dlog("json: \(json)")
         dlog("model: \(model.debugDescription)")
-        dlog("sum: \(sum ?? 0)")
+        dlog("model: \(model.toJSONString(prettyPrint: true) ?? "")")
+        // dlog("sum: \(sum ?? 0)")
         titleTextview.text = model.debugDescription
     }
 }

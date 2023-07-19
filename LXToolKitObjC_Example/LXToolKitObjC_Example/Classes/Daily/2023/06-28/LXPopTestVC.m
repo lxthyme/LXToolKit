@@ -16,6 +16,8 @@
 }
 @property(nonatomic, strong)UIView *topView;
 @property(nonatomic, strong)UIView *bottomView;
+@property(nonatomic, strong)UILabel *labLine1;
+@property(nonatomic, strong)UILabel *labLine2;
 
 @end
 
@@ -125,6 +127,8 @@
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
 
+    [self.view addSubview:self.labLine1];
+    [self.view addSubview:self.labLine2];
     [self.view addSubview:self.topView];
     [self.view addSubview:self.bottomView];
 
@@ -141,6 +145,15 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(@0.f);
         make.width.height.equalTo(@200.f);
+    }];
+    [self.labLine1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@100.f);
+        make.centerX.equalTo(@0.f);
+        make.width.equalTo(@100.f);
+    }];
+    [self.labLine2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.labLine1.mas_bottom).offset(20.f);
+        make.left.width.equalTo(self.labLine1);
     }];
 }
 
@@ -160,6 +173,34 @@
         _bottomView = v;
     }
     return _bottomView;
+}
+- (UILabel *)labLine1 {
+    if(!_labLine1){
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"上海市第一医药商店连锁经营有限公司国货第一医药商店";
+        label.font = [UIFont systemFontOfSize:14.f];
+        label.textColor = [UIColor blackColor];
+        // label.backgroundColor = [UIColor <#cyanColor#>];
+        label.numberOfLines = 1;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.lineBreakMode = NSLineBreakByTruncatingTail;
+        _labLine1 = label;
+    }
+    return _labLine1;
+}
+- (UILabel *)labLine2 {
+    if(!_labLine2){
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"上海市第一医药商店连锁经营";
+        label.font = [UIFont systemFontOfSize:14.f];
+        label.textColor = [UIColor blackColor];
+        // label.backgroundColor = [UIColor <#cyanColor#>];
+        label.numberOfLines = 2;
+        label.textAlignment = NSTextAlignmentLeft;
+        label.lineBreakMode = NSLineBreakByTruncatingTail;
+        _labLine2 = label;
+    }
+    return _labLine2;
 }
 @end
 

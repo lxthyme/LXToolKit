@@ -42,9 +42,10 @@ open class LXAnyModel: NSObject, HandyJSON {
     open override var debugDescription: String {
         return toJSONString(prettyPrint: true) ?? "--NaN-"
     }
-    // func mapping(mapper: HelpingMapper) {
+    open func mapping(mapper: HelpingMapper) {
+    // public override func mapping(mapper: HelpingMapper) {
     //     super.mapping(mapper: mapper)
-    // }
+    }
     // override func didFinishMapping() {
     //     super.didFinishMapping()
     // }
@@ -79,7 +80,8 @@ open class LXBaseGenericModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
         super.init()
     }
 
-    public func mapping(mapper: HelpingMapper) {
+    public override func mapping(mapper: HelpingMapper) {
+        super.mapping(mapper: mapper)
         mapper >>> self.xl_origin_json
     }
 
