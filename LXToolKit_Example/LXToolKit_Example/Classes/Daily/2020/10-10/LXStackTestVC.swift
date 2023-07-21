@@ -8,16 +8,8 @@
 
 import UIKit
 
-class LXStackTestVC: UIViewController {
+class LXStackTestVC: LXBaseVC {
     // MARK: 📌UI
-    @IBOutlet weak var tableView: UITableView!
-    private lazy var contentStackView: UIStackView = {
-        let v = UIStackView()
-        v.axis = .vertical
-        v.alignment = .fill
-        v.backgroundColor = .red
-        return v
-    }()
     private lazy var table: UITableView = {
         let t = UITableView(frame: .zero, style: .plain)
         t.rowHeight = UITableView.automaticDimension
@@ -54,47 +46,46 @@ class LXStackTestVC: UIViewController {
 //        <#@objc func btnSigninAction(sender: UIButton) {}#>
         return btn
     }()
+    private lazy var labTitle1: UILabel = {
+        let lab = UILabel()
+        lab.text = "Title1"
+        lab.font = .systemFont(ofSize: 14)
+        lab.textColor = .black
+        lab.backgroundColor = .cyan
+        lab.numberOfLines = 1
+        lab.lineBreakMode = .byTruncatingTail
+        lab.textAlignment = .center
+        return lab
+    }()
+    private lazy var labTitle2: UILabel = {
+        let lab = UILabel()
+        lab.text = "Title2"
+        lab.font = .systemFont(ofSize: 14)
+        lab.textColor = .black
+        lab.backgroundColor = .cyan
+        lab.numberOfLines = 1
+        lab.lineBreakMode = .byTruncatingTail
+        lab.textAlignment = .center
+        return lab
+    }()
     lazy var dataList: [String] = {
         let ds = Array(repeating: "", count: 10)
         return ds
     }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .white
-//        prepareUI()
+        prepareUI()
+        prepareVM()
         self.navigationController?.navigationBar.barTintColor = .darkGray
         self.navigationController?.navigationBar.tintColor = .red
         self.navigationController?.navigationItem.title = "Location"
         self.title = "Location233"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -125,29 +116,66 @@ extension LXStackTestVC: UITableViewDelegate {
     }
 }
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXStackTestVC {
-    func prepareUI() {
+extension LXStackTestVC {
+    override func prepareVM() {
+        super.prepareVM()
+        var idx = 0
+        btnTitle.rx
+            .controlEvent(.touchUpInside)
+            .throttle(.microseconds(300), scheduler: MainScheduler.instance)
+            .subscribe { _ in
+                if idx % 4 == 0 {
+                    self.labTitle1.isHidden = true;
+                    self.labTitle2.isHidden = false;
+                } else if idx % 4 == 1 {
+                    self.labTitle1.isHidden = false;
+                    self.labTitle2.isHidden = true;
+                } else if idx % 4 == 2 {
+                    self.labTitle1.isHidden = true;
+                    self.labTitle2.isHidden = true;
+                } else if idx % 4 == 3 {
+                    self.labTitle1.isHidden = false;
+                    self.labTitle2.isHidden = false;
+                }
+                idx += 1
+            }
+            .disposed(by: rx.disposeBag)
+    }
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
+        contentStackView.backgroundColor = .red
+        contentStackView.spacing = 10
         // self.title = "<#title#>"
 
         [contentStackView].forEach(self.view.addSubview)
         btnTitle.frame = CGRect(x: 0, y: 0, width: 320, height: 60)
-        [table, btnTitle].forEach(contentStackView.addArrangedSubview)
+        [table, labTitle1, labTitle2, btnTitle].forEach(contentStackView.addArrangedSubview)
         masonry()
+        contentStackView.setCustomSpacing(20, after: labTitle1)
     }
 
-    func masonry() {
-        contentStackView.snp.makeConstraints {
-            $0.edges.equalTo(self.view)
-        }
-        table.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
-        }
+    override func masonry() {
+        super.masonry()
+        // contentStackView.snp.makeConstraints {
+        //     $0.top.equalTo(self.view.snp.topMargin)
+        //     $0.left.right.equalToSuperview()
+        //     $0.bottom.equalTo(self.view.snp.bottomMargin)
+        // }
+        // table.snp.makeConstraints {
+        //     $0.top.left.right.equalToSuperview()
+        // }
         btnTitle.snp.makeConstraints {
-            $0.top.equalTo(table.snp.bottom)
-            $0.left.right.equalTo(table)
-            $0.bottom.equalToSuperview()
+            // $0.top.equalTo(table.snp.bottom)
+            // $0.left.right.equalTo(table)
+            // $0.bottom.equalToSuperview()
             $0.height.equalTo(50)
+        }
+        labTitle1.snp.makeConstraints {
+            $0.height.equalTo(44)
+        }
+        labTitle2.snp.makeConstraints {
+            $0.height.equalTo(44)
         }
     }
 }

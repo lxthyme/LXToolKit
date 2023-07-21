@@ -77,6 +77,11 @@ open class LXToolKitTestVC: LXBaseTableVC {
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
         snapshot.appendSections(["2023", "2022", "2021", "2020"])
         snapshot.appendItems([
+            .LXStackTestVC
+        ], toSection: "2020")
+        // snapshot.appendItems([
+        // ], toSection: "2021")
+        snapshot.appendItems([
             .LXiOS15VC(viewModel: vm),
             .LXTable0120VC(viewModel: vm),
             .LXMasonryTestVCVC(viewModel: vm),
