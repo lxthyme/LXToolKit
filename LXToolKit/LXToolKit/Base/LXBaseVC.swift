@@ -51,10 +51,10 @@ open class LXBaseVC: UIViewController, Navigatable {
         sb.placeholder = ""//R.string.localizable.commonSearch()
         sb.isTranslucent = false
         sb.searchBarStyle = .minimal
-
+        
         // theme.tintColor = themeService.attribute { $0.secondary }
         // theme.barTintColor = themeService.attribute { $0.primaryDark }
-
+        
         if let tf = sb.textField {
             // tf.theme.textColor = themeService.attribute { $0.text }
             // tf.theme.keyboardAppearance = themeService.attribute { $0.keyboardAppearance }
@@ -62,15 +62,15 @@ open class LXBaseVC: UIViewController, Navigatable {
         sb.rx.textDidBeginEditing.asObservable().subscribe(onNext: { [weak self] () in
             sb.setShowsCancelButton(true, animated: true)
         }).disposed(by: rx.disposeBag)
-
+        
         sb.rx.textDidEndEditing.asObservable().subscribe(onNext: { [weak self] () in
             sb.setShowsCancelButton(false, animated: true)
         }).disposed(by: rx.disposeBag)
-
+        
         sb.rx.cancelButtonClicked.asObservable().subscribe(onNext: { [weak self] () in
             sb.resignFirstResponder()
         }).disposed(by: rx.disposeBag)
-
+        
         sb.rx.searchButtonClicked.asObservable().subscribe(onNext: { [weak self] () in
             sb.resignFirstResponder()
         }).disposed(by: rx.disposeBag)
@@ -101,34 +101,34 @@ open class LXBaseVC: UIViewController, Navigatable {
     // MARK: 🔗Vaiables
     public var navigator: Navigator = .default
     public var vm: LXBaseVM?
-
+    
     public let isLoading = BehaviorRelay(value: false)
     public let error = PublishSubject<ApiError>()
-
+    
     public var automaticallyAdjustsLeftBarButtonItem = true
     public var canOpenFlex = true
-
+    
     public var navigationTitle: String = "" {
         didSet {
             navigationItem.title = navigationTitle
         }
     }
-
+    
     public let spaceBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
+    
     // let emptySetButtonTap = PublishSubject<Void>()
     // var emptySetTitle = R.string.localizable.commonNoResults.key.localized()
     // var emptyDataSetDescription = ""
     // var emptyDataSetImage = R.image.image_no_result()
     // var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
     public var emptyDataSet = LXEmptyDataSet()
-
+    
     public let languageChanged = BehaviorRelay<Void>(value: ())
-
+    
     public let orientationEvent = PublishSubject<Void>()
     public let motionShakeEvent = PublishSubject<Void>()
-
-
+    
+    
     // MARK: 🛠Life Cycle
     deinit {
         dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
@@ -152,7 +152,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     }
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         if automaticallyAdjustsLeftBarButtonItem {
             adjustLeftBarButtonItem()
         }
@@ -160,7 +160,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         updateUI()
         logResourcesCount()
     }
@@ -172,7 +172,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         // prepareUI()
         // prepareNotification()
@@ -184,7 +184,6 @@ open class LXBaseVC: UIViewController, Navigatable {
         // Dispose of any resources that can be recreated.
         logDebug("\(type(of: self)): Received Memory Warning")
     }
-    open func updateUI() {}
 }
 
 public extension LXBaseVC {
@@ -207,12 +206,12 @@ extension LXBaseVC {
         languageChanged.subscribe(onNext: { [weak self] () in
             // self?.emptyDataSet.title = R.string.localizable.commonNoResults()
         })
-            .disposed(by: rx.disposeBag)
-
+        .disposed(by: rx.disposeBag)
+        
         isLoading.subscribe(onNext: { isLoading in
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         })
-            .disposed(by: rx.disposeBag)
+        .disposed(by: rx.disposeBag)
     }
 }
 
@@ -355,33 +354,34 @@ extension LXBaseVC {
                 self?.navigator.dismiss(sender: self)
             })
             .disposed(by: rx.disposeBag)
-
+        
         motionShakeEvent
             .subscribe(onNext: { () in
                 // let theme = themeService.type.toggled()
                 // themeService.switch(theme)
             })
             .disposed(by: rx.disposeBag)
-
+        
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleOneFingerSwipe(swipeRecognizer:)))
         swipeGesture.numberOfTouchesRequired = 1
         self.view.addGestureRecognizer(swipeGesture)
-
+        
         let twoSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTwoFingerSwipe(swipeRecognizer:)))
         twoSwipeGesture.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(twoSwipeGesture)
     }
+    @objc open func updateUI() {}
     @objc open func prepareUI() {
         self.view.backgroundColor = .white
         hero.isEnabled = true
         navigationItem.backBarButtonItem = backBarButton
-
+        
         // view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
         // backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
         // closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
         // theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
-
-
+        
+        
         self.view.addSubview(contentView)
         self.contentView.addSubview(contentStackView)
         updateUI()

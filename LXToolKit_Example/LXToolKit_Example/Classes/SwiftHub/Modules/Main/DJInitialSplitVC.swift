@@ -24,23 +24,10 @@ class DJInitialSplitVC: LXBaseTableVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
     }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareUI() {
-        self.view.backgroundColor = .white
-        emptyDataSet.title = R.string.localizable.initialNoResults()
-        table.headRefreshControl = nil
-        table.footRefreshControl = nil
-    
-        // [<#table#>].forEach(self.view.addSubview)
-    
-        masonry()
-    }
-    
-    override open func masonry() {}
 }
 
 // MARK: 🌎LoadData
@@ -53,3 +40,19 @@ extension DJInitialSplitVC {}
 
 // MARK: 🔐Private Actions
 private extension DJInitialSplitVC {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJInitialSplitVC {
+    override open func prepareUI() {
+        self.view.backgroundColor = .white
+        emptyDataSet.title = R.string.localizable.initialNoResults()
+        table.headRefreshControl = nil
+        table.footRefreshControl = nil
+        
+        // [<#table#>].forEach(self.view.addSubview)
+        
+        masonry()
+    }
+    
+    override open func masonry() {}
+}

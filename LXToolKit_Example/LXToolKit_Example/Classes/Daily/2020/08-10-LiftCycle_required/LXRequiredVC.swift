@@ -13,13 +13,13 @@ private class MyView: UIView {
     // MARK: UI
     lazy var btnNext: UIButton = {
         let btn = UIButton(type: .custom)
-
+        
         btn.setTitle("Next", for: .normal)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 4
-
+        
         btn.backgroundColor = .cyan
-
+        
         btn.addTarget(self, action: #selector(btnNextAction(sender:)), for: .touchUpInside)
         return btn
     }()
@@ -27,10 +27,10 @@ private class MyView: UIView {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         prepareUI()
     }
-
+    
 }
 
 // MARK: LoadData
@@ -48,10 +48,10 @@ private extension MyView {
 private extension MyView {
     func prepareUI() {
         self.backgroundColor = .white
-         [btnNext].forEach(self.addSubview)
+        [btnNext].forEach(self.addSubview)
         masonry()
     }
-
+    
     func masonry() {
         btnNext.snp.makeConstraints {
             $0.center.equalToSuperview()
@@ -84,20 +84,9 @@ class LXRequiredVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    // MARK: - UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        myView.btnNext.backgroundColor = .red
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-    
-    override open func masonry() {
-        super.masonry()
     }
 }
 
@@ -109,3 +98,17 @@ extension LXRequiredVC {}
 
 // MARK: Private Actions
 private extension LXRequiredVC {}
+
+// MARK: - UI Prepare & Masonry
+extension LXRequiredVC {
+    override open func prepareUI() {
+        super.prepareUI()
+        myView.btnNext.backgroundColor = .red
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
+}

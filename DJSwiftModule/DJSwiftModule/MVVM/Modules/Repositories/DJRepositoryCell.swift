@@ -25,7 +25,7 @@ class DJRepositoryCell: DJSearchDefaultCell {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         prepareUI()
         prepareVM()
     }
@@ -38,28 +38,17 @@ class DJRepositoryCell: DJSearchDefaultCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        // self.contentView.backgroundColor = .white
+}
 
-        containerStackView.insertArrangedSubview(starButton, at: 2)
-        // [<#table#>].forEach(self.contentView.addSubview)
-
-        masonry()
-    }
-
-    override open func masonry() {
-        super.masonry()
-    }
-    // MARK: 🌎LoadData
+// MARK: 🌎LoadData
+extension DJRepositoryCell {
     override open func bind(to vm: LXBaseTableViewCellVM) {
         super.bind(to: vm)
         guard let vm = vm as? DJRepositoryCellVM else { return }
-
+        
         vm.hidesStarButton.asDriver()
             .drive(starButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
@@ -83,3 +72,20 @@ extension DJRepositoryCell {}
 
 // MARK: 🔐Private Actions
 private extension DJRepositoryCell {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJRepositoryCell {
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.contentView.backgroundColor = .white
+        
+        containerStackView.insertArrangedSubview(starButton, at: 2)
+        // [<#table#>].forEach(self.contentView.addSubview)
+        
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
+}

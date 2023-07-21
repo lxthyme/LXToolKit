@@ -12,15 +12,15 @@ import CoreLocationUI
 import LXToolKit
 
 private enum IOS15FitType {
-case UISheetPresentationController
+    case UISheetPresentationController
 }
 
 // MARK: - 🔐iOS15FitType
 private extension IOS15FitType {
     func action() {
         switch self {
-            case .UISheetPresentationController:
-                break
+        case .UISheetPresentationController:
+            break
         }
     }
 }
@@ -78,37 +78,10 @@ class LXiOS15VC: LXBaseTableVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    override public func prepareTableView() {
-        super.prepareTableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.delegate = self
-        if #available(iOS 14.0, *) {
-            dataSource.apply(dataSnapshot, animatingDifferences: true)
-        } else {
-            // Fallback on earlier versions
-            table.dataSource = self
-        }
-    }
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-
-        [table].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    override open func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }
 
@@ -165,7 +138,7 @@ private extension LXiOS15VC {
         /// 2. paletteColors：多层渲染，设置不同风格
         let config2 = UIImage.SymbolConfiguration(paletteColors: [.systemRed, .systemGreen])
         let img2 = UIImage(systemName: "person.3.sequence.fill", withConfiguration: config2)
-
+        
         /// 新增了几个调整尺寸的方法
         // preparingThumbnail
         let img3 = UIImage(named: "sv.png")?.preparingThumbnail(of: CGSize(width: 200, height: 100))
@@ -234,9 +207,39 @@ extension LXiOS15VC: UITableViewDelegate {
         // var vc: UIViewController =
         // LXTable0120VC()
         if #available(iOS 15.0, *) {
-                // LXTable0120VC()
+            // LXTable0120VC()
             let vc = LXiOS15ButtonTestVC()
             self.navigationController?.showDetailViewController(vc, sender: nil)
+        }
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXiOS15VC {
+    override public func prepareTableView() {
+        super.prepareTableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.delegate = self
+        if #available(iOS 14.0, *) {
+            dataSource.apply(dataSnapshot, animatingDifferences: true)
+        } else {
+            // Fallback on earlier versions
+            table.dataSource = self
+        }
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
+        
+        [table].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

@@ -34,7 +34,7 @@ open class LXBaseTableViewCell: UITableViewCell {
     public required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         // prepareUI()
     }
     open override func awakeFromNib() {
@@ -46,34 +46,15 @@ open class LXBaseTableViewCell: UITableViewCell {
     }
     open override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
         backgroundColor = selected ? selectionColor : .clear
     }
-    // MARK: - 🍺UI Prepare & Masonry
-    open func prepareVM() {}
-    open func prepareUI() {
-        self.contentView.backgroundColor = .white
-        selectionStyle = .none
-        selectionColor = .clear
+}
 
-        // theme.selectionColor = themeService.attribute { $0.primary }
-        // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
-
-        containerView.addSubview(containerStackView)
-        self.contentView.addSubview(containerView)
-    }
-
-    open func masonry() {
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
-        }
-        containerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(self.inset / 2)
-        }
-    }
-    // MARK: 🌎LoadData
-    open func bind(to vm: LXBaseTableViewCellVM) {}
+// MARK: 🌎LoadData
+extension LXBaseTableViewCell {
+    @objc open func bind(to vm: LXBaseTableViewCellVM) {}
 }
 
 // MARK: 👀Public Actions
@@ -81,3 +62,28 @@ extension LXBaseTableViewCell {}
 
 // MARK: 🔐Private Actions
 private extension LXBaseTableViewCell {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXBaseTableViewCell {
+    @objc open func prepareVM() {}
+    @objc open func prepareUI() {
+        self.contentView.backgroundColor = .white
+        selectionStyle = .none
+        selectionColor = .clear
+        
+        // theme.selectionColor = themeService.attribute { $0.primary }
+        // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
+        
+        containerView.addSubview(containerStackView)
+        self.contentView.addSubview(containerView)
+    }
+    
+    @objc open func masonry() {
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
+        }
+        containerStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(self.inset / 2)
+        }
+    }
+}

@@ -17,7 +17,7 @@ import LXToolKit
 
 enum SearchTypeSegments: Int {
     case repositories, users
-
+    
     var title: String {
         switch self {
         case .repositories: return R.string.localizable.searchRepositoriesSegmentTitle()
@@ -28,7 +28,7 @@ enum SearchTypeSegments: Int {
 
 enum TrendingPeriodSegments: Int {
     case daily, weekly, montly
-
+    
     var title: String {
         switch self {
         case .daily: return R.string.localizable.searchDailySegmentTitle()
@@ -36,7 +36,7 @@ enum TrendingPeriodSegments: Int {
         case .montly: return R.string.localizable.searchMonthlySegmentTitle()
         }
     }
-
+    
     var paramValue: String {
         switch self {
         case .daily: return "daily"
@@ -48,7 +48,7 @@ enum TrendingPeriodSegments: Int {
 
 enum SearchModeSegments: Int {
     case trending, search
-
+    
     var title: String {
         switch self {
         case .trending: return R.string.localizable.searchTrendingSegmentTitle()
@@ -59,7 +59,7 @@ enum SearchModeSegments: Int {
 
 enum SortRepositoryItems: Int {
     case bestMatch, mostStars, fewestStars, mostForks, fewestForks, recentlyUpdated, lastRecentlyUpdated
-
+    
     var title: String {
         switch self {
         case .bestMatch: return R.string.localizable.searchSortRepositoriesBestMatchTitle()
@@ -71,7 +71,7 @@ enum SortRepositoryItems: Int {
         case .lastRecentlyUpdated: return R.string.localizable.searchSortRepositoriesLastRecentlyUpdatedTitle()
         }
     }
-
+    
     var sortValue: String {
         switch self {
         case .bestMatch: return ""
@@ -80,7 +80,7 @@ enum SortRepositoryItems: Int {
         case .recentlyUpdated, .lastRecentlyUpdated: return "updated"
         }
     }
-
+    
     var orderValue: String {
         switch self {
         case .bestMatch: return ""
@@ -88,7 +88,7 @@ enum SortRepositoryItems: Int {
         case .fewestStars, .fewestForks, .lastRecentlyUpdated: return "asc"
         }
     }
-
+    
     static func allItems() -> [String] {
         return (0...SortRepositoryItems.lastRecentlyUpdated.rawValue)
             .map { SortRepositoryItems(rawValue: $0)!.title }
@@ -97,7 +97,7 @@ enum SortRepositoryItems: Int {
 
 enum SortUserItems: Int {
     case bestMatch, mostFollowers, fewestFollowers, mostRecentlyJoined, leastRecentlyJoined, mostRepositories, fewestRepositories
-
+    
     var title: String {
         switch self {
         case .bestMatch: return R.string.localizable.searchSortUsersBestMatchTitle()
@@ -109,7 +109,7 @@ enum SortUserItems: Int {
         case .fewestRepositories: return R.string.localizable.searchSortUsersFewestRepositoriesTitle()
         }
     }
-
+    
     var sortValue: String {
         switch self {
         case .bestMatch: return ""
@@ -118,14 +118,14 @@ enum SortUserItems: Int {
         case .mostRepositories, .fewestRepositories: return "repositories"
         }
     }
-
+    
     var orderValue: String {
         switch self {
         case .bestMatch, .mostFollowers, .mostRecentlyJoined, .mostRepositories: return "desc"
         case .fewestFollowers, .leastRecentlyJoined, .fewestRepositories: return "asc"
         }
     }
-
+    
     static func allItems() -> [String] {
         return (0...SortUserItems.fewestRepositories.rawValue)
             .map { SortUserItems(rawValue: $0)!.title }
@@ -152,8 +152,8 @@ open class DJSearchVC: LXBaseTableVC {
             R.image.icon_cell_badge_user()!
         ]
         let v = LXHMSegmentedControl(sectionImages: images,
-                                   sectionSelectedImages: selectedImages,
-                                   titlesForSections: titles.map { $0.title })
+                                     sectionSelectedImages: selectedImages,
+                                     titlesForSections: titles.map { $0.title })
         v.selectedSegmentIndex = 0;
         v.prepareVM()
         v.snp.makeConstraints {
@@ -178,8 +178,8 @@ open class DJSearchVC: LXBaseTableVC {
         let selectedImages = [R.image.icon_cell_badge_trending()!,
                               R.image.icon_cell_badge_search()!]
         let v = LXHMSegmentedControl(sectionImages: images,
-                                   sectionSelectedImages: selectedImages,
-                                   titlesForSections: titles.map { $0.title })
+                                     sectionSelectedImages: selectedImages,
+                                     titlesForSections: titles.map { $0.title })
         v.selectedSegmentIndex = 0
         v.prepareVM()
         return v
@@ -236,114 +236,21 @@ open class DJSearchVC: LXBaseTableVC {
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
         prepareVM()
         bindViewModel()
     }
-    // MARK: - 🍺UI Prepare & Masonry
-        open override func prepareTableView() {
-            table.backgroundColor = .clear
-            table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingRepositoriesItem")
-            table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingUsersItem")
-            table.register(DJRepositoryCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.repositoriesItem")
-            table.register(DJUserCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.usersItem")
-        }
-        open override func prepareVM() {
-            languageChanged.subscribe(onNext: {[weak self] () in
-                self?.searchBar.placeholder = R.string.localizable.searchSearchBarPlaceholder()
-                let searchTypeSegments: [SearchTypeSegments] = [.repositories, .users]
-                let trendingPeriodSegments: [TrendingPeriodSegments] = [.daily, .weekly, .montly]
-                let searchModeSegments: [SearchModeSegments] = [.trending, .search]
-                self?.segmentedControl.sectionTitles = searchTypeSegments.map { $0.title }
-                self?.trendingPeriodSegmentedControl.sectionTitles = trendingPeriodSegments.map { $0.title }
-                self?.searchModeSegmentedControl.sectionTitles = searchModeSegments.map { $0.title }
-            })
-                .disposed(by: rx.disposeBag)
+}
 
-            labTotalCount.theme.textColor = themeService.attribute { $0.text }
-            labSort.theme.textColor = themeService.attribute { $0.text }
-
-            themeService.typeStream
-                .subscribe(onNext: {[weak self] themeType in
-                    let theme = themeType.associatedObject
-                    self?.dropDownSort.dimmedBackgroundColor = theme.primaryDark.withAlphaComponent(0.5)
-
-                    self?.segmentedControl.sectionImages = [
-                        R.image.icon_cell_badge_repository()?
-                            .tint(theme.textGray, blendMode: .normal)
-                            .withRoundedCorners(),
-                        R.image.icon_cell_badge_user()?
-                            .tint(theme.textGray, blendMode: .normal)
-                            .withRoundedCorners()
-                    ].compactMap { $0 }
-                    self?.segmentedControl.sectionSelectedImages = [
-                        R.image.icon_cell_badge_repository()?
-                            .tint(theme.secondary, blendMode: .normal)
-                            .withRoundedCorners(),
-                        R.image.icon_cell_badge_user()?
-                            .tint(theme.secondary, blendMode: .normal)
-                            .withRoundedCorners()
-                    ].compactMap { $0 }
-                    self?.searchModeSegmentedControl.sectionImages = [
-                        R.image.icon_cell_badge_trending()?
-                            .tint(theme.textGray, blendMode: .normal)
-                            .withRoundedCorners(),
-                        R.image.icon_cell_badge_search()?
-                            .tint(theme.textGray, blendMode: .normal)
-                            .withRoundedCorners()
-                    ].compactMap { $0 }
-                    self?.searchModeSegmentedControl.sectionSelectedImages = [
-                        R.image.icon_cell_badge_trending()?
-                            .tint(theme.secondary, blendMode: .normal).withRoundedCorners(),
-                        R.image.icon_cell_badge_search()?
-                            .tint(theme.secondary, blendMode: .normal).withRoundedCorners()
-                    ].compactMap { $0 }
-                })
-                .disposed(by: rx.disposeBag)
-        }
-        open override func prepareUI() {
-            super.prepareUI()
-            // self.view.backgroundColor = .white
-            navigationItem.titleView = segmentedControl
-            if #available(iOS 14.0, *) {
-                navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction(handler: {[weak self] action in
-                    UIApplication.shared.keyWindow?.rootViewController = Application.shared.previousRootVC;
-                }))
-            }
-            navigationItem.rightBarButtonItem = rightBarButton
-            contentStackView.axis = .vertical
-
-            trendingPeriodView.addSubview(trendingPeriodSegmentedControl)
-            searchModeView.addSubview(searchModeSegmentedControl)
-
-            [searchModeView, searchBar, trendingPeriodView, labelsStackView, table].forEach(self.contentStackView.addArrangedSubview)
-
-            masonry()
-        }
-
-        open override func masonry() {
-            super.masonry()
-            trendingPeriodSegmentedControl.snp.makeConstraints {
-                $0.left.right.equalToSuperview().inset(self.inset)
-                $0.top.bottom.equalToSuperview()
-                $0.height.equalTo(AppConfig.BaseDimensions.segmentedControlHeight)
-            }
-            searchModeSegmentedControl.snp.makeConstraints {
-                $0.edges.equalToSuperview().inset(self.inset)
-                $0.height.equalTo(AppConfig.BaseDimensions.segmentedControlHeight)
-            }
-            labelsStackView.snp.makeConstraints {
-                $0.height.equalTo(30)
-            }
-        }
-    // MARK: 🌎LoadData
+// MARK: 🌎LoadData
+extension DJSearchVC {
     open override func bindViewModel() {
         super.bindViewModel()
         guard let vm = vm as? DJSearchVM else { return }
-
+        
         let searchTypeSegmentSelected = segmentedControl.segmentSelection
             .map { SearchTypeSegments(rawValue: $0)! }
         let trendingPeriodSegmentSelected = trendingPeriodSegmentedControl.segmentSelection
@@ -354,7 +261,7 @@ open class DJSearchVC: LXBaseTableVC {
                                     headerRefreshTrigger,
                                     themeService.typeStream.mapToVoid())
             .merge()
-
+        
         let input = DJSearchVM.Input(headerRefresh: refresh,
                                      footerRefresh: footerRefreshTrigger,
                                      languageTrigger: languageChanged.asObservable(),
@@ -368,7 +275,7 @@ open class DJSearchVC: LXBaseTableVC {
                                      sortUserSelection: sortUserItem.asObservable(),
                                      selection: table.rx.modelSelected(SearchSectionItem.self).asDriver())
         let output = vm.transform(input: input)
-
+        
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell:{ dataSource, tableView, indexPath, item in
             switch item {
             case .trendingRepositoriesItem(let cellVM):
@@ -392,7 +299,7 @@ open class DJSearchVC: LXBaseTableVC {
             let section = dataSource[index]
             return section.title
         })
-
+        
         output.items.asObservable()
             .bind(to: table.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
@@ -416,7 +323,7 @@ open class DJSearchVC: LXBaseTableVC {
                 self?.searchBar.resignFirstResponder()
             })
             .disposed(by: rx.disposeBag)
-
+        
         output.hidesTrendingPeriodSegment
             .drive(trendingPeriodView.rx.isHidden)
             .disposed(by: rx.disposeBag)
@@ -432,32 +339,32 @@ open class DJSearchVC: LXBaseTableVC {
         output.hidesSortLabel
             .drive(labSort.rx.isHidden)
             .disposed(by: rx.disposeBag)
-
+        
         labSort.rx.tap()
             .subscribe(onNext: {[weak self] () in
                 self?.dropDownSort.show()
             })
             .disposed(by: rx.disposeBag)
-
+        
         output.sortItems
             .drive(onNext: {[weak self] list in
                 self?.dropDownSort.dataSource = list
                 self?.dropDownSort.reloadAllComponents()
             })
             .disposed(by: rx.disposeBag)
-
+        
         output.totalCountText
             .drive(labTotalCount.rx.text)
             .disposed(by: rx.disposeBag)
         output.sortText
             .drive(labSort.rx.text)
             .disposed(by: rx.disposeBag)
-
+        
         vm.searchMode.asDriver()
             .drive(onNext: {[weak self] searchMode in
                 guard let `self` = self else { return }
                 self.searchModeSegmentedControl.selectedSegmentIndex = UInt(searchMode.rawValue)
-
+                
                 switch searchMode {
                 case .trending:
                     self.table.footRefreshControl = nil
@@ -472,7 +379,7 @@ open class DJSearchVC: LXBaseTableVC {
                 }
             })
             .disposed(by: rx.disposeBag)
-
+        
     }
 }
 
@@ -481,3 +388,102 @@ extension DJSearchVC {}
 
 // MARK: 🔐Private Actions
 private extension DJSearchVC {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJSearchVC {
+    open override func prepareTableView() {
+        table.backgroundColor = .clear
+        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingRepositoriesItem")
+        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingUsersItem")
+        table.register(DJRepositoryCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.repositoriesItem")
+        table.register(DJUserCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.usersItem")
+    }
+    open override func prepareVM() {
+        languageChanged.subscribe(onNext: {[weak self] () in
+            self?.searchBar.placeholder = R.string.localizable.searchSearchBarPlaceholder()
+            let searchTypeSegments: [SearchTypeSegments] = [.repositories, .users]
+            let trendingPeriodSegments: [TrendingPeriodSegments] = [.daily, .weekly, .montly]
+            let searchModeSegments: [SearchModeSegments] = [.trending, .search]
+            self?.segmentedControl.sectionTitles = searchTypeSegments.map { $0.title }
+            self?.trendingPeriodSegmentedControl.sectionTitles = trendingPeriodSegments.map { $0.title }
+            self?.searchModeSegmentedControl.sectionTitles = searchModeSegments.map { $0.title }
+        })
+        .disposed(by: rx.disposeBag)
+        
+        labTotalCount.theme.textColor = themeService.attribute { $0.text }
+        labSort.theme.textColor = themeService.attribute { $0.text }
+        
+        themeService.typeStream
+            .subscribe(onNext: {[weak self] themeType in
+                let theme = themeType.associatedObject
+                self?.dropDownSort.dimmedBackgroundColor = theme.primaryDark.withAlphaComponent(0.5)
+                
+                self?.segmentedControl.sectionImages = [
+                    R.image.icon_cell_badge_repository()?
+                        .tint(theme.textGray, blendMode: .normal)
+                        .withRoundedCorners(),
+                    R.image.icon_cell_badge_user()?
+                        .tint(theme.textGray, blendMode: .normal)
+                        .withRoundedCorners()
+                ].compactMap { $0 }
+                self?.segmentedControl.sectionSelectedImages = [
+                    R.image.icon_cell_badge_repository()?
+                        .tint(theme.secondary, blendMode: .normal)
+                        .withRoundedCorners(),
+                    R.image.icon_cell_badge_user()?
+                        .tint(theme.secondary, blendMode: .normal)
+                        .withRoundedCorners()
+                ].compactMap { $0 }
+                self?.searchModeSegmentedControl.sectionImages = [
+                    R.image.icon_cell_badge_trending()?
+                        .tint(theme.textGray, blendMode: .normal)
+                        .withRoundedCorners(),
+                    R.image.icon_cell_badge_search()?
+                        .tint(theme.textGray, blendMode: .normal)
+                        .withRoundedCorners()
+                ].compactMap { $0 }
+                self?.searchModeSegmentedControl.sectionSelectedImages = [
+                    R.image.icon_cell_badge_trending()?
+                        .tint(theme.secondary, blendMode: .normal).withRoundedCorners(),
+                    R.image.icon_cell_badge_search()?
+                        .tint(theme.secondary, blendMode: .normal).withRoundedCorners()
+                ].compactMap { $0 }
+            })
+            .disposed(by: rx.disposeBag)
+    }
+    open override func prepareUI() {
+        super.prepareUI()
+        // self.view.backgroundColor = .white
+        navigationItem.titleView = segmentedControl
+        if #available(iOS 14.0, *) {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: UIAction(handler: {[weak self] action in
+                UIApplication.shared.keyWindow?.rootViewController = Application.shared.previousRootVC;
+            }))
+        }
+        navigationItem.rightBarButtonItem = rightBarButton
+        contentStackView.axis = .vertical
+        
+        trendingPeriodView.addSubview(trendingPeriodSegmentedControl)
+        searchModeView.addSubview(searchModeSegmentedControl)
+        
+        [searchModeView, searchBar, trendingPeriodView, labelsStackView, table].forEach(self.contentStackView.addArrangedSubview)
+        
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
+        trendingPeriodSegmentedControl.snp.makeConstraints {
+            $0.left.right.equalToSuperview().inset(self.inset)
+            $0.top.bottom.equalToSuperview()
+            $0.height.equalTo(AppConfig.BaseDimensions.segmentedControlHeight)
+        }
+        searchModeSegmentedControl.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(self.inset)
+            $0.height.equalTo(AppConfig.BaseDimensions.segmentedControlHeight)
+        }
+        labelsStackView.snp.makeConstraints {
+            $0.height.equalTo(30)
+        }
+    }
+}

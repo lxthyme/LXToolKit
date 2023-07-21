@@ -28,7 +28,7 @@ private class MyView: UIView {
     }()
     private lazy var searchBar: UISearchBar = {
         let v = UISearchBar()
-
+        
         return v
     }()
     private lazy var table: UITableView = {
@@ -39,15 +39,15 @@ private class MyView: UIView {
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0
         t.sectionFooterHeight = 0
-
+        
         t.backgroundColor = .white
         t.separatorStyle = .none
-
-//        t.delegate = self
-//        t.dataSource = self
-
+        
+        //        t.delegate = self
+        //        t.dataSource = self
+        
         t.register(LXWikipediaSearchCell.self, forCellReuseIdentifier: LXWikipediaSearchCell.xl.xl_identifier)
-
+        
         return t
     }()
     private lazy var contentStackView: UIStackView = {
@@ -69,15 +69,15 @@ private class MyView: UIView {
     convenience init(vc: LXWikipediaImageSearchVC) {
         self.init(frame: .zero)
         self.vc = vc
-
+        
         prepareUI()
-
+        
         prepareTableDataSource()
         prepareKeyboardDismissesOnScroll()
         prepareNavigateOnRowClick()
         prepareActivityIndicatorsShow()
     }
-
+    
 }
 
 // MARK: LoadData
@@ -95,41 +95,41 @@ private extension MyView {
     func prepareTableDataSource() {
         table.rowHeight = 194
         table.xl.hideEmptyCells()
-
+        
         let table = self.table
-
+        
         let api = DefaultWikipediaAPI.shared
         let result = searchBar.rx.text.orEmpty
             .asDriver()
-//            .throttle(.milliseconds(300))
+        //            .throttle(.milliseconds(300))
             .throttle(.seconds(1))
             .distinctUntilChanged()
             .flatMapLatest { query in
                 api.getSearchResults(query)
-//                    .retry(3)
+                //                    .retry(3)
                     .retryOnBecomesReachable([], reachabilityService: Dependencies.shared.reachabilityService)
                     .startWith([])
                     .asDriver(onErrorJustReturn: [])
-        }
-        .map { result in
-            result.map(LXSearchResultViewModel.init)
-        }
-
+            }
+            .map { result in
+                result.map(LXSearchResultViewModel.init)
+            }
+        
         result
             .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.xl.xl_identifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
                 cell.viewModel = vm
-        }
+            }
             .disposed(by: rx.disposeBag)
-
+        
         result
             .map { $0.count != 0 }
             .drive(self.labEmpty.rx.isHidden)
             .disposed(by: rx.disposeBag)
-
-//        result
-//            .map { $0.count <= 0 }
-//            .drive(self.table.rx.isHidden)
-//            .disposed(by: disposeBag)
+        
+        //        result
+        //            .map { $0.count <= 0 }
+        //            .drive(self.table.rx.isHidden)
+        //            .disposed(by: disposeBag)
     }
     func prepareKeyboardDismissesOnScroll() {
         table.rx.contentOffset
@@ -144,7 +144,7 @@ private extension MyView {
     }
     func prepareNavigateOnRowClick() {
         let wireframe = DefaultWireframe.shared
-
+        
         table.rx.modelSelected(LXSearchResultViewModel.self)
             .asDriver()
             .drive(onNext: { searchResult in
@@ -166,8 +166,8 @@ private extension MyView {
 private extension MyView {
     func prepareUI() {
         self.backgroundColor = .white
-//        table.snp.removeConstraints()
-//        toggleVCStatus(shouldShowEmpty: true)
+        //        table.snp.removeConstraints()
+        //        toggleVCStatus(shouldShowEmpty: true)
         [searchBar, table, labEmpty].forEach(contentStackView.addArrangedSubview)
         self.addSubview(contentStackView)
         masonry()
@@ -176,20 +176,20 @@ private extension MyView {
         contentStackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-//        searchBar.snp.remakeConstraints {
-//            $0.top.left.right.equalToSuperview()
-//        }
-//        table.snp.remakeConstraints {
-//            $0.top.equalTo(searchBar.snp.bottom)
-//            $0.left.right.bottom.equalToSuperview()
-//        }
-//        labEmpty.snp.remakeConstraints {
-//            $0.top.greaterThanOrEqualTo(searchBar.snp.bottom)
-//            $0.left.greaterThanOrEqualToSuperview().offset(32)
-//            $0.right.lessThanOrEqualToSuperview().offset(-32)
-//            $0.bottom.lessThanOrEqualToSuperview().offset(-64)
-//            $0.center.equalToSuperview()
-//        }
+        //        searchBar.snp.remakeConstraints {
+        //            $0.top.left.right.equalToSuperview()
+        //        }
+        //        table.snp.remakeConstraints {
+        //            $0.top.equalTo(searchBar.snp.bottom)
+        //            $0.left.right.bottom.equalToSuperview()
+        //        }
+        //        labEmpty.snp.remakeConstraints {
+        //            $0.top.greaterThanOrEqualTo(searchBar.snp.bottom)
+        //            $0.left.greaterThanOrEqualToSuperview().offset(32)
+        //            $0.right.lessThanOrEqualToSuperview().offset(-32)
+        //            $0.bottom.lessThanOrEqualToSuperview().offset(-64)
+        //            $0.center.equalToSuperview()
+        //        }
     }
 }
 
@@ -218,19 +218,9 @@ class LXWikipediaImageSearchVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    // MARK: - UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-    
-    override open func masonry() {
-        super.masonry()
     }
 }
 
@@ -242,3 +232,16 @@ extension LXWikipediaImageSearchVC {}
 
 // MARK: Private Actions
 private extension LXWikipediaImageSearchVC {}
+
+// MARK: - UI Prepare & Masonry
+extension LXWikipediaImageSearchVC {
+    override open func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
+}

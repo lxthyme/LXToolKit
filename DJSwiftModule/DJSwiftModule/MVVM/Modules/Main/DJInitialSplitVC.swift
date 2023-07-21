@@ -29,7 +29,22 @@ class DJInitialSplitVC: LXBaseTableVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
-    // MARK: - 🍺UI Prepare & Masonry
+
+}
+
+// MARK: 🌎LoadData
+extension DJInitialSplitVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension DJInitialSplitVC {}
+
+// MARK: 🔐Private Actions
+private extension DJInitialSplitVC {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJInitialSplitVC {
     override open func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white
@@ -45,14 +60,3 @@ class DJInitialSplitVC: LXBaseTableVC {
         super.masonry()
     }
 }
-
-// MARK: 🌎LoadData
-extension DJInitialSplitVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension DJInitialSplitVC {}
-
-// MARK: 🔐Private Actions
-private extension DJInitialSplitVC {}

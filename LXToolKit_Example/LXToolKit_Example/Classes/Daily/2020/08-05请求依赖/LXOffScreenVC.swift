@@ -23,7 +23,7 @@ class LXOffScreenVC: LXBaseVC {
     private lazy var imgViewBG1: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-//        iv.layer.masksToBounds = true
+        //        iv.layer.masksToBounds = true
         return iv
     }()
     private lazy var imgViewBG2: UIImageView = {
@@ -50,7 +50,7 @@ class LXOffScreenVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -58,7 +58,7 @@ class LXOffScreenVC: LXBaseVC {
         super.viewDidLayoutSubviews()
         testCornerRadius()
     }
-
+    
 }
 
 // MARK: LoadData
@@ -71,58 +71,58 @@ extension LXOffScreenVC {}
 private extension LXOffScreenVC {
     func testCornerRadius() {
         if let img = UIImage(named: "1")
-//            let img2 = img.xl_cornerRadius(cornerRadius: CGSize(width: 10, height: 20), roundingCorners: .allCorners, newSize: imgViewBG.frame.size)
-            {
-//            imgViewBG1.image = img2
-//                let layer = img.xl_corner(newSize: imgViewBG.frame.size)
-//                imgViewBG1.layer.addSublayer(layer)
-//                imgViewBG1.image = UIImage(named: "1")
-//                imgViewBG1.xl_cornerRadius(roundingCorners: .allCorners, cornerRadii: CGSize(width: 10, height: 20))
-//                let tmp = UIImage(named: "1")?.xl_imageByRoundCornerRadius(radius: 10, corner: .topLeft, borderWidth: 1, borderLineJoin: .bevel)
-//                imgViewBG1.backgroundColor = .cyan
-//                imgViewBG1.image = tmp
-                let tmp = UIImage(named: "1")?
-                    .sd_resizedImage(with: imgViewBG1.frame.size, scaleMode: .aspectFill)?
-                    .sd_roundedCornerImage(withRadius: 10, corners: .allCorners, borderWidth: 1, borderColor: nil)
-//                    .xl_resizeImage(with: imgViewBG1.frame.size, scaleMode: .aspectFill)?
-//                    .xl_imageByRoundCornerRadius(radius: 10, corner: .allCorners, borderWidth: 1, borderColor: nil, borderLineJoin: .bevel)
-                imgViewBG1.image = tmp
+        //            let img2 = img.xl_cornerRadius(cornerRadius: CGSize(width: 10, height: 20), roundingCorners: .allCorners, newSize: imgViewBG.frame.size)
+        {
+            //            imgViewBG1.image = img2
+            //                let layer = img.xl_corner(newSize: imgViewBG.frame.size)
+            //                imgViewBG1.layer.addSublayer(layer)
+            //                imgViewBG1.image = UIImage(named: "1")
+            //                imgViewBG1.xl_cornerRadius(roundingCorners: .allCorners, cornerRadii: CGSize(width: 10, height: 20))
+            //                let tmp = UIImage(named: "1")?.xl_imageByRoundCornerRadius(radius: 10, corner: .topLeft, borderWidth: 1, borderLineJoin: .bevel)
+            //                imgViewBG1.backgroundColor = .cyan
+            //                imgViewBG1.image = tmp
+            let tmp = UIImage(named: "1")?
+                .sd_resizedImage(with: imgViewBG1.frame.size, scaleMode: .aspectFill)?
+                .sd_roundedCornerImage(withRadius: 10, corners: .allCorners, borderWidth: 1, borderColor: nil)
+            //                    .xl_resizeImage(with: imgViewBG1.frame.size, scaleMode: .aspectFill)?
+            //                    .xl_imageByRoundCornerRadius(radius: 10, corner: .allCorners, borderWidth: 1, borderColor: nil, borderLineJoin: .bevel)
+            imgViewBG1.image = tmp
         }
     }
 }
 
 // MARK: - UI Prepare & Masonry
 extension LXOffScreenVC {
-//     override open func prepareUI() {
-//         super.prepareUI()
-//         self.edgesForExtendedLayout = []
-//         self.automaticallyAdjustsScrollViewInsets = true
-//         imgViewBG.snp.setLabel("imgViewBG")
-//         imgViewBG1.snp.setLabel("imgViewBG1")
-//         imgViewBG2.snp.setLabel("imgViewBG2")
-//         [imgViewBG, imgViewBG1, imgViewBG2].forEach(self.view.addSubview)
-//         masonry()
-//     }
-//
-//     override open func masonry() {
-//         super.masonry()
-//         let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-// //        imgViewBG.snp.makeConstraints {
-// //            $0.edges.equalToSuperview().inset(inset)
-// //        }
-//         imgViewBG.snp.makeConstraints {
-//             $0.top.leading.trailing.equalToSuperview().inset(inset)
-//         }
-//         imgViewBG1.snp.makeConstraints {
-//             $0.top.equalTo(imgViewBG.snp.bottom).offset(10)
-//             $0.leading.trailing.equalTo(imgViewBG)
-//             $0.height.equalTo(imgViewBG)
-//         }
-//         imgViewBG2.snp.makeConstraints {
-//             $0.top.equalTo(imgViewBG1.snp.bottom).offset(10)
-//             $0.leading.trailing.equalTo(imgViewBG)
-//             $0.bottom.equalToSuperview().offset(-10)
-//             $0.height.equalTo(imgViewBG)
-//         }
-//     }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.edgesForExtendedLayout = []
+        self.automaticallyAdjustsScrollViewInsets = true
+        imgViewBG.snp.setLabel("imgViewBG")
+        imgViewBG1.snp.setLabel("imgViewBG1")
+        imgViewBG2.snp.setLabel("imgViewBG2")
+        [imgViewBG, imgViewBG1, imgViewBG2].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        //        imgViewBG.snp.makeConstraints {
+        //            $0.edges.equalToSuperview().inset(inset)
+        //        }
+        imgViewBG.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview().inset(inset)
+        }
+        imgViewBG1.snp.makeConstraints {
+            $0.top.equalTo(imgViewBG.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(imgViewBG)
+            $0.height.equalTo(imgViewBG)
+        }
+        imgViewBG2.snp.makeConstraints {
+            $0.top.equalTo(imgViewBG1.snp.bottom).offset(10)
+            $0.leading.trailing.equalTo(imgViewBG)
+            $0.bottom.equalToSuperview().offset(-10)
+            $0.height.equalTo(imgViewBG)
+        }
+    }
 }

@@ -62,14 +62,14 @@ open class LXToolKitTestVC: LXBaseTableVC {
         }
         let staging = AppConfig.Network.useStaging
         let githubProvider = staging
-            ? GithubNetworking.stubbingNetworking()
-            : GithubNetworking.defaultNetworking()
+        ? GithubNetworking.stubbingNetworking()
+        : GithubNetworking.defaultNetworking()
         let trendingGithubProvider = staging
-            ? TrendingGithubNetworking.stubbingNetworking()
-            : TrendingGithubNetworking.defaultNetworking()
+        ? TrendingGithubNetworking.stubbingNetworking()
+        : TrendingGithubNetworking.defaultNetworking()
         let codetabsProvider = staging
-            ? CodetabsNetworking.stubbingNetworking()
-            : CodetabsNetworking.defaultNetworking()
+        ? CodetabsNetworking.stubbingNetworking()
+        : CodetabsNetworking.defaultNetworking()
         let provider = RestApi(githubProvider: githubProvider,
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
@@ -87,7 +87,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .LXMasonryTestVCVC(viewModel: vm),
             // .login(vm: LXLoginVM(with: provider)),
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
-            .LXWebViewTestVC(viewModel: vm),
+                .LXWebViewTestVC(viewModel: vm),
             .LXYYLabelMoreTestVC(viewModel: vm),
             .RxNetworksTestVC,
             // .HomeViewController(viewModel: vm),
@@ -107,36 +107,36 @@ open class LXToolKitTestVC: LXBaseTableVC {
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let vc =
-//            LXApiTestVC()
-//            LXMultiRequestTestVC()
-//            LXOffScreenVC()
-//            LXResolveIMPVC()
-//            LXRequiredVC()
-//            LXLightedVC()
-//            LXProxyTestVC()
-//            LXTestStringVC()
-//            LXPresentVC()
-//            LXTestVC()
-//            LXStackViewVC()
-//            LXWikipediaImageSearchVC()
-//            LXStackTestVC()
-//            LXImageTestVC()
-//            LXDaily1117VC()
-//            LXStackTestVC()
-//            LXStackMessageVC()
-//            LXMusicVC()
-//            LXSongVC()
-//            LX0114VC()
-//            LXPickerVC()
-//            LX0117VC()
-            // LXCubeVC()
-//            LXRx0225VC()
+        //            LXApiTestVC()
+        //            LXMultiRequestTestVC()
+        //            LXOffScreenVC()
+        //            LXResolveIMPVC()
+        //            LXRequiredVC()
+        //            LXLightedVC()
+        //            LXProxyTestVC()
+        //            LXTestStringVC()
+        //            LXPresentVC()
+        //            LXTestVC()
+        //            LXStackViewVC()
+        //            LXWikipediaImageSearchVC()
+        //            LXStackTestVC()
+        //            LXImageTestVC()
+        //            LXDaily1117VC()
+        //            LXStackTestVC()
+        //            LXStackMessageVC()
+        //            LXMusicVC()
+        //            LXSongVC()
+        //            LX0114VC()
+        //            LXPickerVC()
+        //            LX0117VC()
+        // LXCubeVC()
+        //            LXRx0225VC()
         // LXLoggerTestVC()
         // LXWebVC()
         UIViewController()
-
-       // self.navigationController?.pushViewController(vc, animated: true)
-//        self.present(testVC, animated: true, completion: nil)
+        
+        // self.navigationController?.pushViewController(vc, animated: true)
+        //        self.present(testVC, animated: true, completion: nil)
     }
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -146,54 +146,23 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
-
-//        let _ = LXBaseVC()
+        
+        //        let _ = LXBaseVC()
         let identifier = self.xl.xl_typeName
         dlog("identifier: \(identifier)")
         let aa = "abccccc"
         dlog("\(aa.self): \(aa)")
-
-//        testArray()
-//        testDictionary()
-
+        
+        //        testArray()
+        //        testDictionary()
+        
         // testModel()
         // testTask()
         // testTaskGroup()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    public override func prepareTableView() {
-        super.prepareTableView()
-        table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
-        if #available(iOS 14.0, *) {
-            DispatchQueue.main.async {
-                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
-            }
-        } else {
-            // Fallback on earlier versions
-            // table.dataSource = self
-        }
-    }
-    open override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-
-        [table].forEach(self.view.addSubview)
-
-        masonry()
-    }
-
-    open override func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
     }
 }
 
@@ -209,24 +178,24 @@ private extension LXToolKitTestVC {}
 // MARK: - 🔐Private Actions
 private extension LXToolKitTestVC {
     func goRouter() {
-//         let navigator = XLNavigator()
-//         if let user = XLUserModel.currentUser() {
-// //            let provider = GithubNetworking.stubbingNetworking()
-//             let provider = GithubNetworking.defaultNetworking()
-//             let restApi = RestApi(with: provider)
-//             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
-//             navigator.show(segue: .events(vm: vm), sender: self)
-//         }
+        //         let navigator = XLNavigator()
+        //         if let user = XLUserModel.currentUser() {
+        // //            let provider = GithubNetworking.stubbingNetworking()
+        //             let provider = GithubNetworking.defaultNetworking()
+        //             let restApi = RestApi(with: provider)
+        //             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
+        //             navigator.show(segue: .events(vm: vm), sender: self)
+        //         }
         let staging = AppConfig.Network.useStaging
         let githubProvider = staging
-            ? GithubNetworking.stubbingNetworking()
-            : GithubNetworking.defaultNetworking()
+        ? GithubNetworking.stubbingNetworking()
+        : GithubNetworking.defaultNetworking()
         let trendingGithubProvider = staging
-            ? TrendingGithubNetworking.stubbingNetworking()
-            : TrendingGithubNetworking.defaultNetworking()
+        ? TrendingGithubNetworking.stubbingNetworking()
+        : TrendingGithubNetworking.defaultNetworking()
         let codetabsProvider = staging
-            ? CodetabsNetworking.stubbingNetworking()
-            : CodetabsNetworking.defaultNetworking()
+        ? CodetabsNetworking.stubbingNetworking()
+        : CodetabsNetworking.defaultNetworking()
         let provider = RestApi(githubProvider: githubProvider,
                                trendingGithubProvider: trendingGithubProvider,
                                codetabsProvider: codetabsProvider)
@@ -235,17 +204,17 @@ private extension LXToolKitTestVC {
         navigator.show(segue: .LXiOS15VC(viewModel: vm), sender: self)
     }
     @objc func btnTestAction(sender: UIButton) {
-       // let vc =
-       //  // LXSongVC()
-       //  // LXNestedTableVC()
-       //  // LXTableTestVC()
-       //  // LX1019TestVC()
-       //  // LXHugTestVC()
-       //  // LXStack1206VC()
-       //  // LXTable0120VC()
-       //  LXiOS15VC()
-       //  self.navigationController?.setNavigationBarHidden(true, animated: false)
-       //  self.navigationController?.pushViewController(vc, animated: true)
+        // let vc =
+        //  // LXSongVC()
+        //  // LXNestedTableVC()
+        //  // LXTableTestVC()
+        //  // LX1019TestVC()
+        //  // LXHugTestVC()
+        //  // LXStack1206VC()
+        //  // LXTable0120VC()
+        //  LXiOS15VC()
+        //  self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //  self.navigationController?.pushViewController(vc, animated: true)
         // self.navigationController?.pushViewController(vc, animated: true)
         goRouter()
         // testTaskGroup()
@@ -254,7 +223,7 @@ private extension LXToolKitTestVC {
 
 extension LXToolKitTestVC {
     func testModel() {
-//        LXGitHubTestModel.test()
+        //        LXGitHubTestModel.test()
         // LXMJExtensionTestModel.test()
     }
     func test2() {
@@ -278,7 +247,7 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-
+        
         ({
             let search = 51
             let r_contains = a.contains(search)
@@ -287,67 +256,67 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-
+        
         ({
             let r_min = a.min()
             let r_min_by1 = a.min(by: { $0 > $1 })
             let r_min_by2 = a.min(by: { $0 < $1 })
             dlog("r_min: \(r_min)", "r_min_by1: \(r_min_by1)", "r_min_by2: \(r_min_by2)")
-
+            
             let r_max = a.max()
             let r_max_by1 = a.max(by: { $0 > $1 })
             let r_max_by2 = a.max(by: { $0 < $1 })
             dlog("r_max: \(r_max)", "r_max_by1: \(r_max_by1)", "r_max_by2: \(r_max_by2)")
         })()
-
+        
         ({
             let aVersion = "3.14.10"
             let bVersion = "3.130.10"
-
+            
             let r1 = aVersion.versionToInt().lexicographicallyPrecedes(bVersion.versionToInt())
             let r2 = bVersion.versionToInt().lexicographicallyPrecedes(aVersion.versionToInt())
             dlog("lexicographicallyPrecedes: \(r1)\t\t\(r2)")
         })()
-
+        
         ({
             var a = [30, 40, 20, 30, 30, 60, 10]
-
+            
             let r = a.partition(by: { $0 > 30 })
             dlog("partition r: \(r) >>> a: \(a)")
         })()
-
+        
         ({
             let a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-
+            
             let prefix_while = a.prefix(while: { $0 > 3 })
             let prefix_maxLength = a.prefix(3)
             let prefix_upTo = a.prefix(upTo: 3)
             let prefix_through = a.prefix(through: 3)
             dlog("prefix_while: \(prefix_while)",
-                "prefix_maxLength: \(prefix_maxLength)",
-                "prefix_upTo: \(prefix_upTo)",
-                "prefix_through: \(prefix_through)")
-
+                 "prefix_maxLength: \(prefix_maxLength)",
+                 "prefix_upTo: \(prefix_upTo)",
+                 "prefix_through: \(prefix_through)")
+            
             let suffix_maxLength = a.suffix(3)
             let suffix_from = a.suffix(from: 3)
-
+            
             dlog("suffix_maxLength: \(suffix_maxLength)", "suffix_from: \(suffix_from)")
         })()
-
+        
         ({
             for x in sequence(first: 1, next: { $0 + 1}).prefix(5) {
                 dlog("prefix x: \(x)")
             }
-
+            
             for x in sequence(first: 2, next: { $0 * $0 }).prefix(while: { $0 < 100 }) {
                 dlog("prefix_while x: \(x)")
             }
-
+            
             for x in sequence(first: self.view, next: { $0?.superview }) {
                 dlog("view x: \(x)")
             }
         })()
-
+        
         ({
             let a = 1...3
             let b = 1...10
@@ -358,76 +327,76 @@ extension LXToolKitTestVC {
                 return e1 == e2
             })
             dlog("r_elementsEqual: \(r_elementsEqual)",
-                "r_elementsEqual2: \(r_elementsEqual2)",
-                "r2_elementsEqual_by: \(r2_elementsEqual_by)")
+                 "r_elementsEqual2: \(r_elementsEqual2)",
+                 "r2_elementsEqual_by: \(r2_elementsEqual_by)")
         })()
-
+        
         ({
             let r_separator = a.split(separator: 3)
             let r_whereSeparator = a.split(whereSeparator: { $0 % 3 == 0 })
             let r_omittingEmptySubsequences = a.split(separator: 3, maxSplits: 2, omittingEmptySubsequences: false)
-
+            
             dlog("r_separator: \(r_separator)",
-            "r_whereSeparator: \(r_whereSeparator)",
-            "r_omittingEmptySubsequences: \(r_omittingEmptySubsequences)")
-
+                 "r_whereSeparator: \(r_whereSeparator)",
+                 "r_omittingEmptySubsequences: \(r_omittingEmptySubsequences)")
+            
             let line = "BLANCHE:   I don't want realism. I want magic!"
             dlog(line.split(separator: " "))
             dlog(line.split(separator: " ", maxSplits: 1))
             dlog(line.split(separator: " ", omittingEmptySubsequences: false))
         })()
-
+        
         ({
             let r_while = a.drop(while: { $0 < 6 })
             let r_dropFirst = a.dropFirst(3)
             let r_dropLast = a.dropLast(3)
-
+            
             var b = a
             b.removeAll(where: { $0 % 3 != 0 })
             dlog("r_while: \(r_while)",
-            "r_dropFirst: \(r_dropFirst)",
-            "r_dropLast: \(r_dropLast)",
-            "a: \(a)",
-            "",
-            "b: \(b)")
+                 "r_dropFirst: \(r_dropFirst)",
+                 "r_dropLast: \(r_dropLast)",
+                 "a: \(a)",
+                 "",
+                 "b: \(b)")
         })()
-
+        
         ({
             let r = a.firstIndex(of: 3)
             dlog("r: \(r)")
         })()
-
+        
         ({
             let b = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
             let r = zip(a, b)
             let r_zip_map = r.map { $0 + $1 }
             dlog("r: \(r)",
-            "r_zip_map: \(r_zip_map)")
+                 "r_zip_map: \(r_zip_map)")
         })()
     }
-
+    
     func testDictionary() {
         let a: [String: String] = ["a": "vA", "b": "vB", "c": "vC", "d": "vD"]
         let b = ["d": "bbD", "e": "bbE", "f": "bbF"]
-
+        
         let s1 = ({
             var b = a
             b["a"] = nil
-
+            
             dlog("b: \(b)")
         })
-
+        
         let s2 = ({
             var c = a
             c.merge(b, uniquingKeysWith: { $1 })
             dlog("c: \(c)")
         })
-
+        
         let s3 = ({
             let frequncies = "hello".frequencies
             let r = frequncies.filter { $0.value > 1 }
             dlog("frequncies: \(frequncies)",
-                "r: \(r)"
+                 "r: \(r)"
             )
         })
         // s1()
@@ -439,7 +408,7 @@ extension LXToolKitTestVC {
         withUnsafeCurrentTask { task in
             if let task = task {
                 print("Cancelled: \(task.isCancelled)")
-
+                
                 print("priority: \(task.priority)")
             } else {
                 print("No task")
@@ -448,7 +417,7 @@ extension LXToolKitTestVC {
     }
     @available(iOS 15.0.0, *)
     func testTask() {
-
+        
         // withUnsafeCurrentTask { task in
         //     print("task: \(task)")
         // }
@@ -477,13 +446,13 @@ extension LXToolKitTestVC {
                     }
                 }
                 print("Task added!")
-
+                
                 for await result in group {
                     print("Get result: \(result)")
                 }
                 print("Task ended!")
             })
-
+            
             print("End!")
         }
     }
@@ -547,6 +516,40 @@ extension LXToolKitTestVC: UITableViewDelegate {
             // Fallback on earlier versions
             dlog("-->Error!")
         }
+        
+    }
+}
 
+// MARK: - 🍺UI Prepare & Masonry
+extension LXToolKitTestVC {
+    public override func prepareTableView() {
+        super.prepareTableView()
+        table.delegate = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        if #available(iOS 14.0, *) {
+            DispatchQueue.main.async {
+                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            // table.dataSource = self
+        }
+    }
+    open override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
+        
+        [table].forEach(self.view.addSubview)
+        
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

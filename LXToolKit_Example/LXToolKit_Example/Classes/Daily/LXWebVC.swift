@@ -31,7 +31,7 @@ class LXWebVC: LXBaseVC {
         btn.titleLabel?.font = .systemFont(ofSize: 20)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 4
-
+        
         // btn.addTarget(self, action: #selector(<#btnAction(sender:)#>), for: .touchUpInside)
         // @objc func <#btnAction#>(sender: UIButton) {}
         return btn
@@ -52,54 +52,11 @@ class LXWebVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         prepareVM()
         loadData()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareVM() {
-        super.prepareVM()
-        btnTest.rx
-            .controlEvent(.touchUpInside)
-            .subscribe {[weak self] _ in
-                guard let `self` = self else { return }
-                dlog("-->webViewHeight: \(self.webView.webViewHeight)")
-            }
-            .disposed(by: rx.disposeBag)
-        webView.rx
-            .observe(\.webViewHeight)
-            .debug("-->[WH]: ")
-        // .observe(CGFloat.self, "webViewHeight")
-            .subscribe { height in
-                dlog("height: \(height)")
-            }
-            .disposed(by: rx.disposeBag)
-    }
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-    
-        [webView, btnTest].forEach(self.view.addSubview)
-    
-        masonry()
-    }
-    
-    override open func masonry() {
-        super.masonry()
-        webView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.right.equalTo(0)
-            $0.height.greaterThanOrEqualTo(200)
-        }
-        btnTest.snp.makeConstraints {
-            $0.top.equalTo(200)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(44)
-            $0.width.equalTo(100)
-        }
     }
 }
 
@@ -122,13 +79,59 @@ extension LXWebVC {
         // subject.bind { <#CGFloat#> in
         //     <#code#>
         // }
-
+        
         // webView.rx.webViewHeight.asObserver().bi
         // subject.bind(to: webView.rx.webViewHeight)
         // webView.rx.webViewHeight
         // webView.webViewHeight
         //     .asObserver()
-            // .asObservable()
+        // .asObservable()
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+private extension LXWebVC {
+    override open func prepareVM() {
+        super.prepareVM()
+        btnTest.rx
+            .controlEvent(.touchUpInside)
+            .subscribe {[weak self] _ in
+                guard let `self` = self else { return }
+                dlog("-->webViewHeight: \(self.webView.webViewHeight)")
+            }
+            .disposed(by: rx.disposeBag)
+        webView.rx
+            .observe(\.webViewHeight)
+            .debug("-->[WH]: ")
+        // .observe(CGFloat.self, "webViewHeight")
+            .subscribe { height in
+                dlog("height: \(height)")
+            }
+            .disposed(by: rx.disposeBag)
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
+        
+        [webView, btnTest].forEach(self.view.addSubview)
+        
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        webView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.right.equalTo(0)
+            $0.height.greaterThanOrEqualTo(200)
+        }
+        btnTest.snp.makeConstraints {
+            $0.top.equalTo(200)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(44)
+            $0.width.equalTo(100)
+        }
     }
 }
 

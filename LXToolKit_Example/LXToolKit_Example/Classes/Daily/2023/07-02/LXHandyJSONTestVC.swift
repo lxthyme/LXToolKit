@@ -34,29 +34,11 @@ class LXHandyJSONTestVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-
+        
         testFloat()
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-
-        [titleTextview].forEach(self.view.addSubview)
-
-        masonry()
-    }
-
-    override func masonry() {
-        super.masonry()
-        titleTextview.snp.makeConstraints {
-            $0.top.equalTo(self.view.snp_topMargin)
-            $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(self.view.snp_bottomMargin)
-        }
     }
 }
 
@@ -107,5 +89,23 @@ private extension LXHandyJSONTestVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-// extension LXHandyJSONTestVC {
-// }
+extension LXHandyJSONTestVC {
+    override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.title = "<#title#>"
+        
+        [titleTextview].forEach(self.view.addSubview)
+        
+        masonry()
+    }
+    
+    override func masonry() {
+        super.masonry()
+        titleTextview.snp.makeConstraints {
+            $0.top.equalTo(self.view.snp_topMargin)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalTo(self.view.snp_bottomMargin)
+        }
+    }
+}

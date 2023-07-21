@@ -32,13 +32,13 @@ extension LXBaseTableViewProtocol {
         // t.separatorInset = .zero
         t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-
+        
         // t.delegate = self
         // t.dataSource = self
         // t.rx.setDelegate(self).disposed(by: rx.disposeBag)
         // t.rx.setDataSource(self).disposed(by: rx.disposeBag)
         t.xl.adapterWith(parentVC: nil)
-
+        
         return t
     }
 }
@@ -49,14 +49,14 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: 🔗Vaiables
     public let headerRefreshTrigger = PublishSubject<Void>()
     public let footerRefreshTrigger = PublishSubject<Void>()
-
+    
     public let isHeaderLoading = BehaviorRelay(value: false)
     public let isFooterLoading = BehaviorRelay(value: false)
-
+    
     public lazy var table: LXBaseTableView = {
         return lazyTableView(style: .plain)
     }()
-
+    
     public var clearSelectionOnViewWillAppear = true
     public private(set) var style: UITableView.Style = UITableView.Style.plain
     // MARK: 🛠Life Cycle
@@ -82,76 +82,14 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         // prepareTableView()
         // prepareUI()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    open func prepareTableView() {
-        table.emptyDataSetSource = self
-        table.emptyDataSetDelegate = self
-        table.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
-            self?.headerRefreshTrigger.onNext(())
-        })
-        table.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
-            self?.footerRefreshTrigger.onNext(())
-        })
-        isHeaderLoading
-            .bind(to: table.headRefreshControl.rx.isAnimating)
-            .disposed(by: rx.disposeBag)
-        isFooterLoading
-            .bind(to: table.footRefreshControl.rx.isAnimating)
-            .disposed(by: rx.disposeBag)
-
-        table.footRefreshControl.autoRefreshOnFoot = true
-        error.subscribe(onNext: { [weak self] error in
-            self?.table.makeToast(error.description,
-                                  title: error.title,
-                                  image: nil,//R.image.icon_toast_warning(),
-                                  completion: nil)
-        })
-        .disposed(by: rx.disposeBag)
-    }
-    override open func prepareVM() {
-        super.prepareVM()
-        vm?.headerLoading.asObservable()
-            .bind(to: isHeaderLoading)
-            .disposed(by: rx.disposeBag)
-        vm?.footerLoading.asObservable()
-            .bind(to: isFooterLoading)
-            .disposed(by: rx.disposeBag)
-
-        Observable.of(isLoading.mapToVoid(),
-                      emptyDataSet.imageTintColor.mapToVoid(),
-                      languageChanged.asObservable())
-        .merge()
-        .subscribe(onNext: { [weak self] _ in
-            self?.table.reloadEmptyDataSet()
-        })
-        .disposed(by: rx.disposeBag)
-    }
-    override open func prepareUI() {
-        super.prepareUI()
-        // self.view.backgroundColor = .white
-        // contentStackView.spacing = 0
-        // contentStackView.insertArrangedSubview(table, at: 0)
-        self.edgesForExtendedLayout = []
-        self.automaticallyAdjustsScrollViewInsets = true
-        if #available(iOS 11.0, *) {
-            table.contentInsetAdjustmentBehavior = .never
-        } else {
-            self.automaticallyAdjustsScrollViewInsets = false
-        }
-    }
-
-    override open func masonry() {
-        super.masonry()
-        table.snp.setLabel("\(self.xl.xl_typeName).table")
     }
 }
 
@@ -167,5 +105,70 @@ private extension LXBaseTableVC {
         if let selectedIndexPaths = table.indexPathsForSelectedRows {
             selectedIndexPaths.forEach { self.table.deselectRow(at: $0, animated: false) }
         }
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXBaseTableVC {
+    @objc open func prepareTableView() {
+        table.emptyDataSetSource = self
+        table.emptyDataSetDelegate = self
+        table.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
+            self?.headerRefreshTrigger.onNext(())
+        })
+        table.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
+            self?.footerRefreshTrigger.onNext(())
+        })
+        isHeaderLoading
+            .bind(to: table.headRefreshControl.rx.isAnimating)
+            .disposed(by: rx.disposeBag)
+        isFooterLoading
+            .bind(to: table.footRefreshControl.rx.isAnimating)
+            .disposed(by: rx.disposeBag)
+        
+        table.footRefreshControl.autoRefreshOnFoot = true
+        error.subscribe(onNext: { [weak self] error in
+            self?.table.makeToast(error.description,
+                                  title: error.title,
+                                  image: nil,//R.image.icon_toast_warning(),
+                                  completion: nil)
+        })
+        .disposed(by: rx.disposeBag)
+    }
+    @objc override open func prepareVM() {
+        super.prepareVM()
+        vm?.headerLoading.asObservable()
+            .bind(to: isHeaderLoading)
+            .disposed(by: rx.disposeBag)
+        vm?.footerLoading.asObservable()
+            .bind(to: isFooterLoading)
+            .disposed(by: rx.disposeBag)
+        
+        Observable.of(isLoading.mapToVoid(),
+                      emptyDataSet.imageTintColor.mapToVoid(),
+                      languageChanged.asObservable())
+        .merge()
+        .subscribe(onNext: { [weak self] _ in
+            self?.table.reloadEmptyDataSet()
+        })
+        .disposed(by: rx.disposeBag)
+    }
+    @objc override open func prepareUI() {
+        super.prepareUI()
+        // self.view.backgroundColor = .white
+        // contentStackView.spacing = 0
+        // contentStackView.insertArrangedSubview(table, at: 0)
+        self.edgesForExtendedLayout = []
+        self.automaticallyAdjustsScrollViewInsets = true
+        if #available(iOS 11.0, *) {
+            table.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+    }
+    
+    @objc override open func masonry() {
+        super.masonry()
+        table.snp.setLabel("\(self.xl.xl_typeName).table")
     }
 }

@@ -40,45 +40,10 @@ class LXYYLabelMoreTestVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         bindViewModel()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        // self.view.backgroundColor = <#.white#>;
-
-        prepareLabTitle()
-        [labTitle].forEach(self.view.addSubview)
-
-        masonry()
-    }
-    override open func masonry() {
-        super.masonry()
-        labTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100);
-            $0.left.equalToSuperview().offset(16);
-            $0.right.equalToSuperview().offset(-16);
-        }
-    }
-    override open func bindViewModel() {
-        super.bindViewModel()
-        // guard let vm = viewModel as? LXYYLabelMoreTestVCVM else { return }
-
-        // let input = LXYYLabelMoreTestVCVM.Input()
-        // let output = vm.transform(input: input)
-
-        // output.dataList
-        //     .asDriver(onErrorJustReturn: [])
-        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.xl.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
-        //         // cell.bind(to: vm)
-        //     }
-        //     .disposed(by: rx.disposeBag)
-    }
-    open override func updateUI() {
-        super.updateUI()
     }
 }
 // MARK: 🌎LoadData
@@ -96,12 +61,12 @@ extension LXYYLabelMoreTestVC {
         let font = UIFont.systemFont(ofSize: 14)
         labTitle.numberOfLines = 3
         labTitle.preferredMaxLayoutWidth = UIScreen.main.bounds.size.width - 16 * 2
-
+        
         let string = "好想化做一只蝴蝶，乘着微风振翅高飞，现在马上，只想赶快和你见面，烦心的事放在一边，如果忘记那也无所谓，已经没有，多余时间可以浪费，似乎有，什么事会在这片晴空下出现"
         let attr = NSMutableAttributedString(string: string)
         attr.yy_font = font
         labTitle.attributedText = attr
-
+        
         let attrDot = NSMutableAttributedString(string: "...详情")
         attrDot.yy_font = font
         attrDot.yy_color = .blue
@@ -123,5 +88,39 @@ extension LXYYLabelMoreTestVC {
         labMore.sizeToFit()
         let truncationToken = NSAttributedString.yy_attachmentString(withContent: labMore, contentMode: .center, attachmentSize: labMore.frame.size, alignTo: font, alignment: .center)
         labTitle.truncationToken = truncationToken
+    }
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.view.backgroundColor = <#.white#>;
+        
+        prepareLabTitle()
+        [labTitle].forEach(self.view.addSubview)
+        
+        masonry()
+    }
+    override open func masonry() {
+        super.masonry()
+        labTitle.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(100);
+            $0.left.equalToSuperview().offset(16);
+            $0.right.equalToSuperview().offset(-16);
+        }
+    }
+    override open func bindViewModel() {
+        super.bindViewModel()
+        // guard let vm = viewModel as? LXYYLabelMoreTestVCVM else { return }
+        
+        // let input = LXYYLabelMoreTestVCVM.Input()
+        // let output = vm.transform(input: input)
+        
+        // output.dataList
+        //     .asDriver(onErrorJustReturn: [])
+        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.xl.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
+        //         // cell.bind(to: vm)
+        //     }
+        //     .disposed(by: rx.disposeBag)
+    }
+    open override func updateUI() {
+        super.updateUI()
     }
 }

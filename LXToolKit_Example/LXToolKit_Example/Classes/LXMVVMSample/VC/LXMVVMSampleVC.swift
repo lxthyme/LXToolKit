@@ -19,12 +19,12 @@ private class MyView: LXBaseView {
     }
     convenience init(vc: LXMVVMSampleVC) {
         self.init(frame: .zero)
-
+        
         self.vc = vc
-
+        
         prepareUI()
     }
-
+    
 }
 
 // MARK: 🌎LoadData
@@ -46,7 +46,7 @@ private extension MyView {
         //[<#table#>].forEach(self.addSubview)
         masonry()
     }
-
+    
     func masonry() {}
 }
 
@@ -76,18 +76,9 @@ class LXMVVMSampleVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    open override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-
-    open override func masonry() {
-        super.masonry()
     }
 }
 
@@ -99,3 +90,15 @@ extension LXMVVMSampleVC {}
 
 // MARK: 🔐Private Actions
 private extension LXMVVMSampleVC {}
+
+extension LXMVVMSampleVC {
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
+    }
+}

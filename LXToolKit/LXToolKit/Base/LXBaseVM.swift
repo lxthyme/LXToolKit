@@ -13,34 +13,34 @@ import Moya
 public protocol LXViewModelType {
     associatedtype Input
     associatedtype Output
-
+    
     func transform(input: Input) -> Output
 }
 
 @objc(LXBaseKitVM)
 open class LXBaseVM: NSObject/**, LXViewModelType*/ {
-
+    
     deinit {
         logDebug("\(type(of: self)): Deinited")
         LXPrint.resourcesCount()
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-
+    
     public let provider: DJAPI
     public var page = 1
-
+    
     public let loading = ActivityIndicator()
     public let headerLoading = ActivityIndicator()
     public let footerLoading = ActivityIndicator()
-
+    
     public let error = ErrorTracker()
     public let serverError = PublishSubject<Error>()
     public let parsedError = PublishSubject<ApiError>()
     public init(provider: DJAPI) {
         self.provider = provider
         super.init()
-    
+        
         prepareVM()
     }
 }
@@ -70,17 +70,17 @@ extension LXBaseVM {
             .filterNil()
             .bind(to: parsedError)
             .disposed(by: rx.disposeBag)
-
+        
         parsedError
             .subscribe { error in
                 print("error: \(error)")
             }
             .disposed(by: rx.disposeBag)
     }
-    // func prepareUI() {
-    //     self.view.backgroundColor = <#.white#>;
-    //     // [<#table#>].forEach(self.<#view#>.addSubview)
-    //     masonry()
-    // }
-    // func masonry() {}
+    func prepareUI() {
+        // self.view.backgroundColor = <#.white#>;
+        // [<#table#>].forEach(self.<#view#>.addSubview)
+        masonry()
+    }
+    func masonry() {}
 }

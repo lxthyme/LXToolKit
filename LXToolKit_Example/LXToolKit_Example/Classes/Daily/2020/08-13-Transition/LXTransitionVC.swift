@@ -15,10 +15,10 @@ private class MyView: UIView {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         prepareUI()
     }
-
+    
 }
 
 // MARK: LoadData
@@ -37,7 +37,7 @@ private extension MyView {
         // [<#table#>].forEach(self.addSubview)
         masonry()
     }
-
+    
     func masonry() {}
 }
 
@@ -66,19 +66,9 @@ class LXTransitionVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    // MARK: - UI Prepare & Masonry
-    open override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-    
-    open override func masonry() {
-        super.masonry()
     }
 }
 
@@ -103,15 +93,15 @@ extension LXTransitionVC: UIViewControllerAnimatedTransitioning {
         return 0.75
     }
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {}
-//    func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {}
+    //    func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {}
     func animationEnded(_ transitionCompleted: Bool) {}
 }
 
 // MARK: - UIViewControllerInteractiveTransitioning
 extension LXTransitionVC: UIViewControllerInteractiveTransitioning {
     func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {}
-
-
+    
+    
 }
 
 // MARK: - UIViewControllerContextTransitioning
@@ -122,13 +112,13 @@ extension LXTransitionVC: UIViewControllerTransitionCoordinator {
     func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
         return true
     }
-
+    
     func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
         return true
     }
-
+    
     func notifyWhenInteractionEnds(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {}
-
+    
     func notifyWhenInteractionChanges(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {}
 }
 
@@ -137,55 +127,55 @@ extension LXTransitionVC: UIViewControllerTransitionCoordinatorContext {
     var isAnimated: Bool {
         return true
     }
-
+    
     var presentationStyle: UIModalPresentationStyle {
         return .fullScreen
     }
-
+    
     var initiallyInteractive: Bool {
         return true
     }
-
+    
     var isInterruptible: Bool {
         return true
     }
-
+    
     var isInteractive: Bool {
         return true
     }
-
+    
     var isCancelled: Bool {
         return true
     }
-
+    
     var transitionDuration: TimeInterval {
         return 1
     }
-
+    
     var percentComplete: CGFloat {
         return 1
     }
-
+    
     var completionVelocity: CGFloat {
         return 1
     }
-
+    
     var completionCurve: UIView.AnimationCurve {
         return .easeInOut
     }
-
+    
     func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
         return nil
     }
-
+    
     func view(forKey key: UITransitionContextViewKey) -> UIView? {
         return nil
     }
-
+    
     var containerView: UIView {
         return UIView()
     }
-
+    
     var targetTransform: CGAffineTransform {
         return .identity
     }
@@ -227,5 +217,18 @@ extension LXTransitionVC: UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return nil
+    }
+}
+
+// MARK: - UI Prepare & Masonry
+extension LXTransitionVC {
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
     }
 }

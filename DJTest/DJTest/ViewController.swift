@@ -19,12 +19,12 @@ enum DJTestType {
     // case DJRSwiftResource
     var title: String {
         switch self {
-        // case .LXToolKit:
-        //     return "LXToolKit"
+            // case .LXToolKit:
+            //     return "LXToolKit"
         case .LXToolKit_Example:
             return "LXToolKit_Example"
-        // case .LXToolKitObjC:
-        //     return "LXToolKitObjC"
+            // case .LXToolKitObjC:
+            //     return "LXToolKitObjC"
         case .LXToolKitObjC_Example:
             return "LXToolKitObjC_Example"
         case .DJSwiftModule:
@@ -33,12 +33,12 @@ enum DJTestType {
     }
     var vc: UIViewController? {
         switch self {
-        // case .LXToolKit:
-        //     return LXToolKitTestVC()
+            // case .LXToolKit:
+            //     return LXToolKitTestVC()
         case .LXToolKit_Example:
             return LXToolKitTestVC()
-        // case .LXToolKitObjC:
-        //     return LXToolKitTestVC()
+            // case .LXToolKitObjC:
+            //     return LXToolKitTestVC()
         case .LXToolKitObjC_Example:
             return LXToolKitObjCTestVC()
         case .DJSwiftModule:
@@ -49,7 +49,7 @@ enum DJTestType {
         }
         return nil
     }
-
+    
 }
 
 class DataSource: UITableViewDiffableDataSource<String, DJTestType> {
@@ -102,33 +102,6 @@ class ViewController: LXBaseTableVC {
         prepareUI()
         prepareTableView()
     }
-    override func prepareTableView() {
-        super.prepareTableView()
-
-        table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
-        if #available(iOS 14.0, *) {
-            DispatchQueue.main.async {
-                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
-            }
-        } else {
-            // Fallback on earlier versions
-            // table.dataSource = self
-        }
-    }
-    override func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        [table].forEach(self.view.addSubview)
-        masonry()
-    }
-    override func masonry() {
-        super.masonry()
-        table.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
 }
 
 // MARK: 🌎LoadData
@@ -163,17 +136,37 @@ extension ViewController: UITableViewDelegate {
             // Fallback on earlier versions
             dlog("-->Error!")
         }
-
+        
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-// extension ViewController {
-//     func prepareUI() {
-//         super.prepareUI()
-//         self.view.backgroundColor = .white
-//         [<#table#>].forEach(self.<#view#>.addSubview)
-//         masonry()
-//     }
-//     func masonry() {}
-// }
+extension ViewController {
+    override func prepareTableView() {
+        super.prepareTableView()
+        
+        table.delegate = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        if #available(iOS 14.0, *) {
+            DispatchQueue.main.async {
+                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            // table.dataSource = self
+        }
+    }
+    override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        [table].forEach(self.view.addSubview)
+        masonry()
+    }
+    override func masonry() {
+        super.masonry()
+        table.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+}

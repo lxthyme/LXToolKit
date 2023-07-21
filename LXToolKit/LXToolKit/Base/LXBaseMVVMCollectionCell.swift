@@ -26,12 +26,12 @@ class LXBaseMVVMCollectionCell: UICollectionViewCell {
     }()
     // MARK: 🔗Vaiables
     var cellDisposeBag = DisposeBag()
-
+    
     // MARK: 🛠Life Cycle
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         prepareUI()
         updateUI()
     }
@@ -41,7 +41,11 @@ class LXBaseMVVMCollectionCell: UICollectionViewCell {
     func updateUI() {
         setNeedsDisplay()
     }
-    func bind(to viewModel: LXBaseMVVMTableCellVM) {}
+}
+
+// MARK: 🌎LoadData
+extension LXBaseMVVMCollectionCell {
+    @objc func bind(to viewModel: LXBaseMVVMTableCellVM) {}
 }
 
 // MARK: 👀Public Actions
@@ -55,13 +59,13 @@ private extension LXBaseMVVMCollectionCell {
     func prepareUI() {
         contentView.backgroundColor = .white
         layer.masksToBounds = true
-
+        
         [self.wrapperView].forEach(self.contentView.addSubview)
         [self.wrapperStackView].forEach(self.contentView.addSubview)
-
+        
         masonry()
     }
-
+    
     func masonry() {
         self.snp.setLabel("\(self.xl.xl_typeName)")
         contentView.snp.setLabel("\(self.contentView.xl.xl_typeName).contentView")

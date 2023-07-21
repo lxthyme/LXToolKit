@@ -59,7 +59,11 @@ class LXBaseMVVMTableCell: UITableViewCell {
     func updateUI() {
         setNeedsDisplay()
     }
-    func bind(to viewModel: LXBaseMVVMTableCellVM) {}
+}
+
+// MARK: 🌎LoadData
+extension LXBaseMVVMTableCell {
+    @objc func bind(to viewModel: LXBaseMVVMTableCellVM) {}
 }
 
 // MARK: 👀Public Actions
@@ -73,7 +77,7 @@ private extension LXBaseMVVMTableCell {
     func prepareUI() {
         layer.masksToBounds = true
         selectionStyle = .none
-
+        
         [self.wrapperView].forEach(self.contentView.addSubview)
         [self.wrapperStackView].forEach(self.contentView.addSubview)
 
