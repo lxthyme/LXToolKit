@@ -55,45 +55,10 @@ class LXWebViewTestVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         bindViewModel()
-    }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white;
-        // webView.scrollView.rx.contentSize
-        //     .subscribe(onNext: {[weak self] event in
-        //         guard let `self` = self else { return }
-        //         dlog("🛠1. onNext: \(event)")
-        //     })
-        //     .disposed(by: rx.disposeBag)
-        [webView].forEach(self.view.addSubview)
-        masonry()
-    }
-    override open func masonry() {
-        super.masonry()
-        webView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
-        }
-    }
-    override open func bindViewModel() {
-        super.bindViewModel()
-        // guard let vm = viewModel as? LXWebViewTestVCVM else { return }
-
-        // let input = LXWebViewTestVCVM.Input()
-        // let output = vm.transform(input: input)
-
-        webView.loadHTMLString(mockData(), baseURL: nil)
-
-        // output.dataList
-        //     .asDriver(onErrorJustReturn: [])
-        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.xl.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
-        //         // cell.bind(to: vm)
-        //     }
-        //     .disposed(by: rx.disposeBag)
     }
 }
 // MARK: 🌎LoadData
@@ -147,6 +112,44 @@ extension LXWebViewTestVC: WKNavigationDelegate {
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         dlog("-->didFail: \(navigation.debugDescription)\n\(error)")
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXWebViewTestVC {
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white;
+        // webView.scrollView.rx.contentSize
+        //     .subscribe(onNext: {[weak self] event in
+        //         guard let `self` = self else { return }
+        //         dlog("🛠1. onNext: \(event)")
+        //     })
+        //     .disposed(by: rx.disposeBag)
+        [webView].forEach(self.view.addSubview)
+        masonry()
+    }
+    override open func masonry() {
+        super.masonry()
+        webView.snp.makeConstraints {
+            $0.edges.width.equalToSuperview()
+        }
+    }
+    override open func bindViewModel() {
+        super.bindViewModel()
+        // guard let vm = viewModel as? LXWebViewTestVCVM else { return }
+        
+        // let input = LXWebViewTestVCVM.Input()
+        // let output = vm.transform(input: input)
+        
+        webView.loadHTMLString(mockData(), baseURL: nil)
+        
+        // output.dataList
+        //     .asDriver(onErrorJustReturn: [])
+        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.xl.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
+        //         // cell.bind(to: vm)
+        //     }
+        //     .disposed(by: rx.disposeBag)
     }
 }
 

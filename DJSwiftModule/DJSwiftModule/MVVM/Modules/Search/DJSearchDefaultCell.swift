@@ -16,7 +16,7 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
         view.cornerRadius = 25
         return view
     }()
-
+    
     lazy var badgeImageView: UIImageView = {
         let view = UIImageView(frame: CGRect())
         view.contentMode = .center
@@ -27,39 +27,39 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
         containerView.addSubview(view)
         return view
     }()
-
+    
     lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.font = view.font.withSize(14)
         return view
     }()
-
+    
     lazy var detailLabel: UILabel = {
         let view = UILabel()
         view.font = view.font.withSize(12)
         view.numberOfLines = 0
         return view
     }()
-
+    
     lazy var secondDetailLabel: UILabel = {
         let view = UILabel()
         view.font = view.font.bold.withSize(11)
         return view
     }()
-
+    
     lazy var attributedDetailLabel: UILabel = {
         let view = UILabel()
         view.font = view.font.bold.withSize(11)
         return view
     }()
-
+    
     lazy var textsStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
         view.spacing = 2
         return view
     }()
-
+    
     lazy var rightImageView: UIImageView = {
         let view = UIImageView(frame: CGRect())
         view.contentMode = .center
@@ -71,7 +71,7 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         // prepareUI()
     }
     override func awakeFromNib() {
@@ -83,10 +83,63 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    // MARK: - 🍺UI Prepare & Masonry
+}
+
+// MARK: 🌎LoadData
+extension DJSearchDefaultCell {
+    override public func bind(to vm: LXBaseTableViewCellVM) {
+        super.bind(to: vm)
+        guard let vm = vm as? DJSearchDefaultCellVM  else { return }
+        
+        vm.title.asDriver()
+            .drive(titleLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        vm.title.asDriver()
+            .replaceNilWith("")
+            .map { $0.isEmpty }
+            .drive(titleLabel.rx.isHidden)
+            .disposed(by: rx.disposeBag)
+        
+        vm.detail.asDriver().drive(detailLabel.rx.text).disposed(by: rx.disposeBag)
+        vm.detail.asDriver().replaceNilWith("").map { $0.isEmpty }.drive(detailLabel.rx.isHidden).disposed(by: rx.disposeBag)
+        
+        vm.secondDetail.asDriver().drive(secondDetailLabel.rx.text).disposed(by: rx.disposeBag)
+        vm.secondDetail.asDriver().replaceNilWith("").map { $0.isEmpty }.drive(secondDetailLabel.rx.isHidden).disposed(by: rx.disposeBag)
+        
+        vm.attributedDetail.asDriver().drive(attributedDetailLabel.rx.attributedText).disposed(by: rx.disposeBag)
+        vm.attributedDetail.asDriver().map { $0 == nil }.drive(attributedDetailLabel.rx.isHidden).disposed(by: rx.disposeBag)
+        
+        vm.badge.asDriver().drive(badgeImageView.rx.image).disposed(by: rx.disposeBag)
+        vm.badge.map { $0 == nil }.asDriver(onErrorJustReturn: true).drive(badgeImageView.rx.isHidden).disposed(by: rx.disposeBag)
+        
+        vm.badgeColor.asDriver().drive(badgeImageView.rx.tintColor).disposed(by: rx.disposeBag)
+        
+        vm.hidesDisclosure.asDriver().drive(rightImageView.rx.isHidden).disposed(by: rx.disposeBag)
+        
+        vm.image.asDriver().filterNil()
+            .drive(leftImageView.rx.image).disposed(by: rx.disposeBag)
+        
+        vm.imageUrl.map { $0?.url }.asDriver(onErrorJustReturn: nil).filterNil()
+            .drive(leftImageView.rx.imageURL).disposed(by: rx.disposeBag)
+        
+        vm.imageUrl.asDriver().filterNil()
+            .drive(onNext: { [weak self] (url) in
+                self?.leftImageView.hero.id = url
+            }).disposed(by: rx.disposeBag)
+    }
+}
+
+// MARK: 👀Public Actions
+extension DJSearchDefaultCell {}
+
+// MARK: 🔐Private Actions
+private extension DJSearchDefaultCell {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJSearchDefaultCell {
     override open func prepareVM() {
         super.prepareVM()
         titleLabel.theme.textColor = themeService.attribute { $0.text }
@@ -98,17 +151,17 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
     override open func prepareUI() {
         super.prepareUI()
         self.contentView.backgroundColor = .clear
-
+        
         containerStackView.spacing = self.inset
         [titleLabel, detailLabel, secondDetailLabel, self.attributedDetailLabel].forEach(textsStackView.addArrangedSubview)
         [leftImageView, textsStackView, rightImageView].forEach(containerStackView.addArrangedSubview)
         containerView.addSubview(containerStackView)
-
+        
         // masonry()
-
+        
         detailLabel.setPriority(UILayoutPriority.defaultLow, for: NSLayoutConstraint.Axis.vertical)
     }
-
+    
     override open func masonry() {
         super.masonry()
         containerStackView.snp.makeConstraints {
@@ -126,51 +179,4 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
             make.width.equalTo(20)
         })
     }
-    // MARK: 🌎LoadData
-    override open func bind(to vm: LXBaseTableViewCellVM) {
-        super.bind(to: vm)
-        guard let vm = vm as? DJSearchDefaultCellVM  else { return }
-
-        vm.title.asDriver()
-            .drive(titleLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-        vm.title.asDriver()
-            .replaceNilWith("")
-            .map { $0.isEmpty }
-            .drive(titleLabel.rx.isHidden)
-            .disposed(by: rx.disposeBag)
-
-        vm.detail.asDriver().drive(detailLabel.rx.text).disposed(by: rx.disposeBag)
-        vm.detail.asDriver().replaceNilWith("").map { $0.isEmpty }.drive(detailLabel.rx.isHidden).disposed(by: rx.disposeBag)
-
-        vm.secondDetail.asDriver().drive(secondDetailLabel.rx.text).disposed(by: rx.disposeBag)
-        vm.secondDetail.asDriver().replaceNilWith("").map { $0.isEmpty }.drive(secondDetailLabel.rx.isHidden).disposed(by: rx.disposeBag)
-
-        vm.attributedDetail.asDriver().drive(attributedDetailLabel.rx.attributedText).disposed(by: rx.disposeBag)
-        vm.attributedDetail.asDriver().map { $0 == nil }.drive(attributedDetailLabel.rx.isHidden).disposed(by: rx.disposeBag)
-
-        vm.badge.asDriver().drive(badgeImageView.rx.image).disposed(by: rx.disposeBag)
-        vm.badge.map { $0 == nil }.asDriver(onErrorJustReturn: true).drive(badgeImageView.rx.isHidden).disposed(by: rx.disposeBag)
-
-        vm.badgeColor.asDriver().drive(badgeImageView.rx.tintColor).disposed(by: rx.disposeBag)
-
-        vm.hidesDisclosure.asDriver().drive(rightImageView.rx.isHidden).disposed(by: rx.disposeBag)
-
-        vm.image.asDriver().filterNil()
-            .drive(leftImageView.rx.image).disposed(by: rx.disposeBag)
-
-        vm.imageUrl.map { $0?.url }.asDriver(onErrorJustReturn: nil).filterNil()
-            .drive(leftImageView.rx.imageURL).disposed(by: rx.disposeBag)
-
-        vm.imageUrl.asDriver().filterNil()
-            .drive(onNext: { [weak self] (url) in
-                self?.leftImageView.hero.id = url
-            }).disposed(by: rx.disposeBag)
-    }
 }
-
-// MARK: 👀Public Actions
-extension DJSearchDefaultCell {}
-
-// MARK: 🔐Private Actions
-private extension DJSearchDefaultCell {}

@@ -15,10 +15,10 @@ private class MyView: UIView {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         prepareUI()
     }
-
+    
 }
 
 // MARK: LoadData
@@ -37,7 +37,7 @@ private extension MyView {
         // [<#table#>].forEach(self.addSubview)
         masonry()
     }
-
+    
     func masonry() {}
 }
 
@@ -71,20 +71,10 @@ class LXProxyTestVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTimer()
-    }
-
-    open override func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        masonry()
-    }
-    
-    open override func masonry() {
-        super.masonry()
     }
 }
 
@@ -108,5 +98,17 @@ extension LXProxyTestVC {
         if let t = timer {
             RunLoop.current.add(t, forMode: .common)
         }
+    }
+}
+
+extension LXProxyTestVC {
+    open override func prepareUI() {
+        super.prepareUI()
+        //[<#table#>].forEach(self.view.addSubview)
+        masonry()
+    }
+    
+    open override func masonry() {
+        super.masonry()
     }
 }

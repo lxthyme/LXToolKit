@@ -17,9 +17,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentConfigurationStyleChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentButtonSize: UISegmentedControl = {
@@ -27,9 +27,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentButtonSizeChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentCornerStyle: UISegmentedControl = {
@@ -37,9 +37,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentCornerStyleChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentMacIdiomStyle: UISegmentedControl = {
@@ -47,9 +47,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentMacIdiomStyleChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentTitleAlignment: UISegmentedControl = {
@@ -57,9 +57,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentTitleAlignmentChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentBaseForegroundColor: UISegmentedControl = {
@@ -67,9 +67,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentBaseForegroundColorChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var segmentBaseBackgroundColor: UISegmentedControl = {
@@ -77,21 +77,21 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
-
+        
         s.addTarget(self, action: #selector(segmentBaseBackgroundColorChanged(sender:)), for: .valueChanged)
-
+        
         return s
     }()
     private lazy var btnRender: UIButton = {
         let btn = UIButton(type: .custom)
         btn.configuration = self.config
-
+        
         btn.setTitle("Render Button", for: .normal)
-
+        
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         btn.layer.masksToBounds = true
         // btn.layer.cornerRadius = 4
-
+        
         btn.addTarget(self, action: #selector(btnRenderAction(sender:)), for: .touchUpInside)
         return btn
     }()
@@ -157,39 +157,9 @@ class LXiOS15ButtonTestVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    // MARK: - UI Prepare & Masonry
-    // @available(iOS 15.0, *)
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-
-        contentStackView.axis = .vertical
-        contentStackView.alignment = .center
-        contentStackView.spacing = 5
-        [
-            segmentConfigurationStyle,
-            segmentButtonSize,
-            segmentCornerStyle,
-            segmentMacIdiomStyle,
-            segmentTitleAlignment,
-            segmentBaseForegroundColor,
-            segmentBaseBackgroundColor,
-            btnRender
-        ].forEach(self.contentStackView.addArrangedSubview)
-        self.view.addSubview(self.contentStackView)
-        masonry()
-    }
-
-    override open func masonry() {
-        super.masonry()
-        self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
-        self.contentStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
     }
 }
 
@@ -303,4 +273,38 @@ private extension LXiOS15ButtonTestVC {
     @objc func segmentBaseForegroundColorChanged(sender: UISegmentedControl) {}
     @objc func segmentBaseBackgroundColorChanged(sender: UISegmentedControl) {}
     @objc func btnRenderAction(sender: UIButton) {}
+}
+
+
+// MARK: - UI Prepare & Masonry
+@available(iOS 15.0, *)
+extension LXiOS15ButtonTestVC {
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        
+        contentStackView.axis = .vertical
+        contentStackView.alignment = .center
+        contentStackView.spacing = 5
+        [
+            segmentConfigurationStyle,
+            segmentButtonSize,
+            segmentCornerStyle,
+            segmentMacIdiomStyle,
+            segmentTitleAlignment,
+            segmentBaseForegroundColor,
+            segmentBaseBackgroundColor,
+            btnRender
+        ].forEach(self.contentStackView.addArrangedSubview)
+        self.view.addSubview(self.contentStackView)
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+        self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
+        self.contentStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
 }

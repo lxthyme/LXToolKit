@@ -39,7 +39,7 @@ public extension Swifty where Base: NSObject {
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
     static var xl_identifier: String {
-        return String(format: "%@_xxl_identifier", self.xl_typeName)
+        return String(format: "%@_xl_identifier", self.xl_typeName)
     }
 
 }

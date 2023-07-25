@@ -76,26 +76,9 @@ class LXMasonryTestVCVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-
-        [labPanelLeft, labPanelRight].forEach(panelView.addSubview)
-        [panelView, labLeft, labRight].forEach(view.addSubview)
-
-        // basicMasonry()
-        // 👍
-        // masonryFun1()
-        // masonryFun2()
-        // testing...
-        // masonryFun1_5()
-
-        basicMasonryFit1_2()
-        masonryFun2_5()
     }
 }
 
@@ -110,7 +93,6 @@ private extension LXMasonryTestVCVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 extension LXMasonryTestVCVC {
-
     func basicMasonry() {
         labPanelLeft.snp.makeConstraints {
             $0.top.bottom.left.equalToSuperview()
@@ -204,5 +186,25 @@ extension LXMasonryTestVCVC {
             $0.width.equalTo(labPanelRight)
             $0.centerX.equalTo(labLeft)// .multipliedBy(4)
         }
+    }
+}
+
+extension LXMasonryTestVCVC {
+    override open func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        
+        [labPanelLeft, labPanelRight].forEach(panelView.addSubview)
+        [panelView, labLeft, labRight].forEach(view.addSubview)
+        
+        // basicMasonry()
+        // 👍
+        // masonryFun1()
+        // masonryFun2()
+        // testing...
+        // masonryFun1_5()
+        
+        basicMasonryFit1_2()
+        masonryFun2_5()
     }
 }

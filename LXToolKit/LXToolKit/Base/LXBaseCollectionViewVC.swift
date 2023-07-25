@@ -28,18 +28,9 @@ class LXBaseCollectionViewVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         prepareUI()
-    }
-    // MARK: - UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        //[<#table#>].forEach(self.view.addSubview)
-        // masonry()
-    }
-    override open func masonry() {
-        super.masonry()
     }
 }
 
@@ -70,7 +61,7 @@ private extension LXBaseCollectionViewVC {
         }
         layout.sectionHeadersPinToVisibleBounds = true
         layout.sectionFootersPinToVisibleBounds = true
-
+        
         return layout
     }
     func lazyCollectionView(frame: CGRect = .zero, collectionViewLayout layout: UICollectionViewFlowLayout) -> UICollectionView {

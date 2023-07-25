@@ -51,6 +51,11 @@ extension Navigator {
         case safari(URL)
         case safariController(URL)
         // case webController(URL)
+        // !!!: 2020
+        case LXStackTestVC
+        // !!!: 2021
+        // !!!: 2022
+        // !!!: 2023
         /// LXToolKit_Exam
         case LXiOS15VC(viewModel: LXBaseVM)
         case LXTable0120VC(viewModel: LXBaseVM)
@@ -133,6 +138,12 @@ extension Navigator {
         //     return LXLoginVC(viewModel: vm, navigator: self)
         // case .events(let vm):
         //     return LXEventsVC(viewModel: vm, navigator: self)
+            // !!!: 2020
+        case .LXStackTestVC:
+            return LXStackTestVC()
+            // !!!: 2021
+            // !!!: 2022
+            // !!!: 2023
         /// LXToolKit_Exam
         case .LXiOS15VC(let vm):
             let vc = LXiOS15VC(vm: vm, navigator: self)
@@ -262,6 +273,12 @@ extension Navigator.Scene {
         //     tmp = (title: "LoginVC", desc: "[SwiftHub]")
         // case .events:
         //     tmp = (title: "EventsVC", desc: "[SwiftHub]")
+            // !!!: 2020
+        case .LXStackTestVC:
+            tmp = (title: "LXStackTestVC", desc: "---")
+            // !!!: 2021
+            // !!!: 2022
+            // !!!: 2023
             // Demo
         case .LXiOS15VC:
             tmp = (title: "iOS", desc: "iOS 15 适配")

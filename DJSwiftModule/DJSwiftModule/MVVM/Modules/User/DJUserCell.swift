@@ -25,7 +25,7 @@ class DJUserCell: DJSearchDefaultCell {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         prepareUI()
         prepareVM()
     }
@@ -38,37 +38,25 @@ class DJUserCell: DJSearchDefaultCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    // MARK: - 🍺UI Prepare & Masonry
-    override open func prepareUI() {
-        super.prepareUI()
-        // self.contentView.backgroundColor = .white
+}
 
-        containerStackView.insertArrangedSubview(followButton, at: 2)
-        // [<#table#>].forEach(self.contentView.addSubview)
-
-        masonry()
-    }
-
-    override open func masonry() {
-        super.masonry()
-    }
-
-    // MARK: 🌎LoadData
+// MARK: 🌎LoadData
+extension DJUserCell {
     override open func bind(to vm: LXBaseTableViewCellVM) {
         super.bind(to: vm)
-    
+        
         guard let vm = vm as? DJUserCellVM else { return }
-    
+        
         vm.hidesFollowButton.asDriver()
             .drive(followButton.rx.isHidden)
             .disposed(by: rx.disposeBag)
         vm.following.asDriver()
             .map { (followed) -> UIImage? in
-            let image = followed ? R.image.icon_button_user_x() : R.image.icon_button_user_plus()
-            return image?.template
+                let image = followed ? R.image.icon_button_user_x() : R.image.icon_button_user_plus()
+                return image?.template
             }
             .drive(followButton.rx.image())
             .disposed(by: rx.disposeBag)
@@ -85,3 +73,20 @@ extension DJUserCell {}
 
 // MARK: 🔐Private Actions
 private extension DJUserCell {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension DJUserCell {
+    override open func prepareUI() {
+        super.prepareUI()
+        // self.contentView.backgroundColor = .white
+        
+        containerStackView.insertArrangedSubview(followButton, at: 2)
+        // [<#table#>].forEach(self.contentView.addSubview)
+        
+        masonry()
+    }
+    
+    override open func masonry() {
+        super.masonry()
+    }
+}
