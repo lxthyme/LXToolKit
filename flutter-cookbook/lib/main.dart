@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/MyButton.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
+import 'package:flutter_cookbook/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // return const Center(
+    //   child: Text(
+    //     'Hello, world!',
+    //     textDirection: TextDirection.ltr,
+    //   ),
+    // );
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -31,7 +42,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: routes,
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const SafeArea(child: MyScaffold()),
+      // home: const TutorialHome()
+      // home: const MyButton(),
+      home: const Counter(),
     );
   }
 }
