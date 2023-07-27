@@ -1,7 +1,45 @@
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatelessWidget {
-  const MyAppBar({required this.title, super.key});
+class MyScaffold extends StatelessWidget {
+  const MyScaffold({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Material App',
+      home: Scaffold(
+        appBar: AppBar(
+          // leading: const Icon(Icons.arrow_back_ios),
+          title: const Text('Material App Bar'),
+        ),
+        body: Column(
+          children: [
+            MyScaffoldContent(
+              title: Text('Example title', style: Theme.of(context).primaryTextTheme.titleLarge),
+            ),
+            const Expanded(
+              child: Center(
+                child: Text(
+                  'Hello world!',
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// void main() {
+//   runApp(const MaterialApp(
+//     title: 'My AppBar',
+//     home: SafeArea(child: MyScaffold()),
+//   ));
+// }
+
+class MyScaffoldContent extends StatelessWidget {
+  const MyScaffoldContent({required this.title, super.key});
 
   final Widget title;
 
@@ -31,34 +69,3 @@ class MyAppBar extends StatelessWidget {
     );
   }
 }
-
-class MyScaffold extends StatelessWidget {
-  const MyScaffold({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Column(
-        children: [
-          MyAppBar(
-            title: Text('Example title', style: Theme.of(context).primaryTextTheme.titleLarge),
-          ),
-          const Expanded(
-            child: Center(
-              child: Text(
-                'Hello world!',
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-// void main() {
-//   runApp(const MaterialApp(
-//     title: 'My AppBar',
-//     home: SafeArea(child: MyScaffold()),
-//   ));
-// }
