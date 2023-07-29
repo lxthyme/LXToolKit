@@ -3,10 +3,10 @@ import 'dart:math';
 
 import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cookbook/gallery/pages/home.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
-import 'package:flutter_cookbook/gallery/home.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 
 const homePeekDesktop = 210.0;
@@ -22,7 +22,7 @@ class SplashPageAnimation extends InheritedWidget {
   final bool isFinished;
 
   static SplashPageAnimation? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<SplashPageAnimation>();
+    return context.dependOnInheritedWidgetOfExactType();
   }
 
   @override
@@ -103,74 +103,77 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         _controller.forward();
         return true;
       },
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final animation = _getPanelAnimation(context, constraints);
-          var frontLayer = widget.child;
-          if (_isSplashVisible) {
-            frontLayer = MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  _controller.reverse();
-                },
-                onVerticalDragEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy < -200) {
-                    _controller.reverse();
-                  }
-                },
-                child: IgnorePointer(
-                  child: frontLayer,
-                ),
-              ),
-            );
-          }
-
-          if (isDisplayDesktop(context)) {
-            frontLayer = Padding(
-              padding: const EdgeInsets.only(top: 136),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(40),
-                ),
-                child: frontLayer,
-              ),
-            );
-          }
-
-          if (isDisplayFoladable(context)) {
-            return TwoPane(
-              startPane: frontLayer,
-              endPane: GestureDetector(
-                onTap: () {
-                  if (_isSplashVisible) {
-                    _controller.reverse();
-                  } else {
-                    _controller.forward();
-                  }
-                },
-                // child: _Sp,
-              ),
-            );
-          } else {
-            return Stack(
-              children: [
-                _SplashBackLayer(
-                  isSplashCollapsed: !_isSplashVisible,
-                  effect: _effect,
+      child: SplashPageAnimation(
+        isFinished: _controller.status == AnimationStatus.dismissed,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final animation = _getPanelAnimation(context, constraints);
+            var frontLayer = widget.child;
+            if (_isSplashVisible) {
+              frontLayer = MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: () {
-                    _controller.forward();
+                    _controller.reverse();
                   },
+                  onVerticalDragEnd: (details) {
+                    if (details.velocity.pixelsPerSecond.dy < -200) {
+                      _controller.reverse();
+                    }
+                  },
+                  child: IgnorePointer(
+                    child: frontLayer,
+                  ),
                 ),
-                PositionedTransition(
-                  rect: animation,
+              );
+            }
+
+            if (isDisplayDesktop(context)) {
+              frontLayer = Padding(
+                padding: const EdgeInsets.only(top: 136),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(40),
+                  ),
                   child: frontLayer,
                 ),
-              ],
-            );
-          }
-        },
+              );
+            }
+
+            if (isDisplayFoladable(context)) {
+              return TwoPane(
+                startPane: frontLayer,
+                endPane: GestureDetector(
+                  onTap: () {
+                    if (_isSplashVisible) {
+                      _controller.reverse();
+                    } else {
+                      _controller.forward();
+                    }
+                  },
+                  // child: _Sp,
+                ),
+              );
+            } else {
+              return Stack(
+                children: [
+                  _SplashBackLayer(
+                    isSplashCollapsed: !_isSplashVisible,
+                    effect: _effect,
+                    onTap: () {
+                      _controller.forward();
+                    },
+                  ),
+                  PositionedTransition(
+                    rect: animation,
+                    child: frontLayer,
+                  ),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

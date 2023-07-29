@@ -1,11 +1,11 @@
 // import 'dart:js';
 
-import 'package:flutter_cookbook/gallery/cupertino/list/cupertino_activity_indicator_demo.dart';
-import 'package:flutter_cookbook/list.dart';
+import 'package:flutter_cookbook/daily/list.dart';
+import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_activity_indicator_demo.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/counter.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/MyButton.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';

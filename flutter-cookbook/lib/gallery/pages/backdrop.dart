@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
+import 'package:flutter_cookbook/gallery/pages/home.dart';
+import 'package:flutter_cookbook/gallery/pages/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/settings_icon/icon.dart' as settings_icon;
-import 'package:flutter_cookbook/gallery/settings.dart';
-import 'package:flutter_cookbook/main.dart';
 
 const double _settingsButtonWidth = 64;
 const double _settingsButtonHeightDesktop = 56;
@@ -56,8 +56,8 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
     _settingsPageFocusNode = FocusNode();
     _isSettingsOpenNotifier = ValueNotifier(false);
     _settingsPage = widget.settingsPage ?? const SettingsPage();
-    // _homePage = widget.homePage ?? const MyHomePage(title: 'Home Page');
-    _homePage = widget.homePage ?? const MyScaffold();
+    _homePage = widget.homePage ?? const HomePage();
+    // _homePage = widget.homePage ?? const MyScaffold();
   }
 
   @override
