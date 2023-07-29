@@ -1,6 +1,8 @@
+
 import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cookbook/gallery/pages/demo.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
 import 'package:flutter_cookbook/main.dart';
 
@@ -16,6 +18,11 @@ class Path {
 
 class RouteConfiguration {
   static List<Path> paths = [
+    Path(
+      r'^' + DemoPage.baseRoute + r'/([\w-]+)$',
+      (context, match) => DemoPage(slug: match),
+      openInSecondScreen: false,
+    ),
     // Path(
     //   r'^' + '/gallery' + r'/([\w-]+)$',
     //   (context, match) =>

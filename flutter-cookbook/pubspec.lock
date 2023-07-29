@@ -405,6 +405,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.5"
+  rally_assets:
+    dependency: "direct main"
+    description:
+      name: rally_assets
+      sha256: cdd331819d51e58f9d8766c98af99bc0955d1c4b6b306eee4d332d30e9deaa81
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
+  shrine_images:
+    dependency: "direct main"
+    description:
+      name: shrine_images
+      sha256: "7417da1e83c22f483e222a9d947ffea04b66078c70090072eb0821b89872c26a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   sky_engine:
     dependency: transitive
     description: flutter

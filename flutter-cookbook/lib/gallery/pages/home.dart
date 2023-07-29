@@ -3,15 +3,17 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cookbook/gallery/pages/category_list_item.dart';
-import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
+import 'package:flutter_cookbook/gallery/pages/category_list_item.dart';
+import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
+import 'package:flutter_cookbook/gallery/studies/shrine/colors.dart';
+import 'package:flutter_cookbook/gallery/studies/shrine/routes.dart' as shrine_routes;
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -32,19 +34,19 @@ class HomePage extends StatelessWidget {
     final studyDemos = Demos.studies(localizations);
     final carouselCards = <Widget>[
       _CarouselCard(
-        demo: studyDemos['reply'],
+        demo: studyDemos['shrine'],
         asset: const AssetImage(
-          'assets/studies/reply_card.png',
+          'assets/studies/shrine_card.png',
           package: 'flutter_gallery_assets',
         ),
-        assetColor: const Color(0xFF344955),
+        assetColor: const Color(0xFFFEDBD0),
         assetDark: const AssetImage(
-          'assets/studies/reply_card_dark.png',
+          'assets/studies/shrine_card_dark.png',
           package: 'flutter_gallery_assets',
         ),
-        assetDarkColor: const Color(0xFF1D2327),
-        textColor: Colors.white,
-        studyRoute: reply_routes.homeRoute,
+        assetDarkColor: const Color(0xFF543B3C),
+        textColor: shrineBrown900,
+        studyRoute: shrine_routes.loginRoute,
       ),
     ];
 
@@ -219,8 +221,8 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
 
   @override
   Widget build(BuildContext context) {
-    // final localizations = AppLocalizations.of(context);
-    // final isTestModel = GalleryOptions.of(context).isTestMode;
+    final localizations = AppLocalizations.of(context)!;
+    final isTestModel = GalleryOptions.of(context).isTestMode;
 
     return Stack(
       children: [
@@ -235,7 +237,66 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
               margin: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
               child: const _GalleryHeader(),
             ),
-            // Mobi
+            _ModbileCarousel(
+              animationController: _animationController,
+              restorationId: 'home_carousel',
+              children: widget.carouselCards,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
+              child: const _CategoriesHeader(),
+            ),
+            _AnimatedCategoryItem(
+              startDelayFraction: 0.00,
+              controller: _animationController,
+              child: CategoryListItem(
+                key: const PageStorageKey<GalleryDemoCategory>(
+                  GalleryDemoCategory.material,
+                ),
+                restorationId: 'home_material_category_list',
+                category: GalleryDemoCategory.material,
+                imageString: 'assets/icons/material/material.png',
+                demos: Demos.materialDemos(localizations),
+                initiallyExpanded: _isMaterialListExpanded.value || isTestModel,
+                onTap: (shouldOpenList) {
+                  _isMaterialListExpanded.value = shouldOpenList;
+                },
+              ),
+            ),
+            _AnimatedCategoryItem(
+              startDelayFraction: 0.05,
+              controller: _animationController,
+              child: CategoryListItem(
+                key: const PageStorageKey<GalleryDemoCategory>(
+                  GalleryDemoCategory.cupertino,
+                ),
+                restorationId: 'home_cupertino_category_list',
+                category: GalleryDemoCategory.cupertino,
+                imageString: 'assets/icons/cupertino/cupertino.png',
+                demos: Demos.cupertinoDemos(localizations),
+                initiallyExpanded: _isCupertinoListExpaned.value || isTestModel,
+                onTap: (shouldOpenList) {
+                  _isCupertinoListExpaned.value = shouldOpenList;
+                },
+              ),
+            ),
+            _AnimatedCategoryItem(
+              startDelayFraction: 0.10,
+              controller: _animationController,
+              child: CategoryListItem(
+                key: const PageStorageKey<GalleryDemoCategory>(
+                  GalleryDemoCategory.other,
+                ),
+                restorationId: 'home_other_category_list',
+                category: GalleryDemoCategory.other,
+                imageString: 'assets/icons/reference/reference.png',
+                demos: Demos.otherDemos(localizations),
+                initiallyExpanded: _isOtherListExpanded.value || isTestModel,
+                onTap: (shouldOpenList) {
+                  _isOtherListExpanded.value = shouldOpenList;
+                },
+              ),
+            ),
           ],
         ),
         Align(
@@ -368,6 +429,232 @@ class _DesktopCategoryHeader extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _AnimatedCategoryItem extends StatelessWidget {
+  _AnimatedCategoryItem({
+    required double startDelayFraction,
+    required this.controller,
+    required this.child,
+  }) : topPaddingAnimation = Tween(
+          begin: 60.0,
+          end: 0.0,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: Interval(
+              0.000 + startDelayFraction,
+              0.400 + startDelayFraction,
+              curve: Curves.ease,
+            ),
+          ),
+        );
+
+  final Widget child;
+  final AnimationController controller;
+  final Animation<double> topPaddingAnimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        return Padding(
+          padding: EdgeInsets.only(top: topPaddingAnimation.value),
+          child: child,
+        );
+      },
+      child: child,
+    );
+  }
+}
+
+class _AnimatedCarousel extends StatelessWidget {
+  _AnimatedCarousel({
+    required this.child,
+    required this.controller,
+  }) : startPositionAnimation = Tween(
+          begin: 1.0,
+          end: 0.0,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: const Interval(
+              0.200,
+              0.800,
+              curve: Curves.ease,
+            ),
+          ),
+        );
+
+  final Widget child;
+  final AnimationController controller;
+  final Animation<double> startPositionAnimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          children: [
+            SizedBox(height: _carouselHeight(.4, context)),
+            AnimatedBuilder(
+              animation: controller,
+              builder: (context, child) {
+                return PositionedDirectional(
+                  start: constraints.maxWidth * startPositionAnimation.value,
+                  child: child!,
+                );
+              },
+              child: SizedBox(
+                height: _carouselHeight(.4, context),
+                width: constraints.maxWidth,
+                child: child,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _AnimatedCarouselCard extends StatelessWidget {
+  _AnimatedCarouselCard({
+    required this.child,
+    required this.controller,
+  }) : startPaddingAnimation = Tween(
+          begin: _horizontalPadding,
+          end: 0.0,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: const Interval(
+              0.900,
+              1.000,
+              curve: Curves.ease,
+            ),
+          ),
+        );
+
+  final Widget child;
+  final AnimationController controller;
+  final Animation<double> startPaddingAnimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        return Padding(
+          padding: EdgeInsetsDirectional.only(
+            start: startPaddingAnimation.value,
+          ),
+          child: child,
+        );
+      },
+    );
+  }
+}
+
+class _ModbileCarousel extends StatefulWidget {
+  const _ModbileCarousel({
+    required this.animationController,
+    this.restorationId,
+    required this.children,
+  });
+
+  final AnimationController animationController;
+  final String? restorationId;
+  final List<Widget> children;
+
+  @override
+  State<_ModbileCarousel> createState() => __ModbileCarouselState();
+}
+
+class __ModbileCarouselState extends State<_ModbileCarousel> with RestorationMixin, SingleTickerProviderStateMixin {
+  late PageController _controller;
+  final RestorableInt _currentPage = RestorableInt(0);
+
+  @override
+  String? get restorationId => widget.restorationId;
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_currentPage, 'carousel_page');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final width = MediaQuery.of(context).size.width;
+    const padding = (_carouselItemMobileMargin * 2);
+    _controller = PageController(
+      initialPage: _currentPage.value,
+      viewportFraction: (_carouselItemWidth + padding) / width,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _currentPage.dispose();
+
+    super.dispose();
+  }
+
+  Widget builder(int idx) {
+    final carouselCard = AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        double value;
+        if (_controller.position.haveDimensions) {
+          value = _controller.page! - idx;
+        } else {
+          value = (_currentPage.value - idx).toDouble();
+        }
+        value = (1 - (value.abs() * .3)).clamp(0, 1).toDouble();
+        value = Curves.easeOut.transform(value);
+
+        return Transform.scale(
+          scale: value,
+          alignment: Alignment.center,
+          child: child,
+        );
+      },
+      child: widget.children[idx],
+    );
+
+    if (idx == 1) {
+      return _AnimatedCarouselCard(
+        controller: widget.animationController,
+        child: carouselCard,
+      );
+    } else {
+      return carouselCard;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _AnimatedCarousel(
+      controller: widget.animationController,
+      child: PageView.builder(
+        key: const ValueKey('studyDemoList'),
+        onPageChanged: (value) {
+          setState(() {
+            _currentPage.value = value;
+          });
+        },
+        controller: _controller,
+        pageSnapping: false,
+        itemCount: widget.children.length,
+        itemBuilder: (context, index) => builder(index),
+        allowImplicitScrolling: true,
       ),
     );
   }

@@ -1,9 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:dual_screen/dual_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cookbook/gallery/constants.dart';
+import 'package:flutter_cookbook/gallery/feature_discovery/feature_discovery.dart';
+import 'package:flutter_cookbook/gallery/pages/splash.dart';
+import 'package:flutter_cookbook/gallery/themes/material_demo_theme_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
@@ -230,19 +235,110 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     const maxSectionWidth = 420.0;
 
     Widget section;
-    // switch(currentDemoState) {
-    //   case _DemoState.options:
-    //   section = _DemosSec
-    //   break;
-    //   case _DemoState.info:
-    //   break;
-    //   case _DemoState.code:
-    //   break;
-    //   default: break;
-    // }
-    return const Center(
-      child: Text('demo.dart'),
+    switch (currentDemoState) {
+      //   case _DemoState.options:
+      //   section = _DemosSec
+      //   break;
+      //   case _DemoState.info:
+      //   break;
+      //   case _DemoState.code:
+      //   break;
+      default:
+        section = const Center(
+          child: Text('demo.dart'),
+        );
+        break;
+    }
+
+    Widget body;
+    Widget demoContent = ScaffoldMessenger(
+      child: DemoWrapper(
+        height: contentHeight,
+        buildRoute: _currentConfig.buildRoute,
+      ),
     );
+    if (isDesktop) {
+      body = const Center(
+        child: Text('demo2.dart'),
+      );
+    } else if (isFoldable) {
+      body = Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: TwoPane(
+          startPane: demoContent,
+          endPane: section,
+        ),
+      );
+    } else {
+      section = AnimatedSize(
+        duration: const Duration(milliseconds: 200),
+        alignment: Alignment.topCenter,
+        curve: Curves.easeIn,
+        child: section,
+      );
+
+      final isDemoNormal = currentDemoState == _DemoState.normal;
+      demoContent = Semantics(
+        label: '${AppLocalizations.of(context)!.demo}, ${widget.demo.title}',
+        child: MouseRegion(
+          cursor: isDemoNormal ? MouseCursor.defer : SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: isDemoNormal
+                ? null
+                : () {
+                    setStateAndUpdate(() {
+                      _demoStateIndex.value = _DemoState.normal.index;
+                    });
+                  },
+            child: Semantics(
+              excludeSemantics: !isDemoNormal,
+              child: demoContent,
+            ),
+          ),
+        ),
+      );
+
+      body = SafeArea(
+        bottom: false,
+        child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            section,
+            demoContent,
+            SizedBox(height: bottomSafeArea),
+          ],
+        ),
+      );
+    }
+
+    Widget page;
+    if (isDesktop || isFoldable) {
+      page = const Center(
+        child: Text('demo2.dart'),
+      );
+    } else {
+      page = Container(
+        color: colorScheme.background,
+        child: ApplyTextOptions(
+          child: Scaffold(
+            appBar: appBar,
+            body: body,
+            resizeToAvoidBottomInset: false,
+          ),
+        ),
+      );
+    }
+
+    if (isDesktop) {
+      page = MediaQuery.removePadding(
+        removeTop: true,
+        context: context,
+        child: SplashPage(
+          child: page,
+        ),
+      );
+    }
+    return FeatureDiscoveryController(page);
   }
 }
 
@@ -290,6 +386,43 @@ class _DemoSectionOptions extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DemoWrapper extends StatelessWidget {
+  const DemoWrapper({
+    super.key,
+    required this.height,
+    required this.buildRoute,
+  });
+
+  final double height;
+  final WidgetBuilder buildRoute;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+      height: height,
+      child: ClipRRect(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(10.0),
+          bottom: Radius.circular(2.0),
+        ),
+        child: Theme(
+          data: MaterialDemoThemeData.themeData.copyWith(
+            platform: GalleryOptions.of(context).platform,
+          ),
+          child: CupertinoTheme(
+            data: const CupertinoThemeData().copyWith(brightness: Brightness.light),
+            child: ApplyTextOptions(
+              child: Builder(builder: buildRoute),
+            ),
+          ),
         ),
       ),
     );

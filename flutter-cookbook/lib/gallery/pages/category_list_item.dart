@@ -259,10 +259,10 @@ class _ExpandedCategoryDemos extends StatelessWidget {
       key: ValueKey('${category.name}DemoList'),
       children: [
         for (final demo in demos)
-            CategoryDemoItem(
-              demo: demo,
-            ),
-          const SizedBox(height: 12),
+          CategoryDemoItem(
+            demo: demo,
+          ),
+        const SizedBox(height: 12),
       ],
     );
   }
@@ -286,6 +286,7 @@ class CategoryDemoItem extends StatelessWidget {
       child: MergeSemantics(
         child: InkWell(
           onTap: () {
+            print('-->onTap: ${DemoPage.baseRoute}/${demo.slug}');
             Navigator.of(context).restorablePushNamed(
               '${DemoPage.baseRoute}/${demo.slug}',
             );

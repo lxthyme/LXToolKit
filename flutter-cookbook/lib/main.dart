@@ -70,53 +70,53 @@ class MyApp extends StatelessWidget {
     // );
     final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
     return MaterialApp(
-      restorationScopeId: 'rootGallery',
-      title: 'Flutter Gallery',
-      debugShowCheckedModeBanner: false,
-      // themeMode: ,
-      // theme: ,
-      // darkTheme: ,
-      localizationsDelegates: const [
-        ...AppLocalizations.localizationsDelegates,
-        LocaleNamesLocalizationsDelegate(),
-      ],
-      initialRoute: initialRoute,
-      supportedLocales: AppLocalizations.supportedLocales,
-      // locale: ,
-      // localeListResolutionCallback:(locales, supportedLocales) => {
-      //   return basicLocaleListResolution(locales, supportedLocales);
-      // },
-      onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
-      // );
-      // return MaterialApp(
-      //   title: 'Flutter Demo',
-      //   theme: ThemeData(
-      //     // This is the theme of your application.
-      //     //
-      //     // TRY THIS: Try running your application with "flutter run". You'll see
-      //     // the application has a blue toolbar. Then, without quitting the app,
-      //     // try changing the seedColor in the colorScheme below to Colors.green
-      //     // and then invoke "hot reload" (save your changes or press the "hot
-      //     // reload" button in a Flutter-supported IDE, or press "r" if you used
-      //     // the command line to start the app).
-      //     //
-      //     // Notice that the counter didn't reset back to zero; the application
-      //     // state is not lost during the reload. To reset the state, use hot
-      //     // restart instead.
-      //     //
-      //     // This works for code too, not just values: Most code changes can be
-      //     // tested with just a hot reload.
-      //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //     useMaterial3: true,
-      //   ),
-      //   routes: routes,
-      //   // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      //   // home: const SafeArea(child: MyScaffold()),
-      home: const TutorialHome()
-      // home: const GalleryRootPage()
-      //   // home: const MyButton(),
-      // home: const Counter(),
-    );
+        restorationScopeId: 'rootGallery',
+        title: 'Flutter Gallery',
+        debugShowCheckedModeBanner: false,
+        // themeMode: ,
+        // theme: ,
+        // darkTheme: ,
+        localizationsDelegates: const [
+          ...AppLocalizations.localizationsDelegates,
+          LocaleNamesLocalizationsDelegate(),
+        ],
+        initialRoute: initialRoute,
+        supportedLocales: AppLocalizations.supportedLocales,
+        // locale: ,
+        // localeListResolutionCallback:(locales, supportedLocales) => {
+        //   return basicLocaleListResolution(locales, supportedLocales);
+        // },
+        onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+        // );
+        // return MaterialApp(
+        //   title: 'Flutter Demo',
+        //   theme: ThemeData(
+        //     // This is the theme of your application.
+        //     //
+        //     // TRY THIS: Try running your application with "flutter run". You'll see
+        //     // the application has a blue toolbar. Then, without quitting the app,
+        //     // try changing the seedColor in the colorScheme below to Colors.green
+        //     // and then invoke "hot reload" (save your changes or press the "hot
+        //     // reload" button in a Flutter-supported IDE, or press "r" if you used
+        //     // the command line to start the app).
+        //     //
+        //     // Notice that the counter didn't reset back to zero; the application
+        //     // state is not lost during the reload. To reset the state, use hot
+        //     // restart instead.
+        //     //
+        //     // This works for code too, not just values: Most code changes can be
+        //     // tested with just a hot reload.
+        //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //     useMaterial3: true,
+        //   ),
+        //   routes: routes,
+        //   // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        //   // home: const SafeArea(child: MyScaffold()),
+        home: const TutorialHome()
+        // home: const GalleryRootPage()
+        //   // home: const MyButton(),
+        // home: const Counter(),
+        );
   }
 }
 
@@ -233,7 +233,7 @@ class GalleryApp extends StatelessWidget {
         builder: (context) {
           final options = GalleryOptions.of(context);
           final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
-
+          print('-->initialRoute: $initialRoute');
           return MaterialApp(
             restorationScopeId: 'rootGallery',
             title: 'Flutter Gallery',
