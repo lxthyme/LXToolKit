@@ -10,3 +10,4 @@
 
 1. <https://github.com/jonataslaw/getx>
 2. <https://github.com/cfug/dio>
+3. <https://github.com/simc/logger>
