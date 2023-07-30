@@ -253,6 +253,9 @@ class GalleryApp extends StatelessWidget {
               return basicLocaleListResolution(locales, supportedLocales);
             },
             onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+            onUnknownRoute: (settings) {
+              print('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+            },
           );
         },
       ),

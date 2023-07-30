@@ -80,7 +80,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
   late AnimationController _codeBackgroundColorController;
 
   @override
-  String? get restorationId => widget.restorationId;
+  String get restorationId => widget.restorationId;
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
@@ -185,14 +185,14 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = isDisplayDesktop(context);
     final isFoldable = isDisplayFoladable(context);
+    final isDesktop = isDisplayDesktop(context);
     _resolveState(context);
 
     final colorScheme = Theme.of(context).colorScheme;
     final iconColor = colorScheme.onSurface;
     final selectedIconColor = colorScheme.primary;
-    final appbarPadding = isDesktop ? 20.0 : 0.0;
+    final appBarPadding = isDesktop ? 20.0 : 0.0;
     final currentDemoState = _DemoState.values[_demoStateIndex.value];
     final localizations = AppLocalizations.of(context)!;
     final options = GalleryOptions.of(context);
@@ -201,7 +201,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
       systemOverlayStyle: options.resolvedSystemUiOverlayStyle(),
       backgroundColor: Colors.transparent,
       leading: Padding(
-        padding: EdgeInsetsDirectional.only(start: appbarPadding),
+        padding: EdgeInsetsDirectional.only(start: appBarPadding),
         child: IconButton(
           key: const ValueKey('Back'),
           icon: const BackButtonIcon(),
@@ -212,17 +212,48 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
         ),
       ),
       actions: [
-        // if(_hasOptions) {
-        //   IconButton(
-        //     icon: FeatureDisc,
-        //   ),
-        // }
+        if (_hasOptions)
+          IconButton(
+            icon: FeatureDiscovery(
+              title: localizations.demoOptionsFeatureTitle,
+              description: localizations.demoOptionsFeatureDescription,
+              showOverlay: !isDisplayDesktop(context) && !options.isTestMode,
+              color: colorScheme.primary,
+              onTap: () => _handleTap(_DemoState.options),
+              child: Icon(
+                Icons.tune,
+                color: currentDemoState == _DemoState.options ? selectedIconColor : iconColor,
+              ),
+            ),
+            tooltip: localizations.demoOptionsTooltip,
+            onPressed: () => _handleTap(_DemoState.options),
+          ),
         IconButton(
-          onPressed: () => _handleTap(_DemoState.info),
           icon: const Icon(Icons.info),
           tooltip: localizations.demoInfoTooltip,
           color: currentDemoState == _DemoState.info ? selectedIconColor : iconColor,
+          onPressed: () => _handleTap(_DemoState.info),
         ),
+        IconButton(
+          icon: const Icon(Icons.code),
+          tooltip: localizations.demoCodeTooltip,
+          color: currentDemoState == _DemoState.code ? selectedIconColor : iconColor,
+          onPressed: () => _handleTap(_DemoState.code),
+        ),
+        IconButton(
+          icon: const Icon(Icons.library_books),
+          tooltip: localizations.demoDocumentationTooltip,
+          color: iconColor,
+          onPressed: () => _showDocumentation(context),
+        ),
+        if (isDesktop)
+          IconButton(
+            icon: const Icon(Icons.fullscreen),
+            tooltip: localizations.demoFullscreenTooltip,
+            color: currentDemoState == _DemoState.fullscreen ? selectedIconColor : iconColor,
+            onPressed: () => _handleTap(_DemoState.fullscreen),
+          ),
+        SizedBox(width: appBarPadding),
       ],
     );
 
@@ -236,13 +267,27 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
     Widget section;
     switch (currentDemoState) {
-      //   case _DemoState.options:
-      //   section = _DemosSec
-      //   break;
-      //   case _DemoState.info:
-      //   break;
-      //   case _DemoState.code:
-      //   break;
+      case _DemoState.options:
+        section = _DemoSectionOptions(
+          maxHeight: maxSectionHeight,
+          maxWidth: maxSectionWidth,
+          configurations: widget.demo.configurations,
+          configIndex: _configIndex.value,
+          onConfigChanged: (value) {
+            setStateAndUpdate(() {
+              _configIndex.value = value;
+              if (!isDesktop) {
+                _demoStateIndex.value = _DemoState.normal.index;
+              }
+            });
+          },
+        );
+        break;
+      case _DemoState.info:
+      // section = _demos
+        break;
+      case _DemoState.code:
+        break;
       default:
         section = const Center(
           child: Text('demo.dart'),
@@ -259,7 +304,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     );
     if (isDesktop) {
       body = const Center(
-        child: Text('demo2.dart'),
+        child: Text('demo2.dart: isDesktop'),
       );
     } else if (isFoldable) {
       body = Padding(

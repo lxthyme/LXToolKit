@@ -135,9 +135,9 @@ class GalleryOptions {
 
   static GalleryOptions of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>();
-    print('context: $context');
-    print('scope: $scope');
-    print('modelBindingStatee: $scope!.modelBindingStatee');
+    // print('context: $context');
+    // print('scope: $scope');
+    // print('modelBindingStatee: $scope!.modelBindingStatee');
     return scope!.modelBindingState.currentModel;
   }
 
