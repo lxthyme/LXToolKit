@@ -29,10 +29,13 @@ enum _DemoState {
 class DemoPage extends StatefulWidget {
   const DemoPage({
     super.key,
+    this.baseRoutee = DemoPage.baseRoute,
     required this.slug,
   });
 
+  static const String daily = '/daily';
   static const String baseRoute = '/demo';
+  final String baseRoutee;
   final String? slug;
 
   @override
@@ -55,7 +58,7 @@ class _DemoPageState extends State<DemoPage> {
     }
     return ScaffoldMessenger(
       child: GalleryDemoPage(
-        restorationId: widget.slug!,
+        restorationId: '${widget.baseRoutee}/${widget.slug!}',
         demo: slugToDemoMap[widget.slug]!,
       ),
     );
@@ -67,8 +70,9 @@ class GalleryDemoPage extends StatefulWidget {
     super.key,
     required this.restorationId,
     required this.demo,
-  });
+  }) : isDaily = false;
 
+  final bool isDaily;
   final String restorationId;
   final GalleryDemo demo;
 
@@ -384,6 +388,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     }
 
     Widget page;
+    print('-->widget.restorationId: ${widget.restorationId}');
     if (isDesktop || isFoldable) {
       page = const Center(
         child: Text('demo2.dart'),
@@ -392,11 +397,16 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
       page = Container(
         color: colorScheme.background,
         child: ApplyTextOptions(
-          child: Scaffold(
-            appBar: appBar,
-            body: body,
-            resizeToAvoidBottomInset: false,
-          ),
+          child: widget.restorationId.contains('daily')
+              ? Scaffold(
+                  body: body,
+                  resizeToAvoidBottomInset: false,
+                )
+              : Scaffold(
+                  appBar: appBar,
+                  body: body,
+                  resizeToAvoidBottomInset: false,
+                ),
         ),
       );
     }
