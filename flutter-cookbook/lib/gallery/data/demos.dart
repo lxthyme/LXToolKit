@@ -5,6 +5,7 @@ import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
+import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
 import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
@@ -156,6 +157,75 @@ class Demos {
               () => cupertino_demos.CupertinoProgressIndicatorDemo(),
             ),
             code: CodeSegments.cupertinoActivityIndicatorDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: localizations.demoCupertinoAlertsTitle,
+        icon: GalleryIcons.dialogs,
+        slug: 'cupertino-alert',
+        subtitle: localizations.demoCupertinoAlertsSubtitle,
+        category: GalleryDemoCategory.cupertino,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alert,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertWithTitleTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertTitle,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertButtonsTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertButtons,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertButtonsOnlyTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertButtonsOnly,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoActionSheetTitle,
+            description: localizations.demoCupertinoActionSheetDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoActionSheet-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.actionSheet,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
           ),
         ],
       ),
