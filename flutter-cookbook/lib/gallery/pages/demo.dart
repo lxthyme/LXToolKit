@@ -170,7 +170,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
   void _resolveState(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
-    final isFoldable = isDisplayFoladable(context);
+    final isFoldable = isDisplayFoldable(context);
     if (_DemoState.values[_demoStateIndex.value] == _DemoState.fullscreen && !isDesktop) {
       _demoStateIndex.value = _DemoState.normal.index;
     } else if (_DemoState.values[_demoStateIndex.value] == _DemoState.normal && (isDesktop || isFoldable)) {
@@ -185,7 +185,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
   @override
   Widget build(BuildContext context) {
-    final isFoldable = isDisplayFoladable(context);
+    final isFoldable = isDisplayFoldable(context);
     final isDesktop = isDisplayDesktop(context);
     _resolveState(context);
 

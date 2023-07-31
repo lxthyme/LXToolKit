@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 const maxHomeItemWidth = 1400.0;
 
 bool isDisplayDesktop(BuildContext context) =>
-    !isDisplayFoladable(context) && getWindowType(context) >= AdaptiveWindowType.medium;
+    !isDisplayFoldable(context) && getWindowType(context) >= AdaptiveWindowType.medium;
 
 bool isDisplaySmallDesktop(BuildContext context) {
   return getWindowType(context) == AdaptiveWindowType.medium;
 }
 
-bool isDisplayFoladable(BuildContext context) {
+bool isDisplayFoldable(BuildContext context) {
   final hinge = MediaQuery.of(context).hinge;
   if (hinge == null) {
     return false;
