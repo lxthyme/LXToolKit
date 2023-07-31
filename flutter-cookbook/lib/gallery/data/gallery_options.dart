@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 
 enum CustomTextDirection {
-  localBased,
+  localeBased,
   ltr,
   rtl,
 }
@@ -63,7 +63,7 @@ class GalleryOptions {
 
   TextDirection? resolvedTextDirection() {
     switch (customTextDirection) {
-      case CustomTextDirection.localBased:
+      case CustomTextDirection.localeBased:
         final language = locale?.languageCode.toLowerCase();
         if (language == null) return null;
         return rtlLanguages.contains(language) ? TextDirection.rtl : TextDirection.ltr;
@@ -102,13 +102,14 @@ class GalleryOptions {
     bool? isTestMode,
   }) {
     return GalleryOptions(
-        themeMode: themeMode ?? this.themeMode,
-        textScaleFactor: textScaleFactor ?? _textScaleFactor,
-        customTextDirection: customTextDirection ?? this.customTextDirection,
-        locale: locale ?? this.locale,
-        timeDilation: timeDilation ?? this.timeDilation,
-        platform: platform ?? this.platform,
-        isTestMode: isTestMode ?? this.isTestMode);
+      themeMode: themeMode ?? this.themeMode,
+      textScaleFactor: textScaleFactor ?? _textScaleFactor,
+      customTextDirection: customTextDirection ?? this.customTextDirection,
+      locale: locale ?? this.locale,
+      timeDilation: timeDilation ?? this.timeDilation,
+      platform: platform ?? this.platform,
+      isTestMode: isTestMode ?? this.isTestMode,
+    );
   }
 
   @override
@@ -134,11 +135,11 @@ class GalleryOptions {
       );
 
   static GalleryOptions of(BuildContext context) {
-    final scope = context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>();
+    final scope = context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>()!;
     // print('context: $context');
     // print('scope: $scope');
     // print('modelBindingStatee: $scope!.modelBindingStatee');
-    return scope!.modelBindingState.currentModel;
+    return scope.modelBindingState.currentModel;
   }
 
   static void update(BuildContext context, GalleryOptions newModel) {

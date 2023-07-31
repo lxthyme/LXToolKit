@@ -1,4 +1,3 @@
-
 import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +38,9 @@ class RouteConfiguration {
     bool hasHinge,
   ) {
     for (final path in paths) {
-      final regexPattern = RegExp(path.pattern);
-      if (regexPattern.hasMatch(settings.name!)) {
-        final firstMatch = regexPattern.firstMatch(settings.name!)!;
+      final regExpPattern = RegExp(path.pattern);
+      if (regExpPattern.hasMatch(settings.name!)) {
+        final firstMatch = regExpPattern.firstMatch(settings.name!)!;
         final match = (firstMatch.groupCount == 1) ? firstMatch.group(1) : null;
         if (kIsWeb) {
           return NoAnimationMaterialPageRoute<void>(
@@ -55,7 +54,7 @@ class RouteConfiguration {
             settings: settings,
           );
         } else {
-          return MaterialPageRoute(
+          return MaterialPageRoute<void>(
             builder: (context) => path.builder(context, match),
             settings: settings,
           );

@@ -177,7 +177,7 @@ class _FeatureDiscoveryState extends State<FeatureDiscovery> with TickerProvider
         } else {
           if (showOverlay && !FeatureDiscoveryController._of(context).isLocked) {
             final entry = OverlayEntry(
-              builder: (context) => buildOverlay(context, getOverlayCenter(context)),
+              builder: (_) => buildOverlay(context, getOverlayCenter(context)),
             );
 
             FeatureDiscoveryController._of(context).lock();
@@ -200,12 +200,12 @@ class _FeatureDiscoveryState extends State<FeatureDiscovery> with TickerProvider
   Offset getOverlayCenter(BuildContext parentCtx) {
     final box = parentCtx.findRenderObject() as RenderBox;
     final size = box.size;
-    final topLeftPostion = box.localToGlobal(Offset.zero);
-    final centerPostion = Offset(
-      topLeftPostion.dx + size.width / 2,
-      topLeftPostion.dy + size.height / 2,
+    final topLeftPosition = box.localToGlobal(Offset.zero);
+    final centerPosition = Offset(
+      topLeftPosition.dx + size.width / 2,
+      topLeftPosition.dy + size.height / 2,
     );
-    return centerPostion;
+    return centerPosition;
   }
 
   @override

@@ -141,7 +141,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
               );
             }
 
-            if (isDisplayFoladable(context)) {
+            if (isDisplayFoldable(context)) {
               return TwoPane(
                 startPane: frontLayer,
                 endPane: GestureDetector(
@@ -152,7 +152,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                       _controller.forward();
                     }
                   },
-                  // child: _Sp,
+                  child: _SplashBackLayer(
+                    isSplashCollapsed: !_isSplashVisible,
+                    effect: _effect,
+                  ),
                 ),
               );
             } else {
@@ -192,7 +195,7 @@ class _SplashBackLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var effectAssets = 'splash_effects/splash_effect_$effect.gif';
+    var effectAsset = 'splash_effects/splash_effect_$effect.gif';
     final flutterLogo = Image.asset(
       'assets/logo/flutter_logo.png',
       package: 'flutter_gallery_assets',
@@ -215,7 +218,7 @@ class _SplashBackLayer extends StatelessWidget {
           ),
         );
       }
-      if (isDisplayFoladable(context)) {
+      if (isDisplayFoldable(context)) {
         child = Container(
           color: Theme.of(context).colorScheme.background,
           child: Stack(
@@ -240,7 +243,7 @@ class _SplashBackLayer extends StatelessWidget {
         children: [
           Center(
             child: Image.asset(
-              effectAssets,
+              effectAsset,
               package: 'flutter_gallery_assets',
             ),
           ),
@@ -258,7 +261,7 @@ class _SplashBackLayer extends StatelessWidget {
           padding: EdgeInsets.only(
               bottom: isDisplayDesktop(context)
                   ? homePeekDesktop
-                  : isDisplayFoladable(context)
+                  : isDisplayFoldable(context)
                       ? 0
                       : homePeekMobile),
           child: child,

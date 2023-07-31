@@ -73,12 +73,12 @@ class Background extends StatelessWidget {
 
   double get radius {
     final textBounds = _getContentBounds(deviceSize, center);
-    final textRaidus = _maxDistance(center, textBounds) + padding;
+    final textRadius = _maxDistance(center, textBounds) + padding;
 
     if (_isNearTopOrBottomEdges(center, deviceSize)) {
-      return animations.backgroundRadius(status, textRaidus).value;
+      return animations.backgroundRadius(status, textRadius).value;
     } else {
-      return animations.backgroundRadius(status, textRaidus).value * 0.8;
+      return animations.backgroundRadius(status, textRadius).value * 0.8;
     }
   }
 
@@ -195,7 +195,7 @@ class Ripple extends StatelessWidget {
   final Offset center;
   final FeatureDiscoveryStatus status;
 
-  double get raidus => animations.rippleRadius(status).value;
+  double get radius => animations.rippleRadius(status).value;
   double get opacity => animations.rippleOpacity(status).value;
 
   @override
@@ -203,14 +203,17 @@ class Ripple extends StatelessWidget {
     return Positioned(
       top: center.dy,
       left: center.dx,
-      child: Opacity(
-        opacity: opacity,
-        child: Container(
-          width: raidus * 2,
-          height: raidus * 2,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
+      child: FractionalTranslation(
+        translation: const Offset(-0.5, -0.5),
+        child: Opacity(
+          opacity: opacity,
+          child: Container(
+            width: radius * 2,
+            height: radius * 2,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
       ),
@@ -292,6 +295,6 @@ bool _isOnTopHalfOfScreen(Offset position, Size deviceSize) {
   return position.dy < (deviceSize.height / 2.0);
 }
 
-bool _isOnLeftHalfOfScreen(Offset postion, Size deviceSize) {
-  return postion.dx < (deviceSize.width / 2.0);
+bool _isOnLeftHalfOfScreen(Offset position, Size deviceSize) {
+  return position.dx < (deviceSize.width / 2.0);
 }

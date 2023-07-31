@@ -77,35 +77,28 @@ class DeferredLoadingPlaceholder extends StatelessWidget {
     return Center(
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[700],
-          border: Border.all(
-            width: 20,
-            color: Colors.grey[700]!,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
+            color: Colors.grey[700],
+            border: Border.all(
+              width: 20,
+              color: Colors.grey[700]!,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(10))),
         width: 250,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Text(
               '$name is installing.',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Container(
-              height: 10,
-            ),
+            Container(height: 10),
             Text(
               '$name is a deferred component which are downloaded and installed at runtime.',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Container(
-              height: 20,
-            ),
-            const Center(
-              child: CircularProgressIndicator(),
-            ),
+            Container(height: 20),
+            const Center(child: CircularProgressIndicator()),
           ],
         ),
       ),

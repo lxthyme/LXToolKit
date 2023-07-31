@@ -14,6 +14,7 @@ import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/backdrop.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_cookbook/gallery/routes.dart';
+import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
 // import 'package:flutter_cookbook/router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
@@ -222,13 +223,14 @@ class GalleryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ModelBinding(
       initialModel: GalleryOptions(
-          themeMode: ThemeMode.system,
-          textScaleFactor: systemTextScaleFactorOption,
-          customTextDirection: CustomTextDirection.localBased,
-          locale: null,
-          timeDilation: timeDilation,
-          platform: defaultTargetPlatform,
-          isTestMode: isTestMode),
+        themeMode: ThemeMode.system,
+        textScaleFactor: systemTextScaleFactorOption,
+        customTextDirection: CustomTextDirection.localeBased,
+        locale: null,
+        timeDilation: timeDilation,
+        platform: defaultTargetPlatform,
+        isTestMode: isTestMode,
+      ),
       child: Builder(
         builder: (context) {
           final options = GalleryOptions.of(context);
@@ -239,8 +241,12 @@ class GalleryApp extends StatelessWidget {
             title: 'Flutter Gallery',
             debugShowCheckedModeBanner: false,
             themeMode: options.themeMode,
-            // theme: Gathem,
-            // darkTheme: ,
+            theme: GalleryThemeData.lightThemeData.copyWith(
+              platform: options.platform,
+            ),
+            darkTheme: GalleryThemeData.darkThemeData.copyWith(
+              platform: options.platform,
+            ),
             localizationsDelegates: const [
               ...AppLocalizations.localizationsDelegates,
               LocaleNamesLocalizationsDelegate(),

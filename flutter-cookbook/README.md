@@ -11,3 +11,23 @@
 1. <https://github.com/jonataslaw/getx>
 2. <https://github.com/cfug/dio>
 3. <https://github.com/simc/logger>
+
+
+## Compares
+
+- [ ] routes.dart
+- [ ] data/demos.dart
+- [ ] layout/highlight_focus.dart
+- [ ] layout/image_placeholder.dart
+- [ ] layout/letter_spacing.dart
+- [ ] layout/text_scale.dart
+- [ ] pages/about.dart
+- [ ] pages/category_list_item.dart home.dart
+- [ ] pages/settings_icon
+- [ ] pages/splash.dart
+- [ ] pages/backdrop.dart
+- [ ] pages/demo.dart
+- [ ] pages/settings.dart
+- [ ] pages/settings_list_item.dart
+- [ ] demos/
+- [ ] studies/

@@ -197,8 +197,8 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                     child: Container(
                       constraints: const BoxConstraints(
                         maxHeight: 560,
-                        maxWidth: desktopSettingWidth,
-                        minWidth: desktopSettingWidth,
+                        maxWidth: desktopSettingsWidth,
+                        minWidth: desktopSettingsWidth,
                       ),
                       child: settingsPage,
                     ),

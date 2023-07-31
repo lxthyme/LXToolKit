@@ -6,7 +6,7 @@ const double galleryHeaderHeight = 64;
 
 const double desktopDisplay1FontDelta = 16;
 
-const double desktopSettingWidth = 520;
+const double desktopSettingsWidth = 520;
 
 const double systemTextScaleFactorOption = -1;
 
