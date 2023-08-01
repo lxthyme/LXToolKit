@@ -172,6 +172,7 @@ class _AnimatedHomePage extends StatefulWidget {
 class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationMixin, SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   Timer? _launchTimer;
+  final RestorableBool _isDailyListExpanded = RestorableBool(false);
   final RestorableBool _isMaterialListExpanded = RestorableBool(false);
   final RestorableBool _isCupertinoListExpaned = RestorableBool(false);
   final RestorableBool _isOtherListExpanded = RestorableBool(false);
@@ -181,6 +182,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
 
   @override
   void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_isDailyListExpanded, 'daily_lsit');
     registerForRestoration(_isMaterialListExpanded, 'material_lsit');
     registerForRestoration(_isCupertinoListExpaned, 'cupertino_list');
     registerForRestoration(_isOtherListExpanded, 'other_list');
@@ -212,6 +214,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
     _animationController.dispose();
     _launchTimer?.cancel();
     _launchTimer = null;
+    _isDailyListExpanded.dispose();
     _isMaterialListExpanded.dispose();
     _isCupertinoListExpaned.dispose();
     _isOtherListExpanded.dispose();
@@ -245,6 +248,23 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
             Container(
               margin: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
               child: const _CategoriesHeader(),
+            ),
+            _AnimatedCategoryItem(
+              startDelayFraction: 0.00,
+              controller: _animationController,
+              child: CategoryListItem(
+                key: const PageStorageKey<GalleryDemoCategory>(
+                  GalleryDemoCategory.daily,
+                ),
+                restorationId: 'home_daily_list',
+                category: GalleryDemoCategory.daily,
+                imageString: 'assets/icons/material/material.png',
+                demos: Demos.dailyDemos(localizations),
+                initiallyExpanded: _isDailyListExpanded.value || isTestModel,
+                onTap: (shouldOpenList) {
+                  _isDailyListExpanded.value = shouldOpenList;
+                },
+              ),
             ),
             _AnimatedCategoryItem(
               startDelayFraction: 0.00,
@@ -375,7 +395,7 @@ class _DesktopCategoryItem extends StatelessWidget {
               ),
               Flexible(
                 child: ListView.builder(
-                  itemBuilder: (context, index) => CategoryDemoItem(demo: demos[index]),
+                  itemBuilder: (context, index) => CategoryDemoItem(baseRoute: demos[index].baseRoute,demo: demos[index]),
                 ),
               ),
             ],

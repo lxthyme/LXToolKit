@@ -260,6 +260,7 @@ class _ExpandedCategoryDemos extends StatelessWidget {
       children: [
         for (final demo in demos)
           CategoryDemoItem(
+            baseRoute: demo.baseRoute,
             demo: demo,
           ),
         const SizedBox(height: 12),
@@ -271,9 +272,11 @@ class _ExpandedCategoryDemos extends StatelessWidget {
 class CategoryDemoItem extends StatelessWidget {
   const CategoryDemoItem({
     super.key,
+    required this.baseRoute,
     required this.demo,
   });
 
+  final String baseRoute;
   final GalleryDemo demo;
 
   @override
@@ -288,7 +291,8 @@ class CategoryDemoItem extends StatelessWidget {
           onTap: () {
             print('-->onTap: ${DemoPage.baseRoute}/${demo.slug}');
             Navigator.of(context).restorablePushNamed(
-              '${DemoPage.baseRoute}/${demo.slug}',
+              // '${DemoPage.baseRoute}/${demo.slug}',
+              '$baseRoute/${demo.slug}',
             );
           },
           child: Padding(

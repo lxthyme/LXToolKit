@@ -19,7 +19,18 @@ class RouteConfiguration {
   static List<Path> paths = [
     Path(
       r'^' + DemoPage.baseRoute + r'/([\w-]+)$',
-      (context, match) => DemoPage(slug: match),
+      (context, match) {
+        print('-->match: $match');
+        return DemoPage(slug: match);
+      },
+      openInSecondScreen: false,
+    ),
+    Path(
+      r'^' + DemoPage.daily + r'/([\w-]+)$',
+      (context, match) {
+        print('-->match: $match');
+        return DemoPage(baseRoutee: DemoPage.daily, slug: match);
+      },
       openInSecondScreen: false,
     ),
     // Path(

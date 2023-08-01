@@ -5,16 +5,20 @@ import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
+import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
+import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
-import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
+import 'package:flutter_cookbook/daily/daily_demos.dart' deferred as daily_demos;
 import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
+import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
 import 'package:flutter_cookbook/gallery/demos/reference/two_pane_demo.dart' deferred as twopane_demos;
 
 const _docsBaseUrl = 'https://api.flutter.dev/flutter';
 const _docsAnimationsUrl = 'https://pub.dev/documentation/animations/latest/animations';
 
 enum GalleryDemoCategory {
+  daily,
   study,
   material,
   cupertino,
@@ -29,6 +33,7 @@ enum GalleryDemoCategory {
     switch (this) {
       case GalleryDemoCategory.other:
         return localizations.homeCategoryReference;
+      case GalleryDemoCategory.daily:
       case GalleryDemoCategory.material:
       case GalleryDemoCategory.cupertino:
         return toString();
@@ -44,6 +49,7 @@ class GalleryDemo {
     required this.category,
     required this.subtitle,
     this.studyId,
+    this.baseRoute = DemoPage.baseRoute,
     this.slug,
     this.icon,
     this.configurations = const [],
@@ -54,6 +60,7 @@ class GalleryDemo {
   final GalleryDemoCategory category;
   final String subtitle;
   final String? studyId;
+  final String baseRoute;
   final String? slug;
   final IconData? icon;
   final List<GalleryDemoConfiguration> configurations;
@@ -95,6 +102,7 @@ class Demos {
 
   static List<GalleryDemo> all(AppLocalizations localizations) =>
       studies(localizations).values.toList() +
+      dailyDemos(localizations) +
       materialDemos(localizations) +
       cupertinoDemos(localizations) +
       otherDemos(localizations);
@@ -110,6 +118,92 @@ class Demos {
         studyId: 'shrine',
       ),
     };
+  }
+
+  static List<GalleryDemo> dailyDemos(AppLocalizations localizations) {
+    LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
+    return [
+      GalleryDemo(
+        title: 'MyScaffold',
+        icon: GalleryIcons.appbar,
+        baseRoute: DemoPage.daily,
+        slug: 'MyScaffold',
+        subtitle: 'hw2',
+        category: GalleryDemoCategory.daily,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoAppBarTitle,
+            description: localizations.demoAppBarDescription,
+            documentationUrl: 'https://zhihu.com',
+            buildRoute: (context) => DeferredWidget(
+              dailyDemosLibrary,
+              () => daily_demos.MyScaffold(),
+            ),
+            code: CodeSegments.appbarDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: 'TutorialHome',
+        icon: GalleryIcons.appbar,
+        baseRoute: DemoPage.daily,
+        slug: 'TutorialHome',
+        subtitle: 'hw3',
+        category: GalleryDemoCategory.daily,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoAppBarTitle,
+            description: localizations.demoAppBarDescription,
+            documentationUrl: 'https://zhihu.com',
+            buildRoute: (context) => DeferredWidget(
+              dailyDemosLibrary,
+              () => daily_demos.TutorialHome(),
+            ),
+            code: CodeSegments.appbarDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: 'MyButton',
+        icon: GalleryIcons.appbar,
+        baseRoute: DemoPage.daily,
+        slug: 'MyButton',
+        subtitle: 'mybutton',
+        category: GalleryDemoCategory.daily,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoAppBarTitle,
+            description: localizations.demoAppBarDescription,
+            documentationUrl: 'https://zhihu.com',
+            buildRoute: (context) => DeferredWidget(
+              dailyDemosLibrary,
+              () => daily_demos.MyButton(),
+            ),
+            code: CodeSegments.appbarDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: 'Counter',
+        icon: GalleryIcons.appbar,
+        baseRoute: DemoPage.daily,
+        slug: 'Counter',
+        subtitle: 'counter',
+        category: GalleryDemoCategory.daily,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoAppBarTitle,
+            description: localizations.demoAppBarDescription,
+            documentationUrl: 'https://zhihu.com',
+            buildRoute: (context) => DeferredWidget(
+              dailyDemosLibrary,
+              () => daily_demos.Counter(),
+            ),
+            code: CodeSegments.appbarDemo,
+          ),
+        ],
+      ),
+    ];
   }
 
   static List<GalleryDemo> materialDemos(AppLocalizations localizations) {
@@ -156,6 +250,75 @@ class Demos {
               () => cupertino_demos.CupertinoProgressIndicatorDemo(),
             ),
             code: CodeSegments.cupertinoActivityIndicatorDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: localizations.demoCupertinoAlertsTitle,
+        icon: GalleryIcons.dialogs,
+        slug: 'cupertino-alert',
+        subtitle: localizations.demoCupertinoAlertsSubtitle,
+        category: GalleryDemoCategory.cupertino,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alert,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertWithTitleTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertTitle,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertButtonsTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertButtons,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoAlertButtonsOnlyTitle,
+            description: localizations.demoCupertinoAlertDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.alertButtonsOnly,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
+          ),
+          GalleryDemoConfiguration(
+            title: localizations.demoCupertinoActionSheetTitle,
+            description: localizations.demoCupertinoActionSheetDescription,
+            documentationUrl: '$_docsBaseUrl/cupertino/CupertinoActionSheet-class.html',
+            buildRoute: (context) => DeferredWidget(
+              cupertinoLoader,
+              () => cupertino_demos.CupertinoAlertDemo(
+                type: AlertDemoType.actionSheet,
+              ),
+            ),
+            code: CodeSegments.cupertinoAlertDemo,
           ),
         ],
       ),
