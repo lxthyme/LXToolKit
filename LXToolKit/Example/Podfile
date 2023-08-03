@@ -143,7 +143,8 @@ pod 'MessageKit'
 # https://github.com/mac-gallagher/MultiProgressView
 pod 'MultiProgressView'
 # https://github.com/danielgindi/Charts
-pod 'Charts'
+# pod 'Charts'
+pod 'DGCharts'
 
 # Keyboard
 # https://github.com/hackiftekhar/IQKeyboardManager

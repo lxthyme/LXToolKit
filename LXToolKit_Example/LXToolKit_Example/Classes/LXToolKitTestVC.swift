@@ -82,6 +82,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // snapshot.appendItems([
         // ], toSection: "2021")
         snapshot.appendItems([
+            .LXStackTestVC,
             .LXiOS15VC(viewModel: vm),
             .LXTable0120VC(viewModel: vm),
             .LXMasonryTestVCVC(viewModel: vm),
@@ -89,11 +90,15 @@ open class LXToolKitTestVC: LXBaseTableVC {
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
                 .LXWebViewTestVC(viewModel: vm),
             .LXYYLabelMoreTestVC(viewModel: vm),
+            .LXWebVC(viewModel: vm),
             .RxNetworksTestVC,
             // .HomeViewController(viewModel: vm),
-            .LXHandyJSONTestVC
+            .test(vm: vm),
+            // .tabs(vm: vm as! DJHomeTabBarVM),
         ], toSection: "2022")
         snapshot.appendItems([
+            .LX03_08_03VC,
+            .LXHandyJSONTestVC,
             .LXWebVC(viewModel: vm)
         ], toSection: "2023")
         _dataSnapshot = snapshot

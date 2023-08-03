@@ -96,6 +96,7 @@ TODO: Add long description of the pod here.
   s.dependency 'MessageKit', '~> 3.0'  # https://github.com/MessageKit/MessageKit
   s.dependency 'MultiProgressView', '~> 1.0'  # https://github.com/mac-gallagher/MultiProgressView
   s.dependency 'Charts', '~> 4.0'  # https://github.com/danielgindi/Charts
+  # s.dependency 'DGCharts', '~> 0.1'
   s.dependency 'IQKeyboardManagerSwift', '~> 6.0'  # https://github.com/hackiftekhar/IQKeyboardManager
   s.dependency 'SnapKit', '~> 5.0'  # https://github.com/SnapKit/SnapKit
   s.dependency 'FLEX', '~> 5.0'#, :configurations => ['Debug']  # https://github.com/Flipboard/FLEX

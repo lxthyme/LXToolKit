@@ -10,6 +10,7 @@ import Foundation
 import Hero
 import SafariServices
 import LXToolKit
+import DJSwiftModule
 // import DJBusinessModuleSwift
 
 // protocol LXNavigatable {
@@ -66,9 +67,10 @@ extension Navigator {
         case LXWebVC(viewModel: LXBaseVM)
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
-        case tabs(vm: DJHomeTabBarVM)
+        case tabs
         /// Daily
         case LXHandyJSONTestVC
+        case LX03_08_03VC
     }
 
     // enum Transition {
@@ -165,16 +167,20 @@ extension Navigator {
             let vc = UIViewController()
             vc.view.backgroundColor = .red
             return vc
-        case .tabs(vm: let vm):
-            let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
-            let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
-            let splitVC = UISplitViewController()
-            splitVC.viewControllers = [rootVC , detailVC]
-            return splitVC
+        case .tabs:
+            // let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
+            // let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
+            // let splitVC = UISplitViewController()
+            // splitVC.viewControllers = [rootVC , detailVC]
+            // return splitVC
+            Application.shared.presentInitialScreen(in: Application.shared.window)
+            return nil
         case .RxNetworksTestVC:
             return RxNetworksTestVC()
         case .LXHandyJSONTestVC:
             return LXHandyJSONTestVC()
+        case .LX03_08_03VC:
+            return LX03_08_03VC()
         }
     }
 
@@ -302,6 +308,8 @@ extension Navigator.Scene {
             tmp = (title: "RxNetworksTestVC", desc: "---")
         case .LXHandyJSONTestVC:
             tmp = (title: "float testing", desc: "---")
+        case .LX03_08_03VC:
+            tmp = (title: "Swift Daily", desc: "---")
         }
         return tmp
     }

@@ -59,6 +59,7 @@ target 'DJSwiftModule_Example' do
     pod 'MessageKit', '~> 3.0'  # https://github.com/MessageKit/MessageKit
     pod 'MultiProgressView', '~> 1.0'  # https://github.com/mac-gallagher/MultiProgressView
     pod 'Charts', '~> 4.0'  # https://github.com/danielgindi/Charts
+    # pod 'DGCharts', '~> 0.1'
 
     # Keyboard
     pod 'IQKeyboardManagerSwift', '~> 6.0'  # https://github.com/hackiftekhar/IQKeyboardManager
