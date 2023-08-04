@@ -10,7 +10,7 @@ import Foundation
 import Hero
 import SafariServices
 import LXToolKit
-import DJSwiftModule
+// import DJSwiftModule
 // import DJBusinessModuleSwift
 
 // protocol LXNavigatable {
@@ -168,6 +168,11 @@ extension Navigator {
             vc.view.backgroundColor = .red
             return vc
         case .tabs:
+            // let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
+            // let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
+            // let splitVC = UISplitViewController()
+            // splitVC.viewControllers = [rootVC , detailVC]
+            // return splitVC
             // let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
             // let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
             // let splitVC = UISplitViewController()

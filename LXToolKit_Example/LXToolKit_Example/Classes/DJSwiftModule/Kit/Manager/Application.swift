@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import LXToolKit
 
-final class Application: NSObject {
-    static let shared = Application()
+final public class Application: NSObject {
+    public static let shared = Application()
 
     var window: UIWindow?
+    @objc public  var previousRootVC: UIViewController?
     var provider: DJAllAPI?
     let authManager: AuthManager
     let navigator: Navigator
@@ -45,7 +47,7 @@ final class Application: NSObject {
 
 // MARK: - 👀
 extension Application {
-    func presentInitialScreen(in window: UIWindow?) {
+    @objc public  func presentInitialScreen(in window: UIWindow?) {
         updateProvider()
         guard let window, let provider else { return }
 
