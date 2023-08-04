@@ -104,11 +104,14 @@ extension Navigator {
         case LXWebVC(viewModel: LXBaseVM)
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
-        case tabs2
-        case tabs(vm: DJHomeTabBarVM)
-        /// Daily
         case LXHandyJSONTestVC
         case LX03_08_03VC
+        // !!!: MVVM
+        case tabs2
+        case tabs(vm: DJHomeTabBarVM)
+        case LXMVVMSampleVC
+        case HomeViewController
+        case LXAttributedStringVC
     }
 
     // enum Transition {
@@ -243,6 +246,13 @@ extension Navigator {
             let vc = UIViewController()
             vc.view.backgroundColor = .red
             return vc
+        case .RxNetworksTestVC:
+            return RxNetworksTestVC()
+        case .LXHandyJSONTestVC:
+            return LXHandyJSONTestVC()
+        case .LX03_08_03VC:
+            return LX03_08_03VC()
+            // !!!: MVVM
         case .tabs(let vm):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
             let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
@@ -252,12 +262,9 @@ extension Navigator {
         case .tabs2:
             Application.shared.presentInitialScreen(in: Application.shared.window)
             return nil
-        case .RxNetworksTestVC:
-            return RxNetworksTestVC()
-        case .LXHandyJSONTestVC:
-            return LXHandyJSONTestVC()
-        case .LX03_08_03VC:
-            return LX03_08_03VC()
+        case .LXMVVMSampleVC: return LXMVVMSampleVC()
+        case .HomeViewController: return HomeViewController()
+        case .LXAttributedStringVC: return LXAttributedStringVC()
         }
     }
 
@@ -415,16 +422,20 @@ extension Navigator.Scene {
             tmp = (title: "LXWebVC", desc: "---")
         case .test:
             tmp = (title: "test", desc: "---")
-        case .tabs2:
-            tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
-        case .tabs:
-            tmp = (title: "DJHomeTabBarVC", desc: "---")
         case .RxNetworksTestVC:
             tmp = (title: "RxNetworksTestVC", desc: "---")
         case .LXHandyJSONTestVC:
             tmp = (title: "float testing", desc: "---")
         case .LX03_08_03VC:
             tmp = (title: "Swift Daily", desc: "---")
+            // !!!: MVVM
+        case .tabs2:
+            tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
+        case .tabs:
+            tmp = (title: "DJHomeTabBarVC", desc: "---")
+        case .LXMVVMSampleVC: tmp = (title: "LXMVVMSampleVC", desc: "---")
+        case .HomeViewController: tmp = (title: "HomeViewController", desc: "---")
+        case .LXAttributedStringVC: tmp = (title: "LXAttributedStringVC", desc: "---")
         }
         return tmp
     }

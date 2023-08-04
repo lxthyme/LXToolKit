@@ -141,6 +141,9 @@ open class LXToolKitTestVC: LXBaseTableVC {
         snapshot.appendItems([
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
             .tabs2,
+            .LXMVVMSampleVC,
+            .HomeViewController,
+            .LXAttributedStringVC,
         ], toSection: "MVVM")
         _dataSnapshot = snapshot
         return snapshot
