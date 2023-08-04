@@ -57,9 +57,9 @@ extension Application {
             // if let user = UserModel.currentUser(),
             //    let login = user.login {
             // }
-            // let authorized = self.authManager.token?.isValid ?? false
-            // let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
-            // self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
+            let authorized = self.authManager.token?.isValid ?? false
+            let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
+            self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }
 

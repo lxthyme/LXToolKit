@@ -75,20 +75,57 @@ open class LXToolKitTestVC: LXBaseTableVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as DJAllAPI)
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
-        snapshot.appendSections(["2023", "2022", "2021", "2020"])
+        snapshot.appendSections(["MVVM", "2023", "2022", "2021", "2020"])
         snapshot.appendItems([
-            .LXStackTestVC
-        ], toSection: "2020")
-        // snapshot.appendItems([
-        // ], toSection: "2021")
-        snapshot.appendItems([
+            .LXMultiRequestTestVC,
+            .LXOffScreenVC,
+            .LXResolveIMPVC,
+            .LXRequiredVC,
+            .LXRequiredVC1,
+            .LXTransitionVC,
+            .LXProxyTestVC,
+            .LXTestStringVC,
+            .LXPresentVC,
+            .LXTestVC,
+            .LXStackViewVC,
+            .LXWikipediaImageSearchVC,
             .LXStackTestVC,
-            .LXiOS15VC(viewModel: vm),
+            .LXButtonTestVC,
+            .LXImageTestVC,
+            .LXDaily1117VC,
+            .LXKingfisherVC,
+            .LXStackMessageVC,
+            .LXLockTestVC,
+            .LXTTTTT,
+            .LXMusicVC,
+            .LXSongVC,
+            .LXLightedVC,
+        ], toSection: "2020")
+        snapshot.appendItems([
+            .LX0114VC,
+            // .LXPhotoAlbumVC,
+            .LXPickerVC,
+            .ExampleViewController,
+            .LX0117VC,
+            .LXClsListVC,
+            .LXCubeVC,
+            .LXRx0225VC,
+            .LX0324EventsVC,
+            .LXNestedTableVC,
+            .LXTableTestVC,
+            .LX1019TestVC,
+            .LXHugTestVC,
+            .LXStack1206VC,
+        ], toSection: "2021")
+        snapshot.appendItems([
             .LXTable0120VC(viewModel: vm),
+            // .LXiOS15ButtonTestVC,
+            .LXiOS15VC(viewModel: vm),
             .LXMasonryTestVCVC(viewModel: vm),
             // .login(vm: LXLoginVM(with: provider)),
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
                 .LXWebViewTestVC(viewModel: vm),
+            .LXLoggerTestVC,
             .LXYYLabelMoreTestVC(viewModel: vm),
             .LXWebVC(viewModel: vm),
             .RxNetworksTestVC,
@@ -101,6 +138,10 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .LXHandyJSONTestVC,
             .LXWebVC(viewModel: vm)
         ], toSection: "2023")
+        snapshot.appendItems([
+            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
+            .tabs2,
+        ], toSection: "MVVM")
         _dataSnapshot = snapshot
         return snapshot
     }
