@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import LXToolKit
 
-final class Application: NSObject {
-    static let shared = Application()
+final public class Application: NSObject {
+    public static let shared = Application()
 
     var window: UIWindow?
+    @objc public  var previousRootVC: UIViewController?
     var provider: DJAllAPI?
     let authManager: AuthManager
     let navigator: Navigator
@@ -45,7 +47,7 @@ final class Application: NSObject {
 
 // MARK: - 👀
 extension Application {
-    func presentInitialScreen(in window: UIWindow?) {
+    @objc public  func presentInitialScreen(in window: UIWindow?) {
         updateProvider()
         guard let window, let provider else { return }
 
@@ -55,9 +57,9 @@ extension Application {
             // if let user = UserModel.currentUser(),
             //    let login = user.login {
             // }
-            // let authorized = self.authManager.token?.isValid ?? false
-            // let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
-            // self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
+            let authorized = self.authManager.token?.isValid ?? false
+            let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
+            self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }
 

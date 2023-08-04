@@ -31,7 +31,7 @@ target 'DJTest' do
   # pod 'ObjectMapper'
   pod 'R.swift', '~> 7.0'
   # pod 'DJObjcModule', :path => '../DJObjcModule'
-  pod 'DJSwiftModule', :path => '../DJSwiftModule'
+  # pod 'DJSwiftModule', :path => '../DJSwiftModule'
   # pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
   pod 'DJRSwiftResource', :path => '../DJRSwiftResource'

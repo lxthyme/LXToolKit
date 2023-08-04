@@ -19,7 +19,7 @@
 @property(nonatomic, strong)UIButton *btnStack;
 @property(nonatomic, strong)UIStackView *btnWrapperStackView;
 @property(nonatomic, strong)UIImageView *imgViewLogo;
-@property(nonatomic, strong)UILabel *labTips;
+@property(nonatomic, strong)UITextView *tvTips;
 
 @end
 
@@ -116,15 +116,26 @@
     NSString *text = @"马来西亚进口 福多巧克力瑞士卷 108g";
     UIFont *font = [UIFont systemFontOfSize:20.f];
     // font.lineHeight = 30.f;
-    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc]init];
-    style.lineHeightMultiple = 2;
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:text attributes:@{
+    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    // style.lineHeightMultiple = 2;
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]init];
+    UIImage *tagImg = [UIImage imageNamed:@"icon_coupon_tag_diyong"];
+    if(tagImg) {
+        NSTextAttachment *attach = [[NSTextAttachment alloc] init];
+        attach.image = tagImg;
+        CGFloat h = 13.f;
+        CGFloat w = h * (tagImg.size.width / tagImg.size.height);
+        attach.bounds = CGRectMake(0, 0, w, h);
+        [attr appendAttributedString:[NSAttributedString attributedStringWithAttachment:attach]];
+    }
+    [attr appendAttributedString:[[NSMutableAttributedString alloc]initWithString:text attributes:@{
         NSFontAttributeName: font,
-        NSParagraphStyleAttributeName: style,
-    }];
-    // self.labTips.font = font;
-    self.labTips.text = text;
-    self.labTips.attributedText = attr;
+        // NSParagraphStyleAttributeName: style,
+    }]];
+    // self.tvTips.font = font;
+    // self.tvTips.text = text;
+    // self.tvTips.attributedText = attr;
+    self.tvTips.text = text;
 
 }
 
@@ -137,15 +148,17 @@
     [self.view addSubview:self.tvContent];
 
     [self.btnWrapperStackView addArrangedSubview:self.imgViewLogo];
-    [self.btnWrapperStackView addArrangedSubview:self.labTips];
+    // [self.btnWrapperStackView addArrangedSubview:self.tvTips];
     [self.btnStack addSubview:self.btnWrapperStackView];
     [self.view addSubview:self.btnStack];
+    [self.view addSubview:self.tvTips];
 
     [self masonry];
     // [self.btnWrapperStackView xl_setVerticalHuggingAndCompression];
     // [self.btnStack xl_setVerticalHuggingAndCompression];
     // [self.btnWrapperStackView xl_setAllHuggingAndCompression];
     // [self.btnStack xl_setAllHuggingAndCompression];
+    // [self.tvTips xl_setHorizontalHuggingAndCompression];
 }
 
 #pragma mark Masonry
@@ -170,6 +183,10 @@
     }];
     [self.btnStack mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tvContent.mas_bottom).offset(50.f);
+        make.centerX.equalTo(@0.f);
+    }];
+    [self.tvTips mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.btnWrapperStackView.mas_bottom).offset(10.f);
         make.centerX.equalTo(@0.f);
     }];
 }
@@ -199,6 +216,9 @@
         tv.font = [UIFont systemFontOfSize:15];
         tv.returnKeyType = UIReturnKeyDone;
         tv.keyboardType = UIKeyboardTypeDefault;
+        tv.contentInset = UIEdgeInsetsZero;
+        CGFloat padding = tv.textContainer.lineFragmentPadding;
+        tv.textContainerInset = UIEdgeInsetsMake(0, -padding, 0, -padding);
         _tvContent = tv;
     }
     return _tvContent;
@@ -233,19 +253,24 @@
     }
     return _imgViewLogo;
 }
-- (UILabel *)labTips {
-    if(!_labTips){
-        UILabel *label = [[UILabel alloc]init];
-        label.text = @"";
-        label.font = [UIFont systemFontOfSize:16.f];
-        label.textColor = [UIColor blackColor];
-        label.backgroundColor = [UIColor magentaColor];
-        // label.numberOfLines = 1;
-        // label.textAlignment = <#NSTextAlignmentCenter#>;
-        // label.lineBreakMode = <#NSLineBreakByTruncatingTail#>;
-        _labTips = label;
+- (UITextView *)tvTips {
+    if(!_tvTips){
+        UITextView *tv = [[UITextView alloc]init];
+        tv.editable = NO;
+        tv.textColor = [UIColor blackColor];
+        tv.font = [UIFont systemFontOfSize:16.f];
+        tv.backgroundColor = [UIColor magentaColor];
+        tv.returnKeyType = UIReturnKeyDone;
+        tv.keyboardType = UIKeyboardTypeDefault;
+        tv.contentInset = UIEdgeInsetsZero;
+        tv.textContainerInset = UIEdgeInsetsZero;
+        tv.textAlignment = NSTextAlignmentLeft;
+        tv.scrollEnabled = NO;
+        tv.showsHorizontalScrollIndicator = NO;
+        tv.showsVerticalScrollIndicator = NO;
+        _tvTips = tv;
     }
-    return _labTips;
+    return _tvTips;
 }
 
 @end

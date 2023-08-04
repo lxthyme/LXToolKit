@@ -8,7 +8,6 @@
 import UIKit
 import LXToolKit_Example
 import LXToolKitObjC_Example
-import DJSwiftModule
 
 enum DJTestType {
     // case LXToolKit
@@ -45,7 +44,7 @@ enum DJTestType {
             let window = UIApplication.shared.keyWindow
             let app = Application.shared;
             app.previousRootVC = window?.rootViewController
-            app .presentInitialScreen(in: window)
+            app.presentInitialScreen(in: window)
         }
         return nil
     }

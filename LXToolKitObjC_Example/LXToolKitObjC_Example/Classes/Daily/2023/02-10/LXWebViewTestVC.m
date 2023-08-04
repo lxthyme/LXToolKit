@@ -31,6 +31,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
+    self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
@@ -39,6 +40,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
     // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
+    self.navigationController.navigationBarHidden = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -204,7 +206,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor cyanColor];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(backAction:)];
     [self.view addSubview:self.webView];
