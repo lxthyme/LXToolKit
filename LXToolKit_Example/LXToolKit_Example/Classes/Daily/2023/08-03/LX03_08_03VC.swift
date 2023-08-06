@@ -48,7 +48,7 @@ private extension LX03_08_03VC {
     }
     func updateUI(userName: String, userPicture: String) async {}
     func testM1() {
-        async {
+        _Concurrency.Task {
             async let userName = getUserName()
             async let userPicture = getUserPicture()
 
