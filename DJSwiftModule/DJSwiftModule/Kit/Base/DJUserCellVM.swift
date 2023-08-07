@@ -52,7 +52,7 @@ class DJUserCellVM: DJSearchDefaultCellVM {
             return true
         }
         .bind(to: hidesFollowButton)
-        // .disposed(by: rx.disposeBag)
+        .disposed(by: rx.disposeBag)
     }
 }
 

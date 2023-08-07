@@ -125,5 +125,5 @@ TODO: Add long description of the pod here.
   # s.dependency ''
   # s.dependency ''
   # s.dependency ''
-  # s.dependency ''
+  # s.dependency 'DJSwiftModule'
 end

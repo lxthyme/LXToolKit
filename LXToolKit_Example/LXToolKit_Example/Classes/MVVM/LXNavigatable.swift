@@ -10,6 +10,7 @@ import Foundation
 import Hero
 import SafariServices
 import LXToolKit
+// import DJSwiftModule
 // import DJBusinessModuleSwift
 
 // protocol LXNavigatable {
@@ -52,23 +53,65 @@ extension Navigator {
         case safariController(URL)
         // case webController(URL)
         // !!!: 2020
+        case LXMultiRequestTestVC
+        case LXOffScreenVC
+        case LXResolveIMPVC
+        case LXRequiredVC
+        case LXRequiredVC1
+        case LXTransitionVC
+        case LXProxyTestVC
+        case LXTestStringVC
+        case LXPresentVC
+        case LXTestVC
+        case LXStackViewVC
+        case LXWikipediaImageSearchVC
         case LXStackTestVC
+        case LXButtonTestVC
+        case LXImageTestVC
+        case LXDaily1117VC
+        case LXKingfisherVC
+        case LXStackMessageVC
+        case LXLockTestVC
+        case LXTTTTT
+        case LXMusicVC
+        case LXSongVC
+        case LXLightedVC
         // !!!: 2021
+        case LX0114VC
+        // case LXPhotoAlbumVC
+        case LXPickerVC
+        case ExampleViewController
+        case LX0117VC
+        case LXClsListVC
+        case LXCubeVC
+        case LXRx0225VC
+        case LX0324EventsVC
+        case LXNestedTableVC
+        case LXTableTestVC
+        case LX1019TestVC
+        case LXHugTestVC
+        case LXStack1206VC
         // !!!: 2022
         // !!!: 2023
-        /// LXToolKit_Exam
-        case LXiOS15VC(viewModel: LXBaseVM)
         case LXTable0120VC(viewModel: LXBaseVM)
+        // case LXiOS15ButtonTestVC(viewModel: LXBaseVM)
+        case LXiOS15VC(viewModel: LXBaseVM)
         case LXMasonryTestVCVC(viewModel: LXBaseVM)
         case LXWebViewTestVC(viewModel: LXBaseVM)
+        case LXLoggerTestVC
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         // case HomeViewController(viewModel: LXBaseVM)
         case LXWebVC(viewModel: LXBaseVM)
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
-        case tabs(vm: DJHomeTabBarVM)
-        /// Daily
         case LXHandyJSONTestVC
+        case LX03_08_03VC
+        // !!!: MVVM
+        case tabs2
+        case tabs(vm: DJHomeTabBarVM)
+        case LXMVVMSampleVC
+        case HomeViewController
+        case LXAttributedStringVC
     }
 
     // enum Transition {
@@ -139,18 +182,56 @@ extension Navigator {
         // case .events(let vm):
         //     return LXEventsVC(viewModel: vm, navigator: self)
             // !!!: 2020
-        case .LXStackTestVC:
-            return LXStackTestVC()
+        case .LXMultiRequestTestVC: return LXMultiRequestTestVC()
+        case .LXOffScreenVC: return LXOffScreenVC()
+        case .LXResolveIMPVC: return LXResolveIMPVC()
+        case .LXRequiredVC: return LXRequiredVC()
+        case .LXRequiredVC1: return LXRequiredVC1()
+        case .LXTransitionVC: return LXTransitionVC()
+        case .LXProxyTestVC: return LXProxyTestVC()
+        case .LXTestStringVC: return LXTestStringVC()
+        case .LXPresentVC: return LXPresentVC()
+        case .LXTestVC: return LXTestVC()
+        case .LXStackViewVC: return LXStackViewVC()
+        case .LXWikipediaImageSearchVC: return LXWikipediaImageSearchVC()
+        case .LXStackTestVC: return LXStackTestVC()
+        case .LXButtonTestVC: return LXButtonTestVC()
+        case .LXImageTestVC: return LXImageTestVC()
+        case .LXDaily1117VC: return LXDaily1117VC()
+        case .LXKingfisherVC: return LXKingfisherVC()
+        case .LXStackMessageVC: return LXStackMessageVC()
+        case .LXLockTestVC: return LXLockTestVC()
+        case .LXTTTTT: return LXTTTTT()
+        case .LXMusicVC: return LXMusicVC()
+        case .LXSongVC: return LXSongVC()
+        case .LXLightedVC: return LXLightedVC()
             // !!!: 2021
+        case .LX0114VC: return LX0114VC()
+        // case .LXPhotoAlbumVC:
+        //     let model = LXAlbumListModel(title: "相册 233", result: <#T##PHFetchResult<PHAsset>#>, collection: <#T##PHAssetCollection#>, option: <#T##PHFetchOptions#>, isCameraRoll: <#T##Bool#>)
+        //     return LXPhotoAlbumVC(albumList: )
+        case .LXPickerVC: return LXPickerVC()
+        case .ExampleViewController: return ExampleViewController()
+        case .LX0117VC: return LX0117VC()
+        case .LXClsListVC: return LXClsListVC()
+        case .LXCubeVC: return LXCubeVC()
+        case .LXRx0225VC: return LXRx0225VC()
+        case .LX0324EventsVC: return LX0324EventsVC()
+        case .LXNestedTableVC: return LXNestedTableVC()
+        case .LXTableTestVC: return LXTableTestVC()
+        case .LX1019TestVC: return LX1019TestVC()
+        case .LXHugTestVC: return LXHugTestVC()
+        case .LXStack1206VC: return LXStack1206VC()
             // !!!: 2022
             // !!!: 2023
-        /// LXToolKit_Exam
+        // case .LXiOS15ButtonTestVC: return LXiOS15ButtonTestVC()
         case .LXiOS15VC(let vm):
             let vc = LXiOS15VC(vm: vm, navigator: self)
             return vc
         case .LXTable0120VC(let vm):
             let vc = LXTable0120VC(vm: vm, navigator: self)
             return vc
+        case .LXLoggerTestVC: return LXLoggerTestVC()
         case .LXMasonryTestVCVC(let vm):
             return LXMasonryTestVCVC(vm: vm, navigator: self)
         case .LXWebViewTestVC(let vm):
@@ -165,16 +246,25 @@ extension Navigator {
             let vc = UIViewController()
             vc.view.backgroundColor = .red
             return vc
-        case .tabs(vm: let vm):
-            let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
-            let detailVC = DJInitialSplitVC(vm: vm, navigator: self)
-            let splitVC = UISplitViewController()
-            splitVC.viewControllers = [rootVC , detailVC]
-            return splitVC
         case .RxNetworksTestVC:
             return RxNetworksTestVC()
         case .LXHandyJSONTestVC:
             return LXHandyJSONTestVC()
+        case .LX03_08_03VC:
+            return LX03_08_03VC()
+            // !!!: MVVM
+        case .tabs(let vm):
+            let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
+            let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
+            let splitVC = UISplitViewController()
+            splitVC.viewControllers = [rootVC , detailVC]
+            return splitVC
+        case .tabs2:
+            Application.shared.presentInitialScreen(in: Application.shared.window)
+            return nil
+        case .LXMVVMSampleVC: return LXMVVMSampleVC()
+        case .HomeViewController: return HomeViewController()
+        case .LXAttributedStringVC: return LXAttributedStringVC()
         }
     }
 
@@ -274,9 +364,44 @@ extension Navigator.Scene {
         // case .events:
         //     tmp = (title: "EventsVC", desc: "[SwiftHub]")
             // !!!: 2020
-        case .LXStackTestVC:
-            tmp = (title: "LXStackTestVC", desc: "---")
+        case .LXMultiRequestTestVC: tmp = (title: "LXMultiRequestTestVC", desc: "---")
+        case .LXOffScreenVC: tmp = (title: "LXOffScreenVC", desc: "---")
+        case .LXResolveIMPVC: tmp = (title: "LXResolveIMPVC", desc: "---")
+        case .LXRequiredVC: tmp = (title: "LXRequiredVC", desc: "---")
+        case .LXRequiredVC1: tmp = (title: "LXRequiredVC1", desc: "---")
+        case .LXTransitionVC: tmp = (title: "LXTransitionVC", desc: "---")
+        case .LXProxyTestVC: tmp = (title: "LXProxyTestVC", desc: "---")
+        case .LXTestStringVC: tmp = (title: "LXTestStringVC", desc: "---")
+        case .LXPresentVC: tmp = (title: "LXPresentVC", desc: "---")
+        case .LXTestVC: tmp = (title: "LXTestVC", desc: "---")
+        case .LXStackViewVC: tmp = (title: "LXStackViewVC", desc: "---")
+        case .LXWikipediaImageSearchVC: tmp = (title: "LXWikipediaImageSearchVC", desc: "---")
+        case .LXStackTestVC: tmp = (title: "LXStackTestVC", desc: "---")
+        case .LXButtonTestVC: tmp = (title: "LXButtonTestVC", desc: "---")
+        case .LXImageTestVC: tmp = (title: "LXImageTestVC", desc: "---")
+        case .LXDaily1117VC: tmp = (title: "LXDaily1117VC", desc: "---")
+        case .LXKingfisherVC: tmp = (title: "LXKingfisherVC", desc: "---")
+        case .LXStackMessageVC: tmp = (title: "LXStackMessageVC", desc: "---")
+        case .LXLockTestVC: tmp = (title: "LXLockTestVC", desc: "---")
+        case .LXTTTTT: tmp = (title: "LXTTTTT", desc: "---")
+        case .LXMusicVC: tmp = (title: "LXMusicVC", desc: "---")
+        case .LXSongVC: tmp = (title: "LXSongVC", desc: "---")
+        case .LXLightedVC: tmp = (title: "LXLightedVC", desc: "---")
             // !!!: 2021
+        case .LX0114VC: tmp = (title: "LX0114VC", desc: "---")
+        // case .LXPhotoAlbumVC: tmp = (title: "LXPhotoAlbumVC", desc: "---")
+        case .LXPickerVC: tmp = (title: "LXPickerVC", desc: "---")
+        case .ExampleViewController: tmp = (title: "ExampleViewController", desc: "---")
+        case .LX0117VC: tmp = (title: "LX0117VC", desc: "---")
+        case .LXClsListVC: tmp = (title: "LXClsListVC", desc: "---")
+        case .LXCubeVC: tmp = (title: "LXCubeVC", desc: "---")
+        case .LXRx0225VC: tmp = (title: "LXRx0225VC", desc: "---")
+        case .LX0324EventsVC: tmp = (title: "LX0324EventsVC", desc: "---")
+        case .LXNestedTableVC: tmp = (title: "LXNestedTableVC", desc: "---")
+        case .LXTableTestVC: tmp = (title: "LXTableTestVC", desc: "---")
+        case .LX1019TestVC: tmp = (title: "LX1019TestVC", desc: "---")
+        case .LXHugTestVC: tmp = (title: "LXHugTestVC", desc: "---")
+        case .LXStack1206VC: tmp = (title: "LXStack1206VC", desc: "---")
             // !!!: 2022
             // !!!: 2023
             // Demo
@@ -284,6 +409,7 @@ extension Navigator.Scene {
             tmp = (title: "iOS", desc: "iOS 15 适配")
         case .LXTable0120VC:
             tmp = (title: "LXTable0120VC", desc: "测试 sectionHeaderTopPadding 偏移的场景")
+        case .LXLoggerTestVC: tmp = (title: "LXLoggerTestVC", desc: "---")
         case .LXMasonryTestVCVC:
             tmp = (title: "两个 View 组合的 CenterX 测试", desc: "---")
         case .LXWebViewTestVC:
@@ -296,12 +422,20 @@ extension Navigator.Scene {
             tmp = (title: "LXWebVC", desc: "---")
         case .test:
             tmp = (title: "test", desc: "---")
-        case .tabs:
-            tmp = (title: "DJHomeTabBarVC", desc: "---")
         case .RxNetworksTestVC:
             tmp = (title: "RxNetworksTestVC", desc: "---")
         case .LXHandyJSONTestVC:
             tmp = (title: "float testing", desc: "---")
+        case .LX03_08_03VC:
+            tmp = (title: "Swift Daily", desc: "---")
+            // !!!: MVVM
+        case .tabs2:
+            tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
+        case .tabs:
+            tmp = (title: "DJHomeTabBarVC", desc: "---")
+        case .LXMVVMSampleVC: tmp = (title: "LXMVVMSampleVC", desc: "---")
+        case .HomeViewController: tmp = (title: "HomeViewController", desc: "---")
+        case .LXAttributedStringVC: tmp = (title: "LXAttributedStringVC", desc: "---")
         }
         return tmp
     }

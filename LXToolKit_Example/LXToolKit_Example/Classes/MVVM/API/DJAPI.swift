@@ -8,7 +8,6 @@ import UIKit
 // import RxSwift
 // import Moya
 // import SwifterSwift
-import LXToolKit
 
 protocol ProductApiType {
     var addXAuth: Bool { get }
