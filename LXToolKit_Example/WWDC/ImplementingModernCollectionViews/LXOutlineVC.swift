@@ -1,0 +1,213 @@
+//
+//  LXOutlineVC.swift
+//  LXToolKit_Example
+//
+//  Created by lxthyme on 2023/8/8.
+//
+import UIKit
+import LXToolKit
+
+// MARK: - 🔐
+extension LXOutlineVC {
+    enum Section {
+        case main
+    }
+    class OutlineItem: Hashable {
+        private let identifier = UUID()
+        let title: String
+        let subitems: [OutlineItem]
+        let outlineVC: UIViewController.Type?
+
+        init(title: String, vc: UIViewController.Type? = nil, subitems: [OutlineItem] = []) {
+            self.title = title
+            self.subitems = subitems
+            self.outlineVC = vc
+        }
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(identifier)
+        }
+        static func == (lhs: LXOutlineVC.OutlineItem, rhs: LXOutlineVC.OutlineItem) -> Bool {
+            return lhs.identifier == rhs.identifier
+        }
+    }
+}
+
+class LXOutlineVC: LXBaseVC {
+    // MARK: 📌UI
+    // MARK: 🔗Vaiables
+    private lazy var menuItems: [OutlineItem] = {
+        return [
+            OutlineItem(title: "Compositional Layout", subitems: [
+                OutlineItem(title: "Getting Started", subitems: [
+                    OutlineItem(title: "Grid", vc: LXGridVC.self),
+                    OutlineItem(title: "Inset Items Grid"),
+                    OutlineItem(title: "Two-Column Grid"),
+                    OutlineItem(title: "Per-Section Layout", subitems: [
+                        OutlineItem(title: "Distinct Sections"),
+                        OutlineItem(title: "Adaptive Sections"),
+                    ]),
+                ]),
+                OutlineItem(title: "Advanced Layouts", subitems: [
+                    OutlineItem(title: "Supplementary Views", subitems: [
+                        OutlineItem(title: "Item Badges"),
+                        OutlineItem(title: "Section Headers/Footers"),
+                        OutlineItem(title: "Pinned Section Headers"),
+                    ]),
+                    OutlineItem(title: "Section Background Decoration"),
+                    OutlineItem(title: "Nested Groups"),
+                    OutlineItem(title: "Orthogonal Sections", subitems: [
+                        OutlineItem(title: "Orthogonal Sections"),
+                        OutlineItem(title: "Orthogonal Section Behaviors"),
+                    ]),
+                ]),
+                OutlineItem(title: "Conference App", subitems: [
+                    OutlineItem(title: "Videos"),
+                    OutlineItem(title: "News"),
+                ]),
+            ]),
+            OutlineItem(title: "Diffable Data Source", subitems: [
+                OutlineItem(title: "Mountains Search"),
+                OutlineItem(title: "Settings: Wi-Fi"),
+                OutlineItem(title: "Insertion Sort Visualization"),
+                OutlineItem(title: "UITableView: Editing"),
+            ]),
+            OutlineItem(title: "Lists", subitems: [
+                OutlineItem(title: "Simple List"),
+                OutlineItem(title: "Reorderable List"),
+                OutlineItem(title: "List Appearances"),
+                OutlineItem(title: "List with Custom Cells"),
+            ]),
+            OutlineItem(title: "Outlines", subitems: [
+                OutlineItem(title: "Emoji Explorer"),
+                OutlineItem(title: "Emoji Explorer - List"),
+            ]),
+            OutlineItem(title: "Cell Configurations", subitems: [
+                OutlineItem(title: "Custom Configurations"),
+            ])
+        ]
+    }()
+    var dataSource: UICollectionViewDiffableDataSource<Section, OutlineItem>! = nil
+    var outlineCollectionView: UICollectionView! = nil
+    // MARK: 🛠Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXOutlineVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXOutlineVC {}
+
+@available(iOS 14.0, *)
+extension LXOutlineVC {
+    func generateLayout() -> UICollectionViewLayout {
+        let listConfig = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        let layout = UICollectionViewCompositionalLayout.list(using: listConfig)
+        return layout
+    }
+    func generateCollectionView() -> UICollectionView {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: generateLayout())
+        cv.backgroundColor = .systemGroupedBackground
+        cv.delegate = self
+        return cv
+    }
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, OutlineItem> {
+        let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, OutlineItem> { cell, indexPath, menuItem in
+            var contentConfig = cell.defaultContentConfiguration()
+            contentConfig.text = menuItem.title
+            contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
+            cell.contentConfiguration = contentConfig
+
+            let disclosureOpt = UICellAccessory.OutlineDisclosureOptions(style: .header)
+            cell.accessories = [
+                .outlineDisclosure(options: disclosureOpt)
+            ]
+            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, OutlineItem> { cell, indexPath, menuItem in
+            var contentConfig = cell.defaultContentConfiguration()
+            contentConfig.text = menuItem.title
+            cell.contentConfiguration = contentConfig
+            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+        }
+
+        let dataSource = UICollectionViewDiffableDataSource<Section, OutlineItem>(collectionView: outlineCollectionView) { collectionView, indexPath, item in
+            if item.subitems.isEmpty {
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+            } else {
+                return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
+            }
+        }
+        return dataSource
+    }
+    func initialSnapshot() -> NSDiffableDataSourceSectionSnapshot<OutlineItem> {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<OutlineItem>()
+
+        func addItems(_ menuItems: [OutlineItem], to parent: OutlineItem?) {
+            snapshot.append(menuItems, to: parent)
+            for menuItem in menuItems where menuItem.subitems.isNotEmpty {
+                addItems(menuItem.subitems, to: menuItem)
+            }
+        }
+
+        addItems(menuItems, to: nil)
+        return snapshot
+    }
+}
+
+// MARK: 🔐Private Actions
+private extension LXOutlineVC {}
+
+// MARK: - ✈️UICollectionViewDelegate
+extension LXOutlineVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        collectionView.deselectItem(at: indexPath, animated: true)
+
+        if let vc = menuItem.outlineVC {
+            navigationController?.pushViewController(vc.init(), animated: true)
+        } else {
+            dlog("-->\(menuItem.title): \(menuItem.outlineVC?.xl.xl_typeName ?? "NaN")")
+        }
+    }
+}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXOutlineVC {
+    override func prepareUI() {
+        super.prepareUI()
+        navigationItem.title = "Modern Collection Views"
+        self.view.backgroundColor = .white
+        self.edgesForExtendedLayout = []
+
+        if #available(iOS 14.0, *) {
+            self.outlineCollectionView = generateCollectionView()
+            self.dataSource = generateDataSource()
+            let snapshot = initialSnapshot()
+            self.dataSource.apply(snapshot, to: .main, animatingDifferences: false)
+
+            [self.outlineCollectionView].forEach(self.view.addSubview)
+        } else {
+            // Fallback on earlier versions
+        }
+
+
+        masonry()
+    }
+
+    override func masonry() {
+        super.masonry()
+        outlineCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+}

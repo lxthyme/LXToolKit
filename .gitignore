@@ -46,10 +46,10 @@ rswift.log
 # DJNewClassify3
 # LXToolKitObjC/DJBusinessTools
 
-LXToolKit_Example/SwiftHub.bl
-LXToolKit_Example/SwiftHub.lx
-233/
-wwdc/
+/LXToolKit_Example/SwiftHub.bl
+/LXToolKit_Example/SwiftHub.lx
+/233/
+/wwdc
 
 ## SwiftHub 忽略的文件
 # ViewController
@@ -59,4 +59,4 @@ wwdc/
 # WhatsNewManager
 # AnalyticsManager
 
-backup
+/backup

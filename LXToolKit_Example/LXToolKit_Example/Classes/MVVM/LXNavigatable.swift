@@ -107,6 +107,8 @@ extension Navigator {
         case test(vm: LXBaseVM)
         case LXHandyJSONTestVC
         case LX03_08_03VC
+        // !!!: WWDC
+        case LXOutlineVC
         // !!!: MVVM
         case tabs2
         case tabs(vm: DJHomeTabBarVM)
@@ -255,6 +257,8 @@ extension Navigator {
             return LXHandyJSONTestVC()
         case .LX03_08_03VC:
             return LX03_08_03VC()
+            // !!!: WWDC
+        case .LXOutlineVC: return LXOutlineVC()
             // !!!: MVVM
         case .tabs(let vm):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
@@ -433,6 +437,8 @@ extension Navigator.Scene {
             tmp = (title: "float testing", desc: "---")
         case .LX03_08_03VC:
             tmp = (title: "Swift Daily", desc: "---")
+            // !!!: WWDC
+        case .LXOutlineVC: tmp = (title: "LXOutlineVC", desc: "---")
             // !!!: MVVM
         case .tabs2:
             tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
