@@ -1,40 +1,30 @@
 //
 //  LXWebVC.swift
-//  LXToolKit_Exam
+//  LXToolKit_Example
 //
-//  Created by lxthyme on 2023/3/22.
-//  Copyright © 2023 CocoaPods. All rights reserved.
+//  Created by lxthyme on 2023/8/8.
 //
 import UIKit
-import SnapKit
-
-// extension Reactive where Base: LXStrenchableWebView {
-//     var webViewHeightSubject: Binder<CGFloat> {
-//         return Binder(self) { webView, height in
-//             webView.
-//         }
-//     }
-// }
+import WebKit
 
 class LXWebVC: LXBaseVC {
     // MARK: 📌UI
-    private lazy var webView: LXStrenchableWebView = {
-        let v = LXStrenchableWebView(frame: .zero)
-        v.setup()
+    private lazy var topView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .magenta
         return v
     }()
-    private lazy var btnTest: UIButton = {
-        let btn = UIButton(type: .custom)
-        btn.backgroundColor = .cyan
-        btn.setTitle("Test", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 20)
-        btn.layer.masksToBounds = true
-        btn.layer.cornerRadius = 4
-        
-        // btn.addTarget(self, action: #selector(<#btnAction(sender:)#>), for: .touchUpInside)
-        // @objc func <#btnAction#>(sender: UIButton) {}
-        return btn
+    private lazy var webView: WKWebView = {
+        let config = WKWebViewConfiguration()
+        let v = WKWebView(frame: .zero, configuration: config)
+        if #available(iOS 16.4, *) {
+            v.isInspectable = true
+        }
+        v.tintAdjustmentMode = .dimmed
+        v.scrollView.automaticallyAdjustsScrollIndicatorInsets = false
+        v.scrollView.contentInsetAdjustmentBehavior = .never
+        // v.setup()
+        return v
     }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
@@ -52,94 +42,62 @@ class LXWebVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
-        prepareVM()
         loadData()
     }
+
 }
 
 // MARK: 🌎LoadData
 extension LXWebVC {
     func loadData() {
-        // if let request = URLRequest(urlString: "https://www.baidu.com") {
-        //     webView.load(request)
-        // }
-        webView.loadHTMLString(mockData(), baseURL: nil)
+        let urlString =
+        // "https://dj.st.bl.com/goodsDetail?goodsId=1013284&tdType=0"
+        // "https://dj.st.bl.com/couponApplyList?couponTemplateId=377378007&acquireBuId=2000&myself=true"
+        "https://dj.st.bl.com/couponApplyList?channel=IOS&storeCode=007780&storeType=2020&couponTemplateId=370959914&from=dj&bl_ad=20003_-_18709_-_1&memberToken=4acf40fa4a3f2a4100f0b019882e8dd01a77b66e506eaa3a6cb8a5302382acb1"
+        if let request = URLRequest(urlString: urlString) {
+            webView.load(request)
+        }
+        // webView.loadHTMLString(mockData(), baseURL: nil)
     }
 }
 
 // MARK: 👀Public Actions
-extension LXWebVC {
-    func test() {
-        // let tf = TextField()
-        // let subject = BehaviorRelay<CGFloat>(value: 0)
-        // subject.bind(to: webView.rx.webViewHeight)
-        // subject.bind { <#CGFloat#> in
-        //     <#code#>
-        // }
-        
-        // webView.rx.webViewHeight.asObserver().bi
-        // subject.bind(to: webView.rx.webViewHeight)
-        // webView.rx.webViewHeight
-        // webView.webViewHeight
-        //     .asObserver()
-        // .asObservable()
-    }
-}
-
-// MARK: - 🍺UI Prepare & Masonry
-private extension LXWebVC {
-    override open func prepareVM() {
-        super.prepareVM()
-        btnTest.rx
-            .controlEvent(.touchUpInside)
-            .subscribe {[weak self] _ in
-                guard let `self` = self else { return }
-                dlog("-->webViewHeight: \(self.webView.webViewHeight)")
-            }
-            .disposed(by: rx.disposeBag)
-        webView.rx
-            .observe(\.webViewHeight)
-            .debug("-->[WH]: ")
-        // .observe(CGFloat.self, "webViewHeight")
-            .subscribe { height in
-                dlog("height: \(height)")
-            }
-            .disposed(by: rx.disposeBag)
-    }
-    override open func prepareUI() {
-        super.prepareUI()
-        self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-        
-        [webView, btnTest].forEach(self.view.addSubview)
-        
-        masonry()
-    }
-    
-    override open func masonry() {
-        super.masonry()
-        webView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.right.equalTo(0)
-            $0.height.greaterThanOrEqualTo(200)
-        }
-        btnTest.snp.makeConstraints {
-            $0.top.equalTo(200)
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(44)
-            $0.width.equalTo(100)
-        }
-    }
-}
+extension LXWebVC {}
 
 // MARK: 🔐Private Actions
-private extension LXWebVC {
-    func mockData() ->String {
-        return """
-        <style type=\"text/css\">img{display:block;width:100%;height:auto;}</style><img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_472741848.jpg' /> <img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_1552278410.jpg' /> <img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_1594069036.jpg' /><script type=\"text/javascript\">!function(){var t=document.getElementsByTagName(\"table\");if(t&&t.length){var e=[],n=!0,r=!1,a=void 0;try{for(var i,o=t[Symbol.iterator]();!(n=(i=o.next()).done);n=!0){var l=i.value;e.push(l.offsetWidth)}}catch(t){r=!0,a=t}finally{try{!n&&o.return&&o.return()}finally{if(r)throw a}}e.sort(function(t,e){return e-t});var u=window.screen.availWidth/e[0],c=document.createElement(\"meta\");c.setAttribute(\"name\",\"viewport\"),c.setAttribute(\"content\",\"width=device-width,minimum-scale=\"+u+\",maximum-scale=\"+u+\",user-scalable=no\"),document.body.appendChild(c)}}();</script>
-        """
+private extension LXWebVC {}
+
+// MARK: - 🍺UI Prepare & Masonry
+extension LXWebVC {
+    override func prepareUI() {
+        super.prepareUI()
+        self.view.backgroundColor = .white
+        // self.edgesForExtendedLayout = []
+        self.navigationController?.isNavigationBarHidden = true
+        // self.title = "<#title#>"
+
+        [
+            // topView,
+            webView].forEach(self.view.addSubview)
+
+        masonry()
+    }
+
+    override func masonry() {
+        super.masonry()
+        // topView.snp.makeConstraints {
+        //     $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+        //     $0.left.right.equalToSuperview()
+        //     $0.height.equalTo(0)
+        // }
+        webView.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            // $0.top.equalTo(topView.snp_bottomMargin)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
     }
 }

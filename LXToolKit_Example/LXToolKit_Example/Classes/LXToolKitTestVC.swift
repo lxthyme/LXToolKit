@@ -127,7 +127,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
                 .LXWebViewTestVC(viewModel: vm),
             .LXLoggerTestVC,
             .LXYYLabelMoreTestVC(viewModel: vm),
-            .LXWebVC(viewModel: vm),
             .RxNetworksTestVC,
             // .HomeViewController(viewModel: vm),
             .test(vm: vm),
@@ -136,7 +135,8 @@ open class LXToolKitTestVC: LXBaseTableVC {
         snapshot.appendItems([
             .LX03_08_03VC,
             .LXHandyJSONTestVC,
-            .LXWebVC(viewModel: vm)
+            .LXWebVC,
+            .LXStrenchableWebVC(viewModel: vm),
         ], toSection: "2023")
         snapshot.appendItems([
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
@@ -181,7 +181,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // LXCubeVC()
         //            LXRx0225VC()
         // LXLoggerTestVC()
-        // LXWebVC()
+        // LXStrenchableWebVC()
         UIViewController()
         
         // self.navigationController?.pushViewController(vc, animated: true)

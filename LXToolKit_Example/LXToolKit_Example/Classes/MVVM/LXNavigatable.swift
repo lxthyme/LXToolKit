@@ -101,7 +101,8 @@ extension Navigator {
         case LXLoggerTestVC
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         // case HomeViewController(viewModel: LXBaseVM)
-        case LXWebVC(viewModel: LXBaseVM)
+        case LXStrenchableWebVC(viewModel: LXBaseVM)
+        case LXWebVC
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
         case LXHandyJSONTestVC
@@ -242,6 +243,8 @@ extension Navigator {
         //     return HomeViewController()
         case .LXWebVC:
             return LXWebVC()
+        case .LXStrenchableWebVC:
+            return LXStrenchableWebVC()
         case .test:
             let vc = UIViewController()
             vc.view.backgroundColor = .red
@@ -418,6 +421,8 @@ extension Navigator.Scene {
             tmp = (title: "YYLabel more 查看详情", desc: "---")
         // case .HomeViewController:
         //     tmp = (title: "RxNetworks Demo", desc: "---")
+        case .LXStrenchableWebVC:
+            tmp = (title: "LXStrenchableWebVC", desc: "---")
         case .LXWebVC:
             tmp = (title: "LXWebVC", desc: "---")
         case .test:
