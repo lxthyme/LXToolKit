@@ -75,7 +75,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as DJAllAPI)
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
-        snapshot.appendSections(["MVVM", "2023", "2022", "2021", "2020"])
+        snapshot.appendSections(["WWDC", "MVVM", "2023", "2022", "2021", "2020"])
         snapshot.appendItems([
             .LXMultiRequestTestVC,
             .LXOffScreenVC,
@@ -127,7 +127,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
                 .LXWebViewTestVC(viewModel: vm),
             .LXLoggerTestVC,
             .LXYYLabelMoreTestVC(viewModel: vm),
-            .LXWebVC(viewModel: vm),
             .RxNetworksTestVC,
             // .HomeViewController(viewModel: vm),
             .test(vm: vm),
@@ -136,7 +135,8 @@ open class LXToolKitTestVC: LXBaseTableVC {
         snapshot.appendItems([
             .LX03_08_03VC,
             .LXHandyJSONTestVC,
-            .LXWebVC(viewModel: vm)
+            .LXWebVC,
+            .LXStrenchableWebVC(viewModel: vm),
         ], toSection: "2023")
         snapshot.appendItems([
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
@@ -145,6 +145,9 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .HomeViewController,
             .LXAttributedStringVC,
         ], toSection: "MVVM")
+        snapshot.appendItems([
+            .LXOutlineVC,
+        ], toSection: "WWDC")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -181,7 +184,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // LXCubeVC()
         //            LXRx0225VC()
         // LXLoggerTestVC()
-        // LXWebVC()
+        // LXStrenchableWebVC()
         UIViewController()
         
         // self.navigationController?.pushViewController(vc, animated: true)

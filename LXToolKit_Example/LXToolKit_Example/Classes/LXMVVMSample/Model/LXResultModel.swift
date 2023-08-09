@@ -20,7 +20,7 @@ class LXResultModel: XLLBaseModel {
         // override var debugDescription: String { return "" }
     }
     var result: ResultModel?
-    required override init() {}
+    required init() {}
 
     // func mapping(mapper: HelpingMapper) {}
     // override var debugDescription: String { return "" }

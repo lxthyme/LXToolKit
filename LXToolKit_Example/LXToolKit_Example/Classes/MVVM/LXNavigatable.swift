@@ -101,11 +101,14 @@ extension Navigator {
         case LXLoggerTestVC
         case LXYYLabelMoreTestVC(viewModel: LXBaseVM)
         // case HomeViewController(viewModel: LXBaseVM)
-        case LXWebVC(viewModel: LXBaseVM)
+        case LXStrenchableWebVC(viewModel: LXBaseVM)
+        case LXWebVC
         case RxNetworksTestVC
         case test(vm: LXBaseVM)
         case LXHandyJSONTestVC
         case LX03_08_03VC
+        // !!!: WWDC
+        case LXOutlineVC
         // !!!: MVVM
         case tabs2
         case tabs(vm: DJHomeTabBarVM)
@@ -242,6 +245,8 @@ extension Navigator {
         //     return HomeViewController()
         case .LXWebVC:
             return LXWebVC()
+        case .LXStrenchableWebVC:
+            return LXStrenchableWebVC()
         case .test:
             let vc = UIViewController()
             vc.view.backgroundColor = .red
@@ -252,6 +257,8 @@ extension Navigator {
             return LXHandyJSONTestVC()
         case .LX03_08_03VC:
             return LX03_08_03VC()
+            // !!!: WWDC
+        case .LXOutlineVC: return LXOutlineVC()
             // !!!: MVVM
         case .tabs(let vm):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
@@ -418,6 +425,8 @@ extension Navigator.Scene {
             tmp = (title: "YYLabel more 查看详情", desc: "---")
         // case .HomeViewController:
         //     tmp = (title: "RxNetworks Demo", desc: "---")
+        case .LXStrenchableWebVC:
+            tmp = (title: "LXStrenchableWebVC", desc: "---")
         case .LXWebVC:
             tmp = (title: "LXWebVC", desc: "---")
         case .test:
@@ -428,6 +437,8 @@ extension Navigator.Scene {
             tmp = (title: "float testing", desc: "---")
         case .LX03_08_03VC:
             tmp = (title: "Swift Daily", desc: "---")
+            // !!!: WWDC
+        case .LXOutlineVC: tmp = (title: "LXOutlineVC", desc: "---")
             // !!!: MVVM
         case .tabs2:
             tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
