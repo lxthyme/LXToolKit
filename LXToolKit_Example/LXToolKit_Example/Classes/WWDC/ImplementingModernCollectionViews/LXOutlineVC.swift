@@ -8,6 +8,7 @@ import UIKit
 import LXToolKit
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 extension LXOutlineVC {
     enum Section {
         case main
@@ -32,6 +33,7 @@ extension LXOutlineVC {
     }
 }
 
+@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -40,10 +42,10 @@ class LXOutlineVC: LXBaseVC {
             OutlineItem(title: "Compositional Layout", subitems: [
                 OutlineItem(title: "Getting Started", subitems: [
                     OutlineItem(title: "Grid", vc: LXGridVC.self),
-                    OutlineItem(title: "Inset Items Grid"),
-                    OutlineItem(title: "Two-Column Grid"),
+                    OutlineItem(title: "Inset Items Grid", vc: LXInsetItemsGridVC.self),
+                    OutlineItem(title: "Two-Column Grid", vc: LXTwoColumnVC.self),
                     OutlineItem(title: "Per-Section Layout", subitems: [
-                        OutlineItem(title: "Distinct Sections"),
+                        OutlineItem(title: "Distinct Sections", vc: LXDistinctSectionsVC.self),
                         OutlineItem(title: "Adaptive Sections"),
                     ]),
                 ]),
@@ -99,11 +101,13 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXOutlineVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 @available(iOS 14.0, *)
@@ -165,9 +169,11 @@ extension LXOutlineVC {
 }
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXOutlineVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
+@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
@@ -182,6 +188,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 extension LXOutlineVC {
     override func prepareUI() {
         super.prepareUI()
@@ -189,16 +196,12 @@ extension LXOutlineVC {
         self.view.backgroundColor = .white
         self.edgesForExtendedLayout = []
 
-        if #available(iOS 14.0, *) {
-            self.outlineCollectionView = generateCollectionView()
-            self.dataSource = generateDataSource()
-            let snapshot = initialSnapshot()
-            self.dataSource.apply(snapshot, to: .main, animatingDifferences: false)
+        self.outlineCollectionView = generateCollectionView()
+        self.dataSource = generateDataSource()
+        let snapshot = initialSnapshot()
+        self.dataSource.apply(snapshot, to: .main, animatingDifferences: false)
 
-            [self.outlineCollectionView].forEach(self.view.addSubview)
-        } else {
-            // Fallback on earlier versions
-        }
+        [self.outlineCollectionView].forEach(self.view.addSubview)
 
 
         masonry()

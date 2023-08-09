@@ -258,7 +258,11 @@ extension Navigator {
         case .LX03_08_03VC:
             return LX03_08_03VC()
             // !!!: WWDC
-        case .LXOutlineVC: return LXOutlineVC()
+        case .LXOutlineVC:
+            if #available(iOS 14.0, *) {
+                return LXOutlineVC()
+            }
+            return UIViewController()
             // !!!: MVVM
         case .tabs(let vm):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
