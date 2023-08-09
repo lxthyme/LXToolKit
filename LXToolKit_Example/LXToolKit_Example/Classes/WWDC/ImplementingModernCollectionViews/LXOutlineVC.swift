@@ -46,12 +46,12 @@ class LXOutlineVC: LXBaseVC {
                     OutlineItem(title: "Two-Column Grid", vc: LXTwoColumnVC.self),
                     OutlineItem(title: "Per-Section Layout", subitems: [
                         OutlineItem(title: "Distinct Sections", vc: LXDistinctSectionsVC.self),
-                        OutlineItem(title: "Adaptive Sections"),
+                        OutlineItem(title: "Adaptive Sections", vc: LXAdaptiveSectionsVC.self),
                     ]),
                 ]),
                 OutlineItem(title: "Advanced Layouts", subitems: [
                     OutlineItem(title: "Supplementary Views", subitems: [
-                        OutlineItem(title: "Item Badges"),
+                        OutlineItem(title: "Item Badges", vc: LXItemBadgeSupplementaryVC.self),
                         OutlineItem(title: "Section Headers/Footers"),
                         OutlineItem(title: "Pinned Section Headers"),
                     ]),
