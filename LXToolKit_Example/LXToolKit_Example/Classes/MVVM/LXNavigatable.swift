@@ -22,7 +22,7 @@ extension Navigator {
     // static var `default` = LXNavigator()
 
     // MARK: - segues list, all app scenes
-    enum Scene: Hashable {
+    public enum Scene: Hashable {
         // case tabs(viewModel: HomeTabBarViewModel)
         // case search(viewModel: SearchViewModel)
         // case languages(viewModel: LanguagesViewModel)

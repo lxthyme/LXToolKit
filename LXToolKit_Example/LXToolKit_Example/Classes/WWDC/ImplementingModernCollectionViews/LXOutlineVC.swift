@@ -52,14 +52,14 @@ class LXOutlineVC: LXBaseVC {
                 OutlineItem(title: "Advanced Layouts", subitems: [
                     OutlineItem(title: "Supplementary Views", subitems: [
                         OutlineItem(title: "Item Badges", vc: LXItemBadgeSupplementaryVC.self),
-                        OutlineItem(title: "Section Headers/Footers"),
-                        OutlineItem(title: "Pinned Section Headers"),
+                        OutlineItem(title: "Section Headers/Footers", vc: LXSectionHeadersFootersVC.self),
+                        OutlineItem(title: "Pinned Section Headers", vc: LXPinnedSectionHeaderFooterVC.self),
                     ]),
-                    OutlineItem(title: "Section Background Decoration"),
-                    OutlineItem(title: "Nested Groups"),
+                    OutlineItem(title: "Section Background Decoration", vc: LXSectionDecorationVC.self),
+                    OutlineItem(title: "Nested Groups", vc: LXNestedGroupsVC.self),
                     OutlineItem(title: "Orthogonal Sections", subitems: [
-                        OutlineItem(title: "Orthogonal Sections"),
-                        OutlineItem(title: "Orthogonal Section Behaviors"),
+                        OutlineItem(title: "Orthogonal Sections", vc: LXOrthogonalScrollingVC.self),
+                        OutlineItem(title: "Orthogonal Section Behaviors", vc: LXOrthogonalBehaviorVC.self),
                     ]),
                 ]),
                 OutlineItem(title: "Conference App", subitems: [

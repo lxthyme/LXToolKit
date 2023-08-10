@@ -78,6 +78,7 @@ class ViewController: LXBaseTableVC {
         return dataSource
     }
     private var _dataSnapshot: Any?
+    var autoJumpRoute: DJTestType?
     @available(iOS 13.0, *)
     private var dataSnapshot: NSDiffableDataSourceSnapshot<String, DJTestType> {
         if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, DJTestType> {
@@ -100,6 +101,9 @@ class ViewController: LXBaseTableVC {
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
+
+        autoJumpRoute = .LXToolKit_Example
+         gotoScene(by: autoJumpRoute)
     }
 }
 
@@ -110,7 +114,21 @@ extension ViewController {}
 extension ViewController {}
 
 // MARK: 🔐Private Actions
-private extension ViewController {}
+private extension ViewController {
+    func gotoScene(by scene: DJTestType?) {
+        if #available(iOS 14.0, *),
+           let vc = scene?.vc {
+            if let vc2 = vc as? LXToolKitTestVC {
+                vc2.autoJumpRoute = .LXOutlineVC
+            } else if let vc2 = vc as? LXToolKitObjCTestVC {
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+            dlog("-->Error!")
+        }
+    }
+}
 
 extension ViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -127,15 +145,14 @@ extension ViewController: UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if #available(iOS 14.0, *),
-           let scene = dataSource.itemIdentifier(for: indexPath),
-           let vc = scene.vc {
-            self.navigationController?.pushViewController(vc, animated: true)
+
+        if #available(iOS 14.0, *) {
+            let scene = dataSource.itemIdentifier(for: indexPath)
+            gotoScene(by: scene)
         } else {
             // Fallback on earlier versions
             dlog("-->Error!")
         }
-        
     }
 }
 
