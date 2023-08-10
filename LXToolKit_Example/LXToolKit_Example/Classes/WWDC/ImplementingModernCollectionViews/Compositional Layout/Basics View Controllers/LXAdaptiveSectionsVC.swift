@@ -1,5 +1,5 @@
 //
-//  LXDistinctSectionsVC.swift
+//  LXAdaptiveSectionsVC.swift
 //  LXToolKit_Example
 //
 //  Created by lxthyme on 2023/8/9.
@@ -8,34 +8,35 @@ import UIKit
 import LXToolKit
 
 @available(iOS 14.0, *)
-extension LXDistinctSectionsVC {
+extension LXAdaptiveSectionsVC {
     enum SectionLayoutKind: Int, CaseIterable {
         case list, grid5, grid3
 
-        var columnCount: Int {
+        func columnCount(for width: CGFloat) -> Int {
+            let wideModel = width > 800
             switch self {
-            case .grid3: return 3
-            case .grid5: return 5
-            case .list: return 1
+            case .grid3: return wideModel ? 6 : 3
+            case .grid5: return wideModel ? 10 : 5
+            case .list: return wideModel ? 2 : 1
             }
         }
     }
 }
 
 @available(iOS 14.0, *)
-class LXDistinctSectionsVC: LXBaseVC {
+class LXAdaptiveSectionsVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
         let layout = UICollectionViewCompositionalLayout { sectionIdx, layoutEnv in
             guard let layoutKind = SectionLayoutKind(rawValue: sectionIdx) else { return nil }
-            let columns = layoutKind.columnCount
+            let columns = layoutKind.columnCount(for: layoutEnv.container.effectiveContentSize.width)
 
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
                                                   heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
 
-            let groupHeight = columns == 1 ? NSCollectionLayoutDimension.absolute(44) : NSCollectionLayoutDimension.fractionalWidth(0.2)
+            let groupHeight = layoutKind == .list ? NSCollectionLayoutDimension.absolute(44) : NSCollectionLayoutDimension.fractionalWidth(0.2)
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: groupHeight)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
@@ -53,9 +54,9 @@ class LXDistinctSectionsVC: LXBaseVC {
         let cv = UICollectionView(frame: .zero,
                                   collectionViewLayout: layout)
         cv.backgroundColor = .systemBackground
+        cv.delegate = self
         return cv
     }()
-    // MARK: 🔗Vaiables
     private lazy var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int> = {
         let listCellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(item)"
@@ -73,6 +74,7 @@ class LXDistinctSectionsVC: LXBaseVC {
             return SectionLayoutKind(rawValue: indexPath.section)! == .list ? collectionView.dequeueConfiguredReusableCell(using: listCellRegistration, for: indexPath, item: item) : collectionView.dequeueConfiguredReusableCell(using: textCellRegistration, for: indexPath, item: item)
         }
     }()
+    // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,25 +87,33 @@ class LXDistinctSectionsVC: LXBaseVC {
 
 // MARK: 🌎LoadData
 @available(iOS 14.0, *)
-extension LXDistinctSectionsVC {
+extension LXAdaptiveSectionsVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
 @available(iOS 14.0, *)
-extension LXDistinctSectionsVC {}
+extension LXAdaptiveSectionsVC {}
 
 // MARK: 🔐Private Actions
 @available(iOS 14.0, *)
-private extension LXDistinctSectionsVC {}
+private extension LXAdaptiveSectionsVC {}
+
+// MARK: - ✈️UICollectionViewDelegate
+@available(iOS 14.0, *)
+extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXDistinctSectionsVC {
+extension LXAdaptiveSectionsVC {
     override func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white
-        navigationItem.title = "Distinct Sections"
+        navigationItem.title = "Adaptive Sections"
 
         let itemsPerSection = 10
         var snapshot = NSDiffableDataSourceSnapshot<SectionLayoutKind, Int>()
