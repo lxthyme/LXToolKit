@@ -9,6 +9,7 @@
 #import "LXToolKitObjCTestVC.h"
 #import "LXLoginVC.h"
 #import "LX0527VC.h"
+#import "DJCommentVC.h"
 
 @interface LXToolKitObjCTestVC ()<UITableViewDataSource,UITableViewDelegate> {
 }
@@ -28,12 +29,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self prepareUI];
+    [self gotoRoute:self.autoJumpRoute];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+- (void)gotoRoute:(NSString *)route {
+    Class cls = NSClassFromString(route);
+    if(cls) {
+        UIViewController *vc = [[cls alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        // [self.navigationController presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark - ✈️UITableViewDataSource
@@ -54,12 +67,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *vcName = self.dataList[indexPath.row];
-    Class cls = NSClassFromString(vcName);
-    if(cls) {
-        UIViewController *vc = [[cls alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        // [self.navigationController presentViewController:vc animated:YES completion:nil];
-    }
+    [self gotoRoute:vcName];
 }
 #pragma mark -
 #pragma mark - 📌UI Prepare & Masonry
@@ -122,6 +130,7 @@
             @"LXNumberFormatterVC",
             @"LXScrollVC",
             @"LXCollectionTestVC",
+            @"DJCommentVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }
