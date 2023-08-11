@@ -8,6 +8,8 @@
 
 @import UIKit;
 
-@interface LXToolKitObjCTestVC : UIViewController
+@interface LXToolKitObjCTestVC : UIViewController {
+}
+@property(nonatomic, copy)NSString *autoJumpRoute;
 
 @end

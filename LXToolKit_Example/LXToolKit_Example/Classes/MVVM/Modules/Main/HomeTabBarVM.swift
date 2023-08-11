@@ -8,11 +8,11 @@
 import Foundation
 import WhatsNewKit
 
-class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
-    struct Input {
+open class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
+    public struct Input {
         let whatsNewTrigger: Observable<Void>
     }
-    struct Output {
+    public struct Output {
         let tabbarItems: Driver<[DJHomeTabBarItem]>
         let openWhatsNew: Driver<WhatsNewBlock>
     }
@@ -25,7 +25,7 @@ class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
         self.whatsNewManager = WhatsNewManager.shared
         super.init(provider: provider)
     }
-    func transform(input: Input) -> Output {
+    public func transform(input: Input) -> Output {
         let tabbarItems = Observable
             .just(authorized)
             .map { authorized -> [DJHomeTabBarItem] in

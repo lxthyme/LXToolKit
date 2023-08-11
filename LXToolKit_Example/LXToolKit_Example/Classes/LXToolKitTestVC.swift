@@ -152,6 +152,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         return snapshot
     }
     // MARK: 🔗Vaiables
+    public var autoJumpRoute: Navigator.Scene?
     // MARK: 🛠Life Cycle
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -215,6 +216,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // testModel()
         // testTask()
         // testTaskGroup()
+        gotoScene(by: autoJumpRoute)
     }
 }
 
@@ -270,6 +272,11 @@ private extension LXToolKitTestVC {
         // self.navigationController?.pushViewController(vc, animated: true)
         goRouter()
         // testTaskGroup()
+    }
+    func gotoScene(by scene: Navigator.Scene?) {
+        guard let scene else { return }
+        let navigator = Navigator.default
+        navigator.show(segue: scene, sender: self)
     }
 }
 
@@ -560,15 +567,14 @@ extension LXToolKitTestVC: UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if #available(iOS 14.0, *),
-           let scene = dataSource.itemIdentifier(for: indexPath) {
-            let navigator = Navigator.default
-            navigator.show(segue: scene, sender: self)
+
+        if #available(iOS 14.0, *) {
+            let scene = dataSource.itemIdentifier(for: indexPath)
+            gotoScene(by: scene)
         } else {
             // Fallback on earlier versions
             dlog("-->Error!")
         }
-        
     }
 }
 
