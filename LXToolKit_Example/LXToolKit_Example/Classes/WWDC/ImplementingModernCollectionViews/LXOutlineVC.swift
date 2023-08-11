@@ -77,7 +77,7 @@ class LXOutlineVC: LXBaseVC {
                 OutlineItem(title: "Simple List"),
                 OutlineItem(title: "Reorderable List"),
                 OutlineItem(title: "List Appearances"),
-                OutlineItem(title: "List with Custom Cells"),
+                OutlineItem(title: "List with Custom Cells", vc: LXCustomCellListVC.self),
             ]),
             OutlineItem(title: "Outlines", subitems: [
                 OutlineItem(title: "Emoji Explorer"),
