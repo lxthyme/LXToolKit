@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJCommentProfileView: UIView {
+@interface DJCommentProfileView: LXBaseView {
 }
 
 - (void)dataFill;

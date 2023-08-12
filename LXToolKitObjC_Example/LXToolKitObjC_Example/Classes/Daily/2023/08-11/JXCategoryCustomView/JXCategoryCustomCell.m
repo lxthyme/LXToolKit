@@ -1,19 +1,19 @@
 //
-//  JXCategoryTitleBackgroundCell.m
+//  JXCategoryCustomCell.m
 //  JXCategoryView
 //
 //  Created by jiaxin on 2019/8/16.
 //  Copyright © 2019 jiaxin. All rights reserved.
 //
 
-#import "JXCategoryTitleBackgroundCell.h"
-#import "JXCategoryTitleBackgroundCellModel.h"
+#import "JXCategoryCustomCell.h"
+#import "JXCategoryCustomCellModel.h"
 
-@interface JXCategoryTitleBackgroundCell()
+@interface JXCategoryCustomCell()
 @property (nonatomic, strong) CALayer *bgLayer;
 @end
 
-@implementation JXCategoryTitleBackgroundCell
+@implementation JXCategoryCustomCell
 
 - (void)initializeViews {
     [super initializeViews];
@@ -25,7 +25,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    JXCategoryTitleBackgroundCellModel *myCellModel = (JXCategoryTitleBackgroundCellModel *)self.cellModel;
+    JXCategoryCustomCellModel *myCellModel = (JXCategoryCustomCellModel *)self.cellModel;
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     CGFloat bgWidth = self.contentView.bounds.size.width;
@@ -44,7 +44,7 @@
 - (void)reloadData:(JXCategoryBaseCellModel *)cellModel {
     [super reloadData:cellModel];
 
-    JXCategoryTitleBackgroundCellModel *myCellModel = (JXCategoryTitleBackgroundCellModel *)cellModel;
+    JXCategoryCustomCellModel *myCellModel = (JXCategoryCustomCellModel *)cellModel;
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     self.bgLayer.borderWidth = myCellModel.borderLineWidth;

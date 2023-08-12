@@ -8,10 +8,32 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJCommentCell: UITableViewCell {
+typedef NS_ENUM(NSInteger, DJCommentType) {
+    DJCommentType0,
+    DJCommentType1,
+    DJCommentType2,
+    DJCommentType3,
+    DJCommentType4,
+    DJCommentType5,
+    DJCommentType6,
+    DJCommentType7,
+    DJCommentType8,
+    DJCommentType9,
+    DJCommentType10,
+    DJCommentType11,
+    DJCommentType12,
+    DJCommentType13,
+    DJCommentType14,
+    DJCommentType15,
+    DJCommentType16,
+    DJCommentType17,
+    DJCommentType18,
+};
+
+@interface DJCommentCell: LXBaseTableViewCell {
 }
 
-- (void)dataFill;
+- (void)dataFill:(DJCommentType)type;
 
 @end
 

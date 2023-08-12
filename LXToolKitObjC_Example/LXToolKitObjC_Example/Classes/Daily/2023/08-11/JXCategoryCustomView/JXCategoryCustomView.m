@@ -1,14 +1,14 @@
 //
-//  JXCategoryTitleBackgroundView.m
+//  JXCategoryCustomView.m
 //  JXCategoryView
 //
 //  Created by jiaxin on 2019/8/16.
 //  Copyright © 2019 jiaxin. All rights reserved.
 //
 
-#import "JXCategoryTitleBackgroundView.h"
+#import "JXCategoryCustomView.h"
 
-@implementation JXCategoryTitleBackgroundView
+@implementation JXCategoryCustomView
 
 - (void)initializeData {
     [super initializeData];
@@ -25,13 +25,13 @@
 
 //返回自定义的cell class
 - (Class)preferredCellClass {
-    return [JXCategoryTitleBackgroundCell class];
+    return [JXCategoryCustomCell class];
 }
 
 - (void)refreshDataSource {
     NSMutableArray *tempArray = [NSMutableArray array];
     for (int i = 0; i < self.titles.count; i++) {
-        JXCategoryTitleBackgroundCellModel *cellModel = [[JXCategoryTitleBackgroundCellModel alloc] init];
+        JXCategoryCustomCellModel *cellModel = [[JXCategoryCustomCellModel alloc] init];
         [tempArray addObject:cellModel];
     }
     self.dataSource = tempArray;
@@ -58,7 +58,7 @@
 - (void)refreshCellModel:(JXCategoryBaseCellModel *)cellModel index:(NSInteger)index {
     [super refreshCellModel:cellModel index:index];
 
-    JXCategoryTitleBackgroundCellModel *myModel = (JXCategoryTitleBackgroundCellModel *)cellModel;
+    JXCategoryCustomCellModel *myModel = (JXCategoryCustomCellModel *)cellModel;
     myModel.normalBackgroundColor = self.normalBackgroundColor;
     myModel.normalBorderColor = self.normalBorderColor;
     myModel.selectedBackgroundColor = self.selectedBackgroundColor;
