@@ -29,6 +29,8 @@
 @property(nonatomic, strong)DJCommentUpVotedView *commentUpVotedView;
 @property(nonatomic, strong)DJCommentPictureView *commentPictureView;
 
+@property(nonatomic, strong)DJCommentTagCell *tagTestCell;
+
 @property(nonatomic, strong)UIView *lineView;
 
 @end
@@ -164,8 +166,8 @@
 
     self.tagList = @[
     @"包装很好",
-    @"质量不错",
-    @"值得推荐",
+    @"质量不错质量不错",
+    @"值得推荐值得推荐值得推荐",
     ];
     [self.tagCollectionView reloadData];
 
@@ -180,6 +182,9 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)calcCommentTagWidth {
+    // self.
+}
 
 #pragma mark - ✈️UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

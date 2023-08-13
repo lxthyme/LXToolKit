@@ -6,7 +6,7 @@
 //
 #import "DJCommentTagCell.h"
 
-#import <Masonry/Masonry.h>
+#define kDJTagContentInsets UIEdgeInsetsMake(2.f, 5.f, 2.f, 5.f)
 
 @interface DJCommentTagCell() {
 }
@@ -40,6 +40,14 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
+- (CGFloat)calcCellWidth {
+    CGFloat w = 0.f;
+    CGSize size = [self.labTitle textRectForBounds:CGRectMake(0, 0, CGFLOAT_MAX, 18.f)
+                            limitedToNumberOfLines:0].size;
+    w += ceilf(size.width);
+    w += kDJTagContentInsets.left + kDJTagContentInsets.right;
+    return w;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
@@ -60,7 +68,7 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(2.f, 5.f, 2.f, 5.f));
+        make.edges.mas_equalTo(kDJTagContentInsets);
     }];
 }
 
