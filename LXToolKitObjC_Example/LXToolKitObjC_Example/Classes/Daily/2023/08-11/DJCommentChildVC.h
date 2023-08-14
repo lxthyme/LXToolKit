@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJCommentChildVC: UIViewController<JXCategoryListContentViewDelegate> {
+@interface DJCommentChildVC: LXBaseVC<JXCategoryListContentViewDelegate> {
 }
 
 @end

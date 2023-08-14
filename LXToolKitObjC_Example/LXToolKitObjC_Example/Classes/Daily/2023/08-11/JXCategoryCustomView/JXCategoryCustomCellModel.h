@@ -1,5 +1,5 @@
 //
-//  JXCategoryTitleBackgroundCellModel.h
+//  JXCategoryCustomCellModel.h
 //  JXCategoryView
 //
 //  Created by jiaxin on 2019/8/16.
@@ -8,7 +8,7 @@
 
 #import <JXCategoryView/JXCategoryTitleCellModel.h>
 
-@interface JXCategoryTitleBackgroundCellModel : JXCategoryTitleCellModel
+@interface JXCategoryCustomCellModel : JXCategoryTitleCellModel
 
 @property (nonatomic, strong) UIColor *normalBackgroundColor;
 @property (nonatomic, strong) UIColor *normalBorderColor;

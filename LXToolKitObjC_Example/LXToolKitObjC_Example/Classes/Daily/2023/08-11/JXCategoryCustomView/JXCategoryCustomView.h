@@ -1,5 +1,5 @@
 //
-//  JXCategoryTitleBackgroundView.h
+//  JXCategoryCustomView.h
 //  JXCategoryView
 //
 //  Created by jiaxin on 2019/8/16.
@@ -7,12 +7,12 @@
 //
 
 #import <JXCategoryView/JXCategoryTitleView.h>
-#import "JXCategoryTitleBackgroundCellModel.h"
-#import "JXCategoryTitleBackgroundCell.h"
+#import "JXCategoryCustomCellModel.h"
+#import "JXCategoryCustomCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXCategoryTitleBackgroundView: JXCategoryTitleView {
+@interface JXCategoryCustomView: JXCategoryTitleView {
 }
 @property (nonatomic, strong) UIColor *normalBackgroundColor;
 @property (nonatomic, strong) UIColor *normalBorderColor;

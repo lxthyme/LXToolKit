@@ -1,5 +1,5 @@
 //
-//  DJCommentStarView.h
+//  DJCommentUpVotedView.h
 //  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2023/8/11.
@@ -8,10 +8,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJCommentStarView: LXBaseView {
+@interface DJCommentUpVotedView: LXBaseView {
 }
 
-- (void)dataFill:(NSInteger)score;
+- (void)dataFill;
 
 @end
 

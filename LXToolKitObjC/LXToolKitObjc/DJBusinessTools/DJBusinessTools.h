@@ -24,6 +24,7 @@
 /// UITableView
 #import "LXBaseTableView.h"
 #import "LXBaseTableViewCell.h"
+#import "LXBaseCollectionViewCell.h"
 #import "LXBaseTableViewHeaderFooterView.h"
 /// ToolKit
 #import "DJLogger.h"

@@ -24,7 +24,7 @@
         CGPoint subPoint = [self convertPoint:point toView:subview];
         UIView *testView = [subview hitTest:subPoint withEvent:event];
         if(testView) {
-            NSLog(@"-->hitTest[√]: %@", testView);
+            // NSLog(@"-->hitTest[√]: %@", testView);
             return YES;
         }
     }

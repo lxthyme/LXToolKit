@@ -10,6 +10,7 @@
 
 @interface DJCommentServiceAnswerView() {
 }
+@property(nonatomic, strong)UIView *wrapperView;
 @property(nonatomic, strong)UILabel *labTitle;
 @property(nonatomic, strong)UILabel *labContent;
 
@@ -41,12 +42,11 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.backgroundColor = [UIColor colorWithHex:0xF4F6FA];
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = 5.f;
+    self.backgroundColor = [UIColor whiteColor];
 
-    [self addSubview:self.labTitle];
-    [self addSubview:self.labContent];
+    [self.wrapperView addSubview:self.labTitle];
+    [self.wrapperView addSubview:self.labContent];
+    [self addSubview:self.wrapperView];
 
     [self masonry];
 }
@@ -54,6 +54,11 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
+    [self.wrapperView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@10.f);
+        make.left.right.bottom.equalTo(@0.f);
+        make.height.equalTo(@38.f);
+    }];
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@10.f);
         make.centerY.equalTo(@0.f);
@@ -66,6 +71,16 @@
 }
 
 #pragma mark Lazy Property
+- (UIView *)wrapperView {
+    if(!_wrapperView){
+        UIView *v = [[UIView alloc]init];
+        v.backgroundColor = [UIColor colorWithHex:0xF4F6FA];
+        v.layer.masksToBounds = YES;
+        v.layer.cornerRadius = 5.f;
+        _wrapperView = v;
+    }
+    return _wrapperView;
+}
 - (UILabel *)labTitle {
     if(!_labTitle){
         UILabel *label = [[UILabel alloc]init];

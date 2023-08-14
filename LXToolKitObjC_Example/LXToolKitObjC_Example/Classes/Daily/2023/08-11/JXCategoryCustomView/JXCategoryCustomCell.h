@@ -1,5 +1,5 @@
 //
-//  JXCategoryTitleBackgroundCell.h
+//  JXCategoryCustomCell.h
 //  JXCategoryView
 //
 //  Created by jiaxin on 2019/8/16.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JXCategoryTitleBackgroundCell : JXCategoryTitleCell
+@interface JXCategoryCustomCell : JXCategoryTitleCell
 
 @end
 

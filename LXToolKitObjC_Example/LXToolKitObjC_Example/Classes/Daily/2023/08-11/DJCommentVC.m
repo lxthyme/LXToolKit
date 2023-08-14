@@ -7,7 +7,7 @@
 #import "DJCommentVC.h"
 
 #import <Masonry/Masonry.h>
-#import "JXCategoryTitleBackgroundView.h"
+#import "JXCategoryCustomView.h"
 
 #import "DJCommentChildVC.h"
 
@@ -15,7 +15,7 @@
 
 @interface DJCommentVC()<JXCategoryViewDelegate, JXCategoryListContainerViewDelegate> {
 }
-@property(nonatomic, strong)JXCategoryTitleBackgroundView *categoryView;
+@property(nonatomic, strong)JXCategoryCustomView *categoryView;
 @property(nonatomic, strong)JXCategoryListContainerView *listContainerView;
 
 @property(nonatomic, copy)NSArray *titleList;
@@ -38,10 +38,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
+    // 处于第一个item的时候，才允许屏幕边缘手势返回
+    self.navigationController.interactivePopGestureRecognizer.enabled = (self.categoryView.selectedIndex == 0);
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
+    // 离开页面的时候，需要恢复屏幕边缘手势，不能影响其他页面
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
@@ -87,6 +91,8 @@
 #pragma mark -
 #pragma mark - ✈️JXCategoryViewDelegate
 - (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
+    // 侧滑手势处理
+    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
 }
 
 #pragma mark -
@@ -142,7 +148,7 @@
 #pragma mark Lazy Property
 - (JXCategoryTitleView *)categoryView {
     if(!_categoryView){
-        JXCategoryTitleBackgroundView *v = [[JXCategoryTitleBackgroundView alloc]init];
+        JXCategoryCustomView *v = [[JXCategoryCustomView alloc]init];
         v.titleColorGradientEnabled = NO;
         v.averageCellSpacingEnabled = NO;
         v.contentEdgeInsetLeft = 15.f;
