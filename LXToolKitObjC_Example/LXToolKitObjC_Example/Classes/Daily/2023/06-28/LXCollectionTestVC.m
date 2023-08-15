@@ -64,7 +64,6 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MyCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:MyCollectionCell.xl_identifier forIndexPath:indexPath];
-    cell.labTitle.text = self.dataList[indexPath.row];
     return cell;
 }
 #pragma mark -
@@ -106,7 +105,8 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop).offset(100.f);
         make.left.right.equalTo(@0.f);
-        make.height.equalTo(@50.f);
+        // make.height.equalTo(@50.f);
+        make.bottom.equalTo(@0.f);
     }];
 }
 
