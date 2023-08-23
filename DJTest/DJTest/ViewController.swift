@@ -120,9 +120,12 @@ private extension ViewController {
         if #available(iOS 14.0, *),
            let vc = scene?.vc {
             if let vc2 = vc as? LXToolKitTestVC {
-                vc2.autoJumpRoute = .LXOutlineVC
+                vc2.autoJumpRoute =
+                    .LXOutlineVC
             } else if let vc2 = vc as? LXToolKitObjCTestVC {
-                vc2.autoJumpRoute = "DJCommentVC";
+                vc2.autoJumpRoute =
+                "LXLabelTestVC"
+                // "DJCommentVC"
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
