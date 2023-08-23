@@ -76,16 +76,21 @@
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(@0.f);
         make.width.equalTo(@235.f);
-        make.height.equalTo(@100.f);
+        // make.height.equalTo(@100.f);
     }];
     [self.labTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.labTitle.mas_bottom).offset(10.f);
-        make.centerX.with.height.equalTo(self.labTitle);
+        // make.centerX.with.height.equalTo(self.labTitle);
+        make.left.equalTo(self.labTitle);
+        make.width.equalTo(@235.f);
+        // make.height.equalTo(@100.f);
     }];
     [self.tvTitle3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.labTitle2.mas_bottom).offset(10.f);
-        make.centerX.height.equalTo(self.labTitle);
-        make.width.equalTo(@230.f);
+        // make.centerX.height.equalTo(self.labTitle);
+        make.left.equalTo(self.labTitle);
+        make.width.equalTo(@235.f);
+        // make.height.equalTo(@100.f);
     }];
 }
 
@@ -114,7 +119,7 @@
         label.textColor = [UIColor blackColor];
         // label.backgroundColor = [UIColor <#cyanColor#>];
         label.textAlignment = NSTextAlignmentLeft;
-        label.lineBreakMode = NSLineBreakByCharWrapping | NSLineBreakByTruncatingTail;
+        label.lineBreakMode = NSLineBreakByCharWrapping;
         label.numberOfLines = 2;
         label.layer.borderWidth = 1.f;
         label.layer.borderColor = [UIColor cyanColor].CGColor;
