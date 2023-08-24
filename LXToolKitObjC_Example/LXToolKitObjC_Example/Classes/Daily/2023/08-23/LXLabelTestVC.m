@@ -8,11 +8,16 @@
 
 #import <Masonry/Masonry.h>
 #import <YYText/YYText.h>
+#import "LXCornerRadiusView.h"
 
 @interface LXLabelTestVC() {
 }
+@property(nonatomic, strong)UIStackView *wrapperStackView;
 @property(nonatomic, strong)UILabel *labTitle;
 @property(nonatomic, strong)UILabel *labTitle2;
+@property(nonatomic, strong)UILabel *labTitle3;
+@property(nonatomic, strong)UILabel *labTitle4;
+@property(nonatomic, strong)LXCornerRadiusView *cornerView;
 @property(nonatomic, strong)UITextView *tvTitle3;
 
 @end
@@ -24,22 +29,6 @@
 
 #pragma mark -
 #pragma mark - 🛠Life Cycle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
-    // NSLog(@"🛠viewWillAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:YES];
-    // NSLog(@"🛠viewWillDisappear: %@", NSStringFromClass([self class]));
-}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // NSLog(@"🛠viewDidLoad: %@", NSStringFromClass([self class]));
@@ -56,6 +45,19 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (UILabel *)createfactoryLabel {
+    UILabel *label = [[UILabel alloc]init];
+    label.text = @"老正兴菜馆（福州路店）配送";
+    label.font = [UIFont systemFontOfSize:18.f];
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [[UIColor cyanColor]colorWithAlphaComponent:0.3f];
+    label.numberOfLines = 2;
+    label.textAlignment = NSTextAlignmentLeft;
+    label.lineBreakMode = NSLineBreakByCharWrapping;//NSLineBreakByTruncatingTail;
+    label.layer.borderWidth = 1.f;
+    label.layer.borderColor = [UIColor cyanColor].CGColor;
+    return label;
+}
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
@@ -63,9 +65,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     // navigationItem.title = @"";
 
-    [self.view addSubview:self.labTitle];
-    [self.view addSubview:self.labTitle2];
-    [self.view addSubview:self.tvTitle3];
+    [self.wrapperStackView addArrangedSubview:self.labTitle];
+    [self.wrapperStackView addArrangedSubview:self.labTitle2];
+    [self.wrapperStackView addArrangedSubview:self.labTitle3];
+    [self.wrapperStackView addArrangedSubview:self.labTitle4];
+    [self.wrapperStackView addArrangedSubview:self.cornerView];
+    [self.wrapperStackView addArrangedSubview:self.tvTitle3];
+
+    [self.view addSubview:self.wrapperStackView];
 
     [self masonry];
 }
@@ -73,59 +80,90 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.wrapperStackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(@0.f);
-        make.width.equalTo(@235.f);
+        make.width.equalTo(@230.f);
         // make.height.equalTo(@100.f);
+    }];
+    [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.greaterThanOrEqualTo(@30.f);
     }];
     [self.labTitle2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.labTitle.mas_bottom).offset(10.f);
-        // make.centerX.with.height.equalTo(self.labTitle);
-        make.left.equalTo(self.labTitle);
-        make.width.equalTo(@235.f);
-        // make.height.equalTo(@100.f);
+        make.height.greaterThanOrEqualTo(@30.f);
     }];
-    [self.tvTitle3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.labTitle2.mas_bottom).offset(10.f);
-        // make.centerX.height.equalTo(self.labTitle);
-        make.left.equalTo(self.labTitle);
-        make.width.equalTo(@235.f);
-        // make.height.equalTo(@100.f);
+    [self.labTitle3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.greaterThanOrEqualTo(@30.f);
+    }];
+    [self.labTitle4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.greaterThanOrEqualTo(@30.f);
+    }];
+    [self.cornerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@30.f);
     }];
 }
 
 #pragma mark Lazy Property
+- (UIStackView *)wrapperStackView {
+    if(!_wrapperStackView){
+        UIStackView *sv = [[UIStackView alloc]init];
+        sv.axis = UILayoutConstraintAxisVertical;
+        sv.alignment = UIStackViewAlignmentFill;
+        // sv.distribution = UIStackViewDistributionFillProportionally;
+        sv.spacing = 10.f;
+        _wrapperStackView = sv;
+    }
+    return _wrapperStackView;
+}
 - (UILabel *)labTitle {
     if(!_labTitle){
-        UILabel *label = [[UILabel alloc]init];
-        label.text = @"老正兴菜馆（福州路店）配送";
-        label.font = [UIFont systemFontOfSize:18.f];
-        label.textColor = [UIColor blackColor];
-        // label.backgroundColor = [UIColor <#cyanColor#>];
-        label.numberOfLines = 2;
-        label.textAlignment = NSTextAlignmentLeft;
-        label.lineBreakMode = NSLineBreakByCharWrapping;//NSLineBreakByTruncatingTail;
-        label.layer.borderWidth = 1.f;
-        label.layer.borderColor = [UIColor cyanColor].CGColor;
+        UILabel *label = [self createfactoryLabel];
+        label.text = @"1";
+        label.layer.cornerRadius = 16.f;
+        label.layer.cornerCurve = kCACornerCurveContinuous;
+        label.layer.masksToBounds = YES;
         _labTitle = label;
     }
     return _labTitle;
 }
 - (UILabel *)labTitle2 {
     if(!_labTitle2){
-        UILabel *label = [[UILabel alloc]init];
-        label.text = @"老正兴菜馆（福州路店）配送老正兴菜馆（福州路店）配送";
-        label.font = [UIFont systemFontOfSize:18.f];
-        label.textColor = [UIColor blackColor];
-        // label.backgroundColor = [UIColor <#cyanColor#>];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.lineBreakMode = NSLineBreakByCharWrapping;
-        label.numberOfLines = 2;
-        label.layer.borderWidth = 1.f;
-        label.layer.borderColor = [UIColor cyanColor].CGColor;
+        UILabel *label = [self createfactoryLabel];
+        label.text = @"2";
+        label.layer.cornerRadius = 16.f;
+        label.layer.cornerCurve = kCACornerCurveContinuous;
         _labTitle2 = label;
     }
     return _labTitle2;
+}
+- (UILabel *)labTitle3 {
+    if(!_labTitle3){
+        UILabel *label = [self createfactoryLabel];
+        label.text = @"3";
+        label.layer.cornerRadius = 16.f;
+        label.layer.masksToBounds = YES;
+        _labTitle3 = label;
+    }
+    return _labTitle3;
+}
+- (UILabel *)labTitle4 {
+    if(!_labTitle4){
+        UILabel *label = [self createfactoryLabel];
+        label.text = @"4";
+        label.layer.cornerRadius = 16.f;
+        label.layer.maskedCorners = kCALayerMaxXMaxYCorner | kCALayerMaxXMinYCorner;
+        label.layer.cornerCurve = kCACornerCurveContinuous;
+        _labTitle4 = label;
+    }
+    return _labTitle4;
+}
+- (LXCornerRadiusView *)cornerView {
+    if(!_cornerView){
+        LXCornerRadiusView *v = [[LXCornerRadiusView alloc]init];
+        v.corners = UIRectCornerAllCorners;
+        v.cornerRadii = CGSizeMake(35.f, 35.f);
+        _cornerView = v;
+    }
+    return _cornerView;
 }
 - (UITextView *)tvTitle3 {
     if(!_tvTitle3){

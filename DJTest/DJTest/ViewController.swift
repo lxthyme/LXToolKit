@@ -102,8 +102,8 @@ class ViewController: LXBaseTableVC {
         prepareUI()
         prepareTableView()
 
-        // autoJumpRoute = .LXToolKit_Example
-        autoJumpRoute = .LXToolKitObjC_Example
+        autoJumpRoute = .LXToolKit_Example
+        // autoJumpRoute = .LXToolKitObjC_Example
          gotoScene(by: autoJumpRoute)
     }
 }
@@ -121,7 +121,8 @@ private extension ViewController {
            let vc = scene?.vc {
             if let vc2 = vc as? LXToolKitTestVC {
                 vc2.autoJumpRoute =
-                    .LXOutlineVC
+                    // .LXOutlineVC
+                    .LXLabelVC
             } else if let vc2 = vc as? LXToolKitObjCTestVC {
                 vc2.autoJumpRoute =
                 "LXLabelTestVC"
