@@ -36,6 +36,8 @@ target 'DJTest' do
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
   pod 'DJRSwiftResource', :path => '../DJRSwiftResource'
 
+  pod 'LXSwiftUIKit', :path => '../LXSwiftUIKit'
+
   pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC_Example'
 
@@ -86,10 +88,15 @@ post_install do |installer|
              config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
           end
        end
-      end
-      target.build_configurations.each do |config|
-        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      elsif target.name == 'LXSwiftUIKit'
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        end
+      else
+        target.build_configurations.each do |config|
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        end
       end
     end
   end
