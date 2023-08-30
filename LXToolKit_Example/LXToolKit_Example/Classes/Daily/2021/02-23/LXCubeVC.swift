@@ -74,7 +74,8 @@ class LXCubeVC: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        containerView.xl.setRoundingCorners(borderColor: .red, borderWidth: 1, raddi: 150, corners: [.topLeft, .topRight], isDotted: true)
+        containerView.xl.setBorder(borderColor: .red, borderWidth: 1, raddi: 150, corners: [.topLeft, .topRight], isDotted: true)
+        containerView.xl.setRoundingCorners(raddi: 150, corners: [.topLeft, .topRight])
     }
 
 }

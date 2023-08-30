@@ -75,7 +75,14 @@ open class LXToolKitTestVC: LXBaseTableVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as DJAllAPI)
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
-        snapshot.appendSections(["WWDC", "MVVM", "2023", "2022", "2021", "2020"])
+        snapshot.appendSections([
+            "2023",
+            "WWDC",
+            "MVVM",
+            "2022",
+            "2021",
+            "2020"
+        ])
         snapshot.appendItems([
             .LXMultiRequestTestVC,
             .LXOffScreenVC,
@@ -137,6 +144,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .LXHandyJSONTestVC,
             .LXWebVC,
             .LXStrenchableWebVC(viewModel: vm),
+            .LXLabelVC,
         ], toSection: "2023")
         snapshot.appendItems([
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),

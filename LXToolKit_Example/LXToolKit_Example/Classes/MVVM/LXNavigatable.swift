@@ -107,6 +107,7 @@ extension Navigator {
         case test(vm: LXBaseVM)
         case LXHandyJSONTestVC
         case LX03_08_03VC
+        case LXLabelVC
         // !!!: WWDC
         case LXOutlineVC
         // !!!: MVVM
@@ -257,6 +258,7 @@ extension Navigator {
             return LXHandyJSONTestVC()
         case .LX03_08_03VC:
             return LX03_08_03VC()
+        case .LXLabelVC: return LXLabelVC()
             // !!!: WWDC
         case .LXOutlineVC:
             if #available(iOS 14.0, *) {
@@ -441,6 +443,7 @@ extension Navigator.Scene {
             tmp = (title: "float testing", desc: "---")
         case .LX03_08_03VC:
             tmp = (title: "Swift Daily", desc: "---")
+        case .LXLabelVC: tmp = (title: "UILabel test", desc: "---")
             // !!!: WWDC
         case .LXOutlineVC: tmp = (title: "LXOutlineVC", desc: "---")
             // !!!: MVVM

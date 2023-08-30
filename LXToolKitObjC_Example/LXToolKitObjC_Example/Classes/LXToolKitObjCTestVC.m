@@ -73,6 +73,7 @@
 #pragma mark - 📌UI Prepare & Masonry
 - (void)prepareUI {
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationItem.title = @"LXToolKitObjC Test VC";
 
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.table];
@@ -131,6 +132,7 @@
             @"LXScrollVC",
             @"LXCollectionTestVC",
             @"DJCommentVC",
+            @"LXLabelTestVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }
