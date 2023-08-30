@@ -72,15 +72,14 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)dataFill {
-    self.labTitle.text = @"title";
-    // self.labDetail.text = @"鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文)";
-    // self.labSubtitle.text = @"鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号";
+    self.labTitle.text = @"iOS dyld: Symbol not found: _NSUserActivityTypeLiveActivity";
+    self.labDetail.text = @"鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文)";
+    self.labSubtitle.text = @"鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号鲁械广审(文) 第鲁械广审(文) 第鲁2020509758289299号";
 }
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.labTitle.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.wrapperStackView];
     [self.wrapperStackView addArrangedSubview:self.labTitle];
     [self.labDetailStackView addArrangedSubview:self.labDetail];
@@ -95,9 +94,9 @@
         make.center.equalTo(@0.f);
     }];
     // [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-    //     make.top.equalTo(@0.f);
-    //     make.left.equalTo(@(16.f));
-    //     make.right.equalTo(@(-16.f));
+    //     // make.top.equalTo(@0.f);
+    //     make.left.equalTo(@(-16.f));
+    //     make.right.equalTo(@(16.f));
     // }];
     // [self.labDetailStackView mas_makeConstraints:^(MASConstraintMaker *make) {
     //     make.top.equalTo(self.labTitle.mas_bottom).offset(10.f);
@@ -117,6 +116,8 @@
         UIStackView *sv = [[UIStackView alloc]init];
         sv.axis = UILayoutConstraintAxisVertical;
         sv.spacing = 0.f;
+        sv.layoutMarginsRelativeArrangement = YES;
+        sv.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(0, 20.f, 0, 20.f);
         _wrapperStackView = sv;
     }
     return _wrapperStackView;
@@ -124,11 +125,16 @@
 - (UILabel *)labTitle {
     if(!_labTitle){
         UILabel *label = [[UILabel alloc]init];
+        label.backgroundColor = [UIColor cyanColor];
         [label setText:@""];
-        [label setNumberOfLines:1];
+        [label setNumberOfLines:0];
         [label setTextColor:[UIColor blackColor]];
-        [label setLineBreakMode:NSLineBreakByWordWrapping];
+        [label setLineBreakMode:NSLineBreakByTruncatingTail];
         [label setTextAlignment:NSTextAlignmentCenter];
+        label.preservesSuperviewLayoutMargins = NO;
+        // label.insetsLayoutMarginsFromSafeArea = NO;
+        // label.layoutMargins = UIEdgeInsetsMake(0, 20, 0, 20);
+        label.directionalLayoutMargins = NSDirectionalEdgeInsetsMake(10, 10, 10, 10);
         _labTitle = label;
     }
     return _labTitle;
@@ -144,6 +150,7 @@
 - (UILabel *)labDetail {
     if(!_labDetail){
         UILabel *label = [[UILabel alloc]init];
+        label.backgroundColor = [[UIColor cyanColor] colorWithAlphaComponent:0.5];
         [label setText:@""];
         [label setNumberOfLines:0];
         [label setTextColor:[UIColor blackColor]];
@@ -165,8 +172,9 @@
 - (UILabel *)labSubtitle {
     if(!_labSubtitle){
         UILabel *label = [[UILabel alloc]init];
+        label.backgroundColor = [[UIColor cyanColor] colorWithAlphaComponent:0.3];
         [label setText:@""];
-        [label setNumberOfLines:1];
+        [label setNumberOfLines:0];
         [label setTextColor:[UIColor blackColor]];
         [label setLineBreakMode:NSLineBreakByWordWrapping];
         [label setTextAlignment:NSTextAlignmentCenter];
