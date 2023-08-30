@@ -17,6 +17,7 @@
 		BE0FC73C28C85FC200BB3188 /* TextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FC73B28C85FC200BB3188 /* TextPage.swift */; };
 		BE0FC74028C85FEC00BB3188 /* TextFieldPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FC73F28C85FEC00BB3188 /* TextFieldPage.swift */; };
 		BE0FC74428C8655800BB3188 /* Window + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FC74328C8655800BB3188 /* Window + ex.swift */; };
+		BE4548832A96433200C6BDAF /* Daily01.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4548822A96433200C6BDAF /* Daily01.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		BE0FC73B28C85FC200BB3188 /* TextPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPage.swift; sourceTree = "<group>"; };
 		BE0FC73F28C85FEC00BB3188 /* TextFieldPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPage.swift; sourceTree = "<group>"; };
 		BE0FC74328C8655800BB3188 /* Window + ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Window + ex.swift"; sourceTree = "<group>"; };
+		BE4548822A96433200C6BDAF /* Daily01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily01.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,8 @@
 				BE0FC72428C84E2C00BB3188 /* LXSwiftUIKitApp.swift */,
 				BE0FC72628C84E2C00BB3188 /* ContentView.swift */,
 				BE0FC73228C84FD400BB3188 /* PageRow.swift */,
+				BE45487F2A9642D400C6BDAF /* wwdc */,
+				BE45487E2A9642C800C6BDAF /* Daily */,
 				BE0FC74128C8654600BB3188 /* Kit */,
 				BE0FC73428C8520E00BB3188 /* Page */,
 				BE0FC72828C84E2E00BB3188 /* Assets.xcassets */,
@@ -123,6 +127,21 @@
 				BE0FC74328C8655800BB3188 /* Window + ex.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE45487E2A9642C800C6BDAF /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Daily;
+			sourceTree = "<group>";
+		};
+		BE45487F2A9642D400C6BDAF /* wwdc */ = {
+			isa = PBXGroup;
+			children = (
+				BE4548822A96433200C6BDAF /* Daily01.swift */,
+			);
+			path = wwdc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4548832A96433200C6BDAF /* Daily01.swift in Sources */,
 				BE0FC73328C84FD400BB3188 /* PageRow.swift in Sources */,
 				BE0FC72728C84E2C00BB3188 /* ContentView.swift in Sources */,
 				BE0FC73728C8521F00BB3188 /* LotteryView.swift in Sources */,
