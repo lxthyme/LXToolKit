@@ -52,6 +52,7 @@ public struct FlavorProfile: Hashable, Codable {
         for flavor in Flavor.allCases {
             result[flavor] += other[flavor]
         }
+        return result
     }
 
     public mutating func formUnion(with other: FlavorProfile) {
@@ -87,17 +88,17 @@ case salty, sweet, bitter, sour, savory, spicy
     public var name: String {
         switch self {
             case .salty:
-                return String(localized: "Salty", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Salty", bundle: .main, comment: "The main flavor-profile of a donut.")
             case .sweet:
-                return String(localized: "Sweet", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Sweet", bundle: .main, comment: "The main flavor-profile of a donut.")
             case .bitter:
-                return String(localized: "Bitter", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Bitter", bundle: .main, comment: "The main flavor-profile of a donut.")
             case .sour:
-                return String(localized: "Sour", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Sour", bundle: .main, comment: "The main flavor-profile of a donut.")
             case .savory:
-                return String(localized: "Savory", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Savory", bundle: .main, comment: "The main flavor-profile of a donut.")
             case .spicy:
-                return String(localized: "Spicy", bundle: .module, comment: "The main flavor-profile of a donut.")
+                return String(localized: "Spicy", bundle: .main, comment: "The main flavor-profile of a donut.")
         }
     }
 
