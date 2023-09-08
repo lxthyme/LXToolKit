@@ -210,8 +210,8 @@ pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMa
 pod 'libextobjc/EXTScope'
 
 # platform:ios, '10.0'
-pod 'DJBusinessModuleSwift', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModuleSwift'
-pod 'RxNetworks', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/RxNetworks'
+# pod 'DJBusinessModuleSwift', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/DJBusinessModuleSwift'
+# pod 'RxNetworks', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/RxNetworks'
 # pod 'RxNetworks', :git => 'git@github.com:yangKJ/RxNetworks.git'
 # pod 'Toast-Swift', :git => 'git@github.com:scalessec/Toast-Swift.git'
 # pod 'HandyJSON', :git => 'git@github.com:alibaba/HandyJSON.git'

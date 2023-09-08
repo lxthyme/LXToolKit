@@ -5,6 +5,8 @@
 //  Created by lxthyme on 2022/9/7.
 //
 import SwiftUI
+// import FoodTruckKit
+import FoodTruckKit
 
 struct PageRow: View {
     // MARK: 📌UI

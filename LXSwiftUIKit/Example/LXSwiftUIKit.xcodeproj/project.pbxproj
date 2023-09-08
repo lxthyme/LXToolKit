@@ -13,7 +13,28 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		BE042F572AA985D200F313C0 /* FoodTruckKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE042F562AA985D200F313C0 /* FoodTruckKit */; };
+		BE04308F2AA9BD3E00F313C0 /* TextPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430762AA9BD3D00F313C0 /* TextPage.swift */; };
+		BE0430902AA9BD3E00F313C0 /* TextFieldPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430772AA9BD3D00F313C0 /* TextFieldPage.swift */; };
+		BE0430912AA9BD3E00F313C0 /* LotteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430792AA9BD3D00F313C0 /* LotteryView.swift */; };
+		BE0430922AA9BD3E00F313C0 /* LotteryControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04307A2AA9BD3D00F313C0 /* LotteryControl.swift */; };
+		BE0430932AA9BD3E00F313C0 /* FoodTruckApp.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE04307C2AA9BD3D00F313C0 /* FoodTruckApp.strings */; };
+		BE0430942AA9BD3E00F313C0 /* FoodTruckAppAppShortcuts.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE04307E2AA9BD3D00F313C0 /* FoodTruckAppAppShortcuts.strings */; };
+		BE0430952AA9BD3E00F313C0 /* WidthThresholdReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430832AA9BD3D00F313C0 /* WidthThresholdReader.swift */; };
+		BE0430962AA9BD3E00F313C0 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430842AA9BD3D00F313C0 /* FlowLayout.swift */; };
+		BE0430972AA9BD3E00F313C0 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0430862AA9BD3D00F313C0 /* Sidebar.swift */; };
+		BE0430982AA9BD3E00F313C0 /* FoodTruckAppShortcuts.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE0430872AA9BD3D00F313C0 /* FoodTruckAppShortcuts.strings */; };
+		BE04309A2AA9BD3E00F313C0 /* Window + ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04308B2AA9BD3E00F313C0 /* Window + ex.swift */; };
+		BE04309B2AA9BD3E00F313C0 /* PageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04308C2AA9BD3E00F313C0 /* PageRow.swift */; };
+		BE04309C2AA9BD3E00F313C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04308D2AA9BD3E00F313C0 /* ContentView.swift */; };
+		BE04309D2AA9BD3E00F313C0 /* LXSwiftUIKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE04308E2AA9BD3E00F313C0 /* LXSwiftUIKitApp.swift */; };
+		BE0430A52AA9C05300F313C0 /* FoodTruckKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE0430A42AA9C05300F313C0 /* FoodTruckKit */; };
+		BE38EE982AAB0272007D8377 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EE972AAB0272007D8377 /* App.swift */; };
+		BE38EE9D2AAB0CAD007D8377 /* DetailColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EE9C2AAB0CAD007D8377 /* DetailColumn.swift */; };
+		BE38EEA12AAB0E0F007D8377 /* CardNavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EEA02AAB0E0F007D8377 /* CardNavigationHeader.swift */; };
+		BE38EEA32AAB0E39007D8377 /* TruckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EEA22AAB0E39007D8377 /* TruckView.swift */; };
+		BE38EEA52AAB0F34007D8377 /* CardNavigationHeaderLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EEA42AAB0F34007D8377 /* CardNavigationHeaderLabelStyle.swift */; };
+		BE38EEA72AAB107A007D8377 /* TruckDonutsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EEA62AAB107A007D8377 /* TruckDonutsCard.swift */; };
+		BE38EEA92AAB1251007D8377 /* TruckOrdersCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE38EEA82AAB1251007D8377 /* TruckOrdersCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +49,30 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A4CA7945988D8803315F439B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		BE0430762AA9BD3D00F313C0 /* TextPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextPage.swift; sourceTree = "<group>"; };
+		BE0430772AA9BD3D00F313C0 /* TextFieldPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldPage.swift; sourceTree = "<group>"; };
+		BE0430792AA9BD3D00F313C0 /* LotteryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryView.swift; sourceTree = "<group>"; };
+		BE04307A2AA9BD3D00F313C0 /* LotteryControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LotteryControl.swift; sourceTree = "<group>"; };
+		BE04307D2AA9BD3D00F313C0 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FoodTruckApp.strings; sourceTree = "<group>"; };
+		BE04307F2AA9BD3D00F313C0 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/FoodTruckAppAppShortcuts.strings; sourceTree = "<group>"; };
+		BE0430802AA9BD3D00F313C0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FoodTruckApp.strings"; sourceTree = "<group>"; };
+		BE0430812AA9BD3D00F313C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FoodTruckApp.strings; sourceTree = "<group>"; };
+		BE0430832AA9BD3D00F313C0 /* WidthThresholdReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WidthThresholdReader.swift; sourceTree = "<group>"; };
+		BE0430842AA9BD3D00F313C0 /* FlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		BE0430862AA9BD3D00F313C0 /* Sidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		BE0430872AA9BD3D00F313C0 /* FoodTruckAppShortcuts.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = FoodTruckAppShortcuts.strings; sourceTree = "<group>"; };
+		BE04308B2AA9BD3E00F313C0 /* Window + ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Window + ex.swift"; sourceTree = "<group>"; };
+		BE04308C2AA9BD3E00F313C0 /* PageRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageRow.swift; sourceTree = "<group>"; };
+		BE04308D2AA9BD3E00F313C0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BE04308E2AA9BD3E00F313C0 /* LXSwiftUIKitApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXSwiftUIKitApp.swift; sourceTree = "<group>"; };
+		BE0430A32AA9BF8D00F313C0 /* FoodTruckKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FoodTruckKit; path = ../../FoodTruckKit; sourceTree = "<group>"; };
+		BE38EE972AAB0272007D8377 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		BE38EE9C2AAB0CAD007D8377 /* DetailColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailColumn.swift; sourceTree = "<group>"; };
+		BE38EEA02AAB0E0F007D8377 /* CardNavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNavigationHeader.swift; sourceTree = "<group>"; };
+		BE38EEA22AAB0E39007D8377 /* TruckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckView.swift; sourceTree = "<group>"; };
+		BE38EEA42AAB0F34007D8377 /* CardNavigationHeaderLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNavigationHeaderLabelStyle.swift; sourceTree = "<group>"; };
+		BE38EEA62AAB107A007D8377 /* TruckDonutsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckDonutsCard.swift; sourceTree = "<group>"; };
+		BE38EEA82AAB1251007D8377 /* TruckOrdersCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckOrdersCard.swift; sourceTree = "<group>"; };
 		BFCB63CA5ADE7EFFCE6E5C13 /* Pods-LXSwiftUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXSwiftUIKit_Example.release.xcconfig"; path = "Target Support Files/Pods-LXSwiftUIKit_Example/Pods-LXSwiftUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C51BA4BCB9C5203F8EFAD51C /* Pods-LXSwiftUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXSwiftUIKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-LXSwiftUIKit_Example/Pods-LXSwiftUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,7 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C71146108834642D4476E7 /* Pods_LXSwiftUIKit_Example.framework in Frameworks */,
-				BE042F572AA985D200F313C0 /* FoodTruckKit in Frameworks */,
+				BE0430A52AA9C05300F313C0 /* FoodTruckKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +110,9 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				BE0430A22AA9BF8D00F313C0 /* Packages */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				BE0430732AA9BD3D00F313C0 /* Classes */,
 				607FACD21AFB9204008FA782 /* Example for LXSwiftUIKit */,
 				607FACD11AFB9204008FA782 /* Products */,
 				4F4E15B24B04D8C4D1F9FE7C /* Pods */,
@@ -113,6 +160,122 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		BE0430732AA9BD3D00F313C0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430742AA9BD3D00F313C0 /* Page */,
+				BE04307B2AA9BD3D00F313C0 /* Food Truck */,
+				BE0430892AA9BD3D00F313C0 /* Kit */,
+				BE04308C2AA9BD3E00F313C0 /* PageRow.swift */,
+				BE04308D2AA9BD3E00F313C0 /* ContentView.swift */,
+				BE04308E2AA9BD3E00F313C0 /* LXSwiftUIKitApp.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BE0430742AA9BD3D00F313C0 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430752AA9BD3D00F313C0 /* Text */,
+				BE0430782AA9BD3D00F313C0 /* Lottery */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		BE0430752AA9BD3D00F313C0 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430762AA9BD3D00F313C0 /* TextPage.swift */,
+				BE0430772AA9BD3D00F313C0 /* TextFieldPage.swift */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		BE0430782AA9BD3D00F313C0 /* Lottery */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430792AA9BD3D00F313C0 /* LotteryView.swift */,
+				BE04307A2AA9BD3D00F313C0 /* LotteryControl.swift */,
+			);
+			path = Lottery;
+			sourceTree = "<group>";
+		};
+		BE04307B2AA9BD3D00F313C0 /* Food Truck */ = {
+			isa = PBXGroup;
+			children = (
+				BE38EE9E2AAB0DFC007D8377 /* Truck */,
+				BE38EE972AAB0272007D8377 /* App.swift */,
+				BE04307C2AA9BD3D00F313C0 /* FoodTruckApp.strings */,
+				BE04307E2AA9BD3D00F313C0 /* FoodTruckAppAppShortcuts.strings */,
+				BE0430872AA9BD3D00F313C0 /* FoodTruckAppShortcuts.strings */,
+				BE0430822AA9BD3D00F313C0 /* General */,
+				BE0430852AA9BD3D00F313C0 /* Navigation */,
+			);
+			path = "Food Truck";
+			sourceTree = "<group>";
+		};
+		BE0430822AA9BD3D00F313C0 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430832AA9BD3D00F313C0 /* WidthThresholdReader.swift */,
+				BE0430842AA9BD3D00F313C0 /* FlowLayout.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		BE0430852AA9BD3D00F313C0 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430862AA9BD3D00F313C0 /* Sidebar.swift */,
+				BE38EE9C2AAB0CAD007D8377 /* DetailColumn.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		BE0430892AA9BD3D00F313C0 /* Kit */ = {
+			isa = PBXGroup;
+			children = (
+				BE04308A2AA9BD3E00F313C0 /* Extension */,
+			);
+			path = Kit;
+			sourceTree = "<group>";
+		};
+		BE04308A2AA9BD3E00F313C0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE04308B2AA9BD3E00F313C0 /* Window + ex.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE0430A22AA9BF8D00F313C0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BE0430A32AA9BF8D00F313C0 /* FoodTruckKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		BE38EE9E2AAB0DFC007D8377 /* Truck */ = {
+			isa = PBXGroup;
+			children = (
+				BE38EE9F2AAB0E03007D8377 /* Cards */,
+				BE38EEA22AAB0E39007D8377 /* TruckView.swift */,
+			);
+			path = Truck;
+			sourceTree = "<group>";
+		};
+		BE38EE9F2AAB0E03007D8377 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				BE38EEA02AAB0E0F007D8377 /* CardNavigationHeader.swift */,
+				BE38EEA42AAB0F34007D8377 /* CardNavigationHeaderLabelStyle.swift */,
+				BE38EEA62AAB107A007D8377 /* TruckDonutsCard.swift */,
+				BE38EEA82AAB1251007D8377 /* TruckOrdersCard.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,7 +295,7 @@
 			);
 			name = LXSwiftUIKit_Example;
 			packageProductDependencies = (
-				BE042F562AA985D200F313C0 /* FoodTruckKit */,
+				BE0430A42AA9C05300F313C0 /* FoodTruckKit */,
 			);
 			productName = LXSwiftUIKit;
 			productReference = 607FACD01AFB9204008FA782 /* LXSwiftUIKit_Example.app */;
@@ -163,10 +326,11 @@
 				English,
 				en,
 				Base,
+				ar,
+				"zh-Hans",
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				BE042F552AA985D200F313C0 /* XCRemoteSwiftPackageReference "FoodTruckKit" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -182,9 +346,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0430982AA9BD3E00F313C0 /* FoodTruckAppShortcuts.strings in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				BE0430932AA9BD3E00F313C0 /* FoodTruckApp.strings in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				BE0430942AA9BD3E00F313C0 /* FoodTruckAppAppShortcuts.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,8 +402,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE0430902AA9BD3E00F313C0 /* TextFieldPage.swift in Sources */,
+				BE0430962AA9BD3E00F313C0 /* FlowLayout.swift in Sources */,
+				BE04309D2AA9BD3E00F313C0 /* LXSwiftUIKitApp.swift in Sources */,
+				BE04309C2AA9BD3E00F313C0 /* ContentView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				BE38EE982AAB0272007D8377 /* App.swift in Sources */,
+				BE04309B2AA9BD3E00F313C0 /* PageRow.swift in Sources */,
+				BE04308F2AA9BD3E00F313C0 /* TextPage.swift in Sources */,
+				BE38EEA12AAB0E0F007D8377 /* CardNavigationHeader.swift in Sources */,
+				BE38EEA52AAB0F34007D8377 /* CardNavigationHeaderLabelStyle.swift in Sources */,
+				BE04309A2AA9BD3E00F313C0 /* Window + ex.swift in Sources */,
+				BE38EE9D2AAB0CAD007D8377 /* DetailColumn.swift in Sources */,
+				BE0430952AA9BD3E00F313C0 /* WidthThresholdReader.swift in Sources */,
+				BE38EEA32AAB0E39007D8377 /* TruckView.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				BE0430912AA9BD3E00F313C0 /* LotteryView.swift in Sources */,
+				BE0430972AA9BD3E00F313C0 /* Sidebar.swift in Sources */,
+				BE0430922AA9BD3E00F313C0 /* LotteryControl.swift in Sources */,
+				BE38EEA92AAB1251007D8377 /* TruckOrdersCard.swift in Sources */,
+				BE38EEA72AAB107A007D8377 /* TruckDonutsCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +442,24 @@
 				607FACDF1AFB9204008FA782 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		BE04307C2AA9BD3D00F313C0 /* FoodTruckApp.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE04307D2AA9BD3D00F313C0 /* ar */,
+				BE0430802AA9BD3D00F313C0 /* zh-Hans */,
+				BE0430812AA9BD3D00F313C0 /* en */,
+			);
+			name = FoodTruckApp.strings;
+			sourceTree = "<group>";
+		};
+		BE04307E2AA9BD3D00F313C0 /* FoodTruckAppAppShortcuts.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE04307F2AA9BD3D00F313C0 /* ar */,
+			);
+			name = FoodTruckAppAppShortcuts.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -369,7 +572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				INFOPLIST_FILE = LXSwiftUIKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,7 +596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				INFOPLIST_FILE = LXSwiftUIKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,21 +636,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		BE042F552AA985D200F313C0 /* XCRemoteSwiftPackageReference "FoodTruckKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:lxthyme/FoodTruckKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		BE042F562AA985D200F313C0 /* FoodTruckKit */ = {
+		BE0430A42AA9C05300F313C0 /* FoodTruckKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE042F552AA985D200F313C0 /* XCRemoteSwiftPackageReference "FoodTruckKit" */;
 			productName = FoodTruckKit;
 		};
 /* End XCSwiftPackageProductDependency section */

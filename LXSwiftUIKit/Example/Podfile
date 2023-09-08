@@ -3,7 +3,7 @@ inhibit_all_warnings!
 platform :ios, '16.0'
 install! 'cocoapods',
            disable_input_output_paths: true,
-           generate_multiple_pod_projects: true,
+        generate_multiple_pod_projects: true,
            deterministic_uuids: false
 
 target 'LXSwiftUIKit_Example' do
