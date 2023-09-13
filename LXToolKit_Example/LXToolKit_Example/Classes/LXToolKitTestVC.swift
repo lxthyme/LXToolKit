@@ -145,6 +145,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .LXWebVC,
             .LXStrenchableWebVC(viewModel: vm),
             .LXLabelVC,
+            .LXActionSheetTestVC,
         ], toSection: "2023")
         snapshot.appendItems([
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),

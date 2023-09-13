@@ -108,6 +108,7 @@ extension Navigator {
         case LXHandyJSONTestVC
         case LX03_08_03VC
         case LXLabelVC
+        case LXActionSheetTestVC
         // !!!: WWDC
         case LXOutlineVC
         // !!!: MVVM
@@ -259,6 +260,7 @@ extension Navigator {
         case .LX03_08_03VC:
             return LX03_08_03VC()
         case .LXLabelVC: return LXLabelVC()
+        case .LXActionSheetTestVC: return LXActionSheetTestVC()
             // !!!: WWDC
         case .LXOutlineVC:
             if #available(iOS 14.0, *) {
@@ -419,16 +421,16 @@ extension Navigator.Scene {
             // !!!: 2023
             // Demo
         case .LXiOS15VC:
-            tmp = (title: "iOS", desc: "iOS 15 适配")
+            tmp = (title: "LXiOS15VC", desc: "iOS 15 适配")
         case .LXTable0120VC:
             tmp = (title: "LXTable0120VC", desc: "测试 sectionHeaderTopPadding 偏移的场景")
         case .LXLoggerTestVC: tmp = (title: "LXLoggerTestVC", desc: "---")
         case .LXMasonryTestVCVC:
-            tmp = (title: "两个 View 组合的 CenterX 测试", desc: "---")
+            tmp = (title: "LXMasonryTestVCVC", desc: "两个 View 组合的 CenterX 测试")
         case .LXWebViewTestVC:
-            tmp = (title: "WebView 测试", desc: "---")
+            tmp = (title: "LXWebViewTestVC", desc: "WebView 测试")
         case .LXYYLabelMoreTestVC:
-            tmp = (title: "YYLabel more 查看详情", desc: "---")
+            tmp = (title: "LXYYLabelMoreTestVC", desc: "YYLabel more 查看详情")
         // case .HomeViewController:
         //     tmp = (title: "RxNetworks Demo", desc: "---")
         case .LXStrenchableWebVC:
@@ -440,10 +442,11 @@ extension Navigator.Scene {
         case .RxNetworksTestVC:
             tmp = (title: "RxNetworksTestVC", desc: "---")
         case .LXHandyJSONTestVC:
-            tmp = (title: "float testing", desc: "---")
+            tmp = (title: "LXHandyJSONTestVC", desc: "float testing")
         case .LX03_08_03VC:
-            tmp = (title: "Swift Daily", desc: "---")
-        case .LXLabelVC: tmp = (title: "UILabel test", desc: "---")
+            tmp = (title: "LX03_08_03VC", desc: "Swift Daily")
+        case .LXLabelVC: tmp = (title: "LXLabelVC", desc: "UILabel test")
+        case .LXActionSheetTestVC: tmp = (title: "LXLabelVC", desc: "UILabel test")
             // !!!: WWDC
         case .LXOutlineVC: tmp = (title: "LXOutlineVC", desc: "---")
             // !!!: MVVM

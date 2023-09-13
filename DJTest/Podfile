@@ -36,7 +36,7 @@ target 'DJTest' do
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
   pod 'DJRSwiftResource', :path => '../DJRSwiftResource'
 
-  pod 'LXSwiftUIKit', :path => '../LXSwiftUIKit'
+  # pod 'LXSwiftUIKit', :path => '../LXSwiftUIKit'
 
   pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC_Example'
