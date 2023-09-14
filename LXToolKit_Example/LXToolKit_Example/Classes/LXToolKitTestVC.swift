@@ -88,6 +88,55 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(vc: DJSwiftTestCaseVC.self),
         ], toSection: "Swift Daily")
         snapshot.appendItems([
+            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
+            .tabs2,
+            .vc(vc: LXMVVMSampleVC.self),
+            .vc(vc: HomeViewController.self),
+            .vc(vc: LXAttributedStringVC.self),
+        ], toSection: "MVVM")
+        snapshot.appendItems([
+            .vc(vc: LXAttributedStringVC.self),
+        ], toSection: "WWDC")
+        snapshot.appendItems([
+            .vc(vc: LX03_08_03VC.self),
+            .vc(vc: LXHandyJSONTestVC.self),
+            .vc(vc: LXWebVC.self),
+            .vm(vc: LXStrenchableWebVC.self, vm: vm),
+            .vc(vc: LXLabelVC.self),
+            .vc(vc: LXActionSheetTestVC.self),
+        ], toSection: "2023")
+        snapshot.appendItems([
+            .vm(vc: LXTable0120VC.self, vm: vm),
+            // .LXiOS15ButtonTestVC,
+            .vm(vc: LXiOS15VC.self, vm: vm),
+            .vm(vc: LXMasonryTestVCVC.self, vm: vm),
+            // .login(vm: LXLoginVM(with: provider)),
+            // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
+                .vm(vc: LXWebViewTestVC.self, vm: vm),
+            .vc(vc: LXLoggerTestVC.self),
+            .vm(vc: LXYYLabelMoreTestVC.self, vm: vm),
+            .vc(vc: RxNetworksTestVC.self),
+            // .HomeViewController(viewModel: vm),
+            .test(vm: vm),
+            // .tabs(vm: vm as! DJHomeTabBarVM),
+        ], toSection: "2022")
+        snapshot.appendItems([
+            .vc(vc: LX0114VC.self),
+            // .LXPhotoAlbumVC,
+            .vc(vc: LXPickerVC.self),
+            .vc(vc: ExampleViewController.self),
+            .vc(vc: LX0117VC.self),
+            .vc(vc: LXClsListVC.self),
+            .vc(vc: LXCubeVC.self),
+            .vc(vc: LXRx0225VC.self),
+            .vc(vc: LX0324EventsVC.self),
+            .vc(vc: LXNestedTableVC.self),
+            .vc(vc: LXTableTestVC.self),
+            .vc(vc: LX1019TestVC.self),
+            .vc(vc: LXHugTestVC.self),
+            .vc(vc: LXStack1206VC.self),
+        ], toSection: "2021")
+        snapshot.appendItems([
             .vc(vc: LXMultiRequestTestVC.self),
             .vc(vc: LXOffScreenVC.self),
             .vc(vc: LXResolveIMPVC.self),
@@ -112,55 +161,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(vc: LXSongVC.self),
             .vc(vc: LXLightedVC.self),
         ], toSection: "2020")
-        snapshot.appendItems([
-            .vc(vc: LX0114VC.self),
-            // .LXPhotoAlbumVC,
-            .vc(vc: LXPickerVC.self),
-            .vc(vc: ExampleViewController.self),
-            .vc(vc: LX0117VC.self),
-            .vc(vc: LXClsListVC.self),
-            .vc(vc: LXCubeVC.self),
-            .vc(vc: LXRx0225VC.self),
-            .vc(vc: LX0324EventsVC.self),
-            .vc(vc: LXNestedTableVC.self),
-            .vc(vc: LXTableTestVC.self),
-            .vc(vc: LX1019TestVC.self),
-            .vc(vc: LXHugTestVC.self),
-            .vc(vc: LXStack1206VC.self),
-        ], toSection: "2021")
-        snapshot.appendItems([
-            .vm(vc: LXTable0120VC.self, vm: vm),
-            // .LXiOS15ButtonTestVC,
-            .vm(vc: LXiOS15VC.self, vm: vm),
-            .vm(vc: LXMasonryTestVCVC.self, vm: vm),
-            // .login(vm: LXLoginVM(with: provider)),
-            // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
-                .vm(vc: LXWebViewTestVC.self, vm: vm),
-            .vc(vc: LXLoggerTestVC.self),
-            .vm(vc: LXYYLabelMoreTestVC.self, vm: vm),
-            .vc(vc: RxNetworksTestVC.self),
-            // .HomeViewController(viewModel: vm),
-            .test(vm: vm),
-            // .tabs(vm: vm as! DJHomeTabBarVM),
-        ], toSection: "2022")
-        snapshot.appendItems([
-            .vc(vc: LX03_08_03VC.self),
-            .vc(vc: LXHandyJSONTestVC.self),
-            .vc(vc: LXWebVC.self),
-            .vm(vc: LXStrenchableWebVC.self, vm: vm),
-            .vc(vc: LXLabelVC.self),
-            .vc(vc: LXActionSheetTestVC.self),
-        ], toSection: "2023")
-        snapshot.appendItems([
-            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
-            .tabs2,
-            .vc(vc: LXMVVMSampleVC.self),
-            .vc(vc: HomeViewController.self),
-            .vc(vc: LXAttributedStringVC.self),
-        ], toSection: "MVVM")
-        snapshot.appendItems([
-            .vc(vc: LXAttributedStringVC.self),
-        ], toSection: "WWDC")
         _dataSnapshot = snapshot
         return snapshot
     }
