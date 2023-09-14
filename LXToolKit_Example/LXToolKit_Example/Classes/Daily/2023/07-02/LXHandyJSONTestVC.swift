@@ -92,6 +92,7 @@ private extension LXHandyJSONTestVC {
 extension LXHandyJSONTestVC {
     override func prepareUI() {
         super.prepareUI()
+        navigationItem.title = "float testing"
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
         

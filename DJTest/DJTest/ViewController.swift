@@ -121,9 +121,9 @@ private extension ViewController {
            let vc = scene?.vc {
             if let vc2 = vc as? LXToolKitTestVC {
                 vc2.autoJumpRoute =
-                    // .LXOutlineVC
-                    .LXLabelVC
-                    // .LXStack1206VC
+                    // .vcString(vcString: "LXOutlineVC")
+                    .vcString(vcString: "LXLabelVC")
+                    // .vcString(vcString: "LXStack1206VC")
             } else if let vc2 = vc as? LXToolKitObjCTestVC {
                 vc2.autoJumpRoute =
                 "LXLabelTestVC"

@@ -86,6 +86,7 @@ extension LXTable0120VC {
     }
     override open func prepareUI() {
         super.prepareUI()
+        navigationItem.title = "测试 sectionHeaderTopPadding 偏移的场景"
         self.view.backgroundColor = .cyan
         self.table.backgroundColor = .random
         prepareTableView()

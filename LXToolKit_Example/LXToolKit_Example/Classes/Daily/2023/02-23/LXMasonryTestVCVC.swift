@@ -192,6 +192,7 @@ extension LXMasonryTestVCVC {
 extension LXMasonryTestVCVC {
     override open func prepareUI() {
         super.prepareUI()
+        navigationItem.title = "两个 View 组合的 CenterX 测试"
         self.view.backgroundColor = .white
         
         [labPanelLeft, labPanelRight].forEach(panelView.addSubview)
