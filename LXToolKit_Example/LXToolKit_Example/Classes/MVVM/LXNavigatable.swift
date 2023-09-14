@@ -10,17 +10,8 @@ import Foundation
 import Hero
 import SafariServices
 import LXToolKit
-// import DJSwiftModule
-// import DJBusinessModuleSwift
 
-// protocol LXNavigatable {
-//     var navigator: LXNavigator { get set }
-// }
-
-// open class LXNavigator {
 extension Navigator {
-    // static var `default` = LXNavigator()
-
     // MARK: - segues list, all app scenes
     public enum Scene: Hashable {
         public func hash(into hasher: inout Hasher) {
@@ -50,17 +41,11 @@ extension Navigator {
                 identifier = "tabs: \(vm.xl.xl_typeName)"
                 hasher.combine(identifier)
             }
-            dlog("-->hashValue: \(identifier)")
+            // dlog("-->hashValue: \(identifier)")
         }
         public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
             switch(lhs, rhs) {
-            // case (.vc(let lhsVC), .vc(let rhsVC)):
-            //     return NSStringFromClass(lhsVC) == NSStringFromClass(rhsVC)
-            // case (.vm(let lhsVC, _), .vm(let rhsVC, _)):
-            //     return NSStringFromClass(lhsVC) == NSStringFromClass(rhsVC)
-            // case (.safari(let url), .safari(let url)):
             case let (lhs, rhs):
-                // dlog("-->hashValue: \(lhs.hashValue), \(rhs.hashValue)")
                 return lhs.hashValue == rhs.hashValue
             }
 
@@ -98,8 +83,6 @@ extension Navigator {
         // !!!: 2021
         // !!!: 2022
         // !!!: 2023
-        // case LXiOS15ButtonTestVC(viewModel: LXBaseVM)
-        // case HomeViewController(viewModel: LXBaseVM)
         case test(vm: LXBaseVM)
         case vc(vc: UIViewController.Type)
         case vcString(vcString: String)
@@ -109,16 +92,6 @@ extension Navigator {
         case tabs2
         case tabs(vm: DJHomeTabBarVM)
     }
-
-    // enum Transition {
-    //     case root(in: UIWindow)
-    //     case navigation(type: HeroDefaultAnimationType)
-    //     case customModal(type: HeroDefaultAnimationType)
-    //     case modal
-    //     case detail
-    //     case alert
-    //     case custom
-    // }
 
     // MARK: - get a single VC
     func get(segue: Scene) -> UIViewController? {
@@ -184,8 +157,8 @@ extension Navigator {
             guard vc.isKind(of: LXBaseVC.self) else {
                 return nil
             }
-            // return vc.init(vm: vm, navigator: self)
-            return vc.init()
+            return vc.init(vm: vm, navigator: self)
+            // return vc.init()
             // !!!: WWDC
             // !!!: MVVM
         case .tabs(let vm):
@@ -200,85 +173,12 @@ extension Navigator {
         }
     }
 
-    // func pop(sender: UIViewController?, toRoot: Bool = false) {
-    //     if toRoot {
-    //         sender?.navigationController?.popToRootViewController(animated: true)
-    //     } else {
-    //         sender?.navigationController?.popViewController(animated: true)
-    //     }
-    // }
-    //
-    // func dismiss(sender: UIViewController?) {
-    //     sender?.navigationController?.dismiss(animated: true, completion: nil)
-    // }
-
     // MARK: - invoke a single segue
     func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) {
         if let target = get(segue: segue) {
             show(target: target, sender: sender, transition: transition)
         }
     }
-
-    // private func show(target: UIViewController, sender: UIViewController?, transition: Transition) {
-    //     switch transition {
-    //     case .root(in: let window):
-    //         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-    //             window.rootViewController = target
-    //         }, completion: nil)
-    //         return
-    //     case .custom: return
-    //     default: break
-    //     }
-    //
-    //     guard let sender = sender else {
-    //         fatalError("You need to pass in a sender for .navigation or .modal transitions")
-    //     }
-    //
-    //     if let nav = sender as? UINavigationController {
-    //         // push root controller on navigation stack
-    //         nav.pushViewController(target, animated: false)
-    //         return
-    //     }
-    //
-    //     switch transition {
-    //     case .navigation(let type):
-    //         if let nav = sender.navigationController {
-    //             // push controller to navigation stack
-    //             nav.hero.navigationAnimationType = .autoReverse(presenting: type)
-    //             nav.pushViewController(target, animated: true)
-    //         }
-    //     case .customModal(let type):
-    //         // present modally with custom animation
-    //         DispatchQueue.main.async {
-    //             let nav = LXNavigationController(rootViewController: target)
-    //             nav.hero.modalAnimationType = .autoReverse(presenting: type)
-    //             sender.present(nav, animated: true, completion: nil)
-    //         }
-    //     case .modal:
-    //         // present modally
-    //         DispatchQueue.main.async {
-    //             let nav = LXNavigationController(rootViewController: target)
-    //             sender.present(nav, animated: true, completion: nil)
-    //         }
-    //     case .detail:
-    //         DispatchQueue.main.async {
-    //             let nav = LXNavigationController(rootViewController: target)
-    //             sender.showDetailViewController(nav, sender: nil)
-    //         }
-    //     case .alert:
-    //         DispatchQueue.main.async {
-    //             sender.present(target, animated: true, completion: nil)
-    //         }
-    //     default: break
-    //     }
-    // }
-
-    // func toInviteContact(withPhone phone: String) -> MFMessageComposeViewController {
-    //     let vc = MFMessageComposeViewController()
-    //     vc.body = "Hey! Come join SwiftHub at \(Configs.App.githubUrl)"
-    //     vc.recipients = [phone]
-    //     return vc
-    // }
 }
 
 // MARK: - 👀
@@ -286,56 +186,15 @@ extension Navigator.Scene {
     var info: (title: String, desc: String) {
         var tmp: (title: String, desc: String)
         switch self {
-        case .safari:
-            tmp = (title: "", desc: "")
+        case .safari(let url):
+            tmp = (title: "safari", desc: "\(url.absoluteString)")
         case .safariController:
-            tmp = (title: "", desc: "")
-            // Events
-            // case .login:
-            //     tmp = (title: "LoginVC", desc: "[SwiftHub]")
-            // case .events:
-            //     tmp = (title: "EventsVC", desc: "[SwiftHub]")
-            // !!!: 2020
-            // case .LXMultiRequestTestVC: tmp = (title: "LXMultiRequestTestVC", desc: "---")
-            // case .LXOffScreenVC: tmp = (title: "LXOffScreenVC", desc: "---")
-            // case .LXResolveIMPVC: tmp = (title: "LXResolveIMPVC", desc: "---")
-            // case .LXRequiredVC: tmp = (title: "LXRequiredVC", desc: "---")
-            // case .LXRequiredVC1: tmp = (title: "LXRequiredVC1", desc: "---")
-            // case .LXTransitionVC: tmp = (title: "LXTransitionVC", desc: "---")
-            // case .LXProxyTestVC: tmp = (title: "LXProxyTestVC", desc: "---")
-            // case .LXTestStringVC: tmp = (title: "LXTestStringVC", desc: "---")
-            // case .LXPresentVC: tmp = (title: "LXPresentVC", desc: "---")
-            // case .LXTestVC: tmp = (title: "LXTestVC", desc: "---")
-            // case .LXStackViewVC: tmp = (title: "LXStackViewVC", desc: "---")
-            // case .LXWikipediaImageSearchVC: tmp = (title: "LXWikipediaImageSearchVC", desc: "---")
-            // case .LXStackTestVC: tmp = (title: "LXStackTestVC", desc: "---")
-            // case .LXButtonTestVC: tmp = (title: "LXButtonTestVC", desc: "---")
-            // case .LXImageTestVC: tmp = (title: "LXImageTestVC", desc: "---")
-            // case .LXDaily1117VC: tmp = (title: "LXDaily1117VC", desc: "---")
-            // case .LXKingfisherVC: tmp = (title: "LXKingfisherVC", desc: "---")
-            // case .LXStackMessageVC: tmp = (title: "LXStackMessageVC", desc: "---")
-            // case .LXLockTestVC: tmp = (title: "LXLockTestVC", desc: "---")
-            // case .LXTTTTT: tmp = (title: "LXTTTTT", desc: "---")
-            // case .LXMusicVC: tmp = (title: "LXMusicVC", desc: "---")
-            // case .LXSongVC: tmp = (title: "LXSongVC", desc: "---")
-            // case .LXLightedVC: tmp = (title: "LXLightedVC", desc: "---")
-            // !!!: 2021
-            // case .LX0114VC: tmp = (title: "LX0114VC", desc: "---")
-            // case .LXPhotoAlbumVC: tmp = (title: "LXPhotoAlbumVC", desc: "---")
-            // case .LXPickerVC: tmp = (title: "LXPickerVC", desc: "---")
-            // case .ExampleViewController: tmp = (title: "ExampleViewController", desc: "---")
-            // case .LX0117VC: tmp = (title: "LX0117VC", desc: "---")
-            // case .LXClsListVC: tmp = (title: "LXClsListVC", desc: "---")
-            // case .LXCubeVC: tmp = (title: "LXCubeVC", desc: "---")
-            // case .LXRx0225VC: tmp = (title: "LXRx0225VC", desc: "---")
-            // case .LX0324EventsVC: tmp = (title: "LX0324EventsVC", desc: "---")
-            // case .LXNestedTableVC: tmp = (title: "LXNestedTableVC", desc: "---")
-            // case .LXTableTestVC: tmp = (title: "LXTableTestVC", desc: "---")
-            // case .LX1019TestVC: tmp = (title: "LX1019TestVC", desc: "---")
-            // case .LXHugTestVC: tmp = (title: "LXHugTestVC", desc: "---")
-            // case .LXStack1206VC: tmp = (title: "LXStack1206VC", desc: "---")
-            // !!!: 2022
+            tmp = (title: "safariController", desc: "")
+            // !!!: Swift Daily
             // !!!: 2023
+            // !!!: 2022
+            // !!!: 2021
+            // !!!: 2020
             // Demo
         case .test:
             tmp = (title: "test", desc: "---")
@@ -345,9 +204,9 @@ extension Navigator.Scene {
             tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
         case .tabs:
             tmp = (title: "DJHomeTabBarVC", desc: "---")
-        case .vc(vc: let vc): tmp = (title: "\(NSStringFromClass(vc))", desc: "---")
+        case .vc(vc: let vc): tmp = (title: "\(NSStringFromClass(vc).components(separatedBy: ".").last ?? "NaN")", desc: "---")
         case .vcString(let vcString): tmp = (title: vcString, desc: "---")
-        case .vm(let vc, _): tmp = (title: "\(NSStringFromClass(vc))", desc: "---")
+        case .vm(let vc, _): tmp = (title: "\(NSStringFromClass(vc).components(separatedBy: ".").last ?? "NaN"))", desc: "---")
         }
         return tmp
     }
