@@ -62,6 +62,15 @@ extension Application {
             self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }
+    public func dismissPreviousVC() {
+        guard let window = self.window else { return }
+        // self.dismiss(animated: true)
+        self.navigator.show(segue: .vc(vcProvider: {[weak self] in
+            return self?.previousRootVC
+        }),
+                            sender: nil,
+                            transition: .root(in: window))
+    }
 
     func presentTestScreen(in window: UIWindow) {
         // guard let window, let provider else { return }

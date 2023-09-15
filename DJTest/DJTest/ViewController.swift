@@ -103,8 +103,8 @@ class ViewController: LXBaseTableVC {
         prepareTableView()
 
         autoJumpRoute =
-            // .LXToolKit_Example
-            .LXToolKitObjC_Example
+            .LXToolKit_Example
+            // .LXToolKitObjC_Example
          gotoScene(by: autoJumpRoute)
     }
 }
@@ -121,9 +121,9 @@ private extension ViewController {
         if #available(iOS 14.0, *),
            let vc = scene?.vc {
             if let vc2 = vc as? LXToolKitTestVC {
-                vc2.autoJumpRoute =
+                // vc2.autoJumpRoute =
                     // .vcString(vcString: "LXOutlineVC")
-                    .vcString(vcString: "LXLabelVC")
+                    // .vcString(vcString: "LXLabelVC")
                     // .vcString(vcString: "LXStack1206VC")
             } else if let vc2 = vc as? LXToolKitObjCTestVC {
                 vc2.autoJumpRoute =

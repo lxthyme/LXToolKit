@@ -15,37 +15,19 @@ extension Navigator {
     // MARK: - segues list, all app scenes
     public enum Scene: Hashable {
         public func hash(into hasher: inout Hasher) {
-            var identifier = "NaN"
             switch self {
-            case .vc(_, _, let uuid):
-                identifier = "vc: \(uuid)"
-                hasher.combine(identifier)
-            // case .vm(let vc, let vm):
-            //     identifier = "vm: \(type(of: vc))_\(vm.xl.xl_typeName)"
-            //     hasher.combine(identifier)
-            case .vcString(let vcString, let uuid):
-                identifier = "vcString: \(vcString)\t\t\(uuid)"
-                hasher.combine(identifier)
-            case .safari(let url, let openInApp, let uuid):
-                identifier = "safari[\(openInApp)]: \(url?.absoluteString ?? "")\t\t\(uuid)"
-                hasher.combine(identifier)
-            case .test(vm: let vm, let uuid):
-                identifier = "test: \(vm.xl.xl_typeName)\t\t\(uuid)"
-                hasher.combine(identifier)
-            case .tabs2:
-                hasher.combine("tabs2")
-            case .tabs(vm: let vm, let uuid):
-                identifier = "tabs: \(vm.xl.xl_typeName)\t\t\(uuid)"
-                hasher.combine(identifier)
+            case .vc(_, _, let uuid),
+                    .vcString(_, let uuid),
+                    .openURL(_, _, let uuid),
+                    .tabs(_, let uuid):
+                hasher.combine(uuid)
             }
-            // dlog("-->hashValue: \(identifier)")
         }
         public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
             switch(lhs, rhs) {
             case let (lhs, rhs):
                 return lhs.hashValue == rhs.hashValue
             }
-
         }
 
         // case tabs(viewModel: HomeTabBarViewModel)
@@ -74,19 +56,9 @@ extension Navigator {
         // case whatsNew(block: WhatsNewBlock)
         // case login(vm: LXLoginVM)
         // case events(vm: LXEventsVM)
-        case safari(url: URL?, openInApp: Bool = false, uuid: UUID = UUID())
-        // case safariController(URL)
-        // !!!: 2020
-        // !!!: 2021
-        // !!!: 2022
-        // !!!: 2023
-        case test(vm: LXBaseVM, uuid: UUID = UUID())
+        case openURL(url: URL?, inWebView: Bool = false, uuid: UUID = UUID())
         case vc(identifier: String = "", vcProvider: () -> UIViewController?, uuid: UUID = UUID())
         case vcString(vcString: String, uuid: UUID = UUID())
-        // case vm(vc: () -> LXBaseVC, vm: LXBaseVM)
-        // !!!: WWDC
-        // !!!: MVVM
-        case tabs2
         case tabs(vm: DJHomeTabBarVM, uuid: UUID = UUID())
     }
 
@@ -131,46 +103,25 @@ extension Navigator {
             //         return WhatsNewViewController(whatsNew: block.0, configuration: block.1)
             //     }
             //
-        case .safari(let url, let openInApp, _):
+        case .openURL(let url, let inWebView, _):
             guard let url else { return nil }
 
-            if openInApp {
+            if inWebView {
                 let vc = SFSafariViewController(url: url)
                 return vc
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
-        // case .safariController(let url):
-            // !!!: 2020
-            // !!!: 2021
-            // !!!: 2022
-            // !!!: 2023
-        case .test:
-            let vc = UIViewController()
-            vc.view.backgroundColor = .red
-            return vc
         case .vc(_, let vcProvider, _): return vcProvider()
         case .vcString(let vcString, _):
             guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
             return VCCls.init()
-        // case .vm(let vcProvider, let vm):
-        //     // guard vc.isKind(of: LXBaseVC.self) else {
-        //     //     return nil
-        //     // }
-        //     // return vc.init(vm: vm, navigator: self)
-        //     return vcProvider()
-            // return vc.init()
-            // !!!: WWDC
-            // !!!: MVVM
         case .tabs(let vm, _):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
             let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
             let splitVC = UISplitViewController()
             splitVC.viewControllers = [rootVC , detailVC]
             return splitVC
-        case .tabs2:
-            Application.shared.presentInitialScreen(in: Application.shared.window)
-            return nil
         }
     }
 
@@ -187,29 +138,12 @@ extension Navigator.Scene {
     var info: (title: String, desc: String) {
         var tmp: (title: String, desc: String)
         switch self {
-        case .safari(let url, let openInApp, _):
-            tmp = (title: "safari[\(openInApp)]", desc: "\(url?.absoluteString ?? "")")
-        // case .safariController:
-        //     tmp = (title: "safariController", desc: "")
-            // !!!: Swift Daily
-            // !!!: 2023
-            // !!!: 2022
-            // !!!: 2021
-            // !!!: 2020
-            // Demo
-        case .test:
-            tmp = (title: "test", desc: "---")
-            // !!!: WWDC
-            // !!!: MVVM
-        case .tabs2:
-            tmp = (title: "DJHomeTabBarVC + UISplitViewController", desc: "---")
-        case .tabs:
-            tmp = (title: "DJHomeTabBarVC", desc: "---")
-        // case .vc(vc: let vc): tmp = (title: "\(NSStringFromClass(vc).components(separatedBy: ".").last ?? "NaN")", desc: "---")
+        case .openURL(let url, let inWebView, _):
+            tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
         case .vc(let identifier, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
         case .vcString(let vcString, _): tmp = (title: vcString, desc: "---")
-        // case .vm(let vc, _): tmp = (title: "\(NSStringFromClass(vc).components(separatedBy: ".").last ?? "NaN"))", desc: "---")
-        // case .vm(let vc, let vm): tmp = (title: "vc: \(type(of: vc))", desc: "---")
+        case .tabs:
+            tmp = (title: "DJHomeTabBarVC", desc: "---")
         }
         return tmp
     }

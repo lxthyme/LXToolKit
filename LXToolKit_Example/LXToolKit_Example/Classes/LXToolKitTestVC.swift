@@ -89,10 +89,16 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: DJSwiftTestCaseVC.xl.xl_typeName, vcProvider: { DJSwiftTestCaseVC() }),
         ], toSection: "Swift Daily")
         snapshot.appendItems([
-            .safari(url: URL(string: "http://baidu.com")),
-            .safari(url: URL(string: "http://baidu.com"), openInApp: true),
+            .openURL(url: URL(string: "http://baidu.com")),
+            .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
             .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
-            .tabs2,
+            .vc(identifier: "DJHomeTabBarVC + UISplitViewController", vcProvider: {
+                let window = UIApplication.shared.keyWindow
+                let app = Application.shared;
+                app.previousRootVC = window?.rootViewController
+                app.presentInitialScreen(in: window)
+                return nil
+            }),
             .vc(identifier: LXMVVMSampleVC.xl.xl_typeName, vcProvider: { LXMVVMSampleVC() }),
             .vc(identifier: HomeViewController.xl.xl_typeName, vcProvider: { HomeViewController() }),
             .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
@@ -138,7 +144,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             }),
             .vc(identifier: RxNetworksTestVC.xl.xl_typeName, vcProvider: { RxNetworksTestVC() }),
             // .HomeViewController(viewModel: vm),
-            .test(vm: vm),
+            // .test(vm: vm),
             // .tabs(vm: vm as! DJHomeTabBarVM),
         ], toSection: "2022")
         snapshot.appendItems([
@@ -314,7 +320,13 @@ private extension LXToolKitTestVC {
     func gotoScene(by scene: Navigator.Scene?) {
         guard let scene else { return }
         let navigator = Navigator.default
-        navigator.show(segue: scene, sender: self)
+        let app = Application.shared
+        app.window = UIApplication.shared.keyWindow
+        app.previousRootVC = app.window?.rootViewController
+        if let window = app.window,
+           case .tabs = scene {
+            navigator.show(segue: scene, sender: self, transition: .root(in: window))
+        }
     }
 }
 
