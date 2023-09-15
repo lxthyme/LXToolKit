@@ -26,12 +26,33 @@ extension DJSwiftTestCaseVC {}
 // MARK: 👀Public Actions
 extension DJSwiftTestCaseVC {}
 
+// @OptionSet<Int>
+// struct LXOptions {
+//     private enum OptEnum: Int {
+//         case nuts, cherry, fudge
+//     }
+// }
+// @OptionSet
+// struct SundaeToppings {
+//     private enum Options: Int {
+//         case nuts
+//         case cherry
+//         case fudge
+//     }
+// }
 // MARK: 🔐Private Actions
 private extension DJSwiftTestCaseVC {
     func testTypePlaceholder() {
         let weiredTuple = (0, 1, Just(1).map(\.description))
         // let result1 = Result<(Int, Int, Publishers.MapKeyPath<Just<Int>, String>), Error>.success(weiredTuple)
         let result2 = Result<_, Error>.success(weiredTuple)
+    }
+    func testMacro() {
+        print("Currently running \(#function)")
+#warning("Something's wrong")
+
+
+
     }
 }
 
