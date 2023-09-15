@@ -33,7 +33,7 @@ extension WOLCommentToolBarDelegate{
 }
 
 @objc
-protocol WOLCommentToolBarDataSource : class {
+protocol WOLCommentToolBarDataSource : AnyObject {
 
     @objc func chatToolBarSendTextMessage(_ chatToolBar :WOLCommentToolBar, string: NSAttributedString, emoticonText: String?)
     @objc func chatToolBarTextChanged(_ chatToolBar: WOLCommentToolBar, attributedText: NSAttributedString, emoticonText: String?)
