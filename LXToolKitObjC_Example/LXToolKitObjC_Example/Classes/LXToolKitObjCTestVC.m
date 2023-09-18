@@ -133,6 +133,7 @@
             @"LXCollectionTestVC",
             @"DJCommentVC",
             @"LXLabelTestVC",
+            @"LXViewAnimationARCTestVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }
