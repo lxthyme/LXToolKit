@@ -103,8 +103,8 @@ class ViewController: LXBaseTableVC {
         prepareTableView()
 
         autoJumpRoute =
-            .LXToolKit_Example
-            // .LXToolKitObjC_Example
+            // .LXToolKit_Example
+            .LXToolKitObjC_Example
          gotoScene(by: autoJumpRoute)
     }
 }
@@ -128,8 +128,9 @@ private extension ViewController {
             } else if let vc2 = vc as? LXToolKitObjCTestVC {
                 vc2.autoJumpRoute =
                 // "LXLabelTestVC"
-                "LXPopTestVC"
+                // "LXPopTestVC"
                 // "DJCommentVC"
+                "LXViewAnimationARCTestVC"
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {

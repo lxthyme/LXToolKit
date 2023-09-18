@@ -63,7 +63,7 @@ extension Navigator {
     }
 
     // MARK: - get a single VC
-    func get(segue: Scene) -> UIViewController? {
+    func get(segue: Scene) -> (UIViewController?, Transition?)? {
         switch segue {
             // case .tabs(let viewModel):
             //     let rootVC = HomeTabBarController(viewModel: viewModel, navigator: self)
@@ -103,25 +103,25 @@ extension Navigator {
             //         return WhatsNewViewController(whatsNew: block.0, configuration: block.1)
             //     }
             //
-        case .openURL(let url, let inWebView, _):
+        case .openURL(let url, let inWebView, let transition, _):
             guard let url else { return nil }
 
             if inWebView {
                 let vc = SFSafariViewController(url: url)
-                return vc
+                return (vc, transition)
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
-        case .vc(_, let vcProvider, _): return vcProvider()
-        case .vcString(let vcString, _):
+        case .vc(_, let vcProvider, let transition, _): return (vcProvider(), transition)
+        case .vcString(let vcString, let transition, _):
             guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
-            return VCCls.init()
-        case .tabs(let vm, _):
+            return (VCCls.init(), transition)
+        case .tabs(let vm, let transition, _):
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
             let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
             let splitVC = UISplitViewController()
             splitVC.viewControllers = [rootVC , detailVC]
-            return splitVC
+            return (splitVC, transition)
         }
     }
     // func get(segue: Scene) -> (vc: UIViewController?, transition: Transition) {
@@ -149,14 +149,12 @@ extension Navigator {
     // }
 
     // MARK: - invoke a single segue
-    func show(segue: Scene, sender: UIViewController?) {
-        if let target = get(segue: segue) {
-            show(target: target, sender: sender, transition: transition)
-        }
-    }
     func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) {
-        if let target = get(segue: segue) {
-            show(target: target, sender: sender, transition: transition)
+        if let (vc, tran) = get(segue: segue),
+           let vc {
+            show(target: vc,
+                 sender: sender,
+                 transition: tran ?? transition)
         }
     }
 }
@@ -166,10 +164,10 @@ extension Navigator.Scene {
     var info: (title: String, desc: String) {
         var tmp: (title: String, desc: String)
         switch self {
-        case .openURL(let url, let inWebView, _):
+        case .openURL(let url, let inWebView, _, _):
             tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
-        case .vc(let identifier, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
-        case .vcString(let vcString, _): tmp = (title: vcString, desc: "---")
+        case .vc(let identifier, _, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
+        case .vcString(let vcString, _, _): tmp = (title: vcString, desc: "---")
         case .tabs:
             tmp = (title: "DJHomeTabBarVC", desc: "---")
         }
