@@ -72,10 +72,10 @@ private extension LXRx0225VC {
         let obFrom1 = Observable.from(["A", "B", "C"])
 
         /// 4. empty
-        let obEmpty = Observable<Int>.empty()
+        let obEmpty = RxObservable<Int>.empty()
 
         /// 5. never
-        let obNever = Observable<Int>.never()
+        let obNever = RxObservable<Int>.never()
 
         /// 6. error
         enum MyError: Error {
@@ -83,7 +83,7 @@ private extension LXRx0225VC {
             case B
             case C
         }
-        let obError = Observable<Int>.error(MyError.A)
+        let obError = RxObservable<Int>.error(MyError.A)
 
         /// 7. range
         let obRange = Observable.range(start: 1, count: 20)
@@ -119,19 +119,19 @@ private extension LXRx0225VC {
 //        }
 
         /// 12. interval
-        let obInterval = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        let obInterval = RxObservable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
 //        obInterval.subscribe { e in
 //            dlog("obInterval: \(e)")
 //        }
 
         /// 13.1 timer: 5秒种后发出唯一的一个元素0
-        let obTimer1 = Observable<Int>.timer(.seconds(5), scheduler: MainScheduler.instance)
+        let obTimer1 = RxObservable<Int>.timer(.seconds(5), scheduler: MainScheduler.instance)
 //        obTimer1.subscribe { e in
 //            dlog("obTimer1: \(e)")
 //        }
 
         /// 13.2 timer: 延时5秒种后，每隔1秒钟发出一个元素
-        let obTimer2 = Observable<Int>.timer(.seconds(5), period: .seconds(5), scheduler: MainScheduler.instance)
+        let obTimer2 = RxObservable<Int>.timer(.seconds(5), period: .seconds(5), scheduler: MainScheduler.instance)
         obTimer2.subscribe { e in
             dlog("obTimer2: \(e)")
         }
@@ -196,7 +196,7 @@ private extension LXRx0225VC {
 
         /// 2. 在 bind 方法中创建
         let f2 = ({
-            let obInterval = Observable<Int>
+            let obInterval = RxObservable<Int>
                 .interval(.seconds(1), scheduler: MainScheduler.instance)
                 .map { "Idx: \($0)" }
                 .bind { [weak self] text in
@@ -236,7 +236,7 @@ private extension LXRx0225VC {
                     default: break
                 }
             }
-            Observable<Int>
+            RxObservable<Int>
                 .interval(.seconds(1), scheduler: MainScheduler.instance)
                 .map { "idx: \($0)" }
                 .bind(to: observerAny)
@@ -249,8 +249,8 @@ private extension LXRx0225VC {
             let binder = Binder<String>(self.labTitle) { (view, data) in
                 view.text = data
             }
-
-            Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+        
+            RxObservable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
                 .map { "idx: \($0)" }
                 .bind(to: binder)
                 .disposed(by: self.rx.disposeBag)
@@ -259,7 +259,7 @@ private extension LXRx0225VC {
 
         /// 5. RxSwift 自带的可绑定属性（UI 观察者）
         let f5 = ({
-            Observable<Int>
+            RxObservable<Int>
                 .interval(.seconds(1), scheduler: MainScheduler.instance)
                 .map { "idx: \($0)" }
                 .bind(to: self.labTitle.rx.text)
