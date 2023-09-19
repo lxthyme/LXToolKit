@@ -8,12 +8,12 @@
 #import "LXBannerTestVC.h"
 #import <SDWebImage/SDWebImage.h>
 #import <Masonry/Masonry.h>
-#import <SDCycleScrollView/SDCycleScrollView.h>
+// #import <SDCycleScrollView/SDCycleScrollView.h>
 #import <LXToolKitObjC/LXMacro.h>
 #import <LXToolKitObjC/UIColor+ex.h>
-@interface LXBannerTestVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, SDCycleScrollViewDelegate> {
+@interface LXBannerTestVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout/**, SDCycleScrollViewDelegate*/> {
 }
-@property(nonatomic, strong)SDCycleScrollView *bannerView;
+// @property(nonatomic, strong)SDCycleScrollView *bannerView;
 @property(nonatomic, strong)UICollectionView *dotCollectionView;
 @property(nonatomic, strong)UIImageView *imgViewTabbar;
 @property(nonatomic, assign)NSInteger currentIdx;
@@ -43,12 +43,12 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     self.imgViewTabbar.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0];
     [self.imgViewTabbar sd_setImageWithURL:[NSURL URLWithString:@"https://Img.iblimg.com/fast2home-2/images/kdj/index/2022/03/785364561.png"]];
-    self.bannerView.imageURLStringsGroup = @[
-        @"https://unsplash.it/400/200/?random",
-        @"https://unsplash.it/400/200/?random",
-        @"https://unsplash.it/400/200/?random",
-        @"https://unsplash.it/400/200/?random",
-    ];
+    // self.bannerView.imageURLStringsGroup = @[
+    //     @"https://unsplash.it/400/200/?random",
+    //     @"https://unsplash.it/400/200/?random",
+    //     @"https://unsplash.it/400/200/?random",
+    //     @"https://unsplash.it/400/200/?random",
+    // ];
 }
 
 #pragma mark -
@@ -59,10 +59,10 @@
 
 #pragma mark -
 #pragma mark - ✈️SDCycleScrollViewDelegate
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
-    self.currentIdx = index;
-    [self.dotCollectionView reloadData];
-}
+// - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+//     self.currentIdx = index;
+//     [self.dotCollectionView reloadData];
+// }
 
 #pragma mark - ✈️UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -101,7 +101,7 @@
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [self.view addSubview:self.bannerView];
+    // [self.view addSubview:self.bannerView];
     [self.view addSubview:self.dotCollectionView];
     [self.view addSubview:self.imgViewTabbar];
 
@@ -111,44 +111,46 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@200.f);
-        make.left.equalTo(@15.f);
-        make.right.equalTo(@-15.f);
-        make.height.equalTo(@200.f);
-    }];
+    // [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //     make.top.equalTo(@200.f);
+    //     make.left.equalTo(@15.f);
+    //     make.right.equalTo(@-15.f);
+    //     make.height.equalTo(@200.f);
+    // }];
     [self.dotCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(@0.f);
-        make.bottom.equalTo(self.bannerView.mas_bottom).offset(-10.f);
+        make.top.equalTo(@200.f);
+        // make.bottom.equalTo(self.bannerView.mas_bottom).offset(-10.f);
         make.height.equalTo(@(kWPercentage(4.f)));
         make.width.equalTo(@200.f);
     }];
     [self.imgViewTabbar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bannerView.mas_bottom).offset(20.f);
+        // make.top.equalTo(self.bannerView.mas_bottom).offset(20.f);
+        make.top.equalTo(@200.f);
         make.left.right.equalTo(@0.f);
         make.height.equalTo(@55.f);
     }];
 }
 
 #pragma mark Lazy Property
-- (SDCycleScrollView *)bannerView {
-    if(!_bannerView){
-        SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
-        v.autoScrollTimeInterval = 3.f;
-        v.infiniteLoop = YES;
-        v.delegate = self;
-        v.placeholderImage = [UIImage imageNamed:@""];
-        v.layer.cornerRadius = kWPercentage(4.f);
-        v.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
-        v.pageControlDotSize = CGSizeMake(kWPercentage(9.f), kWPercentage(4.f));
-        v.currentPageDotImage = [UIImage imageNamed:@"icon_classify_dot"];
-        v.pageDotImage = [UIImage imageNamed:@"icon_classify_pageDot"];
-        v.clipsToBounds = YES;
-        v.showPageControl = NO;
-        _bannerView = v;
-    }
-    return _bannerView;
-}
+// - (SDCycleScrollView *)bannerView {
+//     if(!_bannerView){
+//         SDCycleScrollView *v = [[SDCycleScrollView alloc]init];
+//         v.autoScrollTimeInterval = 3.f;
+//         v.infiniteLoop = YES;
+//         v.delegate = self;
+//         v.placeholderImage = [UIImage imageNamed:@""];
+//         v.layer.cornerRadius = kWPercentage(4.f);
+//         v.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
+//         v.pageControlDotSize = CGSizeMake(kWPercentage(9.f), kWPercentage(4.f));
+//         v.currentPageDotImage = [UIImage imageNamed:@"icon_classify_dot"];
+//         v.pageDotImage = [UIImage imageNamed:@"icon_classify_pageDot"];
+//         v.clipsToBounds = YES;
+//         v.showPageControl = NO;
+//         _bannerView = v;
+//     }
+//     return _bannerView;
+// }
 - (UICollectionView *)dotCollectionView {
     if(!_dotCollectionView) {
         CGRect collectFrame = CGRectZero;
