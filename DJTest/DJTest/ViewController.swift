@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  DJTest
 //
-//  Created by lxthyme on 2023/6/28.
+//  Created by lxthyme on 2023/9/19.
 //
 
 import UIKit
@@ -48,7 +48,7 @@ enum DJTestType {
         }
         return nil
     }
-    
+
 }
 
 class DataSource: UITableViewDiffableDataSource<String, DJTestType> {
@@ -170,7 +170,7 @@ extension ViewController: UITableViewDelegate {
 extension ViewController {
     override func prepareTableView() {
         super.prepareTableView()
-        
+
         table.delegate = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
         table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)

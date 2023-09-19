@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  DJTest
 //
-//  Created by lxthyme on 2023/6/28.
+//  Created by lxthyme on 2023/9/19.
 //
 
 import UIKit
@@ -62,4 +62,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-
