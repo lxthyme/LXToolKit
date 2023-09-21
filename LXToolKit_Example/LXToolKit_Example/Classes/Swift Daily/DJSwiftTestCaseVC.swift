@@ -50,9 +50,6 @@ private extension DJSwiftTestCaseVC {
     func testMacro() {
         print("Currently running \(#function)")
 #warning("Something's wrong")
-
-
-
     }
 }
 

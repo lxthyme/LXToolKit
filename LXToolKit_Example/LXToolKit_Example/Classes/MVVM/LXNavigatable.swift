@@ -59,7 +59,7 @@ extension Navigator {
         case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.shared.keyWindow!), uuid: UUID = UUID())
+        case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!), uuid: UUID = UUID())
     }
 
     // MARK: - get a single VC
@@ -152,6 +152,8 @@ extension Navigator {
     func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) {
         if let (vc, tran) = get(segue: segue),
            let vc {
+            UserDefaults.standard.set(0, forKey: "autoJumpRoute.route")
+            UserDefaults.standard.set(vc.xl.xl_typeName, forKey: "autoJumpRoute.route.0")
             show(target: vc,
                  sender: sender,
                  transition: tran ?? transition)

@@ -52,6 +52,7 @@ extension Application {
         guard let window, let provider else { return }
 
         self.window = window
+        self.previousRootVC = window.rootViewController
 
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
             // if let user = UserModel.currentUser(),
@@ -67,9 +68,8 @@ extension Application {
         // self.dismiss(animated: true)
         self.navigator.show(segue: .vc(vcProvider: {[weak self] in
             return self?.previousRootVC
-        }),
-                            sender: nil,
-                            transition: .root(in: window))
+        }, transition: .root(in: window)),
+                            sender: nil)
     }
 
     func presentTestScreen(in window: UIWindow) {

@@ -9,7 +9,7 @@ import UIKit
 import LXToolKit_Example
 import LXToolKitObjC_Example
 
-enum DJTestType {
+enum DJTestType: Int {
     // case LXToolKit
     case LXToolKit_Example
     // case LXToolKitObjC
@@ -41,10 +41,8 @@ enum DJTestType {
         case .LXToolKitObjC_Example:
             return LXToolKitObjCTestVC()
         case .DJSwiftModule:
-            let window = UIApplication.shared.keyWindow
-            let app = Application.shared;
-            app.previousRootVC = window?.rootViewController
-            app.presentInitialScreen(in: window)
+            let window = UIApplication.xl.keyWindow
+            Application.shared.presentInitialScreen(in: window)
         }
         return nil
     }
@@ -102,10 +100,13 @@ class ViewController: LXBaseTableVC {
         prepareUI()
         prepareTableView()
 
-        autoJumpRoute =
+        let route1Int = UserDefaults.standard.integer(forKey: "autoJumpRoute.route")
+        if let route1 = DJTestType(rawValue: route1Int) {
+            autoJumpRoute = route1
             // .LXToolKit_Example
-            .LXToolKitObjC_Example
-         gotoScene(by: autoJumpRoute)
+                // .LXToolKitObjC_Example
+            gotoScene(by: autoJumpRoute)
+        }
     }
 }
 
@@ -117,20 +118,35 @@ extension ViewController {}
 
 // MARK: 🔐Private Actions
 private extension ViewController {
-    func gotoScene(by scene: DJTestType?) {
+    func gotoScene(by scene: DJTestType?, route2 tmp: String = "") {
+        var route2 = tmp
         if #available(iOS 14.0, *),
            let vc = scene?.vc {
-            if let vc2 = vc as? LXToolKitTestVC {
-                // vc2.autoJumpRoute =
-                    // .vcString(vcString: "LXOutlineVC")
-                    // .vcString(vcString: "LXLabelVC")
-                    // .vcString(vcString: "LXStack1206VC")
-            } else if let vc2 = vc as? LXToolKitObjCTestVC {
-                vc2.autoJumpRoute =
+            if let vc = vc as? LXToolKitTestVC {
+                if(route2.isEmpty) {
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.0") ?? ""
+                }
+                vc.autoJumpRoute =
+                    .vcString(vcString:
+                                "LXToolKit_Example." +
+                                // "LXOutlineVC"
+                              // "LXLabelVC"
+                              // "LXStack1206VC"
+                              // "LXTableTestVC"
+                              // "LXRxSwiftTestVC"
+                              route2
+                    )
+            } else if let vc = vc as? LXToolKitObjCTestVC {
+                if(route2.isEmpty) {
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.1") ?? ""
+                }
+                vc.autoJumpRoute =
                 // "LXLabelTestVC"
                 // "LXPopTestVC"
                 // "DJCommentVC"
-                "LXViewAnimationARCTestVC"
+                // "LXViewAnimationARCTestVC"
+                // "LXCollectionTestVC"
+                route2
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {

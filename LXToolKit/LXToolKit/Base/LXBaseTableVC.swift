@@ -134,6 +134,9 @@ extension LXBaseTableVC {
                                   completion: nil)
         })
         .disposed(by: rx.disposeBag)
+
+        table.xl.registerCell(with: UITableViewCell.self)
+        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
     }
     @objc override open func prepareVM() {
         super.prepareVM()
@@ -159,7 +162,6 @@ extension LXBaseTableVC {
         // contentStackView.spacing = 0
         // contentStackView.insertArrangedSubview(table, at: 0)
         self.edgesForExtendedLayout = []
-        self.automaticallyAdjustsScrollViewInsets = true
         if #available(iOS 11.0, *) {
             table.contentInsetAdjustmentBehavior = .never
         } else {
