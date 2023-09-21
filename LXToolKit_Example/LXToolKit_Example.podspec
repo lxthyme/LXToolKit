@@ -122,7 +122,7 @@ TODO: Add long description of the pod here.
   s.dependency 'RxNetworks/HandyJSON'
   s.dependency 'RxNetworks/RxSwift'
   # s.dependency 'RxNetworks/MoyaPlugins'
-  # s.dependency ''
+  s.dependency 'AlamofireImage'
   # s.dependency ''
   # s.dependency ''
   # s.dependency 'DJSwiftModule'

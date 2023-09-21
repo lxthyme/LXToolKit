@@ -12,6 +12,7 @@ public extension Swifty where Base: UIApplication {
         guard #available(iOS 13.0, *) else {
             return Base.shared.keyWindow
         }
+        lazy var window = Base.shared.keyWindow
 
         let firstActiveScene = Base.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
@@ -20,9 +21,9 @@ public extension Swifty where Base: UIApplication {
         guard #available(iOS 15.0, *) else {
             return firstActiveScene?
                 .windows
-                .first(where: \.isKeyWindow)
+                .first(where: \.isKeyWindow) ?? window
         }
 
-        return firstActiveScene?.keyWindow
+        return firstActiveScene?.keyWindow ?? window
     }
 }

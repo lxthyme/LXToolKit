@@ -7,6 +7,7 @@
 import UIKit
 import LXToolKit
 import RxSwift
+import AlamofireImage
 
 class LXRxSwiftTestVC: LXBaseVC {
     // MARK: 📌UI
@@ -24,6 +25,13 @@ class LXRxSwiftTestVC: LXBaseVC {
         return btn
     }()
     // MARK: 🔗Vaiables
+    private lazy var imgDownloader: ImageDownloader = {
+        let downloader = ImageDownloader(configuration: ImageDownloader.defaultURLSessionConfiguration(),
+                                         downloadPrioritization: .fifo,
+                                         maximumActiveDownloads: 4,
+                                         imageCache: AutoPurgingImageCache())
+        return downloader
+    }()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,6 +51,12 @@ class LXRxSwiftTestVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
         prepareVM()
+
+        // Task(priority: TaskPriority.userInitiated) {
+        // async {
+        _Concurrency.Task {
+            await testM4()
+        }
     }
 
 }
@@ -149,6 +163,99 @@ private extension LXRxSwiftTestVC {
             }
             .disposed(by: rx.disposeBag)
 
+    }
+    func downloadImage(url: URL) async -> Image {
+        let request = URLRequest(url: url)
+        let result = await withCheckedContinuation { continuation in
+            imgDownloader.download(request, completion: { response in
+                if case .success(let img) = response.result {
+                    dlog("img: \(url)")
+                    continuation.resume(returning: img)
+                }
+            })
+        }
+        return result
+    }
+    // typealias LXResult = (url: String, img: Image)
+    typealias LXResult = [String: Image]
+    func loadImages(urls: [String]) async -> [String: Image] {
+        await withTaskGroup(of: LXResult.self) { group in
+            for urlString in urls {
+                if let url = URL(string: urlString) {
+                    group.addTask {
+                        // (url: urlString, img: await self.downloadImage(url: url))
+                        [urlString: await self.downloadImage(url: url)]
+                    }
+                }
+            }
+
+            var imageList: [String: Image] = [:]
+            for await item in group {
+                // imageList.append([
+                //     url: img
+                // ])
+                imageList += item
+            }
+            return imageList
+        }
+    }
+    func testM4() async {
+        let urlList = [
+            // "https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+            // "https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+            // "https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+            // "https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+            // "https://img.xjh.me/random_img.php?type=bg&ctype=nature&return=302",
+            "https://loremflickr.com/320/240?random=1",
+            "https://loremflickr.com/320/240?random=2",
+            "https://loremflickr.com/320/240?random=3",
+            "https://loremflickr.com/320/240?random=4",
+            "https://loremflickr.com/320/240?random=5",
+            "https://loremflickr.com/320/240?random=6",
+            "https://loremflickr.com/320/240?random=7",
+            "https://loremflickr.com/320/240?random=8",
+        ]
+        // async let imgList = await loadImages(urls: urlList)
+        // dlog("imgList: \(await imgList.map { $0.0 })")
+        if let url1 = URL(string: "https://loremflickr.com/320/240?random=1"),
+           let url2 = URL(string: "https://loremflickr.com/320/240?random=2"),
+           let url3 = URL(string: "https://loremflickr.com/320/240?random=3"),
+           let url4 = URL(string: "https://loremflickr.com/320/240?random=4"),
+           let url5 = URL(string: "https://loremflickr.com/320/240?random=5") {
+            async let img1Async = downloadImage(url: url1)
+            async let img2Async = downloadImage(url: url2)
+            async let img3Async = downloadImage(url: url3)
+            async let img4Async = downloadImage(url: url4)
+            async let img5Async = downloadImage(url: url5)
+            // let result = await (img1, img2, img3, img4, img5)
+            // dlog("result: \(result)")
+            let img1 = await img1Async
+            dlog("img1: \(img1)")
+            let img2 = await img2Async
+            dlog("img2: \(img2)")
+            let img3 = await img3Async
+            dlog("img3: \(img3)")
+            let img4 = await img4Async
+            dlog("img4: \(img4)")
+            let img5 = await img5Async
+            dlog("img5: \(img5)")
+        }
+        // Task {
+        //     let observer = PublishSubject<Int>()
+        //     observer.onNext(1)
+        //     observer.onNext(2)
+        //     do {
+        //         for try await value in observer.values {
+        //             dlog("v: \(value)")
+        //         }
+        //     } catch {
+        //         dlog("-->error: \(error)")
+        //     }
+        //     observer.onNext(3)
+        //     observer.onNext(4)
+        //     observer.onNext(5)
+        // }
+        // await tmp()
     }
 }
 
