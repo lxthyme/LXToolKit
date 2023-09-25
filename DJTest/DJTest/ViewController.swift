@@ -212,3 +212,7 @@ extension ViewController {
         }
     }
 }
+
+#Preview("ViewController") {
+    return ViewController()
+}

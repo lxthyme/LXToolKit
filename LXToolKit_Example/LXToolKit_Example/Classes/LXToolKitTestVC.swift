@@ -658,3 +658,7 @@ extension LXToolKitTestVC {
         }
     }
 }
+
+#Preview("LXToolKitTestVC") {
+    LXToolKitTestVC()
+}

@@ -29,7 +29,7 @@ This library contains some useful category and extension kits
   # s.social_media_url = 'https://twitter.com/lxthyme'
   # s.default_subspec = "Core"
   # s.static_framework = true
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '17.0'
   s.swift_versions = '5.1'
   s.cocoapods_version = '>= 1.4.0'
 
