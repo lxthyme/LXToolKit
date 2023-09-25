@@ -1,9 +1,9 @@
 use_frameworks!
 inhibit_all_warnings!
-platform :ios, '14.0'
+platform :ios, '16.0'
 install! 'cocoapods',
            disable_input_output_paths: true,
-           generate_multiple_pod_projects: true,
+        generate_multiple_pod_projects: true,
            deterministic_uuids: false
 
 target 'LXSwiftUIKit_Example' do
@@ -23,7 +23,7 @@ post_install do |installer|
       end
       target.build_configurations.each do |config|
         config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
       end
     end
   end

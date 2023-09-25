@@ -61,6 +61,7 @@ private extension LX03_08_03VC {
 private extension LX03_08_03VC {
     func prepareUI() {
         self.view.backgroundColor = .white
+        navigationItem.title = "Swift Daily"
         // self.title = "<#title#>"
 
         // [<#table#>].forEach(self.view.addSubview)

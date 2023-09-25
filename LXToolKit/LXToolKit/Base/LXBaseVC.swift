@@ -143,8 +143,9 @@ open class LXBaseVC: UIViewController, Navigatable {
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    public convenience init(vm: LXBaseVM?, navigator: Navigator) {
-        self.init(nibName: nil, bundle: nil)
+    public required init(vm: LXBaseVM?, navigator: Navigator) {
+        // self.init(nibName: nil, bundle: nil)
+        super.init(nibName: nil, bundle: nil)
         self.navigator = navigator
         self.vm = vm
         // super.init(nibName: nil, bundle: nil)

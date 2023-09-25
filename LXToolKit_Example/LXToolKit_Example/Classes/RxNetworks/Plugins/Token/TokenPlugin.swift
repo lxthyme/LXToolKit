@@ -45,7 +45,7 @@ public final class TokenPlugin {
         } else {
             print("--------[开始登陆]--------")
             // 模拟获取token
-            return Observable<Int>.interval(.seconds(3), scheduler: MainScheduler.instance)
+            return RxObservable<Int>.interval(.seconds(3), scheduler: MainScheduler.instance)
                 .take(1)
                 .do(onNext: { _ in
                     print("--------[登陆成功]--------")
@@ -66,44 +66,31 @@ extension TokenPlugin: PluginSubType {
             return request
         }
         var request = request
-        request.addValue("Token: " + token, forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
     }
     
-    public func lastNever(_ tuple: LastNeverTuple, target: TargetType, onNext: @escaping LastNeverCallback) {
-        #if DEBUG
+    public func lastNever(_ result: LastNeverResult, target: TargetType, onNext: @escaping LastNeverCallback) {
         guard self.token.isEmpty else {
-            onNext(tuple)
+            onNext(result)
             return
         }
-        #else
-        switch tuple.result {
-        case .success:
-            return onNext(tuple)
-        case .failure(let error):
-            guard error.errorCode == 401 else {
-                onNext(tuple)
-                return
-            }
-        }
-        #endif
         lock.lock()
         defer {
             lock.unlock()
         }
         
         let _ = self.hasToken.subscribe(onNext: { token_ in
-            var __tuple = tuple
             if !token_.isEmpty {
                 // 登陆成功后, 只需要重新请求接口，所以不需要response
-                __tuple.againRequest = true
+                result.againRequest = true
             } else {
                 // 登陆失败后, 只需要统一401未授权状态即可，所以不需要data
                 let response = Moya.Response(statusCode: 401, data: Data())
-                __tuple.result = .failure(.statusCode(response))
-                __tuple.againRequest = false
+                result.result = .failure(.statusCode(response))
+                result.againRequest = false
             }
-            onNext(__tuple)
+            onNext(result)
         })
         
         self.token = ""

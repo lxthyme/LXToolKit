@@ -91,6 +91,7 @@ extension LXYYLabelMoreTestVC {
     }
     override open func prepareUI() {
         super.prepareUI()
+        navigationItem.title = "YYLabel more 查看详情"
         // self.view.backgroundColor = <#.white#>;
         
         prepareLabTitle()

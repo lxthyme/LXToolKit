@@ -41,7 +41,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    // self.contentView.backgroundColor = [UIColor whiteColor];
 
     [self.wrapperView addSubview:self.labTitle];
     [self.contentView addSubview:self.wrapperView];
@@ -61,7 +61,7 @@
         // make.top.bottom.centerX.equalTo(@0.f);
         // make.width.equalTo(@(SCREEN_WIDTH - kWPercentage(12.f * 2)));
         make.edges.equalTo(@0.f);
-        make.height.equalTo(@50.f);
+        make.height.greaterThanOrEqualTo(@50.f);
     }];
     [self.labTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@(kWPercentage(15.f)));
@@ -76,7 +76,7 @@
 - (UIView *)wrapperView {
     if(!_wrapperView){
         UIView *v = [[UIView alloc]init];
-        v.backgroundColor = [UIColor whiteColor];
+        // v.backgroundColor = [UIColor whiteColor];
         v.layer.cornerRadius = kWPercentage(13.f);
         v.layer.masksToBounds = YES;
         _wrapperView = v;

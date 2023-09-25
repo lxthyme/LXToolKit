@@ -2,14 +2,14 @@
 //  ViewController.swift
 //  DJTest
 //
-//  Created by lxthyme on 2023/6/28.
+//  Created by lxthyme on 2023/9/19.
 //
 
 import UIKit
 import LXToolKit_Example
 import LXToolKitObjC_Example
 
-enum DJTestType {
+enum DJTestType: Int {
     // case LXToolKit
     case LXToolKit_Example
     // case LXToolKitObjC
@@ -41,14 +41,12 @@ enum DJTestType {
         case .LXToolKitObjC_Example:
             return LXToolKitObjCTestVC()
         case .DJSwiftModule:
-            let window = UIApplication.shared.keyWindow
-            let app = Application.shared;
-            app.previousRootVC = window?.rootViewController
-            app.presentInitialScreen(in: window)
+            let window = UIApplication.xl.keyWindow
+            Application.shared.presentInitialScreen(in: window)
         }
         return nil
     }
-    
+
 }
 
 class DataSource: UITableViewDiffableDataSource<String, DJTestType> {
@@ -102,9 +100,13 @@ class ViewController: LXBaseTableVC {
         prepareUI()
         prepareTableView()
 
-        autoJumpRoute = .LXToolKit_Example
-        // autoJumpRoute = .LXToolKitObjC_Example
-         gotoScene(by: autoJumpRoute)
+        let route1Int = UserDefaults.standard.integer(forKey: "autoJumpRoute.route")
+        if let route1 = DJTestType(rawValue: route1Int) {
+            autoJumpRoute = route1
+            // .LXToolKit_Example
+                // .LXToolKitObjC_Example
+            gotoScene(by: autoJumpRoute)
+        }
     }
 }
 
@@ -116,18 +118,35 @@ extension ViewController {}
 
 // MARK: 🔐Private Actions
 private extension ViewController {
-    func gotoScene(by scene: DJTestType?) {
+    func gotoScene(by scene: DJTestType?, route2 tmp: String = "") {
+        var route2 = tmp
         if #available(iOS 14.0, *),
            let vc = scene?.vc {
-            if let vc2 = vc as? LXToolKitTestVC {
-                vc2.autoJumpRoute =
-                    // .LXOutlineVC
-                    // .LXLabelVC
-                    .LXStack1206VC
-            } else if let vc2 = vc as? LXToolKitObjCTestVC {
-                vc2.autoJumpRoute =
-                "LXLabelTestVC"
+            if let vc = vc as? LXToolKitTestVC {
+                if(route2.isEmpty) {
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.0") ?? ""
+                }
+                vc.autoJumpRoute =
+                    .vcString(vcString:
+                                "LXToolKit_Example." +
+                                // "LXOutlineVC"
+                              // "LXLabelVC"
+                              // "LXStack1206VC"
+                              // "LXTableTestVC"
+                              // "LXRxSwiftTestVC"
+                              route2
+                    )
+            } else if let vc = vc as? LXToolKitObjCTestVC {
+                if(route2.isEmpty) {
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.1") ?? ""
+                }
+                vc.autoJumpRoute =
+                // "LXLabelTestVC"
+                // "LXPopTestVC"
                 // "DJCommentVC"
+                // "LXViewAnimationARCTestVC"
+                // "LXCollectionTestVC"
+                route2
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {
@@ -167,7 +186,7 @@ extension ViewController: UITableViewDelegate {
 extension ViewController {
     override func prepareTableView() {
         super.prepareTableView()
-        
+
         table.delegate = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
         table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)

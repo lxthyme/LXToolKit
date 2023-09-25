@@ -76,6 +76,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         let vm = LXBaseVM(provider: provider as DJAllAPI)
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
         snapshot.appendSections([
+            "Swift Daily",
             "2023",
             "WWDC",
             "MVVM",
@@ -84,78 +85,112 @@ open class LXToolKitTestVC: LXBaseTableVC {
             "2020"
         ])
         snapshot.appendItems([
-            .LXMultiRequestTestVC,
-            .LXOffScreenVC,
-            .LXResolveIMPVC,
-            .LXRequiredVC,
-            .LXRequiredVC1,
-            .LXTransitionVC,
-            .LXProxyTestVC,
-            .LXTestStringVC,
-            .LXPresentVC,
-            .LXTestVC,
-            .LXStackViewVC,
-            .LXWikipediaImageSearchVC,
-            .LXStackTestVC,
-            .LXButtonTestVC,
-            .LXImageTestVC,
-            .LXDaily1117VC,
-            .LXKingfisherVC,
-            .LXStackMessageVC,
-            .LXLockTestVC,
-            .LXTTTTT,
-            .LXMusicVC,
-            .LXSongVC,
-            .LXLightedVC,
-        ], toSection: "2020")
+            .vc(identifier: DJSwiftTestCaseVC.xl.xl_typeName, vcProvider: { DJSwiftTestCaseVC() }),
+            .vc(identifier: DJSwiftTestCaseVC.xl.xl_typeName, vcProvider: { DJSwiftTestCaseVC() }),
+            .vc(identifier: LXRxSwiftTestVC.xl.xl_typeName, vcProvider: {[weak self] in
+                guard let self else { return nil }
+                return LXRxSwiftTestVC(vm: vm, navigator: self.navigator)
+            }),
+        ], toSection: "Swift Daily")
         snapshot.appendItems([
-            .LX0114VC,
-            // .LXPhotoAlbumVC,
-            .LXPickerVC,
-            .ExampleViewController,
-            .LX0117VC,
-            .LXClsListVC,
-            .LXCubeVC,
-            .LXRx0225VC,
-            .LX0324EventsVC,
-            .LXNestedTableVC,
-            .LXTableTestVC,
-            .LX1019TestVC,
-            .LXHugTestVC,
-            .LXStack1206VC,
-        ], toSection: "2021")
+            .openURL(url: URL(string: "http://baidu.com")),
+            .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
+            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
+            .vc(identifier: "DJHomeTabBarVC + UISplitViewController", vcProvider: {
+                let keyWindow = UIApplication.xl.keyWindow
+                Application.shared.presentInitialScreen(in: keyWindow)
+                return nil
+            }),
+            .vc(identifier: LXMVVMSampleVC.xl.xl_typeName, vcProvider: { LXMVVMSampleVC() }),
+            .vc(identifier: HomeViewController.xl.xl_typeName, vcProvider: { HomeViewController() }),
+            .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
+        ], toSection: "MVVM")
         snapshot.appendItems([
-            .LXTable0120VC(viewModel: vm),
+            .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
+        ], toSection: "WWDC")
+        snapshot.appendItems([
+            .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
+            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { LXHandyJSONTestVC() }),
+            .vc(identifier: LXWebVC.xl.xl_typeName, vcProvider: { LXWebVC() }),
+            .vc(identifier: LXStrenchableWebVC.xl.xl_typeName,vcProvider: {[weak self] in
+                guard let `self` = self else { return nil }
+                return LXStrenchableWebVC(vm: vm, navigator: self.navigator)
+            }),
+            .vc(identifier: LXLabelVC.xl.xl_typeName, vcProvider: { LXLabelVC() }),
+            .vc(identifier: LXActionSheetTestVC.xl.xl_typeName, vcProvider: { LXActionSheetTestVC() }),
+            .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC(vm: vm, navigator: self.navigator) }),
+        ], toSection: "2023")
+        snapshot.appendItems([
+            .vc(identifier: LXTable0120VC.xl.xl_typeName,vcProvider: {[weak self] in
+                guard let `self` = self else { return nil }
+                return LXTable0120VC(vm: vm, navigator: navigator)
+            }),
             // .LXiOS15ButtonTestVC,
-            .LXiOS15VC(viewModel: vm),
-            .LXMasonryTestVCVC(viewModel: vm),
+            .vc(identifier: LXiOS15VC.xl.xl_typeName,vcProvider: {[weak self] in
+                guard let `self` = self else { return nil }
+                return LXiOS15VC(vm: vm, navigator: navigator)
+            }),
+            .vc(identifier: LXMasonryTestVCVC.xl.xl_typeName,vcProvider: {[weak self] in
+                guard let `self` = self else { return nil }
+                return LXMasonryTestVCVC(vm: vm, navigator: navigator)
+            }),
             // .login(vm: LXLoginVM(with: provider)),
             // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
-                .LXWebViewTestVC(viewModel: vm),
-            .LXLoggerTestVC,
-            .LXYYLabelMoreTestVC(viewModel: vm),
-            .RxNetworksTestVC,
+                .vc(identifier: LXWebViewTestVC.xl.xl_typeName,vcProvider: {[weak self] in
+                    guard let `self` = self else { return nil }
+                    return LXWebViewTestVC(vm: vm, navigator: navigator)
+                }),
+            .vc(identifier: LXLoggerTestVC.xl.xl_typeName, vcProvider: { LXLoggerTestVC() }),
+            .vc(identifier: LXYYLabelMoreTestVC.xl.xl_typeName, vcProvider: {[weak self] in
+                guard let `self` = self else { return nil }
+                return LXYYLabelMoreTestVC(vm: vm, navigator: navigator)
+            }),
+            .vc(identifier: RxNetworksTestVC.xl.xl_typeName, vcProvider: { RxNetworksTestVC() }),
             // .HomeViewController(viewModel: vm),
-            .test(vm: vm),
+            // .test(vm: vm),
             // .tabs(vm: vm as! DJHomeTabBarVM),
         ], toSection: "2022")
         snapshot.appendItems([
-            .LX03_08_03VC,
-            .LXHandyJSONTestVC,
-            .LXWebVC,
-            .LXStrenchableWebVC(viewModel: vm),
-            .LXLabelVC,
-        ], toSection: "2023")
+            .vc(identifier: LX0114VC.xl.xl_typeName, vcProvider: { LX0114VC() }),
+            // .LXPhotoAlbumVC,
+            .vc(identifier: LXPickerVC.xl.xl_typeName, vcProvider: { LXPickerVC() }),
+            .vc(identifier: ExampleViewController.xl.xl_typeName, vcProvider: { ExampleViewController() }),
+            .vc(identifier: LX0117VC.xl.xl_typeName, vcProvider: { LX0117VC() }),
+            .vc(identifier: LXClsListVC.xl.xl_typeName, vcProvider: { LXClsListVC() }),
+            .vc(identifier: LXCubeVC.xl.xl_typeName, vcProvider: { LXCubeVC() }),
+            .vc(identifier: LXRx0225VC.xl.xl_typeName, vcProvider: { LXRx0225VC() }),
+            .vc(identifier: LX0324EventsVC.xl.xl_typeName, vcProvider: { LX0324EventsVC() }),
+            .vc(identifier: LXNestedTableVC.xl.xl_typeName, vcProvider: { LXNestedTableVC() }),
+            .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC() }),
+            .vc(identifier: LX1019TestVC.xl.xl_typeName, vcProvider: { LX1019TestVC() }),
+            .vc(identifier: LXHugTestVC.xl.xl_typeName, vcProvider: { LXHugTestVC() }),
+            .vc(identifier: LXStack1206VC.xl.xl_typeName, vcProvider: { LXStack1206VC() }),
+        ], toSection: "2021")
         snapshot.appendItems([
-            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
-            .tabs2,
-            .LXMVVMSampleVC,
-            .HomeViewController,
-            .LXAttributedStringVC,
-        ], toSection: "MVVM")
-        snapshot.appendItems([
-            .LXOutlineVC,
-        ], toSection: "WWDC")
+            .vc(identifier: LXMultiRequestTestVC.xl.xl_typeName, vcProvider: { LXMultiRequestTestVC() }),
+            .vc(identifier: LXOffScreenVC.xl.xl_typeName, vcProvider: { LXOffScreenVC() }),
+            .vc(identifier: LXResolveIMPVC.xl.xl_typeName, vcProvider: { LXResolveIMPVC() }),
+            .vc(identifier: LXRequiredVC.xl.xl_typeName, vcProvider: { LXRequiredVC() }),
+            .vc(identifier: LXRequiredVC1.xl.xl_typeName, vcProvider: { LXRequiredVC1() }),
+            .vc(identifier: LXTransitionVC.xl.xl_typeName, vcProvider: { LXTransitionVC() }),
+            .vc(identifier: LXProxyTestVC.xl.xl_typeName, vcProvider: { LXProxyTestVC() }),
+            .vc(identifier: LXTestStringVC.xl.xl_typeName, vcProvider: { LXTestStringVC() }),
+            .vc(identifier: LXPresentVC.xl.xl_typeName, vcProvider: { LXPresentVC() }),
+            .vc(identifier: LXTestVC.xl.xl_typeName, vcProvider: { LXTestVC() }),
+            .vc(identifier: LXStackViewVC.xl.xl_typeName, vcProvider: { LXStackViewVC() }),
+            .vc(identifier: LXWikipediaImageSearchVC.xl.xl_typeName, vcProvider: { LXWikipediaImageSearchVC() }),
+            .vc(identifier: LXStackTestVC.xl.xl_typeName, vcProvider: { LXStackTestVC() }),
+            .vc(identifier: LXButtonTestVC.xl.xl_typeName, vcProvider: { LXButtonTestVC() }),
+            .vc(identifier: LXImageTestVC.xl.xl_typeName, vcProvider: { LXImageTestVC() }),
+            .vc(identifier: LXDaily1117VC.xl.xl_typeName, vcProvider: { LXDaily1117VC() }),
+            .vc(identifier: LXKingfisherVC.xl.xl_typeName, vcProvider: { LXKingfisherVC() }),
+            .vc(identifier: LXStackMessageVC.xl.xl_typeName, vcProvider: { LXStackMessageVC() }),
+            .vc(identifier: LXLockTestVC.xl.xl_typeName, vcProvider: { LXLockTestVC() }),
+            .vc(identifier: LXTTTTT.xl.xl_typeName, vcProvider: { LXTTTTT() }),
+            .vc(identifier: LXMusicVC.xl.xl_typeName, vcProvider: { LXMusicVC() }),
+            .vc(identifier: LXSongVC.xl.xl_typeName, vcProvider: { LXSongVC() }),
+            .vc(identifier: LXLightedVC.xl.xl_typeName, vcProvider: { LXLightedVC() }),
+        ], toSection: "2020")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -263,7 +298,11 @@ private extension LXToolKitTestVC {
                                codetabsProvider: codetabsProvider)
         let vm = LXBaseVM(provider: provider as! API)
         let navigator = Navigator.default
-        navigator.show(segue: .LXiOS15VC(viewModel: vm), sender: self)
+        let scene: Navigator.Scene = .vc(vcProvider: {[weak self] in
+            guard let `self` = self else { return nil }
+            return LXiOS15VC(vm: vm, navigator: self.navigator)
+        })
+        navigator.show(segue: scene, sender: self)
     }
     @objc func btnTestAction(sender: UIButton) {
         // let vc =

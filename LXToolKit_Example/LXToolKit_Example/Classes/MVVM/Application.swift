@@ -52,6 +52,7 @@ extension Application {
         guard let window, let provider else { return }
 
         self.window = window
+        self.previousRootVC = window.rootViewController
 
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.5) {
             // if let user = UserModel.currentUser(),
@@ -61,6 +62,14 @@ extension Application {
             let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
             self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
+    }
+    public func dismissPreviousVC() {
+        guard let window = self.window else { return }
+        // self.dismiss(animated: true)
+        self.navigator.show(segue: .vc(vcProvider: {[weak self] in
+            return self?.previousRootVC
+        }, transition: .root(in: window)),
+                            sender: nil)
     }
 
     func presentTestScreen(in window: UIWindow) {

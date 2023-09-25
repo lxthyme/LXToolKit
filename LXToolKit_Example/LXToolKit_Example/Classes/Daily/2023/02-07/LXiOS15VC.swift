@@ -230,8 +230,8 @@ extension LXiOS15VC {
     override open func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white
-        // self.title = "<#title#>"
-        
+        navigationItem.title = "iOS 15 适配"
+
         [table].forEach(self.view.addSubview)
         masonry()
     }

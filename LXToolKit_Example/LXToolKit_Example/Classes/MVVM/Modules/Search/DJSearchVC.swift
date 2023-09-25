@@ -455,6 +455,14 @@ extension DJSearchVC {
         // self.view.backgroundColor = .white
         navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = rightBarButton
+        if #available(iOS 14.0, *) {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(
+                systemItem: .close,
+                primaryAction: UIAction(handler: { _ in
+                    Application.shared.dismissPreviousVC()
+                })
+            )
+        }
         contentStackView.axis = .vertical
         
         trendingPeriodView.addSubview(trendingPeriodSegmentedControl)

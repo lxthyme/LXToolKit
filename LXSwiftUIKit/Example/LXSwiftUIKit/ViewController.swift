@@ -7,12 +7,14 @@
 //
 
 import UIKit
+// import FoodTruckKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // _ = City.london.name
     }
 
     override func didReceiveMemoryWarning() {

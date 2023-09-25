@@ -73,7 +73,7 @@ TODO: Add long description of the pod here.
   s.dependency 'JXCategoryView'
   s.dependency 'JXPagingView'
   s.dependency 'pop'
-  s.dependency 'SDCycleScrollView'
+  # s.dependency 'SDCycleScrollView'
   s.dependency 'CocoaLumberjack'
   s.dependency 'DJRSwiftResource'
   # s.dependency ''

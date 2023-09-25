@@ -41,6 +41,12 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 - (void)gotoRoute:(NSString *)route {
+    if([route isEmpty]) {
+        return;
+    }
+    NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
+    [df setValue:@1 forKey:@"autoJumpRoute.route"];
+    [df setValue:route forKey:@"autoJumpRoute.route.1"];
     Class cls = NSClassFromString(route);
     if(cls) {
         UIViewController *vc = [[cls alloc]init];
@@ -133,6 +139,7 @@
             @"LXCollectionTestVC",
             @"DJCommentVC",
             @"LXLabelTestVC",
+            @"LXViewAnimationARCTestVC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }

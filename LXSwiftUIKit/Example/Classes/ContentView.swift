@@ -6,11 +6,26 @@
 //
 
 import SwiftUI
+import FoodTruckKit
 
 struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                NavigationLink(destination: {
+                    // FoodTruckApp()
+                }, label: {
+                    Text("Food Truck App")
+                })
+                DonutBoxView(isOpen: true) {
+                    DonutView(donut: .classic)
+                }
+                // .offset(<#T##offset: CGSize##CGSize#>)
+                .aspectRatio(1, contentMode: .fit)
+                .frame(maxWidth: 300)
+                .onTapGesture {
+                    print("DonutBoxView tapped!")
+                }
                 Section(header: Text("Animation")) {
                     Text("233")
                     Text("Hello, world!")
