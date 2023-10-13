@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		3451B3D8ACB9B1C9E9598A37 /* Pods_DJTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */; };
+		BE435AAF2AD794430076780C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE435AAE2AD794430076780C /* WidgetKit.framework */; };
+		BE435AB12AD794430076780C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE435AB02AD794430076780C /* SwiftUI.framework */; };
+		BE435AB42AD794440076780C /* LXToolKit_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB32AD794440076780C /* LXToolKit_WidgetBundle.swift */; };
+		BE435AB62AD794440076780C /* LXToolKit_WidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB52AD794440076780C /* LXToolKit_WidgetLiveActivity.swift */; };
+		BE435AB82AD794440076780C /* LXToolKit_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB72AD794440076780C /* LXToolKit_Widget.swift */; };
+		BE435ABA2AD794440076780C /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB92AD794440076780C /* AppIntent.swift */; };
+		BE435ABC2AD794450076780C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE435ABB2AD794450076780C /* Assets.xcassets */; };
+		BE435AC02AD794450076780C /* LXToolKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BEE5A3402AB974FA003339EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A33F2AB974FA003339EB /* AppDelegate.swift */; };
 		BEE5A3422AB974FA003339EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3412AB974FA003339EB /* SceneDelegate.swift */; };
 		BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3432AB974FA003339EB /* ViewController.swift */; };
@@ -16,10 +24,43 @@
 		BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BE435ABE2AD794450076780C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEE5A3342AB974FA003339EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE435AAC2AD794430076780C;
+			remoteInfo = LXToolKit_WidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE435AC12AD794450076780C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BE435AC02AD794450076780C /* LXToolKit_WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		59DBFDB0E53CD81EB38205CF /* Pods-DJTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.release.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.release.xcconfig"; sourceTree = "<group>"; };
 		83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.debug.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.debug.xcconfig"; sourceTree = "<group>"; };
 		96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LXToolKit_WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE435AAE2AD794430076780C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BE435AB02AD794430076780C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BE435AB32AD794440076780C /* LXToolKit_WidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXToolKit_WidgetBundle.swift; sourceTree = "<group>"; };
+		BE435AB52AD794440076780C /* LXToolKit_WidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXToolKit_WidgetLiveActivity.swift; sourceTree = "<group>"; };
+		BE435AB72AD794440076780C /* LXToolKit_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXToolKit_Widget.swift; sourceTree = "<group>"; };
+		BE435AB92AD794440076780C /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		BE435ABB2AD794450076780C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE435ABD2AD794450076780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE5A33C2AB974FA003339EB /* DJTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE5A33F2AB974FA003339EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE5A3412AB974FA003339EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +72,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BE435AAA2AD794430076780C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE435AB12AD794430076780C /* SwiftUI.framework in Frameworks */,
+				BE435AAF2AD794430076780C /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEE5A3392AB974FA003339EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */,
+				BE435AAE2AD794430076780C /* WidgetKit.framework */,
+				BE435AB02AD794430076780C /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,10 +111,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BE435AB22AD794440076780C /* LXToolKit_Widget */ = {
+			isa = PBXGroup;
+			children = (
+				BE435AB32AD794440076780C /* LXToolKit_WidgetBundle.swift */,
+				BE435AB52AD794440076780C /* LXToolKit_WidgetLiveActivity.swift */,
+				BE435AB72AD794440076780C /* LXToolKit_Widget.swift */,
+				BE435AB92AD794440076780C /* AppIntent.swift */,
+				BE435ABB2AD794450076780C /* Assets.xcassets */,
+				BE435ABD2AD794450076780C /* Info.plist */,
+			);
+			path = LXToolKit_Widget;
+			sourceTree = "<group>";
+		};
 		BEE5A3332AB974FA003339EB = {
 			isa = PBXGroup;
 			children = (
 				BEE5A33E2AB974FA003339EB /* DJTest */,
+				BE435AB22AD794440076780C /* LXToolKit_Widget */,
 				BEE5A33D2AB974FA003339EB /* Products */,
 				AECCFA58141E2374488A4CFB /* Pods */,
 				A36CD53F3D1845E9E077C9BE /* Frameworks */,
@@ -73,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				BEE5A33C2AB974FA003339EB /* DJTest.app */,
+				BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +161,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BE435AAC2AD794430076780C /* LXToolKit_WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE435AC42AD794450076780C /* Build configuration list for PBXNativeTarget "LXToolKit_WidgetExtension" */;
+			buildPhases = (
+				BE435AA92AD794430076780C /* Sources */,
+				BE435AAA2AD794430076780C /* Frameworks */,
+				BE435AAB2AD794430076780C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LXToolKit_WidgetExtension;
+			productName = LXToolKit_WidgetExtension;
+			productReference = BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BEE5A33B2AB974FA003339EB /* DJTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEE5A3502AB974FB003339EB /* Build configuration list for PBXNativeTarget "DJTest" */;
@@ -103,10 +187,12 @@
 				BEE5A3392AB974FA003339EB /* Frameworks */,
 				BEE5A33A2AB974FA003339EB /* Resources */,
 				1D309D2AB8969FF1F0EBFABA /* [CP] Embed Pods Frameworks */,
+				BE435AC12AD794450076780C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BE435ABF2AD794450076780C /* PBXTargetDependency */,
 			);
 			name = DJTest;
 			productName = DJTest;
@@ -123,6 +209,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					BE435AAC2AD794430076780C = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					BEE5A33B2AB974FA003339EB = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -142,11 +231,20 @@
 			projectRoot = "";
 			targets = (
 				BEE5A33B2AB974FA003339EB /* DJTest */,
+				BE435AAC2AD794430076780C /* LXToolKit_WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BE435AAB2AD794430076780C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE435ABC2AD794450076780C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEE5A33A2AB974FA003339EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +298,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BE435AA92AD794430076780C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE435AB82AD794440076780C /* LXToolKit_Widget.swift in Sources */,
+				BE435ABA2AD794440076780C /* AppIntent.swift in Sources */,
+				BE435AB42AD794440076780C /* LXToolKit_WidgetBundle.swift in Sources */,
+				BE435AB62AD794440076780C /* LXToolKit_WidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEE5A3382AB974FA003339EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +320,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE435ABF2AD794450076780C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE435AAC2AD794430076780C /* LXToolKit_WidgetExtension */;
+			targetProxy = BE435ABE2AD794450076780C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BEE5A3452AB974FA003339EB /* Main.storyboard */ = {
@@ -232,6 +349,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BE435AC22AD794450076780C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LXToolKit_Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LXToolKit_Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lx.DJTest.LXToolKit-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE435AC32AD794450076780C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6C6JHMW46K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LXToolKit_Widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LXToolKit_Widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lx.DJTest.LXToolKit-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BEE5A34E2AB974FB003339EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -355,6 +528,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -386,6 +560,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59DBFDB0E53CD81EB38205CF /* Pods-DJTest.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -416,6 +591,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BE435AC42AD794450076780C /* Build configuration list for PBXNativeTarget "LXToolKit_WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE435AC22AD794450076780C /* Debug */,
+				BE435AC32AD794450076780C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BEE5A3372AB974FA003339EB /* Build configuration list for PBXProject "DJTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
