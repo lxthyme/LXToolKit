@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SwiftUI
 import LXToolKit_Example
 import LXToolKitObjC_Example
+import ActivityKit
+import LXToolKit_WidgetExtension
 
 enum DJTestType: Int {
     // case LXToolKit
@@ -15,6 +18,8 @@ enum DJTestType: Int {
     // case LXToolKitObjC
     case LXToolKitObjC_Example
     case DJSwiftModule
+    /// 灵动岛
+    case dynamicIsland
     // case DJRSwiftResource
     var title: String {
         switch self {
@@ -28,6 +33,8 @@ enum DJTestType: Int {
             return "LXToolKitObjC_Example"
         case .DJSwiftModule:
             return "DJSwiftModule"
+        case .dynamicIsland:
+            return "dynamicIsland"
         }
     }
     var vc: UIViewController? {
@@ -43,6 +50,8 @@ enum DJTestType: Int {
         case .DJSwiftModule:
             let window = UIApplication.xl.keyWindow
             Application.shared.presentInitialScreen(in: window)
+        case .dynamicIsland:
+            return UIHostingController(rootView: EmojiRangersView())
         }
         return nil
     }
@@ -83,12 +92,14 @@ class ViewController: LXBaseTableVC {
             return ds
         }
         var snapshot = NSDiffableDataSourceSnapshot<String, DJTestType>()
-        snapshot.appendSections(["2022", "2023"])
+        snapshot.appendSections(["lxthyme"])
         snapshot.appendItems([
             .LXToolKit_Example,
             .LXToolKitObjC_Example,
-            .DJSwiftModule
-        ], toSection: "2022")
+            .DJSwiftModule,
+            .dynamicIsland,
+        // ])
+        ], toSection: "lxthyme")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -103,6 +114,7 @@ class ViewController: LXBaseTableVC {
         let route1Int = UserDefaults.standard.integer(forKey: "autoJumpRoute.route")
         if let route1 = DJTestType(rawValue: route1Int) {
             autoJumpRoute = route1
+            autoJumpRoute = DJTestType.dynamicIsland
             // .LXToolKit_Example
                 // .LXToolKitObjC_Example
             gotoScene(by: autoJumpRoute)

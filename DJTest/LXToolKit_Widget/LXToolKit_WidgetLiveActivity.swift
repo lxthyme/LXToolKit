@@ -9,10 +9,13 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct LXToolKit_WidgetAttributes: ActivityAttributes {
+public struct LXToolKit_WidgetAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
         var emoji: String
+        public init(emoji: String) {
+            self.emoji = emoji
+        }
     }
 
     // Fixed non-changing properties about your activity go here!

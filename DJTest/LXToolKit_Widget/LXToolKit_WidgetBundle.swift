@@ -11,7 +11,12 @@ import SwiftUI
 @main
 struct LXToolKit_WidgetBundle: WidgetBundle {
     var body: some Widget {
-        LXToolKit_Widget()
-        LXToolKit_WidgetLiveActivity()
+        // LXToolKit_Widget()
+        // LXToolKit_WidgetLiveActivity()
+        EmojiRangerWidget()
+        LeaderboardWidget()
+        #if canImport(ActivityKit)
+        AdventureActivityConfiguration()
+        #endif
     }
 }
