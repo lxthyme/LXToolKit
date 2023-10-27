@@ -40,6 +40,12 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)testM {
+    UITraitCollection *traitCollection;
+    UITrait *trait;
+    UIImageView *imgView;
+    // [imgView addSymbolEffect:NSSymbolBounceEffect];
+}
 - (void)gotoRoute:(NSString *)route {
     if([route isEmpty]) {
         return;
