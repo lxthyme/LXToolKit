@@ -5,14 +5,18 @@
 //  Created by lxthyme on 2023/10/24.
 //
 
-import SwiftUI
+import Intents
 
-struct IntentHandler: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    IntentHandler()
-}
+// struct IntentHandler: INExtension, EmojiRangerSelectionIntent {
+//     func provideHeroNameOptionsCollection(for intent: EmojiRangersIntents) async throws -> INObjectCollection<NSString> {
+//         let heros: [NSString] = EmojiRanger.allHeros.map { hero in
+//             hero.name as NSString
+//         }
+// 
+//         return INObjectCollection(items: heros)
+//     }
+// 
+//     override func handler(for intent: INIntent) -> Any {
+//         return self
+//     }
+// }

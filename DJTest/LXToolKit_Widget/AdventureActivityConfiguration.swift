@@ -57,3 +57,24 @@ struct AdventureActivityConfiguration: Widget {
         }
     }
 }
+
+extension AdventureAttributes {
+    fileprivate static var preview: AdventureAttributes {
+        AdventureAttributes(hero: EmojiRanger.spouty)
+    }
+}
+extension AdventureAttributes.ContentState {
+    fileprivate static var smiley: AdventureAttributes.ContentState {
+        AdventureAttributes.ContentState(currentHealthLevel: 0.1, eventDescription: "0.1预览")
+     }
+
+     fileprivate static var starEyes: AdventureAttributes.ContentState {
+         AdventureAttributes.ContentState(currentHealthLevel: 0.9, eventDescription: "0.9预览 Egghead comes from the magical ")
+     }
+}
+#Preview("EmojiRanger", as: .content, using: AdventureAttributes.preview) {
+    AdventureActivityConfiguration()
+} contentStates: {
+    AdventureAttributes.ContentState.smiley
+    AdventureAttributes.ContentState.starEyes
+}
