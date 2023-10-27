@@ -33,6 +33,7 @@
 		BE435ABA2AD794440076780C /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB92AD794440076780C /* AppIntent.swift */; };
 		BE435ABC2AD794450076780C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE435ABB2AD794450076780C /* Assets.xcassets */; };
 		BE435AC02AD794450076780C /* LXToolKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE68A5F92AEBD99E00267457 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE68A5F82AEBD99E00267457 /* GoogleService-Info.plist */; };
 		BE720D9E2AE68CB300F016C5 /* DJActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */; };
 		BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */; };
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
@@ -148,6 +149,7 @@
 		BE435AB92AD794440076780C /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		BE435ABB2AD794450076780C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE435ABD2AD794450076780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE68A5F82AEBD99E00267457 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJActivityVC.swift; sourceTree = "<group>"; };
 		BE720D9F2AE68EED00F016C5 /* EmojiRangersWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRangersWidget.swift; sourceTree = "<group>"; };
 		BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureAttributes.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				BEE5A3452AB974FA003339EB /* Main.storyboard */,
 				BEE5A3482AB974FB003339EB /* Assets.xcassets */,
 				BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */,
+				BE68A5F82AEBD99E00267457 /* GoogleService-Info.plist */,
 				BEE5A34D2AB974FB003339EB /* Info.plist */,
 			);
 			path = DJTest;
@@ -428,6 +431,7 @@
 				1D309D2AB8969FF1F0EBFABA /* [CP] Embed Pods Frameworks */,
 				BE435AC12AD794450076780C /* Embed Foundation Extensions */,
 				BE3067CE2AE79C4600E9577C /* Embed ExtensionKit Extensions */,
+				BE68A5F72AEBD92200267457 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -502,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */,
+				BE68A5F92AEBD99E00267457 /* GoogleService-Info.plist in Resources */,
 				BEE5A3492AB974FB003339EB /* Assets.xcassets in Resources */,
 				BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */,
 			);
@@ -546,6 +551,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BE68A5F72AEBD92200267457 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
