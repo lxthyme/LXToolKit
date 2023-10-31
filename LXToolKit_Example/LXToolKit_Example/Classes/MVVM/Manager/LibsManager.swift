@@ -32,12 +32,12 @@ import Foundation
 
 import FLEX
 
-class LibsManager: NSObject {
+open class LibsManager: NSObject {
     // MARK: 🔗Vaiables
-    static let shared = LibsManager()
+    public static let shared = LibsManager()
     let bannersEnabled = BehaviorRelay(value: UserDefaults.standard.bool(forKey: AppConfig.UserDefaultsKeys.bannersEnabled))
     // MARK: 🛠Life Cycle
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     private override init() {
         super.init()
 
@@ -53,11 +53,11 @@ class LibsManager: NSObject {
             }
             .disposed(by: rx.disposeBag)
     }
-    func setupLibs() {
+    public func setupLibs() {
         let libsManager = LibsManager.shared
         // libsManager.setupCocoaLumberjack()
         // libsManager.setupAnalytics()
-        libsManager.setupAds()
+        // libsManager.setupAds()
         libsManager.setupTheme()
         // libsManager.setupKafkaRefresh()
         libsManager.setupFLEX()

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LXToolKit_Example
 // import AMapFoundationKit
 // import AMapLocationKit
 // import AMapSearchKit
@@ -14,6 +15,7 @@ import Firebase
 
 class LXLibManager {
     static func setup() {
+        LibsManager.shared.setupLibs()
         LXLibManager.prepareAMap()
         LXLibManager.prepareFirebase()
     }
@@ -24,6 +26,7 @@ extension LXLibManager {
     /// Firebase 配置
     static func prepareFirebase() {
         FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.error)
     }
     /// 高德地图配置
     static func prepareAMap() {
