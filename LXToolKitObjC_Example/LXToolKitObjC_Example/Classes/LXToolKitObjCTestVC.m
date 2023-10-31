@@ -51,8 +51,8 @@
         return;
     }
     NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
-    [df setValue:@1 forKey:@"autoJumpRoute.route"];
-    [df setValue:route forKey:@"autoJumpRoute.route.1"];
+    [df setValue:@2 forKey:@"autoJumpRoute.route"];
+    [df setValue:route forKey:@"autoJumpRoute.route.2"];
     Class cls = NSClassFromString(route);
     if(cls) {
         UIViewController *vc = [[cls alloc]init];

@@ -12,7 +12,7 @@ import LXToolKitObjC_Example
 import ActivityKit
 import LXToolKit_WidgetExtension
 
-enum DJTestType: Int {
+enum DJTestType: Hashable {
     // case LXToolKit
     case LXToolKit_Example
     // case LXToolKitObjC
@@ -21,6 +21,7 @@ enum DJTestType: Int {
     /// 灵动岛
     case dynamicIsland
     // case DJRSwiftResource
+    case djTest(vc: UIViewController)
     var title: String {
         switch self {
             // case .LXToolKit:
@@ -35,6 +36,8 @@ enum DJTestType: Int {
             return "DJSwiftModule"
         case .dynamicIsland:
             return "dynamicIsland"
+        case .djTest(let vc):
+            return "DJTest - \(vc.xl_typeName())"
         }
     }
     var vc: UIViewController? {
@@ -52,8 +55,34 @@ enum DJTestType: Int {
             Application.shared.presentInitialScreen(in: window)
         case .dynamicIsland:
             return UIHostingController(rootView: EmojiRangersView())
+        case .djTest(let vc):
+            return vc
         }
         return nil
+    }
+    func intValue() -> Int {
+        switch self {
+        case .LXToolKit_Example: return 1
+        case .LXToolKitObjC_Example: return 2
+        case .DJSwiftModule: return 3
+        case .dynamicIsland: return 4
+        case .djTest: return 5
+        }
+    }
+    static func fromInt(idx: Int) -> Self? {
+        switch idx {
+        case 1: return .LXToolKit_Example
+        case 2: return .LXToolKitObjC_Example
+        case 3: return .DJSwiftModule
+        case 4: return .dynamicIsland
+        case 5:
+            guard let vcName = UserDefaults.standard.string(forKey: "autoJumpRoute.route.5"),
+                  let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
+                return nil
+            }
+            return .djTest(vc: Cls.init())
+        default: return nil
+        }
     }
 
 }
@@ -98,6 +127,7 @@ class ViewController: LXBaseTableVC {
             .LXToolKitObjC_Example,
             .DJSwiftModule,
             .dynamicIsland,
+            .djTest(vc: LXAMapTestVC())
         // ])
         ], toSection: "lxthyme")
         _dataSnapshot = snapshot
@@ -112,13 +142,15 @@ class ViewController: LXBaseTableVC {
         prepareTableView()
 
         let route1Int = UserDefaults.standard.integer(forKey: "autoJumpRoute.route")
-        if let route1 = DJTestType(rawValue: route1Int) {
-            autoJumpRoute = route1
-            autoJumpRoute = DJTestType.dynamicIsland
+        if let route1 = DJTestType.fromInt(idx: route1Int) {
+            // autoJumpRoute = route1
+            // autoJumpRoute = DJTestType.dynamicIsland
             // .LXToolKit_Example
                 // .LXToolKitObjC_Example
-            gotoScene(by: autoJumpRoute)
+            gotoScene(by: route1)
         }
+
+        startActivity()
     }
 }
 
@@ -136,7 +168,7 @@ private extension ViewController {
            let vc = scene?.vc {
             if let vc = vc as? LXToolKitTestVC {
                 if(route2.isEmpty) {
-                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.0") ?? ""
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.1") ?? ""
                 }
                 vc.autoJumpRoute =
                     .vcString(vcString:
@@ -150,7 +182,7 @@ private extension ViewController {
                     )
             } else if let vc = vc as? LXToolKitObjCTestVC {
                 if(route2.isEmpty) {
-                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.1") ?? ""
+                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.2") ?? ""
                 }
                 vc.autoJumpRoute =
                 // "LXLabelTestVC"
@@ -159,6 +191,9 @@ private extension ViewController {
                 // "LXViewAnimationARCTestVC"
                 // "LXCollectionTestVC"
                 route2
+            } else if case .djTest(_) = scene {
+                UserDefaults.standard.set(5, forKey: "autoJumpRoute.route")
+                UserDefaults.standard.set(vc.xl.xl_typeName, forKey: "autoJumpRoute.route.5")
             }
             self.navigationController?.pushViewController(vc, animated: true)
         } else {

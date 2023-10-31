@@ -152,8 +152,8 @@ extension Navigator {
     func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) {
         if let (vc, tran) = get(segue: segue),
            let vc {
-            UserDefaults.standard.set(0, forKey: "autoJumpRoute.route")
-            UserDefaults.standard.set(vc.xl.xl_typeName, forKey: "autoJumpRoute.route.0")
+            UserDefaults.standard.set(1, forKey: "autoJumpRoute.route")
+            UserDefaults.standard.set(vc.xl.xl_typeName, forKey: "autoJumpRoute.route.1")
             show(target: vc,
                  sender: sender,
                  transition: tran ?? transition)

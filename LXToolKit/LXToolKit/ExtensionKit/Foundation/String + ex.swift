@@ -23,6 +23,12 @@ public extension Swifty where Base == String {
         let instance = objType.init()
         return instance
     }
+    func getInstanceType<T: NSObject>(obj: T.Type) -> T.Type? {
+        guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String,
+              let cls = NSClassFromString(nameSpace + "." + base),
+              let objType = cls as? T.Type else { return nil }
+        return objType
+    }
 }
 
 public extension Swifty where Base == Int64 {
