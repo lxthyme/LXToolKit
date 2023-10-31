@@ -218,7 +218,10 @@ extension ViewController: UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        let random = Int.random(in: 0..<10)
+        if random == 6 {
+            fatalError("test fatalError with random: \(random)")
+        }
         if #available(iOS 14.0, *) {
             let scene = dataSource.itemIdentifier(for: indexPath)
             gotoScene(by: scene)
