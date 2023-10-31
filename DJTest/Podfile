@@ -1,3 +1,4 @@
+# source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 use_frameworks!
 # use_modular_headers!
 ENV['SWIFT_VERSION'] = '5'
@@ -57,6 +58,14 @@ target 'DJTest' do
   pod 'SwifterSwift', '~>5.2'
   pod 'RxNetworks', '0.4.4'
 
+
+  # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
+  # pod 'AMap3DMap-NO-IDFA','9.6.0'
+  # pod 'AMapSearch-NO-IDFA','9.5.0'
+  # pod 'AMapLocation-NO-IDFA', '2.10.0'
+  # pod 'AMap3DMap-NO-IDFA'
+  # pod 'AMapSearch-NO-IDFA'
+  # pod 'AMapLocation-NO-IDFA'
   # pod 'FirebaseAnalytics'
   # pod 'FirebaseCrashlytics'
 
