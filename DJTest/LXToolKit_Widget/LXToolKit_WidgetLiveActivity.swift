@@ -75,6 +75,7 @@ extension LXToolKit_WidgetAttributes.ContentState {
      }
 }
 
+@available(iOS 17.0, *)
 #Preview("Notification", as: .content, using: LXToolKit_WidgetAttributes.preview) {
    LXToolKit_WidgetLiveActivity()
 } contentStates: {

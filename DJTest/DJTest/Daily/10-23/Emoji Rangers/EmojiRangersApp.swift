@@ -9,6 +9,7 @@ import SwiftUI
 import SpriteKit
 
 // @main
+@available(iOS 16.2, *)
 struct EmojiRangersApp: App {
     // @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
@@ -22,6 +23,7 @@ struct EmojiRangersApp: App {
     }
 }
 
+@available(iOS 16.2, *)
 struct EmojiRangersView: View {
     @State private var selection: EmojiRanger?
     @State private var navigationPath = NavigationPath()
@@ -55,6 +57,7 @@ struct EmojiRangersView: View {
     }
 }
 
+@available(iOS 16.2, *)
 private struct TableRow: View {
     let hero: EmojiRanger
 
@@ -67,6 +70,7 @@ private struct TableRow: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     EmojiRangersView()
 }

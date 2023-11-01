@@ -72,7 +72,10 @@ extension AdventureAttributes.ContentState {
          AdventureAttributes.ContentState(currentHealthLevel: 0.9, eventDescription: "0.9预览 Egghead comes from the magical ")
      }
 }
-#Preview("EmojiRanger", as: .content, using: AdventureAttributes.preview) {
+@available(iOS 17.0, *)
+#Preview("EmojiRanger", 
+         as: .content,
+         using: AdventureAttributes.preview) {
     AdventureActivityConfiguration()
 } contentStates: {
     AdventureAttributes.ContentState.smiley

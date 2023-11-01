@@ -9,6 +9,7 @@ The adventure attributes.
 
 import ActivityKit
 
+@available(iOS 16.2, *)
 struct AdventureAttributes: ActivityAttributes {
     struct ContentState: Codable & Hashable {
         let currentHealthLevel: Double

@@ -8,6 +8,7 @@ Details about a hero, including a name, health level, avatar, and other properti
 import AppIntents
 import WidgetKit
 
+@available(iOS 16.2, *)
 struct EmojiRanger: Hashable, Codable, Identifiable {
     
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "EmojiRanger"
@@ -191,6 +192,7 @@ let fauxResponse =
 ]
 """
 
+@available(iOS 16.2, *)
 extension EmojiRanger {
     static let spook = EmojiRanger(
         name: "Mr. Spook",

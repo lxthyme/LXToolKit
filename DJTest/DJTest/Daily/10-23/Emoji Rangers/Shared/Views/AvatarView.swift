@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct Avatar: View {
     var hero: EmojiRanger
     var includeBackground = true
@@ -38,6 +39,7 @@ private extension View {
     }
 }
 
+@available(iOS 16.2, *)
 struct AvatarView: View {
     var hero: EmojiRanger
     @Environment(\.showsWidgetContainerBackground) var showWidgetBackground
@@ -88,6 +90,7 @@ struct AvatarView: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     AvatarView(hero: .spouty)
         .previewLayout(.fixed(width: 160, height: 160))

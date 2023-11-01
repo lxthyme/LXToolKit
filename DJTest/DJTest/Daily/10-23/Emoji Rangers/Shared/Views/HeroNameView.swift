@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct HeroNameView: View {
     private let hero: EmojiRanger
     let includeDetail: Bool
@@ -32,6 +33,7 @@ struct HeroNameView: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     HeroNameView(nil)
 }

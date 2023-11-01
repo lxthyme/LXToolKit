@@ -9,6 +9,7 @@ import SwiftUI
 import ActivityKit
 import BackgroundTasks
 
+@available(iOS 16.2, *)
 struct DetailView: View {
     let hero: EmojiRanger
 
@@ -67,6 +68,7 @@ struct DetailView: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     DetailView(hero: .spouty)
 }

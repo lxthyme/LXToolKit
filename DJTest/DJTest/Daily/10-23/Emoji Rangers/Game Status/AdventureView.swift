@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct AdventureView: View {
     let hero: EmojiRanger
     @StateObject private var viewModel = AdventureViewModel()
@@ -102,6 +103,7 @@ struct AdventureView: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     AdventureView(hero: .spouty)
 }

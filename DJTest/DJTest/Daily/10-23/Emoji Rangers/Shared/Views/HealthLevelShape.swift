@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct HealthLevelShape: View {
     var level: Double
     @AppStorage("supercharged", store: UserDefaults(suiteName: EmojiRanger.appGroup))
@@ -27,6 +28,7 @@ struct HealthLevelShape: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview("Shape", body: {
     HealthLevelShape(level: 0.5)
         .previewLayout(.fixed(width: 160, height: 20))

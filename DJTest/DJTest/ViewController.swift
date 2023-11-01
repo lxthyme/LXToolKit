@@ -10,7 +10,6 @@ import SwiftUI
 import LXToolKit_Example
 import LXToolKitObjC_Example
 import ActivityKit
-import LXToolKit_WidgetExtension
 
 enum DJTestType: Hashable {
     // case LXToolKit
@@ -19,6 +18,7 @@ enum DJTestType: Hashable {
     case LXToolKitObjC_Example
     case DJSwiftModule
     /// 灵动岛
+    // @available(iOS 16.2, *)
     case dynamicIsland
     // case DJRSwiftResource
     case djTest(vc: UIViewController)
@@ -54,7 +54,12 @@ enum DJTestType: Hashable {
             let window = UIApplication.xl.keyWindow
             Application.shared.presentInitialScreen(in: window)
         case .dynamicIsland:
-            return UIHostingController(rootView: EmojiRangersView())
+            return if #available(iOS 16.2, *) {
+                UIHostingController(rootView: EmojiRangersView())
+            } else {
+                // Fallback on earlier versions
+                UIViewController()
+            }
         case .djTest(let vc):
             return vc
         }

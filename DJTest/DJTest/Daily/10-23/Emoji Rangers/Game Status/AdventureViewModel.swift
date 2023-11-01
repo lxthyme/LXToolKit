@@ -10,6 +10,7 @@ import ActivityKit
 // import LXToolKit
 
 // MARK: - 👀
+@available(iOS 16.2, *)
 extension AdventureViewModel {
     typealias ServerManager = AdventureViewModel
 
@@ -74,6 +75,7 @@ extension AdventureViewModel {
     }
 }
 
+@available(iOS 16.2, *)
 extension AdventureViewModel {
     struct ActivityViewState: Sendable {
         var activityState: ActivityState
@@ -110,6 +112,7 @@ extension AdventureViewModel {
     }
 }
 
+@available(iOS 16.2, *)
 final class AdventureViewModel: ObservableObject {
     @Published var activityViewState: ActivityViewState? = nil
     @Published var errorMessage: String? = nil
@@ -172,6 +175,7 @@ final class AdventureViewModel: ObservableObject {
 }
 
 // MARK: - 🔐
+@available(iOS 16.2, *)
 private extension AdventureViewModel {
     func endActivity(dismissTimeInterval: Double?) async {
         guard let activity = currentActivity else {
@@ -301,6 +305,7 @@ private extension AdventureViewModel {
 }
 
 // MARK: - 🔐
+@available(iOS 16.2, *)
 extension AdventureViewModel {
     func sendPushToken(hero: EmojiRanger, pushTokenString: String, frequentUpdateEnabled: Bool = false) async throws {
 

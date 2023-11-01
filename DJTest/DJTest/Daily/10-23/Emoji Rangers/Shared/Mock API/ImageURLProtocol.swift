@@ -31,7 +31,12 @@ class ImageURLProtocol: URLProtocol {
 
         block = DispatchWorkItem(block: {
             if self.cancelledOrComplete == false {
-                let fileURL = URL(filePath: reqURL.path)
+                let fileURL = if #available(iOS 16.0, *) {
+                    URL(filePath: reqURL.path)
+                } else {
+                    // Fallback on earlier versions
+                    URL(fileURLWithPath: reqURL.path, isDirectory: false)
+                }
 
                 if let data = try? Data(contentsOf: fileURL) {
                     urlClient.urlProtocol(self, didLoad: data)

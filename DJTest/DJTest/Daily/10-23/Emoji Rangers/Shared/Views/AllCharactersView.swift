@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct AllCharactersView: View {
     let heros: [EmojiRanger]
 
@@ -35,6 +36,7 @@ struct AllCharactersView: View {
     }
 }
 
+@available(iOS 16.2, *)
 #Preview {
     AllCharactersView()
 }

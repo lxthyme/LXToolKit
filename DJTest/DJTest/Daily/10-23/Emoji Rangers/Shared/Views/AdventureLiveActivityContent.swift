@@ -9,7 +9,7 @@ import SwiftUI
 import WidgetKit
 
 #if canImport(ActivityKit)
-
+@available(iOS 16.2, *)
 struct AdventureLiveActivityContent: View {
     let hero: EmojiRanger
     let isStale: Bool
@@ -33,6 +33,7 @@ struct AdventureLiveActivityContent: View {
     }
 }
 
+@available(iOS 16.2, *)
 struct AdventureLiveActivityView: View {
     let hero: EmojiRanger
     let isStale: Bool
@@ -52,6 +53,7 @@ struct AdventureLiveActivityView: View {
     }
 }
 
+@available(iOS 16.2, *)
 struct LiveActivityAvatarView: View {
     let hero: EmojiRanger
 
@@ -72,6 +74,7 @@ struct LiveActivityAvatarView: View {
     }
 }
 
+@available(iOS 16.2, *)
 struct HealthBar: View {
     let currentHealthLevel: Double
 
@@ -92,6 +95,7 @@ struct HealthBar: View {
     }
 }
 
+@available(iOS 16.2, *)
 struct EventDescriptionView: View {
     let hero: EmojiRanger
     let contentState: AdventureAttributes.ContentState
@@ -104,6 +108,7 @@ struct EventDescriptionView: View {
     }
 }
 
+@available(iOS 16.2, *)
 struct StatsView: View {
     let hero: EmojiRanger
     let isStale: Bool
@@ -128,6 +133,7 @@ struct StatsView: View {
 }
 
 
+@available(iOS 16.2, *)
 #Preview {
         // AdventureLiveActivityView(hero: .spouty, isStale: true, contentState: <#T##AdventureAttributes.ContentState#>)
         LiveActivityAvatarView(hero: .spouty)
@@ -138,10 +144,12 @@ struct StatsView: View {
         // StatsView(hero: .spouty, isStale: true)
         //     .previewDisplayName("StatsView")
 }
+@available(iOS 16.2, *)
 #Preview {
         HealthBar(currentHealthLevel: 0.8)
             .previewDisplayName("HealthBar")
 }
+@available(iOS 16.2, *)
 #Preview {
         StatsView(hero: .spouty, isStale: true)
             .previewDisplayName("StatsView")
