@@ -73,7 +73,7 @@ extension AdventureAttributes.ContentState {
      }
 }
 @available(iOS 17.0, *)
-#Preview("EmojiRanger", 
+#Preview("EmojiRanger-content",
          as: .content,
          using: AdventureAttributes.preview) {
     AdventureActivityConfiguration()
@@ -81,3 +81,32 @@ extension AdventureAttributes.ContentState {
     AdventureAttributes.ContentState.smiley
     AdventureAttributes.ContentState.starEyes
 }
+// @available(iOS 17.0, *)
+// #Preview("dynamicIsland.minimal",
+//          as: .dynamicIsland(.minimal),
+//          using: AdventureAttributes.preview) {
+//     AdventureActivityConfiguration()
+// } contentStates: {
+//     AdventureAttributes.ContentState.smiley
+//     AdventureAttributes.ContentState.starEyes
+// }
+// 
+// @available(iOS 17.0, *)
+// #Preview("dynamicIsland.compact",
+//          as: .dynamicIsland(.compact),
+//          using: AdventureAttributes.preview) {
+//     AdventureActivityConfiguration()
+// } contentStates: {
+//     AdventureAttributes.ContentState.smiley
+//     AdventureAttributes.ContentState.starEyes
+// }
+// 
+// @available(iOS 17.0, *)
+// #Preview("dynamicIsland.expanded",
+//          as: .dynamicIsland(.expanded),
+//          using: AdventureAttributes.preview) {
+//     AdventureActivityConfiguration()
+// } contentStates: {
+//     AdventureAttributes.ContentState.smiley
+//     AdventureAttributes.ContentState.starEyes
+// }

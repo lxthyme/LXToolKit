@@ -76,5 +76,6 @@ TODO: Add long description of the pod here.
   # s.dependency 'SDCycleScrollView'
   s.dependency 'CocoaLumberjack'
   s.dependency 'DJRSwiftResource'
+  s.dependency 'DJTestKit'
   # s.dependency ''
 end

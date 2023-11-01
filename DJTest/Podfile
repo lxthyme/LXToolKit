@@ -48,6 +48,7 @@ target 'DJTest' do
 
   pod 'LXToolKit', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
+  pod 'DJTestKit', :path => '../DJTestKit'
 
   pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   pod 'FLEX', :configurations => ['Debug']
