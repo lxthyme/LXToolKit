@@ -69,7 +69,7 @@ extension AdventureAttributes.ContentState {
      }
 
      fileprivate static var starEyes: AdventureAttributes.ContentState {
-         AdventureAttributes.ContentState(currentHealthLevel: 0.9, eventDescription: "0.9预览 Egghead comes from the magical ")
+         AdventureAttributes.ContentState(currentHealthLevel: 0.9, eventDescription: "0.9预览 Egghead comes from the magical Egghead comes from the magical Egghead comes from the magical")
      }
 }
 @available(iOS 17.0, *)
@@ -81,32 +81,32 @@ extension AdventureAttributes.ContentState {
     AdventureAttributes.ContentState.smiley
     AdventureAttributes.ContentState.starEyes
 }
-// @available(iOS 17.0, *)
-// #Preview("dynamicIsland.minimal",
-//          as: .dynamicIsland(.minimal),
-//          using: AdventureAttributes.preview) {
-//     AdventureActivityConfiguration()
-// } contentStates: {
-//     AdventureAttributes.ContentState.smiley
-//     AdventureAttributes.ContentState.starEyes
-// }
-// 
-// @available(iOS 17.0, *)
-// #Preview("dynamicIsland.compact",
-//          as: .dynamicIsland(.compact),
-//          using: AdventureAttributes.preview) {
-//     AdventureActivityConfiguration()
-// } contentStates: {
-//     AdventureAttributes.ContentState.smiley
-//     AdventureAttributes.ContentState.starEyes
-// }
-// 
-// @available(iOS 17.0, *)
-// #Preview("dynamicIsland.expanded",
-//          as: .dynamicIsland(.expanded),
-//          using: AdventureAttributes.preview) {
-//     AdventureActivityConfiguration()
-// } contentStates: {
-//     AdventureAttributes.ContentState.smiley
-//     AdventureAttributes.ContentState.starEyes
-// }
+@available(iOS 17.0, *)
+#Preview("dynamicIsland.minimal",
+         as: .dynamicIsland(.minimal),
+         using: AdventureAttributes.preview) {
+    AdventureActivityConfiguration()
+} contentStates: {
+    AdventureAttributes.ContentState.smiley
+    AdventureAttributes.ContentState.starEyes
+}
+
+@available(iOS 17.0, *)
+#Preview("dynamicIsland.compact",
+         as: .dynamicIsland(.compact),
+         using: AdventureAttributes.preview) {
+    AdventureActivityConfiguration()
+} contentStates: {
+    AdventureAttributes.ContentState.smiley
+    AdventureAttributes.ContentState.starEyes
+}
+
+@available(iOS 17.0, *)
+#Preview("dynamicIsland.expanded",
+         as: .dynamicIsland(.expanded),
+         using: AdventureAttributes.preview) {
+    AdventureActivityConfiguration()
+} contentStates: {
+    AdventureAttributes.ContentState.smiley
+    AdventureAttributes.ContentState.starEyes
+}
