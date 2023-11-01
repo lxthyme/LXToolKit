@@ -19,11 +19,11 @@ struct HealthLevelShape: View {
             let boxWidth = frame.width * (supercharged ? 1.0 : level)
 
             RoundedRectangle(cornerRadius: 4)
-                .foregroundStyle(.gray)
+                .foregroundColor(.gray)
 
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: boxWidth)
-                .foregroundStyle(.green)
+                .foregroundColor(.green)
         }
     }
 }

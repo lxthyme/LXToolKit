@@ -23,9 +23,9 @@ struct AllCharactersView: View {
                         VStack(alignment: .leading, content: {
                             Text(hero.name)
                                 .font(.headline)
-                                .foregroundStyle(.white)
+                                .foregroundColor(.white)
                             Text("Level \(hero.level)")
-                                .foregroundStyle(.white)
+                                .foregroundColor(.white)
                             HealthLevelShape(level: hero.healthLevel)
                                 .frame(height: 10)
                         })

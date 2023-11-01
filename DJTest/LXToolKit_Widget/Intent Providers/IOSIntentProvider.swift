@@ -40,6 +40,9 @@ struct SiriKitIntentProvider: IntentTimelineProvider {
             currentDate += oneMinute
             entries.append(entry)
         }
+
+        let timeline = Timeline(entries: entries, policy: .atEnd)
+        completion(timeline)
     }
 
     func hero(for configuarion: EmojiRangerSelectionIntent) -> EmojiRanger {
