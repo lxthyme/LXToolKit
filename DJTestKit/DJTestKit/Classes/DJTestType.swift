@@ -61,7 +61,7 @@ public extension DJTestType {
         case 3: return .DJSwiftModule
         case 4: return .dynamicIsland
         case 5:
-            guard let vcName = UserDefaults.standard.string(forKey: "autoJumpRoute.route.5"),
+            guard let vcName = UserDefaults.standard.string(forKey: "autoJumpRoute.route.\(idx)"),
                   let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
                 return nil
             }
@@ -69,8 +69,27 @@ public extension DJTestType {
         default: return nil
         }
     }
+}
+// MARK: - 👀
+public extension DJTestType {
+    func dfVCName() -> String? {
+        return UserDefaults.standard.string(forKey: self.userDefaultsKey())
+    }
+    func updateDefaults(vcName: String) {
+        UserDefaults.standard.set(self.intValue(), forKey: DJTestType.AutoJumpRoute)
+        UserDefaults.standard.set(vcName, forKey: self.userDefaultsKey())
+    }
     func userDefaultsKey() -> String {
         let idx = intValue()
         return "\(DJTestType.AutoJumpRoute).\(idx)"
+    }
+}
+
+open class DJTestTypeObjc: NSObject {}
+
+// MARK: - 👀
+public extension DJTestTypeObjc {
+    @objc public static func updateObjcDefaults(vcName: String) {
+        DJTestType.LXToolKitObjC_Example.updateDefaults(vcName: vcName)
     }
 }

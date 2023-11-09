@@ -10,6 +10,7 @@ import Foundation
 import Hero
 import SafariServices
 import LXToolKit
+import DJTestKit
 
 extension Navigator {
     // MARK: - segues list, all app scenes
@@ -152,8 +153,7 @@ extension Navigator {
     func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) {
         if let (vc, tran) = get(segue: segue),
            let vc {
-            UserDefaults.standard.set(1, forKey: "autoJumpRoute.route")
-            UserDefaults.standard.set(vc.xl.xl_typeName, forKey: "autoJumpRoute.route.1")
+            DJTestType.LXToolKit_Example.updateDefaults(vcName: vc.xl.xl_typeName)
             show(target: vc,
                  sender: sender,
                  transition: tran ?? transition)

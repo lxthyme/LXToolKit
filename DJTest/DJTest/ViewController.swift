@@ -130,7 +130,7 @@ private extension ViewController {
             dlog("-->gotoScene error on scene: \(scene)")
             return
         }
-        UserDefaults.standard.set(vc.xl.xl_typeName, forKey: scene.userDefaultsKey())
+        // UserDefaults.standard.set(vc.xl.xl_typeName, forKey: scene.userDefaultsKey())
         var route2 = tmp
         if route2.isEmpty {
             route2 = UserDefaults.standard.string(forKey: scene.userDefaultsKey()) ?? ""

@@ -10,6 +10,7 @@
 #import "LXLoginVC.h"
 #import "LX0527VC.h"
 #import "DJCommentVC.h"
+#import <DJTestKit/DJTestKit-Swift.h>
 
 @interface LXToolKitObjCTestVC ()<UITableViewDataSource,UITableViewDelegate> {
 }
@@ -50,9 +51,7 @@
     if([route isEmpty]) {
         return;
     }
-    NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
-    [df setValue:@2 forKey:@"autoJumpRoute.route"];
-    [df setValue:route forKey:@"autoJumpRoute.route.2"];
+    [DJTestTypeObjc updateObjcDefaultsWithVcName:route];
     Class cls = NSClassFromString(route);
     if(cls) {
         UIViewController *vc = [[cls alloc]init];
