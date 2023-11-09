@@ -90,3 +90,9 @@ struct LeaderboardWidget: Widget {
         #endif
     }
 }
+
+#Preview(as: .systemSmall, widget: {
+    LeaderboardWidget()
+}, timelineProvider: {
+    LeaderboardProvider()
+})

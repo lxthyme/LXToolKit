@@ -11,7 +11,7 @@ class ImageURLProtocol: URLProtocol {
     var cancelledOrComplete: Bool = false
     var block: DispatchWorkItem!
 
-    private static let queue = DispatchSerialQueue(label: "com.apple.imageLoaderURLProtocol")
+    private static let queue = DispatchQueue(label: "com.apple.imageLoaderURLProtocol")
 
     override class func canInit(with request: URLRequest) -> Bool {
         return true

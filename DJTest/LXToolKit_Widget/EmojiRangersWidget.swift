@@ -36,6 +36,18 @@ extension View {
             }
         }
     }
+    func widgetBackground(color: Color) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            return containerBackground(for: .widget) {
+                color
+            }
+        } else {
+            // Fallback on earlier versions
+            return background {
+                color
+            }
+        }
+    }
 }
 
 struct EmojiRangerWidgetEntryView: View {
