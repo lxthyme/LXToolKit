@@ -5,6 +5,7 @@
 //  Created by lxthyme on 2023/8/24.
 //
 import UIKit
+import RxSwift
 
 class LXLabelVC: LXBaseVC {
     // MARK: 📌UI
@@ -26,6 +27,7 @@ class LXLabelVC: LXBaseVC {
         iv.image = R.image.cusco()
         // iv.backgroundColor =
         iv.contentMode = .scaleAspectFit
+        iv.layer.masksToBounds = true
         return iv
     }()
     private lazy var cornerView: UIView = {
@@ -35,7 +37,7 @@ class LXLabelVC: LXBaseVC {
         v.layer.cornerRadius = 12
         v.layer.cornerCurve = .continuous
         v.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        // v.layer.masksToBounds = true
+        v.layer.masksToBounds = true
         return v
     }()
     private lazy var labTitle1: UILabel = {
@@ -43,8 +45,7 @@ class LXLabelVC: LXBaseVC {
         label.layer.cornerRadius = 16
         // label.layer.cornerCurve = .continuous
         label.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-        label.clipsToBounds = true
-        // label.layer.masksToBounds = true
+        label.layer.masksToBounds = true
         return label
     }()
     private lazy var labTitle2: UILabel = {
@@ -109,6 +110,29 @@ class LXLabelVC: LXBaseVC {
         tv.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
         return tv
     }()
+    private lazy var imgViewLogo2: UIImageView = {
+        let iv = UIImageView()
+        // iv.image = R.image.cusco()
+        iv.sd_setImage(with: URL(string: "https://unsplash.it/400/400/?random")) { img, error, type, url in
+            dlog("""
+                 img: \(img)
+                 error: \(error)
+                 type: \(type)
+                 url: \(url)
+                 """)
+        }
+        iv.layer.cornerRadius = 16
+        // label.layer.cornerCurve = .continuous
+        iv.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        iv.backgroundColor = .red
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    private lazy var logo2View: UIView = {
+        let v = UIView()
+        v.backgroundColor = .cyan
+        return v
+    }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
@@ -116,10 +140,20 @@ class LXLabelVC: LXBaseVC {
 
         // Do any additional setup after loading the view.
         prepareUI()
+
+        // self.labTitle1.rx.observe(\.bounds)
+        // // .debounce(.milliseconds(300), scheduler: ConcurrentDispatchQueueScheduler(queue: DispatchQueue.global()))
+        //     .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+        //     .subscribe(on: MainScheduler.instance)
+        //     .subscribe {[weak self] size in
+        //         dlog("-->size: \(size)\t\(Thread.current)")
+        //         self?.labTitle1.xl.setRoundingCorners(raddi: 35, corners: [.topRight, .bottomRight])
+        //     }
+        //     .disposed(by: self.rx.disposeBag)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // labTitle4.xl.setRoundingCorners(raddi: 35, corners: [.topRight, .bottomRight])
+        // labTitle1.roundCorners([.topRight, .bottomRight], radius: 16)
     }
 
 }
@@ -157,6 +191,15 @@ extension CACornerMask {
         }
     }
 }
+// MARK: - 👀
+public extension UIView {
+    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
 // MARK: - 🍺UI Prepare & Masonry
 extension LXLabelVC {
     override func prepareUI() {
@@ -166,25 +209,29 @@ extension LXLabelVC {
 
 
         let text = "进口大串香蕉 重约900-1000g"
-        // labTitle1.text = text
-        // labTitle2.text = "2: \(text)"
-        // labTitle3.text = "3: \(text)"
-        // labTitle4.text = "4: \(text)"
-        // labTitle5.text = "5: \(text)"
+        labTitle1.text = "1: \(text)"
+        labTitle2.text = "2: \(text)"
+        labTitle3.text = "3: \(text)"
+        labTitle4.text = "4: \(text)"
+        labTitle5.text = "5: \(text)"
         labTitle3.numberOfLines = 1
         labTitle4.numberOfLines = 1
         labTitle5.numberOfLines = 1
         tvTitle1.text = text
         tvTitle2.text = text
 
-        labTitle5.layer.maskedCorners = cornerView.layer.maskedCorners//.intersection(.alongEdge(.maxXEdge))
+        labTitle5.layer.maskedCorners = cornerView.layer.maskedCorners.intersection(.alongEdge(.maxXEdge))
         labTitle5.layer.cornerCurve = cornerView.layer.cornerCurve
         cornerView.addSubview(labTitle5)
+
+        logo2View.layer.maskedCorners = imgViewLogo2.layer.maskedCorners.intersection(.alongEdge(.minXEdge))
+        logo2View.addSubview(imgViewLogo2)
         [
             cornerView,
             imgViewLogo,
             labTitle1, labTitle2, labTitle3, labTitle4,
             tvTitle1, tvTitle2,
+            logo2View,
         ].forEach(self.wrapperStackView.addArrangedSubview)
         [self.wrapperStackView].forEach(self.view.addSubview)
 
@@ -200,6 +247,12 @@ extension LXLabelVC {
         }
         imgViewLogo.snp.makeConstraints {
             $0.height.equalTo(100)
+        }
+        imgViewLogo2.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-20)
+            $0.height.equalTo(self.imgViewLogo2.snp.width)
         }
         // labTitle4.snp.makeConstraints {
         //     $0.height.equalTo(20)

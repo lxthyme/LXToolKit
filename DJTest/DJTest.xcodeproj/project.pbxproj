@@ -45,6 +45,7 @@
 		BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3452AB974FA003339EB /* Main.storyboard */; };
 		BEE5A3492AB974FB003339EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3482AB974FB003339EB /* Assets.xcassets */; };
 		BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */; };
+		BEF4B3602AF3397900DA0607 /* DJTest.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */; };
 		BEFA8DB52AE8E79F00933131 /* LeaderboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */; };
 		BEFA8DB72AE8E8C100933131 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BEFA8DB82AE8E8C200933131 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
@@ -166,6 +167,7 @@
 		BEE5A3482AB974FB003339EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE5A34B2AB974FB003339EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE5A34D2AB974FB003339EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = DJTest.xcstrings; sourceTree = "<group>"; };
 		BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardWidget.swift; sourceTree = "<group>"; };
 		BEFA8DCF2AE8EDA400933131 /* AdventureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureViewModel.swift; sourceTree = "<group>"; };
 		BEFA8DD32AE8EDC400933131 /* AdventureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureView.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				BEE5A3432AB974FA003339EB /* ViewController.swift */,
 				BEE5A3452AB974FA003339EB /* Main.storyboard */,
 				BEE5A3482AB974FB003339EB /* Assets.xcassets */,
+				BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */,
 				BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */,
 				BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */,
 				BEE5A34D2AB974FB003339EB /* Info.plist */,
@@ -494,6 +497,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = BEE5A3332AB974FA003339EB;
 			productRefGroup = BEE5A33D2AB974FA003339EB /* Products */;
@@ -528,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */,
+				BEF4B3602AF3397900DA0607 /* DJTest.xcstrings in Resources */,
 				BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */,
 				BEE5A3492AB974FB003339EB /* Assets.xcassets in Resources */,
 				BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */,
