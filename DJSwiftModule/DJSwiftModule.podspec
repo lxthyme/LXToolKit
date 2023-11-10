@@ -106,4 +106,6 @@ TODO: Add long description of the pod here.
   s.dependency 'Mixpanel-swift', '~> 4.0'  # https://github.com/mixpanel/mixpanel-iphone
   s.dependency 'HandyJSON'
   s.dependency 'LXToolKit'
+  s.dependency 'DJTestKit'
+  s.dependency ''
 end

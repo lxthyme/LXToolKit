@@ -30,7 +30,7 @@ This library contains some useful category and extension kits
   # s.default_subspec = "Core"
   # s.static_framework = true
   s.ios.deployment_target = '13.0'
-  s.swift_versions = '5.1'
+  s.swift_versions = '5'
   s.cocoapods_version = '>= 1.4.0'
 
   s.source_files = "LXToolKit/**/*.{swift,h,m,json}"

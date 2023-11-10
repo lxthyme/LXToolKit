@@ -6,30 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 import LXToolKit_Example
 import LXToolKitObjC_Example
+import ActivityKit
+import DJTestKit
 
-enum DJTestType: Int {
-    // case LXToolKit
-    case LXToolKit_Example
-    // case LXToolKitObjC
-    case LXToolKitObjC_Example
-    case DJSwiftModule
-    // case DJRSwiftResource
-    var title: String {
-        switch self {
-            // case .LXToolKit:
-            //     return "LXToolKit"
-        case .LXToolKit_Example:
-            return "LXToolKit_Example"
-            // case .LXToolKitObjC:
-            //     return "LXToolKitObjC"
-        case .LXToolKitObjC_Example:
-            return "LXToolKitObjC_Example"
-        case .DJSwiftModule:
-            return "DJSwiftModule"
-        }
-    }
+extension DJTestType {
     var vc: UIViewController? {
         switch self {
             // case .LXToolKit:
@@ -43,6 +26,15 @@ enum DJTestType: Int {
         case .DJSwiftModule:
             let window = UIApplication.xl.keyWindow
             Application.shared.presentInitialScreen(in: window)
+        case .dynamicIsland:
+            return if #available(iOS 16.2, *) {
+                UIHostingController(rootView: EmojiRangersView())
+            } else {
+                // Fallback on earlier versions
+                UIViewController()
+            }
+        case .djTest(let vc):
+            return vc
         }
         return nil
     }
@@ -83,12 +75,16 @@ class ViewController: LXBaseTableVC {
             return ds
         }
         var snapshot = NSDiffableDataSourceSnapshot<String, DJTestType>()
-        snapshot.appendSections(["2022", "2023"])
+        snapshot.appendSections(["lxthyme", "DJTest"])
         snapshot.appendItems([
             .LXToolKit_Example,
             .LXToolKitObjC_Example,
-            .DJSwiftModule
-        ], toSection: "2022")
+            .DJSwiftModule,
+            .dynamicIsland,
+        ], toSection: "lxthyme")
+        snapshot.appendItems([
+            .djTest(vc: LXAMapTestVC()),
+        ], toSection: "DJTest")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -100,13 +96,16 @@ class ViewController: LXBaseTableVC {
         prepareUI()
         prepareTableView()
 
-        let route1Int = UserDefaults.standard.integer(forKey: "autoJumpRoute.route")
-        if let route1 = DJTestType(rawValue: route1Int) {
-            autoJumpRoute = route1
+        let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
+        if let route1 = DJTestType.fromInt(idx: route1Int) {
+            // autoJumpRoute = route1
+            // autoJumpRoute = DJTestType.dynamicIsland
             // .LXToolKit_Example
                 // .LXToolKitObjC_Example
-            gotoScene(by: autoJumpRoute)
+            gotoScene(by: route1)
         }
+
+        startActivity()
     }
 }
 
@@ -116,43 +115,47 @@ extension ViewController {}
 // MARK: 👀Public Actions
 extension ViewController {}
 
+// MARK: - 🔐Activity
+private extension ViewController {
+    func startActivity() {
+    }
+}
+
 // MARK: 🔐Private Actions
 private extension ViewController {
     func gotoScene(by scene: DJTestType?, route2 tmp: String = "") {
-        var route2 = tmp
-        if #available(iOS 14.0, *),
-           let vc = scene?.vc {
-            if let vc = vc as? LXToolKitTestVC {
-                if(route2.isEmpty) {
-                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.0") ?? ""
-                }
-                vc.autoJumpRoute =
-                    .vcString(vcString:
-                                "LXToolKit_Example." +
-                                // "LXOutlineVC"
-                              // "LXLabelVC"
-                              // "LXStack1206VC"
-                              // "LXTableTestVC"
-                              // "LXRxSwiftTestVC"
-                              route2
-                    )
-            } else if let vc = vc as? LXToolKitObjCTestVC {
-                if(route2.isEmpty) {
-                    route2 = UserDefaults.standard.string(forKey: "autoJumpRoute.route.1") ?? ""
-                }
-                vc.autoJumpRoute =
-                // "LXLabelTestVC"
-                // "LXPopTestVC"
-                // "DJCommentVC"
-                // "LXViewAnimationARCTestVC"
-                // "LXCollectionTestVC"
-                route2
-            }
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            // Fallback on earlier versions
-            dlog("-->Error!")
+        guard let scene else { return }
+        UserDefaults.standard.set(scene.intValue(), forKey: DJTestType.AutoJumpRoute)
+        guard let vc = scene.vc else {
+            dlog("-->gotoScene error on scene: \(scene)")
+            return
         }
+        // UserDefaults.standard.set(vc.xl.xl_typeName, forKey: scene.userDefaultsKey())
+        var route2 = tmp
+        if route2.isEmpty {
+            route2 = UserDefaults.standard.string(forKey: scene.userDefaultsKey()) ?? ""
+        }
+        if let vc = vc as? LXToolKitTestVC {
+            vc.autoJumpRoute =
+                .vcString(vcString:
+                            "LXToolKit_Example." +
+                          // "LXOutlineVC"
+                          // "LXLabelVC"
+                          // "LXStack1206VC"
+                          // "LXTableTestVC"
+                          // "LXRxSwiftTestVC"
+                          route2
+                )
+        } else if let vc = vc as? LXToolKitObjCTestVC {
+            vc.autoJumpRoute =
+            // "LXLabelTestVC"
+            // "LXPopTestVC"
+            // "DJCommentVC"
+            // "LXViewAnimationARCTestVC"
+            // "LXCollectionTestVC"
+            route2
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -171,7 +174,10 @@ extension ViewController: UITableViewDelegate {
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        let random = Int.random(in: 0..<10)
+        if random == 6 {
+            fatalError("test fatalError with random: \(random)")
+        }
         if #available(iOS 14.0, *) {
             let scene = dataSource.itemIdentifier(for: indexPath)
             gotoScene(by: scene)
@@ -211,4 +217,8 @@ extension ViewController {
             $0.edges.equalToSuperview()
         }
     }
+}
+
+#Preview("ViewController") {
+    return ViewController()
 }

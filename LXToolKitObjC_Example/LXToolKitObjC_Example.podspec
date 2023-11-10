@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/lxthyme/LXToolKitObjC_Example.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '13.0'
 
   # s.prefix_header_file = LXToolKitObjC_Example/Classes/LXToolKitObjC_Example.h'
   s.prefix_header_contents = '#import "LXToolKitObjC_Example.h"'
@@ -76,5 +76,6 @@ TODO: Add long description of the pod here.
   # s.dependency 'SDCycleScrollView'
   s.dependency 'CocoaLumberjack'
   s.dependency 'DJRSwiftResource'
+  s.dependency 'DJTestKit'
   # s.dependency ''
 end

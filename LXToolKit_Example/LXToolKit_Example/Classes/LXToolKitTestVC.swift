@@ -119,6 +119,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXLabelVC.xl.xl_typeName, vcProvider: { LXLabelVC() }),
             .vc(identifier: LXActionSheetTestVC.xl.xl_typeName, vcProvider: { LXActionSheetTestVC() }),
             .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC(vm: vm, navigator: self.navigator) }),
+            .vc(identifier: LXCollectionVC.xl.xl_typeName, vcProvider: { LXCollectionVC() })
         ], toSection: "2023")
         snapshot.appendItems([
             .vc(identifier: LXTable0120VC.xl.xl_typeName,vcProvider: {[weak self] in
@@ -202,7 +203,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let vc =
+        // let vc =
         //            LXApiTestVC()
         //            LXMultiRequestTestVC()
         //            LXOffScreenVC()
@@ -229,7 +230,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         //            LXRx0225VC()
         // LXLoggerTestVC()
         // LXStrenchableWebVC()
-        UIViewController()
+        // UIViewController()
         
         // self.navigationController?.pushViewController(vc, animated: true)
         //        self.present(testVC, animated: true, completion: nil)
@@ -657,4 +658,8 @@ extension LXToolKitTestVC {
             $0.edges.equalToSuperview()
         }
     }
+}
+
+#Preview("LXToolKitTestVC") {
+    LXToolKitTestVC()
 }

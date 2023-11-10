@@ -54,3 +54,7 @@ private extension LXActionSheetTestVC {
 
     func masonry() {}
 }
+
+#Preview("LXActionSheetTestVC") {
+    return LXActionSheetTestVC()
+}

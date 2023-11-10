@@ -46,7 +46,8 @@ private extension LXTTTTT {
         let maxY = tableview.frame.maxY
         let ips = tableview
             .visibleCells
-            .map { (cell: $0, rect: $0.superview?.convert($0.frame, to: self.view )) }
+            // .map { (cell: $0, rect: $0.superview?.convert($0.frame, to: self.view )) }
+            .map { cell -> (cell: UITableViewCell, rect: CGRect?) in (cell: cell, rect: cell.superview?.convert(cell.frame, to: self.view )) }
             .map { res -> (cell: UITableViewCell, visible: CGFloat, height: CGFloat) in
                 guard let frame = res.rect else {
                     return (cell: res.cell, visible: 0, height: 0)

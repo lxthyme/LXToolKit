@@ -10,6 +10,7 @@
 #import "LXLoginVC.h"
 #import "LX0527VC.h"
 #import "DJCommentVC.h"
+#import <DJTestKit/DJTestKit-Swift.h>
 
 @interface LXToolKitObjCTestVC ()<UITableViewDataSource,UITableViewDelegate> {
 }
@@ -40,13 +41,17 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
+- (void)testM {
+    UITraitCollection *traitCollection;
+    UITrait *trait;
+    UIImageView *imgView;
+    // [imgView addSymbolEffect:NSSymbolBounceEffect];
+}
 - (void)gotoRoute:(NSString *)route {
     if([route isEmpty]) {
         return;
     }
-    NSUserDefaults *df = [NSUserDefaults standardUserDefaults];
-    [df setValue:@1 forKey:@"autoJumpRoute.route"];
-    [df setValue:route forKey:@"autoJumpRoute.route.1"];
+    [DJTestTypeObjc updateObjcDefaultsWithVcName:route];
     Class cls = NSClassFromString(route);
     if(cls) {
         UIViewController *vc = [[cls alloc]init];

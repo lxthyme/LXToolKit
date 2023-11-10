@@ -11,17 +11,26 @@ public extension Swifty where Base == String {
 //public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     /// - Returns: VC 实例
-    func getVCInstance<T: UIViewController>(vc: T.Type = T.self) -> T? {
-        return self.getInstance(obj: vc)
+    func getVCInstance<T: UIViewController>(expect: T.Type) -> T? {
+        return self.getInstance(expect: expect)
+    }
+    func getVCCls<T: UIViewController>(expect: T.Type) -> T.Type? {
+        return self.getCls(expect: expect)
     }
     /// 从字符串初始化一个 NSObject 实例
     /// - Returns: NSObject 实例
-    func getInstance<T: NSObject>(obj: T.Type = T.self) -> T? {
-        guard let nameSpace = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String,
+    func getInstance<T: NSObject>(expect: T.Type) -> T? {
+        guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String,
               let cls = NSClassFromString(nameSpace + "." + base),
               let objType = cls as? T.Type else { return nil }
         let instance = objType.init()
         return instance
+    }
+    func getCls<T: NSObject>(expect: T.Type) -> T.Type? {
+        guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String,
+              let cls = NSClassFromString(nameSpace + "." + base),
+              let objType = cls as? T.Type else { return nil }
+        return objType
     }
 }
 

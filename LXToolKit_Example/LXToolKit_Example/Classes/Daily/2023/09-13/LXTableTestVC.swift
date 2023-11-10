@@ -104,3 +104,8 @@ extension LXTableTestVC {
         }
     }
 }
+
+#Preview("VC") {
+    let vc = LXTableTestVC()
+    return vc
+}

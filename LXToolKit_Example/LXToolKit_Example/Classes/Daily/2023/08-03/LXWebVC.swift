@@ -76,7 +76,7 @@ extension LXWebVC {
         super.prepareUI()
         self.view.backgroundColor = .white
         // self.edgesForExtendedLayout = []
-        self.navigationController?.isNavigationBarHidden = true
+        // self.navigationController?.isNavigationBarHidden = true
         // self.title = "<#title#>"
 
         [
