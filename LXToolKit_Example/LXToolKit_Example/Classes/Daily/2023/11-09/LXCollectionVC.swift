@@ -26,6 +26,21 @@ extension LXCollectionVC {
         }
     }
 }
+// MARK: - 👀
+extension LXCollectionVC {
+    struct LXTestModel: Hashable {
+        var id = UUID()
+        var kind: SectionLayoutKind
+        var idx: Float
+        var title: String {
+            switch kind {
+            case .list: return "list-\(idx)"
+            case .grid5: return "grid5-\(idx)"
+            case .grid3: return "grid3-\(idx)"
+            }
+        }
+    }
+}
 
 class LXCollectionVC: UIViewController {
     // MARK: 📌UI
@@ -94,7 +109,7 @@ class LXCollectionVC: UIViewController {
         v.alwaysBounceVertical = false
         v.alwaysBounceHorizontal = false
         // v.allowsMultipleSelection = true
-        v.isPagingEnabled = true
+        // v.isPagingEnabled = true
 
         // v.delegate = self
         // v.dataSource = self
@@ -120,16 +135,26 @@ class LXCollectionVC: UIViewController {
         return v
     }()
     // MARK: 🔗Vaiables
-    private var dataList = Array(0..<10)
-    private var dataGrid3List = Array(0..<10)
-    private var dataGrid5List = Array(0..<10)
-    private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, String>?
+    private lazy var dataList: [LXTestModel] = {
+        return Array(0..<10)
+            .map { LXTestModel(kind: .list, idx: Float($0)) }
+    }()
+    private var dataGrid3List: [LXTestModel] = {
+        return Array(0..<30).map { LXTestModel(kind: .grid3, idx: Float($0)) }
+    }()
+    private var dataGrid5List: [LXTestModel] = {
+        return Array(0..<20).map { LXTestModel(kind: .grid5, idx: Float($0)) }
+    }()
+    private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, LXTestModel>?
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         prepareUI()
+        if #available(iOS 14.0, *) {
+            prepareCollectionDataSource()
+        }
         prepareCollection()
     }
 
@@ -145,41 +170,158 @@ extension LXCollectionVC {}
 @available(iOS 14.0, *)
 private extension LXCollectionVC {
     func prepareCollectionDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<LXCollectionCell, String> { cell, indexPath, item in
+        let cellRegistration = UICollectionView.CellRegistration<LXCollectionCell, LXTestModel> { cell, indexPath, item in
             // cell.labTitle.text = "\(item)"
             // cell.contentView.backgroundColor = .cornflowerBlue
             // cell.layer.borderColor = UIColor.black.cgColor
             // cell.layer.borderWidth = 1.0
             // cell.labTitle.textAlignment = .center
             // cell.labTitle.font = .preferredFont(forTextStyle: .title1)
-            cell.dataFill("Row: \(item)")
+            cell.dataFill(item.title)
         }
-        dataSource = UICollectionViewDiffableDataSource<SectionLayoutKind, String>(collectionView: collectionView) { collectionView, indexPath, item in
+        dataSource = UICollectionViewDiffableDataSource<SectionLayoutKind, LXTestModel>(collectionView: collectionView) { collectionView, indexPath, item in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
+    }
+    func prepareRightMenu() {
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "list", menu: UIMenu(children: [
+                UIAction(title: "insert first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .list, position: .first, operation: .insert)
+                }),
+                UIAction(title: "insert last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .list, position: .last, operation: .insert)
+                }),
+                UIAction(title: "remove first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .list, position: .first, operation: .remove)
+                }),
+                UIAction(title: "remove last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .list, position: .last, operation: .remove)
+                }),
+            ])),
+            UIBarButtonItem(title: "grid3", menu: UIMenu(children: [
+                UIAction(title: "insert first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid3, position: .first, operation: .insert)
+                }),
+                UIAction(title: "insert last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid3, position: .last, operation: .insert)
+                }),
+                UIAction(title: "remove first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid3, position: .first, operation: .remove)
+                }),
+                UIAction(title: "remove last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid3, position: .last, operation: .remove)
+                }),
+            ])),
+            UIBarButtonItem(title: "grid5", menu: UIMenu(children: [
+                UIAction(title: "insert first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid5, position: .first, operation: .insert)
+                }),
+                UIAction(title: "insert last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid5, position: .last, operation: .insert)
+                }),
+                UIAction(title: "remove first", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid5, position: .first, operation: .remove)
+                }),
+                UIAction(title: "remove last", handler: {[weak self] _ in
+                    guard let self else { return }
+                    self.operation(to: .grid5, position: .last, operation: .remove)
+                }),
+            ])),
+        ]
+    }
+}
+
+// MARK: - 🔐
+private extension LXCollectionVC {
+    enum OperationPosition {
+        case first, last
+    }
+    enum OperationType {
+        case insert, remove
+    }
+    func operation(to kind: SectionLayoutKind, position: OperationPosition, operation: OperationType) {
+        var list: [LXTestModel]
+        switch kind {
+        case .list:
+            list = self.dataList
+        case .grid5:
+            list = self.dataGrid5List
+        case .grid3:
+            list = self.dataGrid3List
+        }
+        switch operation {
+        case .insert:
+            switch position {
+            case .first:
+                if let item = list.first {
+                    let idx = item.idx + 0.1
+                    let tmp = LXTestModel(kind: kind, idx: idx)
+                    list.insert(tmp, at: 0)
+                }
+            case .last:
+                if let item = list.last {
+                    let idx = item.idx + 0.1
+                    let tmp = LXTestModel(kind: kind, idx: idx)
+                    list.append(tmp)
+                }
+            }
+        case .remove:
+            switch position {
+            case .first: list.removeFirst()
+            case .last: list.removeLast()
+            }
+        }
+        switch kind {
+        case .list:
+            self.dataList = list
+        case .grid5:
+            self.dataGrid5List = list
+        case .grid3:
+            self.dataGrid3List = list
+        }
+        self.prepareCollection()
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXCollectionVC {
     func prepareCollection() {
-        if #available(iOS 14.0, *) {
-            prepareCollectionDataSource()
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<SectionLayoutKind, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<SectionLayoutKind, LXTestModel>()
         let itemsPerSection = 10
-        SectionLayoutKind.allCases.forEach { kind in
+        SectionLayoutKind.allCases.forEach {[weak self] kind in
+            guard let self else { return }
             snapshot.appendSections([kind])
-            let itemOffset = kind.rawValue * itemsPerSection
-            let itemUpperbound = itemOffset + itemsPerSection
-            let list = Array(itemOffset..<itemUpperbound).map { "\(kind.name)-\($0)" }
+            let list: [LXTestModel];
+            switch kind {
+            case .list:
+                list = self.dataList
+            case .grid3:
+                list = self.dataGrid3List
+            case .grid5:
+                list = self.dataGrid5List
+            }
             snapshot.appendItems(list, toSection: kind)
         }
-        dataSource?.apply(snapshot, animatingDifferences: false)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = ""
+        if #available(iOS 14.0, *) {
+            prepareRightMenu()
+        }
 
         [collectionView].forEach(self.view.addSubview)
 
