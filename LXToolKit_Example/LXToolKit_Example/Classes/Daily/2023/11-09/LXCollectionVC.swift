@@ -9,13 +9,14 @@ import UIKit
 // MARK: - 👀
 extension LXCollectionVC {
     enum SectionLayoutKind: Int, CaseIterable {
-    case list, grid5, grid3, group, orthogonal
+    case list, grid5, grid3, group, groupOne, orthogonal
         var columnCount: Int {
             switch self {
             case .list: return 1
             case .grid5: return 5
             case .grid3: return 3
             case .group: return 1
+            case .groupOne: return 1
             case .orthogonal: return 1
             }
         }
@@ -25,11 +26,25 @@ extension LXCollectionVC {
             case .grid5: return "grid5"
             case .grid3: return "grid3"
             case .group: return "group"
+            case .groupOne: return "groupOne"
             case .orthogonal: return "orthogonal"
             }
         }
     }
 }
+
+// MARK: - 🔐
+private extension LXCollectionVC {
+    enum OperationPosition {
+        case first, last
+    }
+    enum OperationType {
+        case insert(kind: SectionLayoutKind, position: OperationPosition, data: LXTestModel? = nil)
+        case remove(kind: SectionLayoutKind, position: OperationPosition)
+        case orthogonal(_ orthogonalScrollingBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior)
+    }
+}
+
 // MARK: - 👀
 extension LXCollectionVC {
     struct LXTestModel: Hashable {
@@ -90,8 +105,7 @@ class LXCollectionVC: UIViewController {
     private static let sectionHeaderElementKind = "sectionHeaderElementKind"
     private static let sectionFooterElementKind = "sectionFooterElementKind"
     private lazy var dataList: [LXTestModel] = {
-        return Array(0..<10)
-            .map { LXTestModel(kind: .list, idx: Float($0)) }
+        return Array(0..<10).map { LXTestModel(kind: .list, idx: Float($0)) }
     }()
     private var dataGrid3List: [LXTestModel] = {
         return Array(0..<30).map { LXTestModel(kind: .grid3, idx: Float($0)) }
@@ -101,6 +115,9 @@ class LXCollectionVC: UIViewController {
     }()
     private var dataGroupList: [LXTestModel] = {
         return Array(0..<20).map { LXTestModel(kind: .group, idx: Float($0)) }
+    }()
+    private var dataGroupOneList: [LXTestModel] = {
+        return Array(0..<2).map { LXTestModel(kind: .groupOne, idx: Float($0)) }
     }()
     private var dataOrthogonalList: [LXTestModel] = {
         return Array(0..<20).map { LXTestModel(kind: .orthogonal, idx: Float($0)) }
@@ -134,7 +151,7 @@ private extension LXCollectionVC {
         let layout = UICollectionViewCompositionalLayout { (sectionIdx: Int, layoutEnv: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = SectionLayoutKind(rawValue: sectionIdx) else { return nil }
             switch sectionKind {
-            case .group, .orthogonal:
+            case .group, .groupOne, .orthogonal:
                 let bgNestedGroupDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXCollectionVC.sectionBackgroundDecorationElementKind)
                 bgNestedGroupDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10.0, bottom: 10.0, trailing: 10.0)
 
@@ -182,7 +199,7 @@ private extension LXCollectionVC {
                 sectionHeader.pinToVisibleBounds = true
                 sectionHeader.zIndex = 2
                 section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
-                if(sectionKind == .orthogonal) {
+                if(sectionKind == .orthogonal || sectionKind == .groupOne) {
                     bgNestedGroupDecoration.zIndex = 99
                     section.orthogonalScrollingBehavior = self.orthogonalScrollingBehavior
                     // section.orthogonalScrollingProperties = .DecelerationRate
@@ -242,27 +259,27 @@ private extension LXCollectionVC {
     }
     func prepareRightMenu() {
         let orthogonalSubmenu: [UIAction] = [
-            UIAction(title: "continuous", handler: {[weak self] _ in
+            UIAction(title: "continuous", state: self.orthogonalScrollingBehavior == .continuous ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.continuous))
             }),
-            UIAction(title: "continuousGroupLeadingBoundary", handler: {[weak self] _ in
+            UIAction(title: "continuousGroupLeadingBoundary", state: self.orthogonalScrollingBehavior == .continuousGroupLeadingBoundary ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.continuousGroupLeadingBoundary))
             }),
-            UIAction(title: "paging", handler: {[weak self] _ in
+            UIAction(title: "paging", state: self.orthogonalScrollingBehavior == .paging ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.paging))
             }),
-            UIAction(title: "groupPaging", handler: {[weak self] _ in
+            UIAction(title: "groupPaging", state: self.orthogonalScrollingBehavior == .groupPaging ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.groupPaging))
             }),
-            UIAction(title: "groupPagingCentered", handler: {[weak self] _ in
+            UIAction(title: "groupPagingCentered", state: self.orthogonalScrollingBehavior == .groupPagingCentered ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.groupPagingCentered))
             }),
-            UIAction(title: "none", handler: {[weak self] _ in
+            UIAction(title: "none", state: self.orthogonalScrollingBehavior == .none ? .on : .off, handler: {[weak self] _ in
                 guard let self else { return }
                 self.operation(with: .orthogonal(.none))
             }),
@@ -354,45 +371,26 @@ private extension LXCollectionVC {
 
 // MARK: - 🔐
 private extension LXCollectionVC {
-    enum OperationPosition {
-        case first, last
-    }
-    enum OperationType {
-        case insert(kind: SectionLayoutKind, position: OperationPosition, data: LXTestModel? = nil)
-        case remove(kind: SectionLayoutKind, position: OperationPosition)
-        case orthogonal(_ orthogonalScrollingBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior)
-    }
-}
-// MARK: - 🔐
-private extension LXCollectionVC {
     func getList(from kind: SectionLayoutKind) -> [LXTestModel] {
         var list: [LXTestModel]
         switch kind {
-        case .list:
-            list = self.dataList
-        case .grid5:
-            list = self.dataGrid5List
-        case .grid3:
-            list = self.dataGrid3List
-        case .group:
-            list = self.dataGroupList
-        case .orthogonal:
-            list = self.dataOrthogonalList
+        case .list: list = self.dataList
+        case .grid5: list = self.dataGrid5List
+        case .grid3: list = self.dataGrid3List
+        case .group: list = self.dataGroupList
+        case .groupOne: list = self.dataGroupOneList
+        case .orthogonal: list = self.dataOrthogonalList
         }
         return list
     }
     func updateList(with kind: SectionLayoutKind, list: [LXTestModel]) {
         switch kind {
-        case .list:
-            self.dataList = list
-        case .grid5:
-            self.dataGrid5List = list
-        case .grid3:
-            self.dataGrid3List = list
-        case .group:
-            self.dataGroupList = list
-        case .orthogonal:
-            self.dataOrthogonalList = list
+        case .list: self.dataList = list
+        case .grid5: self.dataGrid5List = list
+        case .grid3: self.dataGrid3List = list
+        case .group: self.dataGroupList = list
+        case .groupOne: self.dataGroupOneList = list
+        case .orthogonal: self.dataOrthogonalList = list
         }
     }
     func operation(with operation: OperationType) {
@@ -442,21 +440,10 @@ private extension LXCollectionVC {
         SectionLayoutKind.allCases.forEach {[weak self] kind in
             guard let self else { return }
             snapshot.appendSections([kind])
-            let list: [LXTestModel];
-            switch kind {
-            case .list:
-                list = self.dataList
-            case .grid3:
-                list = self.dataGrid3List
-            case .grid5:
-                list = self.dataGrid5List
-            case .group:
-                list = self.dataGroupList
-            case .orthogonal:
-                if #available(iOS 14.0, *) {
-                    collectionView.setCollectionViewLayout(prepareLayout(), animated: true)
-                }
-                list = self.dataOrthogonalList
+            let list = self.getList(from: kind)
+            if #available(iOS 14.0, *),
+               kind == .orthogonal {
+                collectionView.setCollectionViewLayout(prepareLayout(), animated: true)
             }
             snapshot.appendItems(list, toSection: kind)
         }
