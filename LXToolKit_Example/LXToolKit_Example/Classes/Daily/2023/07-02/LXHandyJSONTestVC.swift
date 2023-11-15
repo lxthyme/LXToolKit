@@ -5,7 +5,7 @@
 //  Created by lxthyme on 2023/7/2.
 //
 import UIKit
-import HandyJSON
+import ObjectMapper
 
 class LXHandyJSONTestVC: LXBaseVC {
     // MARK: 📌UI
@@ -74,17 +74,55 @@ private extension LXHandyJSONTestVC {
          .91, .90, .93, .92, .95, .94, .97, .96, .99, .98,
          .100, .101, .102, .103, .104, .105, .106, .107, .108, .109
          */
-        let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { $0 }
-        let json: [String: [Double]] = [
-            "f1": testNumberList
+        // let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { $0 }
+        let testNumberList = [0.3, 0.6, 0.7, 99.7, 99.8, 99.6]
+        let json: [String: Any] = [
+            "f0": stride(from: 0, to: 10, by: 0.1).compactMap { $0 },
+            "f1": stride(from: 10, to: 20, by: 0.1).compactMap { $0 },
+            "f2": stride(from: 10, to: 30, by: 0.1).compactMap { $0 },
+            "f3": stride(from: 10, to: 40, by: 0.1).compactMap { $0 },
+            "f4": stride(from: 40, to: 50, by: 0.1).compactMap { $0 },
+            "f5": stride(from: 50, to: 60, by: 0.1).compactMap { $0 },
+            "f6": stride(from: 60, to: 70, by: 0.1).compactMap { $0 },
+            "f7": stride(from: 70, to: 80, by: 0.1).compactMap { $0 },
+            "f8": stride(from: 80, to: 90, by: 0.1).compactMap { $0 },
+            "f9": stride(from: 90, to: 100, by: 0.1).compactMap { $0 },
+            "f10": stride(from: 100, to: 110, by: 0.1).compactMap { $0 },
+            "f11": [99.1, 99.4, 99.6, 99.9],
+            "t1": 26.9,
+            "t2": 27.4,
         ]
-        guard let model = LXFloatTestModel.deserialize(from: json) else { return }
-        // let sum = model.f1?.prefix(3).reduce(0, +)
-        dlog("json: \(json)")
-        dlog("model: \(model.debugDescription)")
-        dlog("model: \(model.toJSONString(prettyPrint: true) ?? "")")
+        let start = DispatchTime.now()
+        guard let m1 = LXFloatTestModel(JSON: json) else {
+            return
+        }
+        let end = DispatchTime.now()
+        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+        let timestamp = Double(nanoTime) / 1_000_000_000
+        dlog("-->timestamp: \(timestamp)")
+        // dlog("json: \(json)")
+        let sum = testNumberList.reduce(0, +)
+        dlog("-->sum: \(sum)")
+        guard let data = json.jsonData() else {
+            return
+        }
+        do {
+        let start2 = DispatchTime.now()
+        let decoder = JSONDecoder()
+        let m2 = try decoder.decode(LXCodableTestModel.self, from: data)
+        let end2 = DispatchTime.now()
+        let nanoTime2 = end.uptimeNanoseconds - start.uptimeNanoseconds
+        let timestamp2 = Double(nanoTime) / 1_000_000_000
+        dlog("-->timestamp2: \(timestamp2)")
+        dlog("m2: \(m2)")
+            /// m1.f0?.compactMap { $0.string }.filter { $0.count > 5 }
+        // dlog("model: \(model.debugDescription)")
+        // dlog("model: \(model.toJSONString(prettyPrint: true) ?? "")")
         // dlog("sum: \(sum ?? 0)")
-        titleTextview.text = model.debugDescription
+        // titleTextview.text = model.debugDescription
+        } catch {
+            dlog("error: \(error)")
+        }
     }
 }
 

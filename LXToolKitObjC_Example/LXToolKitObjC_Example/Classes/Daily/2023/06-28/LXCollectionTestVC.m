@@ -9,7 +9,7 @@
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import "MyCollectionCell.h"
-#import "CHTCollectionViewWaterfallLayout.h"
+#import <CHTCollectionViewWaterfallLayout/CHTCollectionViewWaterfallLayout.h>
 #import <stdlib.h>
 
 @interface LXCollectionTestVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,

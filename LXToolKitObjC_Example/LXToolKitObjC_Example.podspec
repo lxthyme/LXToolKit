@@ -77,5 +77,6 @@ TODO: Add long description of the pod here.
   s.dependency 'CocoaLumberjack'
   s.dependency 'DJRSwiftResource'
   s.dependency 'DJTestKit'
+  s.dependency 'CHTCollectionViewWaterfallLayout/ObjC'
   # s.dependency ''
 end
