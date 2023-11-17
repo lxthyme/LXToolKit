@@ -17,10 +17,10 @@ enum SongService: APIService {
     case myRecord
     ///成长值充值记录
     case growthRecord(page: Int, lastYearMonth: String, last_id: String)
-    var baseURL: String {
-        return "http://api.com:3003/api/uu"
+    var baseURL: URL {
+        return URL(string: "http://api.com:3003/api/uu")!
     }
-    var params: APIParameter {
+    var parameter: APIParameter {
         switch self {
             case .recordList(let sort, let page, let pageSize):
                 var p: [String: Any] = [:]

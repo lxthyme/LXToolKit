@@ -23,6 +23,7 @@ struct LXCodableTestModel: Codable {
     var f9: [LXTestType]?
     var f10: [LXTestType]?
     var f11: [LXTestType]?
+    var f12: [LXTestType]?
     var t1: Decimal?
     var t2: Decimal?
     var f_t1: Decimal?
@@ -62,6 +63,7 @@ struct LXFloatTestModel: Mappable {
     var f9: [Decimal]?
     var f10: [Decimal]?
     var f11: [Decimal]?
+    var f12: [Decimal]?
     var t1: Decimal?
     var t2: Decimal?
     var all: [Decimal] {
@@ -97,6 +99,7 @@ struct LXFloatTestModel: Mappable {
         f9 <- (map["f9"], DecimalTransform())
         f10 <- (map["f10"], DecimalTransform())
         f11 <- (map["f11"], DecimalTransform())
+        f12 <- (map["f12"], DecimalTransform())
         t1 <- (map["t1"], DecimalTransform())
         t2 <- (map["t2"], DecimalTransform())
     }

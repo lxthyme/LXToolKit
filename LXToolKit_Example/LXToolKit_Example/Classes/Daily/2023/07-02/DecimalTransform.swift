@@ -13,14 +13,19 @@ open class DecimalTransform: ObjectMapper.TransformType {
     public typealias JSON = Decimal
     // MARK: 🛠Life Cycle
     public func transformFromJSON(_ value: Any?) -> Decimal? {
+        var result: Decimal? = nil
         if let num = value as? Double {
-            return Decimal(num)
+            result = Decimal(num)
         } else if let num = value as? NSNumber {
-            return Decimal(string: num.description)
+            result = Decimal(string: num.description)
         } else if let string = value as? String {
-            return Decimal(string: string)
+            result = Decimal(string: string)
         }
-        return nil
+        // if let count = result?.string.count,
+        //    count > 5 {
+        //     dlog("-->result: \(result?.string ?? "NaN")")
+        // }
+        return result
     }
     public func transformToJSON(_ value: Decimal?) -> Decimal? {
         return value

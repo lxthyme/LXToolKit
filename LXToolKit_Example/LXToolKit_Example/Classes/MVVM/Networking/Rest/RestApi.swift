@@ -11,7 +11,7 @@ import Moya_ObjectMapper
 import Alamofire
 import HandyJSON
 
-typealias MoyaError = Moya.MoyaError
+// public typealias MoyaError = Moya.MoyaError
 
 class RestApi {
     let githubProvider: GithubNetworking

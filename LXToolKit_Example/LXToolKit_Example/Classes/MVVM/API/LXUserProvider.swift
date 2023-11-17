@@ -11,10 +11,10 @@ import LXToolKit
 
 enum LXUserProvider: APIService {
     case newUserFloat
-    var baseURL: String {
-        return LX_Base_URL
+    var baseURL: URL {
+        return URL(string: LX_Base_URL)!
     }
-    var params: APIParameter {
+    var parameter: APIParameter {
         switch self {
             case .newUserFloat:
                 return APIParameter(path: "/api/newuser/float", params: ["user": 234])
