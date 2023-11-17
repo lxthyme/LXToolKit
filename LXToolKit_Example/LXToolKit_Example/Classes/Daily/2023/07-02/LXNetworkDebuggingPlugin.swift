@@ -132,6 +132,7 @@ extension LXNetworkDebuggingPlugin {
                   ╔═══════════ 🎈 Request 🎈 ═══════════
                   ║ Time: \(date)
                   ║ URL: {{\(requestFullLink(with: target))}}
+                  ║ Parameters: \(param)
                   ║-------------------------------------
                   ║ Plugins: \(pluginString(plugins))
                   ╚═══════════════════════════════════════
@@ -177,8 +178,9 @@ extension LXNetworkDebuggingPlugin {
         case let .success(response):
             do {
                 let response = try response.filterSuccessfulStatusCodes()
-                let json = try response.mapJSON()
-                printResponse(target, json, local, true)
+                // let json = try response.mapJSON()
+                let jsonString = String(data: response.data, encoding: .utf8)
+                printResponse(target, jsonString, local, true)
             } catch MoyaError.jsonMapping(let response) {
                 let error = MoyaError.jsonMapping(response)
                 printResponse(target, error.localizedDescription, local, false)
@@ -193,7 +195,7 @@ extension LXNetworkDebuggingPlugin {
         }
     }
     
-    private func printResponse(_ target: TargetType, _ json: Any, _ local: Bool, _ success: Bool) {
+    private func printResponse(_ target: TargetType, _ json: String?, _ local: Bool, _ success: Bool) {
         guard AppConfig.Network.loggingEnabled else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSZ"
@@ -218,6 +220,7 @@ extension LXNetworkDebuggingPlugin {
                   ║ Result: \(success ? "Successed." : "Failed.")
                   ║ DataType: \(local ? "Local data." : "Remote data.")
                   ║ Response: \(json)
+                  ║ END <-- \(target.path)
                   ╚═══════════════════════════════════════
                   """)
         } else {
@@ -234,6 +237,7 @@ extension LXNetworkDebuggingPlugin {
                   ║ Result: \(success ? "Successed." : "Failed.")
                   ║ DataType: \(local ? "Local data." : "Remote data.")
                   ║ Response: \(json)
+                  ║ END <-- \(target.path)
                   ╚═══════════════════════════════════════
                   """)
         }
