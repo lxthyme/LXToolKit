@@ -13,10 +13,10 @@ enum LXMainProvider: APIService {
     case zen
     case newUserFloat
     case platformInfo
-    var baseURL: String {
-        return LX_Base_URL
+    var baseURL: URL {
+        return URL(string: LX_Base_URL)!
     }
-    var params: APIParameter {
+    var parameter: APIParameter {
         switch self {
             case .zen:
 //                return ("/api/zen", ["zen": 233])

@@ -8,6 +8,7 @@
 import Foundation
 import Moya
 import Alamofire
+import RxNetworks
 
 class OnlineProvider<Target> where Target: Moya.TargetType {
     // MARK: 🔗Vaiables
@@ -36,8 +37,8 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
             .flatMap { _ in// Turn the online state into a network request
                 return actualRequest
                     .filterSuccessfulStatusCodes()
-                    .do { response in
-                    } onError: { error in
+                    .do(onSuccess: { response in
+                    }, onError: { error in
                         if let error = error as? MoyaError {
                             switch error {
                             case .statusCode(let response):
@@ -51,7 +52,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                             default: break
                             }
                         }
-                    }
+                    })
             }
     }
 }
@@ -64,6 +65,16 @@ protocol NetworkingType {
     static func stubbingNetworking() -> Self
 }
 
+// MARK: - 🔐
+extension NetworkingType {
+    static func defaultEntryDateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        return formatter
+    }
+}
+
 struct GithubNetworking: NetworkingType {
     typealias T = DJAPI
     let provider: OnlineProvider<T>
@@ -73,6 +84,24 @@ struct GithubNetworking: NetworkingType {
     }
     static func stubbingNetworking() -> GithubNetworking {
         return GithubNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
+                                                         requestClosure: GithubNetworking.endpointResolver(),
+                                                         stubClosure: MoyaProvider.immediatelyStub,
+                                                         online: .just(true)))
+    }
+    func request(_ token: T) -> Observable<Moya.Response> {
+        let actualRequest = self.provider.request(token)
+        return actualRequest
+    }
+}
+struct TestFloatNetworking: NetworkingType {
+    typealias T = FloatApi
+    let provider: OnlineProvider<T>
+
+    static func defaultNetworking() -> TestFloatNetworking {
+        return TestFloatNetworking(provider: newProvider(plugins))
+    }
+    static func stubbingNetworking() -> TestFloatNetworking {
+        return TestFloatNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
                                                          requestClosure: GithubNetworking.endpointResolver(),
                                                          stubClosure: MoyaProvider.immediatelyStub,
                                                          online: .just(true)))
@@ -126,6 +155,7 @@ extension NetworkingType {
         return { target in
             let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
 
+            // Sign all non-XApp, non-XAuth token requests
             return endpoint
         }
     }
@@ -135,7 +165,33 @@ extension NetworkingType {
     static var plugins: [PluginType] {
         var plugins: [PluginType] = []
         if AppConfig.Network.loggingEnabled {
-            plugins.append(NetworkLoggerPlugin())
+        //     let formatter = NetworkLoggerPlugin.Configuration.Formatter { identifier, message, target in
+        //         let date = defaultEntryDateFormatter().string(from: Date())
+        //         return "Moya_Logger: [\(date)] \(identifier): \(message)"
+        //     } requestData: { data in
+        //         dlog("requestData")
+        //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
+        //     } responseData: { data in
+        //         dlog("responseData")
+        //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
+        //     }
+        //     
+        //     let opt: NetworkLoggerPlugin.Configuration.LogOptions = [
+        //         .requestMethod,
+        //         .requestHeaders,
+        //         .requestBody,
+        //         .formatRequestAscURL,
+        //         .successResponseBody,
+        //         .errorResponseBody,
+        //     ]
+        //     let config = NetworkLoggerPlugin.Configuration(formatter: formatter,
+        //                                                    output: { target, items in
+        //         for item in items {
+        //             Swift.print(item, separator: ",", terminator: "\n")
+        //         }
+        //     }, logOptions: opt)
+        //     plugins.append(NetworkLoggerPlugin(configuration: config))
+            plugins.append(LXNetworkDebuggingPlugin())
         }
         return plugins
     }

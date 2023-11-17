@@ -1,12 +1,12 @@
 //
-//  LXCollectionCell.swift
+//  LXCollectionHeaderFooterView.swift
 //  LXToolKit_Example
 //
-//  Created by lxthyme on 2023/11/9.
+//  Created by lxthyme on 2023/11/13.
 //
 import UIKit
 
-class LXCollectionCell: UICollectionViewCell {
+class LXCollectionHeaderFooterView: UICollectionReusableView {
     // MARK: 📌UI
     private lazy var labTitle: UILabel = {
         let label = UILabel()
@@ -32,33 +32,31 @@ class LXCollectionCell: UICollectionViewCell {
 }
 
 // MARK: 🌎LoadData
-extension LXCollectionCell {
-    public func dataFill(_ title: String) {
+extension LXCollectionHeaderFooterView {
+    func dataFill(_ title: String) {
         labTitle.text = title
     }
 }
 
 // MARK: 👀Public Actions
-extension LXCollectionCell {}
+extension LXCollectionHeaderFooterView {}
 
 // MARK: 🔐Private Actions
-private extension LXCollectionCell {}
+private extension LXCollectionHeaderFooterView {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXCollectionCell {
+private extension LXCollectionHeaderFooterView {
     func prepareUI() {
-        contentView.backgroundColor = .white
-        contentView.layer.borderWidth = 0.5
-        contentView.layer.borderColor = UIColor.cyan.cgColor
-        contentView.layer.cornerRadius = 8
-        contentView.layer.masksToBounds = true
+        self.backgroundColor = .lightGray
+        layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        layer.borderWidth = 1
 
-        [labTitle].forEach(self.contentView.addSubview)
+        [labTitle].forEach(self.addSubview)
 
         masonry()
     }
 
-    func masonry() {
+    func masonry() { 
         labTitle.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
