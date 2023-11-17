@@ -195,12 +195,10 @@ private extension LXHandyJSONTestVC {
     func queryTestFloat() {
         let provider = TestFloatNetworking.defaultNetworking()
         provider.request(.testFloat(id: "12321"))
-            // .map { $0 as? [String: Any] }
+            // .mapObject(LXFloatTestModel.self)
             .mapObject(LXFloatTestModel.self)
-            // .debug("-->query")
-            // .flatMapLatest(requestTestFloat)
             .subscribe { res in
-                // dlog("res: \(res)")
+                dlog("res: \(res)")
             }
             .disposed(by: rx.disposeBag)
     }
