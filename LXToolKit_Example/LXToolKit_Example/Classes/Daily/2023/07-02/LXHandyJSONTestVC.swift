@@ -137,10 +137,23 @@ class LXHandyJSONTestVC: LXBaseVC {
         tv.textAlignment = .left
         return tv
     }()
-    private lazy var btnGo: UIButton = {
+    private lazy var btnHeaderRefresh: UIButton = {
         let btn = UIButton(type: .custom)
+        btn.contentEdgeInsets = UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)
 
-        btn.setTitle("Go", for: .normal)
+        btn.setTitle("Header Refresh", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 8
+        return btn
+    }()
+    private lazy var btnFootererRefresh: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.contentEdgeInsets = UIEdgeInsets(top: 3, left: 5, bottom: 3, right: 5)
+
+        btn.setTitle("Footer Refresh", for: .normal)
         btn.setTitleColor(.black, for: .normal)
 
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -149,8 +162,8 @@ class LXHandyJSONTestVC: LXBaseVC {
         return btn
     }()
     // MARK: 🔗Vaiables
-    var m1: LXFloatTestModel?
-    let trigger = PublishSubject<Void>()
+    let headerTrigger = PublishSubject<Void>()
+    let footerTrigger = PublishSubject<Void>()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -184,10 +197,13 @@ extension LXHandyJSONTestVC {
         //     SVProgressHUD.show()
         // }
         // .disposed(by: rx.disposeBag)
-        let trigger = Observable
-            .of(trigger.skip(1))
+        let headerTrigger = Observable
+            .of(headerTrigger.skip(1))
             .merge()
-        let intput = LXFloatTestVM.Input(headerRefresh: trigger)
+        let footerTrigger = Observable
+            .of(footerTrigger.skip(1))
+            .merge()
+        let intput = LXFloatTestVM.Input(headerRefresh: headerTrigger, footerRefresh: footerTrigger)
         // trigger.flatMapLatest { _ in
         //     let provider = TestFloatNetworking.defaultNetworking()
         //     return provider.request(.testFloat(id: "12321"))
@@ -200,6 +216,11 @@ extension LXHandyJSONTestVC {
         // .disposed(by: rx.disposeBag)
         let output = vm.transform(input: intput)
         output.floatModel
+            .subscribe(onNext: { model in
+                dlog("model: \(model)")
+            })
+            .disposed(by: rx.disposeBag)
+        output.codableModel
             .subscribe(onNext: { model in
                 dlog("model: \(model)")
             })
@@ -224,32 +245,8 @@ private extension LXHandyJSONTestVC {
     }
     func optionArg(t1: Int, t2: Int, t3: Int = 1, t4: Int = 1, t5: Int = 1) {
     }
-    func queryTestFloat() {
-        // let provider = TestFloatNetworking.defaultNetworking()
-        // provider.request(.testFloat(id: "12321"))
-        //     // .mapObject(LXFloatTestModel.self)
-        //     .mapObject(LXFloatTestModel.self)
-        //     .subscribe { res in
-        //         dlog("res: \(res)")
-        //     }
-        //     .disposed(by: rx.disposeBag)
-        trigger.onNext(())
-    }
     func testFloat() {
-        /**
-         .01, .02, .03, .04, .05, .06, .07, .08, .09,
-         .10, .11, .12, .13, .14, .15, .16, .17, .18, .19,
-         .30, .31, .32, .33, .34, .35, .36, .37, .38, .39,
-         .40, .41, .42, .43, .44, .45, .46, .47, .48, .49,
-         .50, .51, .52, .53, .54, .55, .56, .57, .58, .59,
-         .60, .61, .62, .63, .64, .65, .66, .67, .68, .69,
-         .70, .71, .72, .73, .74, .75, .76, .77, .78, .79,
-         .80, .81, .82, .83, .84, .85, .86, .87, .88, .89,
-         .91, .90, .93, .92, .95, .94, .97, .96, .99, .98,
-         .100, .101, .102, .103, .104, .105, .106, .107, .108, .109
-         */
         let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { $0 }
-        // let testNumberList = [0.3, 0.6, 0.7, 99.7, 99.8, 99.6]
         let json: [String: [Double]] = [
             "f0": stride(from: 0, to: 10, by: 0.1).compactMap { $0 },
             "f1": stride(from: 10, to: 20, by: 0.1).compactMap { $0 },
@@ -268,42 +265,41 @@ private extension LXHandyJSONTestVC {
             // "t1": 0.3,
             // "t2": 99.4,
         ]
-        queryTestFloat()
-        let start = DispatchTime.now()
-        guard let m1 = LXFloatTestModel(JSON: json) else {
-            return
+        let test1 = {
+            let start = DispatchTime.now()
+            guard let m1 = LXFloatTestModel(JSON: json) else {
+                return
+            }
+            let end = DispatchTime.now()
+            let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+            let timestamp = Double(nanoTime) / 1_000_000_000
+            dlog("-->timestamp1: \(timestamp)")
+            let sum1 = m1.all.reduce(0, +)
+            dlog("sum1: \(sum1)")
         }
-        let end = DispatchTime.now()
-        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
-        let timestamp = Double(nanoTime) / 1_000_000_000
-        dlog("-->timestamp: \(timestamp)")
-        self.m1 = m1
+        let test2 = {
+            guard let data = json.jsonData() else {
+                return
+            }
+            do {
+                let start2 = DispatchTime.now()
+                let decoder = JSONDecoder()
+                let m2 = try decoder.decode(LXCodableTestModel.self, from: data)
+                let end2 = DispatchTime.now()
+                let nanoTime2 = end2.uptimeNanoseconds - start2.uptimeNanoseconds
+                let timestamp2 = Double(nanoTime2) / 1_000_000_000
+                dlog("-->timestamp2: \(timestamp2)")
+                let sum2 = m2.all.reduce(0, +)
+                dlog("sum2: \(sum2)")
+            } catch {
+                dlog("error: \(error)")
+            }
+        }
+        test1()
+        test2()
         // dlog("json: \(json)")
         let sum = testNumberList.reduce(0, +)
         dlog("-->sum: \(sum)")
-        // dlog("m1: \(m1)")
-        guard let data = json.jsonData() else {
-            return
-        }
-        do {
-        let start2 = DispatchTime.now()
-        let decoder = JSONDecoder()
-        let m2 = try decoder.decode(LXCodableTestModel.self, from: data)
-        let end2 = DispatchTime.now()
-        let nanoTime2 = end2.uptimeNanoseconds - start2.uptimeNanoseconds
-        let timestamp2 = Double(nanoTime2) / 1_000_000_000
-        dlog("-->timestamp2: \(timestamp2)")
-            let sum1 = m1.all.reduce(0, +)
-            dlog("sum1: \(sum1)")
-            // dlog("m2: \(m1)")
-            /// m1.f0?.compactMap { $0.string }.filter { $0.count > 5 }
-        // dlog("model: \(model.debugDescription)")
-        // dlog("model: \(model.toJSONString(prettyPrint: true) ?? "")")
-        // dlog("sum: \(sum ?? 0)")
-        // titleTextview.text = model.debugDescription
-        } catch {
-            dlog("error: \(error)")
-        }
     }
 }
 
@@ -311,12 +307,18 @@ private extension LXHandyJSONTestVC {
 extension LXHandyJSONTestVC {
     override func prepareVM() {
         super.prepareVM()
-        btnGo.rx.controlEvent(.touchUpInside)
+        btnHeaderRefresh.rx.controlEvent(.touchUpInside)
             // .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
-                dlog("go")
-                self?.queryTestFloat()
+                self?.headerTrigger.onNext(())
+            }
+            .disposed(by: rx.disposeBag)
+        btnFootererRefresh.rx.controlEvent(.touchUpInside)
+            // .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .subscribe {[weak self] _ in
+                self?.footerTrigger.onNext(())
             }
             .disposed(by: rx.disposeBag)
     }
@@ -326,7 +328,7 @@ extension LXHandyJSONTestVC {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
         
-        [titleTextview, btnGo].forEach(self.view.addSubview)
+        [titleTextview, btnHeaderRefresh, btnFootererRefresh].forEach(self.view.addSubview)
 
         masonry()
     }
@@ -338,11 +340,15 @@ extension LXHandyJSONTestVC {
             $0.left.right.equalToSuperview()
             $0.bottom.equalTo(self.view.snp_bottomMargin)
         }
-        btnGo.snp.makeConstraints {
+        btnHeaderRefresh.snp.makeConstraints {
             $0.center.equalToSuperview()
             // $0.centerX.equalToSuperview()
-            $0.width.equalTo(80)
             $0.height.equalTo(44)
+        }
+        btnFootererRefresh.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.left.equalTo(btnHeaderRefresh.snp.right).offset(10)
+            $0.height.equalTo(btnHeaderRefresh)
         }
     }
 }

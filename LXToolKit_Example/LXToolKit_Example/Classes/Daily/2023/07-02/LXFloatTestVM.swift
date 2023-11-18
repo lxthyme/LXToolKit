@@ -10,14 +10,16 @@ import RxCocoa
 extension LXFloatTestVM: LXViewModelType {
     struct Input {
         let headerRefresh: Observable<Void>
-        // let footerRefresh: Observable<Void>
+        let footerRefresh: Observable<Void>
     }
     struct Output {
         // let dataList: BehaviorRelay<<#[LXEventCellVM]#>>
         let floatModel: PublishRelay<LXFloatTestModel>
+        let codableModel: PublishRelay<LXCodableTestModel>
     }
     func transform(input: Input) -> Output {
         let floatModel = PublishRelay<LXFloatTestModel>()
+        let codableModel = PublishRelay<LXCodableTestModel>()
         let provider = TestFloatNetworking.defaultNetworking()
         /// 1. 下拉刷新
         input.headerRefresh
@@ -48,21 +50,33 @@ extension LXFloatTestVM: LXViewModelType {
             .disposed(by: rx.disposeBag)
 
         /// 2. 上提加载
-        // input.footerRefresh
-        //     .flatMapLatest {[weak self] () -> Observable<<#[LXEventCellVM]#>> in
-        //         guard let `self` = self else { return Observable.just([]) }
-        //         self.page += 1
-        //         return self.request()
-        //             .trackActivity(self.footerLoading)
-        //     }
-        //     .subscribe(onNext: {[weak self] item in
-        //         // guard let `self` = self else { return }
-        //         dataList.accept(dataList.value + item)
-        //     })
-        //     .disposed(by: rx.disposeBag)
+        input.footerRefresh
+            .flatMapLatest {[weak self] _ in
+                guard let `self` = self else {
+                    let error = NSError(domain: "233", code: 999)
+                    throw MoyaError.encodableMapping(error)
+                }
+                self.page += 1
+                return provider.request(.testFloat(id: "123"))
+                // .debug("-->query:")
+                .mapObject(LXCodableTestModel.self)
+                .trackActivity(self.loading)
+                .trackError(self.error)
+                .materialize()
+            }
+            .subscribe(onNext: {[weak self] event in
+                // guard let `self` = self else { return }
+                switch event {
+                case .next(let result):
+                    codableModel.accept(result)
+                default: break
+                }
+            })
+            .disposed(by: rx.disposeBag)
         return Output(
             // dataList: dataList
-            floatModel: floatModel
+            floatModel: floatModel,
+            codableModel: codableModel
         )
     }
 }
