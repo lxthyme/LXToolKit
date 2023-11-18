@@ -16,8 +16,8 @@ import Firebase
 class LXLibManager {
     static func setup() {
         LibsManager.shared.setupLibs()
-        LXLibManager.prepareAMap()
-        LXLibManager.prepareFirebase()
+        // LXLibManager.prepareAMap()
+        // LXLibManager.prepareFirebase()
     }
 }
 

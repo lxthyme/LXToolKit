@@ -110,7 +110,11 @@ open class LXToolKitTestVC: LXBaseTableVC {
         ], toSection: "WWDC")
         snapshot.appendItems([
             .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
-            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { LXHandyJSONTestVC() }),
+            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { () -> UIViewController? in
+                let vm = LXFloatTestVM(provider: provider)
+                let vc = LXHandyJSONTestVC(vm: vm, navigator: self.navigator)
+                return vc
+            }),
             .vc(identifier: LXWebVC.xl.xl_typeName, vcProvider: { LXWebVC() }),
             .vc(identifier: LXStrenchableWebVC.xl.xl_typeName,vcProvider: {[weak self] in
                 guard let `self` = self else { return nil }

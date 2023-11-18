@@ -13,6 +13,8 @@ import Foundation
 // import CocoaLumberjack
 // import Kingfisher
 #if DEBUG
+// import FLEX
+import CocoaDebug
 #endif
 // import FirebaseCrashlytics
 // import NSObject_Rx
@@ -28,9 +30,6 @@ import Foundation
 // import DropDown
 // import Toast_Swift
 // import GoogleMobileAds
-
-
-import FLEX
 
 open class LibsManager: NSObject {
     // MARK: 🔗Vaiables
@@ -124,7 +123,11 @@ open class LibsManager: NSObject {
 
     func setupFLEX() {
         #if DEBUG
-        FLEXManager.shared.isNetworkDebuggingEnabled = true
+        // let flex = FLEXManager.shared
+        // // flex.isNetworkDebuggingEnabled = true
+        // flex.showExplorer()
+        // analytics.log(.flexOpened)
+        CocoaDebugSettings.shared.enableLogMonitoring = true
         #endif
     }
 
@@ -142,12 +145,6 @@ open class LibsManager: NSObject {
 
 // MARK: 👀Public Actions
 extension LibsManager {
-    func showFlex() {
-        #if DEBUG
-        FLEXManager.shared.showExplorer()
-        // analytics.log(.flexOpened)
-        #endif
-    }
     // func removeKingfisherCache() -> Observable<Void> {
     //     return ImageCache.default.rx.clearCache()
     // }

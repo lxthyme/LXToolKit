@@ -7,6 +7,8 @@
 import UIKit
 import ObjectMapper
 import Moya_ObjectMapper
+import RxSwift
+import SVProgressHUD
 
 // MARK: - 🔐
 private extension LXHandyJSONTestVC {
@@ -148,6 +150,7 @@ class LXHandyJSONTestVC: LXBaseVC {
     }()
     // MARK: 🔗Vaiables
     var m1: LXFloatTestModel?
+    let trigger = PublishSubject<Void>()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -167,13 +170,42 @@ class LXHandyJSONTestVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
         prepareVM()
-
+        bindViewModel()
         testFloat()
     }
 }
 
 // MARK: 🌎LoadData
-extension LXHandyJSONTestVC {}
+extension LXHandyJSONTestVC {
+    override func bindViewModel() {
+        super.bindViewModel()
+        guard let vm = vm as? LXFloatTestVM else { return }
+        // vm.loading.subscribe { error in
+        //     SVProgressHUD.show()
+        // }
+        // .disposed(by: rx.disposeBag)
+        let trigger = Observable
+            .of(trigger.skip(1))
+            .merge()
+        let intput = LXFloatTestVM.Input(headerRefresh: trigger)
+        // trigger.flatMapLatest { _ in
+        //     let provider = TestFloatNetworking.defaultNetworking()
+        //     return provider.request(.testFloat(id: "12321"))
+        //         .mapObject(LXFloatTestModel.self)
+        //         .materialize()
+        // }
+        // .subscribe { event in
+        //     dlog("event: \(event)")
+        // }
+        // .disposed(by: rx.disposeBag)
+        let output = vm.transform(input: intput)
+        output.floatModel
+            .subscribe(onNext: { model in
+                dlog("model: \(model)")
+            })
+            .disposed(by: rx.disposeBag)
+    }
+}
 
 // MARK: 👀Public Actions
 extension LXHandyJSONTestVC {}
@@ -193,14 +225,15 @@ private extension LXHandyJSONTestVC {
     func optionArg(t1: Int, t2: Int, t3: Int = 1, t4: Int = 1, t5: Int = 1) {
     }
     func queryTestFloat() {
-        let provider = TestFloatNetworking.defaultNetworking()
-        provider.request(.testFloat(id: "12321"))
-            // .mapObject(LXFloatTestModel.self)
-            .mapObject(LXFloatTestModel.self)
-            .subscribe { res in
-                dlog("res: \(res)")
-            }
-            .disposed(by: rx.disposeBag)
+        // let provider = TestFloatNetworking.defaultNetworking()
+        // provider.request(.testFloat(id: "12321"))
+        //     // .mapObject(LXFloatTestModel.self)
+        //     .mapObject(LXFloatTestModel.self)
+        //     .subscribe { res in
+        //         dlog("res: \(res)")
+        //     }
+        //     .disposed(by: rx.disposeBag)
+        trigger.onNext(())
     }
     func testFloat() {
         /**
@@ -279,8 +312,10 @@ extension LXHandyJSONTestVC {
     override func prepareVM() {
         super.prepareVM()
         btnGo.rx.controlEvent(.touchUpInside)
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            // .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
+                dlog("go")
                 self?.queryTestFloat()
             }
             .disposed(by: rx.disposeBag)
