@@ -15,7 +15,7 @@ struct  WOLGrowthHistoryApiService {
     lazy var historyListRequest = Action<WOLGrowthHistoryApiServiceDicModel, LX0117Model>.init { (model) -> Observable<LX0117Model> in
         apiProvider
             .req(target: SongService.growthRecord(page: 1, lastYearMonth: "01", last_id: "123"))
-            .mapModel(LX0117Model.self)
+            .mapHandyJSON(LX0117Model.self)
     }
 }
 
