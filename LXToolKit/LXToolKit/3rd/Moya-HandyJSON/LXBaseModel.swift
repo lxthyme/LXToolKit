@@ -10,6 +10,7 @@ import Foundation
 import HandyJSON
 import ObjectMapper
 
+public protocol LXAnyProtocol {}
 public protocol LXBaseModelProtocol {
     // MARK: 🔗Vaiables
     var code: Int? { get set }
@@ -25,15 +26,15 @@ public protocol LXBaseModelGenericProtocol: LXBaseModelProtocol {
     // MARK: 🔗Vaiables
     var data: T? { get set }
 }
-public protocol LXBaseListGenericModelProtocol {
+public protocol LXBaseListGenericProtocol {
     associatedtype T
     // MARK: 🔗Vaiables
     var page: Int { get set }
     var totalPage: Int { get set }
     var list: [T] { get set }
 }
-public protocol LXAnyModelProtocol {}
-public protocol LXAnyMapper: Mappable {}
+public protocol LXMappable: Mappable {}
+public protocol LXBaseMappable: BaseMappable {}
 open class LXAnyModel: NSObject, HandyJSON {
     deinit {
         dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
@@ -92,7 +93,11 @@ open class LXBaseGenericModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
     // override var debugDescription: String { return "" }
 }
 
-open class LXBaseListModel<T: HandyJSON>: LXAnyModel {
+open class LXBaseListModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
+    public var code: Int?
+    public var errorTips: String?
+    public var successTips: String?
+    public var xl_origin_json: String?
     public var page: UInt?
     public var total_page: UInt?
     public var list: [T]?
@@ -102,6 +107,45 @@ open class LXBaseListModel<T: HandyJSON>: LXAnyModel {
     }
 
     /// override var debugDescription: String { return "" }
+}
+public protocol LXBaseGenericMappable: LXBaseModelProtocol {
+    associatedtype T
+    // MARK: 🔗Vaiables
+    var data: T? { get }
+}
+
+public protocol LXBaseListMappable: LXBaseModelProtocol {
+    associatedtype T
+    // MARK: 🔗Vaiables
+    var list: [T]? { get }
+}
+public struct LXBaseGenericMapper<T>: LXBaseGenericMappable, Mappable {
+    public var code: Int?
+    public var errorTips: String?
+    public var successTips: String?
+    public var xl_origin_json: String?
+    public var data: T?
+    public init?(map: ObjectMapper.Map) {}
+    public mutating func mapping(map: ObjectMapper.Map) {
+        code <- map["code"]
+        errorTips <- map["errorTips"]
+        successTips <- map["successTips"]
+        data <- map["data"]
+    }
+}
+public struct LXBaseListMapper<T>: LXBaseListMappable, Mappable {
+    public var code: Int?
+    public var errorTips: String?
+    public var successTips: String?
+    public var xl_origin_json: String?
+    public var list: [T]?
+    public init?(map: ObjectMapper.Map) {}
+    public mutating func mapping(map: ObjectMapper.Map) {
+        code <- map["code"]
+        errorTips <- map["errorTips"]
+        successTips <- map["successTips"]
+        list <- map["list"]
+    }
 }
 
 // MARK: - 👀

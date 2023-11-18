@@ -56,7 +56,7 @@ private extension String {
 extension LXNetworking where U == FloatApi {
     func testFloat(id: String) -> Single<LXFloatTestModel> {
         return request(.testFloat(id: id))
-            .mapObject(LXFloatTestModel.self)
+            .mapBaseMapper(LXFloatTestModel.self)
             .asSingle()
     }
     func testFloatCodable(id: String) -> Single<LXCodableTestModel> {

@@ -9,20 +9,25 @@ import Foundation
 import RxSwift
 import Moya
 import HandyJSON
+import ObjectMapper
 
 /// Extension for processing Responses into Mappable objects through ObjectMapper
+// MARK: - 👀Codable
 public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
-    public func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
+    func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
         return flatMap { response -> Single<T> in
             return Single.just(try response.mapObject(type, atKeyPath: keyPath))
         }
     }
-    public func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
+    func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapArray(type, atKeyPath: keyPath))
         }
     }
-    
+}
+
+// MARK: - 👀HandyJSON
+public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
     /// Maps data received from the signal into an object
     /// which implements the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
@@ -41,14 +46,62 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
         }
     }
 
-    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<LXBaseGenericModel<T>> {
-        return flatMap { response -> Single<LXBaseGenericModel<T>> in
+    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
+        return flatMap { response -> Single<T> in
             return Single.just(try response.mapBaseHandyJSON(type, atKeyPath: keyPath))
         }
     }
-    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<LXBaseListModel<T>> {
-        return flatMap { response -> Single<LXBaseListModel<T>> in
+    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapBaseHandyJSONArray(type, atKeyPath: keyPath))
+        }
+    }
+}
+
+// MARK: - 👀BaseMappable
+public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
+    func mapMapper<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+        return flatMap { response -> Single<T> in
+            return Single.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapMapperArray<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
+            return Single.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapBaseMapper<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+        return flatMap { response -> Single<T> in
+            return Single.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapBaseMapperArray<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
+            return Single.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+}
+
+// MARK: - 👀ImmutableMappable
+public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
+    func mapMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+        return flatMap { response -> Single<T> in
+            return Single.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
+            return Single.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapBaseMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+        return flatMap { response -> Single<T> in
+            return Single.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
+        }
+    }
+    func mapBaseMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
+            return Single.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
     }
 }

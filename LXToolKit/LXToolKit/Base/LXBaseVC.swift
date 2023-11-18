@@ -208,7 +208,7 @@ extension LXBaseVC {
             // self?.emptyDataSet.title = R.string.localizable.commonNoResults()
         })
         .disposed(by: rx.disposeBag)
-        
+
         isLoading.subscribe(onNext: { isLoading in
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
             if isLoading {
@@ -217,6 +217,11 @@ extension LXBaseVC {
                 SVProgressHUD.dismiss(withDelay: 0.2)
             }
         })
+        .disposed(by: rx.disposeBag)
+
+        error.subscribe { error in
+            dlog("-->error[vc]: \(error)")
+        }
         .disposed(by: rx.disposeBag)
     }
 }

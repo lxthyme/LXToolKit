@@ -35,7 +35,7 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     public let footerLoading = ActivityIndicator()
     
     public let error = ErrorTracker()
-    public let serverError = PublishSubject<Error>()
+    // public let serverError = PublishSubject<Error>()
     public let parsedError = PublishSubject<Error>()
     public override init() {
         // self.provider = provider
@@ -54,15 +54,12 @@ private extension LXBaseVM {}
 // MARK: - 🍺UI Prepare & Masonry
 extension LXBaseVM {
     func prepareVM() {
-        serverError.asObserver()
+        error.asObservable()
             .bind(to: parsedError)
             .disposed(by: rx.disposeBag)
-        
-        parsedError
-            .subscribe { error in
-                print("error: \(error)")
-            }
-            .disposed(by: rx.disposeBag)
+        // serverError.asObserver()
+        //     .bind(to: parsedError)
+        //     .disposed(by: rx.disposeBag)
     }
     func prepareUI() {
         // self.view.backgroundColor = <#.white#>;
