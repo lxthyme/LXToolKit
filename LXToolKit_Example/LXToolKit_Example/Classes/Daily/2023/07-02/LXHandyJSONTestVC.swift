@@ -147,6 +147,8 @@ class LXHandyJSONTestVC: LXBaseVC {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
+        btn.layer.borderWidth = 0.5
+        btn.layer.borderColor = UIColor.magenta.cgColor
         return btn
     }()
     private lazy var btnFootererRefresh: UIButton = {
@@ -159,24 +161,14 @@ class LXHandyJSONTestVC: LXBaseVC {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
+        btn.layer.borderWidth = 0.5
+        btn.layer.borderColor = UIColor.magenta.cgColor
         return btn
     }()
     // MARK: 🔗Vaiables
     let headerTrigger = PublishSubject<Void>()
     let footerTrigger = PublishSubject<Void>()
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -193,10 +185,6 @@ extension LXHandyJSONTestVC {
     override func bindViewModel() {
         super.bindViewModel()
         guard let vm = vm as? LXFloatTestVM else { return }
-        // vm.loading.subscribe { error in
-        //     SVProgressHUD.show()
-        // }
-        // .disposed(by: rx.disposeBag)
         let headerTrigger = Observable
             .of(headerTrigger.skip(1))
             .merge()
@@ -204,16 +192,6 @@ extension LXHandyJSONTestVC {
             .of(footerTrigger.skip(1))
             .merge()
         let intput = LXFloatTestVM.Input(headerRefresh: headerTrigger, footerRefresh: footerTrigger)
-        // trigger.flatMapLatest { _ in
-        //     let provider = TestFloatNetworking.defaultNetworking()
-        //     return provider.request(.testFloat(id: "12321"))
-        //         .mapObject(LXFloatTestModel.self)
-        //         .materialize()
-        // }
-        // .subscribe { event in
-        //     dlog("event: \(event)")
-        // }
-        // .disposed(by: rx.disposeBag)
         let output = vm.transform(input: intput)
         output.floatModel
             .subscribe(onNext: { model in
@@ -247,7 +225,7 @@ private extension LXHandyJSONTestVC {
     }
     func testFloat() {
         let testNumberList = stride(from: 0, to: 100, by: 0.1).compactMap { $0 }
-        let json: [String: [Double]] = [
+        let json: [String: Any] = [
             "f0": stride(from: 0, to: 10, by: 0.1).compactMap { $0 },
             "f1": stride(from: 10, to: 20, by: 0.1).compactMap { $0 },
             "f2": stride(from: 20, to: 30, by: 0.1).compactMap { $0 },
@@ -262,12 +240,13 @@ private extension LXHandyJSONTestVC {
             "f11": testNumberList,
             "f12": LXHandyJSONTestVC.testFloatList,
             // "f12": [0.3, 99.4],
-            // "t1": 0.3,
-            // "t2": 99.4,
+            "t1": 0.3,
+            "t2": 99.4,
         ]
         let test1 = {
             let start = DispatchTime.now()
-            guard let m1 = LXFloatTestModel(JSON: json) else {
+            let m3 = LXFloatTestModel(JSON: json)
+            guard let m1 = m3 else {
                 return
             }
             let end = DispatchTime.now()
@@ -343,12 +322,12 @@ extension LXHandyJSONTestVC {
         btnHeaderRefresh.snp.makeConstraints {
             $0.center.equalToSuperview()
             // $0.centerX.equalToSuperview()
-            $0.height.equalTo(44)
+            // $0.height.equalTo(44)
         }
         btnFootererRefresh.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.left.equalTo(btnHeaderRefresh.snp.right).offset(10)
-            $0.height.equalTo(btnHeaderRefresh)
+            // $0.height.equalTo(btnHeaderRefresh)
         }
     }
 }
