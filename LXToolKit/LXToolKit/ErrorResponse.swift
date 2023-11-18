@@ -5,9 +5,9 @@
 //  Created by lxthyme on 2023/3/23.
 //
 import Foundation
-import HandyJSON
+import ObjectMapper
 
-public struct ErrorResponse: HandyJSON {
+public struct ErrorResponse: Codable {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     public var message: String?
@@ -16,13 +16,14 @@ public struct ErrorResponse: HandyJSON {
     // MARK: 🛠Life Cycle
     public init() {}
 
-    mutating public func mapping(mapper: HelpingMapper) {
-        mapper <<< self.documentationUrl <-- "documentation_url"
+    init?(map: ObjectMapper.Map) {}
+    mutating func mapping(map: Map) {
+        documentationUrl <- map["documentation_url"]
     }
     // func didFinishMapping() {
     //     super.didFinishMapping()
     // }
-    public var debugDescription: String { return toJSONString(prettyPrint: true) ?? "---" }
+    // public var debugDescription: String { return toJSONString(prettyPrint: true) ?? "---" }
 }
 
 extension ErrorResponse {
@@ -33,10 +34,10 @@ extension ErrorResponse {
     }
 }
 
-public struct ErrorModel: HandyJSON {
+public struct ErrorModel: Codable {
     public var code: String?
     public var message: String?
     public var field: String?
     public var resource: String?
-    public init() {}
+    // public init() {}
 }

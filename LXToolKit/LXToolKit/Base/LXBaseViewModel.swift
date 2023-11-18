@@ -9,9 +9,6 @@ import UIKit
 import Foundation
 import RxSwift
 import Moya
-import HandyJSON
-
-import HandyJSON
 
 open class LXBaseViewModel: NSObject {
     // let disposeBag = DisposeBag()

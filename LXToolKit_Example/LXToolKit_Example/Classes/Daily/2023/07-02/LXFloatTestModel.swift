@@ -6,6 +6,7 @@
 //
 import Foundation
 import ObjectMapper
+import LXToolKit
 
 typealias LXTestType = Decimal
 struct LXCodableTestModel: Codable {

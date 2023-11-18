@@ -7,8 +7,8 @@
 
 import Foundation
 import UIKit
-import HandyJSON
 import Moya
+import ObjectMapper
 
 public enum ApiError: Error {
     case offline
@@ -192,29 +192,32 @@ extension Error {
 //    }
 }
 
-class RxErrorModel: NSObject, HandyJSON {
+struct RxErrorModel: Mappable {
     var type: Int
     var msg: String
     var rxError: RxMoyaError
     var apiError: ApiError
     var emptyType: LXEmptyType
-    required override init() {
+    init() {
         self.type = 123321
         self.msg = ""
         self.rxError = .success
         self.emptyType = .success
         self.apiError = .nocontent
     }
-    convenience init(with type: Int, msg: String, rxError: RxMoyaError, apiError: ApiError, emptyType: LXEmptyType) {
-        self.init()
+    init(with type: Int, msg: String, rxError: RxMoyaError, apiError: ApiError, emptyType: LXEmptyType) {
         self.type = type
         self.msg = msg
         self.rxError = rxError
         self.apiError = apiError
         self.emptyType = emptyType
     }
+    init?(map: ObjectMapper.Map) {
+        self.init()
+    }
+    mutating func mapping(map: Map) {}
 
-    override var debugDescription: String { return toJSONString() ?? "" }
+    // override var debugDescription: String { return toJSONString() ?? "" }
 }
 // MARK: - 👀Public Actions
 extension RxErrorModel {

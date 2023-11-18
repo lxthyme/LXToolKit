@@ -211,6 +211,11 @@ extension LXBaseVC {
         
         isLoading.subscribe(onNext: { isLoading in
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+            if isLoading {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss(withDelay: 0.2)
+            }
         })
         .disposed(by: rx.disposeBag)
     }

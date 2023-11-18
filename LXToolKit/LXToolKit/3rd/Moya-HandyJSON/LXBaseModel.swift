@@ -31,13 +31,15 @@ public protocol LXBaseListGenericModelProtocol {
     var totalPage: Int { get set }
     var list: [T] { get set }
 }
-
+public protocol LXAnyModelProtocol {}
 open class LXAnyModel: NSObject, HandyJSON {
     deinit {
         dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
+    // public init?(map: ObjectMapper.Map) {}
+    // public mutating func mapping(map: ObjectMapper.Map) {}
     required public override init() {}
     open override var debugDescription: String {
         return toJSONString(prettyPrint: true) ?? "--NaN-"
@@ -80,10 +82,10 @@ open class LXBaseGenericModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
         super.init()
     }
 
-    public override func mapping(mapper: HelpingMapper) {
-        super.mapping(mapper: mapper)
-        mapper >>> self.xl_origin_json
-    }
+    // init?(map: ObjectMapper.Map) {}
+    // mutating func mapping(map: Map) {
+    //     xl_origin_json <- map["xl_origin_json"]
+    // }
 
     // override var debugDescription: String { return "" }
 }
