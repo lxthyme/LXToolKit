@@ -1,5 +1,5 @@
 //
-//  Single+HandyJSON.swift
+//  Single+Codable.swift
 //
 //  Created by Ivan Bruel on 09/12/15.
 //  Copyright © 2015 Ivan Bruel. All rights reserved.
