@@ -27,7 +27,7 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     
-    public let provider: DJAPI
+    // public let provider: DJAPI
     public var page = 1
     
     public let loading = ActivityIndicator()
@@ -37,8 +37,8 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     public let error = ErrorTracker()
     public let serverError = PublishSubject<Error>()
     public let parsedError = PublishSubject<Error>()
-    public init(provider: DJAPI) {
-        self.provider = provider
+    public override init() {
+        // self.provider = provider
         super.init()
         
         prepareVM()

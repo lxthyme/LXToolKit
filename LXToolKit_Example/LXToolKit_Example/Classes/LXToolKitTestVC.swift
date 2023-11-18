@@ -60,20 +60,20 @@ open class LXToolKitTestVC: LXBaseTableVC {
         if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
             return ds
         }
-        let staging = AppConfig.Network.useStaging
-        let githubProvider = staging
-        ? GithubNetworking.stubbingNetworking()
-        : GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging
-        ? TrendingGithubNetworking.stubbingNetworking()
-        : TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging
-        ? CodetabsNetworking.stubbingNetworking()
-        : CodetabsNetworking.defaultNetworking()
-        let provider = RestApi(githubProvider: githubProvider,
-                               trendingGithubProvider: trendingGithubProvider,
-                               codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as DJAllAPI)
+        // let staging = AppConfig.Network.useStaging
+        // let githubProvider = staging
+        // ? LXNetworking<GithubAPI>.stubbingNetworking()
+        // :  LXNetworking<GithubAPI>.defaultNetworking()
+        // let trendingGithubProvider = staging
+        // ? LXNetworking<TrendingGithubAPI>.stubbingNetworking()
+        // : LXNetworking<TrendingGithubAPI>.defaultNetworking()
+        // let codetabsProvider = staging
+        // ? LXNetworking<CodetabsApi>.stubbingNetworking()
+        // : LXNetworking<CodetabsApi>.defaultNetworking()
+        // let provider = RestApi(githubProvider: githubProvider,
+        //                        trendingGithubProvider: trendingGithubProvider,
+        //                        codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM()
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
         snapshot.appendSections([
             "Swift Daily",
@@ -95,7 +95,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         snapshot.appendItems([
             .openURL(url: URL(string: "http://baidu.com")),
             .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
-            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
+            .tabs(vm: DJHomeTabBarVM(authorized: false)),
             .vc(identifier: "DJHomeTabBarVC + UISplitViewController", vcProvider: {
                 let keyWindow = UIApplication.xl.keyWindow
                 Application.shared.presentInitialScreen(in: keyWindow)
@@ -111,7 +111,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         snapshot.appendItems([
             .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
             .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { () -> UIViewController? in
-                let vm = LXFloatTestVM(provider: provider)
+                let vm = LXFloatTestVM()
                 let vc = LXHandyJSONTestVC(vm: vm, navigator: self.navigator)
                 return vc
             }),
@@ -288,20 +288,20 @@ private extension LXToolKitTestVC {
         //             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
         //             navigator.show(segue: .events(vm: vm), sender: self)
         //         }
-        let staging = AppConfig.Network.useStaging
-        let githubProvider = staging
-        ? GithubNetworking.stubbingNetworking()
-        : GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging
-        ? TrendingGithubNetworking.stubbingNetworking()
-        : TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging
-        ? CodetabsNetworking.stubbingNetworking()
-        : CodetabsNetworking.defaultNetworking()
-        let provider = RestApi(githubProvider: githubProvider,
-                               trendingGithubProvider: trendingGithubProvider,
-                               codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as! API)
+        // let staging = AppConfig.Network.useStaging
+        // let githubProvider = staging
+        // ? LXNetworking<GithubAPI>.stubbingNetworking()
+        // :  LXNetworking<GithubAPI>.defaultNetworking()
+        // let trendingGithubProvider = staging
+        // ? LXNetworking<TrendingGithubAPI>.stubbingNetworking()
+        // : LXNetworking<TrendingGithubAPI>.defaultNetworking()
+        // let codetabsProvider = staging
+        // ? LXNetworking<CodetabsApi>.stubbingNetworking()
+        // : LXNetworking<CodetabsApi>.defaultNetworking()
+        // let provider = RestApi(githubProvider: githubProvider,
+        //                        trendingGithubProvider: trendingGithubProvider,
+        //                        codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM()
         let navigator = Navigator.default
         let scene: Navigator.Scene = .vc(vcProvider: {[weak self] in
             guard let `self` = self else { return nil }

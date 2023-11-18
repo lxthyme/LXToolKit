@@ -390,7 +390,7 @@ extension DJSearchVM: LXViewModelType {
         let languageSelection = input.languagesSelection
             .asDriver(onErrorJustReturn: ())
             .map { () -> DJLanguagesVM in
-                let vm = DJLanguagesVM(currentLanguage: self.currentLanguage.value, languages: languageElements.value, provider: self.provider as! DJAllAPI)
+                let vm = DJLanguagesVM(currentLanguage: self.currentLanguage.value, languages: languageElements.value)
                 vm.currentLanguage.skip(1)
                     .bind(to: self.currentLanguage)
                     .disposed(by: self.rx.disposeBag)

@@ -70,7 +70,7 @@ class TokenAddingInterceptor: ApolloInterceptor {
 
 extension GraphApi {
     func downloadString(url: URL) -> Single<String> {
-        return restApi.downloadString(url: url)
+        return restApi.githubProvider.downloadString(url: url)
     }
 
     // func downloadFile(url: URL, fileName: String?) -> Single<Void> {
@@ -270,15 +270,15 @@ extension GraphApi {
 
     // MARK: - Trending
     func trendingRepositories(language: String, since: String) -> Single<[TrendingRepositoryModel]> {
-        return restApi.trendingRepositories(language: language, since: since)
+        return restApi.trendingGithubProvider.trendingRepositories(language: language, since: since)
     }
 
     func trendingDevelopers(language: String, since: String) -> Single<[TrendingUserModel]> {
-        return restApi.trendingDevelopers(language: language, since: since)
+        return restApi.trendingGithubProvider.trendingDevelopers(language: language, since: since)
     }
 
     func languages() -> Single<[LanguageModel]> {
-        return restApi.languages()
+        return restApi.trendingGithubProvider.languages()
     }
 
     // // MARK: - Codetabs

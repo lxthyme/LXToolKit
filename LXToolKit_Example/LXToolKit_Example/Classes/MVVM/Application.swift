@@ -13,7 +13,7 @@ final public class Application: NSObject {
 
     var window: UIWindow?
     @objc public  var previousRootVC: UIViewController?
-    var provider: DJAllAPI?
+    var provider: RestApi?
     let authManager: AuthManager
     let navigator: Navigator
 
@@ -26,9 +26,15 @@ final public class Application: NSObject {
 
     private func updateProvider() {
         let staging = AppConfig.Network.useStaging
-        let githubProvider: GithubNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
-        let trendingGithubProvider: TrendingGithubNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
-        let codetabsProvider: CodetabsNetworking = staging ? .stubbingNetworking() : .defaultNetworking()
+        let githubProvider = staging
+        ? LXNetworking<GithubAPI>.stubbingNetworking()
+        :  LXNetworking<GithubAPI>.defaultNetworking()
+        let trendingGithubProvider = staging
+        ? LXNetworking<TrendingGithubAPI>.stubbingNetworking()
+        : LXNetworking<TrendingGithubAPI>.defaultNetworking()
+        let codetabsProvider = staging
+        ? LXNetworking<CodetabsApi>.stubbingNetworking()
+        : LXNetworking<CodetabsApi>.defaultNetworking()
         let restApi = RestApi(githubProvider: githubProvider,
                               trendingGithubProvider: trendingGithubProvider,
                               codetabsProvider: codetabsProvider)
@@ -59,7 +65,7 @@ extension Application {
             //    let login = user.login {
             // }
             let authorized = self.authManager.token?.isValid ?? false
-            let vm = DJHomeTabBarVM(authorized: authorized, provider: provider)
+            let vm = DJHomeTabBarVM(authorized: authorized)
             self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }

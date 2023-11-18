@@ -18,7 +18,9 @@ enum FloatApi {
 extension FloatApi: APIService {
     
     var provider: LXNetworking<FloatApi> {
-        return LXNetworking<FloatApi>.defaultNetworking()
+        return AppConfig.Network.useStaging
+        ? LXNetworking<FloatApi>.stubbingNetworking()
+        : LXNetworking<FloatApi>.defaultNetworking()
     }
     var baseURL: URL {
         return URL(string: AppConfig.Network.localHost)!

@@ -80,7 +80,9 @@ enum GithubAPI {
 // MARK: - 👀
 extension GithubAPI: APIService {
     var provider: LXNetworking<GithubAPI> {
-        return LXNetworking<GithubAPI>.defaultNetworking()
+        return AppConfig.Network.useStaging
+        ? LXNetworking<GithubAPI>.stubbingNetworking()
+        : LXNetworking<GithubAPI>.defaultNetworking()
     }
     var parameter: APIParameter {
         // RepositorySearchModel
