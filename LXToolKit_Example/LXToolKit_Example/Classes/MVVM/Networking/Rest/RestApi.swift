@@ -39,13 +39,13 @@ private extension RestApi {
     }
     func reqeustObject<T: HandyJSON>(_ target: DJAPI, type: T.Type) -> Single<T> {
         return githubProvider.request(target)
-            .mapObject(T.self)
+            .mapHandyJSON(T.self)
             .observe(on: MainScheduler.instance)
             .asSingle()
     }
     func requestArray<T: HandyJSON>(_ target: DJAPI, type: T.Type) -> Single<[T]> {
         return githubProvider.request(target)
-            .mapArray(T.self)
+            .mapHandyJSONArray(T.self)
             .observe(on: MainScheduler.instance)
             .asSingle()
     }
@@ -54,13 +54,13 @@ private extension RestApi {
 private extension RestApi {
     func trendingRequestObject<T: HandyJSON>(_ target: TrendingGithubAPI, type: T.Type) -> Single<T> {
         return trendingGithubProvider.request(target)
-            .mapObject(T.self)
+            .mapHandyJSON(T.self)
             .observe(on: MainScheduler.instance)
             .asSingle()
     }
     func trendingRequestArray<T: HandyJSON>(_ target: TrendingGithubAPI, type: T.Type) -> Single<[T]> {
         return trendingGithubProvider.request(target)
-            .mapArray(T.self)
+            .mapHandyJSONArray(T.self)
             .observe(on: MainScheduler.instance)
             .asSingle()
     }
@@ -69,7 +69,7 @@ private extension RestApi {
 private extension RestApi {
     func codetabsRequestArray<T: HandyJSON>(_ target: CodetabsApi, type: T.Type) -> Single<[T]> {
         return codetabsProvider.request(target)
-            .mapArray(T.self)
+            .mapHandyJSONArray(T.self)
             .observe(on: MainScheduler.instance)
             .asSingle()
     }

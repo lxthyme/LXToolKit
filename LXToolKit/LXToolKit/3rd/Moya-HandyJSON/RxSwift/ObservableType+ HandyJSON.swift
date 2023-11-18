@@ -16,77 +16,36 @@ public extension ObservableType where Element == Response {
     /// Maps data received from the signal into an object
     /// which implements the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
-    func mapObject<T: HandyJSON>(_ type: T.Type) -> Observable<T> {
+    func mapHandyJSON<T: HandyJSON>(_ type: T.Type) -> Observable<T> {
         return flatMap { response -> Observable<T> in
-            return Observable.just(try response.mapObject(type))
+            return Observable.just(try response.mapHandyJSON(type))
         }
     }
     
     /// Maps data received from the signal into an array of objects
     /// which implement the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
-    func mapArray<T: HandyJSON>(_ type: T.Type) -> Observable<[T]> {
+    func mapHandyJSONArray<T: HandyJSON>(_ type: T.Type) -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
-            return Observable.just(try response.mapArray(type))
+            return Observable.just(try response.mapHandyJSONArray(type))
         }
     }
     
     /// Maps data received from the signal into an object
     /// which implements the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
-    func mapObject<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<T> {
+    func mapHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<T> {
         return flatMap { response -> Observable<T> in
-            return Observable.just(try response.mapObject(T.self, atKeyPath: keyPath))
+            return Observable.just(try response.mapHandyJSON(T.self, atKeyPath: keyPath))
         }
     }
     
     /// Maps data received from the signal into an array of objects
     /// which implement the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
-    func mapArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<[T]> {
+    func mapHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
-            return Observable.just(try response.mapArray(T.self, atKeyPath: keyPath))
+            return Observable.just(try response.mapHandyJSONArray(T.self, atKeyPath: keyPath))
         }
     }
 }
-
-
-// MARK: - ImmutableMappable
-// public extension ObservableType where Element == Response {
-//     
-//     /// Maps data received from the signal into an object
-//     /// which implements the ImmutableMappable protocol and returns the result back
-//     /// If the conversion fails, the signal errors.
-//     func mapObject<T: HandyJSON>(_ type: T.Type) -> Observable<T> {
-//         return flatMap { response -> Observable<T> in
-//             return Observable.just(try response.mapObject(type))
-//         }
-//     }
-//     
-//     /// Maps data received from the signal into an array of objects
-//     /// which implement the ImmutableMappable protocol and returns the result back
-//     /// If the conversion fails, the signal errors.
-//     func mapArray<T: HandyJSON>(_ type: T.Type) -> Observable<[T]> {
-//         return flatMap { response -> Observable<[T]> in
-//             return Observable.just(try response.mapArray(type))
-//         }
-//     }
-//     
-//     /// Maps data received from the signal into an object
-//     /// which implements the ImmutableMappable protocol and returns the result back
-//     /// If the conversion fails, the signal errors.
-//     func mapObject<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<T> {
-//         return flatMap { response -> Observable<T> in
-//             return Observable.just(try response.mapObject(T.self, atKeyPath: keyPath))
-//         }
-//     }
-//     
-//     /// Maps data received from the signal into an array of objects
-//     /// which implement the ImmutableMappable protocol and returns the result back
-//     /// If the conversion fails, the signal errors.
-//     func mapArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) -> Observable<[T]> {
-//         return flatMap { response -> Observable<[T]> in
-//             return Observable.just(try response.mapArray(T.self, atKeyPath: keyPath))
-//         }
-//     }
-// }
