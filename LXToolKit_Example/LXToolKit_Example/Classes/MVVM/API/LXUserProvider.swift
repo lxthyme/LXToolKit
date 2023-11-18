@@ -11,6 +11,9 @@ import LXToolKit
 
 enum LXUserProvider: APIService {
     case newUserFloat
+    var provider: LXNetworking<LXUserProvider> {
+        return LXNetworking<LXUserProvider>.defaultNetworking()
+    }
     var baseURL: URL {
         return URL(string: LX_Base_URL)!
     }

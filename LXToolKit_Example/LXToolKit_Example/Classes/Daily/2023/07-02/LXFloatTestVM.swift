@@ -31,10 +31,7 @@ extension LXFloatTestVM: LXViewModelType {
                     throw MoyaError.encodableMapping(error)
                 }
                 self.page = 1
-                // return self.request()
-                return provider.request(.testFloat(id: "123"))
-                    // .debug("-->query:")
-                    .mapObject(LXFloatTestModel.self)
+                return provider.testFloat(id: "123")
                     .trackActivity(self.loading)
                     .trackError(self.error)
                     .materialize()
@@ -57,9 +54,7 @@ extension LXFloatTestVM: LXViewModelType {
                     throw MoyaError.encodableMapping(error)
                 }
                 self.page += 1
-                return provider.request(.testFloat(id: "123"))
-                // .debug("-->query:")
-                .mapObject(LXCodableTestModel.self)
+                return provider.testFloatCodable(id: "123")
                 .trackActivity(self.loading)
                 .trackError(self.error)
                 .materialize()
@@ -85,9 +80,6 @@ class LXFloatTestVM: LXBaseVM {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    // override init(provider: DJAPI) {
-    //     super.init(provider: provider as! DJAPI)
-    // }
 }
 
 // MARK: 👀Public Actions

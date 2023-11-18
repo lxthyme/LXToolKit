@@ -34,6 +34,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
         let actualRequest = provider.rx.request(token)
         return online.ignore(value: false)// Wait until we're online
             .take(1)// Take 1 to make sure we only invoke the API once.
+            .observe(on: MainScheduler.instance)
             .flatMap { _ in// Turn the online state into a network request
                 return actualRequest
                     .filterSuccessfulStatusCodes()
@@ -125,6 +126,33 @@ struct LXNetworking<U: TargetType>: NetworkingType2 {
     func request(_ token: T) -> Observable<Moya.Response> {
         let actualRequest = self.provider.request(token)
         return actualRequest
+    }
+}
+
+// MARK: - 👀
+extension LXNetworking {
+    func request2(_ target: T) -> Single<Any> {
+        return request(target)
+            .mapJSON()
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+    func requestWithoutMapping(_ target: T) -> Single<Moya.Response> {
+        return request(target)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+    func reqeustObject<Model: HandyJSON>(_ target: T, type: Model.Type) -> Single<Model> {
+        return request(target)
+            .mapHandyJSON(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+    func requestArray<Model: HandyJSON>(_ target: T, type: Model.Type) -> Single<[Model]> {
+        return request(target)
+            .mapHandyJSONArray(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
 }
 

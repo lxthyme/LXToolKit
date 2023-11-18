@@ -8,6 +8,7 @@
 
 import Foundation
 import HandyJSON
+import ObjectMapper
 
 public protocol LXBaseModelProtocol {
     // MARK: 🔗Vaiables
@@ -32,6 +33,7 @@ public protocol LXBaseListGenericModelProtocol {
     var list: [T] { get set }
 }
 public protocol LXAnyModelProtocol {}
+public protocol LXAnyMapper: Mappable {}
 open class LXAnyModel: NSObject, HandyJSON {
     deinit {
         dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")

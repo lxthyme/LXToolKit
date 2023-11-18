@@ -13,6 +13,9 @@ enum LXMainProvider: APIService {
     case zen
     case newUserFloat
     case platformInfo
+    var provider: LXNetworking<LXMainProvider> {
+        return LXNetworking<LXMainProvider>.defaultNetworking()
+    }
     var baseURL: URL {
         return URL(string: LX_Base_URL)!
     }

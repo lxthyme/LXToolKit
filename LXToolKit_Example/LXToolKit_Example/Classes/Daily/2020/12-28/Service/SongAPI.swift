@@ -20,6 +20,9 @@ enum SongService {
 }
 // MARK: - 👀
 extension SongService: APIService {
+    var provider: LXNetworking<SongService> {
+        return LXNetworking<SongService>.defaultNetworking()
+    }
     var baseURL: URL {
         return URL(string: "http://api.com:3003/api/uu")!
     }

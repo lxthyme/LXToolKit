@@ -46,7 +46,7 @@ struct LXCodableTestModel: Codable {
 
 }
 
-struct LXFloatTestModel: Mappable {
+struct LXFloatTestModel: LXAnyMapper {
     
     // MARK: 📌UI
     // MARK: 🔗Vaiables

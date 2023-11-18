@@ -78,3 +78,21 @@ extension TrendingGithubAPI: TargetType, ProductApiType {
         }
     }
 }
+
+extension LXNetworking where U == TrendingGithubAPI {
+    func trendingRepositories(language: String, since: String) -> Single<[TrendingRepositoryModel]> {
+        return request(.trendingRespositories(language: language, since: since))
+            .mapHandyJSONArray(TrendingRepositoryModel.self)
+            .asSingle()
+    }
+    func trendingDevelopers(language: String, since: String) -> Single<[TrendingUserModel]> {
+        return request(.trendingDevelopers(language: language, since: since))
+            .mapHandyJSONArray(TrendingUserModel.self)
+            .asSingle()
+    }
+    func languages() -> Single<[LanguageModel]> {
+        return request(.languages)
+            .mapHandyJSONArray(LanguageModel.self)
+            .asSingle()
+    }
+}
