@@ -21,7 +21,7 @@ extension LXFloatTestVM: LXViewModelType {
         let provider = TestFloatNetworking.defaultNetworking()
         /// 1. 下拉刷新
         input.headerRefresh
-            .debug("-->headerRefresh:")
+            // .debug("-->headerRefresh:")
             .flatMapLatest { [weak self] _ in
                 guard let `self` = self else {
                     // return Observable.just(nil)
@@ -31,7 +31,7 @@ extension LXFloatTestVM: LXViewModelType {
                 self.page = 1
                 // return self.request()
                 return provider.request(.testFloat(id: "123"))
-                    .debug("-->query:")
+                    // .debug("-->query:")
                     .mapObject(LXFloatTestModel.self)
                     .trackActivity(self.loading)
                     .trackError(self.error)
