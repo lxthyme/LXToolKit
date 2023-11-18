@@ -10,7 +10,35 @@ import Moya
 import HandyJSON
 
 public extension Response {
+    static let decoder = JSONDecoder()
+    func mapObject<T: Codable>(_ type: T.Type) throws -> T {
+        let object = try Response.decoder.decode(T.self, from: data)
+        return object
+    }
+    func mapArray<T: Codable>(_ type: T.Type) throws -> [T] {
+        let object = try Response.decoder.decode([T].self, from: data)
+        return object
+    }
+    func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String) throws -> T {
+        guard let json = try mapJSON() as? NSDictionary,
+              let item = json.value(forKeyPath: keyPath) else {
+            throw MoyaError.jsonMapping(self)
+        }
+        let data = try JSONSerialization.data(withJSONObject: item, options: .fragmentsAllowed)
+        let object = try Response.decoder.decode(T.self, from: data)
+        return object
+    }
+    func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String) throws -> [T] {
+        guard let json = try mapJSON() as? NSDictionary,
+              let item = json.value(forKeyPath: keyPath) else {
+            throw MoyaError.jsonMapping(self)
+        }
 
+        let data = try JSONSerialization.data(withJSONObject: item, options: .fragmentsAllowed)
+        let object = try Response.decoder.decode([T].self, from: data)
+        return object
+    }
+    
   /// Maps data received from the signal into an object which implements the Mappable protocol.
   /// If the conversion fails, the signal errors.
     func mapHandyJSON<T: HandyJSON>(_ type: T.Type) throws -> T {
