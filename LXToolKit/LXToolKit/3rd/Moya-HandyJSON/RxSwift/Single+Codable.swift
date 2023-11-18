@@ -40,4 +40,15 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
             return Single.just(try response.mapHandyJSONArray(type, atKeyPath: keyPath))
         }
     }
+
+    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<LXBaseGenericModel<T>> {
+        return flatMap { response -> Single<LXBaseGenericModel<T>> in
+            return Single.just(try response.mapBaseHandyJSON(type, atKeyPath: keyPath))
+        }
+    }
+    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<LXBaseListModel<T>> {
+        return flatMap { response -> Single<LXBaseListModel<T>> in
+            return Single.just(try response.mapBaseHandyJSONArray(type, atKeyPath: keyPath))
+        }
+    }
 }

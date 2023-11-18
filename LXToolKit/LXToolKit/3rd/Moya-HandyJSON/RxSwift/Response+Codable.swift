@@ -41,7 +41,11 @@ public extension Response {
 
   /// Maps data received from the signal into an object which implements the Mappable protocol.
   /// If the conversion fails, the signal errors.
-    func mapHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String) throws -> T {
+    func mapHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
+        guard (200..<300) ~= statusCode else {
+            throw ApiError.serverError(response: self, error: nil)
+        }
+
         if keyPath.isEmpty {
             guard let obj = try mapJSON() as? [String: Any],
                   let object = T.deserialize(from: obj) else {
@@ -60,6 +64,9 @@ public extension Response {
   /// protocol.
   /// If the conversion fails, the signal errors.
     func mapHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
+        guard (200..<300) ~= statusCode else {
+            throw ApiError.serverError(response: self, error: nil)
+        }
         if keyPath.isEmpty {
             guard let array = try mapJSON() as? [[String : Any]] else {
                 throw MoyaError.jsonMapping(self)
@@ -72,39 +79,24 @@ public extension Response {
         return array.compactMap { $0 }
     }
 
-    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) throws ->LXBaseGenericModel<T> {
-        guard (200..<300) ~= statusCode else {
-            throw ApiError.serverError(response: self, error: nil)
-        }
-
-        guard let json = try mapJSON() as? [String: Any],
-            let baseModel = LXBaseGenericModel<T>.deserialize(from: json) else {
-            throw ApiError.serializeError(response: self, error: nil)
-        }
-
+    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->LXBaseGenericModel<T> {
+        let baseModel = try mapHandyJSON(LXBaseGenericModel<T>.self, atKeyPath: keyPath)
+        baseModel.xl_origin_json = try? mapString()
         guard baseModel.code != kLXSuccessCode else {
             throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
-
-        baseModel.xl_origin_json = try? mapString()
         return baseModel
     }
-    func xl_mapBaseModelArray<T: HandyJSON>(_ type: T.Type) throws ->LXBaseListModel<T> {
-        guard (200..<300) ~= statusCode else {
-            throw ApiError.serverError(response: self, error: nil)
-        }
-
-        guard let json = try mapJSON() as? [String: Any],
-            let baseModel = LXBaseGenericModel<LXBaseListModel<T>>.deserialize(from: json),
-            let listModel = baseModel.data else {
+    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->LXBaseListModel<T> {
+        let baseModel = try mapBaseHandyJSON(LXBaseListModel<T>.self, atKeyPath: keyPath)
+        baseModel.xl_origin_json = try? mapString()
+        guard let listModel = baseModel.data else {
             throw ApiError.serializeError(response: self, error: nil)
         }
 
         guard baseModel.code != kLXSuccessCode else {
             throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
         }
-
-        baseModel.xl_origin_json = try? mapString()
         return listModel
     }
 }

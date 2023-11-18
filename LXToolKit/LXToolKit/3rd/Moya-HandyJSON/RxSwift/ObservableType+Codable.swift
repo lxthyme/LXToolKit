@@ -41,18 +41,18 @@ public extension ObservableType where Element == Response {
         }
     }
     
-    func xl_mapBaseModel<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseGenericModel<T>> {
+    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") ->Observable<LXBaseGenericModel<T>> {
         return flatMap { response -> Observable<LXBaseGenericModel<T>> in
-            return Observable.just(try response.xl_mapBaseModel(T.self))
+            return Observable.just(try response.mapBaseHandyJSON(T.self, atKeyPath: keyPath))
 //            return Observable.just(try response.mapBaseModel(T.self))
         }
     }
 
-    func xl_mapBaseModelArray<T: HandyJSON>(_ type: T.Type) ->Observable<LXBaseListModel<T>> {
+    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") ->Observable<LXBaseListModel<T>> {
         return flatMap { response -> Observable<LXBaseListModel<T>> in
 //        return flatMap { response -> Observable<LXBaseListModel<T>> in
 //            let a = try response.mapModelArray(T.self)
-            return Observable.just(try response.xl_mapBaseModelArray(T.self))
+            return Observable.just(try response.mapBaseHandyJSONArray(T.self, atKeyPath: keyPath))
 //            return Observable.just(try response.mapBaseModelArray(T.self))
         }
     }
