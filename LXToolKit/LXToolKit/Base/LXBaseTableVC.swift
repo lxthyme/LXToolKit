@@ -128,8 +128,8 @@ extension LXBaseTableVC {
         
         table.footRefreshControl.autoRefreshOnFoot = true
         error.subscribe(onNext: { [weak self] error in
-            self?.table.makeToast(error.description,
-                                  title: error.title,
+            self?.table.makeToast(error.localizedDescription,
+                                  title: "⚠️警告",
                                   image: nil,//R.image.icon_toast_warning(),
                                   completion: nil)
         })

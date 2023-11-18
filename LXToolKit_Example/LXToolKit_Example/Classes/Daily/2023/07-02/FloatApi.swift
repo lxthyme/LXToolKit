@@ -9,7 +9,7 @@ import Foundation
 import Moya
 import LXToolKit
 
-enum FloatApi: LXToolKit.DJAPI {
+enum FloatApi {
     case testFloat(id: String)
 }
 

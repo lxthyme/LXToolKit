@@ -36,7 +36,7 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     
     public let error = ErrorTracker()
     public let serverError = PublishSubject<Error>()
-    public let parsedError = PublishSubject<ApiError>()
+    public let parsedError = PublishSubject<Error>()
     public init(provider: DJAPI) {
         self.provider = provider
         super.init()
@@ -55,19 +55,6 @@ private extension LXBaseVM {}
 extension LXBaseVM {
     func prepareVM() {
         serverError.asObserver()
-            .map { error -> ApiError? in
-                do {
-                    let errorResponse = error as? MoyaError
-                    // if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
-                    //    let model = ErrorResponse.deserialize(from: body) {
-                    //     return ApiError.serverError(response: model)
-                    // }
-                } catch {
-                    print("error: \(error)")
-                }
-                return nil
-            }
-            .filterNil()
             .bind(to: parsedError)
             .disposed(by: rx.disposeBag)
         

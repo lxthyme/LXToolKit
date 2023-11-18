@@ -65,8 +65,24 @@ protocol NetworkingType {
     static func stubbingNetworking() -> Self
 }
 
+protocol NetworkingType2 {
+    associatedtype T: TargetType
+    var provider: OnlineProvider<T> { get }
+
+    static func defaultNetworking() -> Self
+    static func stubbingNetworking() -> Self
+}
+
 // MARK: - 🔐
 extension NetworkingType {
+    static func defaultEntryDateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        return formatter
+    }
+}
+extension NetworkingType2 {
     static func defaultEntryDateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
@@ -93,18 +109,18 @@ struct GithubNetworking: NetworkingType {
         return actualRequest
     }
 }
-struct TestFloatNetworking: NetworkingType {
-    typealias T = FloatApi
+struct LXNetworking<U: TargetType>: NetworkingType2 {
+    typealias T = U
     let provider: OnlineProvider<T>
 
-    static func defaultNetworking() -> TestFloatNetworking {
-        return TestFloatNetworking(provider: newProvider(plugins))
+    static func defaultNetworking() -> LXNetworking {
+        return LXNetworking(provider: newProvider2(plugins))
     }
-    static func stubbingNetworking() -> TestFloatNetworking {
-        return TestFloatNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
-                                                         requestClosure: GithubNetworking.endpointResolver(),
-                                                         stubClosure: MoyaProvider.immediatelyStub,
-                                                         online: .just(true)))
+    static func stubbingNetworking() -> LXNetworking {
+        return LXNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
+                                                     requestClosure: LXNetworking.endpointResolver(),
+                                                     stubClosure: MoyaProvider.immediatelyStub,
+                                                     online: .just(true)))
     }
     func request(_ token: T) -> Observable<Moya.Response> {
         let actualRequest = self.provider.request(token)
@@ -208,11 +224,77 @@ extension NetworkingType {
     }
 }
 
+extension NetworkingType2 {
+    static func endpointsClosure<T>() -> (T) -> Endpoint where T: TargetType {
+        return { target in
+            let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
+
+            // Sign all non-XApp, non-XAuth token requests
+            return endpoint
+        }
+    }
+    static func APIKeysBasedStubBehaviour<T>(_: T) -> Moya.StubBehavior {
+        return .never
+    }
+    static var plugins: [PluginType] {
+        var plugins: [PluginType] = []
+        if AppConfig.Network.loggingEnabled {
+        //     let formatter = NetworkLoggerPlugin.Configuration.Formatter { identifier, message, target in
+        //         let date = defaultEntryDateFormatter().string(from: Date())
+        //         return "Moya_Logger: [\(date)] \(identifier): \(message)"
+        //     } requestData: { data in
+        //         dlog("requestData")
+        //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
+        //     } responseData: { data in
+        //         dlog("responseData")
+        //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
+        //     }
+        //
+        //     let opt: NetworkLoggerPlugin.Configuration.LogOptions = [
+        //         .requestMethod,
+        //         .requestHeaders,
+        //         .requestBody,
+        //         .formatRequestAscURL,
+        //         .successResponseBody,
+        //         .errorResponseBody,
+        //     ]
+        //     let config = NetworkLoggerPlugin.Configuration(formatter: formatter,
+        //                                                    output: { target, items in
+        //         for item in items {
+        //             Swift.print(item, separator: ",", terminator: "\n")
+        //         }
+        //     }, logOptions: opt)
+        //     plugins.append(NetworkLoggerPlugin(configuration: config))
+            plugins.append(LXNetworkDebuggingPlugin())
+        }
+        return plugins
+    }
+    static func endpointResolver() -> MoyaProvider<T>.RequestClosure {
+        return { (endpoint, closure) in
+            do {
+                var request = try endpoint.urlRequest()
+                request.httpShouldHandleCookies = false
+                closure(.success(request))
+            } catch {
+                logError(error.localizedDescription)
+            }
+        }
+    }
+}
+
 private func newProvider<T>(_ plugins: [PluginType], xAccessToken: String? = nil) -> OnlineProvider<T> where T: ProductApiType {
     return OnlineProvider(
         endpointClosure: GithubNetworking.endpointsClosure(xAccessToken),
         requestClosure: GithubNetworking.endpointResolver(),
         stubClosure: GithubNetworking.APIKeysBasedStubBehaviour,
+        plugins: plugins
+    )
+}
+private func newProvider2<T>(_ plugins: [PluginType]) -> OnlineProvider<T> where T: TargetType {
+    return OnlineProvider(
+        endpointClosure: LXNetworking<T>.endpointsClosure(),
+        requestClosure: LXNetworking<T>.endpointResolver(),
+        stubClosure: LXNetworking<T>.APIKeysBasedStubBehaviour,
         plugins: plugins
     )
 }

@@ -20,7 +20,7 @@ extension LXFloatTestVM: LXViewModelType {
     func transform(input: Input) -> Output {
         let floatModel = PublishRelay<LXFloatTestModel>()
         let codableModel = PublishRelay<LXCodableTestModel>()
-        let provider = TestFloatNetworking.defaultNetworking()
+        let provider = LXNetworking<FloatApi>.defaultNetworking()
         /// 1. 下拉刷新
         input.headerRefresh
             // .debug("-->headerRefresh:")

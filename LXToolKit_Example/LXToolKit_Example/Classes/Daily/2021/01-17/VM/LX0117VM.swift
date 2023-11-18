@@ -13,8 +13,9 @@ struct  WOLGrowthHistoryApiService {
     var currentPage = 1
     /// 请求Action
     lazy var historyListRequest = Action<WOLGrowthHistoryApiServiceDicModel, LX0117Model>.init { (model) -> Observable<LX0117Model> in
-        apiProvider
-            .req(target: SongService.growthRecord(page: 1, lastYearMonth: "01", last_id: "123"))
+        LXNetworking<SongService>
+            .defaultNetworking()
+            .request(.growthRecord(page: 1, lastYearMonth: "01", last_id: "123"))
             .mapHandyJSON(LX0117Model.self)
     }
 }

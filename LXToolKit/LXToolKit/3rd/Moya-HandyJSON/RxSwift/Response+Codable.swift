@@ -43,7 +43,7 @@ public extension Response {
   /// If the conversion fails, the signal errors.
     func mapHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
         guard (200..<300) ~= statusCode else {
-            throw ApiError.serverError(response: self, error: nil)
+            throw MoyaError.statusCode(self)
         }
 
         if keyPath.isEmpty {
@@ -65,7 +65,7 @@ public extension Response {
   /// If the conversion fails, the signal errors.
     func mapHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
         guard (200..<300) ~= statusCode else {
-            throw ApiError.serverError(response: self, error: nil)
+            throw MoyaError.statusCode(self)
         }
         if keyPath.isEmpty {
             guard let array = try mapJSON() as? [[String : Any]] else {
@@ -83,7 +83,7 @@ public extension Response {
         let baseModel = try mapHandyJSON(LXBaseGenericModel<T>.self, atKeyPath: keyPath)
         baseModel.xl_origin_json = try? mapString()
         guard baseModel.code != kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
+            throw MoyaError.statusCode(self)
         }
         return baseModel
     }
@@ -91,11 +91,11 @@ public extension Response {
         let baseModel = try mapBaseHandyJSON(LXBaseListModel<T>.self, atKeyPath: keyPath)
         baseModel.xl_origin_json = try? mapString()
         guard let listModel = baseModel.data else {
-            throw ApiError.serializeError(response: self, error: nil)
+            throw MoyaError.jsonMapping(self)
         }
 
         guard baseModel.code != kLXSuccessCode else {
-            throw ApiError.invalidStatusCode(statusCode: baseModel.code, tips: baseModel.errorTips)
+            throw MoyaError.statusCode(self)
         }
         return listModel
     }

@@ -101,7 +101,7 @@ open class LXBaseVC2: UIViewController, Navigatable {
     var vm: LXBaseVM?
 
     let isLoading = BehaviorRelay(value: false)
-    let error = PublishSubject<ApiError>()
+    let error = PublishSubject<Error>()
 
     var automaticallyAdjustsLeftBarButtonItem = true
     var canOpenFlex = true

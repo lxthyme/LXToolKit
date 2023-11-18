@@ -9,7 +9,7 @@
 import Foundation
 import LXToolKit
 
-enum SongService: APIService {
+enum SongService {
     case recordList(sort: String?, page: Int?, pageSize: Int?) /// 儿歌列表
     /// 音乐广场
     case musicCenter
@@ -17,6 +17,9 @@ enum SongService: APIService {
     case myRecord
     ///成长值充值记录
     case growthRecord(page: Int, lastYearMonth: String, last_id: String)
+}
+// MARK: - 👀
+extension SongService: APIService {
     var baseURL: URL {
         return URL(string: "http://api.com:3003/api/uu")!
     }
@@ -34,8 +37,8 @@ enum SongService: APIService {
                     p["pageSize"] = ps
                 }
                 return APIParameter(path: "kidsong/song-api/get-list", params: p)
-            case .musicCenter: return APIParameter(path: "kidsong/song-api/kidsong-square", params: [:])
-            case .myRecord: return APIParameter(path: "kidsong/song-api/get-user-list", params: [:])
+            case .musicCenter: return APIParameter(path: "kidsong/song-api/kidsong-square")
+            case .myRecord: return APIParameter(path: "kidsong/song-api/get-user-list")
             case .growthRecord(let page, let lastYearMonth, let last_id):
                 return APIParameter(path: "/account/growth/record", params: [
                     "page": page,
