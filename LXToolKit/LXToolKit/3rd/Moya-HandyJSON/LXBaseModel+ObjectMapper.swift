@@ -10,33 +10,16 @@ import ObjectMapper
 
 public protocol LXMappable: Mappable {}
 public protocol LXImmutableMappable: ImmutableMappable {}
-open class LXAnyModel: NSObject {
-    deinit {
-        dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
-    }
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    required public override init() {}
-}
 
-public protocol LXBaseGenericMappable: LXBaseModelProtocol {
-    associatedtype T
+public struct LXBaseGenericMapper<T: LXMappable>: LXBaseModelGenericProtocol, LXMappable {
     // MARK: 🔗Vaiables
-    var data: T? { get }
-}
-
-public protocol LXBaseListMappable: LXBaseModelProtocol {
-    associatedtype T
-    // MARK: 🔗Vaiables
-    var list: [T]? { get }
-}
-public struct LXBaseGenericMapper<T: LXMappable>: LXBaseGenericMappable, LXMappable {
     public var code: Int?
     public var msg: String?
     public var errorTips: String?
     public var successTips: String?
-    public var xl_origin_json: String?
     public var data: T?
+    public var f_origin_json: String?
+    // MARK: 🛠Life Cycle
     public init?(map: ObjectMapper.Map) {}
     public mutating func mapping(map: ObjectMapper.Map) {
         code <- map["code"]
@@ -46,28 +29,36 @@ public struct LXBaseGenericMapper<T: LXMappable>: LXBaseGenericMappable, LXMappa
         data <- map["data"]
     }
 }
-public struct LXBaseListMapper<T: LXMappable>: LXBaseListMappable, LXMappable {
+public struct LXBaseListGenericMapper<T: LXMappable>: LXBaseListModelGenericProtocol, LXMappable {
+    // MARK: 🔗Vaiables
     public var code: Int?
     public var msg: String?
     public var errorTips: String?
     public var successTips: String?
-    public var xl_origin_json: String?
+    public var page: Int?
+    public var totalPage: Int?
     public var list: [T]?
+    public var f_origin_json: String?
+    // MARK: 🛠Life Cycle
     public init?(map: ObjectMapper.Map) {}
     public mutating func mapping(map: ObjectMapper.Map) {
         code <- map["code"]
         errorTips <- map["errorTips"]
         successTips <- map["successTips"]
+        page <- map["page"]
+        totalPage <- map["totalPage"]
         list <- map["list"]
     }
 }
 public struct LXBaseGenericImmutableMapper<T: LXImmutableMappable>: LXImmutableMappable {
+    // MARK: 🔗Vaiables
     public let code: Int
     public let msg: String
     public let errorTips: String
     public let successTips: String
-    public let xl_origin_json: String
     public let data: T
+    public let f_origin_json: String
+    // MARK: 🛠Life Cycle
     public init(map: Map) throws {
         code = try map.value("code", default: -1)
         msg = try map.value("msg", default: "")
@@ -75,23 +66,29 @@ public struct LXBaseGenericImmutableMapper<T: LXImmutableMappable>: LXImmutableM
         successTips = try map.value("successTips", default: "")
         data = try map.value("data", default: T.init(map: map))
 
-        xl_origin_json = ""
+        f_origin_json = ""
     }
 }
-public struct LXBaseListImmutableMapper<T: LXImmutableMappable>: LXImmutableMappable {
+public struct LXBaseListGenericImmutableMapper<T: LXImmutableMappable>: LXImmutableMappable {
+    // MARK: 🔗Vaiables
     public let code: Int
     public let msg: String
     public let errorTips: String
     public let successTips: String
-    public let xl_origin_json: String
+    public var page: Int?
+    public var totalPage: Int?
     public let list: [T]
+    public let f_origin_json: String
+    // MARK: 🛠Life Cycle
     public init(map: Map) throws {
         code = try map.value("code", default: -1)
         msg = try map.value("msg", default: "")
         errorTips = try map.value("errorTips", default: "")
         successTips = try map.value("successTips", default: "")
+        page <- map["page"]
+        totalPage <- map["totalPage"]
         list = try map.value("list", default: [])
 
-        xl_origin_json = ""
+        f_origin_json = ""
     }
 }

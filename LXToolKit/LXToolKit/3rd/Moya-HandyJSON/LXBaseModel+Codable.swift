@@ -1,14 +1,13 @@
 //
-//  LXBaseModel+HandyJSON.swift
+//  LXBaseModel+Codable.swift
 //  LXToolKit
 //
 //  Created by lxthyme on 2023/11/19.
 //
 
 import Foundation
-import HandyJSON
 
-public struct LXBaseHandyJSON: HandyJSON, LXBaseModelProtocol {
+public struct LXBaseCodable: Codable, LXBaseModelProtocol {
     // MARK: 🔗Vaiables
     public var msg: String?
     public var code: Int?
@@ -17,8 +16,15 @@ public struct LXBaseHandyJSON: HandyJSON, LXBaseModelProtocol {
     public var f_origin_json: String?
     // MARK: 🛠Life Cycle
     public init() {}
+
+    enum CodingKeys: CodingKey {
+        case msg
+        case code
+        case errorTips
+        case successTips
+    }
 }
-public struct LXBaseGenericHandyJSON<T: HandyJSON>: HandyJSON, LXBaseModelGenericProtocol {
+public struct LXBaseGenericCodable<T: Codable>: Codable, LXBaseModelGenericProtocol {
     // MARK: 🔗Vaiables
     public var code: Int?
     public var msg: String?
@@ -28,9 +34,17 @@ public struct LXBaseGenericHandyJSON<T: HandyJSON>: HandyJSON, LXBaseModelGeneri
     public var f_origin_json: String?
     // MARK: 🛠Life Cycle
     public init() {}
+
+    enum CodingKeys: CodingKey {
+        case code
+        case msg
+        case errorTips
+        case successTips
+        case data
+    }
 }
 
-public struct LXBaseListGenericHandyJSON<T: HandyJSON>: HandyJSON, LXBaseListModelGenericProtocol {
+public struct LXBaseListGenericCodable<T: Codable>: Codable, LXBaseListModelGenericProtocol {
     public var code: Int?
     public var msg: String?
     public var errorTips: String?
@@ -41,11 +55,14 @@ public struct LXBaseListGenericHandyJSON<T: HandyJSON>: HandyJSON, LXBaseListMod
     public var f_origin_json: String?
     // MARK: 🛠Life Cycle
     public init() {}
-}
 
-// MARK: - 👀
-public extension HandyJSON {
-    public var debugDescription: String {
-        return toJSONString(prettyPrint: true) ?? "--NaN-"
+    enum CodingKeys: CodingKey {
+        case code
+        case msg
+        case errorTips
+        case successTips
+        case page
+        case totalPage
+        case list
     }
 }

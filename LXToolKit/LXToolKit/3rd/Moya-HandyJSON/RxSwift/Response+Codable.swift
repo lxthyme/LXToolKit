@@ -13,7 +13,7 @@ import ObjectMapper
 // MARK: - 👀Codable
 public extension Response {
     private static let decoder = JSONDecoder()
-    func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
+    func mapCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
         if keyPath.isEmpty {
             let object = try Response.decoder.decode(T.self, from: data)
             return object
@@ -26,7 +26,7 @@ public extension Response {
         let object = try Response.decoder.decode(T.self, from: data)
         return object
     }
-    func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
+    func mapArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
         if keyPath.isEmpty {
             let object = try Response.decoder.decode([T].self, from: data)
             return object
@@ -39,6 +39,26 @@ public extension Response {
         let data = try JSONSerialization.data(withJSONObject: item, options: .fragmentsAllowed)
         let object = try Response.decoder.decode([T].self, from: data)
         return object
+    }
+    func mapBaseCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
+        let baseModel = try mapCodable(LXBaseGenericCodable<T>.self, atKeyPath: keyPath)
+
+        guard baseModel.code == kLXSuccessCode else {
+            throw MoyaError.statusCode(self)
+        }
+        guard let item = baseModel.data else {
+            throw MoyaError.jsonMapping(self)
+        }
+
+        return item
+    }
+    func mapBaseArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
+        let baseModel = try mapCodable(LXBaseListGenericCodable<T>.self, atKeyPath: keyPath)
+
+        guard baseModel.code == kLXSuccessCode else {
+            throw MoyaError.statusCode(self)
+        }
+        return baseModel.list ?? []
     }
 }
 
@@ -88,8 +108,8 @@ public extension Response {
     }
 
     func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
-        let baseModel = try mapHandyJSON(LXBaseGenericHandyJSON<T>.self, atKeyPath: keyPath)
-        baseModel.xl_origin_json = try? mapString()
+        var baseModel = try mapHandyJSON(LXBaseGenericHandyJSON<T>.self, atKeyPath: keyPath)
+        baseModel.f_origin_json = try? mapString()
 
         guard baseModel.code == kLXSuccessCode else {
             throw MoyaError.statusCode(self)
@@ -100,8 +120,8 @@ public extension Response {
         return item
     }
     func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->[T] {
-        let baseModel = try mapHandyJSON(LXBaseListHandyJSON<T>.self, atKeyPath: keyPath)
-        baseModel.xl_origin_json = try? mapString()
+        var baseModel = try mapHandyJSON(LXBaseListGenericHandyJSON<T>.self, atKeyPath: keyPath)
+        baseModel.f_origin_json = try? mapString()
 
         guard baseModel.code == kLXSuccessCode else {
             throw MoyaError.statusCode(self)
@@ -160,7 +180,7 @@ public extension Response {
         return item
     }
     func mapBaseMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
-        let baseModel = try mapMapper(LXBaseListMapper<T>.self, atKeyPath: keyPath, context: context)
+        let baseModel = try mapMapper(LXBaseListGenericMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {
             throw MoyaError.statusCode(self)
@@ -214,7 +234,7 @@ public extension Response {
         return baseModel.data
     }
     func mapBaseMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
-        let baseModel = try mapMapper(LXBaseListImmutableMapper<T>.self, atKeyPath: keyPath, context: context)
+        let baseModel = try mapMapper(LXBaseListGenericImmutableMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {
             throw MoyaError.statusCode(self)

@@ -14,14 +14,24 @@ import ObjectMapper
 /// Extension for processing Responses into Mappable objects through ObjectMapper
 // MARK: - 👀Codable
 public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
-    func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
+    func mapCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
         return flatMap { response -> Single<T> in
-            return Single.just(try response.mapObject(type, atKeyPath: keyPath))
+            return Single.just(try response.mapCodable(type, atKeyPath: keyPath))
         }
     }
-    func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
+    func mapArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
-            return Single.just(try response.mapArray(type, atKeyPath: keyPath))
+            return Single.just(try response.mapArrayCodable(type, atKeyPath: keyPath))
+        }
+    }
+    func mapBaseCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<T> {
+        return flatMap { response -> Single<T> in
+            return Single.just(try response.mapBaseCodable(type, atKeyPath: keyPath))
+        }
+    }
+    func mapBaseArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Single<[T]> {
+        return flatMap { response -> Single<[T]> in
+            return Single.just(try response.mapBaseArrayCodable(type, atKeyPath: keyPath))
         }
     }
 }

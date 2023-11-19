@@ -61,7 +61,7 @@ extension LXNetworking where U == FloatApi {
     }
     func testFloatCodable(id: String) -> Single<LXCodableTestModel> {
         return request(.testFloat(id: id))
-            .mapObject(LXCodableTestModel.self)
+            .mapBaseCodable(LXCodableTestModel.self)
             .asSingle()
     }
 }

@@ -14,14 +14,24 @@ import ObjectMapper
 /// Extension for processing Responses into Mappable objects through ObjectMapper
 // MARK: - 👀Codable
 public extension ObservableType where Element == Response {
-    func mapObject<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Observable<T> {
+    func mapCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Observable<T> {
         return flatMap { response -> Observable<T> in
-            return Observable.just(try response.mapObject(T.self, atKeyPath: keyPath))
+            return Observable.just(try response.mapCodable(T.self, atKeyPath: keyPath))
         }
     }
-    func mapArray<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<[T]> {
+    func mapArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
-            return Observable.just(try response.mapArray(T.self, atKeyPath: keyPath))
+            return Observable.just(try response.mapArrayCodable(T.self, atKeyPath: keyPath))
+        }
+    }
+    func mapBaseCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") -> Observable<T> {
+        return flatMap { response -> Observable<T> in
+            return Observable.just(try response.mapBaseCodable(T.self, atKeyPath: keyPath))
+        }
+    }
+    func mapBaseArrayCodable<T: Codable>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<[T]> {
+        return flatMap { response -> Observable<[T]> in
+            return Observable.just(try response.mapBaseArrayCodable(T.self, atKeyPath: keyPath))
         }
     }
 }
@@ -55,7 +65,7 @@ public extension ObservableType where Element == Response {
 
     func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
-//        return flatMap { response -> Observable<LXBaseListHandyJSON<T>> in
+//        return flatMap { response -> Observable<LXBaseListGenericHandyJSON<T>> in
 //            let a = try response.mapModelArray(T.self)
             return Observable.just(try response.mapBaseHandyJSONArray(T.self, atKeyPath: keyPath))
 //            return Observable.just(try response.mapBaseModelArray(T.self))
