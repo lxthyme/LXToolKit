@@ -6,22 +6,10 @@
 //
 import UIKit
 
-class LX03_08_03VC: UIViewController {
+class LX03_08_03VC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,8 +46,9 @@ private extension LX03_08_03VC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LX03_08_03VC {
-    func prepareUI() {
+extension LX03_08_03VC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         navigationItem.title = "Swift Daily"
         // self.title = "<#title#>"
@@ -69,5 +58,7 @@ private extension LX03_08_03VC {
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }
