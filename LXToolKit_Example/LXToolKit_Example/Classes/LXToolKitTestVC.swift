@@ -91,7 +91,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
                 guard let self else { return nil }
                 return LXRxSwiftTestVC(vm: vm, navigator: self.navigator)
             }),
-        ], toSection: "Swift Daily")
+        ].reversed(), toSection: "Swift Daily")
         snapshot.appendItems([
             .openURL(url: URL(string: "http://baidu.com")),
             .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
@@ -104,10 +104,10 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXMVVMSampleVC.xl.xl_typeName, vcProvider: { LXMVVMSampleVC() }),
             .vc(identifier: HomeViewController.xl.xl_typeName, vcProvider: { HomeViewController() }),
             .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ], toSection: "MVVM")
+        ].reversed(), toSection: "MVVM")
         snapshot.appendItems([
             .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ], toSection: "WWDC")
+        ].reversed(), toSection: "WWDC")
         snapshot.appendItems([
             .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
             .vc(identifier: LXApiTestVC.xl.xl_typeName, vcProvider: { LXApiTestVC() }),
@@ -125,7 +125,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXActionSheetTestVC.xl.xl_typeName, vcProvider: { LXActionSheetTestVC() }),
             .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC(vm: vm, navigator: self.navigator) }),
             .vc(identifier: LXCollectionVC.xl.xl_typeName, vcProvider: { LXCollectionVC() })
-        ], toSection: "2023")
+        ].reversed(), toSection: "2023")
         snapshot.appendItems([
             .vc(identifier: LXTable0120VC.xl.xl_typeName,vcProvider: {[weak self] in
                 guard let `self` = self else { return nil }
@@ -155,7 +155,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             // .HomeViewController(viewModel: vm),
             // .test(vm: vm),
             // .tabs(vm: vm as! DJHomeTabBarVM),
-        ], toSection: "2022")
+        ].reversed(), toSection: "2022")
         snapshot.appendItems([
             .vc(identifier: LX0114VC.xl.xl_typeName, vcProvider: { LX0114VC() }),
             // .LXPhotoAlbumVC,
@@ -171,7 +171,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LX1019TestVC.xl.xl_typeName, vcProvider: { LX1019TestVC() }),
             .vc(identifier: LXHugTestVC.xl.xl_typeName, vcProvider: { LXHugTestVC() }),
             .vc(identifier: LXStack1206VC.xl.xl_typeName, vcProvider: { LXStack1206VC() }),
-        ], toSection: "2021")
+        ].reversed(), toSection: "2021")
         snapshot.appendItems([
             .vc(identifier: LXMultiRequestTestVC.xl.xl_typeName, vcProvider: { LXMultiRequestTestVC() }),
             .vc(identifier: LXOffScreenVC.xl.xl_typeName, vcProvider: { LXOffScreenVC() }),
@@ -196,7 +196,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXMusicVC.xl.xl_typeName, vcProvider: { LXMusicVC() }),
             .vc(identifier: LXSongVC.xl.xl_typeName, vcProvider: { LXSongVC() }),
             .vc(identifier: LXLightedVC.xl.xl_typeName, vcProvider: { LXLightedVC() }),
-        ], toSection: "2020")
+        ].reversed(), toSection: "2020")
         _dataSnapshot = snapshot
         return snapshot
     }
