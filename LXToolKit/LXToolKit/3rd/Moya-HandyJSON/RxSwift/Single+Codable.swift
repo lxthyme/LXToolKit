@@ -58,24 +58,24 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
     }
 }
 
-// MARK: - 👀BaseMappable
+// MARK: - 👀Mappable
 public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
-    func mapMapper<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+    func mapMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
         return flatMap { response -> Single<T> in
             return Single.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapMapperArray<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+    func mapMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapper<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+    func mapBaseMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
         return flatMap { response -> Single<T> in
             return Single.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapperArray<T: BaseMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+    func mapBaseMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
@@ -84,22 +84,22 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
 
 // MARK: - 👀ImmutableMappable
 public extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
-    func mapMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+    func mapMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
         return flatMap { response -> Single<T> in
             return Single.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
+    func mapMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
+    func mapBaseMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Single<T> {
         return flatMap { response -> Single<T> in
             return Single.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Single<[T]> {
+    func mapBaseMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Single<[T]> {
         return flatMap { response -> Single<[T]> in
             return Single.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
         }

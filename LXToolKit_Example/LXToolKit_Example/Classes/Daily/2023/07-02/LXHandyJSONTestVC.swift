@@ -186,10 +186,10 @@ extension LXHandyJSONTestVC {
         super.bindViewModel()
         guard let vm = vm as? LXFloatTestVM else { return }
         let headerTrigger = Observable
-            .of(headerTrigger.skip(1))
+            .of(headerTrigger)
             .merge()
         let footerTrigger = Observable
-            .of(footerTrigger.skip(1))
+            .of(footerTrigger)
             .merge()
         let intput = LXFloatTestVM.Input(headerRefresh: headerTrigger, footerRefresh: footerTrigger)
         let output = vm.transform(input: intput)
