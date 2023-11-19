@@ -137,7 +137,7 @@ public extension Response {
 public extension Response {
     /// Maps data received from the signal into an object which implements the Mappable protocol.
     /// If the conversion fails, the signal errors.
-    func mapMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
+    func mapMapper<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
         let json = try mapJSON()
         if keyPath.isEmpty {
             guard let object = Mapper<T>(context: context).map(JSONObject: json) else {
@@ -154,7 +154,7 @@ public extension Response {
     /// Maps data received from the signal into an array of objects which implement the Mappable
     /// protocol.
     /// If the conversion fails, the signal errors.
-    func mapMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
+    func mapMapperArray<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let json = try mapJSON()
         if keyPath.isEmpty {
             guard let array = json as? [[String : Any]] else {
@@ -168,7 +168,7 @@ public extension Response {
         return Mapper<T>(context: context).mapArray(JSONArray: array)
     }
     
-    func mapBaseMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
+    func mapBaseMapper<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
         let baseModel = try mapMapper(LXBaseGenericMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {
@@ -179,7 +179,7 @@ public extension Response {
         }
         return item
     }
-    func mapBaseMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
+    func mapBaseMapperArray<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let baseModel = try mapMapper(LXBaseListGenericMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {
@@ -197,7 +197,7 @@ public extension Response {
     /// Maps data received from the signal into an object which implements the ImmutableMappable
     /// protocol.
     /// If the conversion fails, the signal errors.
-    func mapMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
+    func mapMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
         let json = try mapJSON()
         if keyPath.isEmpty {
             let object = try Mapper<T>(context: context).map(JSONObject: json)
@@ -212,7 +212,7 @@ public extension Response {
     /// Maps data received from the signal into an array of objects which implement the ImmutableMappable
     /// protocol.
     /// If the conversion fails, the signal errors.
-    func mapMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
+    func mapMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let json = try mapJSON()
         if keyPath.isEmpty {
             guard let array = json as? [[String : Any]] else {
@@ -225,7 +225,7 @@ public extension Response {
         }
         return try Mapper<T>(context: context).mapArray(JSONArray: array)
     }
-    func mapBaseMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
+    func mapBaseMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
         let baseModel = try mapMapper(LXBaseGenericImmutableMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {
@@ -233,7 +233,7 @@ public extension Response {
         }
         return baseModel.data
     }
-    func mapBaseMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
+    func mapBaseMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let baseModel = try mapMapper(LXBaseListGenericImmutableMapper<T>.self, atKeyPath: keyPath, context: context)
 
         guard baseModel.code == kLXSuccessCode else {

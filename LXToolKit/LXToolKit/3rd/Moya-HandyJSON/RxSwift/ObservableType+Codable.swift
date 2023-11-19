@@ -75,22 +75,22 @@ public extension ObservableType where Element == Response {
 
 // MARK: - 👀Mappable
 public extension ObservableType where Element == Response {
-    func mapMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Observable<T> {
+    func mapMapper<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Observable<T> {
         return flatMap { response -> Observable<T> in
             return Observable.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
+    func mapMapperArray<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
             return Observable.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapper<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Observable<T> {
+    func mapBaseMapper<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) -> Observable<T> {
         return flatMap { response -> Observable<T> in
             return Observable.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapperArray<T: LXMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
+    func mapBaseMapperArray<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
             return Observable.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
@@ -99,22 +99,22 @@ public extension ObservableType where Element == Response {
 
 // MARK: - 👀ImmutableMappable
 public extension ObservableType where Element == Response {
-    func mapMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<T> {
+    func mapMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<T> {
         return flatMap { response -> Observable<T> in
             return Observable.just(try response.mapMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
+    func mapMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
             return Observable.just(try response.mapMapperArray(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapper<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<T> {
+    func mapBaseMapper<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<T> {
         return flatMap { response -> Observable<T> in
             return Observable.just(try response.mapBaseMapper(T.self, atKeyPath: keyPath, context: context))
         }
     }
-    func mapBaseMapperArray<T: LXImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
+    func mapBaseMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
             return Observable.just(try response.mapBaseMapperArray(T.self, atKeyPath: keyPath, context: context))
         }

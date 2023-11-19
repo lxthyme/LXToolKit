@@ -195,12 +195,16 @@ extension LXHandyJSONTestVC {
         let output = vm.transform(input: intput)
         output.floatModel
             .subscribe(onNext: { model in
-                dlog("model: \(model)")
+                let sum = model.all.reduce(0, +)
+                dlog("-->floatModel: \(model)")
+                dlog("-->sum[float]: \(sum)")
             })
             .disposed(by: rx.disposeBag)
         output.codableModel
             .subscribe(onNext: { model in
-                dlog("model: \(model)")
+                let sum = model.all.reduce(0, +)
+                dlog("-->codableModel: \(model)")
+                dlog("-->sum[codable]: \(sum)")
             })
             .disposed(by: rx.disposeBag)
     }

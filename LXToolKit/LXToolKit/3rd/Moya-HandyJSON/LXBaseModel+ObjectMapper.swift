@@ -8,8 +8,10 @@
 import Foundation
 import ObjectMapper
 
-public protocol LXMappable: Mappable {}
-public protocol LXImmutableMappable: ImmutableMappable {}
+public typealias LXMappable = Mappable
+public typealias LXImmutableMappable = ImmutableMappable
+// public protocol LXMappable: Mappable {}
+// public protocol LXImmutableMappable: ImmutableMappable {}
 
 public struct LXBaseGenericMapper<T: LXMappable>: LXBaseModelGenericProtocol, LXMappable {
     // MARK: 🔗Vaiables

@@ -219,8 +219,9 @@ extension LXBaseVC {
         })
         .disposed(by: rx.disposeBag)
 
-        error.subscribe { error in
-            dlog("-->error[vc]: \(error)")
+        error
+            .subscribe { error in
+                dlog("-->error[\(self.xl.xl_typeName)]: \(error)")
         }
         .disposed(by: rx.disposeBag)
     }
