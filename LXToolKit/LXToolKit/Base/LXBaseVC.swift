@@ -220,7 +220,8 @@ extension LXBaseVC {
         .disposed(by: rx.disposeBag)
 
         error
-            .subscribe { error in
+            .subscribe {[weak self] error in
+                guard let self else { return }
                 dlog("-->error[\(self.xl.xl_typeName)]: \(error)")
         }
         .disposed(by: rx.disposeBag)

@@ -57,6 +57,9 @@ extension LXFloatTestVM: LXViewModelType {
                 return provider.testFloatCodable(id: "123")
                 .trackActivity(self.loading)
                 .trackError(self.error)
+                .do(onError: { error in
+                    dlog("--> testFloat error: \(error)")
+                })
                 .materialize()
             }
             .subscribe(onNext: {[weak self] event in
