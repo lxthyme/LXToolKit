@@ -35,45 +35,35 @@ public protocol LXBaseListGenericProtocol {
 }
 public protocol LXMappable: Mappable {}
 public protocol LXImmutableMappable: ImmutableMappable {}
-open class LXAnyModel: NSObject, HandyJSON {
+open class LXAnyModel: NSObject {
     deinit {
         dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
-    // public init?(map: ObjectMapper.Map) {}
-    // public mutating func mapping(map: ObjectMapper.Map) {}
     required public override init() {}
+}
+open class LXBaseHandyJSON: LXAnyModel, HandyJSON, LXBaseModelProtocol {
+    // MARK: 🔗Vaiables
+    public var msg: String?
+    public var code: Int?
+    public var errorTips: String?
+    public var successTips: String?
+    public var xl_origin_json: String?
+    // MARK: 🛠Life Cycle
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init() {
+        super.init()
+    }
+    // open override func mapping(mapper: HelpingMapper) {
+    //     mapper <<< self.xl_origin_json <-- "xl_origin_json"
+    // }
+
     open override var debugDescription: String {
         return toJSONString(prettyPrint: true) ?? "--NaN-"
     }
-    open func mapping(mapper: HelpingMapper) {
-    // public override func mapping(mapper: HelpingMapper) {
-    //     super.mapping(mapper: mapper)
-    }
-    // override func didFinishMapping() {
-    //     super.didFinishMapping()
-    // }
 }
-// open class LXBaseModel: LXAnyModel, LXBaseModelProtocol {
-//     // MARK: 🔗Vaiables
-//     public var code: Int?
-//     public var errorTips: String?
-//     public var successTips: String?
-//     public var xl_origin_json: String?
-//     // MARK: 🛠Life Cycle
-//     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-//     required public init() {
-//         super.init()
-//     }
-//
-//     public func mapping(mapper: HelpingMapper) {
-//         mapper >>> self.xl_origin_json
-//     }
-//
-//     /// override var debugDescription: String { return "" }
-// }
-open class LXBaseGenericModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
+open class LXBaseGenericHandyJSON<T: HandyJSON>: LXAnyModel, HandyJSON, LXBaseModelProtocol {
     // MARK: 🔗Vaiables
     public var code: Int?
     public var msg: String?
@@ -91,10 +81,12 @@ open class LXBaseGenericModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
     //     xl_origin_json <- map["xl_origin_json"]
     // }
 
-    // override var debugDescription: String { return "" }
+    open override var debugDescription: String {
+        return toJSONString(prettyPrint: true) ?? "--NaN-"
+    }
 }
 
-open class LXBaseListModel<T: HandyJSON>: LXAnyModel, LXBaseModelProtocol {
+open class LXBaseListHandyJSON<T: HandyJSON>: LXAnyModel, HandyJSON, LXBaseModelProtocol {
     public var code: Int?
     public var msg: String?
     public var errorTips: String?

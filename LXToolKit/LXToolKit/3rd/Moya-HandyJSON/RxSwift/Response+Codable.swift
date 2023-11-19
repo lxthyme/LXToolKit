@@ -88,7 +88,7 @@ public extension Response {
     }
 
     func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> T {
-        let baseModel = try mapHandyJSON(LXBaseGenericModel<T>.self, atKeyPath: keyPath)
+        let baseModel = try mapHandyJSON(LXBaseGenericHandyJSON<T>.self, atKeyPath: keyPath)
         baseModel.xl_origin_json = try? mapString()
 
         guard baseModel.code == kLXSuccessCode else {
@@ -100,7 +100,7 @@ public extension Response {
         return item
     }
     func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->[T] {
-        let baseModel = try mapHandyJSON(LXBaseListModel<T>.self, atKeyPath: keyPath)
+        let baseModel = try mapHandyJSON(LXBaseListHandyJSON<T>.self, atKeyPath: keyPath)
         baseModel.xl_origin_json = try? mapString()
 
         guard baseModel.code == kLXSuccessCode else {

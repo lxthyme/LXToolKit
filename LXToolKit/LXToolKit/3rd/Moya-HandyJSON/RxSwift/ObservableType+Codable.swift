@@ -55,7 +55,7 @@ public extension ObservableType where Element == Response {
 
     func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<[T]> {
         return flatMap { response -> Observable<[T]> in
-//        return flatMap { response -> Observable<LXBaseListModel<T>> in
+//        return flatMap { response -> Observable<LXBaseListHandyJSON<T>> in
 //            let a = try response.mapModelArray(T.self)
             return Observable.just(try response.mapBaseHandyJSONArray(T.self, atKeyPath: keyPath))
 //            return Observable.just(try response.mapBaseModelArray(T.self))

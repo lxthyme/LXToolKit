@@ -13,7 +13,7 @@ import RxCocoa
 import LXToolKit
 
 struct SongRecordListService {
-//    lazy var getRecordList = Action<Int, LXBaseListModel<LXSongRecordItemModel>> { body -> Observable<LXBaseListModel<LXSongRecordItemModel>> in
+//    lazy var getRecordList = Action<Int, LXBaseListHandyJSON<LXSongRecordItemModel>> { body -> Observable<LXBaseListHandyJSON<LXSongRecordItemModel>> in
 ////        return RxProvider.shared.rx
 ////            .req(isResource: true,
 ////                 url: ApiService.recordList,
