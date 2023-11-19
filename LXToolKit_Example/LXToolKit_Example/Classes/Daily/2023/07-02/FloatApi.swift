@@ -16,8 +16,7 @@ enum FloatApi {
 
 // MARK: - 👀
 extension FloatApi: APIService {
-    
-    var provider: LXNetworking<FloatApi> {
+    static var provider: LXNetworking<FloatApi> {
         return AppConfig.Network.useStaging
         ? LXNetworking<FloatApi>.stubbingNetworking()
         : LXNetworking<FloatApi>.defaultNetworking()

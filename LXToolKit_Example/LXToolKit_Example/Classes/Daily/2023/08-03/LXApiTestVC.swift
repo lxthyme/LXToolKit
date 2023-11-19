@@ -12,22 +12,11 @@ import Moya
 import RxSwift
 import LXToolKit
 
-class LXApiTestVC: UIViewController {
+class LXApiTestVC: LXBaseVC {
     // MARK: UI
     // MARK: Vaiables
+    let provider = LXMainProvider.provider
     // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +26,7 @@ class LXApiTestVC: UIViewController {
         self.title = "ApiTest"
 //        loadData()
 //        loadData2()
-        loadData3()
+        loadData()
     }
 
 }
@@ -51,14 +40,16 @@ extension LXApiTestVC {}
 // MARK: Private Actions
 private extension LXApiTestVC {
     func loadData() {
-        apiProvider.request(MultiTarget(LXMainProvider.newUserFloat), callbackQueue: nil, progress: nil) { result in
-            switch result {
-                case .success(let response):
-                    print("Response: ", response)
-                case .failure(let moyaError):
-                    print("Error: ", moyaError)
+        provider
+            .newUserFloat()
+            .subscribe { response in
+            // switch result {
+            //     case .success(let response):
+                    dlog("Response: ", response)
+                // case .failure(let moyaError):
+                //     print("Error: ", moyaError)
             }
-        }
+            .disposed(by: rx.disposeBag)
     }
     func loadData2() {
 //        apiProvider.req
@@ -90,12 +81,15 @@ private extension LXApiTestVC {
 }
 
 // MARK: - UI Prepare & Masonry
-private extension LXApiTestVC {
-    func prepareUI() {
+extension LXApiTestVC {
+    override func prepareUI() {
+        super.prepareUI()
         self.view.backgroundColor = .white
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    func masonry() {}
+    override func masonry() {
+        super.masonry()
+    }
 }

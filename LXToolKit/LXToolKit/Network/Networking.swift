@@ -8,7 +8,8 @@
 import Foundation
 import Moya
 import Alamofire
-import RxNetworks
+import RxSwift
+import HandyJSON
 
 class OnlineProvider<Target> where Target: Moya.TargetType {
     // MARK: 🔗Vaiables
@@ -75,20 +76,20 @@ extension NetworkingType {
         return formatter
     }
 }
-struct LXNetworking<U: TargetType>: NetworkingType {
-    typealias T = U
+public struct LXNetworking<U: TargetType>: NetworkingType {
+    public typealias T = U
     let provider: OnlineProvider<T>
 
-    static func defaultNetworking() -> LXNetworking {
+    public static func defaultNetworking() -> LXNetworking {
         return LXNetworking(provider: newProvider(plugins))
     }
-    static func stubbingNetworking() -> LXNetworking {
+    public static func stubbingNetworking() -> LXNetworking {
         return LXNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
                                                      requestClosure: LXNetworking.endpointResolver(),
                                                      stubClosure: MoyaProvider.immediatelyStub,
                                                      online: .just(true)))
     }
-    func request(_ token: T) -> Observable<Moya.Response> {
+    public func request(_ token: T) -> Observable<Moya.Response> {
         let actualRequest = self.provider.request(token)
         return actualRequest
     }

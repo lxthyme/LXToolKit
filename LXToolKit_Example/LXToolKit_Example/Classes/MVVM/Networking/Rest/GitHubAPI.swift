@@ -79,7 +79,7 @@ enum GithubAPI {
 }
 // MARK: - 👀
 extension GithubAPI: APIService {
-    var provider: LXNetworking<GithubAPI> {
+    static var provider: LXNetworking<GithubAPI> {
         return AppConfig.Network.useStaging
         ? LXNetworking<GithubAPI>.stubbingNetworking()
         : LXNetworking<GithubAPI>.defaultNetworking()

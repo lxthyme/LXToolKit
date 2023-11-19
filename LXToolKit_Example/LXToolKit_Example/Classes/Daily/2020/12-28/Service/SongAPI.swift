@@ -20,7 +20,7 @@ enum SongService {
 }
 // MARK: - 👀
 extension SongService: APIService {
-    var provider: LXNetworking<SongService> {
+    static var provider: LXNetworking<SongService> {
         return AppConfig.Network.useStaging
         ? LXNetworking<SongService>.stubbingNetworking()
         : LXNetworking<SongService>.defaultNetworking()

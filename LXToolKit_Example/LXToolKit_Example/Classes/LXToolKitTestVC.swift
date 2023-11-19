@@ -110,6 +110,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         ], toSection: "WWDC")
         snapshot.appendItems([
             .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
+            .vc(identifier: LXApiTestVC.xl.xl_typeName, vcProvider: { LXApiTestVC() }),
             .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { () -> UIViewController? in
                 let vm = LXFloatTestVM()
                 let vc = LXHandyJSONTestVC(vm: vm, navigator: self.navigator)
