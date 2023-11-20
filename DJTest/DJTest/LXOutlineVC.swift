@@ -27,73 +27,18 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
+        let djTestList: LXOutlineOpt = .outline(title: "DJTest", subitems: [
+            .subitem(title: "LXAMapTestVC", vc: .vc(identifier: "LXAMapTestVC", vcProvider: { LXAMapTestVC() })),
+            .subitem(title: "LXOutlineVC", vc: .vc(identifier: "LXOutlineVC", vcProvider: { LXOutlineVC() })),
+        ])
+        let kitList: LXOutlineOpt = .subitem(title: "LXToolKit_Example", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.LXToolKit_Example.vc }))
+        let kitObjcList: LXOutlineOpt = .subitem(title: "LXToolKitObjC_Example", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.LXToolKitObjC_Example.vc }))
         return [
-            .outline(title: "Title", subitems: [
-                .subitem(title: "Title1", vc: .vc(identifier: UUID().uuidString, vcProvider: { LXAMapTestVC() })),
-                .subitem(title: "Title2", vc: .vc(identifier: UUID().uuidString, vcProvider: { LXAMapTestVC() })),
-                .subitem(title: "Title3", vc: .vc(identifier: UUID().uuidString, vcProvider: { LXAMapTestVC() })),
-            ]),
-            .subitem(title: "LXAMapTestVC", vc: .vc(identifier: UUID().uuidString, vcProvider: { LXAMapTestVC() })),
-            // LXOutlineItem(title: "Compositional Layout", subitems: [
-            //     LXOutlineItem(title: "Getting Started", subitems: [
-            //         LXOutlineItem(title: "Grid", outlineVC: GridViewController.self),
-            //         LXOutlineItem(title: "Inset Items Grid",
-            //                     outlineVC: InsetItemsGridViewController.self),
-            //         LXOutlineItem(title: "Two-Column Grid", outlineVC: TwoColumnViewController.self),
-            //         LXOutlineItem(title: "Per-Section Layout", subitems: [
-            //             LXOutlineItem(title: "Distinct Sections",
-            //                         outlineVC: DistinctSectionsViewController.self),
-            //             LXOutlineItem(title: "Adaptive Sections",
-            //                         outlineVC: AdaptiveSectionsViewController.self)
-            //             ])
-            //         ]),
-            //     LXOutlineItem(title: "Advanced Layouts", subitems: [
-            //         LXOutlineItem(title: "Supplementary Views", subitems: [
-            //             LXOutlineItem(title: "Item Badges",
-            //                         outlineVC: ItemBadgeSupplementaryViewController.self),
-            //             LXOutlineItem(title: "Section Headers/Footers",
-            //                         outlineVC: SectionHeadersFootersViewController.self),
-            //             LXOutlineItem(title: "Pinned Section Headers",
-            //                         outlineVC: PinnedSectionHeaderFooterViewController.self)
-            //             ]),
-            //         LXOutlineItem(title: "Section Background Decoration",
-            //                     outlineVC: SectionDecorationViewController.self),
-            //         LXOutlineItem(title: "Nested Groups",
-            //                     outlineVC: NestedGroupsViewController.self),
-            //         LXOutlineItem(title: "Orthogonal Sections", subitems: [
-            //             LXOutlineItem(title: "Orthogonal Sections",
-            //                         outlineVC: OrthogonalScrollingViewController.self),
-            //             LXOutlineItem(title: "Orthogonal Section Behaviors",
-            //                         outlineVC: OrthogonalScrollBehaviorViewController.self)
-            //             ])
-            //         ]),
-            //     LXOutlineItem(title: "Conference App", subitems: [
-            //         LXOutlineItem(title: "Videos",
-            //                     outlineVC: ConferenceVideoSessionsViewController.self),
-            //         LXOutlineItem(title: "News", outlineVC: ConferenceNewsFeedViewController.self)
-            //         ])
-            // ]),
-            // LXOutlineItem(title: "Diffable Data Source", subitems: [
-            //     LXOutlineItem(title: "Mountains Search", outlineVC: MountainsViewController.self),
-            //     LXOutlineItem(title: "Settings: Wi-Fi", outlineVC: WiFiSettingsViewController.self),
-            //     LXOutlineItem(title: "Insertion Sort Visualization",
-            //                 outlineVC: InsertionSortViewController.self),
-            //     LXOutlineItem(title: "UITableView: Editing",
-            //                 outlineVC: TableViewEditingViewController.self)
-            //     ]),
-            // LXOutlineItem(title: "Lists", subitems: [
-            //     LXOutlineItem(title: "Simple List", outlineVC: SimpleListViewController.self),
-            //     LXOutlineItem(title: "Reorderable List", outlineVC: ReorderableListViewController.self),
-            //     LXOutlineItem(title: "List Appearances", outlineVC: ListAppearancesViewController.self),
-            //     LXOutlineItem(title: "List with Custom Cells", outlineVC: CustomCellListViewController.self)
-            // ]),
-            // LXOutlineItem(title: "Outlines", subitems: [
-            //     LXOutlineItem(title: "Emoji Explorer", outlineVC: EmojiExplorerViewController.self),
-            //     LXOutlineItem(title: "Emoji Explorer - List", outlineVC: EmojiExplorerListViewController.self)
-            // ]),
-            // LXOutlineItem(title: "Cell Configurations", subitems: [
-            //     LXOutlineItem(title: "Custom Configurations", outlineVC: CustomConfigurationViewController.self)
-            // ])
+            kitList,
+            kitObjcList,
+            .subitem(title: "DJSwiftModule", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.DJSwiftModule.vc })),
+            .subitem(title: "dynamicIsland", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.dynamicIsland.vc })),
+            djTestList,
         ]
     }()
     @available(iOS 13.0, *)
