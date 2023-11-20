@@ -284,6 +284,14 @@ private extension LXHandyJSONTestVC {
         let sum = testNumberList.reduce(0, +)
         dlog("-->sum: \(sum)")
     }
+    func testRandom() {
+        enum Foo: String, CaseIterable {
+            case a, b, c
+        }
+        if let random = Foo.randomCaseIterableElement() {
+            dlog("random: \(random)")
+        }
+    }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
@@ -295,6 +303,7 @@ extension LXHandyJSONTestVC {
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
                 self?.headerTrigger.onNext(())
+                // self?.testRandom()
             }
             .disposed(by: rx.disposeBag)
         btnFootererRefresh.rx.controlEvent(.touchUpInside)
