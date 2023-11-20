@@ -8,9 +8,49 @@
 import Foundation
 import Hero
 import MessageUI
+import SafariServices
 
 public protocol Navigatable {
     var navigator: Navigator { get set }
+}
+
+// MARK: - 👀
+public extension Navigator {
+    // MARK: - segues list, all app scenes
+    public enum Scene: Hashable {
+        public func hash(into hasher: inout Hasher) {
+            switch self {
+            case .vc(_, _, _, let uuid),
+                    .vcString(_, _, let uuid),
+                    .openURL(_, _, _, let uuid):
+                    // .tabs(_, _, let uuid):
+                hasher.combine(uuid)
+            }
+        }
+        public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
+            switch(lhs, rhs) {
+            case let (lhs, rhs):
+                return lhs.hashValue == rhs.hashValue
+            }
+        }
+        case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
+        case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
+        case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
+        // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!), uuid: UUID = UUID())
+
+        public var info: (title: String, desc: String) {
+            var tmp: (title: String, desc: String)
+            switch self {
+            case .openURL(let url, let inWebView, _, _):
+                tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
+            case .vc(let identifier, _, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
+            case .vcString(let vcString, _, _): tmp = (title: vcString, desc: "---")
+            // case .tabs:
+            //     tmp = (title: "DJHomeTabBarVC", desc: "---")
+            }
+            return tmp
+        }
+    }
 }
 
 open class Navigator {
@@ -35,6 +75,43 @@ open class Navigator {
 
     func dismiss(sender: UIViewController?) {
         sender?.navigationController?.dismiss(animated: true)
+    }
+
+    // MARK: - get a single VC
+    public func get(segue: Navigator.Scene) -> (UIViewController?, Transition?)? {
+        switch segue {
+        case .openURL(let url, let inWebView, let transition, _):
+            guard let url else { return nil }
+
+            if inWebView {
+                let vc = SFSafariViewController(url: url)
+                return (vc, transition)
+            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return nil
+        case .vc(_, let vcProvider, let transition, _): return (vcProvider(), transition)
+        case .vcString(let vcString, let transition, _):
+            guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
+            return (VCCls.init(), transition)
+        // case .tabs(let vm, let transition, _):
+        //     let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
+        //     let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
+        //     let splitVC = UISplitViewController()
+        //     splitVC.viewControllers = [rootVC , detailVC]
+        //     return (splitVC, transition)
+        }
+    }
+    // MARK: - invoke a single segue
+    @discardableResult
+    public func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) -> UIViewController? {
+        guard let (vc, tran) = get(segue: segue),
+           let vc else {
+               return nil
+        }
+        show(target: vc,
+             sender: sender,
+             transition: tran ?? transition)
+        return vc
     }
 
     public func show(target: UIViewController, sender: UIViewController?, transition: Transition) {

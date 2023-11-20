@@ -33,8 +33,8 @@ extension DJTestType {
                 // Fallback on earlier versions
                 UIViewController()
             }
-        case .djTest(let vc):
-            return vc
+        case .djTest(_, let vc, _):
+            return vc()
         }
         return nil
     }
@@ -83,8 +83,9 @@ class ViewController: LXBaseTableVC {
             .dynamicIsland,
         ], toSection: "lxthyme")
         snapshot.appendItems([
-            .djTest(vc: LXAMapTestVC()),
-        ], toSection: "DJTest")
+            .djTest(title: "LXAMapTestVC",vc: { LXAMapTestVC() }),
+            .djTest(title: "LXOutlineVC", vc: { LXOutlineVC() }),
+        ].reversed(), toSection: "DJTest")
         _dataSnapshot = snapshot
         return snapshot
     }

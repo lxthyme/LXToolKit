@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3451B3D8ACB9B1C9E9598A37 /* Pods_DJTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */; };
 		BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */; };
+		BE1390A82B0B6903009B2BAA /* LXOutlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */; };
 		BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */; };
 		BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
 		BE3067A52AE75AE600E9577C /* HealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */; };
@@ -123,6 +124,7 @@
 		83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.debug.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.debug.xcconfig"; sourceTree = "<group>"; };
 		96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOutlineVC.swift; sourceTree = "<group>"; };
 		BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLibManager.swift; sourceTree = "<group>"; };
 		BE3067A22AE75AB400E9577C /* GameColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColors.swift; sourceTree = "<group>"; };
 		BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLevelShape.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				BE29938A2AF0A28D00767EA0 /* Manager */,
 				BEE5A3412AB974FA003339EB /* SceneDelegate.swift */,
 				BEE5A3432AB974FA003339EB /* ViewController.swift */,
+				BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */,
 				BEE5A3452AB974FA003339EB /* Main.storyboard */,
 				BEE5A3482AB974FB003339EB /* Assets.xcassets */,
 				BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */,
@@ -666,6 +669,7 @@
 				BEFA8DD02AE8EDA400933131 /* AdventureViewModel.swift in Sources */,
 				BE3067B22AE76FCF00E9577C /* AllCharactersView.swift in Sources */,
 				BEE5A3402AB974FA003339EB /* AppDelegate.swift in Sources */,
+				BE1390A82B0B6903009B2BAA /* LXOutlineVC.swift in Sources */,
 				BEFA8E782AE90DA100933131 /* EmojiRangersApp.swift in Sources */,
 				BEE5A3422AB974FA003339EB /* SceneDelegate.swift in Sources */,
 				BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */,

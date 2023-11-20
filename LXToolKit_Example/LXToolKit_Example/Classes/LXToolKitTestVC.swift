@@ -329,7 +329,9 @@ private extension LXToolKitTestVC {
     func gotoScene(by scene: Navigator.Scene?) {
         guard let scene else { return }
         let navigator = Navigator.default
-        navigator.show(segue: scene, sender: self)
+        if let vc = navigator.show(segue: scene, sender: self) {
+            DJTestType.LXToolKit_Example.updateDefaults(vcName: vc.xl.xl_typeName)
+        }
     }
 }
 
