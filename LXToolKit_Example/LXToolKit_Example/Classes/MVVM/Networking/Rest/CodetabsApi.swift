@@ -63,3 +63,12 @@ extension CodetabsApi: TargetType, ProductApiType {
         }
     }
 }
+
+// extension LXNetworking where U == CodetabsApi {
+//     func numberOfLines(fullname: String) -> Single<[T]> {
+//         return request(.numberOfLines(fullname: <#T##String#>))
+//             .mapHandyJSONArray(T.self)
+//             .observe(on: MainScheduler.instance)
+//             .asSingle()
+//     }
+// }

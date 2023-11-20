@@ -60,20 +60,20 @@ open class LXToolKitTestVC: LXBaseTableVC {
         if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
             return ds
         }
-        let staging = AppConfig.Network.useStaging
-        let githubProvider = staging
-        ? GithubNetworking.stubbingNetworking()
-        : GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging
-        ? TrendingGithubNetworking.stubbingNetworking()
-        : TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging
-        ? CodetabsNetworking.stubbingNetworking()
-        : CodetabsNetworking.defaultNetworking()
-        let provider = RestApi(githubProvider: githubProvider,
-                               trendingGithubProvider: trendingGithubProvider,
-                               codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as DJAllAPI)
+        // let staging = AppConfig.Network.useStaging
+        // let githubProvider = staging
+        // ? LXNetworking<GithubAPI>.stubbingNetworking()
+        // :  LXNetworking<GithubAPI>.defaultNetworking()
+        // let trendingGithubProvider = staging
+        // ? LXNetworking<TrendingGithubAPI>.stubbingNetworking()
+        // : LXNetworking<TrendingGithubAPI>.defaultNetworking()
+        // let codetabsProvider = staging
+        // ? LXNetworking<CodetabsApi>.stubbingNetworking()
+        // : LXNetworking<CodetabsApi>.defaultNetworking()
+        // let provider = RestApi(githubProvider: githubProvider,
+        //                        trendingGithubProvider: trendingGithubProvider,
+        //                        codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM()
         var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
         snapshot.appendSections([
             "Swift Daily",
@@ -91,11 +91,11 @@ open class LXToolKitTestVC: LXBaseTableVC {
                 guard let self else { return nil }
                 return LXRxSwiftTestVC(vm: vm, navigator: self.navigator)
             }),
-        ], toSection: "Swift Daily")
+        ].reversed(), toSection: "Swift Daily")
         snapshot.appendItems([
             .openURL(url: URL(string: "http://baidu.com")),
             .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
-            .tabs(vm: DJHomeTabBarVM(authorized: false, provider: provider as DJAllAPI)),
+            .tabs(vm: DJHomeTabBarVM(authorized: false)),
             .vc(identifier: "DJHomeTabBarVC + UISplitViewController", vcProvider: {
                 let keyWindow = UIApplication.xl.keyWindow
                 Application.shared.presentInitialScreen(in: keyWindow)
@@ -104,13 +104,18 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXMVVMSampleVC.xl.xl_typeName, vcProvider: { LXMVVMSampleVC() }),
             .vc(identifier: HomeViewController.xl.xl_typeName, vcProvider: { HomeViewController() }),
             .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ], toSection: "MVVM")
+        ].reversed(), toSection: "MVVM")
         snapshot.appendItems([
             .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ], toSection: "WWDC")
+        ].reversed(), toSection: "WWDC")
         snapshot.appendItems([
             .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
-            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { LXHandyJSONTestVC() }),
+            .vc(identifier: LXApiTestVC.xl.xl_typeName, vcProvider: { LXApiTestVC() }),
+            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { () -> UIViewController? in
+                let vm = LXFloatTestVM()
+                let vc = LXHandyJSONTestVC(vm: vm, navigator: self.navigator)
+                return vc
+            }),
             .vc(identifier: LXWebVC.xl.xl_typeName, vcProvider: { LXWebVC() }),
             .vc(identifier: LXStrenchableWebVC.xl.xl_typeName,vcProvider: {[weak self] in
                 guard let `self` = self else { return nil }
@@ -120,7 +125,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXActionSheetTestVC.xl.xl_typeName, vcProvider: { LXActionSheetTestVC() }),
             .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC(vm: vm, navigator: self.navigator) }),
             .vc(identifier: LXCollectionVC.xl.xl_typeName, vcProvider: { LXCollectionVC() })
-        ], toSection: "2023")
+        ].reversed(), toSection: "2023")
         snapshot.appendItems([
             .vc(identifier: LXTable0120VC.xl.xl_typeName,vcProvider: {[weak self] in
                 guard let `self` = self else { return nil }
@@ -150,7 +155,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             // .HomeViewController(viewModel: vm),
             // .test(vm: vm),
             // .tabs(vm: vm as! DJHomeTabBarVM),
-        ], toSection: "2022")
+        ].reversed(), toSection: "2022")
         snapshot.appendItems([
             .vc(identifier: LX0114VC.xl.xl_typeName, vcProvider: { LX0114VC() }),
             // .LXPhotoAlbumVC,
@@ -166,7 +171,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LX1019TestVC.xl.xl_typeName, vcProvider: { LX1019TestVC() }),
             .vc(identifier: LXHugTestVC.xl.xl_typeName, vcProvider: { LXHugTestVC() }),
             .vc(identifier: LXStack1206VC.xl.xl_typeName, vcProvider: { LXStack1206VC() }),
-        ], toSection: "2021")
+        ].reversed(), toSection: "2021")
         snapshot.appendItems([
             .vc(identifier: LXMultiRequestTestVC.xl.xl_typeName, vcProvider: { LXMultiRequestTestVC() }),
             .vc(identifier: LXOffScreenVC.xl.xl_typeName, vcProvider: { LXOffScreenVC() }),
@@ -191,7 +196,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             .vc(identifier: LXMusicVC.xl.xl_typeName, vcProvider: { LXMusicVC() }),
             .vc(identifier: LXSongVC.xl.xl_typeName, vcProvider: { LXSongVC() }),
             .vc(identifier: LXLightedVC.xl.xl_typeName, vcProvider: { LXLightedVC() }),
-        ], toSection: "2020")
+        ].reversed(), toSection: "2020")
         _dataSnapshot = snapshot
         return snapshot
     }
@@ -284,20 +289,20 @@ private extension LXToolKitTestVC {
         //             let vm = XLEventsVM(with: .user(user: user), provider: restApi)
         //             navigator.show(segue: .events(vm: vm), sender: self)
         //         }
-        let staging = AppConfig.Network.useStaging
-        let githubProvider = staging
-        ? GithubNetworking.stubbingNetworking()
-        : GithubNetworking.defaultNetworking()
-        let trendingGithubProvider = staging
-        ? TrendingGithubNetworking.stubbingNetworking()
-        : TrendingGithubNetworking.defaultNetworking()
-        let codetabsProvider = staging
-        ? CodetabsNetworking.stubbingNetworking()
-        : CodetabsNetworking.defaultNetworking()
-        let provider = RestApi(githubProvider: githubProvider,
-                               trendingGithubProvider: trendingGithubProvider,
-                               codetabsProvider: codetabsProvider)
-        let vm = LXBaseVM(provider: provider as! API)
+        // let staging = AppConfig.Network.useStaging
+        // let githubProvider = staging
+        // ? LXNetworking<GithubAPI>.stubbingNetworking()
+        // :  LXNetworking<GithubAPI>.defaultNetworking()
+        // let trendingGithubProvider = staging
+        // ? LXNetworking<TrendingGithubAPI>.stubbingNetworking()
+        // : LXNetworking<TrendingGithubAPI>.defaultNetworking()
+        // let codetabsProvider = staging
+        // ? LXNetworking<CodetabsApi>.stubbingNetworking()
+        // : LXNetworking<CodetabsApi>.defaultNetworking()
+        // let provider = RestApi(githubProvider: githubProvider,
+        //                        trendingGithubProvider: trendingGithubProvider,
+        //                        codetabsProvider: codetabsProvider)
+        let vm = LXBaseVM()
         let navigator = Navigator.default
         let scene: Navigator.Scene = .vc(vcProvider: {[weak self] in
             guard let `self` = self else { return nil }

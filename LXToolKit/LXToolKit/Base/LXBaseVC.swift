@@ -103,7 +103,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     public var vm: LXBaseVM?
     
     public let isLoading = BehaviorRelay(value: false)
-    public let error = PublishSubject<ApiError>()
+    public let error = PublishSubject<Error>()
     
     public var automaticallyAdjustsLeftBarButtonItem = true
     public var canOpenFlex = true
@@ -208,10 +208,22 @@ extension LXBaseVC {
             // self?.emptyDataSet.title = R.string.localizable.commonNoResults()
         })
         .disposed(by: rx.disposeBag)
-        
+
         isLoading.subscribe(onNext: { isLoading in
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+            if isLoading {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss(withDelay: 0.2)
+            }
         })
+        .disposed(by: rx.disposeBag)
+
+        error
+            .subscribe {[weak self] error in
+                guard let self else { return }
+                dlog("-->error[\(self.xl.xl_typeName)]: \(error)")
+        }
         .disposed(by: rx.disposeBag)
     }
 }

@@ -19,15 +19,15 @@ public protocol LXViewModelType {
 
 @objc(LXBaseKitVM)
 open class LXBaseVM: NSObject/**, LXViewModelType*/ {
-    
+
     deinit {
-        logDebug("\(type(of: self)): Deinited")
+        dlog("---------- >>>VM: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
         LXPrint.resourcesCount()
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     
-    public let provider: DJAPI
+    // public let provider: DJAPI
     public var page = 1
     
     public let loading = ActivityIndicator()
@@ -35,10 +35,10 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
     public let footerLoading = ActivityIndicator()
     
     public let error = ErrorTracker()
-    public let serverError = PublishSubject<Error>()
-    public let parsedError = PublishSubject<ApiError>()
-    public init(provider: DJAPI) {
-        self.provider = provider
+    // public let serverError = PublishSubject<Error>()
+    public let parsedError = PublishSubject<Error>()
+    public override init() {
+        // self.provider = provider
         super.init()
         
         prepareVM()
@@ -54,28 +54,12 @@ private extension LXBaseVM {}
 // MARK: - 🍺UI Prepare & Masonry
 extension LXBaseVM {
     func prepareVM() {
-        serverError.asObserver()
-            .map { error -> ApiError? in
-                do {
-                    let errorResponse = error as? MoyaError
-                    // if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
-                    //    let model = ErrorResponse.deserialize(from: body) {
-                    //     return ApiError.serverError(response: model)
-                    // }
-                } catch {
-                    print("error: \(error)")
-                }
-                return nil
-            }
-            .filterNil()
+        error.asObservable()
             .bind(to: parsedError)
             .disposed(by: rx.disposeBag)
-        
-        parsedError
-            .subscribe { error in
-                print("error: \(error)")
-            }
-            .disposed(by: rx.disposeBag)
+        // serverError.asObserver()
+        //     .bind(to: parsedError)
+        //     .disposed(by: rx.disposeBag)
     }
     func prepareUI() {
         // self.view.backgroundColor = <#.white#>;

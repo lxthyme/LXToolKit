@@ -11,10 +11,10 @@ class DJLanguagesVM: LXBaseVM {
     let currentLanguage: BehaviorRelay<LanguageModel?>
     let languages: BehaviorRelay<[LanguageModel]>
     // MARK: 🛠Life Cycle
-    init(currentLanguage: LanguageModel?, languages: [LanguageModel], provider: DJAllAPI) {
+    init(currentLanguage: LanguageModel?, languages: [LanguageModel]) {
         self.currentLanguage = BehaviorRelay(value: currentLanguage)
         self.languages = BehaviorRelay(value: languages)
-        super.init(provider: provider)
+        super.init()
     }
 }
 

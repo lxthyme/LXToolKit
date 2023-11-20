@@ -15,7 +15,7 @@ public enum SongSegmentStatus {
     case songHistory
 }
 
-class LXSongRecordItemModel: LXAnyModel {
+struct LXSongRecordItemModel: LXAnyProtocol {
     var bg_video_id: String?
     var bg_video_url: String?
     var video_id: String?
@@ -31,7 +31,6 @@ class LXSongRecordItemModel: LXAnyModel {
     var record_url: String?
     var nickname: String?
     var video_url: String?
-    required init() {}
 
     /// override var debugDescription: String { return "" }
 }

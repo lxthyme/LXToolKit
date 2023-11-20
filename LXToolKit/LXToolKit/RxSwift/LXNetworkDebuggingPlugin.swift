@@ -6,8 +6,11 @@
 //  https://github.com/yangKJ/RxNetworks
 
 import Foundation
+import Alamofire
 import Moya
-import RxNetworks
+
+// public typealias APIPlugins = [Moya.PluginType]
+public typealias APIParameters = Alamofire.Parameters
 
 /// 网络打印，DEBUG模式内置插件
 /// Network printing, DEBUG mode built in plugin.
@@ -15,58 +18,59 @@ public struct LXNetworkDebuggingPlugin {//}: PluginPropertiesable {
 
     // public var plugins: APIPlugins = []
     // 
-    // public let options: Options
-    // 
-    // public init(options: Options = .default) {
-    //     self.options = options
-    // }
+    public let options: Options
+    
+    public init(options: Options = .default) {
+        self.options = options
+    }
 }
 
-// extension LXNetworkDebuggingPlugin {
-//     public struct Options {
-//         
-//         public static let `default`: Options = .init(logOptions: .default)
-//         
-//         let logOptions: LogOptions
-//         
-//         public init(logOptions: LogOptions) {
-//             self.logOptions = logOptions
-//         }
-//     }
-//     
-//     /// Enable print request information.
-//     var openDebugRequest: Bool {
-//         switch options.logOptions {
-//         case .request, .`default`:
-//             return true
-//         default:
-//             return false
-//         }
-//     }
-//     /// Turn on printing the response result.
-//     var openDebugResponse: Bool {
-//         switch options.logOptions {
-//         case .response, .`default`:
-//             return true
-//         default:
-//             return false
-//         }
-//     }
-// }
+extension LXNetworkDebuggingPlugin {
+    public struct Options {
+        
+        public static let `default`: Options = .init(logOptions: .default)
+        
+        let logOptions: LogOptions
+        
+        public init(logOptions: LogOptions) {
+            self.logOptions = logOptions
+        }
+    }
+    
+    /// Enable print request information.
+    var openDebugRequest: Bool {
+        switch options.logOptions {
+        case .request, .`default`:
+            return true
+        default:
+            return false
+        }
+    }
+    /// Turn on printing the response result.
+    var openDebugResponse: Bool {
+        switch options.logOptions {
+        case .response, .`default`:
+            return true
+        default:
+            return false
+        }
+    }
+}
 
-// extension LXNetworkDebuggingPlugin.Options {
-//     public struct LogOptions: OptionSet {
-//         public let rawValue: Int
-//         public init(rawValue: Int) { self.rawValue = rawValue }
-//         
-//         /// Enable print request information.
-//         public static let request: LogOptions = LogOptions(rawValue: 1 << 0)
-//         /// Turn on printing the response result.
-//         public static let response: LogOptions = LogOptions(rawValue: 1 << 1)
-//         /// Open the request log and response log at the same time.
-//         public static let `default`: LogOptions = [request, response]
-//     }
-// }
+extension LXNetworkDebuggingPlugin.Options {
+    public struct LogOptions: OptionSet {
+        public let rawValue: Int
+        public init(rawValue: Int) { self.rawValue = rawValue }
+        
+        /// Enable print request information.
+        public static let request: LogOptions = LogOptions(rawValue: 1 << 0)
+        /// Turn on printing the response result.
+        public static let response: LogOptions = LogOptions(rawValue: 1 << 1)
+        public static let logEnabled: LogOptions = LogOptions(rawValue: 2 << 1)
+        /// Open the request log and response log at the same time.
+        public static let `default`: LogOptions = [request, response, logEnabled]
+    }
+}
 
 // extension LXNetworkDebuggingPlugin: PluginSubType {
 //     
@@ -106,7 +110,7 @@ extension LXNetworkDebuggingPlugin: Moya.PluginType {
     // }
     public func willSend(_ request: RequestType, target: TargetType) {
         // if let result = request.request.re
-        printRequest(target, plugins: [])
+        printRequest(target/**, plugins: []*/)
     }
     public func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         ansysisResult(target, result, local: false)
@@ -117,8 +121,8 @@ extension LXNetworkDebuggingPlugin: Moya.PluginType {
 
 extension LXNetworkDebuggingPlugin {
     
-    private func printRequest(_ target: TargetType, plugins: APIPlugins) {
-        guard AppConfig.Network.loggingEnabled else { return }
+    private func printRequest(_ target: TargetType/**, plugins: APIPlugins*/) {
+        guard options.logOptions.contains(.logEnabled) else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSZ"
         formatter.locale = Locale.current
@@ -134,7 +138,7 @@ extension LXNetworkDebuggingPlugin {
                   ║ URL: {{\(requestFullLink(with: target))}}
                   ║ Parameters: \(param)
                   ║-------------------------------------
-                  ║ Plugins: \(pluginString(plugins))
+                  ║ Plugins: \\(pluginString(plugins))
                   ╚═══════════════════════════════════════
                   """)
         } else {
@@ -143,15 +147,15 @@ extension LXNetworkDebuggingPlugin {
                   ║ Time: \(date) \(requestFullLink(with: target))
                   ║ URL: {{\(requestFullLink(with: target))}}
                   ║-------------------------------------
-                  ║ Plugins: \(pluginString(plugins))
+                  ║ Plugins: \\(pluginString(plugins))
                   ╚═══════════════════════════════════════
                   """)
         }
     }
     
-    private func pluginString(_ plugins: APIPlugins) -> String {
-        return plugins.reduce("") { $0 + $1.pluginName + " " }
-    }
+    // private func pluginString(_ plugins: APIPlugins) -> String {
+    //     return plugins.reduce("") { $0 + $1.pluginName + " " }
+    // }
     
     private func requestFullLink(with target: TargetType) -> String {
         var parameters: APIParameters? = nil
@@ -196,7 +200,7 @@ extension LXNetworkDebuggingPlugin {
     }
     
     private func printResponse(_ target: TargetType, _ json: String?, _ local: Bool, _ success: Bool) {
-        guard AppConfig.Network.loggingEnabled else { return }
+        guard options.logOptions.contains(.logEnabled) else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSZ"
         formatter.locale = Locale.current
@@ -215,7 +219,7 @@ extension LXNetworkDebuggingPlugin {
                   ║ Host: \(target.baseURL.absoluteString)
                   ║ Path: \(target.path)
                   ║ Parameters: \(param)
-                  ║ BaseParameters: \(NetworkConfig.baseParameters)
+                  ║ BaseParameters: \\(NetworkConfig.baseParameters)
                   ║---------- 🎈 Response 🎈 ----------
                   ║ Result: \(success ? "Successed." : "Failed.")
                   ║ DataType: \(local ? "Local data." : "Remote data.")
@@ -232,7 +236,7 @@ extension LXNetworkDebuggingPlugin {
                   ║ Method: \(target.method.rawValue)
                   ║ Host: \(target.baseURL.absoluteString)
                   ║ Path: \(target.path)
-                  ║ BaseParameters: \(NetworkConfig.baseParameters)
+                  ║ BaseParameters: \\(NetworkConfig.baseParameters)
                   ║---------- 🎈 Response 🎈 ----------
                   ║ Result: \(success ? "Successed." : "Failed.")
                   ║ DataType: \(local ? "Local data." : "Remote data.")

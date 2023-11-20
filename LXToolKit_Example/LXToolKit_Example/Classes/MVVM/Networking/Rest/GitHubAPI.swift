@@ -77,6 +77,18 @@ enum GithubAPI {
     case followUser(username: String)
     case unfollowUser(username: String)
 }
+// MARK: - 👀
+extension GithubAPI: APIService {
+    static var provider: LXNetworking<GithubAPI> {
+        return AppConfig.Network.useStaging
+        ? LXNetworking<GithubAPI>.stubbingNetworking()
+        : LXNetworking<GithubAPI>.defaultNetworking()
+    }
+    var parameter: APIParameter {
+        // RepositorySearchModel
+        return APIParameter(path: path, params: parameters, method: method, headers: headers, mockObj: nil)
+    }
+}
 
 extension GithubAPI: TargetType, ProductAPIType {
 
@@ -328,5 +340,31 @@ extension GithubAPI: TargetType, ProductAPIType {
         switch self {
         default: return true
         }
+    }
+}
+
+extension LXNetworking where U == GithubAPI {
+    func downloadString(url: URL) -> Single<String> {
+        return Single.create { single in
+            DispatchQueue.global().async {
+                do {
+                    single(.success(try String(contentsOf: url)))
+                } catch {
+                    single(.failure(error))
+                }
+            }
+            return Disposables.create {}
+        }
+        .observe(on: MainScheduler.instance)
+    }
+    func searchRepositories(query: String, sort: String, order: String, page: Int) -> Single<RepositorySearchModel> {
+        return request(.searchRepositories(query: query, sort: sort, order: order, page: page))
+            .mapHandyJSON(RepositorySearchModel.self)
+            .asSingle()
+    }
+    func searchUsers(query: String, sort: String, order: String, page: Int) -> Single<UserSearchModel> {
+        return request(.searchUsers(query: query, sort: sort, order: order, page: page))
+            .mapHandyJSON(UserSearchModel.self)
+            .asSingle()
     }
 }

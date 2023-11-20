@@ -10,6 +10,11 @@ import UIKit
 import LXToolKit
 
 enum LXUserProvider: APIService {
+    static var provider: LXNetworking<LXUserProvider> {
+        return AppConfig.Network.useStaging
+        ? LXNetworking<LXUserProvider>.stubbingNetworking()
+        : LXNetworking<LXUserProvider>.defaultNetworking()
+    }
     case newUserFloat
     var baseURL: URL {
         return URL(string: LX_Base_URL)!

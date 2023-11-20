@@ -8,7 +8,8 @@
 import Foundation
 import Moya
 import Alamofire
-import RxNetworks
+import RxSwift
+import HandyJSON
 
 class OnlineProvider<Target> where Target: Moya.TargetType {
     // MARK: 🔗Vaiables
@@ -34,6 +35,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
         let actualRequest = provider.rx.request(token)
         return online.ignore(value: false)// Wait until we're online
             .take(1)// Take 1 to make sure we only invoke the API once.
+            .observe(on: MainScheduler.instance)
             .flatMap { _ in// Turn the online state into a network request
                 return actualRequest
                     .filterSuccessfulStatusCodes()
@@ -58,7 +60,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
 }
 
 protocol NetworkingType {
-    associatedtype T: TargetType, ProductApiType
+    associatedtype T: TargetType
     var provider: OnlineProvider<T> { get }
 
     static func defaultNetworking() -> Self
@@ -74,84 +76,54 @@ extension NetworkingType {
         return formatter
     }
 }
-
-struct GithubNetworking: NetworkingType {
-    typealias T = DJAPI
+public struct LXNetworking<U: TargetType>: NetworkingType {
+    public typealias T = U
     let provider: OnlineProvider<T>
 
-    static func defaultNetworking() -> GithubNetworking {
-        return GithubNetworking(provider: newProvider(plugins))
+    public static func defaultNetworking() -> LXNetworking {
+        return LXNetworking(provider: newProvider(plugins))
     }
-    static func stubbingNetworking() -> GithubNetworking {
-        return GithubNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
-                                                         requestClosure: GithubNetworking.endpointResolver(),
-                                                         stubClosure: MoyaProvider.immediatelyStub,
-                                                         online: .just(true)))
+    public static func stubbingNetworking() -> LXNetworking {
+        return LXNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
+                                                     requestClosure: LXNetworking.endpointResolver(),
+                                                     stubClosure: MoyaProvider.immediatelyStub,
+                                                     online: .just(true)))
     }
-    func request(_ token: T) -> Observable<Moya.Response> {
-        let actualRequest = self.provider.request(token)
-        return actualRequest
-    }
-}
-struct TestFloatNetworking: NetworkingType {
-    typealias T = FloatApi
-    let provider: OnlineProvider<T>
-
-    static func defaultNetworking() -> TestFloatNetworking {
-        return TestFloatNetworking(provider: newProvider(plugins))
-    }
-    static func stubbingNetworking() -> TestFloatNetworking {
-        return TestFloatNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
-                                                         requestClosure: GithubNetworking.endpointResolver(),
-                                                         stubClosure: MoyaProvider.immediatelyStub,
-                                                         online: .just(true)))
-    }
-    func request(_ token: T) -> Observable<Moya.Response> {
+    public func request(_ token: T) -> Observable<Moya.Response> {
         let actualRequest = self.provider.request(token)
         return actualRequest
     }
 }
 
-struct TrendingGithubNetworking: NetworkingType {
-    typealias T = TrendingGithubAPI
-    var provider: OnlineProvider<T>
-
-    static func defaultNetworking() -> Self {
-        return TrendingGithubNetworking(provider: newProvider(plugins))
+// MARK: - 👀
+extension LXNetworking {
+    func request2(_ target: T) -> Single<Any> {
+        return request(target)
+            .mapJSON()
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
-    static func stubbingNetworking() -> Self {
-        return TrendingGithubNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
-                                                                 requestClosure: TrendingGithubNetworking.endpointResolver(),
-                                                                 stubClosure: MoyaProvider.immediatelyStub,
-                                                                 online: .just(true)))
+    func requestWithoutMapping(_ target: T) -> Single<Moya.Response> {
+        return request(target)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
-    func request(_ token: T) -> Observable<Moya.Response> {
-        let acturalRequest = self.provider.request(token)
-        return acturalRequest
+    func reqeustObject<Model: HandyJSON>(_ target: T, type: Model.Type) -> Single<Model> {
+        return request(target)
+            .mapHandyJSON(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
-}
-
-struct CodetabsNetworking: NetworkingType {
-    typealias T = CodetabsApi
-    var provider: OnlineProvider<T>
-
-    static func defaultNetworking() -> Self {
-        return CodetabsNetworking(provider: newProvider(plugins))
-    }
-    static func stubbingNetworking() -> Self {
-        return CodetabsNetworking(provider: OnlineProvider(endpointClosure: endpointsClosure(),
-                                                           requestClosure: CodetabsNetworking.endpointResolver(),
-                                                           stubClosure: MoyaProvider.immediatelyStub,
-                                                           online: .just(true)))
-    }
-    func request(_ token: T) -> Observable<Moya.Response> {
-        let actualRequest = self.provider.request(token)
-        return actualRequest
+    func requestArray<Model: HandyJSON>(_ target: T, type: Model.Type) -> Single<[Model]> {
+        return request(target)
+            .mapHandyJSONArray(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
 }
 
 extension NetworkingType {
-    static func endpointsClosure<T>(_ xAccessToken: String? = nil) -> (T) -> Endpoint where T: TargetType, T: ProductApiType {
+    static func endpointsClosure<T>(_ xAccessToken: String? = nil) -> (T) -> Endpoint where T: TargetType {
         return { target in
             let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
 
@@ -208,11 +180,11 @@ extension NetworkingType {
     }
 }
 
-private func newProvider<T>(_ plugins: [PluginType], xAccessToken: String? = nil) -> OnlineProvider<T> where T: ProductApiType {
+private func newProvider<T>(_ plugins: [PluginType]) -> OnlineProvider<T> where T: TargetType {
     return OnlineProvider(
-        endpointClosure: GithubNetworking.endpointsClosure(xAccessToken),
-        requestClosure: GithubNetworking.endpointResolver(),
-        stubClosure: GithubNetworking.APIKeysBasedStubBehaviour,
+        endpointClosure: LXNetworking<T>.endpointsClosure(),
+        requestClosure: LXNetworking<T>.endpointResolver(),
+        stubClosure: LXNetworking<T>.APIKeysBasedStubBehaviour,
         plugins: plugins
     )
 }

@@ -6,6 +6,7 @@
 //
 import Foundation
 import ObjectMapper
+import LXToolKit
 
 typealias LXTestType = Decimal
 struct LXCodableTestModel: Codable {
@@ -45,8 +46,7 @@ struct LXCodableTestModel: Codable {
 
 }
 
-struct LXFloatTestModel: Mappable {
-    
+struct LXFloatTestModel: LXMappable {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     var name: String?

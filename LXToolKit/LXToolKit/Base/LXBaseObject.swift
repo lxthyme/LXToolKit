@@ -10,7 +10,7 @@ import UIKit
 @objc(LXBaseSwiftObject)
 open class LXBaseObject: NSObject {
     deinit {
-        dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>Object: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables

@@ -27,9 +27,9 @@ public final class ErrorTracker: SharedSequenceConvertibleType {
         _subject.onNext(error)
     }
 
-    deinit {
-        _subject.onCompleted()
-    }
+    // deinit {
+    //     _subject.onCompleted()
+    // }
 }
 
 extension ObservableConvertibleType {

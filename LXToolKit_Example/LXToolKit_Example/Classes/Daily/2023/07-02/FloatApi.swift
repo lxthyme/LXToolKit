@@ -7,6 +7,8 @@
 
 import Foundation
 import Moya
+import LXToolKit
+import ObjectMapper
 
 enum FloatApi {
     case testFloat(id: String)
@@ -14,10 +16,15 @@ enum FloatApi {
 
 // MARK: - 👀
 extension FloatApi: APIService {
+    static var provider: LXNetworking<FloatApi> {
+        return AppConfig.Network.useStaging
+        ? LXNetworking<FloatApi>.stubbingNetworking()
+        : LXNetworking<FloatApi>.defaultNetworking()
+    }
     var baseURL: URL {
         return URL(string: AppConfig.Network.localHost)!
     }
-    var parameter: LXToolKit.APIParameter {
+    var parameter: APIParameter {
         var params: [String: Any] = [:]
         switch self {
         case .testFloat(let id):
@@ -41,5 +48,19 @@ private extension String {
 
     var utf8Encoded: Data {
         Data(self.utf8)
+    }
+}
+
+// MARK: - 👀
+extension LXNetworking where U == FloatApi {
+    func testFloat(id: String) -> Single<LXFloatTestModel> {
+        return request(.testFloat(id: id))
+            .mapBaseMapper(LXFloatTestModel.self)
+            .asSingle()
+    }
+    func testFloatCodable(id: String) -> Single<LXCodableTestModel> {
+        return request(.testFloat(id: id))
+            .mapBaseCodable(LXCodableTestModel.self)
+            .asSingle()
     }
 }

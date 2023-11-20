@@ -8,11 +8,22 @@
 
 import UIKit
 import LXToolKit
+
 public let LX_Base_URL = "http://172.100.13.250:3003"
 enum LXMainProvider: APIService {
+    static var provider: LXNetworking<LXMainProvider> {
+        return AppConfig.Network.useStaging
+        ? LXNetworking<LXMainProvider>.stubbingNetworking()
+        : LXNetworking<LXMainProvider>.defaultNetworking()
+    }
     case zen
     case newUserFloat
     case platformInfo
+    var provider: LXNetworking<LXMainProvider> {
+        return AppConfig.Network.useStaging
+        ? LXNetworking<LXMainProvider>.stubbingNetworking()
+        : LXNetworking<LXMainProvider>.defaultNetworking()
+    }
     var baseURL: URL {
         return URL(string: LX_Base_URL)!
     }
@@ -26,5 +37,13 @@ enum LXMainProvider: APIService {
             case .platformInfo:
                 return APIParameter(path: "/api/platform/info", params: [:])
         }
+    }
+}
+
+// MARK: - 👀
+extension LXNetworking where U == LXMainProvider {
+    func newUserFloat() -> Single<Response> {
+        return request(.newUserFloat)
+            .asSingle()
     }
 }

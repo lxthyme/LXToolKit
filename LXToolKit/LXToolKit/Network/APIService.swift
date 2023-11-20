@@ -7,6 +7,8 @@
 
 import Foundation
 import Moya
+import RxSwift
+import HandyJSON
 
 public struct APIParameter {
     var path: String
@@ -31,6 +33,7 @@ public struct APIParameter {
 }
 
 public protocol APIService: TargetType {
+    static var provider: LXNetworking<Self> { get }
     var baseURL: URL { get }
     var parameter: APIParameter { get }
 }
@@ -49,5 +52,29 @@ public extension APIService {
             param = param.merging(t, uniquingKeysWith: { (current, new) in new })
         }
         return param
+    }
+}
+
+extension APIService {
+    func request() -> Observable<Moya.Response> {
+        let actualRequest = Self.provider.request(self)
+        return actualRequest
+    }
+    func requestMap() -> Single<Moya.Response> {
+        return request()
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+    func reqeustObject<Model: HandyJSON>(_ type: Model.Type) -> Single<Model> {
+        return request()
+            .mapHandyJSON(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
+    }
+    func requestArray<Model: HandyJSON>(_ type: Model.Type) -> Single<[Model]> {
+        return request()
+            .mapHandyJSONArray(Model.self)
+            .observe(on: MainScheduler.instance)
+            .asSingle()
     }
 }

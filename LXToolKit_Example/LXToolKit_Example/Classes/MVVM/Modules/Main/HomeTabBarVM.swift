@@ -20,10 +20,10 @@ open class DJHomeTabBarVM: LXBaseVM, LXViewModelType {
     let authorized: Bool
     let whatsNewManager: WhatsNewManager
 
-    init(authorized: Bool, provider: DJAllAPI) {
+    init(authorized: Bool) {
         self.authorized = authorized
         self.whatsNewManager = WhatsNewManager.shared
-        super.init(provider: provider)
+        super.init()
     }
     public func transform(input: Input) -> Output {
         let tabbarItems = Observable
@@ -50,19 +50,19 @@ extension DJHomeTabBarVM {
     func vm(for tabbarItem: DJHomeTabBarItem) -> LXBaseVM {
         switch tabbarItem {
         case .search:
-            let vm = DJSearchVM(provider: provider)
+            let vm = DJSearchVM()
             return vm
         case .news:
-            let vm = LXBaseVM(provider: provider)
+            let vm = LXBaseVM()
             return vm
         case .notifications:
-            let vm = LXBaseVM(provider: provider)
+            let vm = LXBaseVM()
             return vm
         case .settings:
-            let vm = LXBaseVM(provider: provider)
+            let vm = LXBaseVM()
             return vm
         case .login:
-            let vm = LXBaseVM(provider: provider)
+            let vm = LXBaseVM()
             return vm
         }
     }

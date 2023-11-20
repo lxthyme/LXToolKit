@@ -12,6 +12,7 @@ open class DecimalTransform: ObjectMapper.TransformType {
     public typealias Object = Decimal
     public typealias JSON = Decimal
     // MARK: 🛠Life Cycle
+    public init() {}
     public func transformFromJSON(_ value: Any?) -> Decimal? {
         var result: Decimal? = nil
         if let num = value as? Double {
