@@ -184,6 +184,6 @@ extension LXOutlineVC {
     }
 }
 
-#Preview("ViewController") {
-    return ViewController()
+#Preview("LXOutlineVC") {
+    return LXOutlineVC()
 }
