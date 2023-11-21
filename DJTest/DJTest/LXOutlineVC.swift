@@ -12,13 +12,7 @@ import ActivityKit
 import DJTestKit
 import LXToolKit
 
-enum LXSection {
-    case main
-}
-enum LXOutlineOpt: Hashable {
-    case outline(title: String, subitems: [LXOutlineOpt])
-    case subitem(title: String, vc: Navigator.Scene)
-}
+
 
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
@@ -31,10 +25,9 @@ class LXOutlineVC: LXBaseVC {
             .subitem(title: "LXAMapTestVC", vc: .vc(identifier: "LXAMapTestVC", vcProvider: { LXAMapTestVC() })),
             .subitem(title: "LXOutlineVC", vc: .vc(identifier: "LXOutlineVC", vcProvider: { LXOutlineVC() })),
         ])
-        let kitList: LXOutlineOpt = .subitem(title: "LXToolKit_Example", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.LXToolKit_Example.vc }))
         let kitObjcList: LXOutlineOpt = .subitem(title: "LXToolKitObjC_Example", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.LXToolKitObjC_Example.vc }))
         return [
-            kitList,
+            Navigator.kitRouter,
             kitObjcList,
             .subitem(title: "DJSwiftModule", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.DJSwiftModule.vc })),
             .subitem(title: "dynamicIsland", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.dynamicIsland.vc })),

@@ -17,22 +17,7 @@ public protocol Navigatable {
 // MARK: - 👀
 public extension Navigator {
     // MARK: - segues list, all app scenes
-    public enum Scene: Hashable {
-        public func hash(into hasher: inout Hasher) {
-            switch self {
-            case .vc(_, _, _, let uuid),
-                    .vcString(_, _, let uuid),
-                    .openURL(_, _, _, let uuid):
-                    // .tabs(_, _, let uuid):
-                hasher.combine(uuid)
-            }
-        }
-        public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
-            switch(lhs, rhs) {
-            case let (lhs, rhs):
-                return lhs.hashValue == rhs.hashValue
-            }
-        }
+    public enum Scene {
         case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
@@ -49,6 +34,25 @@ public extension Navigator {
             //     tmp = (title: "DJHomeTabBarVC", desc: "---")
             }
             return tmp
+        }
+    }
+}
+
+// MARK: - 👀
+extension Navigator.Scene: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .vc(_, _, _, let uuid),
+                .vcString(_, _, let uuid),
+                .openURL(_, _, _, let uuid):
+                // .tabs(_, _, let uuid):
+            hasher.combine(uuid)
+        }
+    }
+    public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
+        switch(lhs, rhs) {
+        case let (lhs, rhs):
+            return lhs.hashValue == rhs.hashValue
         }
     }
 }
