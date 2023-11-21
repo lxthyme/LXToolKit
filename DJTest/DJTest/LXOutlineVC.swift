@@ -25,10 +25,9 @@ class LXOutlineVC: LXBaseVC {
             .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
             .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
         ])
-        let kitObjcList: LXOutlineOpt = .subitem(title: "LXToolKitObjC_Example", scene: .vc(provider: { DJTestType.LXToolKitObjC_Example.vc }))
         return [
-            Navigator.kitRouter,
-            kitObjcList,
+            LXToolKitRouter.kitRouter,
+            LXToolKitObjcRouter.objcRouter,
             .subitem(title: "DJSwiftModule", scene: .vc(provider: { DJTestType.DJSwiftModule.vc })),
             .subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc })),
             djTestList,
@@ -77,7 +76,7 @@ private extension LXOutlineVC {
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt> {
         let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
-            guard case .outline(let title, _) = menuItem else { return }
+            guard case .outline(let title, _, _) = menuItem else { return }
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
@@ -119,7 +118,7 @@ private extension LXOutlineVC {
             // }
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, let subitems):
+                case .outline(_, let subitems, _):
                     addItems(subitems, to: menuItem)
                 case .subitem:
                     break

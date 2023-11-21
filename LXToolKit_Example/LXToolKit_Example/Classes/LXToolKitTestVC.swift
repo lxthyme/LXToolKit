@@ -85,13 +85,13 @@ open class LXToolKitTestVC: LXBaseTableVC {
             "2021",
             "2020"
         ])
-        snapshot.appendItems(LXToolKitTest.routerSwiftDaily.subitems ?? [], toSection: "Swift Daily")
-        snapshot.appendItems(LXToolKitTest.routerMVVM.subitems ?? [], toSection: "MVVM")
-        snapshot.appendItems(LXToolKitTest.routerWWWDC.subitems ?? [], toSection: "WWDC")
-        snapshot.appendItems(LXToolKitTest.router2023.subitems ?? [], toSection: "2023")
-        snapshot.appendItems(LXToolKitTest.router2022.subitems ?? [], toSection: "2022")
-        snapshot.appendItems(LXToolKitTest.router2021.subitems ?? [], toSection: "2021")
-        snapshot.appendItems(LXToolKitTest.router2020.subitems ?? [], toSection: "2020")
+        snapshot.appendItems(LXToolKitRouter.routerSwiftDaily.subitems ?? [], toSection: "Swift Daily")
+        snapshot.appendItems(LXToolKitRouter.routerMVVM.subitems ?? [], toSection: "MVVM")
+        snapshot.appendItems(LXToolKitRouter.routerWWWDC.subitems ?? [], toSection: "WWDC")
+        snapshot.appendItems(LXToolKitRouter.router2023.subitems ?? [], toSection: "2023")
+        snapshot.appendItems(LXToolKitRouter.router2022.subitems ?? [], toSection: "2022")
+        snapshot.appendItems(LXToolKitRouter.router2021.subitems ?? [], toSection: "2021")
+        snapshot.appendItems(LXToolKitRouter.router2020.subitems ?? [], toSection: "2020")
         _dataSnapshot = snapshot
         return snapshot
     }

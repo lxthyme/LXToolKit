@@ -10,23 +10,23 @@ import LXToolKit
 import DJTestKit
 import SwifterSwift
 
+public struct LXToolKitRouter {}
+
 // MARK: - 👀
-public extension Navigator {
-    static let kitRouter: LXOutlineOpt = .outline(title: "LXToolKitObjC_Example", subitems: [
-        .outline(title: "LXToolKit_Example", subitems: [
-            .subitem(title: "LXToolKit_Example", scene: .vc(provider: { LXToolKitTestVC() })),
-        ]),
-        LXToolKitTest.routerSwiftDaily,
-        LXToolKitTest.router2023,
-        LXToolKitTest.routerWWWDC,
-        LXToolKitTest.routerMVVM,
-        LXToolKitTest.router2022,
-        LXToolKitTest.router2021,
-        LXToolKitTest.router2020,
+public extension LXToolKitRouter {
+    static let kitRouter: LXOutlineOpt = .outline(title: "LXToolKit_Example", subitems: [
+        .subitem(title: "LXToolKit_Example", scene: .vc(provider: { LXToolKitTestVC() })),
+        LXToolKitRouter.routerSwiftDaily,
+        LXToolKitRouter.router2023,
+        LXToolKitRouter.routerWWWDC,
+        LXToolKitRouter.routerMVVM,
+        LXToolKitRouter.router2022,
+        LXToolKitRouter.router2021,
+        LXToolKitRouter.router2020,
     ])
 }
-
-struct LXToolKitTest {
+// MARK: - 🔐
+internal extension LXToolKitRouter {
     static let routerSwiftDaily: LXOutlineOpt = .outline(title: "Swift Daily", subitems: [
         .subitem(title: "DJSwiftTestCaseVC", scene: .vc(provider: { DJSwiftTestCaseVC() })),
         .subitem(title: "DJSwiftTestCaseVC", scene: .vc(provider: { DJSwiftTestCaseVC() })),
