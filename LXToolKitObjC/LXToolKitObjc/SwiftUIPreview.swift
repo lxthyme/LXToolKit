@@ -16,6 +16,6 @@ struct VCPreview<VC: UIViewController>: UIViewControllerRepresentable {
     }
 }
 
-#Preview("LXToolKitObjCTestVC") {
-    VCPreview<LXToolKitObjCTestVC>()
-}
+// #Preview("LXToolKitObjCTestVC") {
+//     VCPreview<LXToolKitObjCTestVC>()
+// }
