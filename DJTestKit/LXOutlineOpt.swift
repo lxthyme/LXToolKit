@@ -13,7 +13,7 @@ public enum LXSection {
 }
 public enum LXOutlineOpt {
     case outline(title: String, subitems: [LXOutlineOpt])
-    case subitem(title: String, vc: Navigator.Scene, uuid: UUID = UUID())
+    case subitem(title: String, scene: Navigator.Scene, uuid: UUID = UUID())
 
     public var title: String {
         switch self {

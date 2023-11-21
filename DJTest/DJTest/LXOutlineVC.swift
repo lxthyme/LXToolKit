@@ -22,15 +22,15 @@ class LXOutlineVC: LXBaseVC {
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         let djTestList: LXOutlineOpt = .outline(title: "DJTest", subitems: [
-            .subitem(title: "LXAMapTestVC", vc: .vc(identifier: "LXAMapTestVC", vcProvider: { LXAMapTestVC() })),
-            .subitem(title: "LXOutlineVC", vc: .vc(identifier: "LXOutlineVC", vcProvider: { LXOutlineVC() })),
+            .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
+            .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
         ])
-        let kitObjcList: LXOutlineOpt = .subitem(title: "LXToolKitObjC_Example", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.LXToolKitObjC_Example.vc }))
+        let kitObjcList: LXOutlineOpt = .subitem(title: "LXToolKitObjC_Example", scene: .vc(provider: { DJTestType.LXToolKitObjC_Example.vc }))
         return [
             Navigator.kitRouter,
             kitObjcList,
-            .subitem(title: "DJSwiftModule", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.DJSwiftModule.vc })),
-            .subitem(title: "dynamicIsland", vc: .vc(identifier: UUID().uuidString, vcProvider: { DJTestType.dynamicIsland.vc })),
+            .subitem(title: "DJSwiftModule", scene: .vc(provider: { DJTestType.DJSwiftModule.vc })),
+            .subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc })),
             djTestList,
         ]
     }()

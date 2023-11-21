@@ -66,13 +66,13 @@ extension Application {
             // }
             let authorized = self.authManager.token?.isValid ?? false
             let vm = DJHomeTabBarVM(authorized: authorized)
-            self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
+            // self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
         }
     }
     public func dismissPreviousVC() {
         guard let window = self.window else { return }
         // self.dismiss(animated: true)
-        self.navigator.show(segue: .vc(vcProvider: {[weak self] in
+        self.navigator.show(segue: .vc(provider: {[weak self] in
             return self?.previousRootVC
         }, transition: .root(in: window)),
                             sender: nil)

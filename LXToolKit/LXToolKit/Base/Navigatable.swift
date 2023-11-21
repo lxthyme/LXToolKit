@@ -19,22 +19,9 @@ public extension Navigator {
     // MARK: - segues list, all app scenes
     public enum Scene {
         case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)))
-        case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)))
+        case vc(provider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)))
         case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)))
         // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!))
-
-        public var info: (title: String, desc: String) {
-            var tmp: (title: String, desc: String)
-            switch self {
-            case .openURL(let url, let inWebView, _):
-                tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
-            case .vc(let identifier, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
-            case .vcString(let vcString, _): tmp = (title: vcString, desc: "---")
-            // case .tabs:
-            //     tmp = (title: "DJHomeTabBarVC", desc: "---")
-            }
-            return tmp
-        }
     }
 }
 
@@ -74,7 +61,7 @@ open class Navigator {
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
-        case .vc(_, let vcProvider, let transition): return (vcProvider(), transition)
+        case .vc(let provider, let transition): return (provider(), transition)
         case .vcString(let vcString, let transition):
             guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
             return (VCCls.init(), transition)

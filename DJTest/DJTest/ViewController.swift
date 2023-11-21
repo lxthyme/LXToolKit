@@ -83,8 +83,8 @@ class ViewController: LXBaseTableVC {
             .dynamicIsland,
         ], toSection: "lxthyme")
         snapshot.appendItems([
-            .djTest(title: "LXAMapTestVC",vc: { LXAMapTestVC() }),
-            .djTest(title: "LXOutlineVC", vc: { LXOutlineVC() }),
+            .djTest(title: "LXAMapTestVC", provider: { LXAMapTestVC() }),
+            .djTest(title: "LXOutlineVC", provider: { LXOutlineVC() }),
         ].reversed(), toSection: "DJTest")
         _dataSnapshot = snapshot
         return snapshot
@@ -153,7 +153,7 @@ private extension ViewController {
         }
         if let vc = vc as? LXToolKitTestVC {
             vc.autoJumpRoute =
-                .subitem(title: "LXToolKit_Example." + route2, vc: .vcString(vcString:
+                .subitem(title: "LXToolKit_Example." + route2, scene: .vcString(vcString:
                                                     "LXToolKit_Example." +
                                                   // "LXOutlineVC"
                                                   // "LXLabelVC"

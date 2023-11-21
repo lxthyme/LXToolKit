@@ -131,7 +131,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // LXLoggerTestVC()
         // LXStrenchableWebVC()
         // UIViewController()
-        
+
         // self.navigationController?.pushViewController(vc, animated: true)
         //        self.present(testVC, animated: true, completion: nil)
     }
@@ -143,20 +143,20 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
-        
+
         //        let _ = LXBaseVC()
         let identifier = self.xl.xl_typeName
         dlog("identifier: \(identifier)")
         let aa = "abccccc"
         dlog("\(aa.self): \(aa)")
-        
+
         //        testArray()
         //        testDictionary()
-        
+
         // testModel()
         // testTask()
         // testTaskGroup()
@@ -199,7 +199,7 @@ private extension LXToolKitTestVC {
         //                        codetabsProvider: codetabsProvider)
         let vm = LXBaseVM()
         let navigator = Navigator.default
-        let scene: Navigator.Scene = .vc(vcProvider: {[weak self] in
+        let scene: Navigator.Scene = .vc(provider: {[weak self] in
             guard let `self` = self else { return nil }
             return LXiOS15VC(vm: vm, navigator: self.navigator)
         })
@@ -256,7 +256,7 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-        
+
         ({
             let search = 51
             let r_contains = a.contains(search)
@@ -265,38 +265,38 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-        
+
         ({
             let r_min = a.min()
             let r_min_by1 = a.min(by: { $0 > $1 })
             let r_min_by2 = a.min(by: { $0 < $1 })
             dlog("r_min: \(r_min)", "r_min_by1: \(r_min_by1)", "r_min_by2: \(r_min_by2)")
-            
+
             let r_max = a.max()
             let r_max_by1 = a.max(by: { $0 > $1 })
             let r_max_by2 = a.max(by: { $0 < $1 })
             dlog("r_max: \(r_max)", "r_max_by1: \(r_max_by1)", "r_max_by2: \(r_max_by2)")
         })()
-        
+
         ({
             let aVersion = "3.14.10"
             let bVersion = "3.130.10"
-            
+
             let r1 = aVersion.versionToInt().lexicographicallyPrecedes(bVersion.versionToInt())
             let r2 = bVersion.versionToInt().lexicographicallyPrecedes(aVersion.versionToInt())
             dlog("lexicographicallyPrecedes: \(r1)\t\t\(r2)")
         })()
-        
+
         ({
             var a = [30, 40, 20, 30, 30, 60, 10]
-            
+
             let r = a.partition(by: { $0 > 30 })
             dlog("partition r: \(r) >>> a: \(a)")
         })()
-        
+
         ({
             let a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-            
+
             let prefix_while = a.prefix(while: { $0 > 3 })
             let prefix_maxLength = a.prefix(3)
             let prefix_upTo = a.prefix(upTo: 3)
@@ -305,27 +305,27 @@ extension LXToolKitTestVC {
                  "prefix_maxLength: \(prefix_maxLength)",
                  "prefix_upTo: \(prefix_upTo)",
                  "prefix_through: \(prefix_through)")
-            
+
             let suffix_maxLength = a.suffix(3)
             let suffix_from = a.suffix(from: 3)
-            
+
             dlog("suffix_maxLength: \(suffix_maxLength)", "suffix_from: \(suffix_from)")
         })()
-        
+
         ({
             for x in sequence(first: 1, next: { $0 + 1}).prefix(5) {
                 dlog("prefix x: \(x)")
             }
-            
+
             for x in sequence(first: 2, next: { $0 * $0 }).prefix(while: { $0 < 100 }) {
                 dlog("prefix_while x: \(x)")
             }
-            
+
             for x in sequence(first: self.view, next: { $0?.superview }) {
                 dlog("view x: \(x)")
             }
         })()
-        
+
         ({
             let a = 1...3
             let b = 1...10
@@ -339,27 +339,27 @@ extension LXToolKitTestVC {
                  "r_elementsEqual2: \(r_elementsEqual2)",
                  "r2_elementsEqual_by: \(r2_elementsEqual_by)")
         })()
-        
+
         ({
             let r_separator = a.split(separator: 3)
             let r_whereSeparator = a.split(whereSeparator: { $0 % 3 == 0 })
             let r_omittingEmptySubsequences = a.split(separator: 3, maxSplits: 2, omittingEmptySubsequences: false)
-            
+
             dlog("r_separator: \(r_separator)",
                  "r_whereSeparator: \(r_whereSeparator)",
                  "r_omittingEmptySubsequences: \(r_omittingEmptySubsequences)")
-            
+
             let line = "BLANCHE:   I don't want realism. I want magic!"
             dlog(line.split(separator: " "))
             dlog(line.split(separator: " ", maxSplits: 1))
             dlog(line.split(separator: " ", omittingEmptySubsequences: false))
         })()
-        
+
         ({
             let r_while = a.drop(while: { $0 < 6 })
             let r_dropFirst = a.dropFirst(3)
             let r_dropLast = a.dropLast(3)
-            
+
             var b = a
             b.removeAll(where: { $0 % 3 != 0 })
             dlog("r_while: \(r_while)",
@@ -369,12 +369,12 @@ extension LXToolKitTestVC {
                  "",
                  "b: \(b)")
         })()
-        
+
         ({
             let r = a.firstIndex(of: 3)
             dlog("r: \(r)")
         })()
-        
+
         ({
             let b = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
             let r = zip(a, b)
@@ -383,24 +383,24 @@ extension LXToolKitTestVC {
                  "r_zip_map: \(r_zip_map)")
         })()
     }
-    
+
     func testDictionary() {
         let a: [String: String] = ["a": "vA", "b": "vB", "c": "vC", "d": "vD"]
         let b = ["d": "bbD", "e": "bbE", "f": "bbF"]
-        
+
         let s1 = ({
             var b = a
             b["a"] = nil
-            
+
             dlog("b: \(b)")
         })
-        
+
         let s2 = ({
             var c = a
             c.merge(b, uniquingKeysWith: { $1 })
             dlog("c: \(c)")
         })
-        
+
         let s3 = ({
             let frequncies = "hello".frequencies
             let r = frequncies.filter { $0.value > 1 }
@@ -417,7 +417,7 @@ extension LXToolKitTestVC {
         withUnsafeCurrentTask { task in
             if let task = task {
                 print("Cancelled: \(task.isCancelled)")
-                
+
                 print("priority: \(task.priority)")
             } else {
                 print("No task")
@@ -426,7 +426,7 @@ extension LXToolKitTestVC {
     }
     @available(iOS 15.0.0, *)
     func testTask() {
-        
+
         // withUnsafeCurrentTask { task in
         //     print("task: \(task)")
         // }
@@ -455,13 +455,13 @@ extension LXToolKitTestVC {
                     }
                 }
                 print("Task added!")
-                
+
                 for await result in group {
                     print("Get result: \(result)")
                 }
                 print("Task ended!")
             })
-            
+
             print("End!")
         }
     }
@@ -548,12 +548,12 @@ extension LXToolKitTestVC {
         super.prepareUI()
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
-        
+
         [table].forEach(self.view.addSubview)
-        
+
         masonry()
     }
-    
+
     open override func masonry() {
         super.masonry()
         table.snp.makeConstraints {

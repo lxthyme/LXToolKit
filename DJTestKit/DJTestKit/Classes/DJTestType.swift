@@ -12,7 +12,7 @@ import LXToolKit
 
 public enum DJTestType: Hashable {
     public static let AutoJumpRoute = "autoJumpRoute.route"
-    
+
     // case LXToolKit
     case LXToolKit_Example
     // case LXToolKitObjC
@@ -22,7 +22,7 @@ public enum DJTestType: Hashable {
     // @available(iOS 16.2, *)
     case dynamicIsland
     // case DJRSwiftResource
-    case djTest(title: String, vc: () -> UIViewController, uuid: UUID = UUID())
+    case djTest(title: String, provider: () -> UIViewController, uuid: UUID = UUID())
 
     public func hash(into hasher: inout Hasher) {
         switch self {
@@ -34,7 +34,7 @@ public enum DJTestType: Hashable {
             hasher.combine("DJSwiftModule")
         case .dynamicIsland:
             hasher.combine("dynamicIsland")
-        case .djTest(let title, let vc, let uuid):
+        case .djTest(let title, _, let uuid):
             hasher.combine("\(title)_\(uuid)")
         }
     }
@@ -83,7 +83,7 @@ public extension DJTestType {
                   let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
                 return nil
             }
-            return .djTest(title: "", vc: {
+            return .djTest(title: "", provider: {
                 Cls.init()
             })
         default: return nil
