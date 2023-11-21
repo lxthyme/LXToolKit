@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.backgroundColor = .white
 
         let vc = 
-        // ViewController()
-        LXOutlineVC()
+        ViewController()
+        // LXOutlineVC()
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav
         window.makeKeyAndVisible()

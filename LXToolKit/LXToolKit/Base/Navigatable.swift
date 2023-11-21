@@ -145,3 +145,55 @@ open class Navigator {
         return vc
     }
 }
+
+// MARK: - 👀
+extension Navigator.Scene: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .openURL(let url, let inWebView, let transition):
+            return ".openURL(url :\(url), inWebView: \(inWebView), transition: \(transition))"
+        case .vc(let provider, let transition):
+            return ".vc(provider: \(provider), transition: \(transition))"
+        case .vcString(let vcString, let transition):
+            return ".vcString(vcString: \(vcString), transition: \(transition))"
+        }
+    }
+}
+
+// MARK: - 👀
+extension Navigator.Transition: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .root(let window):
+            return ".root(in: \(window)"
+        case .navigation(let type):
+            return ".navigation(type: \(type))"
+        case .customModal(let type):
+            return ".customModal(type: \(type))"
+        case .modal:
+            return ".modal"
+        case .detail:
+            return ".detail"
+        case .alert:
+            return ".alert"
+        case .custom:
+            return ".custom"
+        }
+    }
+}
+
+// MARK: - 👀
+extension HeroDefaultAnimationType.Direction: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .left:
+            return ".left"
+        case .right:
+            return ".right"
+        case .up:
+            return ".up"
+        case .down:
+            return ".down"
+        }
+    }
+}

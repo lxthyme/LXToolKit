@@ -53,3 +53,15 @@ extension LXOutlineOpt: Hashable {
         return lhs.hashValue == rhs.hashValue
     }
 }
+
+// MARK: - 👀
+extension LXOutlineOpt: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .outline(let title, let subitems, let uuid):
+            return ".outline(title: \(title),subitems: \(subitems))"
+        case .subitem(let title, let scene, let uuid):
+            return ".subitem(title: \(title), scene: \(scene))"
+        }
+    }
+}

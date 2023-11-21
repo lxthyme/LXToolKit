@@ -16,42 +16,9 @@ class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
 
 open class LXToolKitObjcTestVC: LXBaseTableVC {
     // MARK: 📌UI
-    private var _dataSource: UITableViewDataSource?
-    @available(iOS 14.0, *)
-    private var dataSource: DataSource {
-        if let ds = _dataSource as? DataSource {
-            return ds
-        }
-        let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            content.text = scene.title
-            // content.secondaryText = "\(scene.info.desc)"
-            cell.contentConfiguration = content
-            return cell
-        }
-        dataSource.defaultRowAnimation = .fade
-        _dataSource = dataSource
-        return dataSource
-    }
-    private var _dataSnapshot: Any?
+    private var dataSource: DataSource!
     @available(iOS 13.0, *)
-    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
-        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
-            return ds
-        }
-        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineOpt>()
-        snapshot.appendSections([
-            "MVVM",
-            "2023",
-            "2022",
-        ])
-        snapshot.appendItems(LXToolKitObjcRouter.routerMVVM.subitems ?? [], toSection: "MVVM")
-        snapshot.appendItems(LXToolKitObjcRouter.router2023.subitems ?? [], toSection: "MVVM")
-        snapshot.appendItems(LXToolKitObjcRouter.router2022.subitems ?? [], toSection: "WWDC")
-        _dataSnapshot = snapshot
-        return snapshot
-    }
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineOpt>!
     // MARK: 🔗Vaiables
     public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
@@ -73,21 +40,36 @@ extension LXToolKitObjcTestVC {}
 extension LXToolKitObjcTestVC {}
 
 // MARK: 🔐Private Actions
-private extension LXToolKitObjcTestVC {}
+@available(iOS 14.0, *)
+private extension LXToolKitObjcTestVC {
+    func generateDataSource() -> DataSource {
+        let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            var content = cell.defaultContentConfiguration()
+            content.text = scene.title
+            // content.secondaryText = "\(scene.info.desc)"
+            cell.contentConfiguration = content
+            return cell
+        }
+        dataSource.defaultRowAnimation = .fade
+        return dataSource
+    }
+    func generateSnapshot() -> NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
+        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineOpt>()
+        snapshot.appendSections([
+            "MVVM",
+            "2023",
+            "2022",
+        ])
+        snapshot.appendItems(LXToolKitObjcRouter.routerMVVM.subitems ?? [], toSection: "MVVM")
+        snapshot.appendItems(LXToolKitObjcRouter.router2023.subitems ?? [], toSection: "2023")
+        snapshot.appendItems(LXToolKitObjcRouter.router2022.subitems ?? [], toSection: "2022")
+        return snapshot
+    }
+}
 
 // MARK: - 🔐Private Actions
 private extension LXToolKitObjcTestVC {
-    func goRouter() {
-        let navigator = Navigator.default
-        let scene: Navigator.Scene = .vc(provider: {[weak self] in
-            guard let `self` = self else { return nil }
-            return LXiOS15VC(vm: vm, navigator: self.navigator)
-        })
-        navigator.show(segue: scene, sender: self)
-    }
-    @objc func btnTestAction(sender: UIButton) {
-        goRouter()
-    }
     func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
@@ -149,9 +131,9 @@ extension LXToolKitObjcTestVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
         if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+            dataSnapshot = generateSnapshot()
             DispatchQueue.main.async {
                 self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
             }

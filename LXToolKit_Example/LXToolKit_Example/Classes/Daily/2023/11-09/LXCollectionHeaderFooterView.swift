@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class LXCollectionHeaderFooterView: UICollectionReusableView {
+open class LXCollectionHeaderFooterView: UICollectionReusableView {
     // MARK: 📌UI
     private lazy var labTitle: UILabel = {
         let label = UILabel()
@@ -19,7 +19,7 @@ class LXCollectionHeaderFooterView: UICollectionReusableView {
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     // MARK: 🔗Vaiables
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ class LXCollectionHeaderFooterView: UICollectionReusableView {
 }
 
 // MARK: 🌎LoadData
-extension LXCollectionHeaderFooterView {
+public extension LXCollectionHeaderFooterView {
     func dataFill(_ title: String) {
         labTitle.text = title
     }

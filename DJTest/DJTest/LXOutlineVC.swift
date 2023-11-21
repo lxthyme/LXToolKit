@@ -21,16 +21,15 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
-        let djTestList: LXOutlineOpt = .outline(title: "DJTest", subitems: [
-            .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
-            .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
-        ])
         return [
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             .subitem(title: "DJSwiftModule", scene: .vc(provider: { DJTestType.DJSwiftModule.vc })),
             .subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc })),
-            djTestList,
+            .outline(title: "DJTest", subitems: [
+                .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
+                .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
+            ].reversed()),
         ]
     }()
     @available(iOS 13.0, *)
@@ -42,6 +41,17 @@ class LXOutlineVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareCollectionView()
         prepareUI()
+
+        let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
+        if let route1 = DJTestType.fromInt(idx: route1Int) {
+            // autoJumpRoute = route1
+            // autoJumpRoute = DJTestType.dynamicIsland
+            // .LXToolKit_Example
+                // .LXToolKitObjC_Example
+            gotoScene(by: route1)
+        }
+
+        startActivity()
     }
 
 }
@@ -52,6 +62,27 @@ extension LXOutlineVC {}
 // MARK: 👀Public Actions
 extension LXOutlineVC {}
 
+// MARK: - 🔐Activity
+private extension LXOutlineVC {
+    func startActivity() {
+        // guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+        //     dlog("灵动岛没有权限")
+        //     return
+        // }
+        // let attr = LXToolKit_WidgetAttributes(name: "")
+        // let initialContentState = LXToolKit_WidgetAttributes.ContentState(emoji: "100")
+        // do {
+        //     let myActivity = try Activity<LXToolKit_WidgetAttributes>.request(attributes: attr,
+        //                                                                       content: .init(state: initialContentState, staleDate: nil),
+        //                                                                       pushType: nil)
+        //     dlog("-->灵动岛: \(myActivity.id)")
+        //     self.setup
+        // } catch (let error) {
+        //     dlog("-->灵动岛开启时发生错误: \(error)")
+        // }
+    }
+}
+
 // MARK: - 🔐
 private extension LXOutlineVC {
     func gotoScene(by scene: Navigator.Scene?) {
@@ -59,14 +90,50 @@ private extension LXOutlineVC {
         let navigator = Navigator.default
         navigator.show(segue: scene, sender: self)
     }
+    func gotoScene(by scene: DJTestType?, route2 tmp: String = "") {
+        guard let scene else { return }
+        UserDefaults.standard.set(scene.intValue(), forKey: DJTestType.AutoJumpRoute)
+        guard let vc = scene.vc else {
+            dlog("-->gotoScene error on scene: \(scene)")
+            return
+        }
+        // UserDefaults.standard.set(vc.xl.xl_typeName, forKey: scene.userDefaultsKey())
+        var route2 = tmp
+        if route2.isEmpty {
+            route2 = UserDefaults.standard.string(forKey: scene.userDefaultsKey()) ?? ""
+        }
+        if let vc = vc as? LXToolKitTestVC {
+            vc.autoJumpRoute =
+                .subitem(title: "LXToolKit_Example." + route2, scene: .vcString(vcString:
+                                                    "LXToolKit_Example." +
+                                                  // "LXOutlineVC"
+                                                  // "LXLabelVC"
+                                                  // "LXStack1206VC"
+                                                  // "LXTableTestVC"
+                                                  // "LXRxSwiftTestVC"
+                                                  route2
+                                                 ))
+        } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
+            vc.autoJumpRoute =
+            // "LXLabelTestVC"
+            // "LXPopTestVC"
+            // "DJCommentVC"
+            // "LXViewAnimationARCTestVC"
+            // "LXCollectionTestVC"
+            route2
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // MARK: 🔐Private Actions
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
-        let config = UICollectionLayoutListConfiguration(appearance: .sidebar)
-        return UICollectionViewCompositionalLayout.list(using: config)
+        var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        config.headerMode = .supplementary
+        // config.footerMode = .supplementary
+        return  UICollectionViewCompositionalLayout.list(using: config)
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
@@ -98,7 +165,7 @@ private extension LXOutlineVC {
             cell.contentConfiguration = contentConfig
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
-        return UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
+        let dataSource = UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
             case .outline:
                 return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
@@ -106,6 +173,19 @@ private extension LXOutlineVC {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
+            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+            supplementaryView.dataFill("\(model.title) - header")
+        }
+        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
+            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+            supplementaryView.dataFill("\(model.title) - footer")
+        }
+        dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+            dlog("-->elementKind: \(elementKind)")
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+        }
+        return dataSource
     }
     func generateSnapshot() -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
@@ -126,7 +206,23 @@ private extension LXOutlineVC {
             }
         }
 
-        addItems(menuItems, to: nil)
+        for menuItem in self.menuItems {
+            snapshot.append([menuItem])
+            switch menuItem {
+            case .outline(_, let subitems, _):
+                addItems(subitems, to: menuItem)
+            case .subitem:
+                break
+            }
+        }
+        // let item = LXOutlineOpt.subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc }))
+        // let outline = LXOutlineOpt.outline(title: "DJTest", subitems: [
+        //     LXOutlineOpt.subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
+        //     LXOutlineOpt.subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
+        // ].reversed())
+        // snapshot.append([item])
+        // snapshot.append([outline])
+        // snapshot.append(outline.subitems ?? [], to: outline)
         return snapshot
     }
 }
@@ -151,6 +247,7 @@ extension LXOutlineVC {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
             let snapshot = generateSnapshot()
+            // dlog("-->snapshot: \(snapshot.items)")
             self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
         } else {
             // Fallback on earlier versions
