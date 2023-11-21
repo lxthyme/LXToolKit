@@ -22,7 +22,25 @@ public enum DJTestType: Hashable {
     // @available(iOS 16.2, *)
     case dynamicIsland
     // case DJRSwiftResource
-    case djTest(vc: UIViewController)
+    case djTest(title: String, vc: () -> UIViewController, uuid: UUID = UUID())
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .LXToolKit_Example:
+            hasher.combine("LXToolKit_Example")
+        case .LXToolKitObjC_Example:
+            hasher.combine("LXToolKitObjC_Example")
+        case .DJSwiftModule:
+            hasher.combine("DJSwiftModule")
+        case .dynamicIsland:
+            hasher.combine("dynamicIsland")
+        case .djTest(let title, let vc, let uuid):
+            hasher.combine("\(title)_\(uuid)")
+        }
+    }
+    public static func == (lhs: DJTestType, rhs: DJTestType) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
 }
 
 // MARK: - 👀
@@ -41,8 +59,8 @@ public extension DJTestType {
             return "DJSwiftModule"
         case .dynamicIsland:
             return "dynamicIsland"
-        case .djTest(let vc):
-            return "DJTest - \(vc.xl.xl_typeName)"
+        case .djTest(let title, _, _):
+            return "DJTest - \(title)"
         }
     }
     func intValue() -> Int {
@@ -65,7 +83,9 @@ public extension DJTestType {
                   let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
                 return nil
             }
-            return .djTest(vc: Cls.init())
+            return .djTest(title: "", vc: {
+                Cls.init()
+            })
         default: return nil
         }
     }

@@ -37,6 +37,19 @@ public extension Navigator {
         case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
         // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!), uuid: UUID = UUID())
+
+        public var info: (title: String, desc: String) {
+            var tmp: (title: String, desc: String)
+            switch self {
+            case .openURL(let url, let inWebView, _, _):
+                tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
+            case .vc(let identifier, _, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
+            case .vcString(let vcString, _, _): tmp = (title: vcString, desc: "---")
+            // case .tabs:
+            //     tmp = (title: "DJHomeTabBarVC", desc: "---")
+            }
+            return tmp
+        }
     }
 }
 
@@ -89,6 +102,7 @@ open class Navigator {
         }
     }
     // MARK: - invoke a single segue
+    @discardableResult
     public func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) -> UIViewController? {
         guard let (vc, tran) = get(segue: segue),
            let vc else {
