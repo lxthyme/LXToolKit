@@ -153,15 +153,15 @@ private extension ViewController {
         }
         if let vc = vc as? LXToolKitTestVC {
             vc.autoJumpRoute =
-                .vcString(vcString:
-                            "LXToolKit_Example." +
-                          // "LXOutlineVC"
-                          // "LXLabelVC"
-                          // "LXStack1206VC"
-                          // "LXTableTestVC"
-                          // "LXRxSwiftTestVC"
-                          route2
-                )
+                .subitem(title: "LXToolKit_Example." + route2, vc: .vcString(vcString:
+                                                    "LXToolKit_Example." +
+                                                  // "LXOutlineVC"
+                                                  // "LXLabelVC"
+                                                  // "LXStack1206VC"
+                                                  // "LXTableTestVC"
+                                                  // "LXRxSwiftTestVC"
+                                                  route2
+                                                 ))
         } else if let vc = vc as? LXToolKitObjCTestVC {
             vc.autoJumpRoute =
             // "LXLabelTestVC"

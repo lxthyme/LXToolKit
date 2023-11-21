@@ -92,7 +92,7 @@ private extension LXOutlineVC {
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { (cell, indexPath, menuItem) in
             // Populate the cell with our item description.
-            guard case .subitem(let title, _) = menuItem else { return }
+            guard case .subitem(let title, _, _) = menuItem else { return }
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
@@ -137,10 +137,10 @@ extension LXOutlineVC: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
-        if case .subitem(_, let scene) = menuItem {
+        if let scene = menuItem.scene {
             gotoScene(by: scene)
         } else {
-            dlog("menuItem: \(menuItem)")
+            fatalError("menuItem: \(menuItem)")
         }
     }
 }

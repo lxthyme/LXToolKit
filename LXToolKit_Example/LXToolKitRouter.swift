@@ -48,7 +48,7 @@ struct LXToolKitTest {
         .subitem(title: "LXCollectionVC", vc: .vc(identifier: LXCollectionVC.xl.xl_typeName, vcProvider: { LXCollectionVC() })),
     ].reversed())
     static let routerWWWDC: LXOutlineOpt = .outline(title: "WWDC", subitems: [
-        .subitem(title: "", vc: .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() })),
+        .subitem(title: "LXAttributedStringVC", vc: .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() })),
     ].reversed())
     static let routerMVVM: LXOutlineOpt = .outline(title: "MVVM", subitems: [
         .subitem(title: "baidu.com", vc: .openURL(url: URL(string: "http://baidu.com"))),

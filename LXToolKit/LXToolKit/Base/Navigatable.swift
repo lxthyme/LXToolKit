@@ -18,41 +18,22 @@ public protocol Navigatable {
 public extension Navigator {
     // MARK: - segues list, all app scenes
     public enum Scene {
-        case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!), uuid: UUID = UUID())
+        case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)))
+        case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)))
+        case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)))
+        // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!))
 
         public var info: (title: String, desc: String) {
             var tmp: (title: String, desc: String)
             switch self {
-            case .openURL(let url, let inWebView, _, _):
+            case .openURL(let url, let inWebView, _):
                 tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
-            case .vc(let identifier, _, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
-            case .vcString(let vcString, _, _): tmp = (title: vcString, desc: "---")
+            case .vc(let identifier, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
+            case .vcString(let vcString, _): tmp = (title: vcString, desc: "---")
             // case .tabs:
             //     tmp = (title: "DJHomeTabBarVC", desc: "---")
             }
             return tmp
-        }
-    }
-}
-
-// MARK: - 👀
-extension Navigator.Scene: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        switch self {
-        case .vc(_, _, _, let uuid),
-                .vcString(_, _, let uuid),
-                .openURL(_, _, _, let uuid):
-                // .tabs(_, _, let uuid):
-            hasher.combine(uuid)
-        }
-    }
-    public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
-        switch(lhs, rhs) {
-        case let (lhs, rhs):
-            return lhs.hashValue == rhs.hashValue
         }
     }
 }
@@ -84,7 +65,7 @@ open class Navigator {
     // MARK: - get a single VC
     public func get(segue: Navigator.Scene) -> (UIViewController?, Transition?)? {
         switch segue {
-        case .openURL(let url, let inWebView, let transition, _):
+        case .openURL(let url, let inWebView, let transition):
             guard let url else { return nil }
 
             if inWebView {
@@ -93,8 +74,8 @@ open class Navigator {
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
-        case .vc(_, let vcProvider, let transition, _): return (vcProvider(), transition)
-        case .vcString(let vcString, let transition, _):
+        case .vc(_, let vcProvider, let transition): return (vcProvider(), transition)
+        case .vcString(let vcString, let transition):
             guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
             return (VCCls.init(), transition)
         // case .tabs(let vm, let transition, _):
