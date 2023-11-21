@@ -52,6 +52,7 @@ target 'DJTest' do
 
   pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   pod 'CocoaDebug', :configurations => ['Debug']
+  pod 'Bugly'
 
   # RxNetworks
   # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'

@@ -175,6 +175,7 @@
 		BEFA8DD32AE8EDC400933131 /* AdventureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureView.swift; sourceTree = "<group>"; };
 		BEFA8E732AE90A8800933131 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		BEFA8E772AE90DA100933131 /* EmojiRangersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRangersApp.swift; sourceTree = "<group>"; };
+		BEFB9B1B2B0CC4FB008B35F7 /* DJTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJTest-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +398,7 @@
 				BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */,
 				BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */,
 				BEE5A34D2AB974FB003339EB /* Info.plist */,
+				BEFB9B1B2B0CC4FB008B35F7 /* DJTest-Bridging-Header.h */,
 			);
 			path = DJTest;
 			sourceTree = "<group>";
@@ -490,6 +492,7 @@
 					};
 					BEE5A33B2AB974FA003339EB = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -953,6 +956,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DJTest/DJTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -978,6 +982,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DJTest/DJTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -990,6 +996,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DJTest/DJTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -1014,6 +1021,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "DJTest/DJTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

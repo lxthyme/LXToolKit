@@ -16,8 +16,9 @@ import Firebase
 class LXLibManager {
     static func setup() {
         LibsManager.shared.setupLibs()
-        // LXLibManager.prepareAMap()
-        // LXLibManager.prepareFirebase()
+        // prepareAMap()
+        // prepareFirebase()
+        prepareBugly()
     }
 }
 
@@ -27,6 +28,10 @@ extension LXLibManager {
     static func prepareFirebase() {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.error)
+    }
+    static func prepareBugly() {
+        Bugly.start(withAppId: "6c86961c5c")
+        // Bugly.start(withAppId: <#T##String?#>, developmentDevice: <#T##Bool#>, config: <#T##BuglyConfig?#>)
     }
     /// 高德地图配置
     static func prepareAMap() {
