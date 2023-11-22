@@ -131,7 +131,7 @@ private extension LXOutlineVC {
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
-        config.headerMode = .supplementary
+        // config.headerMode = .supplementary
         // config.footerMode = .supplementary
         return  UICollectionViewCompositionalLayout.list(using: config)
     }
