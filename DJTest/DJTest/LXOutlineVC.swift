@@ -24,8 +24,19 @@ class LXOutlineVC: LXBaseVC {
         return [
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
-            .subitem(title: "DJSwiftModule", scene: .vc(provider: { DJTestType.DJSwiftModule.vc })),
-            .subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc })),
+            .subitem(title: "DJSwiftModule", scene: .vc(provider: {
+                let window = UIApplication.xl.keyWindow
+                Application.shared.presentInitialScreen(in: window)
+                return nil
+            })),
+            .subitem(title: "dynamicIsland", scene: .vc(provider: {
+                if #available(iOS 16.2, *) {
+                    UIHostingController(rootView: EmojiRangersView())
+                } else {
+                    // Fallback on earlier versions
+                    UIViewController()
+                }
+            })),
             .outline(title: "DJTest", subitems: [
                 .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
                 .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
@@ -42,14 +53,7 @@ class LXOutlineVC: LXBaseVC {
         prepareCollectionView()
         prepareUI()
 
-        let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
-        if let route1 = DJTestType.fromInt(idx: route1Int) {
-            // autoJumpRoute = route1
-            // autoJumpRoute = DJTestType.dynamicIsland
-            // .LXToolKit_Example
-                // .LXToolKitObjC_Example
-            gotoScene(by: route1)
-        }
+        gotoAutoJumpRouteScene()
 
         startActivity()
     }
@@ -86,41 +90,73 @@ private extension LXOutlineVC {
 // MARK: - 🔐
 private extension LXOutlineVC {
     func gotoScene(by scene: Navigator.Scene?) {
-        guard let scene else { return }
-        let navigator = Navigator.default
-        navigator.show(segue: scene, sender: self)
-    }
-    func gotoScene(by scene: DJTestType?, route2 tmp: String = "") {
-        guard let scene else { return }
-        UserDefaults.standard.set(scene.intValue(), forKey: DJTestType.AutoJumpRoute)
-        guard let vc = scene.vc else {
-            dlog("-->gotoScene error on scene: \(scene)")
+        guard let scene,
+              let vc = Navigator.default.show(segue: scene, sender: self) else {
+            DJTestType.LXToolKit_Example.updateRouter(vcName: "")
             return
         }
-        // UserDefaults.standard.set(vc.xl.xl_typeName, forKey: scene.userDefaultsKey())
-        var route2 = tmp
-        if route2.isEmpty {
-            route2 = UserDefaults.standard.string(forKey: scene.userDefaultsKey()) ?? ""
+        DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
+    }
+    func gotoAutoJumpRouteScene() {
+        let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
+        guard let type = DJTestType.fromInt(idx: route1Int),
+              let item = self.menuItems.first(where: { $0.title == type.title }) else {
+            dlog("-->gotoScene error on scene[1]")
+            return
         }
+        let scene = item.scene != nil ? item.scene : item.subitems?.first?.scene
+        guard let scene else {
+            dlog("-->gotoScene error on scene[2]")
+            return
+        }
+        let vc: UIViewController?
+        switch scene {
+        case .vc(let provider, _):
+            vc = provider()
+            // type.updateRouter(vcName: <#T##String#>)
+        case .vcString(let vcString, _):
+            vc = vcString.xl.getVCInstance(expect: UIViewController.self)
+            // type.updateRouter(vcName: vcString)
+        case .openURL:
+            vc = nil
+            break
+        }
+        guard let vc else { return }
+        let route2 = UserDefaults.standard.string(forKey: type.userDefaultsKey()) ?? ""
         if let vc = vc as? LXToolKitTestVC {
-            vc.autoJumpRoute =
-                .subitem(title: "LXToolKit_Example." + route2, scene: .vcString(vcString:
-                                                    "LXToolKit_Example." +
-                                                  // "LXOutlineVC"
-                                                  // "LXLabelVC"
-                                                  // "LXStack1206VC"
-                                                  // "LXTableTestVC"
-                                                  // "LXRxSwiftTestVC"
-                                                  route2
-                                                 ))
-        } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
-            vc.autoJumpRoute =
-            // "LXLabelTestVC"
-            // "LXPopTestVC"
-            // "DJCommentVC"
-            // "LXViewAnimationARCTestVC"
-            // "LXCollectionTestVC"
-            route2
+            let itemOpt: LXOutlineOpt
+            do {
+                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.title == route2 })
+            } catch {
+                dlog("-->error: \(error)")
+                itemOpt = .subitem(title: "LXToolKit_Example." + route2,
+                                   scene: .vcString(vcString:
+                                                        "LXToolKit_Example." +
+                                                    // "LXOutlineVC"
+                                                    // "LXLabelVC"
+                                                    // "LXStack1206VC"
+                                                    // "LXTableTestVC"
+                                                    // "LXRxSwiftTestVC"
+                                                    route2
+                                                   ))
+            }
+            vc.autoJumpRoute = itemOpt
+        } else if let vc = vc as? LXToolKitObjcTestVC {
+            var itemOpt: LXOutlineOpt
+            do {
+                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.title == route2 })
+            } catch {
+                dlog("-->error: \(error)")
+                itemOpt = .subitem(title: "",
+                                   scene: .vcString(vcString: "LXToolKitObjc_Example" +
+                                                    // "LXLabelTestVC"
+                                                    // "LXPopTestVC"
+                                                    // "DJCommentVC"
+                                                    // "LXViewAnimationARCTestVC"
+                                                    // "LXCollectionTestVC"
+                                                    route2))
+            }
+            vc.autoJumpRoute = itemOpt
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -133,12 +169,13 @@ private extension LXOutlineVC {
         var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
         // config.headerMode = .supplementary
         // config.footerMode = .supplementary
+        config.backgroundColor = .white
         return  UICollectionViewCompositionalLayout.list(using: config)
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemGroupedBackground
+        cv.backgroundColor = .white
         return cv;
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt> {
@@ -147,6 +184,7 @@ private extension LXOutlineVC {
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
+            contentConfig.textProperties.color = .black
             contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
 
@@ -162,6 +200,7 @@ private extension LXOutlineVC {
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
+            contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }

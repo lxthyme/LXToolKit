@@ -91,17 +91,33 @@ public extension DJTestType {
     }
 }
 // MARK: - 👀
-public extension DJTestType {
-    func dfVCName() -> String? {
-        return UserDefaults.standard.string(forKey: self.userDefaultsKey())
+extension DJTestType {
+    public static func updateAutoJumpRoute(_ type: DJTestType) {
+        UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
     }
-    func updateDefaults(vcName: String) {
+    public func updateRouter(vcName: String) {
+        guard vcName != "LXToolKitTestVC",
+        vcName != "LXToolKitObjCTestSwiftVC" else {
+            return
+        }
         UserDefaults.standard.set(self.intValue(), forKey: DJTestType.AutoJumpRoute)
         UserDefaults.standard.set(vcName, forKey: self.userDefaultsKey())
     }
-    func userDefaultsKey() -> String {
+    public func userDefaultsKey() -> String {
         let idx = intValue()
         return "\(DJTestType.AutoJumpRoute).\(idx)"
+    }
+}
+
+// MARK: - 👀
+public extension DJTestType {
+    static func clearAllData() {
+        let defaults = UserDefaults.standard
+        defaults.setValue("", forKey: DJTestType.AutoJumpRoute)
+        defaults.setValue("", forKey: DJTestType.LXToolKit_Example.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.LXToolKitObjC_Example.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.DJSwiftModule.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.dynamicIsland.userDefaultsKey())
     }
 }
 
@@ -110,6 +126,6 @@ open class DJTestTypeObjc: NSObject {}
 // MARK: - 👀
 public extension DJTestTypeObjc {
     @objc public static func updateObjcDefaults(vcName: String) {
-        DJTestType.LXToolKitObjC_Example.updateDefaults(vcName: vcName)
+        DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vcName)
     }
 }

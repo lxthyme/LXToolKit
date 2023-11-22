@@ -7,6 +7,9 @@
 //
 import UIKit
 
+// MARK: - 👀
+extension String: Error {}
+
 public extension Swifty where Base == String {
 //public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例

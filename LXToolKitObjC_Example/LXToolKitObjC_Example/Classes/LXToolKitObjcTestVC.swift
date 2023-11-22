@@ -74,7 +74,7 @@ private extension LXToolKitObjcTestVC {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
            let vc = navigator.show(segue: scene, sender: self) {
-            DJTestType.LXToolKitObjC_Example.updateDefaults(vcName: vc.xl.xl_typeName)
+            DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.xl_typeName)
         }
     }
 }

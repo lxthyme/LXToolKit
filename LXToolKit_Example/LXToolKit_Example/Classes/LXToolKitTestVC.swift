@@ -47,8 +47,10 @@ open class LXToolKitTestVC: LXBaseTableVC {
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = scene.title
+            content.textProperties.color = .black
             // content.secondaryText = "\(scene.info.desc)"
             cell.contentConfiguration = content
+            cell.backgroundColor = .white
             return cell
         }
         dataSource.defaultRowAnimation = .fade
@@ -98,49 +100,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
     // MARK: 🔗Vaiables
     public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // let vc =
-        //            LXApiTestVC()
-        //            LXMultiRequestTestVC()
-        //            LXOffScreenVC()
-        //            LXResolveIMPVC()
-        //            LXRequiredVC()
-        //            LXLightedVC()
-        //            LXProxyTestVC()
-        //            LXTestStringVC()
-        //            LXPresentVC()
-        //            LXTestVC()
-        //            LXStackViewVC()
-        //            LXWikipediaImageSearchVC()
-        //            LXStackTestVC()
-        //            LXImageTestVC()
-        //            LXDaily1117VC()
-        //            LXStackTestVC()
-        //            LXStackMessageVC()
-        //            LXMusicVC()
-        //            LXSongVC()
-        //            LX0114VC()
-        //            LXPickerVC()
-        //            LX0117VC()
-        // LXCubeVC()
-        //            LXRx0225VC()
-        // LXLoggerTestVC()
-        // LXStrenchableWebVC()
-        // UIViewController()
-
-        // self.navigationController?.pushViewController(vc, animated: true)
-        //        self.present(testVC, animated: true, completion: nil)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -225,7 +184,7 @@ private extension LXToolKitTestVC {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
            let vc = navigator.show(segue: scene, sender: self) {
-            DJTestType.LXToolKit_Example.updateDefaults(vcName: vc.xl.xl_typeName)
+            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
         }
     }
 }
@@ -533,8 +492,8 @@ extension LXToolKitTestVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        // table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
         if #available(iOS 14.0, *) {
             DispatchQueue.main.async {
                 self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)

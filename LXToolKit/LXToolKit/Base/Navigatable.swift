@@ -22,6 +22,31 @@ public extension Navigator {
         case vc(provider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)))
         case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)))
         // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!))
+
+        public var vcProvider: (() -> UIViewController?)? {
+            switch self {
+            case .openURL, .vcString:
+                return nil
+            case .vc(let provider, let transition):
+                return provider
+            }
+        }
+        public var vcString: String? {
+            switch self {
+            case .openURL, .vc:
+                return nil
+            case .vcString(let vcString, _):
+                return vcString
+            }
+        }
+        public var url: URL? {
+            switch self {
+            case .openURL(let url, _, _):
+                return url
+            case .vc, .vcString:
+                return nil
+            }
+        }
     }
 }
 

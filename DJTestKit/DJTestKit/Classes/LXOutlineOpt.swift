@@ -55,6 +55,31 @@ extension LXOutlineOpt: Hashable {
 }
 
 // MARK: - 👀
+public extension LXOutlineOpt {
+    func xl_first(where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt {
+        func first2(from opt: LXOutlineOpt, where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt? {
+            switch opt {
+            case .outline(_, let subitems, _):
+                for tmp in subitems {
+                    if let item = try first2(from: tmp, where: predicate) {
+                        return item
+                    }
+                }
+            case .subitem(let title, let scene, _):
+                if try predicate(opt) {
+                    return opt
+                }
+            }
+            return nil
+        }
+        if let item = try first2(from: self, where: predicate) {
+            return item
+        }
+        throw "Error[1.]: Not Found!"
+    }
+}
+
+// MARK: - 👀
 extension LXOutlineOpt: CustomStringConvertible {
     public var description: String {
         switch self {

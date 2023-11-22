@@ -12,35 +12,6 @@ import LXToolKitObjC_Example
 import ActivityKit
 import DJTestKit
 
-extension DJTestType {
-    var vc: UIViewController? {
-        switch self {
-            // case .LXToolKit:
-            //     return LXToolKitTestVC()
-        case .LXToolKit_Example:
-            return LXToolKitTestVC()
-            // case .LXToolKitObjC:
-            //     return LXToolKitTestVC()
-        case .LXToolKitObjC_Example:
-            return LXToolKitObjCTestSwiftVC()
-        case .DJSwiftModule:
-            let window = UIApplication.xl.keyWindow
-            Application.shared.presentInitialScreen(in: window)
-        case .dynamicIsland:
-            return if #available(iOS 16.2, *) {
-                UIHostingController(rootView: EmojiRangersView())
-            } else {
-                // Fallback on earlier versions
-                UIViewController()
-            }
-        case .djTest(_, let vc, _):
-            return vc()
-        }
-        return nil
-    }
-
-}
-
 class ViewController: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnGo: UIButton = {
@@ -78,6 +49,7 @@ class ViewController: LXBaseVC {
 // MARK: - 🔐
 private extension ViewController {
     func goOutlineVC() {
+        // DJTestType.clearAllData()
         let vc = LXOutlineVC()
         self.navigationController?.pushViewController(vc)
     }
