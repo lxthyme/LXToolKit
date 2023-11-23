@@ -27,7 +27,7 @@ public extension Swifty where Base: UIWindow {
             bgView.tag = kMaskView_Tag
         }
         bgView.frame = UIScreen.main.bounds
-        bgView.backgroundColor = UIColor.XL.hex("#000")
+        bgView.backgroundColor = UIColor.XL.hexString("#000")
         bgView.layer.opacity = 0.5
         return bgView
     }

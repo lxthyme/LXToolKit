@@ -21,7 +21,7 @@ private class MyView: UIView {
         This is only showcase app, not intended for production purposes.
         """
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.XL.hex("#555")
+        label.textColor = UIColor.XL.hexString("#555")
         label.numberOfLines = 0
         label.textAlignment = .center
         return label

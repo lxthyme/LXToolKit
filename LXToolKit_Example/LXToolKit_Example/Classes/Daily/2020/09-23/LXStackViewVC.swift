@@ -35,7 +35,7 @@ private class MyView: LXBaseView {
         label.text = "[1]Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex praesentium fugiat eligendi est explicabo, voluptatum facilis sint placeat sapiente vel veritatis culpa qui at, iure esse labore quam cupiditate reprehenderit."
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
-        label.backgroundColor = UIColor.XL.hex("#000", alpha: 0.1)
+        label.backgroundColor = UIColor.XL.hexString("#000", transparency: 0.1)
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -45,7 +45,7 @@ private class MyView: LXBaseView {
         label.text = "[2]Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex praesentium fugiat eligendi est explicabo, voluptatum facilis sint placeat sapiente vel veritatis culpa qui at, iure esse labore quam cupiditate reprehenderit."
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .black
-        label.backgroundColor = UIColor.XL.hex("#000", alpha: 0.1)
+        label.backgroundColor = UIColor.XL.hexString("#000", transparency: 0.1)
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -70,7 +70,7 @@ private class MyView: LXBaseView {
     }()
     private lazy var bototmView: UIView = {
         let v = UIView()
-        v.backgroundColor = UIColor.XL.hex("#000", alpha: 0.3)
+        v.backgroundColor = UIColor.XL.hexString("#000", transparency: 0.3)
         return v
     }()
     private lazy var collapseStackView: UIStackView = {

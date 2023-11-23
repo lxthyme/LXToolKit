@@ -36,7 +36,7 @@ class LXStackTestVC: LXBaseVC {
         btn.setTitleColor(.white, for: .normal)
 
 //        btn.setBackgroundColor(.hex("#0092fe"), forState: .normal)
-        btn.backgroundColor = UIColor.XL.hex("#0092fe")
+        btn.backgroundColor = UIColor.XL.hexString("#0092fe")
 
 //        btn.titleLabel?.font = UIFont.systemFont(ofSize: <#T##CGFloat#>)
         btn.layer.masksToBounds = true

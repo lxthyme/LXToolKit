@@ -33,38 +33,6 @@ import CoreImage
 //    }
 //}
 
-
-public extension Swifty where Base: SFColor {
-    static func hex(_ hex: String, alpha: CGFloat = 1.0) -> SFColor {
-        let hexString: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let scanner = Scanner(string: hexString)
-        if (hex.hasPrefix("#")) {
-            scanner.scanLocation = 1
-        }
-        var color: UInt32 = 0
-        scanner.scanHexInt32(&color)
-        let mask = 0x000000FF
-        let r = Int(color >> 16) & mask
-        let g = Int(color >> 8) & mask
-        let b = Int(color) & mask
-        let red   = CGFloat(r) / 255.0
-        let green = CGFloat(g) / 255.0
-        let blue  = CGFloat(b) / 255.0
-
-//        self.init(r:red, g:green, b:blue, alpha:alpha)
-        return Base(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    func toHexString() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
-        base.getRed(&r, green: &g, blue: &b, alpha: &a)
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-        return String(format:"#%06x", rgb)
-    }
-}
-
 public extension Swifty where Base: SFColor {
     struct PropertyItem {
         let name: String?
@@ -94,8 +62,8 @@ public extension Swifty where Base: SFColor {
     func getColorName() -> String {
         return SFColor.XL
             .allColorList
-            .filter { $0.hex == self.toHexString() }
-            .first?.name ?? self.toHexString()
+            .filter { $0.hex == base.hexString }
+            .first?.name ?? base.hexString
     }
 }
 
@@ -367,7 +335,7 @@ public extension Swifty where Base: SFColor {
     /// - Parameters:
     ///   - hex: hex Int (example: 0xDECEB5).
     ///   - transparency: optional transparency value (default is 1).
-    static func hex(hex: Int, transparency: CGFloat = 1) -> SFColor? {
+    static func hex(_ hex: Int, transparency: CGFloat = 1) -> SFColor? {
         var trans = transparency
         if trans < 0 { trans = 0 }
         if trans > 1 { trans = 1 }
@@ -383,7 +351,7 @@ public extension Swifty where Base: SFColor {
     /// - Parameters:
     ///   - hexString: hexadecimal string (examples: EDE7F6, 0xEDE7F6, #EDE7F6, #0ff, 0xF0F, ..).
     ///   - transparency: optional transparency value (default is 1).
-    static func hexString(hexString: String, transparency: CGFloat = 1) -> SFColor? {
+    static func hexString(_ hexString: String, transparency: CGFloat = 1) -> SFColor? {
         var string = ""
         let lowercaseHexString = hexString.lowercased()
         if lowercaseHexString.hasPrefix("0x") {
@@ -416,7 +384,7 @@ public extension Swifty where Base: SFColor {
     ///
     /// - Parameters:
     ///   - argbHexString: hexadecimal string (examples: 7FEDE7F6, 0x7FEDE7F6, #7FEDE7F6, #f0ff, 0xFF0F, ..).
-    static func argbHexString(argbHexString: String) -> SFColor? {
+    static func argbHexString(_ argbHexString: String) -> SFColor? {
         var string = argbHexString.replacingOccurrences(of: "0x", with: "").replacingOccurrences(of: "#", with: "")
 
         if string.count <= 4 { // convert hex to long format if in short format
@@ -442,7 +410,7 @@ public extension Swifty where Base: SFColor {
     /// SwifterSwift: Create Color from a complementary of a Color (if applicable).
     ///
     /// - Parameter color: color of which opposite color is desired.
-    static func complementary(complementaryFor color: SFColor) -> SFColor? {
+    static func complementary(for color: SFColor) -> SFColor? {
         let colorSpaceRGB = CGColorSpaceCreateDeviceRGB()
         let convertColorToRGBSpace: ((_ color: SFColor) -> SFColor?) = { color -> SFColor? in
             if color.cgColor.colorSpace!.model == CGColorSpaceModel.monochrome {
