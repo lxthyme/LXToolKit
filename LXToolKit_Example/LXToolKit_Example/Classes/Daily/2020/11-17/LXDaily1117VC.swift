@@ -66,7 +66,7 @@ private extension LXDaily1117VC {
 
     func test03() {
         _ = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        _ = UIColor.xl.rgba(red: 1, green: 1, blue: 1, alpha: 1)
+        _ = UIColor.xl.rgba(red: 1, green: 1, blue: 1, transparency: 1)
         _ = UIColor.xl.random
         self.view.snp.makeConstraints {
             $0.edges.equalToSuperview()

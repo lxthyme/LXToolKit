@@ -11,7 +11,7 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
     lazy var leftImageView: UIImageView = {
         let view = UIImageView(frame: CGRect())
         view.contentMode = .scaleAspectFit
-        view.cornerRadius = 25
+        view.layerCornerRadius = 25
         return view
     }()
     
@@ -19,9 +19,9 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
         let view = UIImageView(frame: CGRect())
         view.contentMode = .center
         view.backgroundColor = .white
-        view.cornerRadius = 10
-        view.borderColor = .white
-        view.borderWidth = 1
+        view.layerCornerRadius = 10
+        view.layerBorderColor = .white
+        view.layerBorderWidth = 1
         containerView.addSubview(view)
         return view
     }()

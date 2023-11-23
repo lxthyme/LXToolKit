@@ -194,7 +194,7 @@ extension LXPhotoAlbumVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXPhotoAlbumVC {
     func prepareUI() {
-        self.view.backgroundColor = UIColor.xl.rgba(r: 160, g: 160, b: 160, alpha: 0.65)
+        self.view.backgroundColor = UIColor.xl.rgba(red: 160, green: 160, blue: 160, transparency: 0.65)
         // self.title = "<#title#>"
 
         [collectionView].forEach(self.view.addSubview)
