@@ -92,7 +92,7 @@ public extension Swifty where Base: SFColor {
         return []
     }
     func getColorName() -> String {
-        return SFColor.xl
+        return SFColor.XL
             .allColorList
             .filter { $0.hex == self.toHexString() }
             .first?.name ?? self.toHexString()

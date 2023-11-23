@@ -12,7 +12,7 @@
 public protocol NamespaceWrappable {
     associatedtype BaseType
     var xl: BaseType { get }
-    static var xl: BaseType.Type { get }
+    static var XL: BaseType.Type { get }
 }
 
 public extension NamespaceWrappable {
@@ -20,7 +20,7 @@ public extension NamespaceWrappable {
         return NamespaceWrapper(value: self)
     }
 
-    static var xl: NamespaceWrapper<Self>.Type {
+    static var XL: NamespaceWrapper<Self>.Type {
         return NamespaceWrapper.self
     }
 }
@@ -96,7 +96,7 @@ public protocol SwiftyCompatible {
     associatedtype SwiftyeBase
 
     /// Swifty extensions.
-    static var xl: Swifty<SwiftyeBase>.Type { get set }
+    static var XL: Swifty<SwiftyeBase>.Type { get set }
 
     /// Swifty extensions.
     var xl: Swifty<SwiftyeBase> { get set }
@@ -104,7 +104,7 @@ public protocol SwiftyCompatible {
 // MARK: - 👀
 public extension SwiftyCompatible {
     /// Swifty extensions.
-    static var xl: Swifty<Self>.Type {
+    static var XL: Swifty<Self>.Type {
         get {
             return Swifty<Self>.self
         }
