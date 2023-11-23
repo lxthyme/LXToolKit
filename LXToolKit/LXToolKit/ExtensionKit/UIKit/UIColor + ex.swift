@@ -468,11 +468,11 @@ public extension Swifty where Base: SFColor {
 }
 
 public extension SFColor {
-    enum XL {}
+    enum External {}
 }
 
 // MARK: - Social
-public extension SFColor.XL {
+public extension SFColor.External {
     /// SwifterSwift: Brand identity color of popular social media platform.
         enum Social {
         // https://www.lockedowndesign.com/social-media-colors/
@@ -564,7 +564,7 @@ public extension SFColor.XL {
 
 // MARK: - Material colors
 
-public extension SFColor {
+public extension SFColor.External {
     // swiftlint:disable type_body_length
     /// SwifterSwift: Google Material design colors palette.
     enum Material {
@@ -1399,7 +1399,7 @@ public extension SFColor {
 
 // MARK: - CSS colors
 
-public extension SFColor {
+public extension SFColor.External {
     /// SwifterSwift: CSS colors.
     enum CSS {
         // http://www.w3schools.com/colors/colors_names.asp
@@ -1852,7 +1852,7 @@ public extension SFColor {
 
 // MARK: - Flat UI colors
 
-public extension SFColor {
+public extension SFColor.External {
     /// SwifterSwift: Flat UI colors
     enum FlatUI {
         // http://flatuicolors.com.
