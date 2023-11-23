@@ -13,7 +13,7 @@ import LXToolKit
 class LXiOS15ButtonTestVC: LXBaseVC {
     // MARK: UI
     private lazy var segmentConfigurationStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.xl.allList.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.Configuration.XL.allList.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -23,7 +23,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         return s
     }()
     private lazy var segmentButtonSize: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.Size.xl.allList.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.Configuration.Size.XL.allList.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -33,7 +33,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         return s
     }()
     private lazy var segmentCornerStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.CornerStyle.xl.allList.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.Configuration.CornerStyle.XL.allList.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -43,7 +43,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         return s
     }()
     private lazy var segmentMacIdiomStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.MacIdiomStyle.xl.allList.map { $0.xl.rawValue } )
+        let s = UISegmentedControl(items: UIButton.Configuration.MacIdiomStyle.XL.allList.map { $0.xl.rawValue } )
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -53,7 +53,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         return s
     }()
     private lazy var segmentTitleAlignment: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.TitleAlignment.xl.allList.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.Configuration.TitleAlignment.XL.allList.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -181,7 +181,7 @@ private extension LXiOS15ButtonTestVC {
     // config.titleAlignment = .center
     @objc func segmentConfigurationStyleChanged(sender: UISegmentedControl) {
         // config = UIButton.Configuration.plain()
-        switch UIButton.Configuration.xl.allList[sender.selectedSegmentIndex] {
+        switch UIButton.Configuration.XL.allList[sender.selectedSegmentIndex] {
         case .plain():
             config = UIButton.Configuration.plain()
         case .tinted():
@@ -208,7 +208,7 @@ private extension LXiOS15ButtonTestVC {
     }
     @objc func segmentButtonSizeChanged(sender: UISegmentedControl) {
         // config.buttonSize = .medium
-        switch UIButton.Configuration.Size.xl.allList[sender.selectedSegmentIndex] {
+        switch UIButton.Configuration.Size.XL.allList[sender.selectedSegmentIndex] {
         case .mini:
             buttonSize = .mini
         case .small:
@@ -223,7 +223,7 @@ private extension LXiOS15ButtonTestVC {
     }
     @objc func segmentCornerStyleChanged(sender: UISegmentedControl) {
         // config.cornerStyle = .large
-        switch UIButton.Configuration.CornerStyle.xl.allList[sender.selectedSegmentIndex] {
+        switch UIButton.Configuration.CornerStyle.XL.allList[sender.selectedSegmentIndex] {
         case .fixed:
             cornerStyle = .fixed
         case .dynamic:
@@ -242,7 +242,7 @@ private extension LXiOS15ButtonTestVC {
     }
     @objc func segmentMacIdiomStyleChanged(sender: UISegmentedControl) {
         // config.macIdiomStyle = .borderlessTinted
-        switch UIButton.Configuration.MacIdiomStyle.xl.allList[sender.selectedSegmentIndex] {
+        switch UIButton.Configuration.MacIdiomStyle.XL.allList[sender.selectedSegmentIndex] {
         case .automatic:
             macIdiomStyle = .automatic
         case .bordered:
@@ -257,7 +257,7 @@ private extension LXiOS15ButtonTestVC {
     }
     @objc func segmentTitleAlignmentChanged(sender: UISegmentedControl) {
         // config.titleAlignment = .center
-        switch UIButton.Configuration.TitleAlignment.xl.allList[sender.selectedSegmentIndex] {
+        switch UIButton.Configuration.TitleAlignment.XL.allList[sender.selectedSegmentIndex] {
         case .automatic:
             titleAlignment = .automatic
         case .leading:

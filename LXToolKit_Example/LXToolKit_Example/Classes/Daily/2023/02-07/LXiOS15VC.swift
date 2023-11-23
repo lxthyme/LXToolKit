@@ -39,7 +39,7 @@ class LXiOS15VC: LXBaseTableVC {
             return ds
         }
         let dataSource = UITableViewDiffableDataSource<String, NSInteger>(tableView: table) { tableView, indexPath, idx in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = "\(idx)"
             cell.contentConfiguration = content
@@ -78,7 +78,7 @@ class LXiOS15VC: LXBaseTableVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
@@ -115,7 +115,7 @@ private extension LXiOS15VC {
         btnLocation.icon = .arrowFilled
         // btnLocation.cornerRadius = 10
         btnLocation.tintColor = .systemPink
-        btnLocation.backgroundColor = .xl.random
+        btnLocation.backgroundColor = .XL.random
         btnLocation.addAction(UIAction(handler: { action in
             dlog("clicked!")
         }), for: .touchUpInside)
@@ -138,7 +138,7 @@ private extension LXiOS15VC {
         /// 2. paletteColors：多层渲染，设置不同风格
         let config2 = UIImage.SymbolConfiguration(paletteColors: [.systemRed, .systemGreen])
         let img2 = UIImage(systemName: "person.3.sequence.fill", withConfiguration: config2)
-        
+
         /// 新增了几个调整尺寸的方法
         // preparingThumbnail
         let img3 = UIImage(named: "sv.png")?.preparingThumbnail(of: CGSize(width: 200, height: 100))
@@ -195,7 +195,7 @@ extension LXiOS15VC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier) as! UITableViewCell
         cell.textLabel?.text = "\(indexPath.row)"
         return cell
     }
@@ -218,7 +218,7 @@ extension LXiOS15VC: UITableViewDelegate {
 extension LXiOS15VC {
     override public func prepareTableView() {
         super.prepareTableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
         table.delegate = self
         if #available(iOS 14.0, *) {
             dataSource.apply(dataSnapshot, animatingDifferences: true)
@@ -235,7 +235,7 @@ extension LXiOS15VC {
         [table].forEach(self.view.addSubview)
         masonry()
     }
-    
+
     override open func masonry() {
         super.masonry()
         table.snp.makeConstraints {

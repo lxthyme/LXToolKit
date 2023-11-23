@@ -25,7 +25,7 @@ class LXStackTestVC: LXBaseVC {
         t.delegate = self
         t.dataSource = self
 
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
 
         return t
     }()
@@ -36,7 +36,7 @@ class LXStackTestVC: LXBaseVC {
         btn.setTitleColor(.white, for: .normal)
 
 //        btn.setBackgroundColor(.hex("#0092fe"), forState: .normal)
-        btn.backgroundColor = UIColor.xl.hex("#0092fe")
+        btn.backgroundColor = UIColor.XL.hex("#0092fe")
 
 //        btn.titleLabel?.font = UIFont.systemFont(ofSize: <#T##CGFloat#>)
         btn.layer.masksToBounds = true
@@ -84,7 +84,7 @@ class LXStackTestVC: LXBaseVC {
         self.navigationController?.navigationBar.tintColor = .red
         self.navigationController?.navigationItem.title = "Location"
         self.title = "Location233"
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
     }
 
 }
@@ -104,7 +104,7 @@ extension LXStackTestVC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
         cell.textLabel?.text = "\(indexPath.row + 1)"
         return cell
     }

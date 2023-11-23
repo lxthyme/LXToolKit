@@ -44,7 +44,7 @@ extension LXToolKitObjcTestVC {}
 private extension LXToolKitObjcTestVC {
     func generateDataSource() -> DataSource {
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = scene.title
             // content.secondaryText = "\(scene.info.desc)"
@@ -85,7 +85,7 @@ private extension LXToolKitObjcTestVC {
 //         return dataList.count
 //     }
 //     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
 //         let info = dataList[indexPath.row].info
 //         if #available(iOS 14.0, *) {
 //             var config = UIListContentConfiguration.cell()

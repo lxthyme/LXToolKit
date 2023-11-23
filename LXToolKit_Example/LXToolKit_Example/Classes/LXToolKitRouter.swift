@@ -56,7 +56,7 @@ internal extension LXToolKitRouter {
         .subitem(title: "baidu.com(inWebView)", scene: .openURL(url: URL(string: "http://baidu.com"), inWebView: true)),
         // .subitem(title: "DJHomeTabBarVM", scene: .tabs(vm: DJHomeTabBarVM(authorized: false))),
         .subitem(title: "DJHomeTabBarVC + UISplitViewController", scene: .vc(provider: {
-            let keyWindow = UIApplication.xl.keyWindow
+            let keyWindow = UIApplication.XL.keyWindow
             Application.shared.presentInitialScreen(in: keyWindow)
             return nil
         })),

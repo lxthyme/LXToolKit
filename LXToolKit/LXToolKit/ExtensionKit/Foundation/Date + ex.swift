@@ -30,6 +30,6 @@ public extension Swifty where Base == Date {
     }
     /// 当前时间与另外一个时间戳的间隔（s）
     static func timeStamp(to timeStamp: TimeInterval) -> TimeInterval {
-        return Date().timeIntervalSince(Date.xl.date(from: timeStamp))
+        return Date().timeIntervalSince(Date.XL.date(from: timeStamp))
     }
 }

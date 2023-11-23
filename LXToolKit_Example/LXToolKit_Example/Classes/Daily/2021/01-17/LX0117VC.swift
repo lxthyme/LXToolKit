@@ -25,7 +25,7 @@ class LX0117VC: LXBaseVMVC2 {
 //        t.delegate = self
 //        t.dataSource = self
 
-        UITableViewCell.xl.register(t)
+        UITableViewCell.XL.register(t)
 
         return t
     }()

@@ -55,7 +55,7 @@ class LXWebViewTestVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         bindViewModel()
@@ -138,15 +138,15 @@ extension LXWebViewTestVC {
     override open func bindViewModel() {
         super.bindViewModel()
         // guard let vm = viewModel as? LXWebViewTestVCVM else { return }
-        
+
         // let input = LXWebViewTestVCVM.Input()
         // let output = vm.transform(input: input)
-        
+
         webView.loadHTMLString(mockData(), baseURL: nil)
-        
+
         // output.dataList
         //     .asDriver(onErrorJustReturn: [])
-        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.xl.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
+        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.XL.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
         //         // cell.bind(to: vm)
         //     }
         //     .disposed(by: rx.disposeBag)

@@ -44,7 +44,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             return ds
         }
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = scene.title
             content.textProperties.color = .black
@@ -446,7 +446,7 @@ extension Sequence where Element: Hashable {
 //         return dataList.count
 //     }
 //     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
 //         let info = dataList[indexPath.row].info
 //         if #available(iOS 14.0, *) {
 //             var config = UIListContentConfiguration.cell()
@@ -492,7 +492,7 @@ extension LXToolKitTestVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
-        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
+        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
         // table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
         if #available(iOS 14.0, *) {
             DispatchQueue.main.async {

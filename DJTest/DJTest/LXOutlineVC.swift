@@ -26,7 +26,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitObjcRouter.objcRouter,
             .subitem(title: "DJSwiftModule", scene: .vc(provider: {
                 DJTestType.DJSwiftModule.updateRouter(vcName: "")
-                let window = UIApplication.xl.keyWindow
+                let window = UIApplication.XL.keyWindow
                 Application.shared.presentInitialScreen(in: window)
                 return nil
             })),

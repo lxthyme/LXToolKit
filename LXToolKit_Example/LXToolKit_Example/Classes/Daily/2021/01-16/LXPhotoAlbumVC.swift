@@ -67,9 +67,9 @@ class LXPhotoAlbumVC: UIViewController {
         //})
         //v.mj_footer = footer
 
-        LXPhotoCell.AddPhoto.xl.register(v)
-        LXPhotoCell.CameraCell.xl.register(v)
-        LXPhotoCell.Photo.xl.register(v)
+        LXPhotoCell.AddPhoto.XL.register(v)
+        LXPhotoCell.CameraCell.XL.register(v)
+        LXPhotoCell.Photo.XL.register(v)
         return v
     }()
     // MARK: 🔗Vaiables
@@ -79,9 +79,9 @@ class LXPhotoAlbumVC: UIViewController {
     private var showCamera: Bool = true
     private var extra: Int {
         if #available(iOS 14, *) {
-            return Int.xl.toInt(from: showCamera) + Int.xl.toInt(from: showAddPhoto)
+            return Int.XL.toInt(from: showCamera) + Int.XL.toInt(from: showAddPhoto)
         } else {
-            return Int.xl.toInt(from: showCamera)
+            return Int.XL.toInt(from: showCamera)
         }
     }
     private var albumList: LXAlbumListModel
@@ -161,18 +161,18 @@ extension LXPhotoAlbumVC: UICollectionViewDataSource {
         guard indexPath.row < dataList.count else {
             if indexPath.row == dataList.count {
                 // swiftlint:disable:next force_cast
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.AddPhoto.xl.xl_identifier, for: indexPath) as! LXPhotoCell.AddPhoto
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.AddPhoto.XL.xl_identifier, for: indexPath) as! LXPhotoCell.AddPhoto
                 // swiftlint:disable:previous force_cast
                 return cell
             } else {
                 // swiftlint:disable:next force_cast
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.CameraCell.xl.xl_identifier, for: indexPath) as! LXPhotoCell.CameraCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.CameraCell.XL.xl_identifier, for: indexPath) as! LXPhotoCell.CameraCell
                 // swiftlint:disable:previous force_cast
                 return cell
             }
         }
         // swiftlint:disable:next force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.Photo.xl.xl_identifier, for: indexPath) as! LXPhotoCell.Photo
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXPhotoCell.Photo.XL.xl_identifier, for: indexPath) as! LXPhotoCell.Photo
         // swiftlint:disable:previous force_cast
         return cell
     }
@@ -194,7 +194,7 @@ extension LXPhotoAlbumVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXPhotoAlbumVC {
     func prepareUI() {
-        self.view.backgroundColor = UIColor.xl.rgba(red: 160, green: 160, blue: 160, transparency: 0.65)
+        self.view.backgroundColor = UIColor.XL.rgba(red: 160, green: 160, blue: 160, transparency: 0.65)
         // self.title = "<#title#>"
 
         [collectionView].forEach(self.view.addSubview)

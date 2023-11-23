@@ -25,7 +25,7 @@ struct AuthPlugin: PluginType {
             t.needAuth,
             let token_t = tokenClosure() else { return request }
         var newRequest = request
-        let timestamp = Date.xl.nowTimeStamp
+        let timestamp = Date.XL.nowTimeStamp
         let token = token_t + "\(timestamp)" + NSUUID().uuidString
 //        token = token.md5().uppercased()
         newRequest.addValue(token, forHTTPHeaderField: "token233")

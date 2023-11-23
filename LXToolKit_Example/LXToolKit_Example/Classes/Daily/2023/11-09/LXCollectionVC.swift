@@ -95,9 +95,9 @@ class LXCollectionVC: UIViewController {
         //})
         //v.mj_footer = footer
 
-        v.register(LXCollectionCell.self, forCellWithReuseIdentifier: LXCollectionCell.xl.xl_identifier)
-        v.register(LXCollectionHeaderFooterView.self, forSupplementaryViewOfKind: LXCollectionVC.sectionHeaderElementKind, withReuseIdentifier: LXCollectionHeaderFooterView.xl.xl_identifier)
-        v.register(LXCollectionHeaderFooterView.self, forSupplementaryViewOfKind: LXCollectionVC.sectionFooterElementKind, withReuseIdentifier: LXCollectionHeaderFooterView.xl.xl_identifier)
+        v.register(LXCollectionCell.self, forCellWithReuseIdentifier: LXCollectionCell.XL.xl_identifier)
+        v.register(LXCollectionHeaderFooterView.self, forSupplementaryViewOfKind: LXCollectionVC.sectionHeaderElementKind, withReuseIdentifier: LXCollectionHeaderFooterView.XL.xl_identifier)
+        v.register(LXCollectionHeaderFooterView.self, forSupplementaryViewOfKind: LXCollectionVC.sectionFooterElementKind, withReuseIdentifier: LXCollectionHeaderFooterView.XL.xl_identifier)
         return v
     }()
     // MARK: 🔗Vaiables
