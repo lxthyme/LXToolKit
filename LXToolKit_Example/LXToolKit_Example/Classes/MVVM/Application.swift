@@ -66,7 +66,11 @@ extension Application {
             // }
             let authorized = self.authManager.token?.isValid ?? false
             let vm = DJHomeTabBarVM(authorized: authorized)
-            // self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
+            let rootVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
+            let detailVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
+            let splitVC = UISplitViewController()
+            splitVC.viewControllers = [rootVC , detailVC]
+            self.navigator.show(segue: .vc(provider: { splitVC }, transition: .root(in: window)), sender: nil)
         }
     }
     public func dismissPreviousVC() {

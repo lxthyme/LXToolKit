@@ -80,7 +80,7 @@ public extension DJTestType {
         case 4: return .dynamicIsland
         case 5:
             guard let vcName = UserDefaults.standard.string(forKey: "autoJumpRoute.route.\(idx)"),
-                  let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
+                  let Cls = vcName.xl.getVCCls() else {
                 return nil
             }
             return .djTest(title: "", provider: {

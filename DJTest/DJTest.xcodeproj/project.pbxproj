@@ -387,8 +387,8 @@
 			children = (
 				BE3067D12AE7A00600E9577C /* DJTest.entitlements */,
 				BE720D9B2AE68CB300F016C5 /* Daily */,
-				BEE5A33F2AB974FA003339EB /* AppDelegate.swift */,
 				BE29938A2AF0A28D00767EA0 /* Manager */,
+				BEE5A33F2AB974FA003339EB /* AppDelegate.swift */,
 				BEE5A3412AB974FA003339EB /* SceneDelegate.swift */,
 				BEE5A3432AB974FA003339EB /* ViewController.swift */,
 				BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */,

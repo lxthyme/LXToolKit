@@ -47,6 +47,16 @@ public extension Navigator {
                 return nil
             }
         }
+        public var transition: Transition {
+            switch self {
+            case .openURL(_, _, let transition):
+                return transition
+            case .vc(_, let transition):
+                return transition
+            case .vcString(_, let transition):
+                return transition
+            }
+        }
     }
 }
 
@@ -75,7 +85,7 @@ open class Navigator {
     }
 
     // MARK: - get a single VC
-    public func get(segue: Navigator.Scene) -> (UIViewController?, Transition?)? {
+    public func get(segue: Navigator.Scene) -> (UIViewController?, Transition)? {
         switch segue {
         case .openURL(let url, let inWebView, let transition):
             guard let url else { return nil }
@@ -88,8 +98,8 @@ open class Navigator {
             return nil
         case .vc(let provider, let transition): return (provider(), transition)
         case .vcString(let vcString, let transition):
-            guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
-            return (VCCls.init(), transition)
+            guard let vc = vcString.xl.getVCInstance() else { return nil }
+            return (vc, transition)
         // case .tabs(let vm, let transition, _):
         //     let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
         //     let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
@@ -100,14 +110,14 @@ open class Navigator {
     }
     // MARK: - invoke a single segue
     @discardableResult
-    public func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) -> UIViewController? {
+    public func show(segue: Scene, sender: UIViewController?, transition: Transition? = nil) -> UIViewController? {
         guard let (vc, tran) = get(segue: segue),
            let vc else {
                return nil
         }
         show(target: vc,
              sender: sender,
-             transition: tran ?? transition)
+             transition: transition ?? tran)
         return vc
     }
 

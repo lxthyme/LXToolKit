@@ -105,7 +105,7 @@ TODO: Add long description of the pod here.
   # s.dependency 'Google-Mobile-Ads-SDK'
   s.dependency 'IQKeyboardManagerSwift'
   s.dependency 'CocoaLumberjack'
-  s.dependency 'CocoaDebug'
+  # s.dependency 'CocoaDebug'
   s.dependency 'RxViewController'
   s.dependency 'RxGesture'
   s.dependency 'RxOptional'

@@ -14,7 +14,7 @@ import Foundation
 // import Kingfisher
 #if DEBUG
 // import FLEX
-import CocoaDebug
+// import CocoaDebug
 #endif
 // import FirebaseCrashlytics
 // import NSObject_Rx
@@ -127,7 +127,7 @@ open class LibsManager: NSObject {
         // // flex.isNetworkDebuggingEnabled = true
         // flex.showExplorer()
         // analytics.log(.flexOpened)
-        CocoaDebugSettings.shared.enableLogMonitoring = true
+        // CocoaDebugSettings.shared.enableLogMonitoring = true
         #endif
     }
 

@@ -25,6 +25,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             .subitem(title: "DJSwiftModule", scene: .vc(provider: {
+                DJTestType.DJSwiftModule.updateRouter(vcName: "")
                 let window = UIApplication.xl.keyWindow
                 Application.shared.presentInitialScreen(in: window)
                 return nil
@@ -34,7 +35,7 @@ class LXOutlineVC: LXBaseVC {
                     UIHostingController(rootView: EmojiRangersView())
                 } else {
                     // Fallback on earlier versions
-                    UIViewController()
+                    LXNonSupportedVC(title: "当前设备不支持灵动岛!")
                 }
             })),
             .outline(title: "DJTest", subitems: [
@@ -93,6 +94,10 @@ private extension LXOutlineVC {
         guard let scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             DJTestType.LXToolKit_Example.updateRouter(vcName: "")
+            if let provider = scene?.vcProvider {
+                let result = provider()
+                dlog("-->vc: \(result)")
+            }
             return
         }
         DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
@@ -115,7 +120,7 @@ private extension LXOutlineVC {
             vc = provider()
             // type.updateRouter(vcName: <#T##String#>)
         case .vcString(let vcString, _):
-            vc = vcString.xl.getVCInstance(expect: UIViewController.self)
+            vc = vcString.xl.getVCInstance()
             // type.updateRouter(vcName: vcString)
         case .openURL:
             vc = nil

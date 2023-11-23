@@ -52,7 +52,10 @@ target 'DJTest' do
 
   pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   pod 'CocoaDebug', :configurations => ['Debug']
-  pod 'Bugly'
+  # pod 'Bugly'
+  # pod 'UMCommon'    # 必须集成
+  # pod 'UMDevice'    # 必须集成
+  # pod 'UMAPM'   # 必选，APM组件，原错误分析升级为独立产品U-APM
 
   # RxNetworks
   # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'

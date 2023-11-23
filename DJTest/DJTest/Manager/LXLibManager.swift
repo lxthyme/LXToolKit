@@ -17,20 +17,29 @@ class LXLibManager {
     static func setup() {
         LibsManager.shared.setupLibs()
         // prepareAMap()
-        // prepareFirebase()
-        prepareBugly()
+        prepareFirebase()
+        // prepareBugly()
+        // prepareUMeng()
     }
 }
 
 // MARK: - 👀
 extension LXLibManager {
+    static func prepareUMeng() {
+        // UMLaunch.setRootVCCls(ViewController.self)
+        // let config = UMAPMConfig.default()
+        // UMConfigure.setLogEnabled(true)
+        // UMCrashConfigure.setAPMConfig(config)
+        // UMConfigure.initWithAppkey("655eb7c158a9eb5b0a0ef8b9", channel: "iOS")
+        // URLProtocol.registerClass(UMURLProtocol)
+    }
     /// Firebase 配置
     static func prepareFirebase() {
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.error)
     }
     static func prepareBugly() {
-        Bugly.start(withAppId: "6c86961c5c")
+        // Bugly.start(withAppId: "6c86961c5c")
         // Bugly.start(withAppId: <#T##String?#>, developmentDevice: <#T##Bool#>, config: <#T##BuglyConfig?#>)
     }
     /// 高德地图配置
