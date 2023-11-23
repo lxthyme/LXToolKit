@@ -35,9 +35,12 @@ This library contains some useful category and extension kits
 
   s.source_files = "LXToolKit/**/*.{swift,h,m,json}"
 
-  # s.resource_bundles = {
-  #   'LXToolKit' => ['LXToolKit/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'LXToolKit' => [
+      'LXToolKit/Assets/*.png',
+      'LXToolKit/**/*.json'
+    ]
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
 
