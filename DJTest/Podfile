@@ -61,9 +61,8 @@ target 'DJTest' do
   # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
   # pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
   #pod 'RxNetworks', '~>0.4'
-  # pod 'RxSwiftExt', '~> 6.2'
-  pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
-  pod 'SwifterSwift', '~>5.2'
+  pod 'RxSwiftExt', '~> 6.2'
+  # pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
   pod 'RxNetworks', '0.4.4'
 
 
