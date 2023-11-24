@@ -12,13 +12,22 @@ import ActivityKit
 import DJTestKit
 import LXToolKit
 
-
-
+@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
+    private lazy var btnAppearance: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 8
+
+        btn.setTitle("Appearance", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        return btn
+    }()
     private var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
-    private var dataSource: UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>!
+    private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
@@ -44,8 +53,9 @@ class LXOutlineVC: LXBaseVC {
             ].reversed()),
         ]
     }()
-    @available(iOS 13.0, *)
-    private var dataSnapshot: UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>!
+    // @available(iOS 13.0, *)
+    private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
+    var appearance: UICollectionLayoutListConfiguration.Appearance = .plain
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +72,15 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: - 🔐Activity
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func startActivity() {
         // guard ActivityAuthorizationInfo().areActivitiesEnabled else {
@@ -89,6 +102,7 @@ private extension LXOutlineVC {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func gotoScene(by scene: Navigator.Scene?) {
         guard let scene,
@@ -171,11 +185,21 @@ private extension LXOutlineVC {
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
-        var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
-        config.headerMode = .firstItemInSection
-        // config.footerMode = .supplementary
-        config.backgroundColor = .white
-        return  UICollectionViewCompositionalLayout.list(using: config)
+        let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
+            guard let self else { return nil }
+            var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
+            config.headerMode = .firstItemInSection
+            // config.footerMode = .supplementary
+            config.backgroundColor = .white
+
+            let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+
+            return section
+        }
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
@@ -183,7 +207,7 @@ private extension LXOutlineVC {
         cv.backgroundColor = .white
         return cv;
     }
-    func generateDataSource() -> UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt> {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt> {
         let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
             guard case .outline(let title, _, _) = menuItem else { return }
             // cell.labTitle.text = "\(<#item#>)"
@@ -209,7 +233,7 @@ private extension LXOutlineVC {
             cell.contentConfiguration = contentConfig
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
-        let dataSource = UICollectionViewDiffableDataSource<LXSection, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
+        let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
             case .outline:
                 return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
@@ -259,18 +283,57 @@ private extension LXOutlineVC {
                 break
             }
         }
-        // let item = LXOutlineOpt.subitem(title: "dynamicIsland", scene: .vc(provider: { DJTestType.dynamicIsland.vc }))
-        // let outline = LXOutlineOpt.outline(title: "DJTest", subitems: [
-        //     LXOutlineOpt.subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
-        //     LXOutlineOpt.subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
-        // ].reversed())
-        // snapshot.append([item])
-        // snapshot.append([outline])
-        // snapshot.append(outline.subitems ?? [], to: outline)
         return snapshot
+    }
+    func generateMultiSnapshot() -> [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] {
+        // var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+    
+        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
+            snapshot.append(menuItems, to: parent)
+    
+            // for menuItem in menuItems where menuItem.subitems.isNotEmpty {
+            //     addItems(menuItem.subitems, to: menuItem)
+            // }
+            for menuItem in menuItems {
+                switch menuItem {
+                case .outline(_, let subitems, _):
+                    addItems(&snapshot, menuItems: subitems, to: menuItem)
+                case .subitem:
+                    break
+                }
+            }
+        }
+    
+        var list: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
+        for menuItem in self.menuItems {
+            var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+            snapshot.append([menuItem])
+            snapshot .expand([menuItem])
+            switch menuItem {
+            case .outline(_, let subitems, _):
+                addItems(&snapshot, menuItems: subitems, to: menuItem)
+                // dataSource.apply(snapshot, to: menuItem, animatingDifferences: true)
+                list[menuItem] = snapshot
+            case .subitem:
+                break
+            }
+        }
+        return list
+    }
+    func refreshCollectionView() {
+        // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
+        // let snapshot = dataSource.snapshot()
+        // dlog("-->snapshot: \(snapshot)")
+        // dataSource.apply(dataSource.snapshot(), animatingDifferences: true)
+        // collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
+        let snapshotList = generateMultiSnapshot()
+        snapshotList.forEach {
+            self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
+        }
     }
 }
 
+@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -288,14 +351,19 @@ extension LXOutlineVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 extension LXOutlineVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
-            let snapshot = generateSnapshot()
+            let snapshotList = generateMultiSnapshot()
+            snapshotList.forEach {
+                self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
+            }
+            // let snapshot = generateSnapshot()
             // dlog("-->snapshot: \(snapshot.items)")
-            self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
+            // self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
         } else {
             // Fallback on earlier versions
             collectionView = UICollectionView(frame: .zero)
@@ -304,8 +372,32 @@ extension LXOutlineVC {
     }
     override func prepareUI() {
         super.prepareUI()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .cyan
         // navigationItem.title = ""
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "Appearance", menu: UIMenu(children: [
+                UIAction(title: "plain", state: self.appearance == .plain ? .on : .off, handler: {[weak self] _ in
+                    self?.appearance = .plain
+                    self?.refreshCollectionView()
+                }),
+                UIAction(title: "grouped", state: self.appearance == .grouped ? .on : .off, handler: {[weak self] _ in
+                    self?.appearance = .grouped
+                    self?.refreshCollectionView()
+                }),
+                UIAction(title: "insetGrouped", state: self.appearance == .insetGrouped ? .on : .off, handler: {[weak self] _ in
+                    self?.appearance = .insetGrouped
+                    self?.refreshCollectionView()
+                }),
+                UIAction(title: "sidebar", state: self.appearance == .sidebar ? .on : .off, handler: {[weak self] _ in
+                    self?.appearance = .sidebar
+                    self?.refreshCollectionView()
+                }),
+                UIAction(title: "sidebarPlain", state: self.appearance == .sidebarPlain ? .on : .off, handler: {[weak self] _ in
+                    self?.appearance = .sidebarPlain
+                    self?.refreshCollectionView()
+                }),
+            ]))
+        ]
 
         [collectionView].forEach(self.view.addSubview)
 
@@ -320,6 +412,7 @@ extension LXOutlineVC {
     }
 }
 
+@available(iOS 14.0, *)
 #Preview("LXOutlineVC") {
     return LXOutlineVC()
 }
