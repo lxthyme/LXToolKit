@@ -52,7 +52,7 @@ public extension Swifty where Base: SFColor {
         } else {
             opt = [.fragmentsAllowed]
         }
-        if let filePath = Bundle(identifier: "org.cocoapods.LXToolKit")?.path(forResource: "color", ofType: "json"),
+        if let filePath = Bundle.XL.lxToolKitsBundle?.path(forResource: "color", ofType: "json"),
            let data = fm.contents(atPath: filePath),
            let obj = try? JSONSerialization.jsonObject(with: data, options: opt) as? [[String: String]] {
             return obj.map { PropertyItem(property: $0) }
