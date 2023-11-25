@@ -191,7 +191,7 @@ private extension LXOutlineVC {
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
-            config.backgroundColor = .white
+            // config.backgroundColor = .white
 
             let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
             // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
@@ -204,55 +204,61 @@ private extension LXOutlineVC {
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        // cv.backgroundColor = .white
         return cv;
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt> {
-        let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
+        let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
             guard case .outline(let title, _, _) = menuItem else { return }
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
-            contentConfig.textProperties.color = .black
-            contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
+            // contentConfig.textProperties.color = .black
+            // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
 
-            let disclosureOpt = UICellAccessory.OutlineDisclosureOptions(style: .header)
+            // let disclosureOpt = UICellAccessory.OutlineDisclosureOptions(style: .header)
             cell.accessories = [
-                .outlineDisclosure(options: disclosureOpt)
+                // .outlineDisclosure(options: disclosureOpt)
+                .outlineDisclosure()
             ]
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { (cell, indexPath, menuItem) in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
+            guard let self else { return }
             // Populate the cell with our item description.
             guard case .subitem(let title, _, _) = menuItem else { return }
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = title
-            contentConfig.textProperties.color = .black
+            // contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
-            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+
+            switch self.appearance {
+            case .sidebar, .sidebarPlain: cell.accessories = []
+            default: cell.accessories = [.disclosureIndicator()]
+            }
         }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
             case .outline:
-                return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
+                return collectionView.dequeueConfiguredReusableCell(using: outlineRegistration, for: indexPath, item: item)
             case .subitem:
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
-        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
-            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - header")
-        }
-        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
-            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - footer")
-        }
-        dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
-            dlog("-->elementKind: \(elementKind)")
-            return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
-        }
+        // let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
+        //     guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        //     supplementaryView.dataFill("\(model.title) - header")
+        // }
+        // let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
+        //     guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        //     supplementaryView.dataFill("\(model.title) - footer")
+        // }
+        // dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        //     dlog("-->elementKind: \(elementKind)")
+        //     return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+        // }
         return dataSource
     }
     func generateSnapshot() -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
@@ -331,6 +337,39 @@ private extension LXOutlineVC {
             self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
         }
     }
+    func generateNavRightItems() -> [UIBarButtonItem] {
+        let subItems = [
+            UIAction(title: "plain", state: self.appearance == .plain ? .on : .off, handler: {[weak self] _ in
+                self?.appearance = .plain
+                self?.refreshCollectionView()
+            }),
+            UIAction(title: "grouped", state: self.appearance == .grouped ? .on : .off, handler: {[weak self] _ in
+                self?.appearance = .grouped
+                self?.refreshCollectionView()
+            }),
+            UIAction(title: "insetGrouped", state: self.appearance == .insetGrouped ? .on : .off, handler: {[weak self] _ in
+                self?.appearance = .insetGrouped
+                self?.refreshCollectionView()
+            }),
+            UIAction(title: "sidebar", state: self.appearance == .sidebar ? .on : .off, handler: {[weak self] _ in
+                self?.appearance = .sidebar
+                self?.refreshCollectionView()
+            }),
+            UIAction(title: "sidebarPlain", state: self.appearance == .sidebarPlain ? .on : .off, handler: {[weak self] _ in
+                self?.appearance = .sidebarPlain
+                self?.refreshCollectionView()
+            }),
+        ]
+        let appearance = if #available(iOS 15.0, *) {
+            UIMenu(title: "", options: .singleSelection, children: subItems)
+        } else {
+            // Fallback on earlier versions
+            UIMenu(title: "", children: subItems)
+        }
+        return [
+            UIBarButtonItem(title: "Appearance", menu: appearance),
+        ]
+    }
 }
 
 @available(iOS 14.0, *)
@@ -340,12 +379,16 @@ extension LXOutlineVC: UICollectionViewDelegate {
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
         let random = Int.random(in: 0...10)
-        assert(random != 5, "test assert: \(random) at \(Date())")
-        
-        if let scene = menuItem.scene {
+        // assert(random != 5, "test assert: \(random) at \(Date())")
+        // if random == 6 {
+        //     fatalError("test assert: \(random) at \(Date())")
+        // }
+
+        if case .subitem(_, let scene, _) = menuItem {
             gotoScene(by: scene)
-        } else {
-            fatalError("menuItem: \(menuItem)")
+        } else if case .outline(let title, _, _) = menuItem {
+            // fatalError("menuItem: \(menuItem)")
+            dlog("-->menuItem: \(menuItem)")
         }
     }
 }
@@ -374,30 +417,7 @@ extension LXOutlineVC {
         super.prepareUI()
         self.view.backgroundColor = .cyan
         // navigationItem.title = ""
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Appearance", menu: UIMenu(children: [
-                UIAction(title: "plain", state: self.appearance == .plain ? .on : .off, handler: {[weak self] _ in
-                    self?.appearance = .plain
-                    self?.refreshCollectionView()
-                }),
-                UIAction(title: "grouped", state: self.appearance == .grouped ? .on : .off, handler: {[weak self] _ in
-                    self?.appearance = .grouped
-                    self?.refreshCollectionView()
-                }),
-                UIAction(title: "insetGrouped", state: self.appearance == .insetGrouped ? .on : .off, handler: {[weak self] _ in
-                    self?.appearance = .insetGrouped
-                    self?.refreshCollectionView()
-                }),
-                UIAction(title: "sidebar", state: self.appearance == .sidebar ? .on : .off, handler: {[weak self] _ in
-                    self?.appearance = .sidebar
-                    self?.refreshCollectionView()
-                }),
-                UIAction(title: "sidebarPlain", state: self.appearance == .sidebarPlain ? .on : .off, handler: {[weak self] _ in
-                    self?.appearance = .sidebarPlain
-                    self?.refreshCollectionView()
-                }),
-            ]))
-        ]
+        navigationItem.rightBarButtonItems = generateNavRightItems()
 
         [collectionView].forEach(self.view.addSubview)
 
