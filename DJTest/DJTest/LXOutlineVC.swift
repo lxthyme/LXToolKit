@@ -13,6 +13,32 @@ import DJTestKit
 import LXToolKit
 
 @available(iOS 14.0, *)
+public struct DJTestRouter {
+    static let routerDJSwiftModule: LXOutlineOpt = .outline(title: "DJSwiftModule", subitems: [
+        .subitem(title: "DJSwiftModule", scene: .vc(provider: {
+            DJTestType.DJSwiftModule.updateRouter(vcName: "")
+            let window = UIApplication.XL.keyWindow
+            Application.shared.presentInitialScreen(in: window)
+            return nil
+        })),
+    ])
+    static let routerDynamicIsland: LXOutlineOpt = .outline(title: "dynamicIsland", subitems: [
+        .subitem(title: "dynamicIsland", scene: .vc(provider: {
+            if #available(iOS 16.2, *) {
+                UIHostingController(rootView: EmojiRangersView())
+            } else {
+                // Fallback on earlier versions
+                LXNonSupportedVC(title: "当前设备不支持灵动岛!")
+            }
+        })),
+    ])
+    static let routerDJTest: LXOutlineOpt = .outline(title: "DJTest", subitems: [
+        .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
+        .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
+    ])
+}
+
+@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnAppearance: UIButton = {
@@ -33,24 +59,9 @@ class LXOutlineVC: LXBaseVC {
         return [
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
-            .subitem(title: "DJSwiftModule", scene: .vc(provider: {
-                DJTestType.DJSwiftModule.updateRouter(vcName: "")
-                let window = UIApplication.XL.keyWindow
-                Application.shared.presentInitialScreen(in: window)
-                return nil
-            })),
-            .subitem(title: "dynamicIsland", scene: .vc(provider: {
-                if #available(iOS 16.2, *) {
-                    UIHostingController(rootView: EmojiRangersView())
-                } else {
-                    // Fallback on earlier versions
-                    LXNonSupportedVC(title: "当前设备不支持灵动岛!")
-                }
-            })),
-            .outline(title: "DJTest", subitems: [
-                .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
-                .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
-            ]),
+            DJTestRouter.routerDJTest,
+            DJTestRouter.routerDJSwiftModule,
+            DJTestRouter.routerDynamicIsland,
         ]
     }()
     // @available(iOS 13.0, *)
@@ -104,17 +115,29 @@ private extension LXOutlineVC {
 // MARK: - 🔐
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
-    func gotoScene(by scene: Navigator.Scene?) {
-        guard let scene,
+    func gotoScene(by menuItem: LXOutlineOpt) {
+        guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
-            DJTestType.LXToolKit_Example.updateRouter(vcName: "")
-            if let provider = scene?.vcProvider {
+            // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
+            if let provider = menuItem.scene?.vcProvider {
                 let result = provider()
                 dlog("-->vc: \(result)")
             }
             return
         }
-        DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
+        if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
+            DJTestType.DJSwiftModule.updateRouter(vcName: vc.xl.xl_typeName)
+        } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
+            DJTestType.dynamicIsland.updateRouter(vcName: vc.xl.xl_typeName)
+        } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
+            DJTestType.djTest.updateRouter(vcName: vc.xl.xl_typeName)
+        } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
+            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
+        } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
+            DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.xl_typeName)
+        } else {
+            fatalError("save AutoJumpRoute not found for \(menuItem)")
+        }
     }
     func gotoAutoJumpRouteScene() {
         let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
@@ -141,7 +164,7 @@ private extension LXOutlineVC {
             break
         }
         guard let vc else { return }
-        let route2 = UserDefaults.standard.string(forKey: type.userDefaultsKey()) ?? ""
+        let route2 = type.userRouter
         if let vc = vc as? LXToolKitTestVC {
             let itemOpt: LXOutlineOpt
             do {
@@ -285,7 +308,7 @@ private extension LXOutlineVC {
         }
 
         for menuItem in self.menuItems {
-            snapshot.append([menuItem])
+            snapshot.append([menuItem], to: nil)
             switch menuItem {
             case .outline(_, _, let subitems, _):
                 addItems(subitems, to: menuItem)
@@ -391,6 +414,9 @@ extension LXOutlineVC: UICollectionViewDelegate {
         if let scene = menuItem.scene {
             gotoScene(by: scene)
         }
+        gotoScene(by: menuItem)
+        // if let scene = menuItem.scene {
+        // }
     }
 }
 

@@ -14,6 +14,23 @@ import DJTestKit
 
 class ViewController: LXBaseVC {
     // MARK: 📌UI
+    private lazy var tvContent: UITextView = {
+        let tv = UITextView()
+        tv.isEditable = false
+        tv.isScrollEnabled = false
+        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.textColor = .black
+        tv.backgroundColor = .Material.lightBlueA100
+        tv.textAlignment = .left
+        tv.returnKeyType = .done
+        tv.keyboardType = .default
+        // tv.textContainer.maximumNumberOfLines = 0
+        // tv.textContainer.lineBreakMode = .byTruncatingTail
+        // tv.contentInset = .zero
+        // let padding = tv.textContainer.lineFragmentPadding
+        // tv.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
+        return tv
+    }()
     private lazy var btnReset: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -48,13 +65,17 @@ class ViewController: LXBaseVC {
     }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        dataFill()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
         prepareVM()
         prepareUI()
-        
+
         goOutlineVC()
 
         startActivity()
@@ -65,6 +86,20 @@ class ViewController: LXBaseVC {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+// MARK: 🌎LoadData
+extension ViewController {
+    func dataFill() {
+        tvContent.text = """
+        AutoJumpRoute: \(DJTestType.AutoJumpRouteRouter)
+        LXToolKit_Example: \(DJTestType.LXToolKit_Example.userRouter)
+        LXToolKitObjC_Example: \(DJTestType.LXToolKitObjC_Example.userRouter)
+        DJSwiftModule: \(DJTestType.DJSwiftModule.userRouter)
+        dynamicIsland: \(DJTestType.dynamicIsland.userRouter)
+        djTest: \(DJTestType.djTest.userRouter)
+        """
+    }
 }
 
 // MARK: - 🔐
@@ -104,8 +139,9 @@ extension ViewController {
         super.prepareVM()
         btnReset.rx.controlEvent(.touchUpInside)
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
-            .subscribe { _ in
+            .subscribe {[weak self] _ in
                 DJTestType.clearAllData()
+                self?.dataFill()
             }
             .disposed(by: rx.disposeBag)
         btnGo.rx.controlEvent(.touchUpInside)
@@ -118,7 +154,7 @@ extension ViewController {
     override func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white;
-        [btnGo, btnReset].forEach(self.view.addSubview)
+        [btnGo, btnReset, tvContent].forEach(self.view.addSubview)
         masonry()
     }
     override func masonry() {
@@ -132,6 +168,11 @@ extension ViewController {
             $0.top.equalTo(btnGo.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
+        }
+        tvContent.snp.makeConstraints {
+            $0.top.equalTo(btnReset.snp.bottom).offset(10)
+            $0.left.equalToSuperview().offset(10)
+            $0.right.equalToSuperview().offset(-10)
         }
     }
 }
