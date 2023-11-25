@@ -189,7 +189,7 @@ private extension LXOutlineVC {
             // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
             guard let self else { return nil }
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
-            config.headerMode = .supplementary
+            config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
 
@@ -245,6 +245,12 @@ private extension LXOutlineVC {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
+        // dataSource.sectionSnapshotHandlers.willExpandItem = {[weak self] opt in
+        //     self?.gotoScene(by: opt.scene)
+        // }
+        // dataSource.sectionSnapshotHandlers.willCollapseItem = {[weak self] opt in
+        //     self?.gotoScene(by: opt.scene)
+        // }
         let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
             guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
             supplementaryView.dataFill("\(model.title) - header")
@@ -384,8 +390,6 @@ extension LXOutlineVC: UICollectionViewDelegate {
 
         if let scene = menuItem.scene {
             gotoScene(by: scene)
-        } else {
-            fatalError("menuItem: \(menuItem)")
         }
     }
 }

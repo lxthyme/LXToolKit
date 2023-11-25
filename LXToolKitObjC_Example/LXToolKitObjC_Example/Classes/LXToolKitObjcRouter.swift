@@ -13,7 +13,8 @@ public struct LXToolKitObjcRouter {}
 
 // MARK: - 👀
 public extension LXToolKitObjcRouter {
-    static let objcRouter: LXOutlineOpt = .outline(title: "LXToolKitObjC_Example", scene: .vc(provider: { LXToolKitObjcTestVC() }), subitems: [
+    static let objcRouter: LXOutlineOpt = .outline(title: "LXToolKitObjC_Example", subitems: [
+        .subitem(title: "LXToolKitObjC_Example(Swift)", scene: .vc(provider: { LXToolKitObjcTestVC() })),
         .subitem(title: "LXToolKitObjC_Example(Objc)", scene: .vc(provider: { LXToolKitObjCTestSwiftVC() })),
         routerMVVM,
         router2023,
