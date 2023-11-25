@@ -56,6 +56,8 @@ class ViewController: LXBaseVC {
         prepareUI()
         
         goOutlineVC()
+
+        startActivity()
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +74,27 @@ private extension ViewController {
         let vc = LXOutlineVC()
         self.navigationController?.pushViewController(vc)
         }
+    }
+}
+
+// MARK: - 🔐Activity
+private extension ViewController {
+    func startActivity() {
+        // guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+        //     dlog("灵动岛没有权限")
+        //     return
+        // }
+        // let attr = LXToolKit_WidgetAttributes(name: "")
+        // let initialContentState = LXToolKit_WidgetAttributes.ContentState(emoji: "100")
+        // do {
+        //     let myActivity = try Activity<LXToolKit_WidgetAttributes>.request(attributes: attr,
+        //                                                                       content: .init(state: initialContentState, staleDate: nil),
+        //                                                                       pushType: nil)
+        //     dlog("-->灵动岛: \(myActivity.id)")
+        //     self.setup
+        // } catch (let error) {
+        //     dlog("-->灵动岛开启时发生错误: \(error)")
+        // }
     }
 }
 
