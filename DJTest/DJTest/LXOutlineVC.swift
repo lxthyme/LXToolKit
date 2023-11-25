@@ -189,7 +189,7 @@ private extension LXOutlineVC {
             // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
             guard let self else { return nil }
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
-            config.headerMode = .firstItemInSection
+            config.headerMode = .supplementary
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
 
@@ -209,10 +209,9 @@ private extension LXOutlineVC {
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt> {
         let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
-            guard case .outline(let title, _, _) = menuItem else { return }
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = title
+            contentConfig.text = menuItem.title
             // contentConfig.textProperties.color = .black
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
@@ -227,10 +226,9 @@ private extension LXOutlineVC {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
             guard let self else { return }
             // Populate the cell with our item description.
-            guard case .subitem(let title, _, _) = menuItem else { return }
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = title
+            contentConfig.text = menuItem.title
             // contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
 
@@ -247,18 +245,18 @@ private extension LXOutlineVC {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
-        // let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
-        //     guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
-        //     supplementaryView.dataFill("\(model.title) - header")
-        // }
-        // let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
-        //     guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
-        //     supplementaryView.dataFill("\(model.title) - footer")
-        // }
-        // dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
-        //     dlog("-->elementKind: \(elementKind)")
-        //     return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
-        // }
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
+            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+            supplementaryView.dataFill("\(model.title) - header")
+        }
+        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
+            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+            supplementaryView.dataFill("\(model.title) - footer")
+        }
+        dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+            dlog("-->elementKind: \(elementKind)")
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+        }
         return dataSource
     }
     func generateSnapshot() -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
@@ -272,7 +270,7 @@ private extension LXOutlineVC {
             // }
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, let subitems, _):
+                case .outline(_, _, let subitems, _):
                     addItems(subitems, to: menuItem)
                 case .subitem:
                     break
@@ -283,7 +281,7 @@ private extension LXOutlineVC {
         for menuItem in self.menuItems {
             snapshot.append([menuItem])
             switch menuItem {
-            case .outline(_, let subitems, _):
+            case .outline(_, _, let subitems, _):
                 addItems(subitems, to: menuItem)
             case .subitem:
                 break
@@ -302,7 +300,7 @@ private extension LXOutlineVC {
             // }
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, let subitems, _):
+                case .outline(_, _, let subitems, _):
                     addItems(&snapshot, menuItems: subitems, to: menuItem)
                 case .subitem:
                     break
@@ -316,7 +314,7 @@ private extension LXOutlineVC {
             snapshot.append([menuItem])
             snapshot .expand([menuItem])
             switch menuItem {
-            case .outline(_, let subitems, _):
+            case .outline(_, _, let subitems, _):
                 addItems(&snapshot, menuItems: subitems, to: menuItem)
                 // dataSource.apply(snapshot, to: menuItem, animatingDifferences: true)
                 list[menuItem] = snapshot
@@ -379,16 +377,15 @@ extension LXOutlineVC: UICollectionViewDelegate {
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
         let random = Int.random(in: 0...10)
-        // assert(random != 5, "test assert: \(random) at \(Date())")
-        // if random == 6 {
-        //     fatalError("test assert: \(random) at \(Date())")
-        // }
+        assert(random != 5, "test assert: \(random) at \(Date())")
+        if random == 6 {
+            fatalError("test assert: \(random) at \(Date())")
+        }
 
-        if case .subitem(_, let scene, _) = menuItem {
+        if let scene = menuItem.scene {
             gotoScene(by: scene)
-        } else if case .outline(let title, _, _) = menuItem {
-            // fatalError("menuItem: \(menuItem)")
-            dlog("-->menuItem: \(menuItem)")
+        } else {
+            fatalError("menuItem: \(menuItem)")
         }
     }
 }
