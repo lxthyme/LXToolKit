@@ -6,8 +6,9 @@
 //
 import UIKit
 import LXToolKit
+import DJTestKit
 
-class DataSource: UITableViewDiffableDataSource<String, Navigator.Scene> {
+class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.snapshot().sectionIdentifiers[section];
     }
@@ -43,11 +44,13 @@ open class LXToolKitTestVC: LXBaseTableVC {
             return ds
         }
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = "\(scene.info.title)"
-            content.secondaryText = "\(scene.info.desc)"
+            content.text = scene.title
+            content.textProperties.color = .black
+            // content.secondaryText = "\(scene.info.desc)"
             cell.contentConfiguration = content
+            cell.backgroundColor = .white
             return cell
         }
         dataSource.defaultRowAnimation = .fade
@@ -56,8 +59,8 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     private var _dataSnapshot: Any?
     @available(iOS 13.0, *)
-    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
-        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, Navigator.Scene> {
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
+        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
             return ds
         }
         // let staging = AppConfig.Network.useStaging
@@ -74,7 +77,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         //                        trendingGithubProvider: trendingGithubProvider,
         //                        codetabsProvider: codetabsProvider)
         let vm = LXBaseVM()
-        var snapshot = NSDiffableDataSourceSnapshot<String, Navigator.Scene>()
+        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineOpt>()
         snapshot.appendSections([
             "Swift Daily",
             "2023",
@@ -84,184 +87,35 @@ open class LXToolKitTestVC: LXBaseTableVC {
             "2021",
             "2020"
         ])
-        snapshot.appendItems([
-            .vc(identifier: DJSwiftTestCaseVC.xl.xl_typeName, vcProvider: { DJSwiftTestCaseVC() }),
-            .vc(identifier: DJSwiftTestCaseVC.xl.xl_typeName, vcProvider: { DJSwiftTestCaseVC() }),
-            .vc(identifier: LXRxSwiftTestVC.xl.xl_typeName, vcProvider: {[weak self] in
-                guard let self else { return nil }
-                return LXRxSwiftTestVC(vm: vm, navigator: self.navigator)
-            }),
-        ].reversed(), toSection: "Swift Daily")
-        snapshot.appendItems([
-            .openURL(url: URL(string: "http://baidu.com")),
-            .openURL(url: URL(string: "http://baidu.com"), inWebView: true),
-            .tabs(vm: DJHomeTabBarVM(authorized: false)),
-            .vc(identifier: "DJHomeTabBarVC + UISplitViewController", vcProvider: {
-                let keyWindow = UIApplication.xl.keyWindow
-                Application.shared.presentInitialScreen(in: keyWindow)
-                return nil
-            }),
-            .vc(identifier: LXMVVMSampleVC.xl.xl_typeName, vcProvider: { LXMVVMSampleVC() }),
-            .vc(identifier: HomeViewController.xl.xl_typeName, vcProvider: { HomeViewController() }),
-            .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ].reversed(), toSection: "MVVM")
-        snapshot.appendItems([
-            .vc(identifier: LXAttributedStringVC.xl.xl_typeName, vcProvider: { LXAttributedStringVC() }),
-        ].reversed(), toSection: "WWDC")
-        snapshot.appendItems([
-            .vc(identifier: LX03_08_03VC.xl.xl_typeName, vcProvider: { LX03_08_03VC() }),
-            .vc(identifier: LXApiTestVC.xl.xl_typeName, vcProvider: { LXApiTestVC() }),
-            .vc(identifier: LXHandyJSONTestVC.xl.xl_typeName, vcProvider: { () -> UIViewController? in
-                let vm = LXFloatTestVM()
-                let vc = LXHandyJSONTestVC(vm: vm, navigator: self.navigator)
-                return vc
-            }),
-            .vc(identifier: LXWebVC.xl.xl_typeName, vcProvider: { LXWebVC() }),
-            .vc(identifier: LXStrenchableWebVC.xl.xl_typeName,vcProvider: {[weak self] in
-                guard let `self` = self else { return nil }
-                return LXStrenchableWebVC(vm: vm, navigator: self.navigator)
-            }),
-            .vc(identifier: LXLabelVC.xl.xl_typeName, vcProvider: { LXLabelVC() }),
-            .vc(identifier: LXActionSheetTestVC.xl.xl_typeName, vcProvider: { LXActionSheetTestVC() }),
-            .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC(vm: vm, navigator: self.navigator) }),
-            .vc(identifier: LXCollectionVC.xl.xl_typeName, vcProvider: { LXCollectionVC() })
-        ].reversed(), toSection: "2023")
-        snapshot.appendItems([
-            .vc(identifier: LXTable0120VC.xl.xl_typeName,vcProvider: {[weak self] in
-                guard let `self` = self else { return nil }
-                return LXTable0120VC(vm: vm, navigator: navigator)
-            }),
-            // .LXiOS15ButtonTestVC,
-            .vc(identifier: LXiOS15VC.xl.xl_typeName,vcProvider: {[weak self] in
-                guard let `self` = self else { return nil }
-                return LXiOS15VC(vm: vm, navigator: navigator)
-            }),
-            .vc(identifier: LXMasonryTestVCVC.xl.xl_typeName,vcProvider: {[weak self] in
-                guard let `self` = self else { return nil }
-                return LXMasonryTestVCVC(vm: vm, navigator: navigator)
-            }),
-            // .login(vm: LXLoginVM(with: provider)),
-            // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),
-                .vc(identifier: LXWebViewTestVC.xl.xl_typeName,vcProvider: {[weak self] in
-                    guard let `self` = self else { return nil }
-                    return LXWebViewTestVC(vm: vm, navigator: navigator)
-                }),
-            .vc(identifier: LXLoggerTestVC.xl.xl_typeName, vcProvider: { LXLoggerTestVC() }),
-            .vc(identifier: LXYYLabelMoreTestVC.xl.xl_typeName, vcProvider: {[weak self] in
-                guard let `self` = self else { return nil }
-                return LXYYLabelMoreTestVC(vm: vm, navigator: navigator)
-            }),
-            .vc(identifier: RxNetworksTestVC.xl.xl_typeName, vcProvider: { RxNetworksTestVC() }),
-            // .HomeViewController(viewModel: vm),
-            // .test(vm: vm),
-            // .tabs(vm: vm as! DJHomeTabBarVM),
-        ].reversed(), toSection: "2022")
-        snapshot.appendItems([
-            .vc(identifier: LX0114VC.xl.xl_typeName, vcProvider: { LX0114VC() }),
-            // .LXPhotoAlbumVC,
-            .vc(identifier: LXPickerVC.xl.xl_typeName, vcProvider: { LXPickerVC() }),
-            .vc(identifier: ExampleViewController.xl.xl_typeName, vcProvider: { ExampleViewController() }),
-            .vc(identifier: LX0117VC.xl.xl_typeName, vcProvider: { LX0117VC() }),
-            .vc(identifier: LXClsListVC.xl.xl_typeName, vcProvider: { LXClsListVC() }),
-            .vc(identifier: LXCubeVC.xl.xl_typeName, vcProvider: { LXCubeVC() }),
-            .vc(identifier: LXRx0225VC.xl.xl_typeName, vcProvider: { LXRx0225VC() }),
-            .vc(identifier: LX0324EventsVC.xl.xl_typeName, vcProvider: { LX0324EventsVC() }),
-            .vc(identifier: LXNestedTableVC.xl.xl_typeName, vcProvider: { LXNestedTableVC() }),
-            .vc(identifier: LXTableTestVC.xl.xl_typeName, vcProvider: { LXTableTestVC() }),
-            .vc(identifier: LX1019TestVC.xl.xl_typeName, vcProvider: { LX1019TestVC() }),
-            .vc(identifier: LXHugTestVC.xl.xl_typeName, vcProvider: { LXHugTestVC() }),
-            .vc(identifier: LXStack1206VC.xl.xl_typeName, vcProvider: { LXStack1206VC() }),
-        ].reversed(), toSection: "2021")
-        snapshot.appendItems([
-            .vc(identifier: LXMultiRequestTestVC.xl.xl_typeName, vcProvider: { LXMultiRequestTestVC() }),
-            .vc(identifier: LXOffScreenVC.xl.xl_typeName, vcProvider: { LXOffScreenVC() }),
-            .vc(identifier: LXResolveIMPVC.xl.xl_typeName, vcProvider: { LXResolveIMPVC() }),
-            .vc(identifier: LXRequiredVC.xl.xl_typeName, vcProvider: { LXRequiredVC() }),
-            .vc(identifier: LXRequiredVC1.xl.xl_typeName, vcProvider: { LXRequiredVC1() }),
-            .vc(identifier: LXTransitionVC.xl.xl_typeName, vcProvider: { LXTransitionVC() }),
-            .vc(identifier: LXProxyTestVC.xl.xl_typeName, vcProvider: { LXProxyTestVC() }),
-            .vc(identifier: LXTestStringVC.xl.xl_typeName, vcProvider: { LXTestStringVC() }),
-            .vc(identifier: LXPresentVC.xl.xl_typeName, vcProvider: { LXPresentVC() }),
-            .vc(identifier: LXTestVC.xl.xl_typeName, vcProvider: { LXTestVC() }),
-            .vc(identifier: LXStackViewVC.xl.xl_typeName, vcProvider: { LXStackViewVC() }),
-            .vc(identifier: LXWikipediaImageSearchVC.xl.xl_typeName, vcProvider: { LXWikipediaImageSearchVC() }),
-            .vc(identifier: LXStackTestVC.xl.xl_typeName, vcProvider: { LXStackTestVC() }),
-            .vc(identifier: LXButtonTestVC.xl.xl_typeName, vcProvider: { LXButtonTestVC() }),
-            .vc(identifier: LXImageTestVC.xl.xl_typeName, vcProvider: { LXImageTestVC() }),
-            .vc(identifier: LXDaily1117VC.xl.xl_typeName, vcProvider: { LXDaily1117VC() }),
-            .vc(identifier: LXKingfisherVC.xl.xl_typeName, vcProvider: { LXKingfisherVC() }),
-            .vc(identifier: LXStackMessageVC.xl.xl_typeName, vcProvider: { LXStackMessageVC() }),
-            .vc(identifier: LXLockTestVC.xl.xl_typeName, vcProvider: { LXLockTestVC() }),
-            .vc(identifier: LXTTTTT.xl.xl_typeName, vcProvider: { LXTTTTT() }),
-            .vc(identifier: LXMusicVC.xl.xl_typeName, vcProvider: { LXMusicVC() }),
-            .vc(identifier: LXSongVC.xl.xl_typeName, vcProvider: { LXSongVC() }),
-            .vc(identifier: LXLightedVC.xl.xl_typeName, vcProvider: { LXLightedVC() }),
-        ].reversed(), toSection: "2020")
+        snapshot.appendItems(LXToolKitRouter.routerSwiftDaily.subitems ?? [], toSection: "Swift Daily")
+        snapshot.appendItems(LXToolKitRouter.routerMVVM.subitems ?? [], toSection: "MVVM")
+        snapshot.appendItems(LXToolKitRouter.routerWWWDC.subitems ?? [], toSection: "WWDC")
+        snapshot.appendItems(LXToolKitRouter.router2023.subitems ?? [], toSection: "2023")
+        snapshot.appendItems(LXToolKitRouter.router2022.subitems ?? [], toSection: "2022")
+        snapshot.appendItems(LXToolKitRouter.router2021.subitems ?? [], toSection: "2021")
+        snapshot.appendItems(LXToolKitRouter.router2020.subitems ?? [], toSection: "2020")
         _dataSnapshot = snapshot
         return snapshot
     }
     // MARK: 🔗Vaiables
-    public var autoJumpRoute: Navigator.Scene?
+    public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // let vc =
-        //            LXApiTestVC()
-        //            LXMultiRequestTestVC()
-        //            LXOffScreenVC()
-        //            LXResolveIMPVC()
-        //            LXRequiredVC()
-        //            LXLightedVC()
-        //            LXProxyTestVC()
-        //            LXTestStringVC()
-        //            LXPresentVC()
-        //            LXTestVC()
-        //            LXStackViewVC()
-        //            LXWikipediaImageSearchVC()
-        //            LXStackTestVC()
-        //            LXImageTestVC()
-        //            LXDaily1117VC()
-        //            LXStackTestVC()
-        //            LXStackMessageVC()
-        //            LXMusicVC()
-        //            LXSongVC()
-        //            LX0114VC()
-        //            LXPickerVC()
-        //            LX0117VC()
-        // LXCubeVC()
-        //            LXRx0225VC()
-        // LXLoggerTestVC()
-        // LXStrenchableWebVC()
-        // UIViewController()
-        
-        // self.navigationController?.pushViewController(vc, animated: true)
-        //        self.present(testVC, animated: true, completion: nil)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
-        
+
         //        let _ = LXBaseVC()
         let identifier = self.xl.xl_typeName
         dlog("identifier: \(identifier)")
         let aa = "abccccc"
         dlog("\(aa.self): \(aa)")
-        
+
         //        testArray()
         //        testDictionary()
-        
+
         // testModel()
         // testTask()
         // testTaskGroup()
@@ -304,7 +158,7 @@ private extension LXToolKitTestVC {
         //                        codetabsProvider: codetabsProvider)
         let vm = LXBaseVM()
         let navigator = Navigator.default
-        let scene: Navigator.Scene = .vc(vcProvider: {[weak self] in
+        let scene: Navigator.Scene = .vc(provider: {[weak self] in
             guard let `self` = self else { return nil }
             return LXiOS15VC(vm: vm, navigator: self.navigator)
         })
@@ -326,11 +180,11 @@ private extension LXToolKitTestVC {
         goRouter()
         // testTaskGroup()
     }
-    func gotoScene(by scene: Navigator.Scene?) {
-        guard let scene else { return }
+    func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
-        if let vc = navigator.show(segue: scene, sender: self) {
-            DJTestType.LXToolKit_Example.updateDefaults(vcName: vc.xl.xl_typeName)
+        if let scene = outlineOpt?.scene,
+           let vc = navigator.show(segue: scene, sender: self) {
+            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
         }
     }
 }
@@ -361,7 +215,7 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-        
+
         ({
             let search = 51
             let r_contains = a.contains(search)
@@ -370,38 +224,38 @@ extension LXToolKitTestVC {
             let r_first_where = a.first(where: { $0 == search })
             dlog("r_contains: \(r_contains)", "r_firstIndex: \(r_firstIndex)", "r_firstIndex_where: \(r_firstIndex_where)", "r_first_where: \(r_first_where)")
         })()
-        
+
         ({
             let r_min = a.min()
             let r_min_by1 = a.min(by: { $0 > $1 })
             let r_min_by2 = a.min(by: { $0 < $1 })
             dlog("r_min: \(r_min)", "r_min_by1: \(r_min_by1)", "r_min_by2: \(r_min_by2)")
-            
+
             let r_max = a.max()
             let r_max_by1 = a.max(by: { $0 > $1 })
             let r_max_by2 = a.max(by: { $0 < $1 })
             dlog("r_max: \(r_max)", "r_max_by1: \(r_max_by1)", "r_max_by2: \(r_max_by2)")
         })()
-        
+
         ({
             let aVersion = "3.14.10"
             let bVersion = "3.130.10"
-            
+
             let r1 = aVersion.versionToInt().lexicographicallyPrecedes(bVersion.versionToInt())
             let r2 = bVersion.versionToInt().lexicographicallyPrecedes(aVersion.versionToInt())
             dlog("lexicographicallyPrecedes: \(r1)\t\t\(r2)")
         })()
-        
+
         ({
             var a = [30, 40, 20, 30, 30, 60, 10]
-            
+
             let r = a.partition(by: { $0 > 30 })
             dlog("partition r: \(r) >>> a: \(a)")
         })()
-        
+
         ({
             let a = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-            
+
             let prefix_while = a.prefix(while: { $0 > 3 })
             let prefix_maxLength = a.prefix(3)
             let prefix_upTo = a.prefix(upTo: 3)
@@ -410,27 +264,27 @@ extension LXToolKitTestVC {
                  "prefix_maxLength: \(prefix_maxLength)",
                  "prefix_upTo: \(prefix_upTo)",
                  "prefix_through: \(prefix_through)")
-            
+
             let suffix_maxLength = a.suffix(3)
             let suffix_from = a.suffix(from: 3)
-            
+
             dlog("suffix_maxLength: \(suffix_maxLength)", "suffix_from: \(suffix_from)")
         })()
-        
+
         ({
             for x in sequence(first: 1, next: { $0 + 1}).prefix(5) {
                 dlog("prefix x: \(x)")
             }
-            
+
             for x in sequence(first: 2, next: { $0 * $0 }).prefix(while: { $0 < 100 }) {
                 dlog("prefix_while x: \(x)")
             }
-            
+
             for x in sequence(first: self.view, next: { $0?.superview }) {
                 dlog("view x: \(x)")
             }
         })()
-        
+
         ({
             let a = 1...3
             let b = 1...10
@@ -444,27 +298,27 @@ extension LXToolKitTestVC {
                  "r_elementsEqual2: \(r_elementsEqual2)",
                  "r2_elementsEqual_by: \(r2_elementsEqual_by)")
         })()
-        
+
         ({
             let r_separator = a.split(separator: 3)
             let r_whereSeparator = a.split(whereSeparator: { $0 % 3 == 0 })
             let r_omittingEmptySubsequences = a.split(separator: 3, maxSplits: 2, omittingEmptySubsequences: false)
-            
+
             dlog("r_separator: \(r_separator)",
                  "r_whereSeparator: \(r_whereSeparator)",
                  "r_omittingEmptySubsequences: \(r_omittingEmptySubsequences)")
-            
+
             let line = "BLANCHE:   I don't want realism. I want magic!"
             dlog(line.split(separator: " "))
             dlog(line.split(separator: " ", maxSplits: 1))
             dlog(line.split(separator: " ", omittingEmptySubsequences: false))
         })()
-        
+
         ({
             let r_while = a.drop(while: { $0 < 6 })
             let r_dropFirst = a.dropFirst(3)
             let r_dropLast = a.dropLast(3)
-            
+
             var b = a
             b.removeAll(where: { $0 % 3 != 0 })
             dlog("r_while: \(r_while)",
@@ -474,12 +328,12 @@ extension LXToolKitTestVC {
                  "",
                  "b: \(b)")
         })()
-        
+
         ({
             let r = a.firstIndex(of: 3)
             dlog("r: \(r)")
         })()
-        
+
         ({
             let b = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
             let r = zip(a, b)
@@ -488,24 +342,24 @@ extension LXToolKitTestVC {
                  "r_zip_map: \(r_zip_map)")
         })()
     }
-    
+
     func testDictionary() {
         let a: [String: String] = ["a": "vA", "b": "vB", "c": "vC", "d": "vD"]
         let b = ["d": "bbD", "e": "bbE", "f": "bbF"]
-        
+
         let s1 = ({
             var b = a
             b["a"] = nil
-            
+
             dlog("b: \(b)")
         })
-        
+
         let s2 = ({
             var c = a
             c.merge(b, uniquingKeysWith: { $1 })
             dlog("c: \(c)")
         })
-        
+
         let s3 = ({
             let frequncies = "hello".frequencies
             let r = frequncies.filter { $0.value > 1 }
@@ -522,7 +376,7 @@ extension LXToolKitTestVC {
         withUnsafeCurrentTask { task in
             if let task = task {
                 print("Cancelled: \(task.isCancelled)")
-                
+
                 print("priority: \(task.priority)")
             } else {
                 print("No task")
@@ -531,7 +385,7 @@ extension LXToolKitTestVC {
     }
     @available(iOS 15.0.0, *)
     func testTask() {
-        
+
         // withUnsafeCurrentTask { task in
         //     print("task: \(task)")
         // }
@@ -560,13 +414,13 @@ extension LXToolKitTestVC {
                     }
                 }
                 print("Task added!")
-                
+
                 for await result in group {
                     print("Get result: \(result)")
                 }
                 print("Task ended!")
             })
-            
+
             print("End!")
         }
     }
@@ -592,7 +446,7 @@ extension Sequence where Element: Hashable {
 //         return dataList.count
 //     }
 //     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl.xl_identifier, for: indexPath)
+//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
 //         let info = dataList[indexPath.row].info
 //         if #available(iOS 14.0, *) {
 //             var config = UIListContentConfiguration.cell()
@@ -638,8 +492,8 @@ extension LXToolKitTestVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.xl.xl_identifier)
-        table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
+        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        // table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
         if #available(iOS 14.0, *) {
             DispatchQueue.main.async {
                 self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
@@ -653,12 +507,12 @@ extension LXToolKitTestVC {
         super.prepareUI()
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
-        
+
         [table].forEach(self.view.addSubview)
-        
+
         masonry()
     }
-    
+
     open override func masonry() {
         super.masonry()
         table.snp.makeConstraints {

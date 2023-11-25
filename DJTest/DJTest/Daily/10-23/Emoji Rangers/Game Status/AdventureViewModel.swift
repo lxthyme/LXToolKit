@@ -113,6 +113,7 @@ extension AdventureViewModel {
 }
 
 @available(iOS 16.2, *)
+@MainActor
 final class AdventureViewModel: ObservableObject {
     @Published var activityViewState: ActivityViewState? = nil
     @Published var errorMessage: String? = nil

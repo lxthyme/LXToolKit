@@ -17,38 +17,45 @@ public protocol Navigatable {
 // MARK: - 👀
 public extension Navigator {
     // MARK: - segues list, all app scenes
-    public enum Scene: Hashable {
-        public func hash(into hasher: inout Hasher) {
-            switch self {
-            case .vc(_, _, _, let uuid),
-                    .vcString(_, _, let uuid),
-                    .openURL(_, _, _, let uuid):
-                    // .tabs(_, _, let uuid):
-                hasher.combine(uuid)
-            }
-        }
-        public static func == (lhs: LXToolKit.Navigator.Scene, rhs: LXToolKit.Navigator.Scene) -> Bool {
-            switch(lhs, rhs) {
-            case let (lhs, rhs):
-                return lhs.hashValue == rhs.hashValue
-            }
-        }
-        case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        case vc(identifier: String = "", vcProvider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)), uuid: UUID = UUID())
-        // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!), uuid: UUID = UUID())
+    public enum Scene {
+        case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)))
+        case vc(provider: () -> UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left)))
+        case vcString(vcString: String, transition: Transition = .navigation(type: .cover(direction: .left)))
+        // case tabs(vm: DJHomeTabBarVM, transition: Transition = .root(in: UIApplication.xl.keyWindow!))
 
-        public var info: (title: String, desc: String) {
-            var tmp: (title: String, desc: String)
+        public var vcProvider: (() -> UIViewController?)? {
             switch self {
-            case .openURL(let url, let inWebView, _, _):
-                tmp = (title: "safari[\(inWebView)]", desc: "\(url?.absoluteString ?? "")")
-            case .vc(let identifier, _, _, _): tmp = (title: "vc: \(identifier)", desc: "---")
-            case .vcString(let vcString, _, _): tmp = (title: vcString, desc: "---")
-            // case .tabs:
-            //     tmp = (title: "DJHomeTabBarVC", desc: "---")
+            case .openURL, .vcString:
+                return nil
+            case .vc(let provider, let transition):
+                return provider
             }
-            return tmp
+        }
+        public var vcString: String? {
+            switch self {
+            case .openURL, .vc:
+                return nil
+            case .vcString(let vcString, _):
+                return vcString
+            }
+        }
+        public var url: URL? {
+            switch self {
+            case .openURL(let url, _, _):
+                return url
+            case .vc, .vcString:
+                return nil
+            }
+        }
+        public var transition: Transition {
+            switch self {
+            case .openURL(_, _, let transition):
+                return transition
+            case .vc(_, let transition):
+                return transition
+            case .vcString(_, let transition):
+                return transition
+            }
         }
     }
 }
@@ -78,9 +85,9 @@ open class Navigator {
     }
 
     // MARK: - get a single VC
-    public func get(segue: Navigator.Scene) -> (UIViewController?, Transition?)? {
+    public func get(segue: Navigator.Scene) -> (UIViewController?, Transition)? {
         switch segue {
-        case .openURL(let url, let inWebView, let transition, _):
+        case .openURL(let url, let inWebView, let transition):
             guard let url else { return nil }
 
             if inWebView {
@@ -89,10 +96,10 @@ open class Navigator {
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return nil
-        case .vc(_, let vcProvider, let transition, _): return (vcProvider(), transition)
-        case .vcString(let vcString, let transition, _):
-            guard let VCCls = NSClassFromString(vcString) as? UIViewController.Type else { return nil }
-            return (VCCls.init(), transition)
+        case .vc(let provider, let transition): return (provider(), transition)
+        case .vcString(let vcString, let transition):
+            guard let vc = vcString.xl.getVCInstance() else { return nil }
+            return (vc, transition)
         // case .tabs(let vm, let transition, _):
         //     let rootVC = DJHomeTabBarVC(vm: vm, navigator: self)
         //     let detailVC = DJHomeTabBarVC(vm: vm, navigator: self)
@@ -103,14 +110,14 @@ open class Navigator {
     }
     // MARK: - invoke a single segue
     @discardableResult
-    public func show(segue: Scene, sender: UIViewController?, transition: Transition = .navigation(type: .cover(direction: .left))) -> UIViewController? {
+    public func show(segue: Scene, sender: UIViewController?, transition: Transition? = nil) -> UIViewController? {
         guard let (vc, tran) = get(segue: segue),
            let vc else {
                return nil
         }
         show(target: vc,
              sender: sender,
-             transition: tran ?? transition)
+             transition: transition ?? tran)
         return vc
     }
 
@@ -171,5 +178,57 @@ open class Navigator {
         // vc.body = "Hey! Come join SwiftHub at \(AppConfig.App.githubUrl)"
         vc.recipients = [phone]
         return vc
+    }
+}
+
+// MARK: - 👀
+extension Navigator.Scene: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .openURL(let url, let inWebView, let transition):
+            return ".openURL(url :\(url), inWebView: \(inWebView), transition: \(transition))"
+        case .vc(let provider, let transition):
+            return ".vc(provider: \(provider), transition: \(transition))"
+        case .vcString(let vcString, let transition):
+            return ".vcString(vcString: \(vcString), transition: \(transition))"
+        }
+    }
+}
+
+// MARK: - 👀
+extension Navigator.Transition: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .root(let window):
+            return ".root(in: \(window)"
+        case .navigation(let type):
+            return ".navigation(type: \(type))"
+        case .customModal(let type):
+            return ".customModal(type: \(type))"
+        case .modal:
+            return ".modal"
+        case .detail:
+            return ".detail"
+        case .alert:
+            return ".alert"
+        case .custom:
+            return ".custom"
+        }
+    }
+}
+
+// MARK: - 👀
+extension HeroDefaultAnimationType.Direction: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .left:
+            return ".left"
+        case .right:
+            return ".right"
+        case .up:
+            return ".up"
+        case .down:
+            return ".down"
+        }
     }
 }

@@ -12,7 +12,7 @@ import LXToolKit
 
 public enum DJTestType: Hashable {
     public static let AutoJumpRoute = "autoJumpRoute.route"
-    
+
     // case LXToolKit
     case LXToolKit_Example
     // case LXToolKitObjC
@@ -22,7 +22,7 @@ public enum DJTestType: Hashable {
     // @available(iOS 16.2, *)
     case dynamicIsland
     // case DJRSwiftResource
-    case djTest(title: String, vc: () -> UIViewController, uuid: UUID = UUID())
+    case djTest(title: String, provider: () -> UIViewController, uuid: UUID = UUID())
 
     public func hash(into hasher: inout Hasher) {
         switch self {
@@ -34,7 +34,7 @@ public enum DJTestType: Hashable {
             hasher.combine("DJSwiftModule")
         case .dynamicIsland:
             hasher.combine("dynamicIsland")
-        case .djTest(let title, let vc, let uuid):
+        case .djTest(let title, _, let uuid):
             hasher.combine("\(title)_\(uuid)")
         }
     }
@@ -80,10 +80,10 @@ public extension DJTestType {
         case 4: return .dynamicIsland
         case 5:
             guard let vcName = UserDefaults.standard.string(forKey: "autoJumpRoute.route.\(idx)"),
-                  let Cls = vcName.xl.getVCCls(expect: UIViewController.self) else {
+                  let Cls = vcName.xl.getVCCls() else {
                 return nil
             }
-            return .djTest(title: "", vc: {
+            return .djTest(title: "", provider: {
                 Cls.init()
             })
         default: return nil
@@ -91,17 +91,33 @@ public extension DJTestType {
     }
 }
 // MARK: - 👀
-public extension DJTestType {
-    func dfVCName() -> String? {
-        return UserDefaults.standard.string(forKey: self.userDefaultsKey())
+extension DJTestType {
+    public static func updateAutoJumpRoute(_ type: DJTestType) {
+        UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
     }
-    func updateDefaults(vcName: String) {
+    public func updateRouter(vcName: String) {
+        guard vcName != "LXToolKitTestVC",
+        vcName != "LXToolKitObjCTestSwiftVC" else {
+            return
+        }
         UserDefaults.standard.set(self.intValue(), forKey: DJTestType.AutoJumpRoute)
         UserDefaults.standard.set(vcName, forKey: self.userDefaultsKey())
     }
-    func userDefaultsKey() -> String {
+    public func userDefaultsKey() -> String {
         let idx = intValue()
         return "\(DJTestType.AutoJumpRoute).\(idx)"
+    }
+}
+
+// MARK: - 👀
+public extension DJTestType {
+    static func clearAllData() {
+        let defaults = UserDefaults.standard
+        defaults.setValue("", forKey: DJTestType.AutoJumpRoute)
+        defaults.setValue("", forKey: DJTestType.LXToolKit_Example.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.LXToolKitObjC_Example.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.DJSwiftModule.userDefaultsKey())
+        defaults.setValue("", forKey: DJTestType.dynamicIsland.userDefaultsKey())
     }
 }
 
@@ -110,6 +126,6 @@ open class DJTestTypeObjc: NSObject {}
 // MARK: - 👀
 public extension DJTestTypeObjc {
     @objc public static func updateObjcDefaults(vcName: String) {
-        DJTestType.LXToolKitObjC_Example.updateDefaults(vcName: vcName)
+        DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vcName)
     }
 }

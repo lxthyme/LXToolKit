@@ -21,7 +21,7 @@ class LXSongVC: LXBaseVC {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
+
         layout.scrollDirection = .vertical
         //        layout.itemSize = CGSize(width: 120, height: 120)
         //        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -37,7 +37,7 @@ class LXSongVC: LXBaseVC {
     }()
     private lazy var collectionView: UICollectionView = {
         let v = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        
+
         v.delegate = self
         v.dataSource = self
         //v.prefetchDataSource = self
@@ -45,14 +45,14 @@ class LXSongVC: LXBaseVC {
         //v.dropDelegate = self
         //v.isPrefetchingEnabled = true
         v.contentInset = .zero
-        
+
         v.backgroundColor = .white
         //v.showsHorizontalScrollIndicator = true
         //v.showsVerticalScrollIndicator = true
         //v.alwaysBounceVertical = true
         //v.alwaysBounceHorizontal = true
         //v.allowsMultipleSelection = true
-        
+
         //let header =  VPLoadingHeader.init(refreshingBlock: {
         //    [weak self] in
         //    guard let `self` = self else { return }
@@ -72,9 +72,9 @@ class LXSongVC: LXBaseVC {
         }
         edgesForExtendedLayout = []
         automaticallyAdjustsScrollViewInsets = true
-        
-        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.xl.xl_identifier)
-        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.xl.xl_identifier)
+
+        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.XL.xl_identifier)
+        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.XL.xl_identifier)
         return v
     }()
     // MARK: 🔗Vaiables
@@ -96,7 +96,7 @@ class LXSongVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         configUI()
@@ -173,7 +173,7 @@ private extension LXSongVC {
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: rx.disposeBag)
-        
+
         return self
     }
 }
@@ -187,13 +187,13 @@ extension LXSongVC: UICollectionViewDataSource {
         guard let count = try? self.vm2.output.dataSource.value().count,
               count > 0 else {
             // swiftlint:disable:next force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.xl.xl_identifier, for: indexPath) as! LXEmptyCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.XL.xl_identifier, for: indexPath) as! LXEmptyCell
             // swiftlint:disable:previous force_cast
             cell.retryType = .noData
             return cell
         }
         // swiftlint:disable:next force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.xl.xl_identifier, for: indexPath) as! LXSongRecordCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.XL.xl_identifier, for: indexPath) as! LXSongRecordCell
         self.cell = cell
         // swiftlint:disable:previous force_cast
         if let d = try? self.vm2.output.dataSource.value()[indexPath.row] {
@@ -259,11 +259,11 @@ extension LXSongVC {
         super.prepareUI()
         self.view.backgroundColor = UIColor.white
         self.title = "Song Record"
-        
+
         [collectionView].forEach(self.view.addSubview)
         masonry()
     }
-    
+
     override open func masonry() {
         super.masonry()
         collectionView.snp.makeConstraints {

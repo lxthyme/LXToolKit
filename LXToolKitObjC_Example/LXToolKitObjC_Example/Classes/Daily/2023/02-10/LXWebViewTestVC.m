@@ -31,7 +31,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     // NSLog(@"🛠viewDidAppear: %@", NSStringFromClass([self class]));
-    self.navigationController.navigationBarHidden = YES;
+    // self.navigationController.navigationBarHidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
@@ -40,7 +40,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
     // NSLog(@"🛠viewDidDisappear: %@", NSStringFromClass([self class]));
-    self.navigationController.navigationBarHidden = NO;
+    // self.navigationController.navigationBarHidden = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

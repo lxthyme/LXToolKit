@@ -55,7 +55,7 @@ private extension LXDaily1117VC {
 //        _ = APIParameter(path: "", params: nil, headers: [:], mockObj: [:])
     }
     func test02() {
-        // let cell = LXBaseTableViewCell(style: .default, reuseIdentifier: LXBaseTableViewCell.xl.xl_identifier)
+        // let cell = LXBaseTableViewCell(style: .default, reuseIdentifier: LXBaseTableViewCell.XL.xl_identifier)
         // dlog("1.")
         // cell.baseModel = LXAnyModel()
         // dlog("2.")
@@ -66,13 +66,13 @@ private extension LXDaily1117VC {
 
     func test03() {
         _ = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        _ = UIColor.xl.rgba(red: 1, green: 1, blue: 1, alpha: 1)
-        _ = UIColor.xl.random
+        _ = UIColor.XL.rgba(red: 1, green: 1, blue: 1, transparency: 1)
+        _ = UIColor.XL.random
         self.view.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 //        DispatchQueue.xl.lx
-        _ = DispatchQueue.xl.background
+        _ = DispatchQueue.XL.background
     }
 }
 

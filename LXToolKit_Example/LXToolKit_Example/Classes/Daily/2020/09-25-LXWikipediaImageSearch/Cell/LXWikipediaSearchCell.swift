@@ -26,7 +26,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         let label = UILabel()
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.xl.hex("#555")
+        label.textColor = UIColor.XL.hexString("#555")
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -35,10 +35,10 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
+
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 120, height: 120)
-        
+
         layout.headerReferenceSize = .zero
         layout.footerReferenceSize = .zero
         layout.sectionInset = .zero
@@ -48,21 +48,21 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
     }()
     private lazy var collectionView: UICollectionView = {
         let v = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        
+
         //        v.delegate = self
         //        v.dataSource = self
         //        v.prefetchDataSource = self
         //        v.dragDelegate = self
         //        v.dropDelegate = self
         //        v.isPrefetchingEnabled = true
-        
+
         v.backgroundColor = .white
         //        v.showsHorizontalScrollIndicator = true
         //        v.showsVerticalScrollIndicator = true
         //        v.alwaysBounceVertical = true
         //        v.alwaysBounceHorizontal = true
         //        v.allowsMultipleSelection = true
-        
+
         //            let header =  VPLoadingHeader.init(refreshingBlock: {
         //                [weak self] in
         //                guard let `self` = self else { return }
@@ -75,8 +75,8 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         //    //            self.loadData(false)
         //            })
         //            v.mj_footer = footer
-        
-        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.xl.xl_identifier)
+
+        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.XL.xl_identifier)
         return v
     }()
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -100,27 +100,27 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
             //            }
             //            .disposed(by: disposeBag)
             //            self.disposeBag = disposeBag
-            
+
             var disposeBag = DisposeBag()
-            
+
             guard let viewModel = viewModel else {
                 return
             }
-            
+
             viewModel.title
                 .map(Optional.init)
                 .drive(self.labTitle.rx.text)
                 .disposed(by: disposeBag)
-            
+
             self.labSubtitle.text = viewModel.searchResult.url.absoluteString
-            
+
             let reachabilityService = Dependencies.shared.reachabilityService
             viewModel.imageURLs
-                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.xl.xl_identifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
+                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.XL.xl_identifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
                     cell.downloadableImage = self?.imageService.imageFromURL(url, reachabilityService: reachabilityService) ?? Observable.empty()
                 }
                 .disposed(by: disposeBag)
-            
+
             // FIXME: 111
             //            self.disposeBag = disposeBag
         }
@@ -138,13 +138,13 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         super.prepareForReuse()
         self.viewModel = nil
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
+
 }
 
 // MARK: 👀Public Actions
@@ -160,7 +160,7 @@ extension LXWikipediaSearchCell {
         [labTitle, labSubtitle, collectionView].forEach(self.contentView.addSubview)
         masonry()
     }
-    
+
     override func masonry() {
         super.masonry()
         let edges = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)

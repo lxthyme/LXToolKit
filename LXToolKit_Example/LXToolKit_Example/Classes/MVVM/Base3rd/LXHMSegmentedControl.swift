@@ -36,7 +36,7 @@ extension LXHMSegmentedControl {
             self?.setNeedsDisplay()
         }).disposed(by: rx.disposeBag)
 
-        cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        layerCornerRadius = AppConfig.BaseDimensions.cornerRadius
         imagePosition = .aboveText
         selectionStyle = .box
         selectionIndicatorLocation = .bottom

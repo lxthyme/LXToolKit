@@ -40,14 +40,14 @@ final public class Application: NSObject {
                               codetabsProvider: codetabsProvider)
         provider = restApi
 
-        if let token = authManager.token,
-           !AppConfig.Network.useStaging {
-            switch token.type() {
-            case .oAuth(let token), .personal(let token):
-                provider = GraphApi(restApi: restApi, token: token)
-            default: break
-            }
-        }
+        // if let token = authManager.token,
+        //    !AppConfig.Network.useStaging {
+        //     switch token.type() {
+        //     case .oAuth(let token), .personal(let token):
+        //         provider = GraphApi(restApi: restApi, token: token)
+        //     default: break
+        //     }
+        // }
     }
 }
 
@@ -66,13 +66,17 @@ extension Application {
             // }
             let authorized = self.authManager.token?.isValid ?? false
             let vm = DJHomeTabBarVM(authorized: authorized)
-            self.navigator.show(segue: .tabs(vm: vm), sender: nil, transition: .root(in: window))
+            let rootVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
+            let detailVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
+            let splitVC = UISplitViewController()
+            splitVC.viewControllers = [rootVC , detailVC]
+            self.navigator.show(segue: .vc(provider: { splitVC }, transition: .root(in: window)), sender: nil)
         }
     }
     public func dismissPreviousVC() {
         guard let window = self.window else { return }
         // self.dismiss(animated: true)
-        self.navigator.show(segue: .vc(vcProvider: {[weak self] in
+        self.navigator.show(segue: .vc(provider: {[weak self] in
             return self?.previousRootVC
         }, transition: .root(in: window)),
                             sender: nil)

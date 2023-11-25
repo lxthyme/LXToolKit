@@ -7,14 +7,17 @@
 //
 import UIKit
 
+// MARK: - 👀
+extension String: Error {}
+
 public extension Swifty where Base == String {
 //public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     /// - Returns: VC 实例
-    func getVCInstance<T: UIViewController>(expect: T.Type) -> T? {
+    func getVCInstance<T: UIViewController>(expect: T.Type = UIViewController.self) -> T? {
         return self.getInstance(expect: expect)
     }
-    func getVCCls<T: UIViewController>(expect: T.Type) -> T.Type? {
+    func getVCCls<T: UIViewController>(expect: T.Type = UIViewController.self) -> T.Type? {
         return self.getCls(expect: expect)
     }
     /// 从字符串初始化一个 NSObject 实例

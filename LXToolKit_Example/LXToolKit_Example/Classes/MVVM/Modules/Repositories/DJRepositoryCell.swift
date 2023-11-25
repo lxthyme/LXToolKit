@@ -10,10 +10,10 @@ class DJRepositoryCell: DJSearchDefaultCell {
     // MARK: 📌UI
     lazy var starButton: UIButton = {
         let view = UIButton()
-        view.borderColor = .white
-        view.borderWidth = AppConfig.BaseDimensions.borderWidth
+        view.layerBorderColor = .white
+        view.layerBorderWidth = AppConfig.BaseDimensions.borderWidth
         view.tintColor = .white
-        view.cornerRadius = 17
+        view.layerCornerRadius = 17
         view.snp.remakeConstraints({ (make) in
             make.size.equalTo(34)
         })

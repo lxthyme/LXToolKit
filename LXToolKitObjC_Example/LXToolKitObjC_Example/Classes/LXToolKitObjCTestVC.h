@@ -8,6 +8,7 @@
 
 @import UIKit;
 
+NS_SWIFT_NAME(LXToolKitObjCTestSwiftVC)
 @interface LXToolKitObjCTestVC : UIViewController {
 }
 @property(nonatomic, copy)NSString *autoJumpRoute;

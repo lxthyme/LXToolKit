@@ -21,14 +21,14 @@ private class MyView: UIView {
         This is only showcase app, not intended for production purposes.
         """
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.xl.hex("#555")
+        label.textColor = UIColor.XL.hexString("#555")
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     private lazy var searchBar: UISearchBar = {
         let v = UISearchBar()
-        
+
         return v
     }()
     private lazy var table: UITableView = {
@@ -39,15 +39,15 @@ private class MyView: UIView {
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0
         t.sectionFooterHeight = 0
-        
+
         t.backgroundColor = .white
         t.separatorStyle = .none
-        
+
         //        t.delegate = self
         //        t.dataSource = self
-        
-        t.register(LXWikipediaSearchCell.self, forCellReuseIdentifier: LXWikipediaSearchCell.xl.xl_identifier)
-        
+
+        t.register(LXWikipediaSearchCell.self, forCellReuseIdentifier: LXWikipediaSearchCell.XL.xl_identifier)
+
         return t
     }()
     private lazy var contentStackView: UIStackView = {
@@ -69,15 +69,15 @@ private class MyView: UIView {
     convenience init(vc: LXWikipediaImageSearchVC) {
         self.init(frame: .zero)
         self.vc = vc
-        
+
         prepareUI()
-        
+
         prepareTableDataSource()
         prepareKeyboardDismissesOnScroll()
         prepareNavigateOnRowClick()
         prepareActivityIndicatorsShow()
     }
-    
+
 }
 
 // MARK: LoadData
@@ -95,9 +95,9 @@ private extension MyView {
     func prepareTableDataSource() {
         table.rowHeight = 194
         table.xl.hideEmptyCells()
-        
+
         let table = self.table
-        
+
         let api = DefaultWikipediaAPI.shared
         let result = searchBar.rx.text.orEmpty
             .asDriver()
@@ -114,18 +114,18 @@ private extension MyView {
             .map { result in
                 result.map(LXSearchResultViewModel.init)
             }
-        
+
         result
-            .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.xl.xl_identifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
+            .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.XL.xl_identifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
                 cell.viewModel = vm
             }
             .disposed(by: rx.disposeBag)
-        
+
         result
             .map { $0.count != 0 }
             .drive(self.labEmpty.rx.isHidden)
             .disposed(by: rx.disposeBag)
-        
+
         //        result
         //            .map { $0.count <= 0 }
         //            .drive(self.table.rx.isHidden)
@@ -144,7 +144,7 @@ private extension MyView {
     }
     func prepareNavigateOnRowClick() {
         let wireframe = DefaultWireframe.shared
-        
+
         table.rx.modelSelected(LXSearchResultViewModel.self)
             .asDriver()
             .drive(onNext: { searchResult in
@@ -218,7 +218,7 @@ class LXWikipediaImageSearchVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -240,7 +240,7 @@ extension LXWikipediaImageSearchVC {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
-    
+
     override open func masonry() {
         super.masonry()
     }

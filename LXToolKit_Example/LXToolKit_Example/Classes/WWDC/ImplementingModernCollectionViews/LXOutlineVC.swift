@@ -182,7 +182,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
         if let vc = menuItem.outlineVC {
             navigationController?.pushViewController(vc.init(), animated: true)
         } else {
-            dlog("-->\(menuItem.title): \(menuItem.outlineVC?.xl.xl_typeName ?? "NaN")")
+            dlog("-->\(menuItem.title): \(menuItem.outlineVC?.XL.xl_typeName ?? "NaN")")
         }
     }
 }

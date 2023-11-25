@@ -39,22 +39,22 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
             .flatMap { _ in// Turn the online state into a network request
                 return actualRequest
                     .filterSuccessfulStatusCodes()
-                    .do(onSuccess: { response in
-                    }, onError: { error in
-                        if let error = error as? MoyaError {
-                            switch error {
-                            case .statusCode(let response):
-                                if response.statusCode == 401 {
-                                    // Unauthorized
-                                    if AuthManager.shared.hasValidToken {
-                                        AuthManager.removeToken()
-                                        Application.shared.presentInitialScreen(in: Application.shared.window)
-                                    }
-                                }
-                            default: break
-                            }
-                        }
-                    })
+                    // .do(onSuccess: { response in
+                    // }, onError: { error in
+                    //     if let error = error as? MoyaError {
+                    //         switch error {
+                    //         case .statusCode(let response):
+                    //             if response.statusCode == 401 {
+                    //                 // Unauthorized
+                    //                 if AuthManager.shared.hasValidToken {
+                    //                     AuthManager.removeToken()
+                    //                     Application.shared.presentInitialScreen(in: Application.shared.window)
+                    //                 }
+                    //             }
+                    //         default: break
+                    //         }
+                    //     }
+                    // })
             }
     }
 }
@@ -136,7 +136,7 @@ extension NetworkingType {
     }
     static var plugins: [PluginType] {
         var plugins: [PluginType] = []
-        if AppConfig.Network.loggingEnabled {
+        // if AppConfig.Network.loggingEnabled {
         //     let formatter = NetworkLoggerPlugin.Configuration.Formatter { identifier, message, target in
         //         let date = defaultEntryDateFormatter().string(from: Date())
         //         return "Moya_Logger: [\(date)] \(identifier): \(message)"
@@ -164,7 +164,7 @@ extension NetworkingType {
         //     }, logOptions: opt)
         //     plugins.append(NetworkLoggerPlugin(configuration: config))
             plugins.append(LXNetworkDebuggingPlugin())
-        }
+        // }
         return plugins
     }
     static func endpointResolver() -> MoyaProvider<T>.RequestClosure {

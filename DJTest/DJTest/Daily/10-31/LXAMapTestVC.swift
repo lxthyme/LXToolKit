@@ -42,6 +42,13 @@ extension LXAMapTestVC {}
 
 // MARK: 🔐Private Actions
 private extension LXAMapTestVC {
+    func testM() {
+        let img = UIImage(resource: .iconUpvoted)
+    }
+}
+
+// MARK: 🔐Private Actions
+private extension LXAMapTestVC {
     @objc func btnAddMap(sender: UIButton) {
         // let mapView = makeMapView()
         // mapList.append(mapView)

@@ -24,7 +24,7 @@ class LXMasonryTestVCVC: LXBaseVC {
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
-        label.backgroundColor = UIColor.xl.random
+        label.backgroundColor = UIColor.XL.random
         return label
     }()
     private lazy var labPanelRight: UILabel = {
@@ -35,7 +35,7 @@ class LXMasonryTestVCVC: LXBaseVC {
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
-        label.backgroundColor = UIColor.xl.random
+        label.backgroundColor = UIColor.XL.random
         return label
     }()
     private lazy var labLeft: UILabel = {
@@ -46,7 +46,7 @@ class LXMasonryTestVCVC: LXBaseVC {
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
-        label.backgroundColor = UIColor.xl.random
+        label.backgroundColor = UIColor.XL.random
         return label
     }()
     private lazy var labRight: UILabel = {
@@ -57,7 +57,7 @@ class LXMasonryTestVCVC: LXBaseVC {
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
-        label.backgroundColor = UIColor.xl.random
+        label.backgroundColor = UIColor.XL.random
         return label
     }()
     // MARK: 🔗Vaiables
