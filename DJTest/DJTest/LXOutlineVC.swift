@@ -50,7 +50,7 @@ class LXOutlineVC: LXBaseVC {
             .outline(title: "DJTest", subitems: [
                 .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
                 .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
-            ].reversed()),
+            ]),
         ]
     }()
     // @available(iOS 13.0, *)
