@@ -276,17 +276,17 @@ private extension LXOutlineVC {
         // dataSource.sectionSnapshotHandlers.willCollapseItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
         // }
-        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
-            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) {[weak self] supplementaryView, elementKind, indexPath in
+            guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
             supplementaryView.dataFill("\(model.title) - header")
         }
-        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) { supplementaryView, elementKind, indexPath in
-            guard let model = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) {[weak self] supplementaryView, elementKind, indexPath in
+            guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
             supplementaryView.dataFill("\(model.title) - footer")
         }
-        dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+        dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
             dlog("-->elementKind: \(elementKind)")
-            return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+            return self?.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
         }
         return dataSource
     }
