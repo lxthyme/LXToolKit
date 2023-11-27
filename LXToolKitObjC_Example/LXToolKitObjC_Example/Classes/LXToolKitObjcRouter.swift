@@ -8,6 +8,8 @@
 import Foundation
 import SwifterSwift
 import DJTestKit
+import LXToolKitObjC
+import SwiftUI
 
 public struct LXToolKitObjcRouter {}
 
@@ -62,4 +64,16 @@ internal extension LXToolKitObjcRouter {
         .subitem(title: "LXShadowVC", scene: .vc(provider: { LXShadowVC()  })),
         .subitem(title: "LXStackViewTestVC", scene: .vc(provider: { LXStackViewTestVC()  })),
     ].reversed())
+}
+
+
+// #Preview("LXToolKitObjCTestVC") {
+//     VCPreview<LXToolKitObjcTestVC>()
+// }
+
+struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+       // VCPreview<LXToolKitObjcTestVC>()
+        LXNest5VC().toPreview()
+    }
 }

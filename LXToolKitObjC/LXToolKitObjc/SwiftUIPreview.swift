@@ -8,11 +8,22 @@
 import Foundation
 import SwiftUI
 
-struct VCPreview<VC: UIViewController>: UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+// MARK: - 👀
+extension UIViewController {
+    private struct VCPreview: UIViewControllerRepresentable {
+        // typealias T = UIViewController
+        let previewVC: UIViewController
 
-    func makeUIViewController(context: Context) -> some UIViewController {
-        return VC()
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+
+        func makeUIViewController(context: Context) -> some UIViewController {
+            return previewVC
+        }
+
+    }
+    public func toPreview() -> some View {
+        // inject self (the current view controller) for the preview
+        VCPreview(previewVC: self)
     }
 }
 
