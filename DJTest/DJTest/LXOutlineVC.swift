@@ -183,7 +183,9 @@ private extension LXOutlineVC {
                                                    ))
             }
             vc.autoJumpRoute = itemOpt
-        } else if let vc = vc as? LXToolKitObjcTestVC {
+        } else if let vc = vc as? LXToolKitObjCTestVC {
+            vc.autoJumpRoute = route2
+        } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
             var itemOpt: LXOutlineOpt
             do {
                 itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.title == route2 })

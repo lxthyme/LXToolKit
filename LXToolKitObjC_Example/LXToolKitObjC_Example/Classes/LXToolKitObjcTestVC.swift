@@ -1,5 +1,5 @@
 //
-//  LXToolKitObjcTestVC.swift
+//  LXToolKitObjCTestSwiftVC.swift
 //  LXToolKit_Example
 //
 //  Created by lxthyme on 2023/4/11.
@@ -14,7 +14,7 @@ class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
     }
 }
 
-open class LXToolKitObjcTestVC: LXBaseTableVC {
+open class LXToolKitObjCTestSwiftVC: LXBaseTableVC {
     // MARK: 📌UI
     private var dataSource: DataSource!
     @available(iOS 13.0, *)
@@ -34,14 +34,14 @@ open class LXToolKitObjcTestVC: LXBaseTableVC {
 }
 
 // MARK: 🌎LoadData
-extension LXToolKitObjcTestVC {}
+extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 👀Public Actions
-extension LXToolKitObjcTestVC {}
+extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 🔐Private Actions
 @available(iOS 14.0, *)
-private extension LXToolKitObjcTestVC {
+private extension LXToolKitObjCTestSwiftVC {
     func generateDataSource() -> DataSource {
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
@@ -69,7 +69,7 @@ private extension LXToolKitObjcTestVC {
 }
 
 // MARK: - 🔐Private Actions
-private extension LXToolKitObjcTestVC {
+private extension LXToolKitObjCTestSwiftVC {
     func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
@@ -80,7 +80,7 @@ private extension LXToolKitObjcTestVC {
 }
 
 // MARK: - ✈️UITableViewDataSource
-// extension LXToolKitObjcTestVC: UITableViewDataSource {
+// extension LXToolKitObjCTestSwiftVC: UITableViewDataSource {
 //     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //         return dataList.count
 //     }
@@ -100,7 +100,7 @@ private extension LXToolKitObjcTestVC {
 //     }
 // }
 // MARK: - ✈️UITableViewDelegate
-extension LXToolKitObjcTestVC: UITableViewDelegate {
+extension LXToolKitObjCTestSwiftVC: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
@@ -127,7 +127,7 @@ extension LXToolKitObjcTestVC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXToolKitObjcTestVC {
+extension LXToolKitObjCTestSwiftVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
@@ -160,6 +160,6 @@ extension LXToolKitObjcTestVC {
     }
 }
 
-#Preview("LXToolKitObjcTestVC") {
-    LXToolKitObjcTestVC()
+#Preview("LXToolKitObjCTestSwiftVC") {
+    LXToolKitObjCTestSwiftVC()
 }

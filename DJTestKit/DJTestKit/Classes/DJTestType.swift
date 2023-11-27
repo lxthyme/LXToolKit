@@ -95,6 +95,7 @@ extension DJTestType {
     }
     public func updateRouter(vcName: String) {
         guard vcName != "LXToolKitTestVC",
+        vcName != "LXToolKitObjCTestVC",
         vcName != "LXToolKitObjCTestSwiftVC" else {
             return
         }
