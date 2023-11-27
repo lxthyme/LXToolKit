@@ -58,7 +58,7 @@ private extension LXCollectionHeaderFooterView {
 
     func masonry() { 
         labTitle.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.left.centerY.equalToSuperview()
         }
     }
 }
