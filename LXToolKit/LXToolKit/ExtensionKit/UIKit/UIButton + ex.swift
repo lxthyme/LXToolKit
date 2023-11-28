@@ -10,7 +10,7 @@ import Foundation
 // MARK: - 👀UIButton.Configuration
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration {
-    static var allList: [UIButton.Configuration] {
+    static var allCases: [UIButton.Configuration] {
         return [
             .plain(),
             .tinted(),
@@ -49,7 +49,7 @@ public extension Swifty where Base == UIButton.Configuration {
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration.Size {
     /// UIButton.Configuration.Size 的所有枚举
-    static var allList: [UIButton.Configuration.Size] {
+    static var allCases: [UIButton.Configuration.Size] {
         return [
             .mini,
             .small,
@@ -75,7 +75,7 @@ public extension Swifty where Base == UIButton.Configuration.Size {
 // MARK: - 👀UIButton.Configuration.CornerStyle
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration.CornerStyle {
-    static var allList: [UIButton.Configuration.CornerStyle] {
+    public static var allCases: [UIButton.Configuration.CornerStyle] {
         return [
             .fixed,
             .dynamic,
@@ -107,7 +107,7 @@ public extension Swifty where Base == UIButton.Configuration.CornerStyle {
 // MARK: - 👀UIButton.Configuration.MacIdiomStyle
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration.MacIdiomStyle {
-    static var allList: [UIButton.Configuration.MacIdiomStyle] {
+    static var allCases: [UIButton.Configuration.MacIdiomStyle] {
         return [
             .automatic,
             .bordered,
@@ -133,7 +133,7 @@ public extension Swifty where Base == UIButton.Configuration.MacIdiomStyle {
 // MARK: - 👀UIButton.Configuration.TitleAlignment
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration.TitleAlignment {
-    static var allList: [UIButton.Configuration.TitleAlignment] {
+    static var allCases: [UIButton.Configuration.TitleAlignment] {
         return [
             .automatic,
             .leading,
