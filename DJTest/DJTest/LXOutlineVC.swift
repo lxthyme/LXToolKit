@@ -126,15 +126,15 @@ private extension LXOutlineVC {
             return
         }
         if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
-            DJTestType.DJSwiftModule.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.DJSwiftModule.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
-            DJTestType.dynamicIsland.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.dynamicIsland.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
-            DJTestType.djTest.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.djTest.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.typeNameString)
         } else {
             fatalError("save AutoJumpRoute not found for \(menuItem)")
         }
@@ -413,12 +413,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
             fatalError("test assert: \(random) at \(Date())")
         }
 
-        if let scene = menuItem.scene {
-            gotoScene(by: scene)
-        }
         gotoScene(by: menuItem)
-        // if let scene = menuItem.scene {
-        // }
     }
 }
 

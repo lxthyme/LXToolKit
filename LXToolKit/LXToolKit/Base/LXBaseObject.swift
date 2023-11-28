@@ -10,7 +10,7 @@ import UIKit
 @objc(LXBaseSwiftObject)
 open class LXBaseObject: NSObject {
     deinit {
-        dlog("---------- >>>Object: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>Object: \(self.xl.typeNameString)\t\tdeinit <<<----------")
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -26,16 +26,16 @@ public extension LXBase {
 //        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
 //    }
     // Instance Level
-    var xl_typeName: String {
+    var xl_typeNameString: String {
         let type_t = type(of: self)
         return String(describing: type_t)
     }
     // Type Level
-    static var xl_typeName: String {
+    static var xl_typeNameString: String {
         return String(describing: self)
     }
     /// The class's identifier, for UITableView，UICollectionView register its cell
-    static var xl_identifier: String {
-        return String(format: "%@_identifier", self.xl_typeName)
+    static var xl_reuseIdentifier: String {
+        return String(format: "%@_identifier", self.xl_typeNameString)
     }
 }

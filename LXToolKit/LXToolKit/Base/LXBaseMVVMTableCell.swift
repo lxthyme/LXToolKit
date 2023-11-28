@@ -85,10 +85,10 @@ private extension LXBaseMVVMTableCell {
     }
 
     func masonry() {
-        self.snp.setLabel("\(self.xl.xl_typeName)")
-        contentView.snp.setLabel("\(self.contentView.xl.xl_typeName).contentView")
-        wrapperView.snp.setLabel("\(self.wrapperView.xl.xl_typeName).wrapperView")
-        wrapperStackView.snp.setLabel("\(self.wrapperStackView.xl.xl_typeName).wrapperStackView")
+        self.snp.setLabel("\(self.xl.typeNameString)")
+        contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")
+        wrapperView.snp.setLabel("\(self.wrapperView.xl.typeNameString).wrapperView")
+        wrapperStackView.snp.setLabel("\(self.wrapperStackView.xl.typeNameString).wrapperStackView")
         wrapperView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

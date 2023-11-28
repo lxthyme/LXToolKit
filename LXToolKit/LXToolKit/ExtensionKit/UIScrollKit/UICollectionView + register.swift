@@ -9,18 +9,18 @@
 public extension Swifty where Base: UICollectionView {
     func registerCell<T: UICollectionViewCell>(with nibName: T.Type, isNib: Bool = false) {
         if isNib {
-            base.register(UINib(nibName: T.XL.xl_typeName, bundle: Bundle.main), forCellWithReuseIdentifier: T.XL.xl_identifier)
+            base.register(UINib(nibName: T.XL.typeNameString, bundle: Bundle.main), forCellWithReuseIdentifier: T.XL.reuseIdentifier)
         } else {
-            base.register(T.self, forCellWithReuseIdentifier: T.XL.xl_identifier)
+            base.register(T.self, forCellWithReuseIdentifier: T.XL.reuseIdentifier)
         }
     }
     func registerSupplementaryView<T: UICollectionReusableView>(with clsName: T.Type, kind: String, isNib: Bool = false) {
         if isNib {
-            base.register(UINib(nibName: T.XL.xl_typeName, bundle: Bundle.main),
+            base.register(UINib(nibName: T.XL.typeNameString, bundle: Bundle.main),
                           forSupplementaryViewOfKind: kind,
-                          withReuseIdentifier: T.XL.xl_identifier)
+                          withReuseIdentifier: T.XL.reuseIdentifier)
         } else {
-            base.register(T.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: T.XL.xl_identifier)
+            base.register(T.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: T.XL.reuseIdentifier)
         }
     }
 }

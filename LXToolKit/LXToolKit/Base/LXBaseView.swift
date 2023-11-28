@@ -10,12 +10,12 @@ import UIKit
 @objc(LXBaseKitView)
 open class LXBaseView: UIView {
     deinit {
-        dlog("---------- >>>View: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>View: \(self.xl.typeNameString)\t\tdeinit <<<----------")
     }
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        dlog("---------- \(self.xl.xl_typeName)\t\tinit ----------")
+        dlog("---------- \(self.xl.typeNameString)\t\tinit ----------")
     }
 
 }

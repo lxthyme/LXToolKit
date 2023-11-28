@@ -9,6 +9,6 @@ import Foundation
 
 open class LXBaseCommon {
     deinit {
-//        dlog("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
+//        dlog("---------- >>>Model: \(self.typeNameString)\t\tdeinit <<<----------")
     }
 }
