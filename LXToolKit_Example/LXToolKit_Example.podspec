@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '13.0'
 
-  s.source_files = 'LXToolKit_Example/Classes/**/*'
+  s.source_files = 'LXToolKit_Example/**/*.{h,m,swift}'
 
   s.resource_bundles = {
     'LXToolKit_Example' => [
@@ -51,7 +51,7 @@ TODO: Add long description of the pod here.
 
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
-  generated_path="#{Dir.pwd}/#{s.module_name}/Classes"
+  generated_path="#{Dir.pwd}/#{s.module_name}"
   "${rswift_path}" generate "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
   CMD
   s.script_phase = {
@@ -60,7 +60,7 @@ TODO: Add long description of the pod here.
     :script => script_Rswift,
     :output_files => [
       # '$SRCROOT/R.generated.swift'
-      "#{Dir.pwd}/#{s.module_name}/Classes/R.generated.swift"
+      "#{Dir.pwd}/#{s.module_name}/R.generated.swift"
     ],
   }
 
