@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '13.0'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 armv7s arm64' }
-  s.source_files = 'LXToolKitObjC/**/*'
+  s.source_files = 'LXToolKitObjC/**/*.{h,m,swift}'
   # s.source_files = {
   #     'LXToolKitObjC' => ['LXToolKitObjC/**/*'],
   #     'DJBusinessTools' => ['../..//Work/BL/DaoJia/DJBusinessTools/DJBusinessTools/Classes/**/*']

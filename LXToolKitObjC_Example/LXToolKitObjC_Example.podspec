@@ -32,7 +32,7 @@ TODO: Add long description of the pod here.
 
   # s.prefix_header_file = LXToolKitObjC_Example/LXToolKitObjC_Example.h'
   s.prefix_header_contents = '#import "LXToolKitObjC_Example.h"'
-  s.source_files = "#{s.module_name}/**/*.{h,m}"
+  s.source_files = "#{s.module_name}/**/*.{h,m,swift}"
 
   # s.resource_bundles = {
   #   'LXToolKitObjC_Example' => ['LXToolKitObjC_Example/Assets/*.png']
