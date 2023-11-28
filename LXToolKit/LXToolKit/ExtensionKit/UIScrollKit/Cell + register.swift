@@ -9,13 +9,13 @@ import Foundation
 
 public extension Swifty where Base: UICollectionViewCell {
     static func register(_ collectionView: UICollectionView) {
-        collectionView.register(Base.self, forCellWithReuseIdentifier: Base.XL.xl_identifier)
+        collectionView.register(Base.self, forCellWithReuseIdentifier: Base.XL.reuseIdentifier)
     }
 }
 
 public extension Swifty where Base: UITableViewCell {
     static func register(_ tableView: UITableView) {
-        tableView.register(Base.self, forCellReuseIdentifier: Base.XL.xl_identifier)
+        tableView.register(Base.self, forCellReuseIdentifier: Base.XL.reuseIdentifier)
     }
 }
 

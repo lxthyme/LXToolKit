@@ -25,7 +25,7 @@ class LXStackTestVC: LXBaseVC {
         t.delegate = self
         t.dataSource = self
 
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
 
         return t
     }()
@@ -84,7 +84,7 @@ class LXStackTestVC: LXBaseVC {
         self.navigationController?.navigationBar.tintColor = .red
         self.navigationController?.navigationItem.title = "Location"
         self.title = "Location233"
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
     }
 
 }
@@ -104,7 +104,7 @@ extension LXStackTestVC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
         cell.textLabel?.text = "\(indexPath.row + 1)"
         return cell
     }

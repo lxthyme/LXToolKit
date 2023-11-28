@@ -73,8 +73,8 @@ class LXSongVC: LXBaseVC {
         edgesForExtendedLayout = []
         automaticallyAdjustsScrollViewInsets = true
 
-        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.XL.xl_identifier)
-        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.XL.xl_identifier)
+        v.register(LXEmptyCell.self, forCellWithReuseIdentifier: LXEmptyCell.XL.reuseIdentifier)
+        v.register(LXSongRecordCell.self, forCellWithReuseIdentifier: LXSongRecordCell.XL.reuseIdentifier)
         return v
     }()
     // MARK: 🔗Vaiables
@@ -187,13 +187,13 @@ extension LXSongVC: UICollectionViewDataSource {
         guard let count = try? self.vm2.output.dataSource.value().count,
               count > 0 else {
             // swiftlint:disable:next force_cast
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.XL.xl_identifier, for: indexPath) as! LXEmptyCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXEmptyCell.XL.reuseIdentifier, for: indexPath) as! LXEmptyCell
             // swiftlint:disable:previous force_cast
             cell.retryType = .noData
             return cell
         }
         // swiftlint:disable:next force_cast
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.XL.xl_identifier, for: indexPath) as! LXSongRecordCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LXSongRecordCell.XL.reuseIdentifier, for: indexPath) as! LXSongRecordCell
         self.cell = cell
         // swiftlint:disable:previous force_cast
         if let d = try? self.vm2.output.dataSource.value()[indexPath.row] {
@@ -206,10 +206,10 @@ extension LXSongVC: UICollectionViewDataSource {
 extension LXSongVC: UICollectionViewDelegate {
     //    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     //        if kind == UICollectionElementKindSectionHeader {
-    //            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: <#UICollectionReusableView#>.xl_identifier, for: indexPath)
+    //            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: <#UICollectionReusableView#>.reuseIdentifier, for: indexPath)
     //            return headerView
     //        } else {
-    //            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: <#UICollectionReusableView#>.xl_identifier, for: indexPath)
+    //            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: <#UICollectionReusableView#>.reuseIdentifier, for: indexPath)
     //            return footerView
     //        }
     //    }

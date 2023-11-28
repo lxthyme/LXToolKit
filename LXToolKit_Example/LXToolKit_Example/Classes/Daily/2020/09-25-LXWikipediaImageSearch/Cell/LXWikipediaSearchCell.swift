@@ -76,7 +76,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
         //            })
         //            v.mj_footer = footer
 
-        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.XL.xl_identifier)
+        v.register(LXSingleImageCell.self, forCellWithReuseIdentifier: LXSingleImageCell.XL.reuseIdentifier)
         return v
     }()
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -94,7 +94,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
             //
             //            let reachabilityService = Dependencies.shared.reachabilityService
             //            vm.imageURLs
-            //                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.xl_identifier, cellType: LXSingleImageCell.self)) {[weak self](_, url, cell) in
+            //                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.reuseIdentifier, cellType: LXSingleImageCell.self)) {[weak self](_, url, cell) in
             //                    guard let `self` = self else { return }
             //                    cell.downloadableImage = self.imageService.imageFromURL(url, reachabilityService: reachabilityService)
             //            }
@@ -116,7 +116,7 @@ class LXWikipediaSearchCell: LXBaseVMTableViewCell {
 
             let reachabilityService = Dependencies.shared.reachabilityService
             viewModel.imageURLs
-                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.XL.xl_identifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
+                .drive(self.collectionView.rx.items(cellIdentifier: LXSingleImageCell.XL.reuseIdentifier, cellType: LXSingleImageCell.self)) { [weak self] (_, url, cell) in
                     cell.downloadableImage = self?.imageService.imageFromURL(url, reachabilityService: reachabilityService) ?? Observable.empty()
                 }
                 .disposed(by: disposeBag)

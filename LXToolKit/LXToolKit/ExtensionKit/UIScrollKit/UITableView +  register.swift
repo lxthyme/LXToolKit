@@ -9,16 +9,16 @@
 public extension Swifty where Base: UITableView {
     func registerCell<T: UITableViewCell>(with nibName: T.Type, isNib: Bool = false) {
         if isNib {
-            base.register(UINib(nibName: T.XL.xl_typeName, bundle: Bundle.main), forCellReuseIdentifier: T.XL.xl_identifier)
+            base.register(UINib(nibName: T.XL.typeNameString, bundle: Bundle.main), forCellReuseIdentifier: T.XL.reuseIdentifier)
         } else {
-            base.register(T.self, forCellReuseIdentifier: T.XL.xl_identifier)
+            base.register(T.self, forCellReuseIdentifier: T.XL.reuseIdentifier)
         }
     }
     func registerHeaderOrFooter<T: UITableViewHeaderFooterView>(_ clsName: T.Type, isNib: Bool = false) {
         if isNib {
-            base.register(UINib(nibName: T.XL.xl_typeName, bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: T.XL.xl_identifier)
+            base.register(UINib(nibName: T.XL.typeNameString, bundle: Bundle.main), forHeaderFooterViewReuseIdentifier: T.XL.reuseIdentifier)
         } else {
-            base.register(T.self, forHeaderFooterViewReuseIdentifier: T.XL.xl_identifier)
+            base.register(T.self, forHeaderFooterViewReuseIdentifier: T.XL.reuseIdentifier)
         }
     }
 }

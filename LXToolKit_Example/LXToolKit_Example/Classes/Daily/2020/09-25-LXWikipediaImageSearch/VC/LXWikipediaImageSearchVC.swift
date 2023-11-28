@@ -46,7 +46,7 @@ private class MyView: UIView {
         //        t.delegate = self
         //        t.dataSource = self
 
-        t.register(LXWikipediaSearchCell.self, forCellReuseIdentifier: LXWikipediaSearchCell.XL.xl_identifier)
+        t.register(LXWikipediaSearchCell.self, forCellReuseIdentifier: LXWikipediaSearchCell.XL.reuseIdentifier)
 
         return t
     }()
@@ -116,7 +116,7 @@ private extension MyView {
             }
 
         result
-            .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.XL.xl_identifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
+            .drive(table.rx.items(cellIdentifier: LXWikipediaSearchCell.XL.reuseIdentifier, cellType: LXWikipediaSearchCell.self)) {(_, vm, cell) in
                 cell.viewModel = vm
             }
             .disposed(by: rx.disposeBag)

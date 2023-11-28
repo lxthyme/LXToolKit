@@ -39,7 +39,7 @@ class LXiOS15VC: LXBaseTableVC {
             return ds
         }
         let dataSource = UITableViewDiffableDataSource<String, NSInteger>(tableView: table) { tableView, indexPath, idx in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = "\(idx)"
             cell.contentConfiguration = content
@@ -195,7 +195,7 @@ extension LXiOS15VC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier) as! UITableViewCell
         cell.textLabel?.text = "\(indexPath.row)"
         return cell
     }
@@ -218,7 +218,7 @@ extension LXiOS15VC: UITableViewDelegate {
 extension LXiOS15VC {
     override public func prepareTableView() {
         super.prepareTableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
         table.delegate = self
         if #available(iOS 14.0, *) {
             dataSource.apply(dataSnapshot, animatingDifferences: true)

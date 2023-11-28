@@ -362,7 +362,7 @@ private extension LXRx0225VC {
 
 class LXAnyModel233: NSObject, HandyJSON {
     deinit {
-        dlog("---------- >>>Model: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>Model: \(self.xl.typeNameString)\t\tdeinit <<<----------")
     }
     required public override init() {}
     open override var debugDescription: String {

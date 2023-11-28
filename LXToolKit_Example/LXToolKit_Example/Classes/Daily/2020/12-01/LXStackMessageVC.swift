@@ -27,8 +27,8 @@ class LXStackMessageVC: UIViewController {
         t.delegate = self
         t.dataSource = self
 
-//        t.register(LXMessageCell.self, forCellReuseIdentifier: LXMessageCell.xl_identifier)
-        t.register(UINib(nibName: LXMessageCell.XL.xl_typeName, bundle: nil), forCellReuseIdentifier: LXMessageCell.XL.xl_identifier)
+//        t.register(LXMessageCell.self, forCellReuseIdentifier: LXMessageCell.reuseIdentifier)
+        t.register(UINib(nibName: LXMessageCell.XL.typeNameString, bundle: nil), forCellReuseIdentifier: LXMessageCell.XL.reuseIdentifier)
 
         return t
     }()
@@ -83,8 +83,8 @@ extension LXStackMessageVC: UITableViewDataSource {
         return dataList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LXMessageCell.XL.xl_identifier, for: indexPath) as? LXMessageCell else {
-            return LXMessageCell(style: .default, reuseIdentifier: LXMessageCell.XL.xl_identifier)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LXMessageCell.XL.reuseIdentifier, for: indexPath) as? LXMessageCell else {
+            return LXMessageCell(style: .default, reuseIdentifier: LXMessageCell.XL.reuseIdentifier)
         }
         if indexPath.row % 6 == 0 {
         } else if indexPath.row % 6 == 1 {

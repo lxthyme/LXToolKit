@@ -131,7 +131,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     
     // MARK: 🛠Life Cycle
     deinit {
-        dlog("---------- >>>VC: \(self.xl.xl_typeName)\t\tdeinit <<<----------")
+        dlog("---------- >>>VC: \(self.xl.typeNameString)\t\tdeinit <<<----------")
         logResourcesCount()
     }
     // public required init?(coder: NSCoder) {
@@ -222,7 +222,7 @@ extension LXBaseVC {
         error
             .subscribe {[weak self] error in
                 guard let self else { return }
-                dlog("-->error[\(self.xl.xl_typeName)]: \(error)")
+                dlog("-->error[\(self.xl.typeNameString)]: \(error)")
         }
         .disposed(by: rx.disposeBag)
     }

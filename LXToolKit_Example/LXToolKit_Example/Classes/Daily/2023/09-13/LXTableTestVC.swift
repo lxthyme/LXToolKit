@@ -12,7 +12,7 @@ class LXTableTestVC: LXBaseTableVC {
     // MARK: 🔗Vaiables
     private lazy var dataSource: UITableViewDiffableDataSource<String, String> = {
         let dataSource = UITableViewDiffableDataSource<String, String>.init(tableView: table) { tableView, indexPath, item in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             // if #available(iOS 14.0, *) {
             //     var content = cell.defaultContentConfiguration()
             //     content.text = "\(item)_"

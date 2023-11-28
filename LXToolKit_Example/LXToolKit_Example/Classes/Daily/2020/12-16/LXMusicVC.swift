@@ -28,7 +28,7 @@ class LXMusicVC: UIViewController {
 //        t.delegate = self
 //        t.dataSource = self
 
-        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
 
         return t
     }()
@@ -75,7 +75,7 @@ private extension LXMusicVC {}
 //        return musicVM.dataList.count
 //    }
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl_identifier, for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
 //        let model = musicVM.dataList[indexPath.row]
 //        cell.textLabel?.text = model?.name
 //        cell.detailTextLabel?.text = model?.singer
@@ -93,10 +93,10 @@ private extension LXMusicVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXMusicVC {
     func prepareVM() {
-        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
         self.musicVM
             .dataList
-            .bind(to: table.rx.items(cellIdentifier: UITableViewCell.XL.xl_identifier)) { _, model, cell in
+            .bind(to: table.rx.items(cellIdentifier: UITableViewCell.XL.reuseIdentifier)) { _, model, cell in
                 cell.textLabel?.text = model?.name
                 cell.detailTextLabel?.text = model?.singer
             }

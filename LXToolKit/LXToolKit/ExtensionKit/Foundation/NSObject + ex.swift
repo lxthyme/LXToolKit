@@ -11,35 +11,35 @@ import Foundation
 // MARK: - 👀
 public extension Swifty where Base: NSProxy {
     // Instance Level
-    var xl_typeName: String {
+    var typeNameString: String {
         let type_t = type(of: self)
         return String(describing: type_t)
     }
     // Type Level
-    static var xl_typeName: String {
+    static var typeNameString: String {
         return String(describing: self)
     }
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
-    static var xl_identifier: String {
-        return String(format: "%@_identifier", self.xl_typeName)
+    static var reuseIdentifier: String {
+        return String(format: "%@_identifier", self.typeNameString)
     }
 }
 // MARK: - 👀
 public extension Swifty where Base: NSObject {
     // Instance Level
-    var xl_typeName: String {
+    var typeNameString: String {
         let type_t = type(of: base)
         return String(describing: type_t)
     }
     // Type Level
-    static var xl_typeName: String {
+    static var typeNameString: String {
         return String(describing: Base.self)
     }
 
     /// The class's identifier, for UITableView，UICollectionView register its cell
-    static var xl_identifier: String {
-        return String(format: "%@_xl_identifier", self.xl_typeName)
+    static var reuseIdentifier: String {
+        return String(format: "%@_xl_identifier", self.typeNameString)
     }
 
 }

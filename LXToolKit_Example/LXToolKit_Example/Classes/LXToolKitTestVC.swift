@@ -44,7 +44,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
             return ds
         }
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = scene.title
             content.textProperties.color = .black
@@ -108,7 +108,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         prepareTableView()
 
         //        let _ = LXBaseVC()
-        let identifier = self.xl.xl_typeName
+        let identifier = self.xl.typeNameString
         dlog("identifier: \(identifier)")
         let aa = "abccccc"
         dlog("\(aa.self): \(aa)")
@@ -184,7 +184,7 @@ private extension LXToolKitTestVC {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
            let vc = navigator.show(segue: scene, sender: self) {
-            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.xl_typeName)
+            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.typeNameString)
         }
     }
 }
@@ -446,7 +446,7 @@ extension Sequence where Element: Hashable {
 //         return dataList.count
 //     }
 //     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
+//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
 //         let info = dataList[indexPath.row].info
 //         if #available(iOS 14.0, *) {
 //             var config = UIListContentConfiguration.cell()
@@ -492,7 +492,7 @@ extension LXToolKitTestVC {
     public override func prepareTableView() {
         super.prepareTableView()
         table.delegate = self
-        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.xl_identifier)
+        // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
         // table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
         if #available(iOS 14.0, *) {
             DispatchQueue.main.async {

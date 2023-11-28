@@ -36,7 +36,7 @@ private extension LXMVVMSampleDataSource {}
 //        return dataList.count
 //    }
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.xl_identifier, for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
 //        let item = dataList[indexPath.row]
 //        cell.textLabel?.text = item.debugDescription
 //        return cell

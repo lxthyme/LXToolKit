@@ -146,7 +146,7 @@ extension LXWebViewTestVC {
 
         // output.dataList
         //     .asDriver(onErrorJustReturn: [])
-        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.XL.xl_identifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
+        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.XL.reuseIdentifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
         //         // cell.bind(to: vm)
         //     }
         //     .disposed(by: rx.disposeBag)
