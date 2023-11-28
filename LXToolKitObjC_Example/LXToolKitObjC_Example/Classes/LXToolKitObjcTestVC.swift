@@ -1,5 +1,5 @@
 //
-//  LXToolKitObjcTestVC.swift
+//  LXToolKitObjCTestSwiftVC.swift
 //  LXToolKit_Example
 //
 //  Created by lxthyme on 2023/4/11.
@@ -14,11 +14,12 @@ class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
     }
 }
 
-open class LXToolKitObjcTestVC: LXBaseTableVC {
+open class LXToolKitObjCTestSwiftVC: LXBaseVC {
     // MARK: 📌UI
-    private var dataSource: DataSource!
-    @available(iOS 13.0, *)
-    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineOpt>!
+    private static let sectionHeaderElementKind = "sectionHeaderElementKind"
+    private static let sectionFooterElementKind = "sectionFooterElementKind"
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<String, LXOutlineOpt>!
     // MARK: 🔗Vaiables
     public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
@@ -26,32 +27,57 @@ open class LXToolKitObjcTestVC: LXBaseTableVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareCollectionView()
         prepareUI()
-        prepareTableView()
 
         gotoScene(by: autoJumpRoute)
     }
 }
 
 // MARK: 🌎LoadData
-extension LXToolKitObjcTestVC {}
+extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 👀Public Actions
-extension LXToolKitObjcTestVC {}
+extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 🔐Private Actions
 @available(iOS 14.0, *)
-private extension LXToolKitObjcTestVC {
-    func generateDataSource() -> DataSource {
-        let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            content.text = scene.title
-            // content.secondaryText = "\(scene.info.desc)"
-            cell.contentConfiguration = content
-            return cell
+private extension LXToolKitObjCTestSwiftVC {
+    func generateLayout() -> UICollectionViewLayout {
+        var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        config.headerMode = .supplementary
+        // config.footerMode = <#.supplementary#>
+        // config.backgroundColor = .white
+        return  UICollectionViewCompositionalLayout.list(using: config)
+    }
+    func generateCollectionView() -> UICollectionView {
+        let cv = UICollectionView(frame: .zero,
+                                  collectionViewLayout: generateLayout())
+        // cv.backgroundColor = <#.systemGroupedBackground#>
+        cv.delegate = self
+        return cv
+    }
+    func generateDataSource() -> UICollectionViewDiffableDataSource<String, LXOutlineOpt> {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, opt in
+            var config = cell.defaultContentConfiguration()
+            config.text = opt.title
+            cell.contentConfiguration = config
         }
-        dataSource.defaultRowAnimation = .fade
+        // collectionView.register(<#LXBadgeSupplementaryView#>.self, forSupplementaryViewOfKind: <#ViewController.sectionFooterElementKind#>, withReuseIdentifier: <#LXBadgeSupplementaryView#>.xl.xl_identifier)
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) {[weak self] supplementaryView, elementKind, indexPath in
+            // guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
+            // supplementaryView.labTitle.text = "\(model.badgeCount)"
+            supplementaryView.dataFill(elementKind)
+        }
+        let dataSource = UICollectionViewDiffableDataSource<String, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, opt in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: opt)
+        }
+        dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
+            if(elementKind == UICollectionView.elementKindSectionHeader) {
+                return self?.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+            }
+            return nil
+        }
         return dataSource
     }
     func generateSnapshot() -> NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
@@ -69,7 +95,7 @@ private extension LXToolKitObjcTestVC {
 }
 
 // MARK: - 🔐Private Actions
-private extension LXToolKitObjcTestVC {
+private extension LXToolKitObjCTestSwiftVC {
     func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
         if let scene = outlineOpt?.scene,
@@ -79,42 +105,10 @@ private extension LXToolKitObjcTestVC {
     }
 }
 
-// MARK: - ✈️UITableViewDataSource
-// extension LXToolKitObjcTestVC: UITableViewDataSource {
-//     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//         return dataList.count
-//     }
-//     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.xl_identifier, for: indexPath)
-//         let info = dataList[indexPath.row].info
-//         if #available(iOS 14.0, *) {
-//             var config = UIListContentConfiguration.cell()
-//             config.text = info.title
-//             config.secondaryText = info.desc
-//             cell.contentConfiguration = config
-//         } else {
-//             cell.textLabel?.text = info.title
-//             cell.detailTextLabel?.text = info.desc
-//         }
-//         return cell
-//     }
-// }
-// MARK: - ✈️UITableViewDelegate
-extension LXToolKitObjcTestVC: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
-    }
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if #available(iOS 13.0, *) {
-            let tmp = dataSnapshot.sectionIdentifiers[section]
-            return tmp
-        } else {
-            // Fallback on earlier versions
-            return ""
-        }
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+// MARK: - ✈️UICollectionViewDelegate
+extension LXToolKitObjCTestSwiftVC: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
 
         if #available(iOS 14.0, *) {
             let scene = dataSource.itemIdentifier(for: indexPath)
@@ -127,16 +121,13 @@ extension LXToolKitObjcTestVC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXToolKitObjcTestVC {
-    public override func prepareTableView() {
-        super.prepareTableView()
-        table.delegate = self
+extension LXToolKitObjCTestSwiftVC {
+    func prepareCollectionView() {
         if #available(iOS 14.0, *) {
+            collectionView = generateCollectionView()
             dataSource = generateDataSource()
-            dataSnapshot = generateSnapshot()
-            DispatchQueue.main.async {
-                self.dataSource.apply(self.dataSnapshot, animatingDifferences: true)
-            }
+            let snapshot = generateSnapshot()
+            self.dataSource.apply(snapshot, animatingDifferences: true)
         } else {
             // Fallback on earlier versions
             // table.dataSource = self
@@ -147,19 +138,19 @@ extension LXToolKitObjcTestVC {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
-        [table].forEach(self.view.addSubview)
+        [collectionView].forEach(self.view.addSubview)
 
         masonry()
     }
 
     open override func masonry() {
         super.masonry()
-        table.snp.makeConstraints {
+        collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
 }
 
-#Preview("LXToolKitObjcTestVC") {
-    LXToolKitObjcTestVC()
+#Preview("LXToolKitObjCTestSwiftVC") {
+    LXToolKitObjCTestSwiftVC()
 }
