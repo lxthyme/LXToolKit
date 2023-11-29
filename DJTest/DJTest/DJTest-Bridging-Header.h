@@ -3,3 +3,4 @@
 //
 
 // #import <Bugly/Bugly.h>
+#import <tingyunApp/NBSAppAgent.h>

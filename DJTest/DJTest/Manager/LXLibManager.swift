@@ -17,14 +17,18 @@ class LXLibManager {
     static func setup() {
         LibsManager.shared.setupLibs()
         // prepareAMap()
-        prepareFirebase()
+        // prepareFirebase()
         // prepareBugly()
         // prepareUMeng()
+        prepareTingYun()
     }
 }
 
 // MARK: - 👀
 extension LXLibManager {
+    static func prepareTingYun() {
+        NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
+    }
     static func prepareUMeng() {
         // UMLaunch.setRootVCCls(ViewController.self)
         // let config = UMAPMConfig.default()

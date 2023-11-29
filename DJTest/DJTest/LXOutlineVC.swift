@@ -136,7 +136,10 @@ private extension LXOutlineVC {
             // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
             if let provider = menuItem.scene?.vcProvider {
                 let result = provider()
-                dlog("-->vc: \(result)")
+                TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
+                    "menuItem": menuItem.description,
+                    "provider": result?.xl.typeNameString ?? ""
+                ])
             }
             return
         }
@@ -151,6 +154,9 @@ private extension LXOutlineVC {
         } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
             DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.typeNameString)
         } else {
+            TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
+                "menuItem": menuItem.description,
+            ])
             fatalError("save AutoJumpRoute not found for \(menuItem)")
         }
     }
@@ -159,11 +165,18 @@ private extension LXOutlineVC {
         guard let type = DJTestType.fromInt(idx: route1Int),
               let item = self.menuItems.first(where: { $0.title == type.title }) else {
             dlog("-->gotoScene error on scene[1]")
+            TingYunManager.reportEvent(name: "restore Route1 failure", properties: [
+                "route1Int": "\(route1Int)",
+            ])
             return
         }
         let scene = item.scene != nil ? item.scene : item.subitems?.first?.scene
         guard let scene else {
             dlog("-->gotoScene error on scene[2]")
+            TingYunManager.reportEvent(name: "restore scene failure", properties: [
+                "route1": type.title,
+                "scene": scene?.description ?? ""
+            ])
             return
         }
         let vc: UIViewController?
@@ -186,6 +199,9 @@ private extension LXOutlineVC {
                 itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
+                TingYunManager.reportEvent(name: "kit scene not found", properties: [
+                    "route2": route2
+                ])
                 itemOpt = .subitem(title: "LXToolKit_Example." + route2,
                                    scene: .vcString(vcString:
                                                         "LXToolKit_Example." +
@@ -206,6 +222,9 @@ private extension LXOutlineVC {
                 itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
+                TingYunManager.reportEvent(name: "objc scene not found", properties: [
+                    "route2": route2
+                ])
                 itemOpt = .subitem(title: "",
                                    scene: .vcString(vcString: "LXToolKitObjc_Example" +
                                                     // "LXLabelTestVC"
