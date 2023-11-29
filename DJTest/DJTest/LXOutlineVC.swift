@@ -75,7 +75,7 @@ class LXOutlineVC: LXBaseVC {
         ]
     }()
     // @available(iOS 13.0, *)
-    private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
+    // private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var appearance: UICollectionLayoutListConfiguration.Appearance = .plain
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {

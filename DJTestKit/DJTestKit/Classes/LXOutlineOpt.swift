@@ -87,9 +87,9 @@ extension LXOutlineOpt: CustomStringConvertible {
     public var description: String {
         switch self {
         case .outline(let title, let scene, let subitems, let uuid):
-            return ".outline(title: \(title), scene: \(scene), subitems: \(subitems))"
+            return ".outline(title: \(title), scene: \(scene?.description ?? ""), subitems: \(subitems))"
         case .subitem(let title, let scene, let uuid):
-            return ".subitem(title: \(title), scene: \(scene))"
+            return ".subitem(title: \(title), scene: \(scene?.description ?? ""))"
         }
     }
 }
