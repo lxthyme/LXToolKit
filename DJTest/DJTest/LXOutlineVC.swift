@@ -14,6 +14,7 @@ import LXToolKit
 
 @available(iOS 14.0, *)
 public struct DJTestRouter {
+    static let routerItem: LXOutlineOpt = .subitem(title: "Item 1 - 1", scene: .vc(provider: { LXNonSupportedVC(title: "Test Item") }))
     static let router233: LXOutlineOpt = .outline(title: "Section 1", subitems: [
         .subitem(title: "Item 1 - 1", scene: .vc(provider: { UIViewController() })),
         .outline(title: "Section 2", subitems: [
@@ -22,24 +23,20 @@ public struct DJTestRouter {
         ]),
         .subitem(title: "Item 1 - 2", scene: .vc(provider: { UIViewController() })),
     ])
-    static let routerDJSwiftModule: LXOutlineOpt = .outline(title: "DJSwiftModule", subitems: [
-        .subitem(title: "DJSwiftModule", scene: .vc(provider: {
-            DJTestType.DJSwiftModule.updateRouter(vcName: "")
-            let window = UIApplication.XL.keyWindow
-            Application.shared.presentInitialScreen(in: window)
-            return nil
-        })),
-    ])
-    static let routerDynamicIsland: LXOutlineOpt = .outline(title: "dynamicIsland", subitems: [
-        .subitem(title: "dynamicIsland", scene: .vc(provider: {
-            if #available(iOS 16.2, *) {
-                UIHostingController(rootView: EmojiRangersView())
-            } else {
-                // Fallback on earlier versions
-                LXNonSupportedVC(title: "当前设备不支持灵动岛!")
-            }
-        })),
-    ])
+    static let routerDJSwiftModule: LXOutlineOpt = .subitem(title: "DJSwiftModule", scene: .vc(provider: {
+        DJTestType.DJSwiftModule.updateRouter(vcName: "")
+        let window = UIApplication.XL.keyWindow
+        Application.shared.presentInitialScreen(in: window)
+        return nil
+    }))
+    static let routerDynamicIsland: LXOutlineOpt = .subitem(title: "dynamicIsland", scene: .vc(provider: {
+        if #available(iOS 16.2, *) {
+            UIHostingController(rootView: EmojiRangersView())
+        } else {
+            // Fallback on earlier versions
+            LXNonSupportedVC(title: "当前设备不支持灵动岛!")
+        }
+    }))
     static let routerDJTest: LXOutlineOpt = .outline(title: "DJTest", subitems: [
         .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
@@ -61,6 +58,9 @@ class LXOutlineVC: LXBaseVC {
     }()
     private var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
+    private static let sectionHeaderElementKind = "sectionHeaderElementKind"
+    private static let sectionFooterElementKind = "sectionFooterElementKind"
+    private static let sectionBackgroundDecorationElementKind = "sectionBackgroundDecorationElementKind"
     private var isFirstAppearing = true
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
@@ -72,6 +72,7 @@ class LXOutlineVC: LXBaseVC {
             DJTestRouter.routerDJTest,
             DJTestRouter.routerDJSwiftModule,
             DJTestRouter.routerDynamicIsland,
+            DJTestRouter.routerItem,
         ]
     }()
     // @available(iOS 13.0, *)
@@ -157,7 +158,7 @@ private extension LXOutlineVC {
             TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
                 "menuItem": menuItem.description,
             ])
-            fatalError("save AutoJumpRoute not found for \(menuItem)")
+            // fatalError("save AutoJumpRoute not found for \(menuItem)")
         }
     }
     func gotoAutoJumpRouteScene() {
@@ -252,13 +253,35 @@ private extension LXOutlineVC {
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
 
+            let bgDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
+            bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+
+            // layout.register(LXSectionBgDecorationView.self, forDecorationViewOfKind: LXSectionDecorationVC.sectionBackgroundDecorationElementKind)
+
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                    heightDimension: .estimated(44.0))
+            let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                    heightDimension: .estimated(44.0))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                            elementKind: LXOutlineVC.sectionHeaderElementKind,
+                                                                            alignment: .topLeading)
+            let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
+                                                                            elementKind: LXOutlineVC.sectionFooterElementKind,
+                                                                            alignment: .bottomTrailing)
             let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
-            // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+            // section.contentInsets = .zero
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10, bottom: 10, trailing: 10)
+            // sectionHeader.pinToVisibleBounds = true
+            // sectionHeader.zIndex = 2
+            section.decorationItems = [bgDecoration]
+            // section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
 
             return section
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        layout.register(LXBGNestedGroupDecorationView.self, forDecorationViewOfKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
+        return layout
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
@@ -270,7 +293,7 @@ private extension LXOutlineVC {
         let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = menuItem.title
+            contentConfig.text = "\(menuItem.title)."
             // contentConfig.textProperties.color = .black
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
@@ -280,7 +303,8 @@ private extension LXOutlineVC {
                 // .outlineDisclosure(options: disclosureOpt)
                 .outlineDisclosure()
             ]
-            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+            var bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
             guard let self else { return }
@@ -295,6 +319,8 @@ private extension LXOutlineVC {
             case .sidebar, .sidebarPlain: cell.accessories = []
             default: cell.accessories = [.disclosureIndicator()]
             }
+            var bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
         }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
@@ -310,17 +336,17 @@ private extension LXOutlineVC {
         // dataSource.sectionSnapshotHandlers.willCollapseItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
         // }
-        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) {[weak self] supplementaryView, elementKind, indexPath in
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionHeaderElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
             supplementaryView.dataFill("\(model.title) - header")
         }
-        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) {[weak self] supplementaryView, elementKind, indexPath in
+        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionFooterElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
             supplementaryView.dataFill("\(model.title) - footer")
         }
         dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
             dlog("-->elementKind: \(elementKind)")
-            return self?.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+            return self?.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == LXOutlineVC.sectionHeaderElementKind ? headerRegistration : footerRegistration, for: indexPath)
         }
         return dataSource
     }
@@ -354,42 +380,7 @@ private extension LXOutlineVC {
         }
         return snapshot
     }
-    func generateMultiSnapshot() -> [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] {
-        // var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-    
-        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
-            snapshot.append(menuItems, to: parent)
-    
-            // for menuItem in menuItems where menuItem.subitems.isNotEmpty {
-            //     addItems(menuItem.subitems, to: menuItem)
-            // }
-            for menuItem in menuItems {
-                switch menuItem {
-                case .outline(_, _, let subitems, _):
-                    addItems(&snapshot, menuItems: subitems, to: menuItem)
-                case .subitem:
-                    break
-                }
-            }
-        }
-    
-        var list: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
-        for menuItem in self.menuItems {
-            var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-            snapshot.append([menuItem])
-            snapshot .expand([menuItem])
-            switch menuItem {
-            case .outline(_, _, let subitems, _):
-                addItems(&snapshot, menuItems: subitems, to: menuItem)
-                // dataSource.apply(snapshot, to: menuItem, animatingDifferences: true)
-                list[menuItem] = snapshot
-            case .subitem:
-                break
-            }
-        }
-        return list
-    }
-    func generateMultiSnapshot2() {
+    func generateMultiSnapshot() {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
                 switch menuItem {
@@ -425,36 +416,13 @@ private extension LXOutlineVC {
             dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
-    func generateMultiSnapshot3() {
-        let list = [
-            // LXToolKitRouter.kitRouter,
-            // LXToolKitObjcRouter.objcRouter,
-            DJTestRouter.routerDJTest,
-            // DJTestRouter.routerDJSwiftModule,
-            // DJTestRouter.routerDynamicIsland,
-        ]
-        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
-        snapshot.appendSections([DJTestRouter.routerDJTest])
-        snapshot.appendItems([DJTestRouter.routerDynamicIsland])
-        snapshot.appendItems([DJTestRouter.routerDJTest], toSection: DJTestRouter.routerDJTest)
-
-        var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-        snapshot2.append([DJTestRouter.routerDJTest])
-        snapshot2.append(DJTestRouter.routerDJTest.subitems ?? [], to: DJTestRouter.routerDJTest)
-        dataSource.apply(snapshot2, to: DJTestRouter.routerDJTest, animatingDifferences: true)
-
-        dataSource.apply(snapshot, animatingDifferences: true)
-    }
     func refreshCollectionView() {
         // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
         // let snapshot = dataSource.snapshot()
         // dlog("-->snapshot: \(snapshot)")
         // dataSource.apply(dataSource.snapshot(), animatingDifferences: true)
         // collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
-        let snapshotList = generateMultiSnapshot()
-        snapshotList.forEach {
-            self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
-        }
+        generateMultiSnapshot()
     }
     func generateNavRightItems() -> [UIBarButtonItem] {
         let subItems = [
@@ -514,18 +482,7 @@ extension LXOutlineVC {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
-            // let snapshotList = generateMultiSnapshot()
-            // snapshotList.forEach {
-            //     self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
-            // }
-            generateMultiSnapshot2()
-            // generateMultiSnapshot3()
-            // let snapshot =
-            // // generateSnapshot()
-            // // generateMultiSnapshot2()
-            // dataSource.apply(snapshot, animatingDifferences: true)
-            // dlog("-->snapshot: \(snapshot.items)")
-            // self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
+            generateMultiSnapshot()
         } else {
             // Fallback on earlier versions
             collectionView = UICollectionView(frame: .zero)
