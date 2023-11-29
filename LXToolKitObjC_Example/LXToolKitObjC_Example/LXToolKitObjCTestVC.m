@@ -30,7 +30,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self prepareUI];
+}
+- (void)viewIsAppearing:(BOOL)animated {
+    [super viewIsAppearing:animated];
+
     [self gotoRoute:self.autoJumpRoute];
+    self.autoJumpRoute = nil;
 }
 
 - (void)didReceiveMemoryWarning

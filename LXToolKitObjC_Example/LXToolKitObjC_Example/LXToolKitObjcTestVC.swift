@@ -29,8 +29,12 @@ open class LXToolKitObjCTestSwiftVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareCollectionView()
         prepareUI()
+    }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
 
         gotoScene(by: autoJumpRoute)
+        autoJumpRoute = nil
     }
 }
 

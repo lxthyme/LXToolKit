@@ -119,7 +119,15 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // testModel()
         // testTask()
         // testTaskGroup()
+        let imgResource = R.image.cusco
+        let img = imgResource()
+        dlog("img: \(img)")
+    }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+
         gotoScene(by: autoJumpRoute)
+        autoJumpRoute = nil
     }
 }
 

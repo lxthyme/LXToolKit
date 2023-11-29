@@ -61,6 +61,7 @@ class LXOutlineVC: LXBaseVC {
     }()
     private var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
+    private var isFirstAppearing = true
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
@@ -88,8 +89,10 @@ class LXOutlineVC: LXBaseVC {
     }
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-
-        gotoAutoJumpRouteScene()
+        if isFirstAppearing {
+            gotoAutoJumpRouteScene()
+        }
+        isFirstAppearing = false
     }
 
 }
