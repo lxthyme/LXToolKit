@@ -14,6 +14,14 @@ import LXToolKit
 
 @available(iOS 14.0, *)
 public struct DJTestRouter {
+    static let router233: LXOutlineOpt = .outline(title: "Section 1", subitems: [
+        .subitem(title: "Item 1 - 1", scene: .vc(provider: { UIViewController() })),
+        .outline(title: "Section 2", subitems: [
+            .subitem(title: "Item 2 - 1", scene: .vc(provider: { UIViewController() })),
+            .subitem(title: "Item 2 - 2", scene: .vc(provider: { UIViewController() })),
+        ]),
+        .subitem(title: "Item 1 - 2", scene: .vc(provider: { UIViewController() })),
+    ])
     static let routerDJSwiftModule: LXOutlineOpt = .outline(title: "DJSwiftModule", subitems: [
         .subitem(title: "DJSwiftModule", scene: .vc(provider: {
             DJTestType.DJSwiftModule.updateRouter(vcName: "")
@@ -57,6 +65,7 @@ class LXOutlineVC: LXBaseVC {
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
+            // DJTestRouter.router233,
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
@@ -358,6 +367,62 @@ private extension LXOutlineVC {
         }
         return list
     }
+    func generateMultiSnapshot2() {
+        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
+            for menuItem in menuItems {
+                switch menuItem {
+                case .outline(_, _, let subitems, _):
+                    if !snapshot.contains(menuItem) {
+                        snapshot.append([menuItem], to: parent)
+                    }
+                    addItems(&snapshot, menuItems: subitems, to: menuItem)
+                    // snapshot.append(subitems, to: parent)
+                case .subitem:
+                    snapshot.append([menuItem], to: parent)
+                    break
+                }
+            }
+        }
+        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
+        snapshot.appendSections(self.menuItems)
+        // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
+        for menuItem in self.menuItems {
+            switch menuItem {
+            case .outline(_, _, let subitems, _):
+                snapshot.appendItems([menuItem], toSection: menuItem)
+
+                var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+                snapshot2.append([menuItem])
+                // snapshot2.append(subitems, to: menuItem)
+                addItems(&snapshot2, menuItems: subitems, to: menuItem)
+                dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
+            case .subitem:
+                snapshot.appendItems([menuItem])
+                break
+            }
+            dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+    func generateMultiSnapshot3() {
+        let list = [
+            // LXToolKitRouter.kitRouter,
+            // LXToolKitObjcRouter.objcRouter,
+            DJTestRouter.routerDJTest,
+            // DJTestRouter.routerDJSwiftModule,
+            // DJTestRouter.routerDynamicIsland,
+        ]
+        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
+        snapshot.appendSections([DJTestRouter.routerDJTest])
+        snapshot.appendItems([DJTestRouter.routerDynamicIsland])
+        snapshot.appendItems([DJTestRouter.routerDJTest], toSection: DJTestRouter.routerDJTest)
+
+        var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+        snapshot2.append([DJTestRouter.routerDJTest])
+        snapshot2.append(DJTestRouter.routerDJTest.subitems ?? [], to: DJTestRouter.routerDJTest)
+        dataSource.apply(snapshot2, to: DJTestRouter.routerDJTest, animatingDifferences: true)
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
     func refreshCollectionView() {
         // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
         // let snapshot = dataSource.snapshot()
@@ -427,11 +492,16 @@ extension LXOutlineVC {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
-            let snapshotList = generateMultiSnapshot()
-            snapshotList.forEach {
-                self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
-            }
-            // let snapshot = generateSnapshot()
+            // let snapshotList = generateMultiSnapshot()
+            // snapshotList.forEach {
+            //     self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
+            // }
+            generateMultiSnapshot2()
+            // generateMultiSnapshot3()
+            // let snapshot =
+            // // generateSnapshot()
+            // // generateMultiSnapshot2()
+            // dataSource.apply(snapshot, animatingDifferences: true)
             // dlog("-->snapshot: \(snapshot.items)")
             // self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
         } else {
