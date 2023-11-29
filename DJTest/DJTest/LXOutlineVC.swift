@@ -75,9 +75,12 @@ class LXOutlineVC: LXBaseVC {
         prepareCollectionView()
         prepareUI()
 
-        gotoAutoJumpRouteScene()
-
         startActivity()
+    }
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+
+        gotoAutoJumpRouteScene()
     }
 
 }
