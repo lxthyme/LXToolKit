@@ -1,18 +1,29 @@
 //
-//  LXNonSupportedVC.swift
+//  LXUnSupportedVC.swift
 //  LXToolKit
 //
 //  Created by lxthyme on 2023/11/23.
 //
 import UIKit
 
-open class LXNonSupportedVC: LXBaseVC {
+open class LXUnSupportedVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var labTitle: UILabel = {
         let label = UILabel()
-        label.text = ""
+        label.text = "UnSupported"
         label.font = .systemFont(ofSize: 20)
-        label.textColor = UIColor.init(hex: 0xeeeeee)
+        label.textColor = UIColor.primaryDark()
+        // label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+        label.textAlignment = .center
+        label.adjustsFontForContentSizeCategory = true
+        return label
+    }()
+    private lazy var labSubtitle: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .XL.hex(0xCCCCCC)
         // label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
@@ -35,30 +46,33 @@ open class LXNonSupportedVC: LXBaseVC {
 
         // Do any additional setup after loading the view.
         prepareUI()
-        labTitle.text = nonSupportTitle
     }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
 
+        labSubtitle.text = nonSupportTitle
+    }
 }
 
 // MARK: 🌎LoadData
-extension LXNonSupportedVC {
+extension LXUnSupportedVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-extension LXNonSupportedVC {}
+extension LXUnSupportedVC {}
 
 // MARK: 🔐Private Actions
-private extension LXNonSupportedVC {}
+private extension LXUnSupportedVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXNonSupportedVC {
+extension LXUnSupportedVC {
     open override func prepareUI() {
         super.prepareUI()
         self.view.backgroundColor = .white
         // navigationItem.title = ""
 
-        [labTitle].forEach(self.view.addSubview)
+        [labTitle, labSubtitle].forEach(self.view.addSubview)
 
         masonry()
     }
@@ -66,6 +80,10 @@ extension LXNonSupportedVC {
     open override func masonry() {
         super.masonry()
         labTitle.snp.makeConstraints {
+            $0.bottom.equalTo(labSubtitle.snp.top).offset(-10)
+            $0.centerX.equalToSuperview()
+        }
+        labSubtitle.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
     }

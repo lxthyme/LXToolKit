@@ -21,6 +21,10 @@ public enum LXSection {
         }
     }
 }
+
+// MARK: - 👀
+extension LXSection: Equatable {}
+
 public enum LXOutlineOpt {
     case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
     case subitem(_ section: LXSection, scene: Navigator.Scene? = nil, uuid: UUID = UUID())

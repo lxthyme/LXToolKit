@@ -14,14 +14,25 @@ import LXToolKit
 
 @available(iOS 14.0, *)
 public struct DJTestRouter {
-    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"), scene: .vc(provider: { LXNonSupportedVC(title: "Test Item") }))
+    static let expandedSectionList: [LXOutlineOpt] = [
+        DJTestRouter.routerDJTest,
+    ]
+    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"))
     static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
-        .subitem(.section(title: "Item 1 - 1"), scene: .vc(provider: { UIViewController() })),
+        .subitem(.section(title: "Item 1 - 1")),
         .outline(.section(title: "Section 2"), subitems: [
-            .subitem(.section(title: "Item 2 - 1"), scene: .vc(provider: { UIViewController() })),
-            .subitem(.section(title: "Item 2 - 2"), scene: .vc(provider: { UIViewController() })),
+            .subitem(.section(title: "Item 2 - 1")),
+            .outline(.section(title: "Section 3"), subitems: [
+                .subitem(.section(title: "Item 3 - 1")),
+                .outline(.section(title: "Section 4"), subitems: [
+                    .subitem(.section(title: "Item 4 - 1")),
+                    .subitem(.section(title: "Item 4 - 2")),
+                ]),
+                .subitem(.section(title: "Item 3 - 2")),
+            ]),
+            .subitem(.section(title: "Item 2 - 2")),
         ]),
-        .subitem(.section(title: "Item 1 - 2"), scene: .vc(provider: { UIViewController() })),
+        .subitem(.section(title: "Item 1 - 2")),
     ])
     static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
         DJTestType.DJSwiftModule.updateRouter(vcName: "")
@@ -34,17 +45,12 @@ public struct DJTestRouter {
             UIHostingController(rootView: EmojiRangersView())
         } else {
             // Fallback on earlier versions
-            LXNonSupportedVC(title: "当前设备不支持灵动岛!")
+            LXUnSupportedVC(title: "当前设备不支持灵动岛!")
         }
     }))
     static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
         .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
-    ])
-    static let routerOthers: LXOutlineOpt = .outline(.section(title: "Others"), subitems: [
-        DJTestRouter.routerDJSwiftModule,
-        DJTestRouter.routerDynamicIsland,
-        DJTestRouter.routerItem,
     ])
 }
 
@@ -71,11 +77,14 @@ class LXOutlineVC: LXBaseVC {
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
-            // DJTestRouter.router233,
+            DJTestRouter.router233,
+            DJTestRouter.routerItem,
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
-            DJTestRouter.routerOthers,
+            /// Others
+            DJTestRouter.routerDJSwiftModule,
+            DJTestRouter.routerDynamicIsland,
         ]
     }()
     // @available(iOS 13.0, *)
@@ -138,7 +147,10 @@ private extension LXOutlineVC {
         guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
-            if let provider = menuItem.scene?.vcProvider {
+            if menuItem.section.title.hasPrefix("Section ") ||
+                menuItem.section.title.hasPrefix("Item ") {
+                Navigator.default.show(segue: .vc(provider: { LXUnSupportedVC(title: "\(menuItem.section.title)") }), sender: self)
+            } else if let provider = menuItem.scene?.vcProvider {
                 let result = provider()
                 TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
                     "menuItem": menuItem.description,
@@ -251,6 +263,7 @@ private extension LXOutlineVC {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
             guard let self else { return nil }
+            dlog("-->sectionIdx: \(sectionIdx)")
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
@@ -271,14 +284,27 @@ private extension LXOutlineVC {
             let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
                                                                             elementKind: LXOutlineVC.sectionFooterElementKind,
                                                                             alignment: .bottomTrailing)
-            let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            let section: NSCollectionLayoutSection
+            if case .subitem = self.menuItems[sectionIdx] {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                // <#item#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(44))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitems: [item])
+                // <#group#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                section = NSCollectionLayoutSection(group: group)
+            } else {
+                section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            }
             // section.contentInsets = .zero
             section.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10, bottom: 10, trailing: 10)
             // sectionHeader.pinToVisibleBounds = true
             // sectionHeader.zIndex = 2
             section.decorationItems = [bgDecoration]
             // section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
-
             return section
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -322,7 +348,7 @@ private extension LXOutlineVC {
             case .sidebar, .sidebarPlain: cell.accessories = []
             default: cell.accessories = [.disclosureIndicator()]
             }
-            var bgConfig = UIBackgroundConfiguration.clear()
+            let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
@@ -334,7 +360,7 @@ private extension LXOutlineVC {
             }
         }
         dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
-            return opt != DJTestRouter.routerOthers
+            return !DJTestRouter.expandedSectionList.contains([opt])
         }
         // dataSource.sectionSnapshotHandlers.willExpandItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
@@ -415,7 +441,7 @@ private extension LXOutlineVC {
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
                 addItems(&snapshot2, menuItems: subitems, to: menuItem)
-                if menuItem == DJTestRouter.routerOthers || menuItem == DJTestRouter.routerDJTest {
+                if DJTestRouter.expandedSectionList.contains([menuItem]) {
                     expandList[menuItem] = snapshot2
                 }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
@@ -423,12 +449,12 @@ private extension LXOutlineVC {
                 snapshot.appendItems([menuItem])
                 break
             }
-            dataSource.apply(snapshot, animatingDifferences: true)
-            for (key, value) in expandList {
-                var tmp = value
-                tmp.expand([key])
-                dataSource.apply(tmp, to: key, animatingDifferences: true)
-            }
+        }
+        dataSource.apply(snapshot, animatingDifferences: true)
+        for (key, value) in expandList {
+            var tmp = value
+            tmp.expand([key])
+            dataSource.apply(tmp, to: key, animatingDifferences: true)
         }
     }
     func refreshCollectionView() {
