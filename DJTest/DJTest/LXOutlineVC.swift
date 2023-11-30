@@ -41,6 +41,11 @@ public struct DJTestRouter {
         .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
     ])
+    static let routerOthers: LXOutlineOpt = .outline(title: "Others", subitems: [
+        DJTestRouter.routerDJSwiftModule,
+        DJTestRouter.routerDynamicIsland,
+        DJTestRouter.routerItem,
+    ])
 }
 
 @available(iOS 14.0, *)
@@ -70,9 +75,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
-            DJTestRouter.routerDJSwiftModule,
-            DJTestRouter.routerDynamicIsland,
-            DJTestRouter.routerItem,
+            DJTestRouter.routerOthers,
         ]
     }()
     // @available(iOS 13.0, *)
@@ -330,6 +333,9 @@ private extension LXOutlineVC {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
+        dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
+            return opt != DJTestRouter.routerOthers
+        }
         // dataSource.sectionSnapshotHandlers.willExpandItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
         // }
@@ -399,6 +405,7 @@ private extension LXOutlineVC {
         var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
         snapshot.appendSections(self.menuItems)
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
+        var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
         for menuItem in self.menuItems {
             switch menuItem {
             case .outline(_, _, let subitems, _):
@@ -408,12 +415,20 @@ private extension LXOutlineVC {
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
                 addItems(&snapshot2, menuItems: subitems, to: menuItem)
+                if menuItem == DJTestRouter.routerOthers || menuItem == DJTestRouter.routerDJTest {
+                    expandList[menuItem] = snapshot2
+                }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
             case .subitem:
                 snapshot.appendItems([menuItem])
                 break
             }
             dataSource.apply(snapshot, animatingDifferences: true)
+            for (key, value) in expandList {
+                var tmp = value
+                tmp.expand([key])
+                dataSource.apply(tmp, to: key, animatingDifferences: true)
+            }
         }
     }
     func refreshCollectionView() {
