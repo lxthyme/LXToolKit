@@ -167,7 +167,7 @@ private extension LXOutlineVC {
     func gotoAutoJumpRouteScene() {
         let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
         guard let type = DJTestType.fromInt(idx: route1Int),
-              let item = self.menuItems.first(where: { $0.title == type.title }) else {
+              let item = self.menuItems.first(where: { $0.section.title == type.title }) else {
             dlog("-->gotoScene error on scene[1]")
             TingYunManager.reportEvent(name: "restore Route1 failure", properties: [
                 "route1Int": "\(route1Int)",
@@ -200,7 +200,7 @@ private extension LXOutlineVC {
         if let vc = vc as? LXToolKitTestVC {
             let itemOpt: LXOutlineOpt
             do {
-                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.title == route2 })
+                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.section.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
                 TingYunManager.reportEvent(name: "kit scene not found", properties: [
@@ -223,7 +223,7 @@ private extension LXOutlineVC {
         } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
             var itemOpt: LXOutlineOpt
             do {
-                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.title == route2 })
+                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.section.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
                 TingYunManager.reportEvent(name: "objc scene not found", properties: [
@@ -296,7 +296,7 @@ private extension LXOutlineVC {
         let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = "\(menuItem.title)."
+            contentConfig.text = "\(menuItem.section.title)."
             // contentConfig.textProperties.color = .black
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
@@ -314,7 +314,7 @@ private extension LXOutlineVC {
             // Populate the cell with our item description.
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = menuItem.title
+            contentConfig.text = menuItem.section.title
             // contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
 
@@ -344,11 +344,11 @@ private extension LXOutlineVC {
         // }
         let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionHeaderElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - header")
+            supplementaryView.dataFill("\(model.section.title) - header")
         }
         let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionFooterElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - footer")
+            supplementaryView.dataFill("\(model.section.title) - footer")
         }
         dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
             dlog("-->elementKind: \(elementKind)")

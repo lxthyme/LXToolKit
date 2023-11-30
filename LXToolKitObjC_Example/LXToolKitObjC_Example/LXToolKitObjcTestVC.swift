@@ -64,7 +64,7 @@ private extension LXToolKitObjCTestSwiftVC {
     func generateDataSource() -> UICollectionViewDiffableDataSource<String, LXOutlineOpt> {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, opt in
             var config = cell.defaultContentConfiguration()
-            config.text = opt.title
+            config.text = opt.section.title
             cell.contentConfiguration = config
         }
         // collectionView.register(<#LXBadgeSupplementaryView#>.self, forSupplementaryViewOfKind: <#ViewController.sectionFooterElementKind#>, withReuseIdentifier: <#LXBadgeSupplementaryView#>.xl.xl_identifier)

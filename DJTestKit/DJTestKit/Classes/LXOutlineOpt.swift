@@ -12,7 +12,7 @@ public enum LXSection {
     case main
     case section(title: String)
 
-    var title: String {
+    public var title: String {
         switch self {
         case .main:
             return "main"
@@ -25,10 +25,10 @@ public enum LXOutlineOpt {
     case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
     case subitem(_ section: LXSection, scene: Navigator.Scene? = nil, uuid: UUID = UUID())
 
-    public var title: String {
+    public var section: LXSection {
         switch self {
         case .outline(let section, _, _, _), .subitem(let section, _, _):
-            return section.title
+            return section
         }
     }
     public var subitems: [LXOutlineOpt]? {

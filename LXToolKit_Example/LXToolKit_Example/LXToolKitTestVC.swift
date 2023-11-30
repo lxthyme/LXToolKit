@@ -46,7 +46,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = scene.title
+            content.text = scene.section.title
             content.textProperties.color = .black
             // content.secondaryText = "\(scene.info.desc)"
             cell.contentConfiguration = content
