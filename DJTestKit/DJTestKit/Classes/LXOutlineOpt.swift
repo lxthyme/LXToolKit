@@ -10,22 +10,36 @@ import LXToolKit
 
 public enum LXSection {
     case main
-}
-public enum LXOutlineOpt {
-    case outline(title: String, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
-    case subitem(title: String, scene: Navigator.Scene? = nil, uuid: UUID = UUID())
+    case section(title: String)
 
     public var title: String {
         switch self {
-        case .outline(let title, _, _, _), .subitem(let title, _, _):
+        case .main:
+            return "main"
+        case .section(let title):
             return title
+        }
+    }
+}
+
+// MARK: - 👀
+extension LXSection: Equatable {}
+
+public enum LXOutlineOpt {
+    case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
+    case subitem(_ section: LXSection, scene: Navigator.Scene? = nil, uuid: UUID = UUID())
+
+    public var section: LXSection {
+        switch self {
+        case .outline(let section, _, _, _), .subitem(let section, _, _):
+            return section
         }
     }
     public var subitems: [LXOutlineOpt]? {
         switch self {
         case .outline(_, _, let subitems, _):
             return subitems
-        case .subitem(let title, _, _):
+        case .subitem(_, _, _):
             return nil
         }
     }
@@ -43,10 +57,10 @@ public enum LXOutlineOpt {
 extension LXOutlineOpt: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .outline(let title, _, let subitems, let uuid):
-            hasher.combine("[outline]\(title)_\(uuid)")
-        case .subitem(let title, let vc, let uuid):
-            hasher.combine("[subitem]\(title)_\(uuid)")
+        case .outline(let section, _, let subitems, let uuid):
+            hasher.combine("[outline]\(section.title)_\(uuid)")
+        case .subitem(let section, let vc, let uuid):
+            hasher.combine("[subitem]\(section.title)_\(uuid)")
         }
     }
     public static func == (lhs: LXOutlineOpt, rhs: LXOutlineOpt) -> Bool {
@@ -86,10 +100,10 @@ public extension LXOutlineOpt {
 extension LXOutlineOpt: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .outline(let title, let scene, let subitems, let uuid):
-            return ".outline(title: \(title), scene: \(scene), subitems: \(subitems))"
-        case .subitem(let title, let scene, let uuid):
-            return ".subitem(title: \(title), scene: \(scene))"
+        case .outline(let section, let scene, let subitems, let uuid):
+            return ".outline(\(section.title), scene: \(scene?.description ?? ""), subitems: \(subitems))"
+        case .subitem(let section, let scene, let uuid):
+            return ".subitem(\(section.title), scene: \(scene?.description ?? ""))"
         }
     }
 }

@@ -27,7 +27,7 @@ enum Keys {
     }
 }
 
-struct AppConfig {
+public struct AppConfig {
     struct App {
         static let githubUrl = "https://github.com/khoren93/SwiftHub"
         static let githubScope = "user+repo+notifications+read:org"
@@ -58,6 +58,9 @@ struct AppConfig {
         static let textFieldHeight: CGFloat = 40
         static let tableRowHeight: CGFloat = 36
         static let segmentedControlHeight: CGFloat = 40
+    }
+    public struct TingYun {
+        public static let AppKey = "d3dce7e7bc664cea81e4b7fd7c12fad1"
     }
 
     struct Path {

@@ -185,12 +185,13 @@ open class Navigator {
 extension Navigator.Scene: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .openURL(let url, let inWebView, let transition):
-            return ".openURL(url :\(url), inWebView: \(inWebView), transition: \(transition))"
-        case .vc(let provider, let transition):
-            return ".vc(provider: \(provider), transition: \(transition))"
-        case .vcString(let vcString, let transition):
-            return ".vcString(vcString: \(vcString), transition: \(transition))"
+        case .openURL(let url, let inWebView, _):
+            /// , transition: \(transition))
+            return ".openURL(url[\(inWebView)] :\(url))"
+        case .vc(let provider, _):
+            return ".vc(provider: \(provider))"
+        case .vcString(let vcString, _):
+            return ".vcString(vcString: \(vcString))"
         }
     }
 }

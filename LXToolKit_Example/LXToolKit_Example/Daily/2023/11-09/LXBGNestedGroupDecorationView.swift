@@ -6,11 +6,11 @@
 //
 import UIKit
 
-class LXBGNestedGroupDecorationView: UICollectionReusableView {
+open class LXBGNestedGroupDecorationView: UICollectionReusableView {
     // MARK: 📌UI
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     // MARK: 🔗Vaiables
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
 
         prepareUI()

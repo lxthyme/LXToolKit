@@ -14,35 +14,43 @@ import LXToolKit
 
 @available(iOS 14.0, *)
 public struct DJTestRouter {
-    static let router233: LXOutlineOpt = .outline(title: "Section 1", subitems: [
-        .subitem(title: "Item 1 - 1", scene: .vc(provider: { UIViewController() })),
-        .outline(title: "Section 2", subitems: [
-            .subitem(title: "Item 2 - 1", scene: .vc(provider: { UIViewController() })),
-            .subitem(title: "Item 2 - 2", scene: .vc(provider: { UIViewController() })),
+    static let expandedSectionList: [LXOutlineOpt] = [
+        DJTestRouter.routerDJTest,
+    ]
+    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"))
+    static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
+        .subitem(.section(title: "Item 1 - 1")),
+        .outline(.section(title: "Section 2"), subitems: [
+            .subitem(.section(title: "Item 2 - 1")),
+            .outline(.section(title: "Section 3"), subitems: [
+                .subitem(.section(title: "Item 3 - 1")),
+                .outline(.section(title: "Section 4"), subitems: [
+                    .subitem(.section(title: "Item 4 - 1")),
+                    .subitem(.section(title: "Item 4 - 2")),
+                ]),
+                .subitem(.section(title: "Item 3 - 2")),
+            ]),
+            .subitem(.section(title: "Item 2 - 2")),
         ]),
-        .subitem(title: "Item 1 - 2", scene: .vc(provider: { UIViewController() })),
+        .subitem(.section(title: "Item 1 - 2")),
     ])
-    static let routerDJSwiftModule: LXOutlineOpt = .outline(title: "DJSwiftModule", subitems: [
-        .subitem(title: "DJSwiftModule", scene: .vc(provider: {
-            DJTestType.DJSwiftModule.updateRouter(vcName: "")
-            let window = UIApplication.XL.keyWindow
-            Application.shared.presentInitialScreen(in: window)
-            return nil
-        })),
-    ])
-    static let routerDynamicIsland: LXOutlineOpt = .outline(title: "dynamicIsland", subitems: [
-        .subitem(title: "dynamicIsland", scene: .vc(provider: {
-            if #available(iOS 16.2, *) {
-                UIHostingController(rootView: EmojiRangersView())
-            } else {
-                // Fallback on earlier versions
-                LXNonSupportedVC(title: "当前设备不支持灵动岛!")
-            }
-        })),
-    ])
-    static let routerDJTest: LXOutlineOpt = .outline(title: "DJTest", subitems: [
-        .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
-        .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
+    static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
+        DJTestType.DJSwiftModule.updateRouter(vcName: "")
+        let window = UIApplication.XL.keyWindow
+        Application.shared.presentInitialScreen(in: window)
+        return nil
+    }))
+    static let routerDynamicIsland: LXOutlineOpt = .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
+        if #available(iOS 16.2, *) {
+            UIHostingController(rootView: EmojiRangersView())
+        } else {
+            // Fallback on earlier versions
+            LXUnSupportedVC(title: "当前设备不支持灵动岛!")
+        }
+    }))
+    static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
+        .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
+        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
     ])
 }
 
@@ -61,20 +69,26 @@ class LXOutlineVC: LXBaseVC {
     }()
     private var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
+    private static let sectionHeaderElementKind = "sectionHeaderElementKind"
+    private static let sectionFooterElementKind = "sectionFooterElementKind"
+    private static let sectionBackgroundDecorationElementKind = "sectionBackgroundDecorationElementKind"
+    private var isFirstAppearing = true
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
-            // DJTestRouter.router233,
+            DJTestRouter.router233,
+            DJTestRouter.routerItem,
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
+            /// Others
             DJTestRouter.routerDJSwiftModule,
             DJTestRouter.routerDynamicIsland,
         ]
     }()
     // @available(iOS 13.0, *)
-    private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
+    // private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var appearance: UICollectionLayoutListConfiguration.Appearance = .plain
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
@@ -84,9 +98,14 @@ class LXOutlineVC: LXBaseVC {
         prepareCollectionView()
         prepareUI()
 
-        gotoAutoJumpRouteScene()
-
         startActivity()
+    }
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        if isFirstAppearing {
+            gotoAutoJumpRouteScene()
+        }
+        isFirstAppearing = false
     }
 
 }
@@ -128,9 +147,15 @@ private extension LXOutlineVC {
         guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
-            if let provider = menuItem.scene?.vcProvider {
+            if menuItem.section.title.hasPrefix("Section ") ||
+                menuItem.section.title.hasPrefix("Item ") {
+                Navigator.default.show(segue: .vc(provider: { LXUnSupportedVC(title: "\(menuItem.section.title)") }), sender: self)
+            } else if let provider = menuItem.scene?.vcProvider {
                 let result = provider()
-                dlog("-->vc: \(result)")
+                TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
+                    "menuItem": menuItem.description,
+                    "provider": result?.xl.typeNameString ?? ""
+                ])
             }
             return
         }
@@ -145,19 +170,29 @@ private extension LXOutlineVC {
         } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
             DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.typeNameString)
         } else {
-            fatalError("save AutoJumpRoute not found for \(menuItem)")
+            TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
+                "menuItem": menuItem.description,
+            ])
+            // fatalError("save AutoJumpRoute not found for \(menuItem)")
         }
     }
     func gotoAutoJumpRouteScene() {
         let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
         guard let type = DJTestType.fromInt(idx: route1Int),
-              let item = self.menuItems.first(where: { $0.title == type.title }) else {
+              let item = self.menuItems.first(where: { $0.section.title == type.title }) else {
             dlog("-->gotoScene error on scene[1]")
+            TingYunManager.reportEvent(name: "restore Route1 failure", properties: [
+                "route1Int": "\(route1Int)",
+            ])
             return
         }
         let scene = item.scene != nil ? item.scene : item.subitems?.first?.scene
         guard let scene else {
             dlog("-->gotoScene error on scene[2]")
+            TingYunManager.reportEvent(name: "restore scene failure", properties: [
+                "route1": type.title,
+                "scene": scene?.description ?? ""
+            ])
             return
         }
         let vc: UIViewController?
@@ -177,10 +212,13 @@ private extension LXOutlineVC {
         if let vc = vc as? LXToolKitTestVC {
             let itemOpt: LXOutlineOpt
             do {
-                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.title == route2 })
+                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.section.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
-                itemOpt = .subitem(title: "LXToolKit_Example." + route2,
+                TingYunManager.reportEvent(name: "kit scene not found", properties: [
+                    "route2": route2
+                ])
+                itemOpt = .subitem(.section(title: "LXToolKit_Example.\(route2)"),
                                    scene: .vcString(vcString:
                                                         "LXToolKit_Example." +
                                                     // "LXOutlineVC"
@@ -197,10 +235,13 @@ private extension LXOutlineVC {
         } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
             var itemOpt: LXOutlineOpt
             do {
-                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.title == route2 })
+                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.section.title == route2 })
             } catch {
                 dlog("-->error: \(error)")
-                itemOpt = .subitem(title: "",
+                TingYunManager.reportEvent(name: "objc scene not found", properties: [
+                    "route2": route2
+                ])
+                itemOpt = .subitem(.section(title: "LXToolKitObjC.\(route2)"),
                                    scene: .vcString(vcString: "LXToolKitObjc_Example" +
                                                     // "LXLabelTestVC"
                                                     // "LXPopTestVC"
@@ -222,18 +263,54 @@ private extension LXOutlineVC {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
             guard let self else { return nil }
+            dlog("-->sectionIdx: \(sectionIdx)")
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
 
-            let section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
-            // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+            let bgDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
+            bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
 
+            // layout.register(LXSectionBgDecorationView.self, forDecorationViewOfKind: LXSectionDecorationVC.sectionBackgroundDecorationElementKind)
+
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                    heightDimension: .estimated(44.0))
+            let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                    heightDimension: .estimated(44.0))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                            elementKind: LXOutlineVC.sectionHeaderElementKind,
+                                                                            alignment: .topLeading)
+            let sectionFooter = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
+                                                                            elementKind: LXOutlineVC.sectionFooterElementKind,
+                                                                            alignment: .bottomTrailing)
+            let section: NSCollectionLayoutSection
+            if case .subitem = self.menuItems[sectionIdx] {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                // <#item#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(44))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitems: [item])
+                // <#group#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                section = NSCollectionLayoutSection(group: group)
+            } else {
+                section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            }
+            // section.contentInsets = .zero
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10, bottom: 10, trailing: 10)
+            // sectionHeader.pinToVisibleBounds = true
+            // sectionHeader.zIndex = 2
+            section.decorationItems = [bgDecoration]
+            // section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
             return section
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        layout.register(LXBGNestedGroupDecorationView.self, forDecorationViewOfKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
+        return layout
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
@@ -245,7 +322,7 @@ private extension LXOutlineVC {
         let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = menuItem.title
+            contentConfig.text = "\(menuItem.section.title)."
             // contentConfig.textProperties.color = .black
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
@@ -255,14 +332,15 @@ private extension LXOutlineVC {
                 // .outlineDisclosure(options: disclosureOpt)
                 .outlineDisclosure()
             ]
-            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+            var bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
             guard let self else { return }
             // Populate the cell with our item description.
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = menuItem.title
+            contentConfig.text = menuItem.section.title
             // contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
 
@@ -270,6 +348,8 @@ private extension LXOutlineVC {
             case .sidebar, .sidebarPlain: cell.accessories = []
             default: cell.accessories = [.disclosureIndicator()]
             }
+            let bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
         }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
@@ -279,23 +359,26 @@ private extension LXOutlineVC {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             }
         }
+        dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
+            return !DJTestRouter.expandedSectionList.contains([opt])
+        }
         // dataSource.sectionSnapshotHandlers.willExpandItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
         // }
         // dataSource.sectionSnapshotHandlers.willCollapseItem = {[weak self] opt in
         //     self?.gotoScene(by: opt.scene)
         // }
-        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionHeader) {[weak self] supplementaryView, elementKind, indexPath in
+        let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionHeaderElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - header")
+            supplementaryView.dataFill("\(model.section.title) - header")
         }
-        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: UICollectionView.elementKindSectionFooter) {[weak self] supplementaryView, elementKind, indexPath in
+        let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionFooterElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.title) - footer")
+            supplementaryView.dataFill("\(model.section.title) - footer")
         }
         dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
             dlog("-->elementKind: \(elementKind)")
-            return self?.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == UICollectionView.elementKindSectionHeader ? headerRegistration : footerRegistration, for: indexPath)
+            return self?.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == LXOutlineVC.sectionHeaderElementKind ? headerRegistration : footerRegistration, for: indexPath)
         }
         return dataSource
     }
@@ -329,42 +412,7 @@ private extension LXOutlineVC {
         }
         return snapshot
     }
-    func generateMultiSnapshot() -> [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] {
-        // var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-    
-        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
-            snapshot.append(menuItems, to: parent)
-    
-            // for menuItem in menuItems where menuItem.subitems.isNotEmpty {
-            //     addItems(menuItem.subitems, to: menuItem)
-            // }
-            for menuItem in menuItems {
-                switch menuItem {
-                case .outline(_, _, let subitems, _):
-                    addItems(&snapshot, menuItems: subitems, to: menuItem)
-                case .subitem:
-                    break
-                }
-            }
-        }
-    
-        var list: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
-        for menuItem in self.menuItems {
-            var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-            snapshot.append([menuItem])
-            snapshot .expand([menuItem])
-            switch menuItem {
-            case .outline(_, _, let subitems, _):
-                addItems(&snapshot, menuItems: subitems, to: menuItem)
-                // dataSource.apply(snapshot, to: menuItem, animatingDifferences: true)
-                list[menuItem] = snapshot
-            case .subitem:
-                break
-            }
-        }
-        return list
-    }
-    func generateMultiSnapshot2() {
+    func generateMultiSnapshot() {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
                 switch menuItem {
@@ -383,6 +431,7 @@ private extension LXOutlineVC {
         var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
         snapshot.appendSections(self.menuItems)
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
+        var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
         for menuItem in self.menuItems {
             switch menuItem {
             case .outline(_, _, let subitems, _):
@@ -392,33 +441,21 @@ private extension LXOutlineVC {
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
                 addItems(&snapshot2, menuItems: subitems, to: menuItem)
+                if DJTestRouter.expandedSectionList.contains([menuItem]) {
+                    expandList[menuItem] = snapshot2
+                }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
             case .subitem:
                 snapshot.appendItems([menuItem])
                 break
             }
-            dataSource.apply(snapshot, animatingDifferences: true)
         }
-    }
-    func generateMultiSnapshot3() {
-        let list = [
-            // LXToolKitRouter.kitRouter,
-            // LXToolKitObjcRouter.objcRouter,
-            DJTestRouter.routerDJTest,
-            // DJTestRouter.routerDJSwiftModule,
-            // DJTestRouter.routerDynamicIsland,
-        ]
-        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
-        snapshot.appendSections([DJTestRouter.routerDJTest])
-        snapshot.appendItems([DJTestRouter.routerDynamicIsland])
-        snapshot.appendItems([DJTestRouter.routerDJTest], toSection: DJTestRouter.routerDJTest)
-
-        var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-        snapshot2.append([DJTestRouter.routerDJTest])
-        snapshot2.append(DJTestRouter.routerDJTest.subitems ?? [], to: DJTestRouter.routerDJTest)
-        dataSource.apply(snapshot2, to: DJTestRouter.routerDJTest, animatingDifferences: true)
-
         dataSource.apply(snapshot, animatingDifferences: true)
+        for (key, value) in expandList {
+            var tmp = value
+            tmp.expand([key])
+            dataSource.apply(tmp, to: key, animatingDifferences: true)
+        }
     }
     func refreshCollectionView() {
         // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
@@ -426,10 +463,7 @@ private extension LXOutlineVC {
         // dlog("-->snapshot: \(snapshot)")
         // dataSource.apply(dataSource.snapshot(), animatingDifferences: true)
         // collectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: [])
-        let snapshotList = generateMultiSnapshot()
-        snapshotList.forEach {
-            self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
-        }
+        generateMultiSnapshot()
     }
     func generateNavRightItems() -> [UIBarButtonItem] {
         let subItems = [
@@ -489,18 +523,7 @@ extension LXOutlineVC {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
-            // let snapshotList = generateMultiSnapshot()
-            // snapshotList.forEach {
-            //     self.dataSource.apply($0.value, to: $0.key, animatingDifferences: true)
-            // }
-            generateMultiSnapshot2()
-            // generateMultiSnapshot3()
-            // let snapshot =
-            // // generateSnapshot()
-            // // generateMultiSnapshot2()
-            // dataSource.apply(snapshot, animatingDifferences: true)
-            // dlog("-->snapshot: \(snapshot.items)")
-            // self.dataSource.apply(snapshot, to: .main, animatingDifferences: true)
+            generateMultiSnapshot()
         } else {
             // Fallback on earlier versions
             collectionView = UICollectionView(frame: .zero)

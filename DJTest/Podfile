@@ -50,6 +50,9 @@ target 'DJTest' do
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
 
+  # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
+  pod 'tingyunApp', '2.17.3'
+
   pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   pod 'CocoaDebug', :configurations => ['Debug']
   # pod 'Bugly'

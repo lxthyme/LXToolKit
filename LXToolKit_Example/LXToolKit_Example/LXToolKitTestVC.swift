@@ -46,7 +46,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = scene.title
+            content.text = scene.section.title
             content.textProperties.color = .black
             // content.secondaryText = "\(scene.info.desc)"
             cell.contentConfiguration = content
@@ -119,7 +119,15 @@ open class LXToolKitTestVC: LXBaseTableVC {
         // testModel()
         // testTask()
         // testTaskGroup()
+        let imgResource = R.image.cusco
+        let img = imgResource()
+        dlog("img: \(img)")
+    }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+
         gotoScene(by: autoJumpRoute)
+        autoJumpRoute = nil
     }
 }
 
