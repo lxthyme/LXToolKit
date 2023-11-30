@@ -14,22 +14,22 @@ import LXToolKit
 
 @available(iOS 14.0, *)
 public struct DJTestRouter {
-    static let routerItem: LXOutlineOpt = .subitem(title: "Item 1 - 1", scene: .vc(provider: { LXNonSupportedVC(title: "Test Item") }))
-    static let router233: LXOutlineOpt = .outline(title: "Section 1", subitems: [
-        .subitem(title: "Item 1 - 1", scene: .vc(provider: { UIViewController() })),
-        .outline(title: "Section 2", subitems: [
-            .subitem(title: "Item 2 - 1", scene: .vc(provider: { UIViewController() })),
-            .subitem(title: "Item 2 - 2", scene: .vc(provider: { UIViewController() })),
+    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"), scene: .vc(provider: { LXNonSupportedVC(title: "Test Item") }))
+    static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
+        .subitem(.section(title: "Item 1 - 1"), scene: .vc(provider: { UIViewController() })),
+        .outline(.section(title: "Section 2"), subitems: [
+            .subitem(.section(title: "Item 2 - 1"), scene: .vc(provider: { UIViewController() })),
+            .subitem(.section(title: "Item 2 - 2"), scene: .vc(provider: { UIViewController() })),
         ]),
-        .subitem(title: "Item 1 - 2", scene: .vc(provider: { UIViewController() })),
+        .subitem(.section(title: "Item 1 - 2"), scene: .vc(provider: { UIViewController() })),
     ])
-    static let routerDJSwiftModule: LXOutlineOpt = .subitem(title: "DJSwiftModule", scene: .vc(provider: {
+    static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
         DJTestType.DJSwiftModule.updateRouter(vcName: "")
         let window = UIApplication.XL.keyWindow
         Application.shared.presentInitialScreen(in: window)
         return nil
     }))
-    static let routerDynamicIsland: LXOutlineOpt = .subitem(title: "dynamicIsland", scene: .vc(provider: {
+    static let routerDynamicIsland: LXOutlineOpt = .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
         if #available(iOS 16.2, *) {
             UIHostingController(rootView: EmojiRangersView())
         } else {
@@ -37,11 +37,11 @@ public struct DJTestRouter {
             LXNonSupportedVC(title: "当前设备不支持灵动岛!")
         }
     }))
-    static let routerDJTest: LXOutlineOpt = .outline(title: "DJTest", subitems: [
-        .subitem(title: "LXAMapTestVC", scene: .vc(provider: { LXAMapTestVC() })),
-        .subitem(title: "LXOutlineVC", scene: .vc(provider: { LXOutlineVC() })),
+    static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
+        .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
+        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
     ])
-    static let routerOthers: LXOutlineOpt = .outline(title: "Others", subitems: [
+    static let routerOthers: LXOutlineOpt = .outline(.section(title: "Others"), subitems: [
         DJTestRouter.routerDJSwiftModule,
         DJTestRouter.routerDynamicIsland,
         DJTestRouter.routerItem,
@@ -206,7 +206,7 @@ private extension LXOutlineVC {
                 TingYunManager.reportEvent(name: "kit scene not found", properties: [
                     "route2": route2
                 ])
-                itemOpt = .subitem(title: "LXToolKit_Example." + route2,
+                itemOpt = .subitem(.section(title: "LXToolKit_Example.\(route2)"),
                                    scene: .vcString(vcString:
                                                         "LXToolKit_Example." +
                                                     // "LXOutlineVC"
@@ -229,7 +229,7 @@ private extension LXOutlineVC {
                 TingYunManager.reportEvent(name: "objc scene not found", properties: [
                     "route2": route2
                 ])
-                itemOpt = .subitem(title: "",
+                itemOpt = .subitem(.section(title: "LXToolKitObjC.\(route2)"),
                                    scene: .vcString(vcString: "LXToolKitObjc_Example" +
                                                     // "LXLabelTestVC"
                                                     // "LXPopTestVC"
