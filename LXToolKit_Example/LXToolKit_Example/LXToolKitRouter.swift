@@ -46,6 +46,14 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXActionSheetTestVC"), scene: .vc(provider: { LXActionSheetTestVC() })),
         .subitem(.section(title: "LXTableTestVC"), scene: .vc(provider: { LXTableTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
         .subitem(.section(title: "LXCollectionVC"), scene: .vc(provider: { LXCollectionVC() })),
+        .subitem(.section(title: "LXAccessoryListVC"), scene: .vc(provider: {
+            if #available(iOS 16.0, *) {
+                LXAccessoryListVC()
+            } else {
+                // Fallback on earlier versions
+                LXUnSupportedVC(title: "UICellAccessory")
+            }
+        })),
     ].reversed())
     static let routerWWWDC: LXOutlineOpt = .outline(.section(title: "WWDC"), subitems: [
         .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
