@@ -25,6 +25,18 @@ public enum LXSection {
 // MARK: - 👀
 extension LXSection: Equatable {}
 
+// MARK: - 👀
+extension LXSection: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .main:
+            hasher.combine(".main")
+        case .section(let title):
+            hasher.combine(".section(\(title)")
+        }
+    }
+}
+
 public enum LXOutlineOpt {
     case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
     case subitem(_ section: LXSection, scene: Navigator.Scene? = nil, uuid: UUID = UUID())

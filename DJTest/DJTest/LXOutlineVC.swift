@@ -149,7 +149,12 @@ private extension LXOutlineVC {
             // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
             if menuItem.section.title.hasPrefix("Section ") ||
                 menuItem.section.title.hasPrefix("Item ") {
-                Navigator.default.show(segue: .vc(provider: { LXUnSupportedVC(title: "\(menuItem.section.title)") }), sender: self)
+
+                Navigator.default.show(segue: .vc(provider: {
+                    let vc = LXUnSupportedVC(title: "\(menuItem.section.title)")
+                    vc.title = menuItem.section.title
+                    return vc
+                }), sender: self)
             } else if let provider = menuItem.scene?.vcProvider {
                 let result = provider()
                 TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
@@ -159,6 +164,7 @@ private extension LXOutlineVC {
             }
             return
         }
+        vc.title = menuItem.section.title
         if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
             DJTestType.DJSwiftModule.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
@@ -268,12 +274,12 @@ private extension LXOutlineVC {
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
-
+        
             let bgDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
             bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-
+        
             // layout.register(LXSectionBgDecorationView.self, forDecorationViewOfKind: LXSectionDecorationVC.sectionBackgroundDecorationElementKind)
-
+        
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                     heightDimension: .estimated(44.0))
             let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -327,12 +333,12 @@ private extension LXOutlineVC {
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
 
-            // let disclosureOpt = UICellAccessory.OutlineDisclosureOptions(style: .header)
+            let disclosureOpt = UICellAccessory.OutlineDisclosureOptions(style: .header)
             cell.accessories = [
-                // .outlineDisclosure(options: disclosureOpt)
-                .outlineDisclosure()
+                .outlineDisclosure(options: disclosureOpt)
+                // .outlineDisclosure()
             ]
-            var bgConfig = UIBackgroundConfiguration.clear()
+            let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
@@ -412,6 +418,19 @@ private extension LXOutlineVC {
         }
         return snapshot
     }
+    // func initialSnapshot(outline: [LXOutlineOpt]) -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
+    //     var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+    // 
+    //     func addItems(_ menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
+    //         snapshot.append(menuItems, to: parent)
+    //         for menuItem in menuItems where (menuItem.subitems ?? []).isNotEmpty {
+    //             addItems(menuItem.subitems ?? [], to: menuItem)
+    //         }
+    //     }
+    // 
+    //     addItems(outline, to: nil)
+    //     return snapshot
+    // }
     func generateMultiSnapshot() {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
@@ -436,7 +455,7 @@ private extension LXOutlineVC {
             switch menuItem {
             case .outline(_, _, let subitems, _):
                 snapshot.appendItems([menuItem], toSection: menuItem)
-
+        
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
@@ -502,6 +521,16 @@ private extension LXOutlineVC {
 
 @available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
+    // func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    //     guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return true }
+    //     // let dataSnapt = dataSource.sectionIdentifier(for: <#T##Int#>)
+    //     if let section = dataSource.sectionIdentifier(for: indexPath.section) {
+    //         let snapshot = dataSource.snapshot(for: section)
+    //         let t = snapshot.items.map { $0.section.title }
+    //         dlog("-->snapshot: \(snapshot)")
+    //     }
+    //     return false
+    // }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
