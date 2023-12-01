@@ -7,6 +7,7 @@
 import UIKit
 import DJTestKit
 import LXToolKit
+import Toast_Swift
 
 @available(iOS 16.0, *)
 enum LXAccessoryOpt {
@@ -148,8 +149,10 @@ private extension LXAccessoryListVC {
         }()
         let customViewConfiguration: UICellAccessory.CustomViewConfiguration = .init(
             customView: labCustom,
-            placement: .leading(displayed: .always, at: { accessories in
-                dlog("-->customViewConfiguration: \(accessories)")
+            placement: .leading(displayed: .always, at: {[weak self] accessories in
+                let msg = "-->customViewConfiguration: \(accessories)"
+                dlog(msg)
+                self?.view.makeToast(msg)
                 return 0
             }),
             isHidden: isHidden,
@@ -163,16 +166,22 @@ private extension LXAccessoryListVC {
             //     dlog("-->detail")
             // }),
             .checkmark(displayed: displayedState, options: checkmarkOptions),
-            .delete(displayed: .always, options: deleteOptions, actionHandler: {
-                dlog("-->delete")
+            .delete(displayed: .always, options: deleteOptions, actionHandler: {[weak self] in
+                let msg = "-->delete"
+                dlog(msg)
+                self?.view.makeToast(msg)
             }),
-            .insert(displayed: displayedState, options: insertOptions, actionHandler: {
-                dlog("-->insert")
+            .insert(displayed: displayedState, options: insertOptions, actionHandler: {[weak self] in
+                let msg = "-->insert"
+                dlog(msg)
+                self?.view.makeToast(msg)
             }),
             .reorder(displayed: displayedState, options: reorderOptions),
             .multiselect(displayed: displayedState, options: multiselectOptions),
-            .outlineDisclosure(displayed: displayedState, options: outlineDisclosureOptions, actionHandler: {
-                dlog("-->outlineDisclosure")
+            .outlineDisclosure(displayed: displayedState, options: outlineDisclosureOptions, actionHandler: {[weak self] in
+                let msg = "-->outlineDisclosure"
+                dlog(msg)
+                self?.view.makeToast(msg)
             }),
             // .popUpMenu(menu, displayed: .always, options: popUpMenuOptions, selectedElementDidChangeHandler: { menu in
             //     dlog("-->popUpMenu: \(menu)")
@@ -187,8 +196,10 @@ private extension LXAccessoryListVC {
                 reservedLayoutWidth: reservedLayoutWidth,
                 tintColor: tintColor
             )
-            let detailItem: UICellAccessoryEnum = .detail(displayed: .always, options: detailOptions, actionHandler: {
-                dlog("-->detail")
+            let detailItem: UICellAccessoryEnum = .detail(displayed: .always, options: detailOptions, actionHandler: {[weak self] in
+                let msg = "-->detail"
+                dlog(msg)
+                self?.view.makeToast(msg)
             })
             list.append(detailItem)
         }
@@ -198,20 +209,30 @@ private extension LXAccessoryListVC {
                 subtitle: "Subtitle 1",
                 options: .displayAsPalette,
                 children: [
-                    UIAction(title: "Item 1", handler: { _ in
-                        dlog("-->Item 1")
+                    UIAction(title: "Item 1", handler: {[weak self] _ in
+                        let msg = "-->Item 1"
+                        dlog(msg)
+                        self?.view.makeToast(msg)
                     }),
-                    UIAction(title: "Item 2", handler: { _ in
-                        dlog("-->Item 2")
+                    UIAction(title: "Item 2", handler: {[weak self] _ in
+                        let msg = "-->Item 2"
+                        dlog(msg)
+                        self?.view.makeToast(msg)
                     }),
-                    UIAction(title: "Item 3", handler: { _ in
-                        dlog("-->Item 3")
+                    UIAction(title: "Item 3", handler: {[weak self] _ in
+                        let msg = "-->Item 3"
+                        dlog(msg)
+                        self?.view.makeToast(msg)
                     }),
-                    UIAction(title: "Item 4", handler: { _ in
-                        dlog("-->Item 4")
+                    UIAction(title: "Item 4", handler: {[weak self] _ in
+                        let msg = "-->Item 4"
+                        dlog(msg)
+                        self?.view.makeToast(msg)
                     }),
-                    UIAction(title: "Item 5", handler: { _ in
-                        dlog("-->Item 5")
+                    UIAction(title: "Item 5", handler: {[weak self] _ in
+                        let msg = "-->Item 5"
+                        dlog(msg)
+                        self?.view.makeToast(msg)
                     }),
                 ]
             )
@@ -220,8 +241,10 @@ private extension LXAccessoryListVC {
                 reservedLayoutWidth: reservedLayoutWidth,
                 tintColor: tintColor
             )
-            let item: UICellAccessoryEnum = .popUpMenu(menu, displayed: .always, options: popUpMenuOptions, selectedElementDidChangeHandler: { menu in
-                dlog("-->popUpMenu: \(menu)")
+            let item: UICellAccessoryEnum = .popUpMenu(menu, displayed: .always, options: popUpMenuOptions, selectedElementDidChangeHandler: {[weak self] menu in
+                let msg = "-->popUpMenu: \(menu)"
+                dlog(msg)
+                self?.view.makeToast(msg)
             })
             list.append(item)
         }
@@ -290,6 +313,18 @@ private extension LXAccessoryListVC {
         snapshot.appendSections([section])
         snapshot.appendItems(dataList, toSection: section)
         return snapshot
+    }
+}
+
+// MARK: - 👀
+@available(iOS 16.0, *)
+extension LXAccessoryListVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let msg = "\(item)"
+        dlog(msg)
+        self.view.makeToast(msg)
     }
 }
 
