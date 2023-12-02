@@ -45,7 +45,7 @@ public struct DJTestRouter {
             UIHostingController(rootView: EmojiRangersView())
         } else {
             // Fallback on earlier versions
-            LXUnSupportedVC(title: "当前设备不支持灵动岛!")
+            LXUnSupportedVC(msg: "当前设备不支持灵动岛!")
         }
     }))
     static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
@@ -151,7 +151,7 @@ private extension LXOutlineVC {
                 menuItem.section.title.hasPrefix("Item ") {
 
                 Navigator.default.show(segue: .vc(provider: {
-                    let vc = LXUnSupportedVC(title: "\(menuItem.section.title)")
+                    let vc = LXUnSupportedVC(msg: "\(menuItem.section.title)")
                     vc.title = menuItem.section.title
                     return vc
                 }), sender: self)
