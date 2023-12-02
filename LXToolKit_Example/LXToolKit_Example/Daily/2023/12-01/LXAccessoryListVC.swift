@@ -9,30 +9,30 @@ import DJTestKit
 import LXToolKit
 import Toast_Swift
 
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 enum LXAccessoryOpt {
-    case outline(_ section: LXSection, accessory: UICellAccessory, subitems: [LXAccessoryOpt], uuid: UUID = UUID())
-    case subitems(_ section: LXSection, accessory: UICellAccessory, uuid: UUID = UUID())
+    case outline(_ section: LXSection, accessory: UICellAccessoryEnum, subitems: [LXAccessoryOpt])
+    case subitems(_ section: LXSection, accessory: UICellAccessoryEnum)
 
     var section: LXSection {
         switch self {
-        case .outline(let section, _, _, _):
+        case .outline(let section, _, _):
             return section
-        case .subitems(let section, _, _):
+        case .subitems(let section, _):
             return section
         }
     }
-    var accessory: UICellAccessory {
+    var accessory: UICellAccessoryEnum {
         switch self {
-        case .outline(_, let accessory, _, _):
+        case .outline(_, let accessory, _):
             return accessory
-        case .subitems(_, let accessory, _):
+        case .subitems(_, let accessory):
             return accessory
         }
     }
     var subitems: [LXAccessoryOpt]? {
         switch self {
-        case .outline(let _, let _, let subitems, _):
+        case .outline(let _, let _, let subitems):
             return subitems
         case .subitems:
             return nil
@@ -41,22 +41,35 @@ enum LXAccessoryOpt {
 }
 
 // MARK: - 👀
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 extension LXAccessoryOpt: Hashable {
     static func == (lhs: LXAccessoryOpt, rhs: LXAccessoryOpt) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
     func hash(into hasher: inout Hasher) {
         switch self {
-        case .outline(let section, let accessory, let subitems, let uuid):
-            hasher.combine("\(section)_\(accessory)_subitems: \(subitems)__\(uuid)")
-        case .subitems(let section, let accessory, let uuid):
-            hasher.combine("\(section)_\(accessory)___\(uuid)")
+        case .outline(let section, let accessory, let subitems):
+            hasher.combine("\(section)_\(accessory)_subitems: \(subitems)")
+        case .subitems(let section, let accessory):
+            hasher.combine("\(section)_\(accessory)")
         }
     }
 }
 
-@available(iOS 14.0, *)
+// MARK: - 👀
+@available(iOS 16.0, *)
+extension LXAccessoryOpt: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .outline(let section, let accessory, let subitems):
+            return ".outline(\(section), accessory: \(accessory), subitems: \(subitems))"
+        case .subitems(let section, let accessory):
+            return ".subitems(\(section), accessory: \(accessory))"
+        }
+    }
+}
+
+@available(iOS 16.0, *)
 class LXAccessoryListVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -64,7 +77,7 @@ class LXAccessoryListVC: LXBaseVC {
     private static let sectionHeaderElementKind = "sectionHeaderElementKind"
     private static let sectionFooterElementKind = "sectionFooterElementKind"
     private var collectionView: UICollectionView!
-    // @available(iOS 14.0, *)
+    // @available(iOS 16.0, *)
     private var dataList: [LXAccessoryOpt] = []
     private var dataSource: UICollectionViewDiffableDataSource<LXAccessoryOpt, LXAccessoryOpt>!
     private var displayedState: UICellAccessory.DisplayedState = .always
@@ -86,15 +99,15 @@ class LXAccessoryListVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 extension LXAccessoryListVC {}
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 extension LXAccessoryListVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 private extension LXAccessoryListVC {
     func makeToast(_ msg: String?) {
         UIApplication.XL.keyWindow?.rootViewController?.view.makeToast(msg)
@@ -102,9 +115,9 @@ private extension LXAccessoryListVC {
 }
 
 // MARK: - 🔐
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 private extension LXAccessoryListVC {
-    func generateListAccessory() -> [UICellAccessory] {
+    func generateListAccessory() -> [UICellAccessoryEnum] {
         let disclosureIndicatorOptions: UICellAccessory.DisclosureIndicatorOptions = .init(
             isHidden: isHidden,
             reservedLayoutWidth: reservedLayoutWidth,
@@ -152,7 +165,7 @@ private extension LXAccessoryListVC {
             font: .systemFont(ofSize: 14),
             adjustsFontForContentSizeCategory: true
         )
-        var list: [UICellAccessory] = [
+        var list: [UICellAccessoryEnum] = [
             .disclosureIndicator(displayed: displayedState, options: disclosureIndicatorOptions),
             // .detail(displayed: .always, options: detailOptions, actionHandler: {
             //     dlog("-->detail")
@@ -179,7 +192,7 @@ private extension LXAccessoryListVC {
             //     dlog("-->popUpMenu: \(menu)")
             // }),
             .label(text: "label accessory", displayed: displayedState, options: labelOptions),
-            .customView(configuration: UICellAccessory.customViewConfiguration(UICellAccessory.createCustomLabel(title: "🚀X"), isHidden: isHidden, reservedLayoutWidth: reservedLayoutWidth, tintColor: tintColor)),
+            .customView(configuration: UICellAccessoryEnum.customViewConfiguration(UICellAccessoryEnum.createCustomLabel(title: "🚀X"), isHidden: isHidden, reservedLayoutWidth: reservedLayoutWidth, tintColor: tintColor)),
         ]
 
         if #available(iOS 15.4, *) {
@@ -188,7 +201,7 @@ private extension LXAccessoryListVC {
                 reservedLayoutWidth: reservedLayoutWidth,
                 tintColor: tintColor
             )
-            let detailItem: UICellAccessory = .detail(displayed: .always, options: detailOptions, actionHandler: {[weak self] in
+            let detailItem: UICellAccessoryEnum = .detail(displayed: .always, options: detailOptions, actionHandler: {[weak self] in
                 let msg = "-->detail"
                 dlog(msg)
                 self?.makeToast(msg)
@@ -233,7 +246,7 @@ private extension LXAccessoryListVC {
                 reservedLayoutWidth: reservedLayoutWidth,
                 tintColor: tintColor
             )
-            let item: UICellAccessory = .popUpMenu(menu, displayed: .always, options: popUpMenuOptions, selectedElementDidChangeHandler: {[weak self] menu in
+            let item: UICellAccessoryEnum = .popUpMenu(menu, displayed: .always, options: popUpMenuOptions, selectedElementDidChangeHandler: {[weak self] menu in
                 let msg = "-->popUpMenu[outline]: \(menu.title)"
                 dlog(msg)
                 self?.makeToast(msg)
@@ -320,10 +333,10 @@ private extension LXAccessoryListVC {
                 // .outlineDisclosure()
                 .outlineDisclosure(options: disclosureOpt)
             ]
-            if item.accessory.accessoryType == .outlineDisclosure {
-            } else if case .customView = item.accessory.accessoryType {
+            if item.accessory.value.accessoryType == .outlineDisclosure {
+            } else if case .customView = item.accessory.value.accessoryType {
             } else {
-                tmp.append(item.accessory)
+                tmp.append(item.accessory.value)
                 dlog("-->contain[header]: \(item.accessory)")
             }
             cell.accessories = tmp
@@ -333,17 +346,17 @@ private extension LXAccessoryListVC {
         }
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXAccessoryOpt> { cell, indexPath, item in
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = item.section.title
+            contentConfig.text = "\(item.accessory)"
             cell.contentConfiguration = contentConfig
 
             var tmp: [UICellAccessory] = [
                 .disclosureIndicator()
             ]
-            if item.accessory.accessoryType == .disclosureIndicator {
-            } else if case .customView = item.accessory.accessoryType {
+            if item.accessory.value.accessoryType == .disclosureIndicator {
+            } else if case .customView = item.accessory.value.accessoryType {
             } else {
-                tmp.append(item.accessory)
-                dlog("-->contain[cell]: \(item.accessory)")
+                tmp.append(item.accessory.value)
+                dlog("-->contain[cell]: \(item.accessory.value)")
             }
             cell.accessories = tmp
 
@@ -374,27 +387,27 @@ private extension LXAccessoryListVC {
     }
     func generateSnapshot() -> NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt> {
         let list = generateListAccessory()
-        dataList = list.map { LXAccessoryOpt.subitems(.section(title: $0.accessoryType.title), accessory: $0) }
+        dataList = list.map { LXAccessoryOpt.subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
         let section: LXAccessoryOpt = .outline(.main, accessory: .label(text: "label 233"), subitems: dataList)
         var snapshot = NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt>()
         snapshot.appendSections([section])
         snapshot.appendItems(dataList, toSection: section)
         return snapshot
     }
-    @available(iOS 14.0, *)
+    @available(iOS 16.0, *)
     func generateAllSnapshot() {
         let list = generateListAccessory()
         var dataList = list.map { accessoryItem in
-            let subitems: [LXAccessoryOpt] = accessoryItem.accessoryType.list.map { .subitems(.section(title: $0.accessoryType.title), accessory: $0) }
-            return LXAccessoryOpt.outline(.section(title: accessoryItem.accessoryType.title), accessory: accessoryItem, subitems: subitems)
+            let subitems: [LXAccessoryOpt] = accessoryItem.value.accessoryType.list.map { .subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
+            return LXAccessoryOpt.outline(.section(title: accessoryItem.value.accessoryType.title), accessory: accessoryItem, subitems: subitems)
         }
         var expandList: [LXAccessoryOpt: NSDiffableDataSourceSectionSnapshot<LXAccessoryOpt>] = [:]
         var snapshot = NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt>()
         snapshot.appendSections(dataList)
         dataList.forEach { item in
             switch item {
-            case .outline(let _, let accessory, let subitems, _):
-                if case .customView = accessory.accessoryType {
+            case .outline(let _, let accessory, let subitems):
+                if case .customView = accessory.value.accessoryType {
                     // let customView: UICellAccessory = .customView(configuration: UICellAccessory.customViewConfiguration(reservedLayoutWidth: .standard))
                     // let tmp: [LXAccessoryOpt] = [
                     //     .subitems(.section(title: "X1"), accessory: .label(text: "X1")),
@@ -435,7 +448,7 @@ private extension LXAccessoryListVC {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXAccessoryOpt>, menuItems: [LXAccessoryOpt], to parent: LXAccessoryOpt?) {
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, let accessory, let subitems, _):
+                case .outline(_, let accessory, let subitems):
                     if !snapshot.contains(menuItem) {
                         snapshot.append([menuItem], to: parent)
                     }
@@ -449,8 +462,8 @@ private extension LXAccessoryListVC {
         }
         let list = generateListAccessory()
         dataList = list.map { accessoryItem in
-            let subitems: [LXAccessoryOpt] = accessoryItem.accessoryType.list.map { .subitems(.section(title: $0.accessoryType.title), accessory: $0) }
-            return LXAccessoryOpt.outline(.section(title: accessoryItem.accessoryType.title), accessory: accessoryItem, subitems: subitems)
+            let subitems: [LXAccessoryOpt] = accessoryItem.value.accessoryType.list.map { .subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
+            return LXAccessoryOpt.outline(.section(title: accessoryItem.value.accessoryType.title), accessory: accessoryItem, subitems: subitems)
         }
         var snapshot = NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt>()
         snapshot.appendSections(dataList)
@@ -458,7 +471,7 @@ private extension LXAccessoryListVC {
         var expandList: [LXAccessoryOpt: NSDiffableDataSourceSectionSnapshot<LXAccessoryOpt>] = [:]
         for item in dataList {
             switch item {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 snapshot.appendItems([item], toSection: item)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXAccessoryOpt>()
@@ -482,10 +495,11 @@ private extension LXAccessoryListVC {
     func refreshCollection() {
         // collectionView.reloadData()
         if #available(iOS 17.0, *) {
-            generateAllSnapshot()
+            // generateAllSnapshot()
+            generateMultiSnapshot()
         }
     }
-    @available(iOS 15.0, *)
+    @available(iOS 16.0, *)
     func generateRightNavItem() -> [UIBarButtonItem] {
         let displayedStateMenu = UIMenu(title: "displayedState", options: .singleSelection, children: [
             UIAction(title: ".always", state: displayedState == .always ? .on : .off, handler: {[weak self] _ in
@@ -562,12 +576,12 @@ private extension LXAccessoryListVC {
 }
 
 // MARK: - 👀
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 extension LXAccessoryListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        guard .multiselect != item.accessory.accessoryType else {
+        guard .multiselect != item.accessory.value.accessoryType else {
             let msg = "\(item)"
             dlog(msg)
             makeToast(msg)
@@ -575,7 +589,7 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
         }
         let scene: Navigator.Scene = .vc(provider: {
             let vc = LXUnSupportedVC(msg: "item: \(item)")
-            vc.title = "\(item.accessory.accessoryType)"
+            vc.title = "\(item.accessory.value.accessoryType)"
             vc.subtitle = "accessory: \(item.accessory)"
             return vc
         })
@@ -584,7 +598,7 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
+@available(iOS 16.0, *)
 extension LXAccessoryListVC {
     func prepareCollectionView() {
         if #available(iOS 14, *) {

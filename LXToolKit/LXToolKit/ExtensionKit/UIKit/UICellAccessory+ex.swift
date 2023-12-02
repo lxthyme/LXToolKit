@@ -5,7 +5,107 @@
 //  Created by lxthyme on 2023/12/1.
 //
 
+import UIKit
 import Foundation
+
+@available(iOS 16.0, *)
+public enum UICellAccessoryEnum {
+    case disclosureIndicator(displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.DisclosureIndicatorOptions = UICellAccessory.DisclosureIndicatorOptions())
+    case detail(displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.DetailOptions = UICellAccessory.DetailOptions(), actionHandler: UICellAccessory.ActionHandler? = nil)
+    case checkmark(displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.CheckmarkOptions = UICellAccessory.CheckmarkOptions())
+    case delete(displayed: UICellAccessory.DisplayedState = .whenEditing, options: UICellAccessory.DeleteOptions = UICellAccessory.DeleteOptions(), actionHandler: UICellAccessory.ActionHandler? = nil)
+    case insert(displayed: UICellAccessory.DisplayedState = .whenEditing, options: UICellAccessory.InsertOptions = UICellAccessory.InsertOptions(), actionHandler: UICellAccessory.ActionHandler? = nil)
+    case reorder(displayed: UICellAccessory.DisplayedState = .whenEditing, options: UICellAccessory.ReorderOptions = UICellAccessory.ReorderOptions())
+    case multiselect(displayed: UICellAccessory.DisplayedState = .whenEditing, options: UICellAccessory.MultiselectOptions = UICellAccessory.MultiselectOptions())
+    case outlineDisclosure(displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.OutlineDisclosureOptions = UICellAccessory.OutlineDisclosureOptions(), actionHandler: UICellAccessory.ActionHandler? = nil)
+    case popUpMenu(_ menu: UIMenu, displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.PopUpMenuOptions = UICellAccessory.PopUpMenuOptions(), selectedElementDidChangeHandler: UICellAccessory.MenuSelectedElementDidChangeHandler? = nil)
+    case label(text: String, displayed: UICellAccessory.DisplayedState = .always, options: UICellAccessory.LabelOptions = UICellAccessory.LabelOptions())
+    case customView(configuration: UICellAccessory.CustomViewConfiguration)
+
+    public var value: UICellAccessory {
+        switch self {
+        case .disclosureIndicator(let displayed, let options):
+            return .disclosureIndicator(displayed: displayed, options: options)
+        case .detail(let displayed, let options, let actionHandler):
+            return .detail(displayed: displayed, options: options, actionHandler: actionHandler)
+        case .checkmark(let displayed, let options):
+            return .checkmark(displayed: displayed, options: options)
+        case .delete(let displayed, let options, let actionHandler):
+            return .delete(displayed: displayed, options: options, actionHandler: actionHandler)
+        case .insert(let displayed, let options, let actionHandler):
+            return .insert(displayed: displayed, options: options, actionHandler: actionHandler)
+        case .reorder(let displayed, let options):
+            return .reorder(displayed: displayed, options: options)
+        case .multiselect(let displayed, let options):
+            return .multiselect(displayed: displayed, options: options)
+        case .outlineDisclosure(let displayed, let options, let actionHandler):
+            return .outlineDisclosure(displayed: displayed, options: options, actionHandler: actionHandler)
+        case .popUpMenu(let menu, let displayed, let options, let selectedElementDidChangeHandler):
+            return .popUpMenu(menu, displayed: displayed, options: options, selectedElementDidChangeHandler: selectedElementDidChangeHandler)
+        case .label(let text, let displayed, let options):
+            return .label(text: text, displayed: displayed, options: options)
+        case .customView(let configuration):
+            return .customView(configuration: configuration)
+        }
+    }
+}
+
+// MARK: - 👀
+@available(iOS 16.0, *)
+extension UICellAccessoryEnum: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .disclosureIndicator(let displayed, let options):
+            return ".disclosureIndicator(displayed: \(displayed), options: \(options))"
+        case .detail(let displayed, let options, let actionHandler):
+            let tips = if let actionHandler {
+                "\(actionHandler)"
+            } else {
+                ""
+            }
+            return ".detail(displayed: \(displayed), options: \(options), actionHandler: \(tips))"
+        case .checkmark(let displayed, let options):
+            return ".checkmark(displayed: \(displayed), options: \(options))"
+        case .delete(let displayed, let options, let actionHandler):
+            let tips = if let actionHandler {
+                "\(actionHandler)"
+            } else {
+                ""
+            }
+            return ".delete(displayed: \(displayed), options: \(options), actionHandler: \(tips))"
+        case .insert(let displayed, let options, let actionHandler):
+            let tips = if let actionHandler {
+                "\(actionHandler)"
+            } else {
+                ""
+            }
+            return ".insert(displayed: \(displayed), options: \(options), actionHandler: \(tips))"
+        case .reorder(let displayed, let options):
+            return ".reorder(displayed: \(displayed), options: \(options))"
+        case .multiselect(let displayed, let options):
+            return ".multiselect(displayed: \(displayed), options: \(options))"
+        case .outlineDisclosure(let displayed, let options, let actionHandler):
+            let tips = if let actionHandler {
+                "\(actionHandler)"
+            } else {
+                ""
+            }
+            return ".outlineDisclosure(displayed: \(displayed), options: \(options), actionHandler: \(tips))"
+        case .popUpMenu(let _, let displayed, let options, let selectedElementDidChangeHandler):
+            let tips = if let selectedElementDidChangeHandler {
+                "\(selectedElementDidChangeHandler)"
+            } else {
+                ""
+            }
+            return ".popUpMenu(let _, displayed: \(displayed), options: \(options), selectedElementDidChangeHandler: \(tips))"
+        case .label(let text, let displayed, let options):
+            return ".label(let text, displayed: \(displayed), options: \(options))"
+        case .customView(let configuration):
+            return ".customView(configuration: \(configuration))"
+        }
+    }
+}
+
 
 // MARK: - 👀
 @available(iOS 14.0, *)
@@ -86,7 +186,13 @@ extension UICellAccessory.LabelOptions: CustomStringConvertible {
 @available(iOS 14.0, *)
 extension UICellAccessory.CustomViewConfiguration: CustomStringConvertible {
     public var description: String {
-        return "CustomViewConfiguration(customView: \(customView.description), placement: \(placement), isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), maintainsFixedSize: \(maintainsFixedSize))"
+        var title = ""
+        if let label = customView as? UILabel {
+            title.append("\(label.text ?? "")")
+        } else if let btn = customView as? UIButton {
+            title.append("\(btn.titleLabel?.text ?? "")")
+        }
+        return "CustomViewConfiguration(customView: \(customView.xl.typeNameString)(\"\(title)\"), placement: \(placement), isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), maintainsFixedSize: \(maintainsFixedSize))"
     }
 }
 @available(iOS 15.4, *)
@@ -127,52 +233,58 @@ extension UICellAccessory.AccessoryType {
             return "popUpMenu"
         case .label:
             return "label"
-        case .customView(let view):
-            return "customView(\(view.description))"
+        case .customView(let customView):
+            var title = ""
+            if let label = customView as? UILabel {
+                title.append("\(label.text ?? "")")
+            } else if let btn = customView as? UIButton {
+                title.append("\(btn.titleLabel?.text ?? "")")
+            }
+            return "customView(\(customView.xl.typeNameString)(\"\(title)\"))"
         }
     }
-    @available(iOS 14.0, *)
-    public var list: [UICellAccessory] {
+    @available(iOS 16.0, *)
+    public var list: [UICellAccessoryEnum] {
         switch self {
         case .disclosureIndicator:
-            return UICellAccessory.generate_disclosureIndicator()
+            return UICellAccessoryEnum.generate_disclosureIndicator()
         case .detail:
             return if #available(iOS 15.4, *) {
-                UICellAccessory.generate_detail()
+                UICellAccessoryEnum.generate_detail()
             } else {
                 // Fallback on earlier versions
                 []
             }
         case .checkmark:
-            return UICellAccessory.generate_checkmark()
+            return UICellAccessoryEnum.generate_checkmark()
         case .delete:
-            return UICellAccessory.generate_delete()
+            return UICellAccessoryEnum.generate_delete()
         case .insert:
-            return UICellAccessory.generate_insert()
+            return UICellAccessoryEnum.generate_insert()
         case .reorder:
-            return UICellAccessory.generate_reorder()
+            return UICellAccessoryEnum.generate_reorder()
         case .multiselect:
-            return UICellAccessory.generate_multiselect()
+            return UICellAccessoryEnum.generate_multiselect()
         case .outlineDisclosure:
-            return UICellAccessory.generate_outlineDisclosure()
+            return UICellAccessoryEnum.generate_outlineDisclosure()
         case .popUpMenu:
             return if #available(iOS 17.0, *) {
-                UICellAccessory.generate_popUpMenu()
+                UICellAccessoryEnum.generate_popUpMenu()
             } else {
                 // Fallback on earlier versions
                 []
             }
         case .label:
-            return UICellAccessory.generate_label()
+            return UICellAccessoryEnum.generate_label()
         case .customView:
-            return UICellAccessory.generate_customView()
+            return UICellAccessoryEnum.generate_customView()
         }
     }
 }
 
 // MARK: - 🔐
-@available(iOS 14.0, *)
-private extension UICellAccessory {
+@available(iOS 16.0, *)
+private extension UICellAccessoryEnum {
     static func makeToast(_ msg: String?) {
         UIApplication.XL.keyWindow?.rootViewController?.view.makeToast(msg)
     }
@@ -180,7 +292,7 @@ private extension UICellAccessory {
 // MARK: - 👀
 @available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension {
-    public static let xl_custom_64: UICellAccessory.LayoutDimension = .custom(64)
+    public static let xl_custom_64: UICellAccessory.LayoutDimension = .custom(24)
 }
 @available(iOS 14.0, *)
 extension UIColor {
@@ -217,9 +329,9 @@ extension UICellAccessory.OutlineDisclosureOptions.Style: CaseIterable {
 }
 
 // MARK: - 👀
-@available(iOS 14.0, *)
-extension UICellAccessory {
-    static public func generate_disclosureIndicator() -> [UICellAccessory] {
+@available(iOS 16.0, *)
+extension UICellAccessoryEnum {
+    static public func generate_disclosureIndicator() -> [UICellAccessoryEnum] {
         func disclosureIndicatorOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.DisclosureIndicatorOptions {
             return .init(
                 isHidden: false,
@@ -229,8 +341,8 @@ extension UICellAccessory {
         }
         return UICellAccessory.LayoutDimension.allCases.map { .disclosureIndicator(displayed: .always, options: disclosureIndicatorOptions($0)) }
     }
-    @available(iOS 15.4, *)
-    static public func generate_detail() -> [UICellAccessory] {
+    @available(iOS 16.0, *)
+    static public func generate_detail() -> [UICellAccessoryEnum] {
         func detailOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.DetailOptions {
             return .init(
                 isHidden: false,
@@ -246,7 +358,7 @@ extension UICellAccessory {
             })
         }
     }
-    static public func generate_checkmark() -> [UICellAccessory] {
+    static public func generate_checkmark() -> [UICellAccessoryEnum] {
         func checkmarkOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.CheckmarkOptions {
             return .init(
                 isHidden: false,
@@ -256,7 +368,7 @@ extension UICellAccessory {
         }
         return UICellAccessory.LayoutDimension.allCases.map { .checkmark(displayed: .always, options: checkmarkOptions($0)) }
     }
-    static public func generate_delete() -> [UICellAccessory] {
+    static public func generate_delete() -> [UICellAccessoryEnum] {
         func deleteOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.DeleteOptions {
             return .init(
                 isHidden: false,
@@ -273,7 +385,7 @@ extension UICellAccessory {
             })
         }
     }
-    static public func generate_insert() -> [UICellAccessory] {
+    static public func generate_insert() -> [UICellAccessoryEnum] {
         func insertOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.InsertOptions {
             return .init(
                 isHidden: false,
@@ -290,7 +402,7 @@ extension UICellAccessory {
             })
         }
     }
-    static public func generate_reorder() -> [UICellAccessory] {
+    static public func generate_reorder() -> [UICellAccessoryEnum] {
         func reorderOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.ReorderOptions {
             return .init(
                 isHidden: false,
@@ -301,7 +413,7 @@ extension UICellAccessory {
         }
         return UICellAccessory.LayoutDimension.allCases.map { .reorder(displayed: .always, options: reorderOptions($0)) }
     }
-    static public func generate_multiselect() -> [UICellAccessory] {
+    static public func generate_multiselect() -> [UICellAccessoryEnum] {
         func multiselectOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.MultiselectOptions {
             return .init(
                 isHidden: false,
@@ -312,7 +424,7 @@ extension UICellAccessory {
         }
         return UICellAccessory.LayoutDimension.allCases.map { .multiselect(displayed: .always, options: multiselectOptions($0)) }
     }
-    static public func generate_outlineDisclosure() -> [UICellAccessory] {
+    static public func generate_outlineDisclosure() -> [UICellAccessoryEnum] {
         func outlineDisclosureOptions(_ style: UICellAccessory.OutlineDisclosureOptions.Style, reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.OutlineDisclosureOptions {
             return .init(
                 style: style,
@@ -337,7 +449,7 @@ extension UICellAccessory {
         ].flatMap { $0 }
     }
     @available(iOS 17.0, *)
-    static public func generate_popUpMenu() -> [UICellAccessory] {
+    static public func generate_popUpMenu() -> [UICellAccessoryEnum] {
         var selectedTitle = ""
         let menu = UIMenu(
             title: "Title 1",
@@ -391,7 +503,7 @@ extension UICellAccessory {
             })
         }
     }
-    static public func generate_label() -> [UICellAccessory] {
+    static public func generate_label() -> [UICellAccessoryEnum] {
         func labelOptions(_ reservedLayoutWidth: UICellAccessory.LayoutDimension) -> UICellAccessory.LabelOptions {
             return .init(
                 isHidden: false,
@@ -438,14 +550,14 @@ extension UICellAccessory {
             maintainsFixedSize: maintainsFixedSize
         )
     }
-    static public func generate_customView() -> [UICellAccessory] {
-        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0)"), placement: .leading(displayed: .always, at: { accessories in
+    static public func generate_customView() -> [UICellAccessoryEnum] {
+        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessoryEnum.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0)"), placement: .leading(displayed: .always, at: { accessories in
             return 0
         }), reservedLayoutWidth: $0)) }
         // return [UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀.standard"), reservedLayoutWidth: .standard))]
     }
-    static public func generateListAccessory() -> [UICellAccessory] {
-        var list: [[UICellAccessory]] = [
+    static public func generateListAccessory() -> [UICellAccessoryEnum] {
+        var list: [[UICellAccessoryEnum]] = [
             generate_disclosureIndicator(),
             // generate_detail(),
             generate_checkmark(),
