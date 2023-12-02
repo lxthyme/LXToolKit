@@ -439,7 +439,9 @@ extension UICellAccessory {
         )
     }
     static public func generate_customView() -> [UICellAccessory] {
-        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0)"), reservedLayoutWidth: $0)) }
+        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0)"), placement: .leading(displayed: .always, at: { accessories in
+            return 0
+        }), reservedLayoutWidth: $0)) }
         // return [UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀.standard"), reservedLayoutWidth: .standard))]
     }
     static public func generateListAccessory() -> [UICellAccessory] {

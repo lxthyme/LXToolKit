@@ -339,9 +339,10 @@ private extension LXAccessoryListVC {
             var tmp: [UICellAccessory] = [
                 .disclosureIndicator()
             ]
-            if item.accessory.accessoryType != .disclosureIndicator {
-                tmp.append(item.accessory)
+            if item.accessory.accessoryType == .disclosureIndicator {
+            } else if case .customView = item.accessory.accessoryType {
             } else {
+                tmp.append(item.accessory)
                 dlog("-->contain[cell]: \(item.accessory)")
             }
             cell.accessories = tmp
@@ -566,10 +567,12 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
-        let msg = "\(item)"
-        dlog(msg)
-        makeToast(msg)
-
+        guard .multiselect != item.accessory.accessoryType else {
+            let msg = "\(item)"
+            dlog(msg)
+            makeToast(msg)
+            return
+        }
         let scene: Navigator.Scene = .vc(provider: {
             let vc = LXUnSupportedVC(msg: "item: \(item)")
             vc.title = "\(item.accessory.accessoryType)"

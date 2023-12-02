@@ -88,13 +88,14 @@ extension LXUnSupportedVC {
         labSubtitle.snp.makeConstraints {
             $0.left.greaterThanOrEqualToSuperview().offset(20)
             $0.right.lessThanOrEqualToSuperview().offset(-20)
-            $0.bottom.equalTo(labMsg.snp.top).offset(-10)
+            $0.top.equalTo(self.view.snp.topMargin).offset(20)
             $0.centerX.equalToSuperview()
         }
         labMsg.snp.makeConstraints {
+            $0.top.equalTo(labSubtitle.snp.bottom).offset(10)
             $0.left.greaterThanOrEqualToSuperview().offset(20)
             $0.right.lessThanOrEqualToSuperview().offset(-20)
-            $0.center.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
     }
 }
