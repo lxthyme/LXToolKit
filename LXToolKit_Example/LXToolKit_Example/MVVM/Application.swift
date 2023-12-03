@@ -40,14 +40,15 @@ final public class Application: NSObject {
                               codetabsProvider: codetabsProvider)
         provider = restApi
 
-        if let token = authManager.token,
-           !AppConfig.Network.useStaging {
-            switch token.type() {
-            case .oAuth(let token), .personal(let token):
-                provider = GraphApi(restApi: restApi, token: token)
-            default: break
-            }
-        }
+        //TODO: 「lxthyme」💊评估是否需要保留
+        // if let token = authManager.token,
+        //    !AppConfig.Network.useStaging {
+        //     switch token.type() {
+        //     case .oAuth(let token), .personal(let token):
+        //         provider = GraphApi(restApi: restApi, token: token)
+        //     default: break
+        //     }
+        // }
     }
 }
 
