@@ -115,7 +115,9 @@ extension AdventureViewModel {
 @available(iOS 16.2, *)
 @MainActor
 final class AdventureViewModel: ObservableObject {
+    #if EmojiRangersConfig_Open
     @Published var activityViewState: ActivityViewState? = nil
+    #endif
     @Published var errorMessage: String? = nil
 
     private var currentActivity: Activity<AdventureAttributes>? = nil
@@ -160,10 +162,14 @@ final class AdventureViewModel: ObservableObject {
     func updateAdventureButtonTapped(shouldAlert: Bool) {
         Task {
             defer {
+                #if EmojiRangersConfig_Open
                 self.activityViewState?.updateControlDisabled = false
+                #endif
             }
 
+            #if EmojiRangersConfig_Open
             self.activityViewState?.updateControlDisabled = true
+            #endif
             try await self.updateAdventure(alert: shouldAlert)
         }
     }
@@ -206,10 +212,12 @@ private extension AdventureViewModel {
     func setup(withActivity activity: Activity<AdventureAttributes>) {
         self.currentActivity = activity
 
+        #if EmojiRangersConfig_Open
         self.activityViewState = .init(
             activityState: activity.activityState,
             contentState: activity.content.state,
             pushToken: activity.pushToken?.hexadecimalString)
+        #endif
 
         observeActivity(activity: activity)
     }
@@ -222,16 +230,20 @@ private extension AdventureViewModel {
                         if activityState == .dismissed {
                             self.cleanUpDismissedActivity()
                         } else {
+                            #if EmojiRangersConfig_Open
                             self.activityViewState?.activityState = activityState
+                            #endif
                         }
                     }
                 }
 
+                #if EmojiRangersConfig_Open
                 group.addTask { @MainActor in
                     for await contentState in activity.contentUpdates {
                         self.activityViewState?.contentState = contentState.state
                     }
                 }
+                #endif
 
                 group.addTask { @MainActor in
                     for await pushToken in activity.pushTokenUpdates {
@@ -301,7 +313,9 @@ private extension AdventureViewModel {
 
     func cleanUpDismissedActivity() {
         self.currentActivity = nil
+        #if EmojiRangersConfig_Open
         self.activityViewState = nil
+        #endif
     }
 }
 

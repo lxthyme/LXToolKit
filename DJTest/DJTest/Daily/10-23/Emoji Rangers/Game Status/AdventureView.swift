@@ -17,6 +17,7 @@ struct AdventureView: View {
             Text("Adventure Live Activity")
                 .font(.title)
 
+            #if EmojiRangersConfig_Open
             if let activityViewState = viewModel.activityViewState {
                 AdventureLiveActivityView(
                     hero: hero,
@@ -86,6 +87,7 @@ struct AdventureView: View {
                     viewModel.loadAdventrue(hero: hero)
                 }
             }
+            #endif
 
             if let errorMessage = viewModel.errorMessage {
                 Section {
