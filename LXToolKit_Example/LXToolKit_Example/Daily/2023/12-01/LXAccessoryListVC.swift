@@ -326,7 +326,7 @@ private extension LXAccessoryListVC {
                 .outlineDisclosure(options: disclosureOpt)
             ]
             if item.accessory.value.accessoryType == .outlineDisclosure {
-            } else if case .customView = item.accessory.value.accessoryType {
+            // } else if case .customView = item.accessory.value.accessoryType {
             } else {
                 tmp.append(item.accessory.value)
                 dlog("-->contain[header]: \(item.accessory)")
@@ -345,7 +345,7 @@ private extension LXAccessoryListVC {
                 .disclosureIndicator()
             ]
             if item.accessory.value.accessoryType == .disclosureIndicator {
-            } else if case .customView = item.accessory.value.accessoryType {
+            // } else if case .customView = item.accessory.value.accessoryType {
             } else {
                 tmp.append(item.accessory.value)
                 dlog("-->contain[cell]: \(item.accessory.value)")

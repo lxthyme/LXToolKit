@@ -293,6 +293,7 @@ private extension UICellAccessoryEnum {
 @available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension {
     public static let xl_custom_64: UICellAccessory.LayoutDimension = .custom(24)
+    public static let xl_custom_40: UICellAccessory.LayoutDimension = .custom(40)
 }
 @available(iOS 14.0, *)
 extension UIColor {
@@ -310,7 +311,7 @@ extension UICellAccessory.DisplayedState: CaseIterable {
 @available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension: CaseIterable {
     public static var allCases: [UICellAccessory.LayoutDimension] {
-        return [.actual, .standard, .xl_custom_64]
+        return [.actual, .standard, .xl_custom_64, .xl_custom_40]
     }
 }
 // MARK: - 👀
@@ -551,7 +552,7 @@ extension UICellAccessoryEnum {
         )
     }
     static public func generate_customView() -> [UICellAccessoryEnum] {
-        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessoryEnum.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0)"), placement: .leading(displayed: .always, at: { accessories in
+        return UICellAccessory.LayoutDimension.allCases.map { UICellAccessoryEnum.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀\($0.description[safe: 1]?.string ?? "")"), placement: .leading(displayed: .always, at: { accessories in
             return 0
         }), reservedLayoutWidth: $0)) }
         // return [UICellAccessory.customView(configuration: customViewConfiguration(createCustomLabel(title: "🚀.standard"), reservedLayoutWidth: .standard))]
