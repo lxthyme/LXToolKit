@@ -570,6 +570,11 @@ private extension LXAccessoryListVC {
 // MARK: - 👀
 @available(iOS 16.0, *)
 extension LXAccessoryListVC: UICollectionViewDelegate {
+    // func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    //     guard let item = dataSource.itemIdentifier(for: indexPath) else { return true }
+    //     dlog("-->\(item.accessory.accessoryType)")
+    //     return true
+    // }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
@@ -597,7 +602,8 @@ extension LXAccessoryListVC {
             collectionView = generateCollectionView()
             dataSource = generateDataSource()
             if #available(iOS 17.0, *) {
-                generateAllSnapshot()
+                // generateAllSnapshot()
+                generateMultiSnapshot()
             } else {
                 // Fallback on earlier versions
                 let snapshot = generateSnapshot()
