@@ -78,7 +78,6 @@ class LXAccessoryListVC: LXBaseVC {
     private static let sectionFooterElementKind = "sectionFooterElementKind"
     private var collectionView: UICollectionView!
     // @available(iOS 16.0, *)
-    private var dataList: [LXAccessoryOpt] = []
     private var dataSource: UICollectionViewDiffableDataSource<LXAccessoryOpt, LXAccessoryOpt>!
     private var displayedState: UICellAccessory.DisplayedState = .always
     private var reservedLayoutWidth: UICellAccessory.LayoutDimension = .standard
@@ -281,25 +280,18 @@ private extension LXAccessoryListVC {
                                                                             elementKind: LXAccessoryListVC.sectionFooterElementKind,
                                                                             alignment: .bottomTrailing)
             let section: NSCollectionLayoutSection
-            if sectionIdx < self.dataList.count {
-                if case .subitems = self.dataList[sectionIdx] {
-                    let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                          heightDimension: .fractionalHeight(1.0))
-                    let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                    // <#item#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-                    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                           heightDimension: .estimated(44))
-                    let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                                   subitems: [item])
-                    // <#group#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-                    section = NSCollectionLayoutSection(group: group)
-                } else {
-                    section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
-                }
+            if case .subitems = self.dataSource.sectionIdentifier(for: sectionIdx) {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                // <#item#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .estimated(44))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitems: [item])
+                // <#group#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                section = NSCollectionLayoutSection(group: group)
             } else {
-                let msg = "-->fatalError: \(self.dataList.count) -> \(sectionIdx)"
-                dlog(msg)
-                // fatalError(msg)
                 section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
             }
             // section.contentInsets = .zero
@@ -387,7 +379,7 @@ private extension LXAccessoryListVC {
     }
     func generateSnapshot() -> NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt> {
         let list = generateListAccessory()
-        dataList = list.map { LXAccessoryOpt.subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
+        let dataList = list.map { LXAccessoryOpt.subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
         let section: LXAccessoryOpt = .outline(.main, accessory: .label(text: "label 233"), subitems: dataList)
         var snapshot = NSDiffableDataSourceSnapshot<LXAccessoryOpt, LXAccessoryOpt>()
         snapshot.appendSections([section])
@@ -397,7 +389,7 @@ private extension LXAccessoryListVC {
     @available(iOS 16.0, *)
     func generateAllSnapshot() {
         let list = generateListAccessory()
-        var dataList = list.map { accessoryItem in
+        let dataList = list.map { accessoryItem in
             let subitems: [LXAccessoryOpt] = accessoryItem.value.accessoryType.list.map { .subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
             return LXAccessoryOpt.outline(.section(title: accessoryItem.value.accessoryType.title), accessory: accessoryItem, subitems: subitems)
         }
@@ -461,7 +453,7 @@ private extension LXAccessoryListVC {
             }
         }
         let list = generateListAccessory()
-        dataList = list.map { accessoryItem in
+        let dataList = list.map { accessoryItem in
             let subitems: [LXAccessoryOpt] = accessoryItem.value.accessoryType.list.map { .subitems(.section(title: $0.value.accessoryType.title), accessory: $0) }
             return LXAccessoryOpt.outline(.section(title: accessoryItem.value.accessoryType.title), accessory: accessoryItem, subitems: subitems)
         }
