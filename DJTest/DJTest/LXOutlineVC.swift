@@ -535,11 +535,11 @@ extension LXOutlineVC: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
-        let random = Int.random(in: 0...10)
-        assert(random != 5, "test assert: \(random) at \(Date())")
-        if random == 6 {
-            fatalError("test assert: \(random) at \(Date())")
-        }
+        // let random = Int.random(in: 0...10)
+        // assert(random != 5, "test assert: \(random) at \(Date())")
+        // if random == 6 {
+        //     fatalError("test assert: \(random) at \(Date())")
+        // }
 
         gotoScene(by: menuItem)
     }

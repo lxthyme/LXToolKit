@@ -47,7 +47,7 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXTableTestVC"), scene: .vc(provider: { LXTableTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
         .subitem(.section(title: "LXCollectionVC"), scene: .vc(provider: { LXCollectionVC() })),
         .subitem(.section(title: "LXAccessoryListVC"), scene: .vc(provider: {
-            if #available(iOS 14.0, *) {
+            if #available(iOS 16.0, *) {
                 LXAccessoryListVC()
             } else {
                 // Fallback on earlier versions

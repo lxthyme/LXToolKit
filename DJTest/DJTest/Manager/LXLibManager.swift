@@ -12,6 +12,7 @@ import LXToolKit_Example
 // import AMapSearchKit
 // import MAMapKit
 import Firebase
+import Toast_Swift
 
 class LXLibManager {
     static func setup() {
@@ -21,6 +22,7 @@ class LXLibManager {
         // prepareBugly()
         // prepareUMeng()
         prepareTingYun()
+        prepareToast()
     }
 }
 
@@ -60,5 +62,15 @@ extension LXLibManager {
         // MAMapView.updatePrivacyAgree(.didAgree)
         // AMapSearchAPI.updatePrivacyShow(.didShow, privacyInfo: .didContain)
         // AMapSearchAPI.updatePrivacyAgree(.didAgree)
+    }
+    static func prepareToast() {
+        let instance = ToastManager.shared
+        instance.isTapToDismissEnabled = true
+        instance.isQueueEnabled = true
+        instance.duration = 1
+        instance.position = .bottom
+
+        // var style = ToastStyle()
+        // instance.style = style
     }
 }
