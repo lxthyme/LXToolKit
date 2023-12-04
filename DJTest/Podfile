@@ -126,7 +126,7 @@ end
 allow_warning_list = []
 def generateConfig(target, config)
   # puts("  -->#{target} #{config}:")
-  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
   #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
   # end
