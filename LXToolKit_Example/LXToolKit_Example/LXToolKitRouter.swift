@@ -51,7 +51,7 @@ internal extension LXToolKitRouter {
                 LXAccessoryListVC()
             } else {
                 // Fallback on earlier versions
-                LXUnSupportedVC(title: "UICellAccessory")
+                LXUnSupportedVC(msg: "UICellAccessory")
             }
         })),
     ].reversed())
