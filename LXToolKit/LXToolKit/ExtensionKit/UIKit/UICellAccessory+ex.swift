@@ -354,7 +354,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .detail(displayed: .always, options: detailOptions($0), actionHandler: {
                 let msg = "-->[.detail]"
-                dlog(msg)
+                logger.x_debug(msg)
                 makeToast(msg)
             })
         }
@@ -381,7 +381,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .delete(displayed: .always, options: deleteOptions($0), actionHandler: {
                 let msg = "-->[.delete]"
-                dlog(msg)
+                logger.x_debug(msg)
                 makeToast(msg)
             })
         }
@@ -398,7 +398,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .insert(displayed: .always, options: insertOptions($0), actionHandler: {
                 let msg = "-->[.insert]"
-                dlog(msg)
+                logger.x_debug(msg)
                 makeToast(msg)
             })
         }
@@ -436,7 +436,7 @@ extension UICellAccessoryEnum {
         }
         let xl_actionHandler: UICellAccessory.ActionHandler = {
             let msg = "-->[.outlineDisclosure]"
-            dlog(msg)
+            logger.x_debug(msg)
             makeToast(msg)
         }
         return [
@@ -460,31 +460,31 @@ extension UICellAccessoryEnum {
                 UIAction(title: "Item 1", state: selectedTitle == "Item 1" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    dlog(msg)
+                    logger.x_debug(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 2", state: selectedTitle == "Item 2" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    dlog(msg)
+                    logger.x_debug(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 3", state: selectedTitle == "Item 3" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    dlog(msg)
+                    logger.x_debug(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 4", state: selectedTitle == "Item 4" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    dlog(msg)
+                    logger.x_debug(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 5", state: selectedTitle == "Item 5" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    dlog(msg)
+                    logger.x_debug(msg)
                     makeToast(msg)
                 }),
             ]
@@ -499,7 +499,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .popUpMenu(menu, displayed: .always, options: popUpMenuOptions($0), selectedElementDidChangeHandler: { menu in
                 let msg = "-->[.popUpMenu]: \(menu.title)"
-                dlog(msg)
+                logger.x_debug(msg)
                 makeToast(msg)
             })
         }
@@ -540,7 +540,7 @@ extension UICellAccessoryEnum {
             customView: customView,
             // placement: .leading(displayed: .always, at: { accessories in
             //     let msg = "-->[.customView]: \(accessories)"
-            //     dlog(msg)
+            //     logger.debug(msg)
             //     makeToast(msg)
             //     return 0
             // }),

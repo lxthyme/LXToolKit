@@ -40,3 +40,51 @@ extension Log {
     // logger.info("An unsigned integer \(x, format: .hex, align: .right(columns: 10))")
     // logger.info("An unsigned integer \(x, privacy: .private)")
 }
+// MARK: - 👀
+extension Logger {
+    public func x_log(_ message: String) {
+        log("\(message)")
+    }
+    public func x_log(level: OSLogType, message: String) {
+        log(level: level, "\(message)")
+    }
+    public func x_trace(_ message: String) {
+        trace("\(message)")
+    }
+    public func xl_debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        #if DEBUG
+        let fileName = (file as NSString).lastPathComponent
+        let date = Date()
+        Swift.print("""
+            🐧<\(fileName).\(function):\(line):\(column) \(date.description)>
+            """)
+        for (idx, element) in items.enumerated() {
+            Swift.print("🕷$\(idx): ", terminator: "")
+            Swift.print(element)
+        }
+
+        Swift.print("")
+        #endif
+    }
+    public func x_debug(_ message: String) {
+        debug("\(message)")
+    }
+    public func x_info(_ message: String) {
+        info("\(message)")
+    }
+    public func x_notice(_ message: String) {
+        notice("\(message)")
+    }
+    public func x_warning(_ message: String) {
+        warning("\(message)")
+    }
+    public func x_error(_ message: String) {
+        error("\(message)")
+    }
+    public func x_critical(_ message: String) {
+        critical("\(message)")
+    }
+    public func x_fault(_ message: String) {
+        fault("\(message)")
+    }
+}

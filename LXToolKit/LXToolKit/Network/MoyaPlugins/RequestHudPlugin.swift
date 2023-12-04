@@ -21,7 +21,7 @@ final class RequestHudPlugin: PluginType {
         guard let urlString = request.request?.url?.absoluteString else { return }
 
         /// show request hud here
-        dlog("urlString: ", urlString)
+        logger.debug("urlString: \(urlString)")
     }
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         guard case Result.failure(_) = result else { return }

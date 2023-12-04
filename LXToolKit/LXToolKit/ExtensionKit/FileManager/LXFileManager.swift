@@ -46,7 +46,7 @@ public extension LXFileManager {
             try fm.removeItem(atPath: path)
             completion?(.success(true))
         } catch {
-            dlog("Error: \(error)")
+            logger.error("Error: \(error)")
             completion?(.failure(error as! LXError))
         }
     }

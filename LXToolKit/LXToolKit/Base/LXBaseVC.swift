@@ -183,7 +183,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        logDebug("\(type(of: self)): Received Memory Warning")
+        logger.warning("\(type(of: self)): Received Memory Warning")
     }
 }
 
@@ -222,7 +222,7 @@ extension LXBaseVC {
         error
             .subscribe {[weak self] error in
                 guard let self else { return }
-                dlog("-->error[\(self.xl.typeNameString)]: \(error)")
+                logger.error("-->error[\(self.xl.typeNameString)]: \(error.debugDescription)")
         }
         .disposed(by: rx.disposeBag)
     }
