@@ -131,8 +131,8 @@ open class LXBaseVC: UIViewController, Navigatable {
     
     // MARK: 🛠Life Cycle
     deinit {
-        dlog("---------- >>>VC: \(self.xl.typeNameString)\t\tdeinit <<<----------")
-        logResourcesCount()
+        Log.dealloc.trace("---------- >>>VC: \(self.xl.typeNameString)\t\tdeinit <<<----------")
+        Log.resourcesCount()
     }
     // public required init?(coder: NSCoder) {
     //     fatalError("init(coder:) has not been implemented")
@@ -163,7 +163,7 @@ open class LXBaseVC: UIViewController, Navigatable {
         super.viewDidAppear(animated)
         
         updateUI()
-        logResourcesCount()
+        Log.resourcesCount()
     }
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

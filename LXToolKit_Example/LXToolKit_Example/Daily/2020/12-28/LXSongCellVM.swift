@@ -12,7 +12,7 @@ import RxCocoa
 
 class LXSongCellVM {
     deinit {
-        dlog("---------- >>>Model: LXSongCellVM\t\tdeinit <<<----------")
+        Log.dealloc.trace("---------- >>>Model: LXSongCellVM\t\tdeinit <<<----------")
     }
     // MARK: 📌UI
     struct Output {

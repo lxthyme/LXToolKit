@@ -13,7 +13,7 @@ import RxCocoa
 
 class LXSearchResultViewModel: LXBase {
     deinit {
-        dlog("---------- >>>Model: \(self.xl_typeNameString)\t\tdeinit <<<----------")
+        Log.dealloc.trace("---------- >>>Model: \(self.xl_typeNameString)\t\tdeinit <<<----------")
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
