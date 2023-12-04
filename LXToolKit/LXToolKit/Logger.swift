@@ -53,17 +53,16 @@ extension Logger {
     }
     public func xl_debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
         #if DEBUG
-        let fileName = (file as NSString).lastPathComponent
-        let date = Date()
-        Swift.print("""
-            🐧<\(fileName).\(function):\(line):\(column) \(date.description)>
-            """)
+        // let fileName = (file as NSString).lastPathComponent
+        // let date = Date()
+        // logger.debug("""
+        //     👇<\(fileName).\(function):\(line):\(column) \(date.description)>
+        //     """)
         for (idx, element) in items.enumerated() {
-            Swift.print("🕷$\(idx): ", terminator: "")
-            Swift.print(element)
+            // Swift.print("🕷$\(idx): ", terminator: "")
+            // Swift.print(element)
+            logger.debug("👉$\(idx): \(String(describing: element))")
         }
-
-        Swift.print("")
         #endif
     }
     public func x_debug(_ message: String) {
@@ -87,4 +86,40 @@ extension Logger {
     public func x_fault(_ message: String) {
         fault("\(message)")
     }
+}
+
+/// DEBUG 打印
+public func print(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+//    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
+    Swift.print("print")
+}
+public func printIn(_ items: Any..., separator: String = " ", terminator: String = "\t", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+//    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
+    Swift.print("printIn")
+}
+public func print<T>(_ message: T..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function,
+              line: Int = #line, column: Int = #column) {
+//    dlog(message, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
+    Swift.print("print<T>")
+}
+public func dlog(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    #if DEBUG
+    // let fileName = (file as NSString).lastPathComponent
+    // let date = Date()
+    // logger.debug("""
+    //     👇<\(fileName).\(function):\(line):\(column) \(date.description)>
+    //     """)
+    for (idx, element) in items.enumerated() {
+        // Swift.print("🕷$\(idx): ", terminator: "")
+        // Swift.print(element)
+        logger.debug("👉$\(idx): \(String(describing: element))")
+    }
+    #endif
+}
+
+public let dlogIn = printIn
+public let dlog = printIn
+
+public func debugPrint(_ items: Any..., separator: String = ", ", terminator: String = "") {
+    print("debugPrint")
 }
