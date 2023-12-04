@@ -13,35 +13,35 @@ public extension ObservableType {
     func xl_doOnTest(_ prefix: String = "") -> RxSwift.Observable<Self.Element> {
         let tmp = prefix.isEmpty ? "" : "「\(prefix)」"
         return self.`do`(onNext: { ele in
-            dlog("🛠\(tmp)3.2 do onNext: \(ele)")
+            Log.rxswift.x_debug("🛠\(tmp)3.2 do onNext: \(ele)")
         }, afterNext: { ele in
-            dlog("🛠\(tmp)5. do afterNext: \(ele)")
+            Log.rxswift.x_debug("🛠\(tmp)5. do afterNext: \(ele)")
         }, onError: { e in
-            dlog("🛠\(tmp)6. do onError: \(e)")
+            Log.rxswift.x_debug("🛠\(tmp)6. do onError: \(e)")
         }, afterError: { e in
-            dlog("🛠\(tmp)6. do afterError: \(e)")
+            Log.rxswift.x_debug("🛠\(tmp)6. do afterError: \(e)")
         }, onCompleted: {
-            dlog("🛠\(tmp)6. do onCompleted")
+            Log.rxswift.debug("🛠\(tmp)6. do onCompleted")
         }, afterCompleted: {
-            dlog("🛠\(tmp)9. do afterCompleted")
+            Log.rxswift.debug("🛠\(tmp)9. do afterCompleted")
         }, onSubscribe: {
-            dlog("🛠\(tmp)1. do onSubscribe")
+            Log.rxswift.debug("🛠\(tmp)1. do onSubscribe")
         }, onSubscribed: {
-            dlog("🛠\(tmp)2. do onSubscribed")
+            Log.rxswift.debug("🛠\(tmp)2. do onSubscribed")
         }, onDispose: {
-            dlog("🛠\(tmp)10. do onDispose")
+            Log.rxswift.debug("🛠\(tmp)10. do onDispose")
         })
     }
     func xl_subscribeTest(_ prefix: String = "") -> RxSwift.Disposable {
         let tmp = prefix.isEmpty ? "" : "「\(prefix)」"
         return self.subscribe { ele in
-            dlog("\(tmp)onNext: \(ele)")
+            Log.rxswift.x_debug("\(tmp)onNext: \(ele)")
         } onError: { error in
-            dlog("\(tmp)onError: \(error)")
+            Log.rxswift.x_debug("\(tmp)onError: \(error)")
         } onCompleted: {
-            dlog("\(tmp)onCompleted")
+            Log.rxswift.debug("\(tmp)onCompleted")
         } onDisposed: {
-            dlog("\(tmp)onDisposed")
+            Log.rxswift.debug("\(tmp)onDisposed")
         }
     }
 }

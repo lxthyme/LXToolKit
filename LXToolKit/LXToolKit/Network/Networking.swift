@@ -143,10 +143,10 @@ extension NetworkingType {
         //         let date = defaultEntryDateFormatter().string(from: Date())
         //         return "Moya_Logger: [\(date)] \(identifier): \(message)"
         //     } requestData: { data in
-        //         dlog("requestData")
+        //         logger.debug("requestData")
         //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
         //     } responseData: { data in
-        //         dlog("responseData")
+        //         logger.debug("responseData")
         //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
         //     }
         //     
@@ -176,7 +176,7 @@ extension NetworkingType {
                 request.httpShouldHandleCookies = false
                 closure(.success(request))
             } catch {
-                logError(error.localizedDescription)
+                logger.x_error(error.localizedDescription)
             }
         }
     }

@@ -9,6 +9,6 @@ import Foundation
 
 open class LXBaseCommon {
     deinit {
-//        dlog("---------- >>>Model: \(self.typeNameString)\t\tdeinit <<<----------")
+        // Log.dealloc.trace("---------- >>>Model: \(self.typeNameString)\t\tdeinit <<<----------")
     }
 }
