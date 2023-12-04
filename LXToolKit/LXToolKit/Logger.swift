@@ -7,55 +7,36 @@
 
 import Foundation
 import RxSwift
-import CocoaLumberjack
+import OSLog
 
-struct Logger {}
+public struct Log {}
 
 // MARK: - 👀
-extension Logger {
-    static func info(_ msg: @autoclosure () -> String) {
-        DDLogInfo(msg())
-    }
-    static func verbose(_ msg: @autoclosure () -> String) {
-        DDLogVerbose(msg())
-    }
-    static func debug(_ msg: @autoclosure () -> String) {
-        DDLogDebug(msg())
-    }
-    static func warn(_ msg: @autoclosure () -> String) {
-        DDLogWarn(msg())
-    }
-//    DDLogError(_ message: @autoclosure () -> Any,
-//                           level: DDLogLevel = DDDefaultLogLevel,
-//                           context: Int = 0,
-//                           file: StaticString = #file,
-//                           function: StaticString = #function,
-//                           line: UInt = #line,
-//                           tag: Any? = nil,
-//                           asynchronous async: Bool = false,
-//                           ddlog: DDLog = .sharedInstance)
-    static func error(_ msg: @autoclosure () -> String,
-                      level: DDLogLevel = .error,
-                      context: Int = 0,
-                      file: StaticString = #file,
-                      function: StaticString = #function,
-                      line: UInt = #line,
-                      tag: Any? = nil,
-                      asynchronous async: Bool = false,
-                      ddlog: DDLog = .sharedInstance) {
-        DDLogError("❗\(msg())",
-                   level: .error,
-                   context: 0,
-                   file: file,
-                   function: function,
-                   line: line,
-                   tag: tag,
-                   asynchronous: async,
-                   ddlog: ddlog)
-    }
-    static func resourcesCount() {
+extension Log {
+    public static func resourcesCount() {
         #if DEBUG && TRACE_RESOURCES
-        debug("RxSwift resources count: \(RxSwift.Resources.total)")
+        Log.rxswift.debug("RxSwift resources count: \(RxSwift.Resources.total)")
         #endif
     }
+}
+
+@available(iOS 14.0, *)
+let logger = Logger(subsystem: Log.subsystem, category: "Normal Logger")
+
+// MARK: - 👀
+@available(iOS 14.0, *)
+extension Log {
+    /// Using your bundle identifier is a great way to ensure a unique identifier.
+    fileprivate static var subsystem = "「\(Bundle.main.bundleIdentifier ?? "Unknown bundleIdentifier")」"
+
+
+    /// Logs the view cycles like a view that appeared.
+    public static let viewCycle = Logger(subsystem: subsystem, category: "LifeCycle Logger")
+    /// dealloc log
+    public static let dealloc = Logger(subsystem: subsystem, category: "Dealloc Logger")
+    public static let rxswift = Logger(subsystem: subsystem, category: "RxSwift Logger")
+    /// All logs related to tracking and analytics.
+    public static let statistics = Logger(subsystem: subsystem, category: "Analysis Logger")
+    // logger.info("An unsigned integer \(x, format: .hex, align: .right(columns: 10))")
+    // logger.info("An unsigned integer \(x, privacy: .private)")
 }
