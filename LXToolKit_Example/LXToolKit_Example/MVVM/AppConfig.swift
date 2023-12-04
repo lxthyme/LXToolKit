@@ -27,14 +27,14 @@ enum Keys {
     }
 }
 
-public struct AppConfig {
-    struct App {
+public enum AppConfig {
+    enum App {
         static let githubUrl = "https://github.com/khoren93/SwiftHub"
         static let githubScope = "user+repo+notifications+read:org"
         static let bundleIdentifier = "com.public.SwiftHub"
     }
 
-    struct Network {
+    enum Network {
         static let useStaging = false  // set true for tests and generating screenshots with fastlane
         static let loggingEnabled = true
         static let localHost = "http://10.199.5.27:3003"
@@ -47,7 +47,7 @@ public struct AppConfig {
         static let githubSkylineBaseUrl = "https://skyline.github.com"
     }
 
-    struct BaseDimensions {
+    enum BaseDimensions {
         static let inset: CGFloat = 8
         static let tabBarHeight: CGFloat = 58
         static let toolBarHeight: CGFloat = 66
@@ -59,21 +59,21 @@ public struct AppConfig {
         static let tableRowHeight: CGFloat = 36
         static let segmentedControlHeight: CGFloat = 40
     }
-    public struct TingYun {
+    public enum TingYun {
         public static let AppKey = "d3dce7e7bc664cea81e4b7fd7c12fad1"
     }
 
     struct Path {
         static let Documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         static let Tmp = NSTemporaryDirectory()
+
+        static let assetDir: URL = {
+            let directoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
+        }()
     }
 
-    struct UserDefaultsKeys {
+    enum UserDefaultsKeys {
         static let bannersEnabled = "BannersEnabled"
     }
-
-    private let assetDir: URL = {
-        let directoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
-    }()
 }
