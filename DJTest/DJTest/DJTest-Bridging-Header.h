@@ -5,4 +5,6 @@
 // #import <Bugly/Bugly.h>
 #import <tingyunApp/NBSAppAgent.h>
 
+#ifndef EmojiRangersConfig_Open
 #define EmojiRangersConfig_Open true
+#endif
