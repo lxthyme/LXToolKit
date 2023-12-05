@@ -30,6 +30,7 @@ import Foundation
 // import DropDown
 // import Toast_Swift
 // import GoogleMobileAds
+import CocoaLumberjack
 
 open class LibsManager: NSObject {
     // MARK: 🔗Vaiables
@@ -69,6 +70,14 @@ open class LibsManager: NSObject {
         UIApplication.shared.theme.statusBarStyle = themeService.attribute { $0.statusBarStyle }
     }
 
+    func setupCocoaLumberjack() {
+        DDLog.add(DDOSLogger.sharedInstance)
+
+        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
+        fileLogger.rollingFrequency = 60 * 60 * 24 // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+    }
     // func setupDropDown() {
     //     themeService.typeStream.subscribe(onNext: { (themeType) in
     //         let theme = themeType.associatedObject

@@ -129,8 +129,8 @@ open class LXBaseVC2: UIViewController, Navigatable {
 
     // MARK: 🛠Life Cycle
     deinit {
-        logDebug("\(type(of: self)): Deinited")
-        LXPrint.resourcesCount()
+        LogKit.traceLifeCycle(xl.typeNameString, type: .deinit)
+        LogKit.resourcesCount()
     }
     public convenience init(vm: LXBaseVM?, navigator: Navigator) {
         self.init(nibName: nil, bundle: nil)
@@ -149,7 +149,7 @@ open class LXBaseVC2: UIViewController, Navigatable {
         super.viewDidAppear(animated)
 
         updateUI()
-        logResourcesCount()
+        LogKit.resourcesCount()
     }
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -169,7 +169,7 @@ open class LXBaseVC2: UIViewController, Navigatable {
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        logDebug("\(type(of: self)): Received Memory Warning")
+        LogKit.traceLifeCycle(xl.typeNameString, type: .didReceiveMemoryWarning)
     }
     func updateUI() {}
 }

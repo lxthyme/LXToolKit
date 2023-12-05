@@ -171,6 +171,6 @@ extension LXBaseTableVC {
     
     @objc override open func masonry() {
         super.masonry()
-        table.snp.setLabel("\(self.xl.typeNameString).table")
+        table.snp.setLabel("\(xl.typeNameString).table")
     }
 }

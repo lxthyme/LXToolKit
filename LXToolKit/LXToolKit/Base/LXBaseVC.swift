@@ -131,8 +131,8 @@ open class LXBaseVC: UIViewController, Navigatable {
     
     // MARK: 🛠Life Cycle
     deinit {
-        dlog("---------- >>>VC: \(self.xl.typeNameString)\t\tdeinit <<<----------")
-        logResourcesCount()
+        dlog("---------- >>>VC: \(xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.resourcesCount()
     }
     // public required init?(coder: NSCoder) {
     //     fatalError("init(coder:) has not been implemented")
@@ -163,7 +163,6 @@ open class LXBaseVC: UIViewController, Navigatable {
         super.viewDidAppear(animated)
         
         updateUI()
-        logResourcesCount()
     }
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -183,7 +182,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        logDebug("\(type(of: self)): Received Memory Warning")
+        LogKit.traceLifeCycle(xl.typeNameString, type: .didReceiveMemoryWarning)
     }
 }
 

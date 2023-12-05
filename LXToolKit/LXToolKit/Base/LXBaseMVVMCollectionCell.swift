@@ -67,7 +67,7 @@ private extension LXBaseMVVMCollectionCell {
     }
     
     func masonry() {
-        self.snp.setLabel("\(self.xl.typeNameString)")
+        self.snp.setLabel("\(xl.typeNameString)")
         contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")
         wrapperView.snp.setLabel("\(self.wrapperView.xl.typeNameString).wrapperView")
         wrapperStackView.snp.setLabel("\(self.wrapperStackView.xl.typeNameString).wrapperStackView")

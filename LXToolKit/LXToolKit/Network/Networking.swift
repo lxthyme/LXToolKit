@@ -176,7 +176,7 @@ extension NetworkingType {
                 request.httpShouldHandleCookies = false
                 closure(.success(request))
             } catch {
-                logError(error.localizedDescription)
+                LogKit.x_error(error)
             }
         }
     }

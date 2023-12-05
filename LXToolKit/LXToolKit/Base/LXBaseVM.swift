@@ -21,8 +21,8 @@ public protocol LXViewModelType {
 open class LXBaseVM: NSObject/**, LXViewModelType*/ {
 
     deinit {
-        dlog("---------- >>>VM: \(self.xl.typeNameString)\t\tdeinit <<<----------")
-        LXPrint.resourcesCount()
+        dlog("---------- >>>VM: \(xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.resourcesCount()
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
