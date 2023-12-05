@@ -23,21 +23,11 @@ import RxSwift
 /// | critical | ❗   |
 /// | fault    | 🎈   |
 public struct LogKit {}
-public struct LogKit {}
-
-// MARK: - 👀
-extension LogKit {
-    public static func resourcesCount() {
-        #if DEBUG && TRACE_RESOURCES
-        LogKit.rxswift.debug("RxSwift resources count: \(RxSwift.Resources.total)")
-        #endif
-    }
-}
 
 @available(iOS 14.0, *)
 let logger = Logger(subsystem: LogKit.subsystem, category: "Normal Logger")
 
-// MARK: - 👀
+// MARK: - 👀Logger
 @available(iOS 14.0, *)
 extension LogKit {
     /// Using your bundle identifier is a great way to ensure a unique identifier.
@@ -54,17 +44,17 @@ extension LogKit {
     // logger.info("An unsigned integer \(x, format: .hex, align: .right(columns: 10))")
     // logger.info("An unsigned integer \(x, privacy: .private)")
 }
-// MARK: - 👀
+// MARK: - 👀Logger bridge
 extension LogKit {
-    public static func x_log(_ message: String) {
+    public static func x_log(_ message: Any) {
         // log("🚧\(message)")
         DDLogInfo("🚧\(message)")
     }
-    public static func x_log(level: OSLogType, message: String) {
+    public static func x_log(level: OSLogType = .default, message: String) {
         // log(level: level, "🚧\(message)")
         DDLogInfo("🚧\(message)")
     }
-    public static func x_trace(_ message: String) {
+    public static func x_trace(_ message: Any) {
         // trace("🔗\(message)")
         DDLogVerbose("🔗\(message)")
     }
@@ -81,23 +71,23 @@ extension LogKit {
         // }
         DDLogDebug("👉\(items)")
     }
-    public static func x_debug(_ message: String) {
+    public static func x_debug(_ message: Any) {
         // debug("👉\(message)")
         DDLogDebug("👉\(message)")
     }
-    public static func x_info(_ message: String) {
+    public static func x_info(_ message: Any) {
         // info("📌\(message)")
         DDLogInfo("📌\(message)")
     }
-    public static func x_notice(_ message: String) {
+    public static func x_notice(_ message: Any) {
         if #available(iOS 14.0, *) {
-            logger.notice("👀\(message)")
+            logger.notice("👀\(String(describing: message))")
         } else {
             // Fallback on earlier versions
             DDLogInfo("👀\(message)")
         }
     }
-    public static func x_warning(_ message: String) {
+    public static func x_warning(_ message: Any) {
         // warning("⚠️\(message)")
         DDLogWarn("⚠️\(message)")
     }
@@ -105,32 +95,83 @@ extension LogKit {
         // error("❌\(message)")
         DDLogError("❌\(message)")
     }
-    public static func x_critical(_ message: String) {
+    public static func x_critical(_ message: Any) {
         // critical("❗\(message)")
         DDLogInfo("❗\(message)")
     }
-    public static func x_fault(_ message: String) {
+    public static func x_fault(_ message: Any) {
         // fault("🎈\(message)")
         DDLogInfo("🎈\(message)")
     }
 }
 
-// MARK: - 👀
+// MARK: - 👀Life Cycle Logger
 extension LogKit {
+    public enum LifeCycleStyle: String {
+        case none
+        case NSObject
+        case vc = "VC"
+        case view = "View"
+        case vm = "ViewModel"
+        case model = "Model"
+        case cell = "Cell"
+        case TableViewCell
+        case CollectionViewCell
+    }
     public enum LifeCycleType: String {
         case `init` = "Initial"
         case `deinit` = "Deinited"
         case didReceiveMemoryWarning
     }
     // MARK: 🛠Life Cycle
-    public static func traceLifeCycle(_ typeName: String, type: LifeCycleType) {
-        let msg = "🔗\(typeName): \(type)"
+    public static func traceLifeCycle(_ prefix: LifeCycleStyle = .none, typeName: String, type: LifeCycleType) {
+        let msg = "---------->>>🔗\(prefix != .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
         if #available(iOS 14.0, *) {
             // trace("🔗\(message)")
             LogKit.viewCycle.trace("\(msg)")
         } else {
             // Fallback on earlier versions
             DDLogVerbose(msg)
+        }
+    }
+}
+// MARK: - 👀RxSwift
+extension LogKit {
+    public enum RxSwiftLogType: String {
+        case onNext
+        case afterNext
+        case onError
+        case afterError
+        case onCompleted
+        case afterCompleted
+        case onSubscribe
+        case onSubscribed
+        case onDispose
+    }
+    public static func logRxSwift(_ type: RxSwiftLogType, items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        let msg = "「\(type)」\(items)"
+        if #available(iOS 14.0, *) {
+            LogKit.rxswift.trace("\(msg)")
+        } else {
+            // Fallback on earlier versions
+            LogKit.x_trace(msg)
+        }
+    }
+    public static func resourcesCount() {
+        #if DEBUG && TRACE_RESOURCES
+        LogKit.rxswift.debug("RxSwift resources count: \(RxSwift.Resources.total)")
+        #endif
+    }
+}
+// MARK: - 👀 LXToolKit Logger
+extension LogKit {
+    public static func kitLog(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        let msg = "「LXToolKit」\(items)"
+        if #available(iOS 14.0, *) {
+            logger.debug("\(msg)")
+        } else {
+            // Fallback on earlier versions
+            LogKit.xl_debug(msg)
         }
     }
 }

@@ -34,7 +34,7 @@ public protocol LXBaseListModelGenericProtocol: LXBaseModelProtocol {
 
 open class LXAnyModel: NSObject {
     deinit {
-        dlog("---------- >>>Model: \(xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.model, typeName: xl.typeNameString, type: .deinit)
     }
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle

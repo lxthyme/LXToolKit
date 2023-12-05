@@ -131,7 +131,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     
     // MARK: 🛠Life Cycle
     deinit {
-        dlog("---------- >>>VC: \(xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .deinit)
         LogKit.resourcesCount()
     }
     // public required init?(coder: NSCoder) {
@@ -182,7 +182,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        LogKit.traceLifeCycle(xl.typeNameString, type: .didReceiveMemoryWarning)
+        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .didReceiveMemoryWarning)
     }
 }
 
@@ -221,7 +221,7 @@ extension LXBaseVC {
         error
             .subscribe {[weak self] error in
                 guard let self else { return }
-                dlog("-->error[\(self.xl.typeNameString)]: \(error)")
+                LogKit.logRxSwift(.onSubscribe, items: "-->error[\(self.xl.typeNameString)]: \(error)")
         }
         .disposed(by: rx.disposeBag)
     }
@@ -345,7 +345,7 @@ extension LXBaseVC {
         NotificationCenter.default.rx
             .notification(UIAccessibility.reduceMotionStatusDidChangeNotification)
             .subscribe { notification in
-                print("Motion Status changed")
+                LogKit.kitLog("Motion Status changed")
             }
             .disposed(by: rx.disposeBag)
         NotificationCenter.default.rx

@@ -12,7 +12,7 @@ import Moya
 
 func networkLogger(_ separator: String, terminator: String, items: Any...) {
     for item in items {
-        print("\n🛠 \(item)", separator: separator, terminator: terminator)
+        LogKit.kitLog("\n🛠 \(item)", separator: separator, terminator: terminator)
     }
 }
 
@@ -143,7 +143,7 @@ private extension LXNetworkLogger {
 fileprivate extension LXNetworkLogger {
     static func reversedPrint(_ separator: String, terminator: String, items: Any...) {
         for item in items {
-            print(item, separator: separator, terminator: terminator)
+            LogKit.kitLog(item, separator: separator, terminator: terminator)
         }
     }
 }

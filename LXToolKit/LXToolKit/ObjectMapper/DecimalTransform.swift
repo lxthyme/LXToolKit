@@ -24,7 +24,7 @@ open class DecimalTransform: ObjectMapper.TransformType {
         }
         // if let count = result?.string.count,
         //    count > 5 {
-        //     dlog("-->result: \(result?.string ?? "NaN")")
+        //     kitLog("-->result: \(result?.string ?? "NaN")")
         // }
         return result
     }

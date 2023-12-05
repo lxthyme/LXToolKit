@@ -129,7 +129,7 @@ open class LXBaseVC2: UIViewController, Navigatable {
 
     // MARK: 🛠Life Cycle
     deinit {
-        LogKit.traceLifeCycle(xl.typeNameString, type: .deinit)
+        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .deinit)
         LogKit.resourcesCount()
     }
     public convenience init(vm: LXBaseVM?, navigator: Navigator) {
@@ -169,7 +169,7 @@ open class LXBaseVC2: UIViewController, Navigatable {
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        LogKit.traceLifeCycle(xl.typeNameString, type: .didReceiveMemoryWarning)
+        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .didReceiveMemoryWarning)
     }
     func updateUI() {}
 }
@@ -314,7 +314,7 @@ extension LXBaseVC2 {
         NotificationCenter.default.rx
             .notification(UIAccessibility.reduceMotionStatusDidChangeNotification)
             .subscribe { notification in
-                print("Motion Status changed")
+                LogKit.kitLog("Motion Status changed")
             }
             .disposed(by: rx.disposeBag)
         NotificationCenter.default.rx
@@ -345,7 +345,7 @@ extension LXBaseVC2 {
                 // guard let `self` = self else { return }
                 // let theme = themeService.type.toggled()
                 // themeService.switch(theme)
-                dlog("🛠1. onNext: \(event)")
+                LogKit.logRxSwift(.onNext, items: "🛠1. onNext: \(event)")
             })
             .disposed(by: rx.disposeBag)
     }

@@ -191,7 +191,7 @@ extension URLSessionSample: URLSessionTaskDelegate {
     /// 通知>>任务信息收集完成
     @available(iOS 10.0, *)
     func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
-        dlog("""
+        LogKit.kitLog("""
             ::::::::::::相关讯息::::::::::::
             总时间         : \(metrics.taskInterval)
             重定向次数   : \(metrics.redirectCount)
@@ -267,11 +267,11 @@ extension URLSessionSample {
             if let certEntry = dict as? [String: AnyObject] {
                 let identityPointer = certEntry["identity"]
                 let secIdentityRef = identityPointer as! SecIdentity
-                dlog("\(String(describing: identityPointer))  :::: \(secIdentityRef)")
+                LogKit.kitLog("\(String(describing: identityPointer))  :::: \(secIdentityRef)")
 
                 let trustPointer = certEntry["trust"]
                 let trustRef = trustPointer as! SecTrust
-                dlog("\(String(describing: trustPointer))  :::: \(trustRef)")
+                LogKit.kitLog("\(String(describing: trustPointer))  :::: \(trustRef)")
 
                 let chainPointer = certEntry["chain"]
                 identityAndTrust = IdentityAndTrust(identityRef: secIdentityRef, trust: trustRef, certArray: chainPointer!)
@@ -303,7 +303,7 @@ extension URLSessionSample: URLSessionDownloadDelegate {
         let written = CGFloat(bytesWritten)
         let total = CGFloat(totalBytesWritten)
         let expected = CGFloat(totalBytesExpectedToWrite)
-        dlog(written, total, expected)
+        LogKit.kitLog("\(written), \(total), \(expected)")
     }
 
     /*

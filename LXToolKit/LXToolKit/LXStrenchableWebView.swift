@@ -63,7 +63,7 @@ extension LXStrenchableWebView {
                     let contentHeight = result as? CGFloat ?? 0.0
 
                     if contentHeight > self.webViewHeight {
-                        print("setting height to \(contentHeight)")
+                        LogKit.kitLog("setting height to \(contentHeight)")
                         self.webViewHeight = contentHeight
                         self.invalidateIntrinsicContentSize()
                     }

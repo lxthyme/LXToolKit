@@ -13,35 +13,35 @@ public extension ObservableType {
     func xl_doOnTest(_ prefix: String = "") -> RxSwift.Observable<Self.Element> {
         let tmp = prefix.isEmpty ? "" : "「\(prefix)」"
         return self.`do`(onNext: { ele in
-            dlog("🛠\(tmp)3.2 do onNext: \(ele)")
+            LogKit.logRxSwift(.onNext, items: "🛠\(tmp)3.2 do onNext: \(ele)")
         }, afterNext: { ele in
-            dlog("🛠\(tmp)5. do afterNext: \(ele)")
+            LogKit.logRxSwift(.afterNext, items: "🛠\(tmp)5. do afterNext: \(ele)")
         }, onError: { e in
-            dlog("🛠\(tmp)6. do onError: \(e)")
+            LogKit.logRxSwift(.onError, items: "🛠\(tmp)6. do onError: \(e)")
         }, afterError: { e in
-            dlog("🛠\(tmp)6. do afterError: \(e)")
+            LogKit.logRxSwift(.afterError, items: "🛠\(tmp)6. do afterError: \(e)")
         }, onCompleted: {
-            dlog("🛠\(tmp)6. do onCompleted")
+            LogKit.logRxSwift(.onCompleted, items: "🛠\(tmp)6. do onCompleted")
         }, afterCompleted: {
-            dlog("🛠\(tmp)9. do afterCompleted")
+            LogKit.logRxSwift(.afterCompleted, items: "🛠\(tmp)9. do afterCompleted")
         }, onSubscribe: {
-            dlog("🛠\(tmp)1. do onSubscribe")
+            LogKit.logRxSwift(.onSubscribe, items: "🛠\(tmp)1. do onSubscribe")
         }, onSubscribed: {
-            dlog("🛠\(tmp)2. do onSubscribed")
+            LogKit.logRxSwift(.onSubscribed, items: "🛠\(tmp)2. do onSubscribed")
         }, onDispose: {
-            dlog("🛠\(tmp)10. do onDispose")
+            LogKit.logRxSwift(.onDispose, items: "🛠\(tmp)10. do onDispose")
         })
     }
     func xl_subscribeTest(_ prefix: String = "") -> RxSwift.Disposable {
         let tmp = prefix.isEmpty ? "" : "「\(prefix)」"
         return self.subscribe { ele in
-            dlog("\(tmp)onNext: \(ele)")
+            LogKit.logRxSwift(.onSubscribe, items: "\(tmp)onNext: \(ele)")
         } onError: { error in
-            dlog("\(tmp)onError: \(error)")
+            LogKit.logRxSwift(.onError, items: "\(tmp)onError: \(error)")
         } onCompleted: {
-            dlog("\(tmp)onCompleted")
+            LogKit.logRxSwift(.onCompleted, items: "\(tmp)onCompleted")
         } onDisposed: {
-            dlog("\(tmp)onDisposed")
+            LogKit.logRxSwift(.onDispose, items: "\(tmp)onDisposed")
         }
     }
 }

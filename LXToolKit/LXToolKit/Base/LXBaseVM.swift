@@ -21,7 +21,7 @@ public protocol LXViewModelType {
 open class LXBaseVM: NSObject/**, LXViewModelType*/ {
 
     deinit {
-        dlog("---------- >>>VM: \(xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.vm, typeName: xl.typeNameString, type: .deinit)
         LogKit.resourcesCount()
     }
     // MARK: 📌UI
