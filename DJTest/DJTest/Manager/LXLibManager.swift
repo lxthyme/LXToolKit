@@ -11,27 +11,25 @@ import LXToolKit_Example
 // import AMapLocationKit
 // import AMapSearchKit
 // import MAMapKit
-import Firebase
+// import Firebase
 import Toast_Swift
 
 class LXLibManager {
-    static func setup() {
+    static func setupLibs() {
         LibsManager.shared.setupLibs()
-        // prepareAMap()
-        // prepareFirebase()
-        // prepareBugly()
-        // prepareUMeng()
-        prepareTingYun()
-        prepareToast()
+        // setupAMap()
+        // setupBugly()
+        // setupUMeng()
+        setupTingYun()
     }
 }
 
 // MARK: - 👀
-extension LXLibManager {
-    static func prepareTingYun() {
+private extension LXLibManager {
+    static func setupTingYun() {
         NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
     }
-    static func prepareUMeng() {
+    static func setupUMeng() {
         // UMLaunch.setRootVCCls(ViewController.self)
         // let config = UMAPMConfig.default()
         // UMConfigure.setLogEnabled(true)
@@ -39,17 +37,12 @@ extension LXLibManager {
         // UMConfigure.initWithAppkey("655eb7c158a9eb5b0a0ef8b9", channel: "iOS")
         // URLProtocol.registerClass(UMURLProtocol)
     }
-    /// Firebase 配置
-    static func prepareFirebase() {
-        FirebaseApp.configure()
-        FirebaseConfiguration.shared.setLoggerLevel(.error)
-    }
-    static func prepareBugly() {
+    static func setupBugly() {
         // Bugly.start(withAppId: "6c86961c5c")
         // Bugly.start(withAppId: <#T##String?#>, developmentDevice: <#T##Bool#>, config: <#T##BuglyConfig?#>)
     }
     /// 高德地图配置
-    static func prepareAMap() {
+    static func setupAMap() {
         // let mapService = AMapServices.shared()
         // /// com.bailian.ibl
         // mapService?.apiKey = "e20b8e6e9aec8627532584e762ddd71e"
@@ -62,15 +55,5 @@ extension LXLibManager {
         // MAMapView.updatePrivacyAgree(.didAgree)
         // AMapSearchAPI.updatePrivacyShow(.didShow, privacyInfo: .didContain)
         // AMapSearchAPI.updatePrivacyAgree(.didAgree)
-    }
-    static func prepareToast() {
-        let instance = ToastManager.shared
-        instance.isTapToDismissEnabled = true
-        instance.isQueueEnabled = true
-        instance.duration = 1
-        instance.position = .bottom
-
-        // var style = ToastStyle()
-        // instance.style = style
     }
 }

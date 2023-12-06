@@ -8,3 +8,7 @@
 #ifndef EmojiRangersConfig_Open
 #define EmojiRangersConfig_Open true
 #endif
+
+// #define LOG_LEVEL_DEF ddLogLevel
+// #import <CocoaLumberjack/CocoaLumberjack.h>
+// static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
