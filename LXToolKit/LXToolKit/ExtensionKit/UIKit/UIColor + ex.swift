@@ -77,6 +77,25 @@ public extension Swifty where Base: SFColor {
         let blue = Int.random(in: 0...255)
         return SFColor(red: red, green: green, blue: blue)!
     }
+    static var randomGolden: SFColor {
+        let golden_ratio_conjugate = 0.618033988749895
+        var h = CGFloat.random(in: 0...1)
+        h += golden_ratio_conjugate
+        h.formTruncatingRemainder(dividingBy: 1)
+        return SFColor(hue: h, saturation: 0.5, brightness: 0.95, alpha: 1)
+    }
+    static var randomDark: SFColor {
+        let hue = CGFloat.random(in: 0...1)
+        let saturation = CGFloat.random(in: 0.5...1)
+        let brightness = CGFloat.random(in: 0...0.3)
+        return SFColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+    }
+    static var randomLight: SFColor {
+        let hue = CGFloat.random(in: 0...1)
+        let saturation = CGFloat.random(in: 0...0.5)
+        let brightness = CGFloat.random(in: 0.3...1)
+        return SFColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
+    }
 
     // swiftlint:disable large_tuple
     /// SwifterSwift: RGB components for a Color (between 0 and 255).
