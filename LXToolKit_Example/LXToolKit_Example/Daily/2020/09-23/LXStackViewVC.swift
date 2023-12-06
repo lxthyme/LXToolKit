@@ -177,15 +177,12 @@ class LXStackViewVC: LXBaseVC {
         prepareUI()
     }
     // MARK: - 🍺UI Prepare & Masonryry
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    override open func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }
 
 // MARK: 🌎LoadData

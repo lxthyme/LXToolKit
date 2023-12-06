@@ -91,9 +91,8 @@ private extension LXInsetItemsGridVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXInsetItemsGridVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXInsetItemsGridVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Inset Items Grid"
 
@@ -107,8 +106,7 @@ extension LXInsetItemsGridVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

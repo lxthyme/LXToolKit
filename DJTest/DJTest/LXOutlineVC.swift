@@ -547,7 +547,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXOutlineVC {
+private extension LXOutlineVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
@@ -559,8 +559,7 @@ extension LXOutlineVC {
         }
         collectionView.delegate = self
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .cyan
         // navigationItem.title = ""
         navigationItem.rightBarButtonItems = generateNavRightItems()
@@ -570,8 +569,7 @@ extension LXOutlineVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

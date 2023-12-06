@@ -81,9 +81,8 @@ private extension LXTwoColumnVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXTwoColumnVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXTwoColumnVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Two-Column Grid"
 
@@ -97,8 +96,7 @@ extension LXTwoColumnVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

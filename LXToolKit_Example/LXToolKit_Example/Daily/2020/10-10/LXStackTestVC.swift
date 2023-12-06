@@ -116,9 +116,8 @@ extension LXStackTestVC: UITableViewDelegate {
     }
 }
 // MARK: - 🍺UI Prepare & Masonry
-extension LXStackTestVC {
-    override func prepareVM() {
-        super.prepareVM()
+private extension LXStackTestVC {
+    func prepareVM() {
         var idx = 0
         btnTitle.rx
             .controlEvent(.touchUpInside)
@@ -141,8 +140,7 @@ extension LXStackTestVC {
             }
             .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         contentStackView.backgroundColor = .red
         contentStackView.spacing = 10
@@ -155,8 +153,7 @@ extension LXStackTestVC {
         contentStackView.setCustomSpacing(20, after: labTitle1)
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         // contentStackView.snp.makeConstraints {
         //     $0.top.equalTo(self.view.snp.topMargin)
         //     $0.left.right.equalToSuperview()

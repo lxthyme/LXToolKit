@@ -109,9 +109,8 @@ extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXAdaptiveSectionsVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXAdaptiveSectionsVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Adaptive Sections"
 
@@ -130,8 +129,7 @@ extension LXAdaptiveSectionsVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

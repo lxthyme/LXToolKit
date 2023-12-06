@@ -113,9 +113,8 @@ extension LXSectionHeadersFootersVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXSectionHeadersFootersVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXSectionHeadersFootersVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Section Headers/Footers"
 
@@ -135,8 +134,7 @@ extension LXSectionHeadersFootersVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

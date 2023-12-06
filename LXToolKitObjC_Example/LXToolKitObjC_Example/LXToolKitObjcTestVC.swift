@@ -126,7 +126,7 @@ extension LXToolKitObjCTestSwiftVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXToolKitObjCTestSwiftVC {
+private extension LXToolKitObjCTestSwiftVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {
             collectionView = generateCollectionView()
@@ -138,8 +138,7 @@ extension LXToolKitObjCTestSwiftVC {
             // table.dataSource = self
         }
     }
-    open override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
@@ -148,8 +147,7 @@ extension LXToolKitObjCTestSwiftVC {
         masonry()
     }
 
-    open override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

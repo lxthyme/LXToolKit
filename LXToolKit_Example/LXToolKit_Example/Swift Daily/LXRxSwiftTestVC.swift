@@ -260,9 +260,8 @@ private extension LXRxSwiftTestVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXRxSwiftTestVC {
-    override func prepareVM() {
-        super.prepareVM()
+private extension LXRxSwiftTestVC {
+    func prepareVM() {
         btnLogin.rx.tap
             .asDriver()
             .drive(onNext: { _ in
@@ -271,8 +270,7 @@ extension LXRxSwiftTestVC {
             })
             .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
 
@@ -281,8 +279,7 @@ extension LXRxSwiftTestVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         btnLogin.snp.makeConstraints {
             $0.top.equalTo(100)
             $0.centerX.equalToSuperview()

@@ -46,9 +46,8 @@ private extension LX03_08_03VC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LX03_08_03VC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LX03_08_03VC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Swift Daily"
         // self.title = "<#title#>"
@@ -58,7 +57,5 @@ extension LX03_08_03VC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }

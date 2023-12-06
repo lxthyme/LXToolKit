@@ -38,6 +38,7 @@ public enum AppConfig {
         static let useStaging = false  // set true for tests and generating screenshots with fastlane
         static let loggingEnabled = true
         static let localHost = "http://10.199.5.27:3003"
+        // static let localHost = "http://10.199.5.49:3003"
         static let githubBaseUrl = "https://api.github.com"
         static let trendingGithubBaseUrl = "https://gtrend.yapie.me"
         static let codetabsBaseUrl = "https://api.codetabs.com/v1"

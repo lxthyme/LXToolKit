@@ -77,9 +77,8 @@ private extension LXGridVC {
 private extension LXGridVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXGridVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXGridVC {
+    func prepareUI() {
         navigationItem.title = "Grid"
         self.view.backgroundColor = .white
 
@@ -100,8 +99,7 @@ extension LXGridVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

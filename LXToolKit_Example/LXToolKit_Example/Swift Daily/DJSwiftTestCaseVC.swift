@@ -54,9 +54,8 @@ private extension DJSwiftTestCaseVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension DJSwiftTestCaseVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension DJSwiftTestCaseVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
 
@@ -65,7 +64,5 @@ extension DJSwiftTestCaseVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }

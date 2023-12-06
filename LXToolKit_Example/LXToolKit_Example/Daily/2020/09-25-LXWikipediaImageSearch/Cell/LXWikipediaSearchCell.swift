@@ -154,15 +154,13 @@ extension LXWikipediaSearchCell {}
 private extension LXWikipediaSearchCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXWikipediaSearchCell {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXWikipediaSearchCell {
+    func prepareUI() {
         [labTitle, labSubtitle, collectionView].forEach(self.contentView.addSubview)
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         let edges = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         labTitle.snp.makeConstraints {
             $0.top.left.equalToSuperview().inset(edges)

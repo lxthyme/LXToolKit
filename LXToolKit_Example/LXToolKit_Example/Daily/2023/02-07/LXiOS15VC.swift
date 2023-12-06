@@ -215,9 +215,8 @@ extension LXiOS15VC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXiOS15VC {
-    override public func prepareTableView() {
-        super.prepareTableView()
+private extension LXiOS15VC {
+    func prepareTableView() {
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
         table.delegate = self
         if #available(iOS 14.0, *) {
@@ -227,8 +226,7 @@ extension LXiOS15VC {
             table.dataSource = self
         }
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "iOS 15 适配"
 
@@ -236,8 +234,7 @@ extension LXiOS15VC {
         masonry()
     }
 
-    override open func masonry() {
-        super.masonry()
+    func masonry() {
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

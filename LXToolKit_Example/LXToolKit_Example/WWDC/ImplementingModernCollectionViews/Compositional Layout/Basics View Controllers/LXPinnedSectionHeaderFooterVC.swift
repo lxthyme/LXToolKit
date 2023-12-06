@@ -128,9 +128,8 @@ extension LXPinnedSectionHeaderFooterVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXPinnedSectionHeaderFooterVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXPinnedSectionHeaderFooterVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Pinned Section Headers"
 
@@ -150,8 +149,7 @@ extension LXPinnedSectionHeaderFooterVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

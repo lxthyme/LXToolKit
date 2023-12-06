@@ -134,9 +134,8 @@ private extension ViewController {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension ViewController {
-    override func prepareVM() {
-        super.prepareVM()
+private extension ViewController {
+    func prepareVM() {
         btnReset.rx.controlEvent(.touchUpInside)
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
@@ -151,14 +150,12 @@ extension ViewController {
             }
             .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white;
         [btnGo, btnReset, tvContent].forEach(self.view.addSubview)
         masonry()
     }
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         btnGo.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalTo(80)

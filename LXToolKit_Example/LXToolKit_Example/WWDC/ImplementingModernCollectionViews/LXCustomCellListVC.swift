@@ -134,15 +134,14 @@ extension LXCustomCellListVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXCustomCellListVC {
+private extension LXCustomCellListVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems(Item.all)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "List with Custom Cells"
 
@@ -151,8 +150,7 @@ extension LXCustomCellListVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

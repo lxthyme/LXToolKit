@@ -189,9 +189,8 @@ extension LXOutlineVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXOutlineVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXOutlineVC {
+    func prepareUI() {
         navigationItem.title = "Modern Collection Views"
         self.view.backgroundColor = .white
         self.edgesForExtendedLayout = []
@@ -207,8 +206,7 @@ extension LXOutlineVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         outlineCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

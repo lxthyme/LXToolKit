@@ -19,25 +19,25 @@ private class MyView: UIView {
         t.estimatedSectionFooterHeight = 0
         t.sectionHeaderHeight = 0
         t.sectionFooterHeight = 0
-        
+
         t.backgroundColor = .white
         t.separatorStyle = .none
-        
+
         //        t.delegate = self
         //        t.dataSource = self
-        
+
         t.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
-        
+
         return t
     }()
     // MARK: Vaiables
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         prepareUI()
     }
-    
+
 }
 
 // MARK: LoadData
@@ -56,7 +56,7 @@ private extension MyView {
         [table].forEach(self.addSubview)
         masonry()
     }
-    
+
     func masonry() {
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -96,7 +96,7 @@ class LXLightedVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTable()
@@ -130,20 +130,17 @@ extension LXLightedVC {}
 private extension LXLightedVC {}
 
 // MARK: - UI Prepare & Masonry
-extension LXLightedVC {
+private extension LXLightedVC {
     func prepareTable() {
         let photos = LXListItemModel().sortedPhotos()
         dataSource.dataList = photos
         myView.table.dataSource = dataSource
         myView.table.delegate = dataSource
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
-    
-    override open func masonry() {
-        super.masonry()
-    }
+
+    func masonry() {}
 }

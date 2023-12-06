@@ -254,9 +254,8 @@ extension LXSongVC: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXSongVC {
-    override open func prepareUI() {
-        super.prepareUI()
+private extension LXSongVC {
+    func prepareUI() {
         self.view.backgroundColor = UIColor.white
         self.title = "Song Record"
 
@@ -264,8 +263,7 @@ extension LXSongVC {
         masonry()
     }
 
-    override open func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

@@ -42,8 +42,8 @@ extension DJInitialSplitVC {}
 private extension DJInitialSplitVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension DJInitialSplitVC {
-    override open func prepareUI() {
+private extension DJInitialSplitVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         emptyDataSet.title = R.string.localizable.initialNoResults()
         table.headRefreshControl = nil
@@ -54,5 +54,5 @@ extension DJInitialSplitVC {
         masonry()
     }
     
-    override open func masonry() {}
+    func masonry() {}
 }

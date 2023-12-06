@@ -120,15 +120,14 @@ extension LXNestedGroupsVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXNestedGroupsVC {
+private extension LXNestedGroupsVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(0..<100))
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Nested Groups"
 
@@ -137,8 +136,7 @@ extension LXNestedGroupsVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

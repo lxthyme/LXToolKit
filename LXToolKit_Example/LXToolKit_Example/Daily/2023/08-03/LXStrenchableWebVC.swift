@@ -31,7 +31,7 @@ class LXStrenchableWebVC: LXBaseVC {
         btn.titleLabel?.font = .systemFont(ofSize: 20)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 4
-        
+
         // btn.addTarget(self, action: #selector(<#btnAction(sender:)#>), for: .touchUpInside)
         // @objc func <#btnAction#>(sender: UIButton) {}
         return btn
@@ -52,7 +52,7 @@ class LXStrenchableWebVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareVM()
@@ -79,7 +79,7 @@ extension LXStrenchableWebVC {
         // subject.bind { <#CGFloat#> in
         //     <#code#>
         // }
-        
+
         // webView.rx.webViewHeight.asObserver().bi
         // subject.bind(to: webView.rx.webViewHeight)
         // webView.rx.webViewHeight
@@ -90,9 +90,8 @@ extension LXStrenchableWebVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXStrenchableWebVC {
-    override open func prepareVM() {
-        super.prepareVM()
+private extension LXStrenchableWebVC {
+    func prepareVM() {
         btnTest.rx
             .controlEvent(.touchUpInside)
             .subscribe {[weak self] _ in
@@ -109,18 +108,16 @@ extension LXStrenchableWebVC {
             }
             .disposed(by: rx.disposeBag)
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
-        
+
         [webView, btnTest].forEach(self.view.addSubview)
-        
+
         masonry()
     }
-    
-    override open func masonry() {
-        super.masonry()
+
+    func masonry() {
         webView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.left.right.equalTo(0)

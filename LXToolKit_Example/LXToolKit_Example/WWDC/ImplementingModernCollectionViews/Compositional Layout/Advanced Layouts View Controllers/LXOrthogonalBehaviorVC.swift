@@ -159,7 +159,7 @@ extension LXOrthogonalBehaviorVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXOrthogonalBehaviorVC {
+private extension LXOrthogonalBehaviorVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         let itemsPerSection = 18
@@ -172,8 +172,7 @@ extension LXOrthogonalBehaviorVC {
         }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Orthogonal Section Behaviors"
 
@@ -182,8 +181,7 @@ extension LXOrthogonalBehaviorVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

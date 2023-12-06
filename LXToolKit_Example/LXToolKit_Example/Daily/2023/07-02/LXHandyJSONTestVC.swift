@@ -171,7 +171,7 @@ class LXHandyJSONTestVC: LXBaseVC {
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareVM()
@@ -295,9 +295,8 @@ private extension LXHandyJSONTestVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXHandyJSONTestVC {
-    override func prepareVM() {
-        super.prepareVM()
+private extension LXHandyJSONTestVC {
+    func prepareVM() {
         btnHeaderRefresh.rx.controlEvent(.touchUpInside)
             // .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
@@ -314,19 +313,17 @@ extension LXHandyJSONTestVC {
             }
             .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         navigationItem.title = "float testing"
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
-        
+
         [titleTextview, btnHeaderRefresh, btnFootererRefresh].forEach(self.view.addSubview)
 
         masonry()
     }
-    
-    override func masonry() {
-        super.masonry()
+
+    func masonry() {
         titleTextview.snp.makeConstraints {
             $0.top.equalTo(self.view.snp_topMargin)
             $0.left.right.equalToSuperview()

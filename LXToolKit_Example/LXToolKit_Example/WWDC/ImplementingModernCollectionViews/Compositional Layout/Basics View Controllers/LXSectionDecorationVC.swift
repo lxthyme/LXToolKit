@@ -96,7 +96,7 @@ extension LXSectionDecorationVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXSectionDecorationVC {
+private extension LXSectionDecorationVC {
     func prepareSnapshot() {
         let itemsPerSection = 5
         let sections = Array(0..<5)
@@ -108,8 +108,7 @@ extension LXSectionDecorationVC {
         }
         dataSource.apply(currentSnapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Section Background Decoration View"
 
@@ -118,8 +117,7 @@ extension LXSectionDecorationVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

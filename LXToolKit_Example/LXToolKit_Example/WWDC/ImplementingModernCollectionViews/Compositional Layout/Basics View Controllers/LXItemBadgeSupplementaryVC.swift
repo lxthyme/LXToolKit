@@ -124,9 +124,8 @@ private extension LXItemBadgeSupplementaryVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 14.0, *)
-extension LXItemBadgeSupplementaryVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXItemBadgeSupplementaryVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Item Badges"
 
@@ -141,8 +140,7 @@ extension LXItemBadgeSupplementaryVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
