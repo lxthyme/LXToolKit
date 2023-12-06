@@ -30,7 +30,7 @@ class LXBaseCollectionViewVC: LXBaseVC {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        prepareUI()
+        // basePrepareUI()
     }
 }
 

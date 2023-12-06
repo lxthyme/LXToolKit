@@ -34,7 +34,9 @@ open class LXBaseTableViewCell2: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        // prepareUI()
+        basePrepareVM()
+        basePrepareUI()
+        baseMasonry()
     }
     open override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,9 +65,9 @@ extension LXBaseTableViewCell2 {}
 private extension LXBaseTableViewCell2 {}
 
 // MARK: - 🍺UI Prepare & Masonry
-public extension LXBaseTableViewCell2 {
-    @objc func prepareVM() {}
-    @objc func prepareUI() {
+private extension LXBaseTableViewCell2 {
+    func basePrepareVM() {}
+    func basePrepareUI() {
         self.contentView.backgroundColor = .white
         selectionStyle = .none
         selectionColor = .clear
@@ -77,7 +79,7 @@ public extension LXBaseTableViewCell2 {
         self.contentView.addSubview(containerView)
     }
 
-    @objc func masonry() {
+    func baseMasonry() {
         // containerView.snp.makeConstraints {
         //     $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
         // }

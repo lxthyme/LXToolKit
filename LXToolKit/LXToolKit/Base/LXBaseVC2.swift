@@ -143,12 +143,10 @@ open class LXBaseVC2: UIViewController, Navigatable {
         if automaticallyAdjustsLeftBarButtonItem {
             adjustLeftBarButtonItem()
         }
-        updateUI()
     }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        updateUI()
         LogKit.resourcesCount()
     }
     open override func viewWillDisappear(_ animated: Bool) {
@@ -161,17 +159,18 @@ open class LXBaseVC2: UIViewController, Navigatable {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        // prepareUI()
-        // prepareNotification()
-        // prepareVM()
-        // bindViewModel()
+        basePrepareVM()
+        basePrepareGesture()
+        basePrepareNotification()
+        basePrepareUI()
+        baseMasonry()
     }
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .didReceiveMemoryWarning)
     }
-    func updateUI() {}
+    @objc public func updateUI() {}
 }
 
 public extension LXBaseVC2 {
@@ -296,8 +295,8 @@ extension LXBaseVC2: DZNEmptyDataSetDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXBaseVC2 {
-    @objc func prepareNotification() {
+private extension LXBaseVC2 {
+    func basePrepareNotification() {
         // Observe device orientation change
         NotificationCenter.default.rx
             .notification(UIDevice.orientationDidChangeNotification)
@@ -329,7 +328,7 @@ extension LXBaseVC2 {
             })
             .disposed(by: rx.disposeBag)
     }
-    func prepareGesture() {
+    func basePrepareGesture() {
         // One finger swipe gesture for opening Flex
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleOneFingerSwipe(swipeRecognizer:)))
         swipeGesture.numberOfTouchesRequired = 1
@@ -349,14 +348,14 @@ extension LXBaseVC2 {
             })
             .disposed(by: rx.disposeBag)
     }
-    @objc func prepareVM() {
+    func basePrepareVM() {
         closeBarButton.rx.tap.asObservable()
             .subscribe(onNext:  { [weak self] () in
                 self?.navigator.dismiss(sender: self)
             })
             .disposed(by: rx.disposeBag)
     }
-    @objc func prepareUI() {
+    func basePrepareUI() {
         self.view.backgroundColor = .white
         hero.isEnabled = true
         navigationItem.backBarButtonItem = backBarButton
@@ -366,12 +365,10 @@ extension LXBaseVC2 {
         // closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
         // theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
 
-
         self.view.addSubview(contentView)
         self.contentView.addSubview(contentStackView)
-        updateUI()
     }
-    @objc func masonry() {
+    func baseMasonry() {
         contentView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
         }
@@ -381,12 +378,12 @@ extension LXBaseVC2 {
     }
 }
 
-extension LXBaseVC2 {
-    var inset: CGFloat {
+public extension LXBaseVC2 {
+    var xl_inset: CGFloat {
         // return AppConfig.BaseDimensions.inset
         return 6
     }
-    func emptyView(withHeight height: CGFloat) -> UIView {
+    func xl_emptyView(withHeight height: CGFloat) -> UIView {
         let view = UIView()
         view.snp.makeConstraints {
             $0.height.equalTo(height)

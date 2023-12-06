@@ -41,7 +41,9 @@ open class LXBaseVM: NSObject/**, LXViewModelType*/ {
         // self.provider = provider
         super.init()
         
-        prepareVM()
+        basePrepareVM()
+        basePrepareUI()
+        baseMasonry()
     }
 }
 
@@ -52,8 +54,8 @@ extension LXBaseVM {}
 private extension LXBaseVM {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXBaseVM {
-    func prepareVM() {
+private extension LXBaseVM {
+    func basePrepareVM() {
         error.asObservable()
             .bind(to: parsedError)
             .disposed(by: rx.disposeBag)
@@ -61,10 +63,10 @@ extension LXBaseVM {
         //     .bind(to: parsedError)
         //     .disposed(by: rx.disposeBag)
     }
-    func prepareUI() {
+    func basePrepareUI() {
         // self.view.backgroundColor = <#.white#>;
         // [<#table#>].forEach(self.<#view#>.addSubview)
-        masonry()
+        baseMasonry()
     }
-    func masonry() {}
+    func baseMasonry() {}
 }

@@ -32,14 +32,11 @@ class LXBaseMVVMCollectionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        prepareUI()
-        updateUI()
+        basePrepareUI()
+        baseMasonry()
     }
     open override func prepareForReuse() {
         super.prepareForReuse()
-    }
-    func updateUI() {
-        setNeedsDisplay()
     }
 }
 
@@ -56,17 +53,16 @@ private extension LXBaseMVVMCollectionCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseMVVMCollectionCell {
-    func prepareUI() {
+    func basePrepareUI() {
         contentView.backgroundColor = .white
         layer.masksToBounds = true
         
         [self.wrapperView].forEach(self.contentView.addSubview)
         [self.wrapperStackView].forEach(self.contentView.addSubview)
-        
-        masonry()
+
     }
     
-    func masonry() {
+    func baseMasonry() {
         self.snp.setLabel("\(xl.typeNameString)")
         contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")
         wrapperView.snp.setLabel("\(self.wrapperView.xl.typeNameString).wrapperView")

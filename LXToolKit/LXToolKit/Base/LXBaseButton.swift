@@ -17,7 +17,8 @@ open class LXBaseButton: UIButton {
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let expandRect = self.bounds.insetBy(dx: -self.expandInset, dy: -self.expandInset)
@@ -36,12 +37,10 @@ private extension LXBaseButton {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseButton {
-    func prepareUI() {
+    func basePrepareUI() {
 
         // [<#table#>].forEach(self.addSubview)
-
-        masonry()
     }
 
-    func masonry() {}
+    func baseMasonry() {}
 }

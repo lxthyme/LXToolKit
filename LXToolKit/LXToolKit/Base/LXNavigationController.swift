@@ -34,7 +34,7 @@ open class LXNavigationController: UINavigationController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        prepareUI()
+        basePrepareUI()
     }
 
 }
@@ -50,7 +50,7 @@ private extension LXNavigationController {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXNavigationController {
-    func prepareUI() {
+    func basePrepareUI() {
         // Enable default iOS back swipe gesture
         interactivePopGestureRecognizer?.delegate = nil
 

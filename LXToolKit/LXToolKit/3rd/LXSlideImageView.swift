@@ -18,10 +18,7 @@ class LXSlideImageView: ImageSlideshow {
         super.init(frame: frame)
 
         prepareUI()
-        updateUI()
-    }
-    func updateUI() {
-        setNeedsDisplay()
+        masonry()
     }
 }
 
@@ -72,8 +69,6 @@ private extension LXSlideImageView {
         slideshowInterval = 3
         hero.modifiers = [.arc]
         activityIndicator = DefaultActivityIndicator(style: .white, color: .secondary())
-
-        masonry()
     }
 
     func masonry() {}
