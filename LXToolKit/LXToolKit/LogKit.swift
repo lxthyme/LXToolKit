@@ -46,17 +46,26 @@ extension LogKit {
 }
 // MARK: - 👀Logger bridge
 extension LogKit {
-    public static func x_log(_ message: Any) {
-        // log("🚧\(message)")
-        DDLogInfo("🚧\(message)")
+    public static func x_log(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("🚧\(message)")
+            return
+        }
+        logger.log("🚧\(String(describing: message))")
     }
-    public static func x_log(level: OSLogType = .default, message: String) {
-        // log(level: level, "🚧\(message)")
-        DDLogInfo("🚧\(message)")
+    public static func x_log(level: OSLogType = .default, message: String, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("🚧\(message)")
+            return
+        }
+        logger.log(level: level, "🚧\(String(describing: message))")
     }
-    public static func x_trace(_ message: Any) {
-        // trace("🔗\(message)")
-        DDLogVerbose("🔗\(message)")
+    public static func x_trace(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogVerbose("🔗\(message)")
+            return
+        }
+        logger.trace("🔗\(String(describing: message))")
     }
     public static func xl_debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
         // let fileName = (file as NSString).lastPathComponent
@@ -71,37 +80,54 @@ extension LogKit {
         // }
         DDLogDebug("👉\(items)")
     }
-    public static func x_debug(_ message: Any) {
-        // debug("👉\(message)")
-        DDLogDebug("👉\(message)")
-    }
-    public static func x_info(_ message: Any) {
-        // info("📌\(message)")
-        DDLogInfo("📌\(message)")
-    }
-    public static func x_notice(_ message: Any) {
-        if #available(iOS 14.0, *) {
-            logger.notice("👀\(String(describing: message))")
-        } else {
-            // Fallback on earlier versions
-            DDLogInfo("👀\(message)")
+    public static func x_debug(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogDebug("👉\(message)")
+            return
         }
+        logger.debug("👉\(String(describing: message))")
     }
-    public static func x_warning(_ message: Any) {
-        // warning("⚠️\(message)")
-        DDLogWarn("⚠️\(message)")
+    public static func x_info(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("📌\(message)")
+            return
+        }
+        logger.info("📌\(String(describing: message))")
     }
-    public static func x_error(_ message: Any) {
-        // error("❌\(message)")
-        DDLogError("❌\(message)")
+    public static func x_notice(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("👀\(message)")
+            return
+        }
+        logger.notice("👀\(String(describing: message))")
     }
-    public static func x_critical(_ message: Any) {
-        // critical("❗\(message)")
-        DDLogInfo("❗\(message)")
+    public static func x_warning(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogWarn("⚠️\(message)")
+            return
+        }
+        logger.warning("⚠️\(String(describing: message))")
     }
-    public static func x_fault(_ message: Any) {
-        // fault("🎈\(message)")
-        DDLogInfo("🎈\(message)")
+    public static func x_error(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogError("❌\(message)")
+            return
+        }
+        logger.error("❌\(String(describing: message))")
+    }
+    public static func x_critical(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("❗\(message)")
+            return
+        }
+        logger.critical("❗\(String(describing: message))")
+    }
+    public static func x_fault(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        guard #available(iOS 14.0, *) else {
+            DDLogInfo("🎈\(message)")
+            return
+        }
+        logger.fault("🎈\(String(describing: message))")
     }
 }
 
@@ -124,8 +150,8 @@ extension LogKit {
         case didReceiveMemoryWarning
     }
     // MARK: 🛠Life Cycle
-    public static func traceLifeCycle(_ prefix: LifeCycleStyle = .none, typeName: String, type: LifeCycleType) {
-        let msg = "---------->>>🔗\(prefix != .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
+    public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+        let msg = "---------->>>🔗\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
         if #available(iOS 14.0, *) {
             // trace("🔗\(message)")
             LogKit.viewCycle.trace("\(msg)")
@@ -185,8 +211,7 @@ public func printIn(_ items: Any..., separator: String = " ", terminator: String
 //    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
     Swift.print("printIn")
 }
-public func print<T>(_ message: T..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function,
-              line: Int = #line, column: Int = #column) {
+public func print<T>(_ message: T..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
 //    dlog(message, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
     Swift.print("print<T>")
 }
