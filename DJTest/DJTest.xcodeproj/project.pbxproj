@@ -41,6 +41,7 @@
 		BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */; };
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */; };
+		BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA850F92B216B6100C6D019 /* LXFirstVC.swift */; };
 		BEE5A3402AB974FA003339EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A33F2AB974FA003339EB /* AppDelegate.swift */; };
 		BEE5A3422AB974FA003339EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3412AB974FA003339EB /* SceneDelegate.swift */; };
 		BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3432AB974FA003339EB /* ViewController.swift */; };
@@ -163,6 +164,7 @@
 		BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureAttributes.swift; sourceTree = "<group>"; };
 		BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRanger.swift; sourceTree = "<group>"; };
 		BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAMapTestVC.swift; sourceTree = "<group>"; };
+		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
 		BEE5A33C2AB974FA003339EB /* DJTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE5A33F2AB974FA003339EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE5A3412AB974FA003339EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				BEE5A33F2AB974FA003339EB /* AppDelegate.swift */,
 				BEE5A3412AB974FA003339EB /* SceneDelegate.swift */,
 				BEE5A3432AB974FA003339EB /* ViewController.swift */,
+				BEA850F92B216B6100C6D019 /* LXFirstVC.swift */,
 				BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */,
 				BEE5A3452AB974FA003339EB /* Main.storyboard */,
 				BEE5A3482AB974FB003339EB /* Assets.xcassets */,
@@ -682,6 +685,7 @@
 				BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */,
 				BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */,
 				BEFA8E742AE90A8800933131 /* DetailView.swift in Sources */,
+				BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */,
 				BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */,
 				BEFA8DD42AE8EDC400933131 /* AdventureView.swift in Sources */,
 			);

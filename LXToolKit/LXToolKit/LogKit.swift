@@ -183,10 +183,18 @@ extension LogKit {
             LogKit.x_trace(msg)
         }
     }
-    public static func resourcesCount() {
+    @discardableResult
+    public static func resourcesCount() -> Int32 {
+        var total: Int32 = 0
         #if DEBUG && TRACE_RESOURCES
-        LogKit.rxswift.debug("RxSwift resources count: \(RxSwift.Resources.total)")
+        total = RxSwift.Resources.total
+        if #available(iOS 14.0, *) {
+            LogKit.rxswift.debug("RxSwift resources count: \(total)")
+        } else {
+            // Fallback on earlier versions
+        }
         #endif
+        return total
     }
 }
 // MARK: - 👀 LXToolKit Logger

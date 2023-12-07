@@ -82,28 +82,32 @@ target 'DJTest' do
 end
 
 post_install do |installer|
-  # installer.pods_project.targets.each do |target|
-  #   puts(">>>[1]: #{target}")
-  #   target.build_configurations.each do |config|
-  #     generateConfig(target, config)
-  #   end
-  # end
+  installer.pods_project.targets.each do |target|
+    puts(">>>[1]: #{target}")
+    target.build_configurations.each do |config|
+      # generateConfig(target, config)
+    end
+  end
   idx=1
   installer.generated_projects.each do |project|
     project.targets.each do |target|
-      # puts(">>>[#{idx}]:  #{target}")
+      # puts(">>>[#{idx}]: #{target}")
       idx+=1
       # puts(">>>[2.1]:  #{target}\t#{target.build_configurations}")
       target.build_configurations.each do |config|
+        # puts("+#{config}")
         generateConfig(target, config)
       end
-      if target.name == 'RxSwift'
+      if target.name == 'LXToolKit' ||
+        # target.name == 'RxCocoa' ||
+        target.name == 'RxSwift'
         target.build_configurations.each do |config|
-           if config.name == 'Debug'
+          if config.name == 'Debug'
               config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
-           end
+              puts("+++config.build_settings: #{config.build_settings}")
+          end
         end
-       end
+      end
        # elsif target.name == 'LXSwiftUIKit'
        #   target.build_configurations.each do |config|
        #     config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
