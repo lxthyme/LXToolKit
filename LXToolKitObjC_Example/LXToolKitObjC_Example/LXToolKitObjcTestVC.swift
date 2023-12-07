@@ -45,7 +45,6 @@ extension LXToolKitObjCTestSwiftVC {}
 extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXToolKitObjCTestSwiftVC {
     func generateLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .sidebar)

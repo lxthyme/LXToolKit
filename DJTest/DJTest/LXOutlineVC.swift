@@ -12,7 +12,6 @@ import ActivityKit
 import DJTestKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineOpt] = [
         DJTestRouter.routerDJTest,
@@ -54,7 +53,6 @@ public struct DJTestRouter {
     ])
 }
 
-@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnAppearance: UIButton = {
@@ -112,15 +110,12 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: - 🔐Activity
-@available(iOS 14.0, *)
 private extension LXOutlineVC {
     // func testLogKit() {
     //     dlog("1. dlog")
@@ -151,7 +146,6 @@ private extension LXOutlineVC {
 }
 
 // MARK: - 🔐
-@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func gotoScene(by menuItem: LXOutlineOpt) {
         guard let scene = menuItem.scene,
@@ -273,7 +267,6 @@ private extension LXOutlineVC {
 }
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -284,12 +277,12 @@ private extension LXOutlineVC {
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
             // config.backgroundColor = .white
-        
+
             let bgDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
             bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        
+
             // layout.register(LXSectionBgDecorationView.self, forDecorationViewOfKind: LXSectionDecorationVC.sectionBackgroundDecorationElementKind)
-        
+
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                     heightDimension: .estimated(44.0))
             let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -430,14 +423,14 @@ private extension LXOutlineVC {
     }
     // func initialSnapshot(outline: [LXOutlineOpt]) -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
     //     var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-    // 
+    //
     //     func addItems(_ menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
     //         snapshot.append(menuItems, to: parent)
     //         for menuItem in menuItems where (menuItem.subitems ?? []).isNotEmpty {
     //             addItems(menuItem.subitems ?? [], to: menuItem)
     //         }
     //     }
-    // 
+    //
     //     addItems(outline, to: nil)
     //     return snapshot
     // }
@@ -465,7 +458,7 @@ private extension LXOutlineVC {
             switch menuItem {
             case .outline(_, _, let subitems, _):
                 snapshot.appendItems([menuItem], toSection: menuItem)
-        
+
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
@@ -529,7 +522,6 @@ private extension LXOutlineVC {
     }
 }
 
-@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     // func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
     //     guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return true }
@@ -556,7 +548,6 @@ extension LXOutlineVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {
@@ -586,7 +577,6 @@ private extension LXOutlineVC {
     }
 }
 
-@available(iOS 14.0, *)
 #Preview("LXOutlineVC") {
     return LXOutlineVC()
 }

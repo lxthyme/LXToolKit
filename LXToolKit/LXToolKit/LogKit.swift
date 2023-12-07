@@ -53,7 +53,6 @@ public let loggerRxSwift = LogKit(logger: Logger(subsystem: LogKit.subsystem, ca
 public let loggerAnalysis = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "Analysis Logger"))
 
 // MARK: - 👀Logger
-@available(iOS 14.0, *)
 extension LogKit {
     /// Using your bundle identifier is a great way to ensure a unique identifier.
     fileprivate static var subsystem = "「\(Bundle.main.bundleIdentifier ?? "Unknown bundleIdentifier")」"

@@ -8,7 +8,6 @@ import UIKit
 import LXToolKit
 
 // MARK: - 🔐
-@available(iOS 14.0, *)
 extension LXOutlineVC {
     enum Section {
         case main
@@ -33,7 +32,6 @@ extension LXOutlineVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -101,16 +99,13 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXOutlineVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
-@available(iOS 14.0, *)
 extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         let listConfig = UICollectionLayoutListConfiguration(appearance: .sidebar)
@@ -169,11 +164,9 @@ extension LXOutlineVC {
 }
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXOutlineVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
@@ -188,7 +181,6 @@ extension LXOutlineVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func prepareUI() {
         navigationItem.title = "Modern Collection Views"

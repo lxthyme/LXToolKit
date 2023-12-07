@@ -7,13 +7,11 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXPinnedSectionHeaderFooterVC {
     static let sectionHeaderElementKind = "section-header-element-kind"
     static let sectionFooterElementKind = "section-footer-element-kind"
 }
 
-@available(iOS 14.0, *)
 class LXPinnedSectionHeaderFooterVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -105,21 +103,17 @@ class LXPinnedSectionHeaderFooterVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXPinnedSectionHeaderFooterVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXPinnedSectionHeaderFooterVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXPinnedSectionHeaderFooterVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXPinnedSectionHeaderFooterVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -127,7 +121,6 @@ extension LXPinnedSectionHeaderFooterVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXPinnedSectionHeaderFooterVC {
     func prepareUI() {
         self.view.backgroundColor = .white

@@ -7,7 +7,6 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXAdaptiveSectionsVC {
     enum SectionLayoutKind: Int, CaseIterable {
         case list, grid5, grid3
@@ -23,7 +22,6 @@ extension LXAdaptiveSectionsVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXAdaptiveSectionsVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -86,21 +84,17 @@ class LXAdaptiveSectionsVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXAdaptiveSectionsVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXAdaptiveSectionsVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXAdaptiveSectionsVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -108,7 +102,6 @@ extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXAdaptiveSectionsVC {
     func prepareUI() {
         self.view.backgroundColor = .white

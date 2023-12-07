@@ -7,12 +7,10 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXSectionDecorationVC {
     static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
 }
 
-@available(iOS 14.0, *)
 class LXSectionDecorationVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -72,21 +70,17 @@ class LXSectionDecorationVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXSectionDecorationVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXSectionDecorationVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXSectionDecorationVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXSectionDecorationVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -95,7 +89,6 @@ extension LXSectionDecorationVC: UICollectionViewDelegate {
 
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXSectionDecorationVC {
     func prepareSnapshot() {
         let itemsPerSection = 5

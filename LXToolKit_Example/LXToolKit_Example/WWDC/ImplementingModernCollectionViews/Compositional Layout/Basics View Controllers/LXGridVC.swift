@@ -37,7 +37,6 @@ extension LXGridVC {
 // MARK: 👀Public Actions
 extension LXGridVC {}
 
-@available(iOS 14.0, *)
 private extension LXGridVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),

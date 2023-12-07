@@ -145,7 +145,6 @@ extension LXCollectionVC {}
 extension LXCollectionVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXCollectionVC {
     func prepareLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIdx: Int, layoutEnv: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in

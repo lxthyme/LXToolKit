@@ -6,7 +6,6 @@
 //
 import UIKit
 
-@available(iOS 14.0, *)
 class LXMenu: UIControl {
     // MARK: 📌UI
     private lazy var labTitle: UILabel = {
@@ -99,7 +98,6 @@ class LXMenu: UIControl {
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXMenu {
     func updateMenuIfVisible() {
         // self.contextMenuInteraction?.updateVisibleMenu {[unowned self] _ in
@@ -142,11 +140,9 @@ extension LXMenu {
 }
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXMenu {}
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXMenu {
     func prepareUI() {
         // self.backgroundColor = UIColor.white

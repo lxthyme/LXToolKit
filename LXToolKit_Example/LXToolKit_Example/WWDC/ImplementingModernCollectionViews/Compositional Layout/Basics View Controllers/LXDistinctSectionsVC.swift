@@ -7,7 +7,6 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXDistinctSectionsVC {
     enum SectionLayoutKind: Int, CaseIterable {
         case list, grid5, grid3
@@ -22,7 +21,6 @@ extension LXDistinctSectionsVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXDistinctSectionsVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -84,21 +82,17 @@ class LXDistinctSectionsVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXDistinctSectionsVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXDistinctSectionsVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXDistinctSectionsVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXDistinctSectionsVC {
     func prepareUI() {
         self.view.backgroundColor = .white

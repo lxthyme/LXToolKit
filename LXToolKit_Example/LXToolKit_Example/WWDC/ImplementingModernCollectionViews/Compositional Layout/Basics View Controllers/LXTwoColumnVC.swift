@@ -6,14 +6,12 @@
 //
 import UIKit
 
-@available(iOS 14.0, *)
 extension LXTwoColumnVC {
     enum Section {
         case main
     }
 }
 
-@available(iOS 14.0, *)
 class LXTwoColumnVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -68,19 +66,15 @@ class LXTwoColumnVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXTwoColumnVC {}
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXTwoColumnVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXTwoColumnVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXTwoColumnVC {
     func prepareUI() {
         self.view.backgroundColor = .white

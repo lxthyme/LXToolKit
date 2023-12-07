@@ -7,7 +7,6 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXOrthogonalBehaviorVC {
     static let headerElementKind = "header-element-kind"
 
@@ -27,7 +26,6 @@ extension LXOrthogonalBehaviorVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXOrthogonalBehaviorVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -135,21 +133,17 @@ class LXOrthogonalBehaviorVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXOrthogonalBehaviorVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXOrthogonalBehaviorVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXOrthogonalBehaviorVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXOrthogonalBehaviorVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -158,7 +152,6 @@ extension LXOrthogonalBehaviorVC: UICollectionViewDelegate {
 
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXOrthogonalBehaviorVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()

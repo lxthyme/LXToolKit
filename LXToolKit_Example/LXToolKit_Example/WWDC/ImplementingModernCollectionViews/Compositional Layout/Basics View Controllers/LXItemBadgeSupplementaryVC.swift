@@ -7,7 +7,6 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXItemBadgeSupplementaryVC {
     static let badgeElementKind = "badge-element-kind"
     enum Section {
@@ -25,7 +24,6 @@ extension LXItemBadgeSupplementaryVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXItemBadgeSupplementaryVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -109,21 +107,17 @@ class LXItemBadgeSupplementaryVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXItemBadgeSupplementaryVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXItemBadgeSupplementaryVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXItemBadgeSupplementaryVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXItemBadgeSupplementaryVC {
     func prepareUI() {
         self.view.backgroundColor = .white

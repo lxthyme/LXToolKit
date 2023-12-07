@@ -7,14 +7,12 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXNestedGroupsVC {
     enum Section {
         case main
     }
 }
 
-@available(iOS 14.0, *)
 class LXNestedGroupsVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -96,21 +94,17 @@ class LXNestedGroupsVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXNestedGroupsVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXNestedGroupsVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXNestedGroupsVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXNestedGroupsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -119,7 +113,6 @@ extension LXNestedGroupsVC: UICollectionViewDelegate {
 
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
 private extension LXNestedGroupsVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
