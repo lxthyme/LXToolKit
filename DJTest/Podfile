@@ -5,7 +5,7 @@ use_frameworks!
 # use_modular_headers!
 inhibit_all_warnings!
 ENV['SWIFT_VERSION'] = '5'
-platform :ios, '13.0'
+platform :ios, '14.0'
 install! 'cocoapods',
            disable_input_output_paths: true,
            generate_multiple_pod_projects: true,
@@ -130,7 +130,7 @@ end
 allow_warning_list = []
 def generateConfig(target, config)
   # puts("  -->#{target} #{config}:")
-  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
   #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
   # end
