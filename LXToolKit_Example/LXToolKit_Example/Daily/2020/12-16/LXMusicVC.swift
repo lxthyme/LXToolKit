@@ -104,7 +104,7 @@ private extension LXMusicVC {
         table
             .rx
             .modelSelected(LXMusicModel.self).subscribe { model in
-                dlog("Selected: ", model.element?.description)
+                dlog("Selected: ", model)
             }
             .disposed(by: disposeBag)
     }

@@ -22,10 +22,35 @@ import RxSwift
 /// | error    | ❌   |
 /// | critical | ❗   |
 /// | fault    | 🎈   |
-public struct LogKit {}
+enum LogType: String {
+    case log = "🚧"
+    case trace = "🔗"
+    case debug = "👉"
+    case info = "📌"
+    case notice = "👀"
+    case warning = "⚠️"
+    case error = "❌"
+    case critical = "❗"
+    case fault = "🎈"
+}
+public struct LogKit {
+    typealias T = Logger
+    let logger: T
 
-@available(iOS 14.0, *)
-let logger = Logger(subsystem: LogKit.subsystem, category: "Normal Logger")
+    init(logger: T) {
+        self.logger = logger
+    }
+}
+
+public let loggerNormal = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "Normal Logger"))
+/// Logs the view cycles like a view that appeared.
+public let loggerViewCycle = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "LifeCycle Logger"))
+public let loggerKit = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "「LXToolKit」"))
+/// dealloc log
+public let loggerDealloc = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "Dealloc Logger"))
+public let loggerRxSwift = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "RxSwift Logger"))
+/// All logs related to tracking and analytics.
+public let loggerAnalysis = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "Analysis Logger"))
 
 // MARK: - 👀Logger
 @available(iOS 14.0, *)
@@ -33,96 +58,76 @@ extension LogKit {
     /// Using your bundle identifier is a great way to ensure a unique identifier.
     fileprivate static var subsystem = "「\(Bundle.main.bundleIdentifier ?? "Unknown bundleIdentifier")」"
 
-
-    /// Logs the view cycles like a view that appeared.
-    public static let viewCycle = Logger(subsystem: subsystem, category: "LifeCycle Logger")
-    /// dealloc log
-    public static let dealloc = Logger(subsystem: subsystem, category: "Dealloc Logger")
-    public static let rxswift = Logger(subsystem: subsystem, category: "RxSwift Logger")
-    /// All logs related to tracking and analytics.
-    public static let statistics = Logger(subsystem: subsystem, category: "Analysis Logger")
     // logger.info("An unsigned integer \(x, format: .hex, align: .right(columns: 10))")
     // logger.info("An unsigned integer \(x, privacy: .private)")
 }
+
 // MARK: - 👀Logger bridge
 extension LogKit {
-    public static func x_log(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func log(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("🚧\(message)")
             return
         }
         logger.log("🚧\(String(describing: message))")
     }
-    public static func x_log(level: OSLogType = .default, message: String, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func log(level: OSLogType = .default, message: String) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("🚧\(message)")
             return
         }
         logger.log(level: level, "🚧\(String(describing: message))")
     }
-    public static func x_trace(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func trace(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogVerbose("🔗\(message)")
             return
         }
         logger.trace("🔗\(String(describing: message))")
     }
-    public static func xl_debug(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-        // let fileName = (file as NSString).lastPathComponent
-        // let date = Date()
-        // logger.debug("""
-        //     👇<\(fileName).\(function):\(line):\(column) \(date.description)>
-        //     """)
-        // for (idx, element) in items.enumerated() {
-        //     // Swift.print("🕷$\(idx): ", terminator: "")
-        //     // Swift.print(element)
-        //     logger.debug("👉$\(idx): \(String(describing: element))")
-        // }
-        DDLogDebug("👉\(items)")
-    }
-    public static func x_debug(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func debug(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogDebug("👉\(message)")
             return
         }
         logger.debug("👉\(String(describing: message))")
     }
-    public static func x_info(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func info(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("📌\(message)")
             return
         }
         logger.info("📌\(String(describing: message))")
     }
-    public static func x_notice(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func notice(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("👀\(message)")
             return
         }
         logger.notice("👀\(String(describing: message))")
     }
-    public static func x_warning(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func warning(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogWarn("⚠️\(message)")
             return
         }
         logger.warning("⚠️\(String(describing: message))")
     }
-    public static func x_error(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func error(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogError("❌\(message)")
             return
         }
         logger.error("❌\(String(describing: message))")
     }
-    public static func x_critical(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func critical(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("❗\(message)")
             return
         }
         logger.critical("❗\(String(describing: message))")
     }
-    public static func x_fault(_ message: Any, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
+    public func fault(_ message: Any) {
         guard #available(iOS 14.0, *) else {
             DDLogInfo("🎈\(message)")
             return
@@ -150,15 +155,9 @@ extension LogKit {
         case didReceiveMemoryWarning
     }
     // MARK: 🛠Life Cycle
-    public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType, separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-        let msg = "---------->>>🔗\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
-        if #available(iOS 14.0, *) {
-            // trace("🔗\(message)")
-            LogKit.viewCycle.trace("\(msg)")
-        } else {
-            // Fallback on earlier versions
-            DDLogVerbose(msg)
-        }
+    public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType) {
+        let msg = "---------->>>\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
+        loggerViewCycle.trace("\(msg)")
     }
 }
 // MARK: - 👀RxSwift
@@ -174,79 +173,42 @@ extension LogKit {
         case onSubscribed
         case onDispose
     }
-    public static func logRxSwift(_ type: RxSwiftLogType, items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-        let msg = "「\(type)」\(items)"
-        if #available(iOS 14.0, *) {
-            LogKit.rxswift.trace("\(msg)")
-        } else {
-            // Fallback on earlier versions
-            LogKit.x_trace(msg)
-        }
+    public static func logRxSwift(_ type: RxSwiftLogType, items: Any) {
+        loggerRxSwift.trace("「\(type)」\(items)")
     }
     @discardableResult
     public static func resourcesCount() -> Int32 {
         var total: Int32 = 0
         #if DEBUG && TRACE_RESOURCES
         total = RxSwift.Resources.total
-        if #available(iOS 14.0, *) {
-            LogKit.rxswift.debug("RxSwift resources count: \(total)")
-        } else {
-            // Fallback on earlier versions
-        }
+        loggerRxSwift.trace("RxSwift resources count: \(total)")
         #endif
         return total
     }
 }
 // MARK: - 👀 LXToolKit Logger
 extension LogKit {
-    public static func kitLog(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-        let msg = "「LXToolKit」\(items)"
-        if #available(iOS 14.0, *) {
-            logger.debug("\(msg)")
-        } else {
-            // Fallback on earlier versions
-            LogKit.xl_debug(msg)
-        }
+    public static func kitLog(_ items: Any) {
+        loggerKit.debug(items)
     }
 }
 
 /// DEBUG 打印
-public func print(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-//    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
+public func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+//    dlog(items)
     Swift.print("print")
 }
-public func printIn(_ items: Any..., separator: String = " ", terminator: String = "\t", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-//    dlog(items, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
-    Swift.print("printIn")
+public func dlog(_ items: Any) {
+    loggerNormal.debug(items)
 }
-public func print<T>(_ message: T..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-//    dlog(message, separator: separator, terminator: terminator, file: file, function: function, line: line, column: column)
-    Swift.print("print<T>")
-}
-public func dlog(_ items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, function: String = #function, line: Int = #line, column: Int = #column) {
-    if #available(iOS 14.0, *) {
-    #if DEBUG
-    // let fileName = (file as NSString).lastPathComponent
-    // let date = Date()
-    // logger.debug("""
-    //     👇<\(fileName).\(function):\(line):\(column) \(date.description)>
-    //     """)
-    for (idx, element) in items.enumerated() {
-        // Swift.print("🕷$\(idx): ", terminator: "")
-        // Swift.print(element)
-        logger.debug("👉$\(idx): \(String(describing: element))")
-    }
-    #endif
-    } else {
-        // Fallback on earlier versions
-        LogKit.xl_debug(items, separator: separator, terminator: terminator)
-    }
+public func dlog(_ items: Any...) {
+    loggerNormal.debug(items)
 }
 
-public let dlogIn = printIn
+// public let dlogIn = printIn
 // public let dlog = printIn
 // public let dlog = logger.x_debug
 
-public func debugPrint(_ items: Any..., separator: String = ", ", terminator: String = "") {
+public func debugPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     print("debugPrint")
 }

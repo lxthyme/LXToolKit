@@ -99,6 +99,7 @@ class LXOutlineVC: LXBaseVC {
         prepareUI()
 
         startActivity()
+        // testLogKit()
     }
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
@@ -121,6 +122,15 @@ extension LXOutlineVC {}
 // MARK: - 🔐Activity
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
+    // func testLogKit() {
+    //     dlog("1. dlog")
+    //     print("1.1. Swift.print")
+    //     LogKit.kitLog("2. LogKit.kitLog")
+    //     LogKit.resourcesCount()
+    //     LogKit.logRxSwift(.onNext, items: "4. LogKit.logRxSwift")
+    //     LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .didReceiveMemoryWarning)
+    //     loggerNormal.debug("6. loggerNormal.debug")
+    // }
     func startActivity() {
         // guard ActivityAuthorizationInfo().areActivitiesEnabled else {
         //     dlog("灵动岛没有权限")
