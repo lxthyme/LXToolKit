@@ -78,3 +78,12 @@ public enum AppConfig {
         static let bannersEnabled = "BannersEnabled"
     }
 }
+
+// MARK: - 👀
+public extension AppConfig {
+    private static let screen = UIApplication.XL.keyWindow?.screen ?? UIScreen.main
+    enum Screen {
+        static let width = AppConfig.screen.bounds.width
+        static let height = AppConfig.screen.bounds.height
+    }
+}

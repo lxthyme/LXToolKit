@@ -54,7 +54,8 @@ internal extension LXToolKitRouter {
                 LXUnSupportedVC(msg: "UICellAccessory")
             }
         })),
-        LXOutlineOpt.subitem(.section(title: "LXActionSheetVC"), scene: .vc(provider: { LXActionSheetVC() }))
+        LXOutlineOpt.subitem(.section(title: "LXActionSheetVC"), scene: .vc(provider: { LXActionSheetVC() })),
+        LXOutlineOpt.subitem(.section(title: "LXPanelMainVC"), scene: .vc(provider: { LXPanelMainVC() }))
     ].reversed())
     static let routerWWWDC: LXOutlineOpt = .outline(.section(title: "WWDC"), subitems: [
         .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
