@@ -44,7 +44,7 @@ public struct LXEmptyDataSet {
 }
 
 @objc(LXBaseSwiftVC)
-open class LXBaseVC: UIViewController, Navigatable {
+open class LXBaseVC: LXBaseDeinitVC, Navigatable {
     // MARK: 📌UI
     public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -130,10 +130,6 @@ open class LXBaseVC: UIViewController, Navigatable {
 
 
     // MARK: 🛠Life Cycle
-    deinit {
-        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .deinit)
-        LogKit.resourcesCount()
-    }
     // public required init?(coder: NSCoder) {
     //     fatalError("init(coder:) has not been implemented")
     // }

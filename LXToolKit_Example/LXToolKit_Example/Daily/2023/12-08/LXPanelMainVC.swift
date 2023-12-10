@@ -9,6 +9,19 @@ import LXToolKit
 
 class LXPanelMainVC: LXBaseVC {
     // MARK: 📌UI
+    lazy var alertController: AlertVC = {
+        let font = UIFont.boldSystemFont(ofSize: 18)
+        let alertController = AlertVC(title: "Are you sure? ⚠️", body: "This action can't be undone!", titleFont: nil, bodyFont: nil, buttonFont: nil)
+        let cancelAction = AlertAction(title: "NO, SORRY! 😱", style: .cancel) {
+            dlog("CANCEL!!")
+        }
+        let okAction = AlertAction(title: "DO IT! 🤘", style: .destructive) {
+            dlog("OK!!")
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        return alertController
+    }()
     private lazy var btnShow: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -24,11 +37,18 @@ class LXPanelMainVC: LXBaseVC {
         btn.setBackgroundColor(color: color.withAlphaComponent(0.4), forState: .selected)
 
         btn.addAction(UIAction(handler: {[weak self] _ in
-            self?.showPanelContentVC()
+            // self?.showPanelContentVC()
+            self?.showPresentr()
         }), for: .touchUpInside)
         return btn
     }()
     // MARK: 🔗Vaiables
+    let presenter: Presenter = {
+        let presenter = Presenter(presentationType: .alert)
+        presenter.transitionType = TransitionType.coverHorizontalFromRight
+        presenter.dismissOnSwipe = true
+        return presenter
+    }()
     let transition = LXModalTransition()
     // MARK: 🛠Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +57,8 @@ class LXPanelMainVC: LXBaseVC {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
 
-        showPanelContentVC()
+        // showPanelContentVC()
+        showPresentr()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -76,6 +97,14 @@ private extension LXPanelMainVC {
         // vc.view.frame = self.view.bounds
         transition.interactiveTransition.transitionToVC(toVC: vc)
         self.present(vc, animated: true)
+    }
+    func showPresentr() {
+        presenter.presentationType = .topHalf
+        presenter.transitionType = nil
+        presenter.dismissTransitionType = nil
+        presenter.dismissAnimated = true
+
+        presenter.presentVC(presentingVC: self, presentedVC: alertController, animated: true)
     }
 }
 

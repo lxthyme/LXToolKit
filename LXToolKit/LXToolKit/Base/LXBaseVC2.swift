@@ -43,7 +43,7 @@ import Localize_Swift
 // }
 
 @objc(LXBaseVC_KitEx)
-open class LXBaseVC2: UIViewController, Navigatable {
+open class LXBaseVC2: LXBaseDeinitVC, Navigatable {
     // MARK: 📌UI
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -128,10 +128,6 @@ open class LXBaseVC2: UIViewController, Navigatable {
 
 
     // MARK: 🛠Life Cycle
-    deinit {
-        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .deinit)
-        LogKit.resourcesCount()
-    }
     public convenience init(vm: LXBaseVM?, navigator: Navigator) {
         self.init(nibName: nil, bundle: nil)
         self.navigator = navigator
