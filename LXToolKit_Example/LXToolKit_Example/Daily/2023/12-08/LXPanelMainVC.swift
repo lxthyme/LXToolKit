@@ -70,9 +70,6 @@ private extension LXPanelMainVC {
     func showPanelContentVC() {
         let vc = LXPanelContentVC()
         vc.transitioningDelegate = transition
-        self.navigationController?.hero.isEnabled = false
-        self.hero.isEnabled = false
-        vc.hero.isEnabled = false
         // self.view.addSubview(vc.view)
         // self.addChild(vc)
 

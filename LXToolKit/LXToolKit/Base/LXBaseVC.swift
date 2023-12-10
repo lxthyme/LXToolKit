@@ -384,7 +384,7 @@ private extension LXBaseVC {
     }
     func basePrepareUI() {
         self.view.backgroundColor = .white
-        hero.isEnabled = true
+        // hero.isEnabled = true
         navigationItem.backBarButtonItem = backBarButton
 
         // view.theme.backgroundColor = themeService.attribute { $0.primaryDark }
