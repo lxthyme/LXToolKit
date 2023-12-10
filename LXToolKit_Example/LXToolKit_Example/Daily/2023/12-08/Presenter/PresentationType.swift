@@ -63,6 +63,28 @@ case alert, popup, topHalf, bottomHalf, fullScreen
     }
 }
 
+// MARK: - ✈️CustomStringConvertible
+extension PresentationType: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .alert:
+            return ".alert"
+        case .popup:
+            return ".popup"
+        case .topHalf:
+            return ".topHalf"
+        case .bottomHalf:
+            return ".bottomHalf"
+        case .fullScreen:
+            return ".fullScreen"
+        case .dynamic(let center):
+            return ".dynamic(\(center))"
+        case .custom(let width, let height, let center):
+            return ".custom(width: \(width), height: \(height), center: \(center)"
+        }
+    }
+}
+
 // MARK: - ✈️Equatable
 extension PresentationType: Equatable {
     static func == (lhs: PresentationType, rhs: PresentationType) -> Bool {

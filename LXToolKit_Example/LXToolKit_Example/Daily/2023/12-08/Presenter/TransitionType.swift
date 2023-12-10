@@ -35,3 +35,30 @@ enum TransitionType {
         }
     }
 }
+
+// MARK: - ✈️Equatable
+extension TransitionType: Equatable {}
+
+// MARK: - ✈️CustomStringConvertible
+extension TransitionType: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .crossDissolve:
+            return ".crossDissolve"
+        case .coverVertical:
+            return ".coverVertical"
+        case .coverVerticalFromTop:
+            return ".coverVerticalFromTop"
+        case .coverHorizontalFromRight:
+            return ".coverHorizontalFromRight"
+        case .coverHorizontalFromLeft:
+            return ".coverHorizontalFromLeft"
+        case .flipHorizontal:
+            return ".flipHorizontal"
+        case .coverFromCorner(let corner):
+            return ".coverFromCorner(\(corner))"
+        case .custom(let presentrAnimation):
+            return ".custom(\(presentrAnimation))"
+        }
+    }
+}

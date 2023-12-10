@@ -69,3 +69,25 @@ enum ModalSize {
 
 // MARK: - ✈️Equatable
 extension ModalSize: Equatable {}
+
+// MARK: - ✈️CustomStringConvertible
+extension ModalSize: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .default:
+            return ".default"
+        case .half:
+            return ".half"
+        case .full:
+            return ".full"
+        case .fluid(let percentage):
+            return ".fluid(\(percentage))"
+        case .sideMargin(let value):
+            return ".sideMargin(\(value))"
+        case .custom(let size):
+            return ".custom(\(size))"
+        case .customOrientation(let sizePortrait, let sizeLandscape):
+            return ".customOrientation(\(sizePortrait), \(sizeLandscape))"
+        }
+    }
+}

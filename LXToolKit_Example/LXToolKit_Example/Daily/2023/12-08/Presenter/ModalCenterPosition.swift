@@ -42,3 +42,21 @@ enum ModalCenterPosition {
 
 // MARK: - ✈️Equatable
 extension ModalCenterPosition: Equatable {}
+
+// MARK: - ✈️CustomStringConvertible
+extension ModalCenterPosition: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .center:
+            return ".center"
+        case .topCenter:
+            return ".topCenter"
+        case .bottomCenter:
+            return ".bottomCenter"
+        case .custom(let centerPoint):
+            return ".custom(\(centerPoint))"
+        case .customOrigin(let origin):
+            return ".customOrigin(\(origin))"
+        }
+    }
+}
