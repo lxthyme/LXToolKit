@@ -5,6 +5,7 @@
 //  Created by lxthyme on 2023/12/11.
 //
 import UIKit
+import FloatingPanel
 
 fileprivate typealias Section = String
 fileprivate typealias Item = Int
@@ -15,6 +16,11 @@ class LXFloatPanelVC: LXBaseVC {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
     // MARK: 🛠Life Cycle
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+
+        showFloatPanel()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,9 +40,15 @@ extension LXFloatPanelVC {}
 // MARK: 🔐Private Actions
 private extension LXFloatPanelVC {
     func showFloatPanel() {
-        // let mainVC = LXFloatPanelVC()
-        // let panelVC = LXFloatPanelVC()
-        // panelVC.del
+        let fpc = FloatingPanelController()
+        // FloatingPanelControllerDelegate
+        // fpc.delegate = self
+
+        let contentVC = LXPanelContentVC()
+        fpc.set(contentViewController: contentVC)
+
+        fpc.track(scrollView: contentVC.collectionView)
+        fpc.addPanel(toParent: self)
     }
 }
 
