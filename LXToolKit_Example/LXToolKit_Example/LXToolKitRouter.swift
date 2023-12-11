@@ -55,7 +55,8 @@ internal extension LXToolKitRouter {
             }
         })),
         LXOutlineOpt.subitem(.section(title: "LXActionSheetVC"), scene: .vc(provider: { LXActionSheetVC() })),
-        LXOutlineOpt.subitem(.section(title: "LXPanelMainVC"), scene: .vc(provider: { LXPanelMainVC() }))
+        LXOutlineOpt.subitem(.section(title: "LXPanelMainVC"), scene: .vc(provider: { LXPanelMainVC() })),
+        LXOutlineOpt.subitem(.section(title: "LXFloatPanelVC"), scene: .vc(provider: { LXFloatPanelVC() })),
     ].reversed())
     static let routerWWWDC: LXOutlineOpt = .outline(.section(title: "WWDC"), subitems: [
         .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),

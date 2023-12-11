@@ -6,12 +6,13 @@
 //
 import UIKit
 import LXToolKit
+import Presentr
 
 class LXPanelMainVC: LXBaseVC {
     // MARK: 📌UI
-    lazy var alertController: AlertVC = {
+    lazy var alertController: AlertViewController = {
         let font = UIFont.boldSystemFont(ofSize: 18)
-        let alertController = AlertVC(title: "Are you sure? ⚠️", body: "This action can't be undone!", titleFont: nil, bodyFont: nil, buttonFont: nil)
+        let alertController = AlertViewController(title: "Are you sure? ⚠️", body: "This action can't be undone!", titleFont: nil, bodyFont: nil, buttonFont: nil)
         let cancelAction = AlertAction(title: "NO, SORRY! 😱", style: .cancel) {
             dlog("CANCEL!!")
         }
@@ -61,7 +62,7 @@ class LXPanelMainVC: LXBaseVC {
         }
         btn.showsMenuAsPrimaryAction = true
         btn.menu = UIMenu(options: opt, children: [
-            UIAction(title: ".alert", state: self.presentationType == .alert ? .on : .off, handler: {[weak self] _ in
+            UIAction(title: ".alert", state: self.presentationType == .popup ? .on : .off, handler: {[weak self] _ in
                 self?.presentationType = .alert
             }),
             UIAction(title: ".popup", state: self.presentationType == .popup ? .on : .off, handler: {[weak self] _ in
@@ -196,8 +197,14 @@ class LXPanelMainVC: LXBaseVC {
         btn.setBackgroundColor(color: color, forState: .normal)
         btn.setBackgroundColor(color: color.withAlphaComponent(0.4), forState: .selected)
 
+        let opt: UIMenu.Options
+        if #available(iOS 15.0, *) {
+            opt = .singleSelection
+        } else {
+            opt = .displayInline
+        }
         btn.showsMenuAsPrimaryAction = true
-        btn.menu = UIMenu(children: [
+        btn.menu = UIMenu(options: opt, children: [
             UIAction(title: "On", state: self.dismissAnimated ? .on : .off, handler: {[weak self] _ in
                 self?.dismissAnimated = true
             }),
@@ -235,9 +242,9 @@ class LXPanelMainVC: LXBaseVC {
         return btn
     }()
     // MARK: 🔗Vaiables
-    let presenter: Presenter = {
-        let presenter = Presenter(presentationType: .alert)
-        presenter.transitionType = TransitionType.coverHorizontalFromRight
+    let presenter: Presentr = {
+        let presenter = Presentr(presentationType: .alert)
+        presenter.transitionType = .coverHorizontalFromRight
         presenter.dismissOnSwipe = true
         return presenter
     }()
@@ -316,7 +323,13 @@ private extension LXPanelMainVC {
         presenter.dismissTransitionType = dismissTransitionType
         presenter.dismissAnimated = dismissAnimated
 
-        presenter.presentVC(presentingVC: self, presentedVC: alertController, animated: true)
+        presenter.roundCorners = false
+        presenter.backgroundColor = .green
+        presenter.backgroundOpacity = 0.5
+        presenter.dismissOnSwipe = true
+        presenter.dismissOnSwipeDirection = .top
+
+        customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
     }
 }
 
