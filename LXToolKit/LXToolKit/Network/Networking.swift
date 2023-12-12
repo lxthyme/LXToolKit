@@ -143,10 +143,10 @@ extension NetworkingType {
         //         let date = defaultEntryDateFormatter().string(from: Date())
         //         return "Moya_Logger: [\(date)] \(identifier): \(message)"
         //     } requestData: { data in
-        //         logger.debug("requestData")
+        //         kitLog("requestData")
         //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
         //     } responseData: { data in
-        //         logger.debug("responseData")
+        //         kitLog("responseData")
         //         return  String(data: data, encoding: .utf8) ?? "## Cannot map data to String ##"
         //     }
         //     
@@ -161,7 +161,7 @@ extension NetworkingType {
         //     let config = NetworkLoggerPlugin.Configuration(formatter: formatter,
         //                                                    output: { target, items in
         //         for item in items {
-        //             Swift.print(item, separator: ",", terminator: "\n")
+        //             LogKit.kitLog(item, separator: ",", terminator: "\n")
         //         }
         //     }, logOptions: opt)
         //     plugins.append(NetworkLoggerPlugin(configuration: config))
@@ -176,7 +176,7 @@ extension NetworkingType {
                 request.httpShouldHandleCookies = false
                 closure(.success(request))
             } catch {
-                logger.x_error(error.localizedDescription)
+                loggerKit.error(error)
             }
         }
     }

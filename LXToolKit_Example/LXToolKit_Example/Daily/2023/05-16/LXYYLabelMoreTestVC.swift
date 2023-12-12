@@ -89,8 +89,7 @@ extension LXYYLabelMoreTestVC {
         let truncationToken = NSAttributedString.yy_attachmentString(withContent: labMore, contentMode: .center, attachmentSize: labMore.frame.size, alignTo: font, alignment: .center)
         labTitle.truncationToken = truncationToken
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         navigationItem.title = "YYLabel more 查看详情"
         // self.view.backgroundColor = <#.white#>;
 
@@ -99,8 +98,7 @@ extension LXYYLabelMoreTestVC {
 
         masonry()
     }
-    override open func masonry() {
-        super.masonry()
+    func masonry() {
         labTitle.snp.makeConstraints {
             $0.top.equalToSuperview().offset(100);
             $0.left.equalToSuperview().offset(16);
@@ -120,8 +118,5 @@ extension LXYYLabelMoreTestVC {
         //         // cell.bind(to: vm)
         //     }
         //     .disposed(by: rx.disposeBag)
-    }
-    open override func updateUI() {
-        super.updateUI()
     }
 }

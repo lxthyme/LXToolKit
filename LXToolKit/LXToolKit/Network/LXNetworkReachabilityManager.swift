@@ -30,13 +30,13 @@ public extension LXNetworkReachabilityManager {
 //            guard let `self` = self else { return }
 //            switch status {
 //            case .unknown:
-//                logger.debug("当前网络：未知")
+//                kitLog("当前网络：未知")
 //            case .notReachable:
-//                logger.debug("当前网络：无网络")
+//                kitLog("当前网络：无网络")
 //            case .reachable(.wwan):
-//                logger.debug("当前网络：蜂窝网络")
+//                kitLog("当前网络：蜂窝网络")
 //            case .reachable(.ethernetOrWiFi):
-//                logger.debug("当前网络：无线网络")
+//                kitLog("当前网络：无线网络")
 //            }
 //
 //            if self.networkReachabilityStatus != status {

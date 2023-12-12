@@ -91,14 +91,11 @@ extension LXMVVMSampleVC {}
 // MARK: 🔐Private Actions
 private extension LXMVVMSampleVC {}
 
-extension LXMVVMSampleVC {
-    open override func prepareUI() {
-        super.prepareUI()
+private extension LXMVVMSampleVC {
+    func prepareUI() {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
     
-    open override func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }

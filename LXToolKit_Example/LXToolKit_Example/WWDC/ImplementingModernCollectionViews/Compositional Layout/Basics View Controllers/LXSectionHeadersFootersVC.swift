@@ -7,13 +7,11 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXSectionHeadersFootersVC {
     static let sectionHeaderElementKind = "section-header-element-kind"
     static let sectionFooterElementKind = "section-footer-element-kind"
 }
 
-@available(iOS 14.0, *)
 class LXSectionHeadersFootersVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -90,21 +88,17 @@ class LXSectionHeadersFootersVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXSectionHeadersFootersVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXSectionHeadersFootersVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXSectionHeadersFootersVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXSectionHeadersFootersVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -112,10 +106,8 @@ extension LXSectionHeadersFootersVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
-extension LXSectionHeadersFootersVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXSectionHeadersFootersVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Section Headers/Footers"
 
@@ -135,8 +127,7 @@ extension LXSectionHeadersFootersVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

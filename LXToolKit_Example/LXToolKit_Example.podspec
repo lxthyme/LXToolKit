@@ -124,6 +124,8 @@ TODO: Add long description of the pod here.
   # s.dependency 'RxNetworks/MoyaPlugins'
   s.dependency 'AlamofireImage'
   s.dependency 'DJTestKit'
+  s.dependency 'FloatingPanel'
+  s.dependency 'Presentr'
   # s.dependency ''
   # s.dependency 'DJSwiftModule'
 end

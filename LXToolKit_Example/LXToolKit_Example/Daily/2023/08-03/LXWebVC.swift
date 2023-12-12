@@ -71,9 +71,8 @@ extension LXWebVC {}
 private extension LXWebVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXWebVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXWebVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         // self.edgesForExtendedLayout = []
         // self.navigationController?.isNavigationBarHidden = true
@@ -86,8 +85,7 @@ extension LXWebVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         // topView.snp.makeConstraints {
         //     $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
         //     $0.left.right.equalToSuperview()

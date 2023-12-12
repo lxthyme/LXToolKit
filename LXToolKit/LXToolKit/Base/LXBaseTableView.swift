@@ -17,7 +17,8 @@ open class LXBaseTableView: UITableView {
         super.init(frame: frame, style: style)
         // TODO:「lxthyme」💊这里测试继承的 tableView 不主动调用prepareUI方法时, 是否会触发子类的prepareUI
         // TODO:「lxthyme」💊测试其它初始化方法是否会调用prepareUI
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 
 }
@@ -30,7 +31,7 @@ private extension LXBaseTableView {}
 
 // MARK: - 🍺UI Prepare & Masonry
 extension LXBaseTableView {
-    public func prepareUI() {
+    public func basePrepareUI() {
         self.backgroundColor = UIColor.white
         self.rowHeight = UITableView.automaticDimension
         self.estimatedRowHeight = 0
@@ -50,5 +51,5 @@ extension LXBaseTableView {
 
         // self.xl.adapterWith(parentVC: self)
     }
-    public func masonry() {}
+    public func baseMasonry() {}
 }

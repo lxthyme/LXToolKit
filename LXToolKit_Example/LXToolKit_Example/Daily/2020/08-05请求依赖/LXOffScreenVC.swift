@@ -92,9 +92,8 @@ private extension LXOffScreenVC {
 }
 
 // MARK: - UI Prepare & Masonry
-extension LXOffScreenVC {
-    override open func prepareUI() {
-        super.prepareUI()
+private extension LXOffScreenVC {
+    func prepareUI() {
         self.edgesForExtendedLayout = []
         self.automaticallyAdjustsScrollViewInsets = true
         imgViewBG.snp.setLabel("imgViewBG")
@@ -104,8 +103,7 @@ extension LXOffScreenVC {
         masonry()
     }
     
-    override open func masonry() {
-        super.masonry()
+    func masonry() {
         let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         //        imgViewBG.snp.makeConstraints {
         //            $0.edges.equalToSuperview().inset(inset)

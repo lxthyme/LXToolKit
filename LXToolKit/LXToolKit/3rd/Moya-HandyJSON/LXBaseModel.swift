@@ -19,6 +19,13 @@ public protocol LXBaseModelProtocol {
     var f_origin_json: String? { get set }
 }
 
+// MARK: - 👀
+// public extension LXBaseModelProtocol {
+//     var errorTips: String? { return nil }
+//     var successTips: String? { return nil }
+//     var f_origin_json: String? { return nil }
+// }
+
 public protocol LXBaseModelGenericProtocol: LXBaseModelProtocol {
     associatedtype T
     // MARK: 🔗Vaiables
@@ -34,7 +41,7 @@ public protocol LXBaseListModelGenericProtocol: LXBaseModelProtocol {
 
 open class LXAnyModel: NSObject {
     deinit {
-        Log.dealloc.trace("---------- >>>Model: \(self.xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.model, typeName: xl.typeNameString, type: .deinit)
     }
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle

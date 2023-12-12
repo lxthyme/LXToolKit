@@ -34,7 +34,7 @@ class LXTable0120VC: LXBaseTableVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -77,27 +77,24 @@ extension LXTable0120VC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXTable0120VC {
-    override func prepareTableView() {
-        super.prepareTableView()
+private extension LXTable0120VC {
+    func prepareTableView() {
         table.delegate = self
         table.dataSource = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         navigationItem.title = "测试 sectionHeaderTopPadding 偏移的场景"
         self.view.backgroundColor = .cyan
         self.table.backgroundColor = .random
         prepareTableView()
-        
+
         [self.table].forEach(self.view.addSubview)
-        
+
         masonry()
     }
-    
-    override open func masonry() {
-        super.masonry()
+
+    func masonry() {
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

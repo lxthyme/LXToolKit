@@ -108,7 +108,6 @@ extension UICellAccessoryEnum: CustomStringConvertible {
 
 
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.DisplayedState: CustomStringConvertible {
     public var description: String {
         switch self {
@@ -121,7 +120,6 @@ extension UICellAccessory.DisplayedState: CustomStringConvertible {
         }
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension: CustomStringConvertible {
     public var description: String {
         switch self {
@@ -135,55 +133,46 @@ extension UICellAccessory.LayoutDimension: CustomStringConvertible {
     }
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.DisclosureIndicatorOptions: CustomStringConvertible {
     public var description: String {
         return "DisclosureIndicatorOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.CheckmarkOptions: CustomStringConvertible {
     public var description: String {
         return "CheckmarkOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.DeleteOptions: CustomStringConvertible {
     public var description: String {
         return "DeleteOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), backgroundColor: \(backgroundColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.InsertOptions: CustomStringConvertible {
     public var description: String {
         return "InsertOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), backgroundColor: \(backgroundColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.ReorderOptions: CustomStringConvertible {
     public var description: String {
         return "ReorderOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), showsVerticalSeparator: \(showsVerticalSeparator))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.MultiselectOptions: CustomStringConvertible {
     public var description: String {
         return "MultiselectOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), backgroundColor: \(backgroundColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.OutlineDisclosureOptions: CustomStringConvertible {
     public var description: String {
         return "OutlineDisclosureOptions(style: \(style), isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.LabelOptions: CustomStringConvertible {
     public var description: String {
         return "LabelOptions(isHidden: \(isHidden), reservedLayoutWidth: \(reservedLayoutWidth), tintColor: \(tintColor?.xl.hexString ?? "NaN"), font: \(font), adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory))"
     }
 }
-@available(iOS 14.0, *)
 extension UICellAccessory.CustomViewConfiguration: CustomStringConvertible {
     public var description: String {
         var title = ""
@@ -209,7 +198,6 @@ extension UICellAccessory.PopUpMenuOptions: CustomStringConvertible {
 }
 
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.AccessoryType {
     public var title: String {
         switch self {
@@ -290,39 +278,33 @@ private extension UICellAccessoryEnum {
     }
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension {
     public static let xl_custom_64: UICellAccessory.LayoutDimension = .custom(24)
     public static let xl_custom_40: UICellAccessory.LayoutDimension = .custom(40)
 }
-@available(iOS 14.0, *)
 extension UIColor {
     public static let xl_tintColor: UIColor = .random
     public static let xl_backgroundColor: UIColor = .random
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.DisplayedState: CaseIterable {
     public static var allCases: [UICellAccessory.DisplayedState] {
         return [.always, .whenEditing, .whenNotEditing]
     }
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension: CaseIterable {
     public static var allCases: [UICellAccessory.LayoutDimension] {
         return [.actual, .standard, .xl_custom_64, .xl_custom_40]
     }
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.LayoutDimension: Equatable {
     public static func == (lhs: UICellAccessory.LayoutDimension, rhs: UICellAccessory.LayoutDimension) -> Bool {
         return lhs.description == rhs.description
     }
 }
 // MARK: - 👀
-@available(iOS 14.0, *)
 extension UICellAccessory.OutlineDisclosureOptions.Style: CaseIterable {
     public static var allCases: [UICellAccessory.OutlineDisclosureOptions.Style] {
         return [.automatic, .header, .cell]
@@ -354,7 +336,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .detail(displayed: .always, options: detailOptions($0), actionHandler: {
                 let msg = "-->[.detail]"
-                logger.x_debug(msg)
+                LogKit.kitLog(msg)
                 makeToast(msg)
             })
         }
@@ -381,7 +363,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .delete(displayed: .always, options: deleteOptions($0), actionHandler: {
                 let msg = "-->[.delete]"
-                logger.x_debug(msg)
+                LogKit.kitLog(msg)
                 makeToast(msg)
             })
         }
@@ -398,7 +380,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .insert(displayed: .always, options: insertOptions($0), actionHandler: {
                 let msg = "-->[.insert]"
-                logger.x_debug(msg)
+                LogKit.kitLog(msg)
                 makeToast(msg)
             })
         }
@@ -436,7 +418,7 @@ extension UICellAccessoryEnum {
         }
         let xl_actionHandler: UICellAccessory.ActionHandler = {
             let msg = "-->[.outlineDisclosure]"
-            logger.x_debug(msg)
+            LogKit.kitLog(msg)
             makeToast(msg)
         }
         return [
@@ -460,31 +442,31 @@ extension UICellAccessoryEnum {
                 UIAction(title: "Item 1", state: selectedTitle == "Item 1" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    logger.x_debug(msg)
+                    LogKit.kitLog(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 2", state: selectedTitle == "Item 2" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    logger.x_debug(msg)
+                    LogKit.kitLog(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 3", state: selectedTitle == "Item 3" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    logger.x_debug(msg)
+                    LogKit.kitLog(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 4", state: selectedTitle == "Item 4" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    logger.x_debug(msg)
+                    LogKit.kitLog(msg)
                     makeToast(msg)
                 }),
                 UIAction(title: "Item 5", state: selectedTitle == "Item 5" ? .on : .off, handler: { action in
                     selectedTitle = action.title
                     let msg = "-->\(action.title)"
-                    logger.x_debug(msg)
+                    LogKit.kitLog(msg)
                     makeToast(msg)
                 }),
             ]
@@ -499,7 +481,7 @@ extension UICellAccessoryEnum {
         return UICellAccessory.LayoutDimension.allCases.map {
             .popUpMenu(menu, displayed: .always, options: popUpMenuOptions($0), selectedElementDidChangeHandler: { menu in
                 let msg = "-->[.popUpMenu]: \(menu.title)"
-                logger.x_debug(msg)
+                LogKit.kitLog(msg)
                 makeToast(msg)
             })
         }
@@ -540,7 +522,7 @@ extension UICellAccessoryEnum {
             customView: customView,
             // placement: .leading(displayed: .always, at: { accessories in
             //     let msg = "-->[.customView]: \(accessories)"
-            //     logger.debug(msg)
+            //     kitLog(msg)
             //     makeToast(msg)
             //     return 0
             // }),

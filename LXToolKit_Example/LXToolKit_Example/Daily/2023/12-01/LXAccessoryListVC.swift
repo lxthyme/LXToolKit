@@ -142,7 +142,7 @@ private extension LXAccessoryListVC {
         let reorderOptions: UICellAccessory.ReorderOptions = .init(
             isHidden: isHidden,
             reservedLayoutWidth: reservedLayoutWidth,
-            tintColor: tintColor, 
+            tintColor: tintColor,
             showsVerticalSeparator: showsVerticalSeparator
         )
         let multiselectOptions: UICellAccessory.MultiselectOptions = .init(
@@ -596,7 +596,7 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 @available(iOS 16.0, *)
-extension LXAccessoryListVC {
+private extension LXAccessoryListVC {
     func prepareCollectionView() {
         if #available(iOS 14, *) {
             collectionView = generateCollectionView()
@@ -615,8 +615,7 @@ extension LXAccessoryListVC {
             collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         }
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
         if #available(iOS 15.0, *) {
@@ -628,8 +627,7 @@ extension LXAccessoryListVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

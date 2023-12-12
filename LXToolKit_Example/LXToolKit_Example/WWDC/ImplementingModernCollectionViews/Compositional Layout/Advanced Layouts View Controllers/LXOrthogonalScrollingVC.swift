@@ -7,10 +7,8 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXOrthogonalScrollingVC {}
 
-@available(iOS 14.0, *)
 class LXOrthogonalScrollingVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -95,21 +93,17 @@ class LXOrthogonalScrollingVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXOrthogonalScrollingVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXOrthogonalScrollingVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXOrthogonalScrollingVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXOrthogonalScrollingVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -118,8 +112,7 @@ extension LXOrthogonalScrollingVC: UICollectionViewDelegate {
 
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
-extension LXOrthogonalScrollingVC {
+private extension LXOrthogonalScrollingVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         let itemsPerSection = 30
@@ -132,8 +125,7 @@ extension LXOrthogonalScrollingVC {
         }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Orthogonal Sections"
 
@@ -142,8 +134,7 @@ extension LXOrthogonalScrollingVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

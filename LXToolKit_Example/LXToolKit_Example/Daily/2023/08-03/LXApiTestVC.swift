@@ -81,15 +81,12 @@ private extension LXApiTestVC {
 }
 
 // MARK: - UI Prepare & Masonry
-extension LXApiTestVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXApiTestVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }

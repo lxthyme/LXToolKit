@@ -72,9 +72,8 @@ extension LXUnSupportedVC {}
 private extension LXUnSupportedVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXUnSupportedVC {
-    open override func prepareUI() {
-        super.prepareUI()
+private extension LXUnSupportedVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
 
@@ -83,8 +82,7 @@ extension LXUnSupportedVC {
         masonry()
     }
 
-    open override func masonry() {
-        super.masonry()
+    func masonry() {
         labSubtitle.snp.makeConstraints {
             $0.left.greaterThanOrEqualToSuperview().offset(20)
             $0.right.lessThanOrEqualToSuperview().offset(-20)

@@ -76,7 +76,7 @@ class LXMasonryTestVCVC: LXBaseVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -189,22 +189,21 @@ extension LXMasonryTestVCVC {
     }
 }
 
-extension LXMasonryTestVCVC {
-    override open func prepareUI() {
-        super.prepareUI()
+private extension LXMasonryTestVCVC {
+    func prepareUI() {
         navigationItem.title = "两个 View 组合的 CenterX 测试"
         self.view.backgroundColor = .white
-        
+
         [labPanelLeft, labPanelRight].forEach(panelView.addSubview)
         [panelView, labLeft, labRight].forEach(view.addSubview)
-        
+
         // basicMasonry()
         // 👍
         // masonryFun1()
         // masonryFun2()
         // testing...
         // masonryFun1_5()
-        
+
         basicMasonryFit1_2()
         masonryFun2_5()
     }

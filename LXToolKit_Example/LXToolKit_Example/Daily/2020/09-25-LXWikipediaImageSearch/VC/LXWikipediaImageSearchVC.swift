@@ -234,14 +234,11 @@ extension LXWikipediaImageSearchVC {}
 private extension LXWikipediaImageSearchVC {}
 
 // MARK: - UI Prepare & Masonry
-extension LXWikipediaImageSearchVC {
-    override open func prepareUI() {
-        super.prepareUI()
+private extension LXWikipediaImageSearchVC {
+    func prepareUI() {
         //[<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 
-    override open func masonry() {
-        super.masonry()
-    }
+    func masonry() {}
 }

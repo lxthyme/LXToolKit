@@ -7,7 +7,6 @@
 import UIKit
 import LXToolKit
 
-@available(iOS 14.0, *)
 extension LXCustomCellListVC {
     enum Section {
         case main
@@ -62,7 +61,6 @@ extension LXCustomCellListVC {
     }
 }
 
-@available(iOS 14.0, *)
 class LXCustomCellListVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -110,21 +108,17 @@ class LXCustomCellListVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXCustomCellListVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXCustomCellListVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXCustomCellListVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
-@available(iOS 14.0, *)
 extension LXCustomCellListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -133,16 +127,14 @@ extension LXCustomCellListVC: UICollectionViewDelegate {
 
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
-extension LXCustomCellListVC {
+private extension LXCustomCellListVC {
     func prepareSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems(Item.all)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "List with Custom Cells"
 
@@ -151,8 +143,7 @@ extension LXCustomCellListVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

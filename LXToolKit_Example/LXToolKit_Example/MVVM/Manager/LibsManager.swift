@@ -26,10 +26,11 @@ import Foundation
 // import Hero
 // import KafkaRefresh
 // import Mixpanel
-// import FirebaseCore
+import FirebaseCore
 // import DropDown
-// import Toast_Swift
+import Toast_Swift
 // import GoogleMobileAds
+import CocoaLumberjack
 
 open class LibsManager: NSObject {
     // MARK: 🔗Vaiables
@@ -54,7 +55,7 @@ open class LibsManager: NSObject {
     }
     public func setupLibs() {
         let libsManager = LibsManager.shared
-        // libsManager.setupCocoaLumberjack()
+        libsManager.setupCocoaLumberjack()
         // libsManager.setupAnalytics()
         // libsManager.setupAds()
         libsManager.setupTheme()
@@ -62,7 +63,7 @@ open class LibsManager: NSObject {
         libsManager.setupFLEX()
         // libsManager.setupKeyboardManager()
         // libsManager.setupDropDown()
-        // libsManager.setupToast()
+        libsManager.setupToast()
     }
 
     func setupTheme() {
@@ -80,15 +81,19 @@ open class LibsManager: NSObject {
     //     }).disposed(by: rx.disposeBag)
     // }
 
-    // func setupToast() {
-    //     ToastManager.shared.isTapToDismissEnabled = true
-    //     ToastManager.shared.position = .top
-    //     var style = ToastStyle()
-    //     style.backgroundColor = UIColor.Material.red
-    //     style.messageColor = UIColor.Material.white
-    //     style.imageSize = CGSize(width: 20, height: 20)
-    //     ToastManager.shared.style = style
-    // }
+    func setupToast() {
+        let instance = ToastManager.shared
+        instance.isTapToDismissEnabled = true
+        instance.isQueueEnabled = true
+        instance.duration = 1
+        instance.position = .bottom
+
+        // var style = ToastStyle()
+        // style.backgroundColor = UIColor.Material.red
+        // style.messageColor = UIColor.Material.white
+        // style.imageSize = CGSize(width: 20, height: 20)
+        // instance.style = style
+    }
 
     // func setupKafkaRefresh() {
     //     if let defaults = KafkaRefreshDefaults.standard() {
@@ -113,13 +118,14 @@ open class LibsManager: NSObject {
     //     ImageDownloader.default.downloadTimeout = 15.0 // 15 sec
     // }
 
-    // func setupCocoaLumberjack() {
-    //     DDLog.add(DDOSLogger.sharedInstance)
-    //     let fileLogger: DDFileLogger = DDFileLogger() // File Logger
-    //     fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
-    //     fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-    //     DDLog.add(fileLogger)
-    // }
+    func setupCocoaLumberjack() {
+        DDLog.add(DDOSLogger.sharedInstance)
+
+        let fileLogger = DDFileLogger() // File Logger
+        fileLogger.rollingFrequency = 60 * 60 * 24 // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+    }
 
     func setupFLEX() {
         #if DEBUG
@@ -131,11 +137,11 @@ open class LibsManager: NSObject {
         #endif
     }
 
-    // func setupAnalytics() {
-    //     FirebaseApp.configure()
-    //     Mixpanel.initialize(token: Keys.mixpanel.apiKey, trackAutomaticEvents: true)
-    //     FirebaseConfiguration.shared.setLoggerLevel(.min)
-    // }
+    func setupAnalytics() {
+        FirebaseApp.configure()
+        // Mixpanel.initialize(token: Keys.mixpanel.apiKey, trackAutomaticEvents: true)
+        FirebaseConfiguration.shared.setLoggerLevel(.error)
+    }
 
     func setupAds() {
         // GADMobileAds.sharedInstance().start(completionHandler: nil)

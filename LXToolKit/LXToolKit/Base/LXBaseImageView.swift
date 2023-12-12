@@ -16,22 +16,26 @@ open class LXBaseImageView: UIImageView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
 
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 
     override public init(image: UIImage?) {
         super.init(image: image)
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 
     override public init(image: UIImage?, highlightedImage: UIImage?) {
         super.init(image: image, highlightedImage: highlightedImage)
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 }
 
@@ -43,13 +47,11 @@ private extension LXBaseImageView {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseImageView {
-    func prepareUI() {
+    func basePrepareUI() {
         layer.masksToBounds = true
         contentMode = .scaleAspectFit
         hero.modifiers = [.arc]
-
-        masonry()
     }
 
-    func masonry() {}
+    func baseMasonry() {}
 }

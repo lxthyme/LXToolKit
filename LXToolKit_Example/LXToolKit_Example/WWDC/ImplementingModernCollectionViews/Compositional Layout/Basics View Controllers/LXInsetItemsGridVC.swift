@@ -6,14 +6,12 @@
 //
 import UIKit
 
-@available(iOS 14.0, *)
 extension LXInsetItemsGridVC {
     enum Section {
         case main
     }
 }
 
-@available(iOS 14.0, *)
 class LXInsetItemsGridVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var layout: UICollectionViewLayout = {
@@ -78,22 +76,17 @@ class LXInsetItemsGridVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-@available(iOS 14.0, *)
 extension LXInsetItemsGridVC {}
 
 // MARK: 👀Public Actions
-@available(iOS 14.0, *)
 extension LXInsetItemsGridVC {}
 
 // MARK: 🔐Private Actions
-@available(iOS 14.0, *)
 private extension LXInsetItemsGridVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-@available(iOS 14.0, *)
-extension LXInsetItemsGridVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXInsetItemsGridVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Inset Items Grid"
 
@@ -107,8 +100,7 @@ extension LXInsetItemsGridVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

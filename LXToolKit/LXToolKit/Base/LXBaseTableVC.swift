@@ -88,8 +88,10 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        // prepareTableView()
-        // prepareUI()
+        basePrepareTableView()
+        basePrepareVM()
+        basePrepareUI()
+        baseMasonry()
     }
 }
 
@@ -109,8 +111,8 @@ private extension LXBaseTableVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXBaseTableVC {
-    @objc open func prepareTableView() {
+private extension LXBaseTableVC {
+    func basePrepareTableView() {
         table.emptyDataSetSource = self
         table.emptyDataSetDelegate = self
         table.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
@@ -138,8 +140,7 @@ extension LXBaseTableVC {
         table.xl.registerCell(with: UITableViewCell.self)
         table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
     }
-    @objc override open func prepareVM() {
-        super.prepareVM()
+    func basePrepareVM() {
         vm?.headerLoading.asObservable()
             .bind(to: isHeaderLoading)
             .disposed(by: rx.disposeBag)
@@ -156,8 +157,7 @@ extension LXBaseTableVC {
         })
         .disposed(by: rx.disposeBag)
     }
-    @objc override open func prepareUI() {
-        super.prepareUI()
+    func basePrepareUI() {
         // self.view.backgroundColor = .white
         // contentStackView.spacing = 0
         // contentStackView.insertArrangedSubview(table, at: 0)
@@ -169,8 +169,7 @@ extension LXBaseTableVC {
         }
     }
     
-    @objc override open func masonry() {
-        super.masonry()
-        table.snp.setLabel("\(self.xl.typeNameString).table")
+    func baseMasonry() {
+        table.snp.setLabel("\(xl.typeNameString).table")
     }
 }

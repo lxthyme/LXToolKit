@@ -37,7 +37,6 @@ extension LXGridVC {
 // MARK: 👀Public Actions
 extension LXGridVC {}
 
-@available(iOS 14.0, *)
 private extension LXGridVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
@@ -77,9 +76,8 @@ private extension LXGridVC {
 private extension LXGridVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXGridVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXGridVC {
+    func prepareUI() {
         navigationItem.title = "Grid"
         self.view.backgroundColor = .white
 
@@ -100,8 +98,7 @@ extension LXGridVC {
         masonry()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

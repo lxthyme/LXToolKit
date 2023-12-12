@@ -116,9 +116,8 @@ extension LXWebViewTestVC: WKNavigationDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXWebViewTestVC {
-    override open func prepareUI() {
-        super.prepareUI()
+private extension LXWebViewTestVC {
+    func prepareUI() {
         self.view.backgroundColor = .white;
         // webView.scrollView.rx.contentSize
         //     .subscribe(onNext: {[weak self] event in
@@ -129,8 +128,7 @@ extension LXWebViewTestVC {
         [webView].forEach(self.view.addSubview)
         masonry()
     }
-    override open func masonry() {
-        super.masonry()
+    func masonry() {
         webView.snp.makeConstraints {
             $0.edges.width.equalToSuperview()
         }

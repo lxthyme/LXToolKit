@@ -16,7 +16,7 @@ import RxDataSources
 
 enum SearchTypeSegments: Int {
     case repositories, users
-    
+
     var title: String {
         switch self {
         case .repositories: return R.string.localizable.searchRepositoriesSegmentTitle()
@@ -27,7 +27,7 @@ enum SearchTypeSegments: Int {
 
 enum TrendingPeriodSegments: Int {
     case daily, weekly, montly
-    
+
     var title: String {
         switch self {
         case .daily: return R.string.localizable.searchDailySegmentTitle()
@@ -35,7 +35,7 @@ enum TrendingPeriodSegments: Int {
         case .montly: return R.string.localizable.searchMonthlySegmentTitle()
         }
     }
-    
+
     var paramValue: String {
         switch self {
         case .daily: return "daily"
@@ -47,7 +47,7 @@ enum TrendingPeriodSegments: Int {
 
 enum SearchModeSegments: Int {
     case trending, search
-    
+
     var title: String {
         switch self {
         case .trending: return R.string.localizable.searchTrendingSegmentTitle()
@@ -58,7 +58,7 @@ enum SearchModeSegments: Int {
 
 enum SortRepositoryItems: Int {
     case bestMatch, mostStars, fewestStars, mostForks, fewestForks, recentlyUpdated, lastRecentlyUpdated
-    
+
     var title: String {
         switch self {
         case .bestMatch: return R.string.localizable.searchSortRepositoriesBestMatchTitle()
@@ -70,7 +70,7 @@ enum SortRepositoryItems: Int {
         case .lastRecentlyUpdated: return R.string.localizable.searchSortRepositoriesLastRecentlyUpdatedTitle()
         }
     }
-    
+
     var sortValue: String {
         switch self {
         case .bestMatch: return ""
@@ -79,7 +79,7 @@ enum SortRepositoryItems: Int {
         case .recentlyUpdated, .lastRecentlyUpdated: return "updated"
         }
     }
-    
+
     var orderValue: String {
         switch self {
         case .bestMatch: return ""
@@ -87,7 +87,7 @@ enum SortRepositoryItems: Int {
         case .fewestStars, .fewestForks, .lastRecentlyUpdated: return "asc"
         }
     }
-    
+
     static func allItems() -> [String] {
         return (0...SortRepositoryItems.lastRecentlyUpdated.rawValue)
             .map { SortRepositoryItems(rawValue: $0)!.title }
@@ -96,7 +96,7 @@ enum SortRepositoryItems: Int {
 
 enum SortUserItems: Int {
     case bestMatch, mostFollowers, fewestFollowers, mostRecentlyJoined, leastRecentlyJoined, mostRepositories, fewestRepositories
-    
+
     var title: String {
         switch self {
         case .bestMatch: return R.string.localizable.searchSortUsersBestMatchTitle()
@@ -108,7 +108,7 @@ enum SortUserItems: Int {
         case .fewestRepositories: return R.string.localizable.searchSortUsersFewestRepositoriesTitle()
         }
     }
-    
+
     var sortValue: String {
         switch self {
         case .bestMatch: return ""
@@ -117,14 +117,14 @@ enum SortUserItems: Int {
         case .mostRepositories, .fewestRepositories: return "repositories"
         }
     }
-    
+
     var orderValue: String {
         switch self {
         case .bestMatch, .mostFollowers, .mostRecentlyJoined, .mostRepositories: return "desc"
         case .fewestFollowers, .leastRecentlyJoined, .fewestRepositories: return "asc"
         }
     }
-    
+
     static func allItems() -> [String] {
         return (0...SortUserItems.fewestRepositories.rawValue)
             .map { SortUserItems(rawValue: $0)!.title }
@@ -235,7 +235,7 @@ class DJSearchVC: LXBaseTableVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
         prepareTableView()
@@ -249,7 +249,7 @@ extension DJSearchVC {
     override open func bindViewModel() {
         super.bindViewModel()
         guard let vm = vm as? DJSearchVM else { return }
-        
+
         let searchTypeSegmentSelected = segmentedControl.segmentSelection
             .map { SearchTypeSegments(rawValue: $0)! }
         let trendingPeriodSegmentSelected = trendingPeriodSegmentedControl.segmentSelection
@@ -260,7 +260,7 @@ extension DJSearchVC {
                                     headerRefreshTrigger,
                                     themeService.typeStream.mapToVoid())
             .merge()
-        
+
         let input = DJSearchVM.Input(headerRefresh: refresh,
                                      footerRefresh: footerRefreshTrigger,
                                      languageTrigger: languageChanged.asObservable(),
@@ -274,7 +274,7 @@ extension DJSearchVC {
                                      sortUserSelection: sortUserItem.asObservable(),
                                      selection: table.rx.modelSelected(SearchSectionItem.self).asDriver())
         let output = vm.transform(input: input)
-        
+
         let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell:{ dataSource, tableView, indexPath, item in
             switch item {
             case .trendingRepositoriesItem(let cellVM):
@@ -298,7 +298,7 @@ extension DJSearchVC {
             let section = dataSource[index]
             return section.title
         })
-        
+
         output.items.asObservable()
             .bind(to: table.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
@@ -322,7 +322,7 @@ extension DJSearchVC {
                 self?.searchBar.resignFirstResponder()
             })
             .disposed(by: rx.disposeBag)
-        
+
         output.hidesTrendingPeriodSegment
             .drive(trendingPeriodView.rx.isHidden)
             .disposed(by: rx.disposeBag)
@@ -338,32 +338,32 @@ extension DJSearchVC {
         output.hidesSortLabel
             .drive(labSort.rx.isHidden)
             .disposed(by: rx.disposeBag)
-        
+
         labSort.rx.tap()
             .subscribe(onNext: {[weak self] () in
                 self?.dropDownSort.show()
             })
             .disposed(by: rx.disposeBag)
-        
+
         output.sortItems
             .drive(onNext: {[weak self] list in
                 self?.dropDownSort.dataSource = list
                 self?.dropDownSort.reloadAllComponents()
             })
             .disposed(by: rx.disposeBag)
-        
+
         output.totalCountText
             .drive(labTotalCount.rx.text)
             .disposed(by: rx.disposeBag)
         output.sortText
             .drive(labSort.rx.text)
             .disposed(by: rx.disposeBag)
-        
+
         vm.searchMode.asDriver()
             .drive(onNext: {[weak self] searchMode in
                 guard let `self` = self else { return }
                 self.searchModeSegmentedControl.selectedSegmentIndex = UInt(searchMode.rawValue)
-                
+
                 switch searchMode {
                 case .trending:
                     self.table.footRefreshControl = nil
@@ -378,7 +378,7 @@ extension DJSearchVC {
                 }
             })
             .disposed(by: rx.disposeBag)
-        
+
     }
 }
 
@@ -389,15 +389,15 @@ extension DJSearchVC {}
 private extension DJSearchVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension DJSearchVC {
-    override func prepareTableView() {
+private extension DJSearchVC {
+    func prepareTableView() {
         table.backgroundColor = .clear
         table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingRepositoriesItem")
         table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingUsersItem")
         table.register(DJRepositoryCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.repositoriesItem")
         table.register(DJUserCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.usersItem")
     }
-    override open func prepareVM() {
+    func prepareVM() {
         languageChanged.subscribe(onNext: {[weak self] () in
             self?.searchBar.placeholder = R.string.localizable.searchSearchBarPlaceholder()
             let searchTypeSegments: [SearchTypeSegments] = [.repositories, .users]
@@ -408,15 +408,15 @@ extension DJSearchVC {
             self?.searchModeSegmentedControl.sectionTitles = searchModeSegments.map { $0.title }
         })
         .disposed(by: rx.disposeBag)
-        
+
         labTotalCount.theme.textColor = themeService.attribute { $0.text }
         labSort.theme.textColor = themeService.attribute { $0.text }
-        
+
         themeService.typeStream
             .subscribe(onNext: {[weak self] themeType in
                 let theme = themeType.associatedObject
                 self?.dropDownSort.dimmedBackgroundColor = theme.primaryDark.withAlphaComponent(0.5)
-                
+
                 self?.segmentedControl.sectionImages = [
                     R.image.icon_cell_badge_repository()?
                         .tint(theme.textGray, blendMode: .normal)
@@ -450,8 +450,7 @@ extension DJSearchVC {
             })
             .disposed(by: rx.disposeBag)
     }
-    override open func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         // self.view.backgroundColor = .white
         navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = rightBarButton
@@ -464,17 +463,16 @@ extension DJSearchVC {
             )
         }
         contentStackView.axis = .vertical
-        
+
         trendingPeriodView.addSubview(trendingPeriodSegmentedControl)
         searchModeView.addSubview(searchModeSegmentedControl)
-        
+
         [searchModeView, searchBar, trendingPeriodView, labelsStackView, table].forEach(self.contentStackView.addArrangedSubview)
-        
+
         masonry()
     }
-    
-    override open func masonry() {
-        super.masonry()
+
+    func masonry() {
         trendingPeriodSegmentedControl.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(self.inset)
             $0.top.bottom.equalToSuperview()

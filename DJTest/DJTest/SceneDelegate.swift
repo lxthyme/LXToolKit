@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let vc = 
         ViewController()
+        // LXFirstVC()
         // LXOutlineVC()
         let nav = UINavigationController(rootViewController: vc)
         window.rootViewController = nav

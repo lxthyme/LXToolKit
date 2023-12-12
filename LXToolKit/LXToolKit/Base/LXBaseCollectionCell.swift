@@ -9,11 +9,11 @@ import UIKit
 
 open class LXBaseCollectionCell: UICollectionViewCell {
     deinit {
-        Log.rxswift.trace("---------- >>>TableViewCell: \(self.xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.TableViewCell, typeName: xl.typeNameString, type: .deinit)
     }
     // MARK: 📌UI
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented")
-//        Log.dealloc.trace("---------- >>>TableViewCell: \(self.typeNameString)\t\tinit <<<----------")
+        // LogKit.traceLifeCycle(.TableViewCell, typeName: xl.typeNameString, type: .`init`)
     }
     // MARK: 🔗Vaiables
     public var baseModel: LXAnyModel? {

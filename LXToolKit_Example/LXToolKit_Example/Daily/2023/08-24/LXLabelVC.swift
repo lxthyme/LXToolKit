@@ -201,9 +201,8 @@ public extension UIView {
     }
 }
 // MARK: - 🍺UI Prepare & Masonry
-extension LXLabelVC {
-    override func prepareUI() {
-        super.prepareUI()
+private extension LXLabelVC {
+    func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
 
@@ -239,8 +238,7 @@ extension LXLabelVC {
         imgViewLogo.xl.setHorizontalHuggingAndCompressionResistance()
     }
 
-    override func masonry() {
-        super.masonry()
+    func masonry() {
         wrapperStackView.snp.makeConstraints {
             $0.center.equalToSuperview()
             $0.width.equalTo(175)

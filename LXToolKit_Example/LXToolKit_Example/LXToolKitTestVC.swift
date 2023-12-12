@@ -497,9 +497,8 @@ extension LXToolKitTestVC: UITableViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXToolKitTestVC {
-    public override func prepareTableView() {
-        super.prepareTableView()
+private extension LXToolKitTestVC {
+    func prepareTableView() {
         table.delegate = self
         // table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.XL.reuseIdentifier)
         // table.xl.registerHeaderOrFooter(UITableViewHeaderFooterView.self)
@@ -512,8 +511,7 @@ extension LXToolKitTestVC {
             // table.dataSource = self
         }
     }
-    open override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         // self.title = "<#title#>"
 
@@ -522,8 +520,7 @@ extension LXToolKitTestVC {
         masonry()
     }
 
-    open override func masonry() {
-        super.masonry()
+    func masonry() {
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

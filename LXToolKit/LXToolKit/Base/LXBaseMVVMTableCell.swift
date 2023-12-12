@@ -36,8 +36,8 @@ class LXBaseMVVMTableCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        prepareUI()
-        updateUI()
+        basePrepareUI()
+        baseMasonry()
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,13 +51,6 @@ class LXBaseMVVMTableCell: UITableViewCell {
 
         // Configure the view for the selected state
         self.contentView.backgroundColor = selected ? selectionColor : .clear
-    }
-    @available(iOS 14.0, *)
-    override func updateConfiguration(using state: UICellConfigurationState) {
-        super.updateConfiguration(using: state)
-    }
-    func updateUI() {
-        setNeedsDisplay()
     }
 }
 
@@ -74,18 +67,16 @@ private extension LXBaseMVVMTableCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseMVVMTableCell {
-    func prepareUI() {
+    func basePrepareUI() {
         layer.masksToBounds = true
         selectionStyle = .none
         
         [self.wrapperView].forEach(self.contentView.addSubview)
         [self.wrapperStackView].forEach(self.contentView.addSubview)
-
-        masonry()
     }
 
-    func masonry() {
-        self.snp.setLabel("\(self.xl.typeNameString)")
+    func baseMasonry() {
+        self.snp.setLabel("\(xl.typeNameString)")
         contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")
         wrapperView.snp.setLabel("\(self.wrapperView.xl.typeNameString).wrapperView")
         wrapperStackView.snp.setLabel("\(self.wrapperStackView.xl.typeNameString).wrapperStackView")

@@ -18,7 +18,8 @@ open class LXBaseLabel: UILabel {
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
-        prepareUI()
+        basePrepareUI()
+        baseMasonry()
     }
 }
 
@@ -64,13 +65,11 @@ private extension LXBaseLabel {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseLabel {
-    func prepareUI() {
+    func basePrepareUI() {
         layer.masksToBounds = true
 
         // [<#table#>].forEach(self.addSubview)
-
-        masonry()
     }
 
-    func masonry() {}
+    func baseMasonry() {}
 }

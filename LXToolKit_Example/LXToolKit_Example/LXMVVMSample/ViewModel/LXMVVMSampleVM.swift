@@ -14,7 +14,7 @@ import RxCocoa
 import RxRelay
 
 class LXMVVMSampleVM: LXBaseViewModel {
-
+    let provider = LXNetworking<APIManager>.defaultNetworking()
     func requestRecome(completed: @escaping (_ model: LXResultModel) ->Void) {
 //        provider.request(.recommend) { result in
 //            switch result {
@@ -36,7 +36,9 @@ class LXMVVMSampleVM: LXBaseViewModel {
     }
 
     func search(name: String) {
-        provider.request(.search(name: "李白")) { result in
+        provider
+            .search(name: "李白")
+            .subscribe { result in
             switch result {
                 case .success(let response):
                     do {

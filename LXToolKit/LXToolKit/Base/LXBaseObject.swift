@@ -10,7 +10,7 @@ import UIKit
 @objc(LXBaseSwiftObject)
 open class LXBaseObject: NSObject {
     deinit {
-        Log.dealloc.trace("---------- >>>Object: \(self.xl.typeNameString)\t\tdeinit <<<----------")
+        LogKit.traceLifeCycle(.NSObject, typeName: xl.typeNameString, type: .deinit)
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -22,9 +22,9 @@ public protocol LXBase {
 }
 // MARK: - 👀
 public extension LXBase {
-//    deinit {
-//        Log.dealloc.trace("---------- >>>Model: \(self.xl_typeName)\t\tdeinit <<<----------")
-//    }
+   // deinit {
+   //     LogKit.traceLifeCycle(.model, typeName: xl.typeNameString, type: .deinit)
+   // }
     // Instance Level
     var xl_typeNameString: String {
         let type_t = type(of: self)

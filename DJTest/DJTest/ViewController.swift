@@ -43,8 +43,6 @@ class ViewController: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
-        // btn.addTarget(self, action: #selector(<#btnAction(sender:)#>), for: .touchUpInside)
-        // @objc func <#btnAction#>(sender: UIButton) {}
         return btn
     }()
     private lazy var btnGo: UIButton = {
@@ -59,8 +57,18 @@ class ViewController: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
-        // btn.addTarget(self, action: #selector(<#btnAction(sender:)#>), for: .touchUpInside)
-        // @objc func <#btnAction#>(sender: UIButton) {}
+        return btn
+    }()
+    private lazy var btnResourcesCount: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        btn.layer.masksToBounds = true
+        btn.layer.cornerRadius = 8
+
+        btn.setTitle("RxSwift resourcesCount", for: .normal)
+        btn.setBackgroundColor(color: .cyan, forState: .normal)
+        btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
+
         return btn
     }()
     // MARK: 🔗Vaiables
@@ -68,6 +76,7 @@ class ViewController: LXBaseVC {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         dataFill()
+        refreshResourcesCount()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,11 +85,10 @@ class ViewController: LXBaseVC {
         prepareVM()
         prepareUI()
 
-        goOutlineVC()
+        // goOutlineVC()
 
         startActivity()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -110,6 +118,10 @@ private extension ViewController {
         self.navigationController?.pushViewController(vc)
         }
     }
+    func refreshResourcesCount() {
+        let total = LogKit.resourcesCount()
+        btnResourcesCount.setTitle("RxSwift resourcesCount: \(total)", for: .normal)
+    }
 }
 
 // MARK: - 🔐Activity
@@ -134,9 +146,8 @@ private extension ViewController {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-extension ViewController {
-    override func prepareVM() {
-        super.prepareVM()
+private extension ViewController {
+    func prepareVM() {
         btnReset.rx.controlEvent(.touchUpInside)
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
@@ -150,29 +161,44 @@ extension ViewController {
                 self?.goOutlineVC()
             }
             .disposed(by: rx.disposeBag)
+        btnResourcesCount.rx.controlEvent(.touchUpInside)
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .subscribe {[weak self] _ in
+                self?.refreshResourcesCount()
+            }
+            .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white;
-        [btnGo, btnReset, tvContent].forEach(self.view.addSubview)
+        contentStackView.spacing = 10
+        [btnGo, btnReset, btnResourcesCount, tvContent].forEach(contentStackView.addArrangedSubview)
         masonry()
     }
-    override func masonry() {
-        super.masonry()
+    func masonry() {
+        contentStackView.snp.remakeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.right.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.view.snp.bottomMargin).offset(-10)
+        }
         btnGo.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            // $0.center.equalToSuperview()
             $0.width.equalTo(80)
             $0.height.equalTo(40)
         }
         btnReset.snp.makeConstraints {
-            $0.top.equalTo(btnGo.snp.bottom).offset(10)
-            $0.centerX.equalToSuperview()
+            // $0.top.equalTo(btnGo.snp.bottom).offset(10)
+            // $0.centerX.equalToSuperview()
             $0.height.equalTo(40)
         }
-        tvContent.snp.makeConstraints {
-            $0.top.equalTo(btnReset.snp.bottom).offset(10)
-            $0.left.equalToSuperview().offset(10)
-            $0.right.equalToSuperview().offset(-10)
+        btnResourcesCount.snp.makeConstraints {
+            // $0.center.equalToSuperview()
+            $0.width.greaterThanOrEqualTo(80)
+            $0.height.equalTo(40)
         }
+        // tvContent.snp.makeConstraints {
+        //     $0.top.equalTo(btnReset.snp.bottom).offset(10)
+        //     $0.left.equalToSuperview().offset(10)
+        //     $0.right.equalToSuperview().offset(-10)
+        // }
     }
 }

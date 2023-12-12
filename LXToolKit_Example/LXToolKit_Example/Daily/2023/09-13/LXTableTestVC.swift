@@ -58,12 +58,9 @@ extension LXTableTestVC {}
 private extension LXTableTestVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
-extension LXTableTestVC {
-    override func prepareTableView() {
-        super.prepareTableView()
-    }
-    override func prepareVM() {
-        super.prepareVM()
+private extension LXTableTestVC {
+    func prepareTableView() {}
+    func prepareVM() {
         self.headerRefreshTrigger
             .flatMapLatest({[weak self] _ -> Observable<RxSwift.Event<Int>> in
                 guard let self else { return RxObservable.just(-1).materialize() }
@@ -86,8 +83,7 @@ extension LXTableTestVC {
             }
             .disposed(by: rx.disposeBag)
     }
-    override func prepareUI() {
-        super.prepareUI()
+    func prepareUI() {
         self.view.backgroundColor = .white
         table.contentInsetAdjustmentBehavior = .never
         // navigationItem.title = ""
@@ -97,8 +93,7 @@ extension LXTableTestVC {
         masonry()
     }
 
-    override func masonry() {
-        super.prepareUI()
+    func masonry() {
         table.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
