@@ -19,7 +19,6 @@ public protocol LXViewModelType {
 
 @objc(LXBaseKitVM)
 open class LXBaseVM: NSObject/**, LXViewModelType*/ {
-
     deinit {
         LogKit.traceLifeCycle(.vm, typeName: xl.typeNameString, type: .deinit)
         LogKit.resourcesCount()

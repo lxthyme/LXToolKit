@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 import RxDataSources
 import Toast_Swift
+import SnapKit
 
 public protocol LXBaseTableViewProtocol {
     func lazyTableView(style: UITableView.Style) -> LXBaseTableView

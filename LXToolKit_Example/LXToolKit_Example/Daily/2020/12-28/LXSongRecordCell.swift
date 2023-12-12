@@ -18,13 +18,6 @@ enum LXSongRecordStatus {
 }
 class LXSongRecordCell: LXBaseCollectionCell {
     // MARK: 📌UI
-    private lazy var wrapperView: UIView = {
-        let v = UIView()
-        v.layer.cornerRadius = 15
-        v.layer.masksToBounds = true
-        v.backgroundColor = .white
-        return v
-    }()
     private lazy var imgViewSong: UIImageView = {
         let iv = UIImageView()
         iv.clipsToBounds = true
@@ -132,6 +125,8 @@ private extension LXSongRecordCell {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSongRecordCell {
     func prepareUI() {
+        wrapperView.layer.cornerRadius = 15
+        wrapperView.layer.masksToBounds = true
         self.contentView.xl
             .addSubviews(wrapperView, labTitle)
         wrapperView.xl
@@ -142,7 +137,7 @@ private extension LXSongRecordCell {
     }
 
     func masonry() {
-        wrapperView.snp.makeConstraints {
+        wrapperView.snp.remakeConstraints {
             $0.top.left.right.equalToSuperview()
         }
         imgViewSong.snp.makeConstraints {

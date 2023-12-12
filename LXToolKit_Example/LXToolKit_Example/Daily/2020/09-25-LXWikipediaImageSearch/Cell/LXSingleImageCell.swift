@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class LXSingleImageCell: LXBaseVMCollectionCell {
+class LXSingleImageCell: LXBaseCollectionCell {
     // MARK: 📌UI
     private lazy var imgView: UIImageView = {
         let iv = UIImageView()

@@ -77,7 +77,7 @@ private extension DJRepositoryCell {
     func prepareUI() {
         // self.contentView.backgroundColor = .white
 
-        containerStackView.insertArrangedSubview(starButton, at: 2)
+        wrapperStackView.insertArrangedSubview(starButton, at: 2)
         // [<#table#>].forEach(self.contentView.addSubview)
 
         masonry()

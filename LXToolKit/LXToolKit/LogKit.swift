@@ -147,6 +147,8 @@ extension LogKit {
         case cell = "Cell"
         case TableViewCell
         case CollectionViewCell
+        case TableViewCellVM
+        case CollectionViewCellVM
     }
     public enum LifeCycleType: String {
         case `init` = "Initial"

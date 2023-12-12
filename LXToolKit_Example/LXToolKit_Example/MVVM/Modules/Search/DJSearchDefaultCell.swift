@@ -22,7 +22,7 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
         view.layerCornerRadius = 10
         view.layerBorderColor = .white
         view.layerBorderWidth = 1
-        containerView.addSubview(view)
+        wrapperView.addSubview(view)
         return view
     }()
 
@@ -65,6 +65,8 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
         return view
     }()
     // MARK: 🔗Vaiables
+    // var inset: CGFloat = AppConfig.BaseDimensions.inset
+    public var inset: CGFloat = 6
     // MARK: 🛠Life Cycle
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -148,10 +150,10 @@ private extension DJSearchDefaultCell {
     func prepareUI() {
         self.contentView.backgroundColor = .clear
 
-        containerStackView.spacing = self.inset
+        wrapperStackView.spacing = self.inset
         [titleLabel, detailLabel, secondDetailLabel, self.attributedDetailLabel].forEach(textsStackView.addArrangedSubview)
-        [leftImageView, textsStackView, rightImageView].forEach(containerStackView.addArrangedSubview)
-        containerView.addSubview(containerStackView)
+        [leftImageView, textsStackView, rightImageView].forEach(wrapperStackView.addArrangedSubview)
+        wrapperView.addSubview(wrapperStackView)
 
         // masonry()
 
@@ -159,7 +161,7 @@ private extension DJSearchDefaultCell {
     }
 
     func masonry() {
-        containerStackView.snp.makeConstraints {
+        wrapperStackView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: self.inset / 2, left: self.inset, bottom: self.inset / 2, right: self.inset))
             $0.height.greaterThanOrEqualTo(AppConfig.BaseDimensions.tableRowHeight)
         }

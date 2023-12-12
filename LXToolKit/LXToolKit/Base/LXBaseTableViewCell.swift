@@ -8,22 +8,22 @@ import UIKit
 
 @objc(LXBaseSwiftTableViewCell)
 open class LXBaseTableViewCell: UITableViewCell {
+    deinit {
+        LogKit.traceLifeCycle(.TableViewCell, typeName: xl.typeNameString, type: .deinit)
+    }
     // MARK: 📌UI
-    public lazy var containerView: UIView = {
+    public lazy var wrapperView: UIView = {
         let v = UIView()
-        v.backgroundColor = .clear
-        // v.cornerRadius = AppConfig.BaseDimensions.cornerRadius
+        v.backgroundColor = .white
         return v
     }()
-    public lazy var containerStackView: UIStackView = {
+    public lazy var wrapperStackView: UIStackView = {
         let v = UIStackView()
-        v.axis = .horizontal
+        v.axis = .vertical
         v.alignment = .center
         return v
     }()
     // MARK: 🔗Vaiables
-    // var inset: CGFloat = AppConfig.BaseDimensions.inset
-    public var inset: CGFloat = 6
     public var isSelection = false
     public var selectionColor: UIColor? {
         didSet {
@@ -50,13 +50,13 @@ open class LXBaseTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-        backgroundColor = selected ? selectionColor : .clear
+        contentView.backgroundColor = selected ? selectionColor : .clear
     }
 }
 
 // MARK: 🌎LoadData
 extension LXBaseTableViewCell {
-    @objc open func bind(to vm: LXBaseTableViewCellVM) {}
+    @objc open func bind(to viewModel: LXBaseTableViewCellVM) {}
 }
 
 // MARK: 👀Public Actions
@@ -69,23 +69,27 @@ private extension LXBaseTableViewCell {}
 private extension LXBaseTableViewCell {
     func basePrepareVM() {}
     func basePrepareUI() {
-        self.contentView.backgroundColor = .white
+        contentView.backgroundColor = .white
         selectionStyle = .none
         selectionColor = .clear
         
         // theme.selectionColor = themeService.attribute { $0.primary }
         // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
         
-        containerView.addSubview(containerStackView)
-        self.contentView.addSubview(containerView)
+        [self.wrapperView].forEach(self.contentView.addSubview)
+        [self.wrapperStackView].forEach(self.contentView.addSubview)
     }
     
     func baseMasonry() {
-        containerView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(horizontal: self.inset, vertical: self.inset / 2))
+        self.snp.setLabel("\(xl.typeNameString)")
+        contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")
+        wrapperView.snp.setLabel("\(self.wrapperView.xl.typeNameString).wrapperView")
+        wrapperStackView.snp.setLabel("\(self.wrapperStackView.xl.typeNameString).wrapperStackView")
+        wrapperView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        containerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(self.inset / 2)
+        wrapperStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }

@@ -11,7 +11,7 @@ import LXToolKit
 import RxSwift
 import RxCocoa
 
-class LXWikipediaSearchCell: LXBaseVMTableViewCell {
+class LXWikipediaSearchCell: LXBaseTableViewCell {
     // MARK: 📌UI
     private lazy var labTitle: UILabel = {
         let label = UILabel()
