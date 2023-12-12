@@ -13,5 +13,6 @@ import Moya
 open class LXBaseViewModel: NSObject {
     deinit {
         LogKit.traceLifeCycle(.vm, typeName: xl.typeNameString, type: .deinit)
+        LogKit.resourcesCount()
     }
 }

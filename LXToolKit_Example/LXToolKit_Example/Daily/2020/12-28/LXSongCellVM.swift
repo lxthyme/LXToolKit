@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LXSongCellVM: LXBaseTableViewCellVM {
+class LXSongCellVM: LXBaseTableCellVM {
     // MARK: 📌UI
     struct Output {
         lazy var titleText = BehaviorRelay<String>(value: "")

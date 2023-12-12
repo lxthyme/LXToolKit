@@ -44,7 +44,7 @@ class DJRepositoryCell: DJSearchDefaultCell {
 
 // MARK: 🌎LoadData
 extension DJRepositoryCell {
-    override open func bind(to vm: LXBaseTableViewCellVM) {
+    override open func bind(to vm: LXBaseTableCellVM) {
         super.bind(to: vm)
         guard let vm = vm as? DJRepositoryCellVM else { return }
 

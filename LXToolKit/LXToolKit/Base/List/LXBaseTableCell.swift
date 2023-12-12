@@ -1,13 +1,13 @@
 //
-//  LXBaseTableViewCell.swift
+//  LXBaseTableCell.swift
 //  test
 //
 //  Created by lxthyme on 2023/3/26.
 //
 import UIKit
 
-@objc(LXBaseSwiftTableViewCell)
-open class LXBaseTableViewCell: UITableViewCell {
+@objc(LXBaseKitTableViewCell)
+open class LXBaseTableCell: UITableViewCell {
     deinit {
         LogKit.traceLifeCycle(.TableViewCell, typeName: xl.typeNameString, type: .deinit)
     }
@@ -55,18 +55,18 @@ open class LXBaseTableViewCell: UITableViewCell {
 }
 
 // MARK: 🌎LoadData
-extension LXBaseTableViewCell {
-    @objc open func bind(to viewModel: LXBaseTableViewCellVM) {}
+extension LXBaseTableCell {
+    @objc open func bind(to viewModel: LXBaseTableCellVM) {}
 }
 
 // MARK: 👀Public Actions
-extension LXBaseTableViewCell {}
+extension LXBaseTableCell {}
 
 // MARK: 🔐Private Actions
-private extension LXBaseTableViewCell {}
+private extension LXBaseTableCell {}
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXBaseTableViewCell {
+private extension LXBaseTableCell {
     func basePrepareVM() {}
     func basePrepareUI() {
         contentView.backgroundColor = .white

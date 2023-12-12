@@ -43,8 +43,12 @@ public struct LXEmptyDataSet {
     public var allowScroll = true
 }
 
-@objc(LXBaseSwiftVC)
-open class LXBaseVC: LXBaseDeinitVC, Navigatable {
+@objc(LXBaseKitVC)
+open class LXBaseVC: UIViewController, Navigatable {
+    deinit {
+        LogKit.traceLifeCycle(.vc, typeName: xl.typeNameString, type: .deinit)
+        LogKit.resourcesCount()
+    }
     // MARK: 📌UI
     public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -244,7 +248,7 @@ private extension LXBaseVC {
     }
 }
 
-// MARK: - 🔐Actions
+// MARK: - 🔐Notification Actions
 private extension LXBaseVC {
     func orientationChanged() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -327,11 +331,13 @@ extension LXBaseVC {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseVC {
     func basePrepareNotification() {
+        // Observe device orientation change
         NotificationCenter.default.rx
             .notification(UIDevice.orientationDidChangeNotification)
             .mapToVoid()
             .bind(to: orientationEvent)
             .disposed(by: rx.disposeBag)
+        // Observe application did become active notification
         NotificationCenter.default.rx
             .notification(UIApplication.didBecomeActiveNotification)
             .subscribe { [weak self] notification in
@@ -364,16 +370,19 @@ private extension LXBaseVC {
             .disposed(by: rx.disposeBag)
 
         motionShakeEvent
-            .subscribe(onNext: { () in
+            .subscribe(onNext: { event in
                 // let theme = themeService.type.toggled()
                 // themeService.switch(theme)
+                LogKit.logRxSwift(.onNext, items: "🛠1. onNext: \(event)")
             })
             .disposed(by: rx.disposeBag)
 
+        // One finger swipe gesture for opening Flex
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleOneFingerSwipe(swipeRecognizer:)))
         swipeGesture.numberOfTouchesRequired = 1
         self.view.addGestureRecognizer(swipeGesture)
 
+        // Two finger swipe gesture for opening Flex and Hero debug
         let twoSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTwoFingerSwipe(swipeRecognizer:)))
         twoSwipeGesture.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(twoSwipeGesture)

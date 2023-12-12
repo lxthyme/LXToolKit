@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc(LXBaseSwiftObject)
+@objc(LXBaseKitObject)
 open class LXBaseObject: NSObject {
     deinit {
         LogKit.traceLifeCycle(.NSObject, typeName: xl.typeNameString, type: .deinit)

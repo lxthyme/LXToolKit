@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class DJSearchDefaultCell: LXBaseTableViewCell {
+class DJSearchDefaultCell: LXBaseTableCell {
     // MARK: 📌UI
     lazy var leftImageView: UIImageView = {
         let view = UIImageView(frame: CGRect())
@@ -90,7 +90,7 @@ class DJSearchDefaultCell: LXBaseTableViewCell {
 
 // MARK: 🌎LoadData
 extension DJSearchDefaultCell {
-    override open func bind(to vm: LXBaseTableViewCellVM) {
+    override open func bind(to vm: LXBaseTableCellVM) {
         super.bind(to: vm)
         guard let vm = vm as? DJSearchDefaultCellVM  else { return }
 

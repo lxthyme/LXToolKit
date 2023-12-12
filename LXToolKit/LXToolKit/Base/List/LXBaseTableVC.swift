@@ -44,7 +44,7 @@ extension LXBaseTableViewProtocol {
     }
 }
 
-@objc(LXBaseTableVCKitExample)
+@objc(LXBaseKitTableVC)
 open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
