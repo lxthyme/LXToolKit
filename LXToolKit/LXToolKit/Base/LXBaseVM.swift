@@ -10,6 +10,14 @@ import RxCocoa
 import ObjectMapper
 import Moya
 
+open class LXBaseViewModel: NSObject {
+    deinit {
+        LogKit.traceLifeCycle(.vm, typeName: xl.typeNameString, type: .deinit)
+        LogKit.resourcesCount()
+    }
+}
+
+
 public protocol LXViewModelType {
     associatedtype Input
     associatedtype Output
