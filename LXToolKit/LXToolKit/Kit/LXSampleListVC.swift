@@ -1,5 +1,5 @@
 //
-//  LXPanelContentVC.swift
+//  LXSampleListVC.swift
 //  LXToolKit_Example
 //
 //  Created by lxthyme on 2023/12/8.
@@ -10,10 +10,10 @@ import LXToolKit
 fileprivate typealias Section = String
 fileprivate typealias Item = Int
 
-class LXPanelContentVC: LXBaseVC {
+open class LXSampleListVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    lazy var collectionView: UICollectionView = {
+    public lazy var collectionView: UICollectionView = {
         let layout = generateLayout()
         let cv = UICollectionView(frame: .zero,
                                   collectionViewLayout: layout)
@@ -23,19 +23,19 @@ class LXPanelContentVC: LXBaseVC {
     } ()
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
     // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -46,12 +46,12 @@ class LXPanelContentVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-extension LXPanelContentVC {
+extension LXSampleListVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-extension LXPanelContentVC {
+extension LXSampleListVC {
     // func suspendTransitionAnimator(_ suspended: Bool) {}
     // var transitionAnimator: UIViewPropertyAnimator? {}
     func show(animated: Bool = false, completion: (() -> Void)? = nil) {
@@ -60,10 +60,10 @@ extension LXPanelContentVC {
 }
 
 // MARK: 🔐Private Actions
-private extension LXPanelContentVC {}
+private extension LXSampleListVC {}
 
 // MARK: - 🔐
-private extension LXPanelContentVC {
+private extension LXSampleListVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
@@ -96,6 +96,9 @@ private extension LXPanelContentVC {
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = "\(item)"
             cell.contentConfiguration = contentConfig
+
+            let bgConfig: UIBackgroundConfiguration = .clear()
+            cell.backgroundConfiguration = bgConfig
         }
         return UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
@@ -113,14 +116,14 @@ private extension LXPanelContentVC {
 }
 
 // MARK: - ✈️UICollectionViewDelegate
-extension LXPanelContentVC: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension LXSampleListVC: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXPanelContentVC {
+private extension LXSampleListVC {
     func prepareCollectionView() {
         // collectionView = generateCollectionView()
         dataSource = generateDataSource()

@@ -40,7 +40,7 @@ class InteractiveTransition: UIPercentDrivenInteractiveTransition {
 // MARK: - ✈️UIViewControllerAnimatedTransitioning
 extension PresentationTransition: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        guard let fpc = transitionContext?.viewController(forKey: .to) as? LXPanelContentVC else {
+        guard let fpc = transitionContext?.viewController(forKey: .to) as? LXSampleListVC else {
             fatalError("Error!!!")
         }
         // let animator = fpc.anim
@@ -67,7 +67,7 @@ extension PresentationTransition: UIViewControllerAnimatedTransitioning {
 
     }
     // func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
-    //     guard let fpc = transitionContext.viewController(forKey: .to) as? LXPanelContentVC else {
+    //     guard let fpc = transitionContext.viewController(forKey: .to) as? LXSampleListVC else {
     //         fatalError("Error!!!")
     //     }
     //     // fpc.susp

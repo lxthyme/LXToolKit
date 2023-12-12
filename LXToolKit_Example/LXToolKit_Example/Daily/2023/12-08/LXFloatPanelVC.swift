@@ -6,6 +6,7 @@
 //
 import UIKit
 import FloatingPanel
+import LXToolKit
 
 fileprivate typealias Section = String
 fileprivate typealias Item = Int
@@ -44,7 +45,7 @@ private extension LXFloatPanelVC {
         // FloatingPanelControllerDelegate
         // fpc.delegate = self
 
-        let contentVC = LXPanelContentVC()
+        let contentVC = LXSampleListVC()
         fpc.set(contentViewController: contentVC)
 
         fpc.track(scrollView: contentVC.collectionView)

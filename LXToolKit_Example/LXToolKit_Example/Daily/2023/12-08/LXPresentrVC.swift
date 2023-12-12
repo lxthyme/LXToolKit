@@ -1,5 +1,5 @@
 //
-//  LXPanelMainVC.swift
+//  LXPresentrVC.swift
 //  LXToolKit_Example
 //
 //  Created by lxthyme on 2023/12/8.
@@ -8,7 +8,7 @@ import UIKit
 import LXToolKit
 import Presentr
 
-class LXPanelMainVC: LXBaseVC {
+class LXPresentrVC: LXBaseVC {
     // MARK: 📌UI
     lazy var alertController: AlertViewController = {
         let font = UIFont.boldSystemFont(ofSize: 18)
@@ -298,17 +298,17 @@ class LXPanelMainVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-extension LXPanelMainVC {
+extension LXPresentrVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
-extension LXPanelMainVC {}
+extension LXPresentrVC {}
 
 // MARK: 🔐Private Actions
-private extension LXPanelMainVC {
+private extension LXPresentrVC {
     func showPanelContentVC() {
-        let vc = LXPanelContentVC()
+        let vc = LXSampleListVC()
         vc.transitioningDelegate = transition
         // self.view.addSubview(vc.view)
         // self.addChild(vc)
@@ -334,7 +334,7 @@ private extension LXPanelMainVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXPanelMainVC {
+private extension LXPresentrVC {
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden
         // navigationItem.title = ""
