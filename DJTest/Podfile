@@ -90,7 +90,7 @@ post_install do |installer|
   #     generateConfig(target, config, project_deployment_version)
   #   end
   # end
-  idx=1
+  idx=0
   installer.generated_projects.each do |project|
     # puts(">>>project.build_configurations.first.build_settings: #{project.build_configurations.first.build_settings}")
     project.targets.each do |target|

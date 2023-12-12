@@ -91,6 +91,7 @@ struct LeaderboardWidget: Widget {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview(as: .systemSmall, widget: {
     LeaderboardWidget()
 }, timelineProvider: {

@@ -153,6 +153,7 @@ private extension LXToolKitObjCTestSwiftVC {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview("LXToolKitObjCTestSwiftVC") {
     LXToolKitObjCTestSwiftVC()
 }
