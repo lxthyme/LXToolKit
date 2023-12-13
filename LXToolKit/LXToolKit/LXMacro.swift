@@ -38,7 +38,7 @@ extension LXMacro {
         public enum Error: Swift.Error {
             case missingKey, invalidValue
         }
-        public static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
+        static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
             guard let obj = Bundle.main.object(forInfoDictionaryKey: key) else {
                 throw Error.missingKey
             }
@@ -50,6 +50,11 @@ extension LXMacro {
                 guard let value = T(string) else { fallthrough }
                 return value
             default: throw Error.invalidValue
+            }
+        }
+        public static subscript<T>(key: String) -> T where T: LosslessStringConvertible {
+            get throws {
+                return try BuildConfiguration.value(for: key)
             }
         }
     }
@@ -83,9 +88,10 @@ extension LXMacro {
             case .custom(let key): return key
             }
         }
-
-        public func value<T>() throws -> T where T: LosslessStringConvertible {
-            return try BuildConfiguration.value(for: self.key)
+        public static subscript<T>(key: InfoPlistKey) -> T where T: LosslessStringConvertible {
+            get throws {
+                return try BuildConfiguration.value(for: key.key)
+            }
         }
     }
 }
@@ -140,8 +146,10 @@ extension LXMacro {
         case NSRemindersUsageDescription
         case UIAppFonts
 
-        public func value<T>() throws -> T where T: LosslessStringConvertible {
-            return try BuildConfiguration.value(for: self.rawValue)
+        public static subscript<T>(key: PrivacyKey) -> T where T: LosslessStringConvertible {
+            get throws {
+                return try BuildConfiguration.value(for: key.rawValue)
+            }
         }
     }
 }

@@ -124,7 +124,7 @@ private extension ViewController {
         btnResourcesCount.setTitle("RxSwift resourcesCount: \(total)", for: .normal)
     }
     func testReadInfoKey() {
-        let v: String? = try? LXMacro.InfoPlistKey.CFBundleIdentifier.value()
+        let v: String? = try? LXMacro.InfoPlistKey[.CFBundleIdentifier]
         dlog("v: \(v ?? "")")
     }
 }
