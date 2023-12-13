@@ -173,7 +173,7 @@
 		BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRanger.swift; sourceTree = "<group>"; };
 		BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAMapTestVC.swift; sourceTree = "<group>"; };
 		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
-		BEE5A33C2AB974FA003339EB /* DJTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEE5A33C2AB974FA003339EB /* DJTest-Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DJTest-Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE5A33F2AB974FA003339EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEE5A3412AB974FA003339EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BEE5A3432AB974FA003339EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		BEE5A33D2AB974FA003339EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BEE5A33C2AB974FA003339EB /* DJTest.app */,
+				BEE5A33C2AB974FA003339EB /* DJTest-Debug.app */,
 				BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */,
 				BE3067C12AE79C4600E9577C /* EmojiRangersIntents.appex */,
 			);
@@ -509,7 +509,7 @@
 			);
 			name = DJTest;
 			productName = DJTest;
-			productReference = BEE5A33C2AB974FA003339EB /* DJTest.app */;
+			productReference = BEE5A33C2AB974FA003339EB /* DJTest-Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -777,7 +777,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit.EmojiRangersIntents;
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -804,7 +804,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit.EmojiRangersIntents;
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -833,7 +833,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lx.lxtoolkit.LXToolKit-Widget";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -862,7 +862,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lx.lxtoolkit.LXToolKit-Widget";
-				PRODUCT_NAME = "$(PRODUCT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -991,7 +991,7 @@
 		};
 		BEE5A3512AB974FB003339EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE4ADA602B298E5200254989 /* Release.xcconfig */;
+			baseConfigurationReference = BE4ADA5D2B298E5200254989 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
