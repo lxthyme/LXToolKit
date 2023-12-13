@@ -1,0 +1,21 @@
+//
+//  Common.xcconfig
+//  dms
+//
+//  Created by LXThyme Jason on 2021/4/1.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// ONLY_ACTIVE_ARCH = YES;
+// VALIDATE_PRODUCT = NO;
+// GCC_OPTIMIZATION_LEVEL = 0;
+// SWIFT_OPTIMIZATION_LEVEL = -Onone;
+// BUILD_GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1;
+// BUILD_OTHER_SWIFT_FLAGS = -DDEBUG;
+// ENABLE_TESTABILITY = YES;
+
+// DISPLAY_NAME = $(inherited)-Debug
+PRODUCT_NAME = $(TARGET_NAME)
+// PRODUCT_NAME = $(TARGET_NAME)-Debug
