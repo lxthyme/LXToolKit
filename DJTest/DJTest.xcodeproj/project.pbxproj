@@ -158,6 +158,14 @@
 		BE435AB92AD794440076780C /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		BE435ABB2AD794450076780C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE435ABD2AD794450076780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE4ADA5D2B298E5200254989 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		BE4ADA5F2B298E5200254989 /* API.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = API.xcconfig; sourceTree = "<group>"; };
+		BE4ADA602B298E5200254989 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		BE4ADA622B298E5200254989 /* Common.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.Release.xcconfig; sourceTree = "<group>"; };
+		BE4ADA632B298E5200254989 /* Common.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.Debug.xcconfig; sourceTree = "<group>"; };
+		BE4ADA642B298E5200254989 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		BE4ADA652B298E5200254989 /* Combine.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Combine.xcconfig; sourceTree = "<group>"; };
+		BE4ADA662B298E5200254989 /* XcodeWarnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = XcodeWarnings.xcconfig; sourceTree = "<group>"; };
 		BE61F68F2B170B8A00C83812 /* TingYunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TingYunManager.swift; sourceTree = "<group>"; };
 		BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJActivityVC.swift; sourceTree = "<group>"; };
 		BE720D9F2AE68EED00F016C5 /* EmojiRangersWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRangersWidget.swift; sourceTree = "<group>"; };
@@ -316,6 +324,29 @@
 			path = LXToolKit_Widget;
 			sourceTree = "<group>";
 		};
+		BE4AC6782B294DD000254989 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				BE4ADA5F2B298E5200254989 /* API.xcconfig */,
+				BE4ADA612B298E5200254989 /* Common */,
+				BE4ADA5D2B298E5200254989 /* Debug.xcconfig */,
+				BE4ADA602B298E5200254989 /* Release.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		BE4ADA612B298E5200254989 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BE4ADA622B298E5200254989 /* Common.Release.xcconfig */,
+				BE4ADA632B298E5200254989 /* Common.Debug.xcconfig */,
+				BE4ADA642B298E5200254989 /* Common.xcconfig */,
+				BE4ADA652B298E5200254989 /* Combine.xcconfig */,
+				BE4ADA662B298E5200254989 /* XcodeWarnings.xcconfig */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		BE720D9B2AE68CB300F016C5 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3067D22AE7A04200E9577C /* LXToolKit_WidgetExtension.entitlements */,
+				BE4AC6782B294DD000254989 /* Configuration */,
 				BEE5A33E2AB974FA003339EB /* DJTest */,
 				BE435AB22AD794440076780C /* LXToolKit_Widget */,
 				BE3067C22AE79C4600E9577C /* EmojiRangersIntents */,
@@ -959,15 +991,15 @@
 		};
 		BEE5A3512AB974FB003339EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */;
+			baseConfigurationReference = BE4ADA5D2B298E5200254989 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DJTest/DJTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -986,9 +1018,9 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "DJTest/DJTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -999,15 +1031,15 @@
 		};
 		BEE5A3522AB974FB003339EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59DBFDB0E53CD81EB38205CF /* Pods-DJTest.release.xcconfig */;
+			baseConfigurationReference = BE4ADA602B298E5200254989 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DJTest/DJTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1025,9 +1057,9 @@
 					"@executable_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_execute;
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(PRODUCT_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "DJTest/DJTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

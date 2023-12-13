@@ -77,6 +77,7 @@ class ViewController: LXBaseVC {
         super.viewIsAppearing(animated)
         dataFill()
         refreshResourcesCount()
+        testReadInfoKey()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +123,10 @@ private extension ViewController {
         let total = LogKit.resourcesCount()
         btnResourcesCount.setTitle("RxSwift resourcesCount: \(total)", for: .normal)
     }
+    func testReadInfoKey() {
+        let v: String? = try? LXMacro.InfoPlistKey[.CFBundleIdentifier]
+        dlog("v: \(v ?? "")")
+    }
 }
 
 // MARK: - 🔐Activity
@@ -165,6 +170,7 @@ private extension ViewController {
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
                 self?.refreshResourcesCount()
+                self?.testReadInfoKey()
             }
             .disposed(by: rx.disposeBag)
     }
