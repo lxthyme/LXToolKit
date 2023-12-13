@@ -44,7 +44,7 @@ class DJUserCell: DJSearchDefaultCell {
 
 // MARK: 🌎LoadData
 extension DJUserCell {
-    override open func bind(to vm: LXBaseTableViewCellVM) {
+    override open func bind(to vm: LXBaseTableCellVM) {
         super.bind(to: vm)
 
         guard let vm = vm as? DJUserCellVM else { return }
@@ -78,7 +78,7 @@ private extension DJUserCell {
     func prepareUI() {
         // self.contentView.backgroundColor = .white
 
-        containerStackView.insertArrangedSubview(followButton, at: 2)
+        wrapperStackView.insertArrangedSubview(followButton, at: 2)
         // [<#table#>].forEach(self.contentView.addSubview)
 
         masonry()

@@ -527,6 +527,7 @@ private extension LXToolKitTestVC {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview("LXToolKitTestVC") {
     LXToolKitTestVC()
 }

@@ -55,6 +55,7 @@ private extension LXActionSheetTestVC {
     func masonry() {}
 }
 
+@available(iOS 17.0, *)
 #Preview("LXActionSheetTestVC") {
     return LXActionSheetTestVC()
 }

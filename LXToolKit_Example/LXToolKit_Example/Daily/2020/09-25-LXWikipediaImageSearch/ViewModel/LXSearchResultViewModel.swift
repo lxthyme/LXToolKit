@@ -11,24 +11,19 @@ import LXToolKit
 import RxSwift
 import RxCocoa
 
-class LXSearchResultViewModel: LXBase {
-    deinit {
-        dlog("---------- >>>Model: \(self.xl_typeNameString)\t\tdeinit <<<----------")
-    }
+class LXSearchResultViewModel: LXBaseVM {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     let searchResult: WikipediaSearchResult
 
-    var title: Driver<String>
-    var imageURLs: Driver<[URL]>
+    var title: Driver<String> = Driver.never()
+    var imageURLs: Driver<[URL]> = Driver.never()
 
     let API = DefaultWikipediaAPI.shared
     let `$` = Dependencies.shared
     init(searchResult: WikipediaSearchResult) {
         self.searchResult = searchResult
-
-        self.title = Driver.never()
-        self.imageURLs = Driver.never()
+        super.init()
 
         let URLs = configureImageURLs()
 

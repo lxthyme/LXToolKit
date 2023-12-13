@@ -187,9 +187,9 @@ extension Navigator.Scene: CustomStringConvertible {
         switch self {
         case .openURL(let url, let inWebView, _):
             /// , transition: \(transition))
-            return ".openURL(url[\(inWebView)] :\(url))"
+            return ".openURL(url[\(inWebView)] :\(String(describing: url)))"
         case .vc(let provider, _):
-            return ".vc(provider: \(provider))"
+            return ".vc(provider: \(String(describing: provider)))"
         case .vcString(let vcString, _):
             return ".vcString(vcString: \(vcString))"
         }

@@ -55,7 +55,7 @@ private extension LXDaily1117VC {
 //        _ = APIParameter(path: "", params: nil, headers: [:], mockObj: [:])
     }
     func test02() {
-        // let cell = LXBaseTableViewCell(style: .default, reuseIdentifier: LXBaseTableViewCell.XL.reuseIdentifier)
+        // let cell = LXBaseTableCell(style: .default, reuseIdentifier: LXBaseTableCell.XL.reuseIdentifier)
         // dlog("1.")
         // cell.baseModel = LXAnyModel()
         // dlog("2.")

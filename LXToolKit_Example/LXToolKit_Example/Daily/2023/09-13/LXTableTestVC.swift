@@ -100,6 +100,7 @@ private extension LXTableTestVC {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview("VC") {
     let vc = LXTableTestVC()
     return vc

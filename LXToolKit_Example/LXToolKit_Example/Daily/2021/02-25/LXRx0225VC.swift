@@ -359,15 +359,3 @@ private extension LXRx0225VC {
         }
     }
 }
-
-class LXAnyModel233: NSObject, HandyJSON {
-    deinit {
-        dlog("---------- >>>Model: \(self.xl.typeNameString)\t\tdeinit <<<----------")
-    }
-    required public override init() {}
-    open override var debugDescription: String {
-        return toJSONString(prettyPrint: true) ?? "NaN"
-    }
-
-    /// override var debugDescription: String { return "" }
-}

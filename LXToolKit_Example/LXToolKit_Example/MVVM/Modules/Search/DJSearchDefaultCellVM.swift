@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class DJSearchDefaultCellVM: LXBaseTableViewCellVM {
+class DJSearchDefaultCellVM: LXBaseTableCellVM {
     // MARK: 🔗Vaiables
     let title = BehaviorRelay<String?>(value: nil)
     let detail = BehaviorRelay<String?>(value: nil)
