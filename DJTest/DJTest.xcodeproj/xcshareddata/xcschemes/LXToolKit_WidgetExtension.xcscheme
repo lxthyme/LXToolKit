@@ -30,7 +30,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-               BuildableName = "DJTest-Release.app"
+               BuildableName = "DJTest.app"
                BlueprintName = "DJTest"
                ReferencedContainer = "container:DJTest.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest-Release.app"
+            BuildableName = "DJTest.app"
             BlueprintName = "DJTest"
             ReferencedContainer = "container:DJTest.xcodeproj">
          </BuildableReference>
@@ -97,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest-Release.app"
+            BuildableName = "DJTest.app"
             BlueprintName = "DJTest"
             ReferencedContainer = "container:DJTest.xcodeproj">
          </BuildableReference>
