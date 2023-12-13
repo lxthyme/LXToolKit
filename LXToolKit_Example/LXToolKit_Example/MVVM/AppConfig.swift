@@ -64,26 +64,7 @@ public enum AppConfig {
         public static let AppKey = "d3dce7e7bc664cea81e4b7fd7c12fad1"
     }
 
-    struct Path {
-        static let Documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        static let Tmp = NSTemporaryDirectory()
-
-        static let assetDir: URL = {
-            let directoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
-        }()
-    }
-
     enum UserDefaultsKeys {
         static let bannersEnabled = "BannersEnabled"
-    }
-}
-
-// MARK: - 👀
-public extension AppConfig {
-    private static let screen = UIApplication.XL.keyWindow?.screen ?? UIScreen.main
-    enum Screen {
-        static let width = AppConfig.screen.bounds.width
-        static let height = AppConfig.screen.bounds.height
     }
 }

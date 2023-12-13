@@ -232,7 +232,7 @@ extension LXSongVC: UICollectionViewDelegateFlowLayout {
               count > 0 else {
             return collectionView.bounds.size
         }
-        return CGSize(width: kScreenWidth / 3.0, height: kScreenHeight / 3.0 / 1.6 + 40)
+        return CGSize(width: LXMacro.Screen.width / 3.0, height: LXMacro.Screen.height / 3.0 / 1.6 + 40)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

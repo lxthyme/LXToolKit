@@ -56,11 +56,11 @@ extension PresentationTransition: UIViewControllerAnimatedTransitioning {
         guard let toView = transitionContext.view(forKey: .to) else { return }
         containerView.addSubview(toView)
 
-        let frame = CGRectOffset(toView.frame, 0, AppConfig.Screen.height)
+        let frame = CGRectOffset(toView.frame, 0, LXMacro.Screen.height)
         toView.frame = frame
 
         UIView .animate(withDuration: 0.75) {
-            toView.frame = CGRectOffset(toView.frame, 0, -AppConfig.Screen.height)
+            toView.frame = CGRectOffset(toView.frame, 0, -LXMacro.Screen.height)
         } completion: { finished in
             transitionContext.completeTransition(finished)
         }
@@ -86,7 +86,7 @@ extension DismissTransition: UIViewControllerAnimatedTransitioning {
         guard let fromView = transitionContext.view(forKey: .from) else {
             return
         }
-        let finalFrame = CGRectOffset(fromView.frame, 0, AppConfig.Screen.height)
+        let finalFrame = CGRectOffset(fromView.frame, 0, LXMacro.Screen.height)
         if let toView = transitionContext.view(forKey: .to) {
             containerView.insertSubview(toView, at: 0)
         }
@@ -118,7 +118,7 @@ extension InteractiveTransition {
             presentedVC.dismiss(animated: true, completion: nil)
         case .changed:
             let point = gesture.translation(in: presentedVC.view)
-            let ratio = point.y / AppConfig.Screen.height
+            let ratio = point.y / LXMacro.Screen.height
             dlog("-->ratio: \(ratio)")
             if ratio >= 0.5 {
                 shouldComplete = true

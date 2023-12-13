@@ -14,7 +14,7 @@ private let info = LXPhotosConstraint.self
 struct LXPhotosConstraint {
     static let itemPadding: CGFloat = 1
     static let itemWidth: CGFloat = {
-        return (Macro.screen.size.width - 3 * itemPadding) / 4
+        return (LXMacro.Screen.width - 3 * itemPadding) / 4
     }()
 }
 class LXPhotoAlbumVC: UIViewController {

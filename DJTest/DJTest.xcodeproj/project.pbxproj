@@ -158,6 +158,7 @@
 		BE435AB92AD794440076780C /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		BE435ABB2AD794450076780C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE435ABD2AD794450076780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE4AC6792B294DD000254989 /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SampleCode.xcconfig; sourceTree = "<group>"; };
 		BE61F68F2B170B8A00C83812 /* TingYunManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TingYunManager.swift; sourceTree = "<group>"; };
 		BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJActivityVC.swift; sourceTree = "<group>"; };
 		BE720D9F2AE68EED00F016C5 /* EmojiRangersWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRangersWidget.swift; sourceTree = "<group>"; };
@@ -316,6 +317,14 @@
 			path = LXToolKit_Widget;
 			sourceTree = "<group>";
 		};
+		BE4AC6782B294DD000254989 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				BE4AC6792B294DD000254989 /* SampleCode.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		BE720D9B2AE68CB300F016C5 /* Daily */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3067D22AE7A04200E9577C /* LXToolKit_WidgetExtension.entitlements */,
+				BE4AC6782B294DD000254989 /* Configuration */,
 				BEE5A33E2AB974FA003339EB /* DJTest */,
 				BE435AB22AD794440076780C /* LXToolKit_Widget */,
 				BE3067C22AE79C4600E9577C /* EmojiRangersIntents */,
@@ -961,7 +971,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -1001,7 +1011,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 59DBFDB0E53CD81EB38205CF /* Pods-DJTest.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;

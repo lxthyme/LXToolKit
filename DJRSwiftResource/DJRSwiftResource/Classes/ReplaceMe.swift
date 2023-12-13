@@ -1,3 +1,4 @@
+import RswiftResources
 
 open class DJTest: NSObject {
     @objc public static var icon_search_hot = R.image.icon_search_hot()
