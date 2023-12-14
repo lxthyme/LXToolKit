@@ -158,6 +158,9 @@ open class LXBaseVC: UIViewController, Navigatable {
             adjustLeftBarButtonItem()
         }
     }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+    }
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

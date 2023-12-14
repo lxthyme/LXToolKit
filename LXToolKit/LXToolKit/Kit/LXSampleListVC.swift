@@ -5,7 +5,6 @@
 //  Created by lxthyme on 2023/12/8.
 //
 import UIKit
-import LXToolKit
 
 fileprivate typealias Section = String
 fileprivate typealias Item = Int
@@ -20,7 +19,7 @@ open class LXSampleListVC: LXBaseVC {
         // cv.backgroundColor = <#.systemGroupedBackground#>
         cv.delegate = self
         return cv
-    } ()
+    }()
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
     // MARK: 🛠Life Cycle
     open override func viewWillAppear(_ animated: Bool) {
