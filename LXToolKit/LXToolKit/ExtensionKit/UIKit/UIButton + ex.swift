@@ -75,7 +75,7 @@ public extension Swifty where Base == UIButton.Configuration.Size {
 // MARK: - 👀UIButton.Configuration.CornerStyle
 @available(iOS 15.0, *)
 public extension Swifty where Base == UIButton.Configuration.CornerStyle {
-    public static var allCases: [UIButton.Configuration.CornerStyle] {
+    static var allCases: [UIButton.Configuration.CornerStyle] {
         return [
             .fixed,
             .dynamic,

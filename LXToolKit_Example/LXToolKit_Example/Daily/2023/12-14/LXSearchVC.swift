@@ -79,6 +79,11 @@ class LXSearchVC: LXBaseVC {
         super.viewIsAppearing(animated)
 
         searchController.isActive = true
+        dlog("""
+        self.presentationController: \(self.presentationController)
+        self.presentedViewController: \(self.presentedViewController)
+        self.presentingViewController: \(self.presentingViewController)
+        """)
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
