@@ -46,3 +46,7 @@ extension UIButton.Configuration.CornerStyle: SwiftyCompatible {}
 extension UIButton.Configuration.MacIdiomStyle: SwiftyCompatible {}
 @available(iOS 15.0, *)
 extension UIButton.Configuration.TitleAlignment: SwiftyCompatible {}
+
+// MARK: - 👀UIListContentConfiguration
+@available(iOS 14.0, *)
+extension UIListContentConfiguration: SwiftyCompatible {}

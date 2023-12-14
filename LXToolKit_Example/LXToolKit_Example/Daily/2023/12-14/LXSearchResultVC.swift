@@ -1,17 +1,16 @@
 //
-//  LXSampleListVC.swift
+//  LXSearchResultVC.swift
 //  LXToolKit_Example
 //
-//  Created by lxthyme on 2023/12/8.
+//  Created by lxthyme on 2023/12/14.
 //
 import UIKit
 
 fileprivate typealias Section = String
 fileprivate typealias Item = Int
 
-open class LXSampleListVC: LXBaseVC {
+class LXSearchResultVC: UIViewController {
     // MARK: 📌UI
-    // MARK: 🔗Vaiables
     public lazy var collectionView: UICollectionView = {
         let layout = generateLayout()
         let cv = UICollectionView(frame: .zero,
@@ -20,21 +19,10 @@ open class LXSampleListVC: LXBaseVC {
         cv.delegate = self
         return cv
     }()
+    // MARK: 🔗Vaiables
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
     // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    open override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -45,40 +33,32 @@ open class LXSampleListVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
-extension LXSampleListVC {
-    func dataFill() {}
-}
+extension LXSearchResultVC {}
 
 // MARK: 👀Public Actions
-extension LXSampleListVC {
-    // func suspendTransitionAnimator(_ suspended: Bool) {}
-    // var transitionAnimator: UIViewPropertyAnimator? {}
-    func show(animated: Bool = false, completion: (() -> Void)? = nil) {
-        
-    }
-}
+extension LXSearchResultVC {}
 
 // MARK: 🔐Private Actions
-private extension LXSampleListVC {}
+private extension LXSearchResultVC {}
 
 // MARK: - 🔐
-private extension LXSampleListVC {
+private extension LXSearchResultVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         // item.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
         // group.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         let section = NSCollectionLayoutSection(group: group)
         // section.interGroupSpacing = <#8.0#>
         // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         return UICollectionViewCompositionalLayout(section: section)
     }
     func generateCollectionView() -> UICollectionView {
@@ -115,14 +95,14 @@ private extension LXSampleListVC {
 }
 
 // MARK: - ✈️UICollectionViewDelegate
-extension LXSampleListVC: UICollectionViewDelegate {
+extension LXSearchResultVC: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
-private extension LXSampleListVC {
+private extension LXSearchResultVC {
     func prepareCollectionView() {
         // collectionView = generateCollectionView()
         dataSource = generateDataSource()
@@ -132,6 +112,16 @@ private extension LXSampleListVC {
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden
         // navigationItem.title = ""
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(systemItem: .search, primaryAction: UIAction(handler: {[weak self] _ in
+                guard let self else { return }
+                let searchVC = LXSearchVC()
+                let nav = UINavigationController(rootViewController: searchVC)
+                // nav.isNavigationBarHidden = true
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            }))
+        ]
 
         [collectionView].forEach(self.view.addSubview)
 

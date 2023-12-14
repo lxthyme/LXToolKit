@@ -127,10 +127,12 @@ private extension ViewController {
         let v: String? = try? LXMacro.InfoPlistKey[.CFBundleIdentifier]
         dlog("v: \(v ?? "")")
 
-        let allConfig = UIBackgroundConfiguration.allConfiguration
-        let allConfigInfo = allConfig.map { $0.info }
-        dlog("allConfig: \(allConfig)")
-        dlog("allConfig: \(allConfigInfo)")
+        // let allConfig = UIBackgroundConfiguration.XL.Ex
+        // let allConfigInfo = allConfig.map { $0.info }
+        // dlog("allConfig: \(allConfig)")
+        // dlog("allConfig: \(allConfigInfo)")
+        let ex = UIListContentConfiguration.Ex.allCases
+        dlog("UIListContentConfiguration.Ex: \(ex)")
     }
 }
 
