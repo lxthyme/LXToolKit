@@ -48,10 +48,12 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXCollectionVC"), scene: .vc(provider: { LXCollectionVC() })),
         .subitem(.section(title: "LXAccessoryListVC"), scene: .vc(provider: {
             if #available(iOS 16.0, *) {
-                LXAccessoryListVC()
+                return LXAccessoryListVC()
             } else {
                 // Fallback on earlier versions
-                LXUnSupportedVC(msg: "UICellAccessory")
+                let vc = LXSampleTextViewVC()
+                vc.dataFill(content: "UICellAccessory")
+                return vc
             }
         })),
         LXOutlineOpt.subitem(.section(title: "LXActionSheetVC"), scene: .vc(provider: { LXActionSheetVC() })),

@@ -5,53 +5,11 @@
 //  Created by lxthyme on 2023/11/20.
 //
 import UIKit
-import SwiftUI
 import LXToolKit_Example
 import LXToolKitObjC_Example
 import ActivityKit
 import DJTestKit
 import LXToolKit
-
-public struct DJTestRouter {
-    static let expandedSectionList: [LXOutlineOpt] = [
-        DJTestRouter.routerDJTest,
-    ]
-    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"))
-    static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
-        .subitem(.section(title: "Item 1 - 1")),
-        .outline(.section(title: "Section 2"), subitems: [
-            .subitem(.section(title: "Item 2 - 1")),
-            .outline(.section(title: "Section 3"), subitems: [
-                .subitem(.section(title: "Item 3 - 1")),
-                .outline(.section(title: "Section 4"), subitems: [
-                    .subitem(.section(title: "Item 4 - 1")),
-                    .subitem(.section(title: "Item 4 - 2")),
-                ]),
-                .subitem(.section(title: "Item 3 - 2")),
-            ]),
-            .subitem(.section(title: "Item 2 - 2")),
-        ]),
-        .subitem(.section(title: "Item 1 - 2")),
-    ])
-    static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
-        DJTestType.DJSwiftModule.updateRouter(vcName: "")
-        let window = UIApplication.XL.keyWindow
-        Application.shared.presentInitialScreen(in: window)
-        return nil
-    }))
-    static let routerDynamicIsland: LXOutlineOpt = .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
-        if #available(iOS 16.2, *) {
-            UIHostingController(rootView: EmojiRangersView())
-        } else {
-            // Fallback on earlier versions
-            LXUnSupportedVC(msg: "当前设备不支持灵动岛!")
-        }
-    }))
-    static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
-        .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
-        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
-    ])
-}
 
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
@@ -155,8 +113,8 @@ private extension LXOutlineVC {
                 menuItem.section.title.hasPrefix("Item ") {
 
                 Navigator.default.show(segue: .vc(provider: {
-                    let vc = LXUnSupportedVC(msg: "\(menuItem.section.title)")
-                    vc.title = menuItem.section.title
+                    let vc = LXSampleTextViewVC()
+                    vc.dataFillUnSupport(content: menuItem.section.title)
                     return vc
                 }), sender: self)
             } else if let provider = menuItem.scene?.vcProvider {

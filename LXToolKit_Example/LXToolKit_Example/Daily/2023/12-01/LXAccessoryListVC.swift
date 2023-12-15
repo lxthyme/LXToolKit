@@ -585,9 +585,16 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
             return
         }
         let scene: Navigator.Scene = .vc(provider: {
-            let vc = LXUnSupportedVC(msg: "item: \(item)")
-            vc.title = "\(item.accessory.value.accessoryType)"
-            vc.subtitle = "accessory: \(item.accessory)"
+            let vc = LXSampleTextViewVC()
+            vc.dataFill(content: """
+            1. item: \(item)
+
+            2. item.accessory.value.accessoryType:
+                \(item.accessory.value.accessoryType)
+
+            3. item.accessory:
+                \(item.accessory)
+            """)
             return vc
         })
         Navigator.default.show(segue: scene, sender: self)
