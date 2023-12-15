@@ -88,13 +88,34 @@ public extension UIListContentConfiguration {
 
 extension UIListContentConfiguration.Ex: CustomStringConvertible {
     public var description: String {
-        return "\(title): \(configuration?.description ?? "UnSupported")"
+        guard let configuration else {
+            return "\(title): UnSupported"
+        }
+        return """
+
+        \(title):
+            1. image: \(configuration.image?.description ?? "NaN")
+            2. imageProperties: \(configuration.imageProperties.desc)
+            3. text: \(configuration.text ?? "NaN")
+            4. attributedText: \(configuration.attributedText?.description ?? "NaN")
+            5. textProperties: \(configuration.textProperties.desc)
+            6. secondaryText: \(configuration.secondaryText ?? "NaN")
+            7. secondaryAttributedText: \(configuration.secondaryAttributedText?.description ?? "NaN")
+            8. secondaryTextProperties: \(configuration.secondaryTextProperties.desc)
+            9. axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)
+            10. directionalLayoutMargins: \(configuration.directionalLayoutMargins)
+            11. prefersSideBySideTextAndSecondaryText: \(configuration.prefersSideBySideTextAndSecondaryText)
+            12. imageToTextPadding: \(configuration.imageToTextPadding)
+            13. textToSecondaryTextHorizontalPadding: \(configuration.textToSecondaryTextHorizontalPadding)
+            14. textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)
+
+        """
     }
 }
 
 // MARK: - 👀UIBackgroundConfiguration
 public extension UIBackgroundConfiguration {
-    enum Ex {
+    enum Ex: CaseIterable {
         case clear
         case listPlainCell
         case listPlainHeaderFooter
@@ -172,13 +193,14 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
         let imageDesc: String
         let imageContentModeDesc: String
         if #available(iOS 15.0, *) {
-            imageDesc = configuration.image?.description ?? ""
+            imageDesc = configuration.image?.description ?? "NaN"
             imageContentModeDesc = configuration.imageContentMode.rawValue.description
         } else {
             imageDesc = "--UnAvailable--"
             imageContentModeDesc = "--UnAvailable--"
         }
         return """
+        \(title):
             1. customView: \(configuration.customView?.description ?? "NaN")
             2. cornerRadius: \(configuration.cornerRadius)
             3. backgroundInsets: \(configuration.backgroundInsets)
@@ -196,21 +218,80 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
     }
 }
 
+// MARK: - 👀
+extension UIListContentConfiguration.TextProperties {
+    public var desc: String {
+        return """
+            1. font: \(font)
+            2. color: \(color)
+            3. colorTransformer: \(colorTransformer.debugDescription)
+            4. alignment: \(alignment)
+            5. lineBreakMode: \(lineBreakMode)
+            6. numberOfLines: \(numberOfLines)
+            7. adjustsFontSizeToFitWidth: \(adjustsFontSizeToFitWidth)
+            8. minimumScaleFactor: \(minimumScaleFactor)
+            9. allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)
+            10. adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)
+            11. showsExpansionTextWhenTruncated: \(showsExpansionTextWhenTruncated)
+            12. transform: \(transform)
+        """
+    }
+}
+
+// MARK: - 👀
+extension UIListContentConfiguration.ImageProperties {
+    public var desc: String {
+        return """
+            1. preferredSymbolConfiguration: \(preferredSymbolConfiguration?.description ?? "NaN")
+            2. tintColor: \(tintColor?.description ?? "NaN")
+            3. tintColorTransformer: \(tintColorTransformer.debugDescription )
+            4. cornerRadius: \(cornerRadius)
+            5. maximumSize: \(maximumSize)
+            6. reservedLayoutSize: \(reservedLayoutSize)
+            7. accessibilityIgnoresInvertColors: \(accessibilityIgnoresInvertColors)
+            8. ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)
+        """
+    }
+}
+
 // MARK: - 👀UIListSeparatorConfiguration
-// @available(iOS 14.5, *)
-// extension UIListSeparatorConfiguration {
-//     public static var allConfiguration: [UIListSeparatorConfiguration] {
-//         var list: [UIListSeparatorConfiguration] = [
-//         ]
-//         return list
-//     }
-// }
+@available(iOS 14.5, *)
+extension UIListSeparatorConfiguration {
+    public var desc: String {
+        let visualEffect: String = if #available(iOS 15.0, *) {
+            "\(visualEffect?.description ?? "NaN")"
+        } else {
+            // Fallback on earlier versions
+            "UnSupported"
+        }
+        return """
+            1. topSeparatorVisibility: \(topSeparatorVisibility)
+            2. bottomSeparatorVisibility: \(bottomSeparatorVisibility)
+            3. UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)
+            4. topSeparatorInsets: \(topSeparatorInsets)
+            5. bottomSeparatorInsets: \(bottomSeparatorInsets)
+            6. color: \(color)
+            7. multipleSelectionColor: \(multipleSelectionColor)
+            8. visualEffect: \(visualEffect)
+        """
+    }
+}
 
 // MARK: - 👀UICollectionLayoutListConfiguration
-// extension UICollectionLayoutListConfiguration {
-//     public static var allConfiguration: [UICollectionLayoutListConfiguration] {
-//         var list: [UICollectionLayoutListConfiguration] = [
-//         ]
-//         return list
-//     }
-// }
+extension UICollectionLayoutListConfiguration {
+    @available(iOS 15.0, *)
+    public var desc: String {
+        return """
+            1. appearance: \(appearance)
+            2. showsSeparators: \(showsSeparators)
+            3. separatorConfiguration: \(separatorConfiguration)
+            4. itemSeparatorHandler: \(itemSeparatorHandler.debugDescription)
+            5. backgroundColor: \(backgroundColor?.description ?? "NaN")
+            6. leadingSwipeActionsConfigurationProvider: \(leadingSwipeActionsConfigurationProvider.debugDescription)
+            7. trailingSwipeActionsConfigurationProvider: \(trailingSwipeActionsConfigurationProvider.debugDescription)
+            8. headerMode: \(headerMode)
+            9. footerMode: \(footerMode)
+            10. headerTopPadding: \(headerTopPadding ?? 0)
+        """
+    }
+}

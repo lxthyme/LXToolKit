@@ -131,8 +131,11 @@ private extension ViewController {
         // let allConfigInfo = allConfig.map { $0.info }
         // dlog("allConfig: \(allConfig)")
         // dlog("allConfig: \(allConfigInfo)")
-        let ex = UIListContentConfiguration.Ex.allCases
-        dlog("UIListContentConfiguration.Ex: \(ex)")
+        let exContent = UIListContentConfiguration.Ex.allCases
+        dlog("UIListContentConfiguration.Ex: \(exContent)")
+
+        let exBg = UIBackgroundConfiguration.Ex.allCases
+        dlog("UIBackgroundConfiguration.Ex: \(exBg)")
     }
 }
 
