@@ -189,7 +189,9 @@ extension LXSearchVC: UISearchResultsUpdating {
         }
     }
     @available(iOS 16.0, *)
-    func updateSearchResults(for searchController: UISearchController, selecting searchSuggestion: UISearchSuggestion) {}
+    func updateSearchResults(for searchController: UISearchController, selecting searchSuggestion: UISearchSuggestion) {
+        dlog("\(#function): \(searchSuggestion)")
+    }
 }
 
 // MARK: - ✈️UISearchControllerDelegate
