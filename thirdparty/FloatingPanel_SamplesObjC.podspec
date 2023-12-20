@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
 
   s.resource_bundles = {
     'FloatingPanel_SamplesObjC' => [
-      'Examples/Samples/Sources/Base.lproj/Main.storyboard'
+      'Examples/SamplesObjC/SamplesObjC/Base.lproj/Main.storyboard'
     ]
   }
 

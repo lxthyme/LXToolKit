@@ -40,7 +40,7 @@ TODO: Add long description of the pod here.
     'Examples/Maps-SwiftUI/Maps/ResultsList.swift',
     'Examples/Maps-SwiftUI/Maps/SearchPanelPhoneDelegate.swift',
     'Examples/Maps-SwiftUI/Maps/SurfaceAppearance+phone.swift',
-    'Examples/Maps-SwiftUI/Maps/MapsEx.swift',
+    'MapsEx.swift',
   ]
 
   # s.resource_bundles = {
