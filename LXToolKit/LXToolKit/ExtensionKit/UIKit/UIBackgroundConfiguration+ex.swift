@@ -221,6 +221,10 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
 // MARK: - 👀
 extension UIListContentConfiguration.TextProperties {
     public var desc: String {
+        var t_showsExpansionTextWhenTruncated: Bool? = nil
+        if #available(iOS 16.0, *) {
+            t_showsExpansionTextWhenTruncated = showsExpansionTextWhenTruncated
+        }
         return """
             1. font: \(font)
             2. color: \(color)
@@ -232,7 +236,7 @@ extension UIListContentConfiguration.TextProperties {
             8. minimumScaleFactor: \(minimumScaleFactor)
             9. allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)
             10. adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)
-            11. showsExpansionTextWhenTruncated: \(showsExpansionTextWhenTruncated)
+            11. showsExpansionTextWhenTruncated: \(t_showsExpansionTextWhenTruncated?.description ?? "UnSupported")
             12. transform: \(transform)
         """
     }

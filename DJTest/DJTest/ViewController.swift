@@ -126,16 +126,6 @@ private extension ViewController {
     func testReadInfoKey() {
         let v: String? = try? LXMacro.InfoPlistKey[.CFBundleIdentifier]
         dlog("v: \(v ?? "")")
-
-        // let allConfig = UIBackgroundConfiguration.XL.Ex
-        // let allConfigInfo = allConfig.map { $0.info }
-        // dlog("allConfig: \(allConfig)")
-        // dlog("allConfig: \(allConfigInfo)")
-        let exContent = UIListContentConfiguration.Ex.allCases
-        dlog("UIListContentConfiguration.Ex: \(exContent)")
-
-        let exBg = UIBackgroundConfiguration.Ex.allCases
-        dlog("UIBackgroundConfiguration.Ex: \(exBg)")
     }
 }
 

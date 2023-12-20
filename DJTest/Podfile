@@ -12,8 +12,12 @@ install! 'cocoapods',
            # integrate_targets: false,
            deterministic_uuids: false
 
+workspace 'DJTest.xcworkspace'
+project 'DJTest.xcodeproj'
+
 target 'DJTest' do
   inherit! :search_paths
+  # workspace 'DJTest.xcworkspace'
 
   # pod 'DJObjcModule', :path => '../DJObjcModule'
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
@@ -50,6 +54,12 @@ target 'DJTest' do
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
 
+  # pod 'Samples', :path => '../thirdparty/Samples.podspec'
+  pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
+  pod 'FloatingPanel_Maps-SwiftUI', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps-SwiftUI.podspec'
+  pod 'FloatingPanel_Samples', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Samples.podspec'
+  pod 'FloatingPanel_SamplesObjC', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_SamplesObjC.podspec'
+  pod 'FloatingPanel_Stocks', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Stocks.podspec'
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
   pod 'tingyunApp', '2.17.3'
 
