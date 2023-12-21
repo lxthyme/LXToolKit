@@ -16,6 +16,7 @@ import FloatingPanel_Samples
 import FloatingPanel_SamplesObjC
 import FloatingPanel_Stocks
 import RxNetworks_Ex
+import Flutter
 
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineOpt] = [
@@ -91,6 +92,15 @@ public struct DJTestRouter {
         })),
         .subitem(.section(title: "RxNetworks"), scene: .vc(provider: {
             return RxNetworksEntry.entryVC()
+        })),
+    ])
+    static let routerFlutter: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
+        .subitem(.section(title: "FloatingPanel Maps"), scene: .vc(provider: {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return UIViewController()
+            }
+            let flutterVC = FlutterViewController(engine: appDelegate.flutterEngine, nibName: nil, bundle: nil)
+            return flutterVC
         })),
     ])
 }
