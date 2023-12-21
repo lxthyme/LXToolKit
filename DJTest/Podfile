@@ -65,7 +65,7 @@ target 'DJTest' do
   pod 'FloatingPanel_SamplesObjC', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_SamplesObjC.podspec'
   pod 'FloatingPanel_Stocks', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Stocks.podspec'
 
-  ############ FloatingPanel
+  ############ RxNetworks
   pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
 
 
