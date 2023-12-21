@@ -51,6 +51,7 @@ rswift.log
 /233/
 /wwdc
 /wwdc-dl
+test/
 
 ## SwiftHub 忽略的文件
 # ViewController

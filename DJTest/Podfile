@@ -54,12 +54,18 @@ target 'DJTest' do
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
 
-  # pod 'Samples', :path => '../thirdparty/Samples.podspec'
+  ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
   pod 'FloatingPanel_Maps-SwiftUI', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps-SwiftUI.podspec'
   pod 'FloatingPanel_Samples', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Samples.podspec'
   pod 'FloatingPanel_SamplesObjC', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_SamplesObjC.podspec'
   pod 'FloatingPanel_Stocks', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Stocks.podspec'
+
+  ############ FloatingPanel
+  pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
+
+
+
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
   pod 'tingyunApp', '2.17.3'
 
@@ -76,7 +82,7 @@ target 'DJTest' do
   #pod 'RxNetworks', '~>0.4'
   pod 'RxSwiftExt', '~> 6.2'
   # pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
-  pod 'RxNetworks', '0.4.4'
+  pod 'RxNetworks'#, '0.4.4'
 
 
   # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
@@ -105,7 +111,7 @@ post_install do |installer|
     # puts(">>>project.build_configurations.first.build_settings: #{project.build_configurations.first.build_settings}")
     project.targets.each do |target|
       idx+=1
-      puts(">>>[2-#{idx}]:  #{target.name.red}")
+      # puts(">>>[2-#{idx}]:  #{target.name.red}")
       # puts(">>>[2-#{idx}]:  #{target}	#{target.build_configurations}")
       target.build_configurations.each do |config|
         generateConfig(target, config, project_deployment_version)
@@ -141,7 +147,7 @@ end
 
 allow_warning_list = []
 def generateConfig(target, config, project_deployment_version)
-  puts("  -->#{target.name} #{config}:".blue)
+  # puts("  -->#{target.name} #{config}:".blue)
   fix_deployment_target(target, config, project_deployment_version)
   fix_deployment_team(config)
   # config.build_settings['HEADER_SEARCH_PATHS'] = '$\(inherited)'
@@ -163,16 +169,16 @@ def generateConfig(target, config, project_deployment_version)
 end
 
 def fix_deployment_target(target, config, project_deployment_version)
-  old_version = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
-  new_version = project_deployment_version
-  if old_version.to_f < new_version.to_f
-    puts "    #{config.name}: #{old_version.yellow} -> #{new_version.green}"
-    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
-    # project.build_configurations.each do |bc|
-    #   bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
-    # end
-  end
-  # config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+  # old_version = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+  # new_version = project_deployment_version
+  # if old_version.to_f < new_version.to_f
+  #   puts "    #{config.name}: #{old_version.yellow} -> #{new_version.green}"
+  #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
+  #   # project.build_configurations.each do |bc|
+  #   #   bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
+  #   # end
+  # end
+  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
   # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
   #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'

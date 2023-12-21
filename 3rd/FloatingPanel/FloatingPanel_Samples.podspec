@@ -31,6 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '11.0'
 
   s.source_files = [
+    'SamplesEntry.swift',
     'Examples/Samples/Sources/ContentViewControllers/*.swift',
     'Examples/Samples/Sources/UseCases/*.swift',
     'Examples/Samples/Sources/CustomState.swift',

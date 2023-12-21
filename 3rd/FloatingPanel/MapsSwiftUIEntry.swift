@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct MapsEx: View {
+public struct MapsSwiftUIEntry: View {
     public init() {}
     public var body: some View {
         ContentView()
@@ -21,5 +21,5 @@ public struct MapsEx: View {
 }
 
 #Preview {
-    MapsEx()
+    MapsSwiftUIEntry()
 }

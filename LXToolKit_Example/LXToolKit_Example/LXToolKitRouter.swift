@@ -76,7 +76,7 @@ internal extension LXToolKitRouter {
             return nil
         })),
         .subitem(.section(title: "LXMVVMSampleVC"), scene: .vc(provider: { LXMVVMSampleVC() })),
-        .subitem(.section(title: "HomeViewController"), scene: .vc(provider: { HomeViewController() })),
+        // .subitem(.section(title: "HomeViewController"), scene: .vc(provider: { HomeViewController() })),
         .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
     ].reversed())
     static let router2022: LXOutlineOpt = .outline(.section(title: "2022"), subitems: [
@@ -89,7 +89,7 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXWebViewTestVC"), scene: .vc(provider: { LXWebViewTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
         .subitem(.section(title: "LXLoggerTestVC"), scene: .vc(provider: { LXLoggerTestVC() })),
         .subitem(.section(title: "LXYYLabelMoreTestVC"), scene: .vc(provider: { LXYYLabelMoreTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
-        .subitem(.section(title: "RxNetworksTestVC"), scene: .vc(provider: { RxNetworksTestVC() })),
+        // .subitem(.section(title: "RxNetworksTestVC"), scene: .vc(provider: { RxNetworksTestVC() })),
         // .HomeViewController(viewModel: vm),
         // .test(vm: vm),
         // .tabs(vm: vm as! DJHomeTabBarVM),
