@@ -6,15 +6,19 @@
 //
 
 import UIKit
+import Flutter
+import FlutterPluginRegistrant
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    lazy var flutterEngine = FlutterEngine(name: "")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
+        flutterEngine.run()
+        GeneratedPluginRegistrant.register(with: flutterEngine)
         return true
     }
 
