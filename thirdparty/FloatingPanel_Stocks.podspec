@@ -36,7 +36,8 @@ TODO: Add long description of the pod here.
 
   s.resource_bundles = {
     'FloatingPanel_Stocks' => [
-      'Examples/Stocks/Stocks/Base.lproj/Main.storyboard'
+      'Examples/Stocks/Stocks/Base.lproj/Main.storyboard',
+      'Examples/Stocks/Stocks/Assets.xcassets'
     ]
   }
 
