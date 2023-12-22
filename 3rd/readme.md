@@ -11,7 +11,6 @@ ln -s /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/FloatingPanel/*.swift /Us
 ## RxNetworks
 
 ```sh
-ln -s /Users/lxthyme/Desktop/
-Lucky/Swift/LXToolKit/3rd/RxNetworks/RxNetworks_Ex.podspec /Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks
+ln -s /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/RxNetworks/RxNetworks_Ex.podspec /Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks
 ln -s /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/RxNetworks/RxNetworksEntry.swift /Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks
 ```
