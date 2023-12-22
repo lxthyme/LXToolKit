@@ -17,8 +17,10 @@ description: A new Flutter module project.
 # on any other native host app that you embed your Flutter project into.
 version: 1.0.0+1
 
+developer_team: '6C6JHMW46K'
+
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: '>=3.0.2 <4.0.0'
 
 dependencies:
   flutter:
@@ -46,6 +48,7 @@ dependencies:
   url_launcher: ^6.1.12
   shrine_images: ^2.0.2
   rally_assets: ^3.0.1
+  flutter_build_mode: ^1.1.1
 
 dev_dependencies:
   flutter_test:
