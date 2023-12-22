@@ -68,6 +68,10 @@ target 'DJTest' do
   ############ RxNetworks
   pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
 
+  ############ SwiftHub_Ex
+  # pod 'SwiftHub_Ex', :path => '../3rd/SwiftHub_Ex/SwiftHub_Ex.podspec'
+  # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
+  # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
 
 
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
