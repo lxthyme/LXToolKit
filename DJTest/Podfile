@@ -14,7 +14,7 @@ install! 'cocoapods',
 
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
-
+$FLUTTER_BUILD_MODE = 'release'
 flutter_application_path = '../flutter_cookbook'
 load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
 
