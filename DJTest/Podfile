@@ -14,14 +14,14 @@ install! 'cocoapods',
 
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
-$FLUTTER_BUILD_MODE = 'release'
-flutter_application_path = '../flutter_cookbook'
-load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+# $FLUTTER_BUILD_MODE = 'release'
+# flutter_application_path = '../flutter_cookbook'
+# load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
 
 target 'DJTest' do
   inherit! :search_paths
   # workspace 'DJTest.xcworkspace'
-  install_all_flutter_pods(flutter_application_path)
+  # install_all_flutter_pods(flutter_application_path)
 
   # pod 'DJObjcModule', :path => '../DJObjcModule'
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
@@ -73,6 +73,9 @@ target 'DJTest' do
   # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
   # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
 
+  ############ flutter_cookbook
+  # pod 'Flutter', :podspec => '/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/flutter_cookbook/Debug/Flutter.podspec'
+  pod 'Flutter', :path => '/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/flutter_cookbook/Release'
 
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
   pod 'tingyunApp', '2.17.3'
@@ -106,10 +109,10 @@ target 'DJTest' do
 end
 
 post_install do |installer|
-  flutter_post_install(installer) if defined?(flutter_post_install)
-  installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
-  end
+  # flutter_post_install(installer) if defined?(flutter_post_install)
+  # installer.pods_project.targets.each do |target|
+  #   flutter_additional_ios_build_settings(target)
+  # end
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
   # installer.pods_project.targets.each do |target|
   #   puts(">>>[1]: #{target.name.red}")
