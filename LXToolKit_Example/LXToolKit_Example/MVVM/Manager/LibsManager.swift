@@ -56,7 +56,7 @@ open class LibsManager: NSObject {
     public func setupLibs() {
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
-        // libsManager.setupAnalytics()
+        libsManager.setupAnalytics()
         // libsManager.setupAds()
         libsManager.setupTheme()
         // libsManager.setupKafkaRefresh()

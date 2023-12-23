@@ -100,7 +100,10 @@ class ViewController: LXBaseVC {
 // MARK: 🌎LoadData
 extension ViewController {
     func dataFill() {
+        let CFBundleVersion: String? = try? LXMacro.InfoPlistKey[.CFBundleVersion]
+        let CFBundleShortVersionString: String? = try? LXMacro.InfoPlistKey[.CFBundleShortVersionString]
         tvContent.text = """
+        Version: \(CFBundleVersion ?? "")(\(CFBundleShortVersionString ?? "''"))
         AutoJumpRoute: \(DJTestType.AutoJumpRouteRouter)
         LXToolKit_Example: \(DJTestType.LXToolKit_Example.userRouter)
         LXToolKitObjC_Example: \(DJTestType.LXToolKitObjC_Example.userRouter)
