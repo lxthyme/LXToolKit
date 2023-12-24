@@ -118,7 +118,15 @@ public struct DJTestRouter {
                 "appDelegate": "\(flutterVC)",
             ])
             CrashlyticsManager.log(msg: "flutterVC 异常: \(flutterVC)")
+
+            // let nav = UINavigationController(rootViewController: flutterVC)
+            // // nav.modalPresentationStyle = .fullScreen
+            // nav.navigationItem.rightBarButtonItems = [
+            //     UIBarButtonItem(title: "返回", primaryAction: UIAction(handler: { _ in
+            //         nav.dismiss(animated: true)
+            //     }))
+            // ]
             return flutterVC
-        })),
+        }, transition: .alert)),
     ])
 }
