@@ -1,5 +1,11 @@
 # ReadMe
 
+## DSYM
+
+```sh
+dwarfdump -u /Users/lxthyme/Library/Developer/Xcode/DerivedData/DJTest-ekxswhvxomdrxxbpthvkqvexrvyt/Build/Products/Debug-iphoneos/DJTest.app.dSYM
+```
+
 ## flutter
 
 ```sh

@@ -74,6 +74,10 @@ public struct DJTestRouter {
         })),
     ])
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
+        .subitem(.section(title: "Fatal Error Test"), scene: .vc(provider: {
+            fatalError("test")
+            return nil
+        })),
         .subitem(.section(title: "FloatingPanel Maps"), scene: .vc(provider: {
             return MapsEntry.entryVC()
         })),
