@@ -503,7 +503,6 @@
 				BE435AC12AD794450076780C /* Embed Foundation Extensions */,
 				BE3067CE2AE79C4600E9577C /* Embed ExtensionKit Extensions */,
 				BE68A5F72AEBD92200267457 /* FirebaseCrashlytics */,
-				BEC5C0A22B3710070033A80C /* Automating Build Number Increments */,
 			);
 			buildRules = (
 			);
@@ -644,24 +643,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
-		};
-		BEC5C0A22B3710070033A80C /* Automating Build Number Increments */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Automating Build Number Increments";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/Configuration/Common\"\n\nsh version.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

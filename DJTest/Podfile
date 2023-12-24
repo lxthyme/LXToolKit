@@ -18,10 +18,21 @@ project 'DJTest.xcodeproj'
 # flutter_application_path = '../flutter_cookbook'
 # load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
 
+# script_BuildVersionIncrement = <<-CMD
+# # Type a script or drag a script file from your workspace to insert its path.
+# cd "$SRCROOT/Configuration/Common"
+# sh version.sh
+# CMD
+
 target 'DJTest' do
   inherit! :search_paths
   # workspace 'DJTest.xcworkspace'
   # install_all_flutter_pods(flutter_application_path)
+
+  # script_phase :name => 'Automating Build Number Increments',
+  # :shell_path => '/bin/sh',
+  # :execution_position => :before_compile,
+  # :script => script_BuildVersionIncrement
 
   # pod 'DJObjcModule', :path => '../DJObjcModule'
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
