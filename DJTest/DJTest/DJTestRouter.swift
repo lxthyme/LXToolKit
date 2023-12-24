@@ -99,9 +99,9 @@ public struct DJTestRouter {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 CrashlyticsManager.setCustomKeysAndValues([
                     "tips": "appDelegate 异常",
-                    "appDelegate": "\(UIApplication.shared.delegate)",
+                    "appDelegate": "\(String(describing: UIApplication.shared.delegate))",
                 ])
-                CrashlyticsManager.log(msg: "appDelegate 异常: \(UIApplication.shared.delegate)")
+                CrashlyticsManager.log(msg: "appDelegate 异常: \(String(describing: UIApplication.shared.delegate))")
                 return UIViewController()
             }
             CrashlyticsManager.setCustomKeysAndValues([
