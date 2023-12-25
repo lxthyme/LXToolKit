@@ -16,7 +16,8 @@ workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
 # $flutter_source_import=true
-$flutter_source_import=false
+$flutter_source_import = false
+$Flutter_isRelease = true
 if $flutter_source_import
   $flutter_source_path="../flutter_cookbook"
   $FLUTTER_BUILD_MODE = 'release'
@@ -95,9 +96,13 @@ target 'DJTest' do
     install_all_flutter_pods(flutter_application_path)
   else
     # pod 'Flutter', :podspec => '/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/flutter_cookbook/Release'
-    pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
-    # pod 'FlutterSDK/Debug', :path => '../3rd'
-    pod 'FlutterSDK/Release', :path => '../3rd'
+    if $Flutter_isRelease
+      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
+      pod 'FlutterSDK/Release', :path => '../3rd'
+    else
+      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Debug'
+      pod 'FlutterSDK/Debug', :path => '../3rd'
+    end
   end
 
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
