@@ -8,8 +8,10 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+BUILD_NUMBER = 2023122410
 CURRENT_PROJECT_VERSION = 1.2.3
-MARKETING_VERSION = 234
+//MARKETING_VERSION=${BUILD_NUMBER}
+MARKETING_VERSION = 2023122414
 //PRODUCT_BUNDLE_IDENTIFIER = com.baiweietech.dms
 PRODUCT_BUNDLE_IDENTIFIER = com.lx.lxtoolkit
 

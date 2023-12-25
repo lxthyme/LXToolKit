@@ -1,28 +1,123 @@
+import 'package:dual_screen/dual_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
+import 'package:flutter_cookbook/gallery/constants.dart';
+import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
+import 'package:flutter_cookbook/gallery/firebase_options.dart';
+// import 'package:flutter_cookbook/gallery/galleryRoot.dart';
+import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
+import 'package:flutter_cookbook/gallery/pages/backdrop.dart';
+import 'package:flutter_cookbook/gallery/pages/splash.dart';
+import 'package:flutter_cookbook/gallery/routes.dart';
+import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
+// import 'package:flutter_cookbook/router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+// import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  // runApp(const MyApp());
+  GoogleFonts.config.allowRuntimeFetching = false;
+  await GetStorage.init();
+
+  if (defaultTargetPlatform != TargetPlatform.linux &&
+      defaultTargetPlatform != TargetPlatform.windows &&
+      defaultTargetPlatform != TargetPlatform.macOS) {
+    WidgetsFlutterBinding.ensureInitialized();
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
+    // FlutterError.onError = (details) {
+    //   FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+    // };
+    // PlatformDispatcher.instance.onError = (exception, stackTrace) {
+    //   FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
+    //   return true;
+    // };
+  }
+  runApp(const GalleryApp());
+  // runApp(const MyScaffold());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+    this.initialRoute,
+    this.isTestMode = false,
+  });
+
+  final String? initialRoute;
+  final bool isTestMode;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // return const Center(
+    //   child: Text(
+    //     'Hello, world!',
+    //     textDirection: TextDirection.ltr,
+    //   ),
+    // );
+    // return MaterialApp.router(
+    //   routerConfig: lx_router,
+    // );
+    final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        restorationScopeId: 'rootGallery',
+        title: 'Flutter Gallery',
+        debugShowCheckedModeBanner: false,
+        // themeMode: ,
+        // theme: ,
+        // darkTheme: ,
+        localizationsDelegates: const [
+          ...AppLocalizations.localizationsDelegates,
+          LocaleNamesLocalizationsDelegate(),
+        ],
+        initialRoute: initialRoute,
+        supportedLocales: AppLocalizations.supportedLocales,
+        // locale: ,
+        // localeListResolutionCallback:(locales, supportedLocales) => {
+        //   return basicLocaleListResolution(locales, supportedLocales);
+        // },
+        onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+        // );
+        // return MaterialApp(
+        //   title: 'Flutter Demo',
+        //   theme: ThemeData(
+        //     // This is the theme of your application.
+        //     //
+        //     // TRY THIS: Try running your application with "flutter run". You'll see
+        //     // the application has a blue toolbar. Then, without quitting the app,
+        //     // try changing the seedColor in the colorScheme below to Colors.green
+        //     // and then invoke "hot reload" (save your changes or press the "hot
+        //     // reload" button in a Flutter-supported IDE, or press "r" if you used
+        //     // the command line to start the app).
+        //     //
+        //     // Notice that the counter didn't reset back to zero; the application
+        //     // state is not lost during the reload. To reset the state, use hot
+        //     // restart instead.
+        //     //
+        //     // This works for code too, not just values: Most code changes can be
+        //     // tested with just a hot reload.
+        //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //     useMaterial3: true,
+        //   ),
+        //   routes: routes,
+        //   // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        //   // home: const SafeArea(child: MyScaffold()),
+        home: const TutorialHome()
+        // home: const GalleryRootPage()
+        //   // home: const MyButton(),
+        // home: const Counter(),
+        );
   }
 }
 
@@ -68,6 +163,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -80,16 +179,15 @@ class _MyHomePageState extends State<MyHomePage> {
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
           //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
           // Column has various properties to control how it sizes itself and
           // how it positions its children. Here we use mainAxisAlignment to
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
+          //
+          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+          // action in the IDE, or press "p" in the console), to see the
+          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -107,6 +205,81 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class GalleryApp extends StatelessWidget {
+  const GalleryApp({
+    super.key,
+    this.initialRoute,
+    this.isTestMode = false,
+  });
+
+  final String? initialRoute;
+  final bool isTestMode;
+
+  @override
+  Widget build(BuildContext context) {
+    return ModelBinding(
+      initialModel: GalleryOptions(
+        themeMode: ThemeMode.system,
+        textScaleFactor: systemTextScaleFactorOption,
+        customTextDirection: CustomTextDirection.localeBased,
+        locale: null,
+        timeDilation: timeDilation,
+        platform: defaultTargetPlatform,
+        isTestMode: isTestMode,
+      ),
+      child: Builder(
+        builder: (context) {
+          final options = GalleryOptions.of(context);
+          final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
+          print('-->initialRoute: $initialRoute');
+          return MaterialApp(
+            restorationScopeId: 'rootGallery',
+            title: 'Flutter Gallery',
+            debugShowCheckedModeBanner: false,
+            themeMode: options.themeMode,
+            theme: GalleryThemeData.lightThemeData.copyWith(
+              platform: options.platform,
+            ),
+            darkTheme: GalleryThemeData.darkThemeData.copyWith(
+              platform: options.platform,
+            ),
+            localizationsDelegates: const [
+              ...AppLocalizations.localizationsDelegates,
+              LocaleNamesLocalizationsDelegate(),
+            ],
+            initialRoute: initialRoute,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: options.locale,
+            localeListResolutionCallback: (locales, supportedLocales) {
+              deviceLocale = locales?.first;
+              return basicLocaleListResolution(locales, supportedLocales);
+            },
+            onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+            onUnknownRoute: (settings) {
+              print('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class GalleryRootPage extends StatelessWidget {
+  const GalleryRootPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ApplyTextOptions(
+      child: SplashPage(
+        child: Backdrop(
+          isDesktop: isDisplayDesktop(context),
+        ),
+      ),
     );
   }
 }

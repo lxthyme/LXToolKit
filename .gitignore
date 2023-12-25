@@ -52,6 +52,9 @@ rswift.log
 /wwdc
 /wwdc-dl
 test/
+3rd/flutter_cookbook/Debug
+3rd/flutter_cookbook/Profile
+3rd/flutter_cookbook/Release
 
 ## SwiftHub 忽略的文件
 # ViewController

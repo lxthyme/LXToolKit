@@ -496,7 +496,6 @@
 			buildConfigurationList = BEE5A3502AB974FB003339EB /* Build configuration list for PBXNativeTarget "DJTest" */;
 			buildPhases = (
 				6E689153D0C27833FBA34369 /* [CP] Check Pods Manifest.lock */,
-				50D863C474A65542BD3A4F8A /* [CP-User] Run Flutter Build flutter_cookbook Script */,
 				BEE5A3382AB974FA003339EB /* Sources */,
 				BEE5A3392AB974FA003339EB /* Frameworks */,
 				BEE5A33A2AB974FA003339EB /* Resources */,
@@ -504,7 +503,6 @@
 				BE435AC12AD794450076780C /* Embed Foundation Extensions */,
 				BE3067CE2AE79C4600E9577C /* Embed ExtensionKit Extensions */,
 				BE68A5F72AEBD92200267457 /* FirebaseCrashlytics */,
-				2C46CF86BDDC0C07C67A96E2 /* [CP-User] Embed Flutter Build flutter_cookbook Script */,
 			);
 			buildRules = (
 			);
@@ -606,26 +604,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJTest/Pods-DJTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2C46CF86BDDC0C07C67A96E2 /* [CP-User] Embed Flutter Build flutter_cookbook Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "[CP-User] Embed Flutter Build flutter_cookbook Script";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../flutter_cookbook/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh embed_and_thin";
-		};
-		50D863C474A65542BD3A4F8A /* [CP-User] Run Flutter Build flutter_cookbook Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "[CP-User] Run Flutter Build flutter_cookbook Script";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../flutter_cookbook/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
-		};
 		6E689153D0C27833FBA34369 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -664,7 +642,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

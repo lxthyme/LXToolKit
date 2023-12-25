@@ -74,6 +74,10 @@ public struct DJTestRouter {
         })),
     ])
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
+        .subitem(.section(title: "Fatal Error Test"), scene: .vc(provider: {
+            fatalError("test")
+            return nil
+        })),
         .subitem(.section(title: "FloatingPanel Maps"), scene: .vc(provider: {
             return MapsEntry.entryVC()
         })),
@@ -97,10 +101,32 @@ public struct DJTestRouter {
     static let routerFlutter: LXOutlineOpt = .outline(.section(title: "Flutter"), subitems: [
         .subitem(.section(title: "Cookbook"), scene: .vc(provider: {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                CrashlyticsManager.setCustomKeysAndValues([
+                    "tips": "appDelegate 异常",
+                    "appDelegate": "\(String(describing: UIApplication.shared.delegate))",
+                ])
+                CrashlyticsManager.log(msg: "appDelegate 异常: \(String(describing: UIApplication.shared.delegate))")
                 return UIViewController()
             }
+            CrashlyticsManager.setCustomKeysAndValues([
+                "tips": "flutter 异常: \(appDelegate.flutterEngine)",
+            ])
+            CrashlyticsManager.log(msg: "flutter 异常: \(appDelegate.flutterEngine)")
             let flutterVC = FlutterViewController(engine: appDelegate.flutterEngine, nibName: nil, bundle: nil)
+            CrashlyticsManager.setCustomKeysAndValues([
+                "tips": "flutterVC 异常",
+                "appDelegate": "\(flutterVC)",
+            ])
+            CrashlyticsManager.log(msg: "flutterVC 异常: \(flutterVC)")
+
+            // let nav = UINavigationController(rootViewController: flutterVC)
+            // // nav.modalPresentationStyle = .fullScreen
+            // nav.navigationItem.rightBarButtonItems = [
+            //     UIBarButtonItem(title: "返回", primaryAction: UIAction(handler: { _ in
+            //         nav.dismiss(animated: true)
+            //     }))
+            // ]
             return flutterVC
-        })),
+        }, transition: .alert)),
     ])
 }
