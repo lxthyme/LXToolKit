@@ -15,6 +15,7 @@ install! 'cocoapods',
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
+# $flutter_source_import=true
 $flutter_source_import=false
 if $flutter_source_import
   $flutter_source_path="../flutter_cookbook"
@@ -89,7 +90,7 @@ target 'DJTest' do
   # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
 
   ############ flutter_cookbook
-  print "-->configurations: #{configuration_env}"
+  # print "-->configurations: #{configuration_env}"
   if $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
   else
@@ -135,6 +136,11 @@ post_install do |installer|
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
       flutter_additional_ios_build_settings(target)
+    end
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        flutter_additional_ios_build_settings(target)
+      end
     end
   end
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
