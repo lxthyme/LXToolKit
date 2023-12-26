@@ -6,11 +6,9 @@
 //
 import UIKit
 import RxSwift
+import LXToolKit
 
-class LXHostVC: UIViewController {
-    deinit {
-        DataModel.shared.removeObserver(self, forKeyPath: "count")
-    }
+class LXHostVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var labCount: UILabel = {
         let label = UILabel()
@@ -54,7 +52,7 @@ class LXHostVC: UIViewController {
 
         btn.addAction(UIAction(handler: {[weak self] _ in
             guard let self else { return }
-            if (self.navigationController?.viewControllers.count ?? 0) % 4 == 1 {
+            if (self.navigationController?.viewControllers.count ?? 0) % 4 == 3 {
                 let vc = LXSingleVC(withEntryPoint: nil)
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
@@ -78,6 +76,10 @@ class LXHostVC: UIViewController {
                 self?.labCount.text = "\(count)"
             }
             .disposed(by: rx.disposeBag)
+        DataModel.shared.countChangedBlock = {[weak self] count in
+            dlog("-->result[2]: \(count)")
+            self?.labCount.text = "\(count)"
+        }
     }
 
 }

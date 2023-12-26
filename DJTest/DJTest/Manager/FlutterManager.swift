@@ -10,12 +10,19 @@ import Flutter
 import FlutterPluginRegistrant
 import LXToolKit
 
+// MARK: - 👀
+extension FlutterManager {
+    enum Channel: String {
+        case multiFlutters = "multiple-flutters"
+    }
+}
+
 open class FlutterManager {
     // MARK: 🔗Vaiables
     static let shared = FlutterManager()
     public static let channelName = "com.lx.flutter_cookbook"
     lazy var flutterEngine = FlutterEngine(name: "flutter_cookbook")
-    lazy var flutterEngineGroup = FlutterEngineGroup(name: "", project: nil)
+    lazy var flutterEngineGroup = FlutterEngineGroup(name: Channel.multiFlutters.rawValue, project: nil)
     // MARK: 🛠Life Cycle
     private init() {}
 }
