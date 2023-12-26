@@ -7,6 +7,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_cookbook/daily/daily_demos.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/firebase_options.dart';
