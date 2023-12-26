@@ -19,6 +19,17 @@ class LXSingleVC: LXBaseFlutterVC {
         prepareUI()
         prepareFlutter()
 
+        DataModel.shared.rx
+            .observe(\.count)
+            .subscribe {[weak self] result in
+                dlog("-->result[1]: \(result)")
+                switch result {
+                case .next(let count):
+                    self?.onCountUpdate(newCount: count)
+                default: break
+                }
+            }
+            .disposed(by: rx.disposeBag)
         DataModel.shared.countChangedBlock = {[weak self] count in
             dlog("-->result[2]: \(count)")
             self?.onCountUpdate(newCount: count)

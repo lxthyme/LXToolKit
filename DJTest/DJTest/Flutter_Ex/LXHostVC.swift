@@ -72,8 +72,13 @@ class LXHostVC: LXBaseVC {
 
         DataModel.shared.rx
             .observe(\.count)
-            .subscribe {[weak self] count in
-                self?.labCount.text = "\(count)"
+            .subscribe {[weak self] result in
+                dlog("-->result[1]: \(result)")
+                switch result {
+                case .next(let count):
+                    self?.labCount.text = "\(count)"
+                default: break
+                }
             }
             .disposed(by: rx.disposeBag)
         DataModel.shared.countChangedBlock = {[weak self] count in
