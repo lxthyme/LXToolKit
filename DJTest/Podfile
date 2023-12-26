@@ -1,23 +1,32 @@
 source 'https://cdn.cocoapods.org'
 # source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
+$flutter_source_import=true
+# $flutter_source_import = false
+# $Flutter_isRelease = true
+
 use_frameworks!
 # use_modular_headers!
 inhibit_all_warnings!
 ENV['SWIFT_VERSION'] = '5'
 platform :ios, '14.0'
+if $flutter_source_import
 install! 'cocoapods',
-           disable_input_output_paths: true,
-           generate_multiple_pod_projects: true,
-           # integrate_targets: false,
-           deterministic_uuids: false
+          disable_input_output_paths: true,
+          # generate_multiple_pod_projects: true,
+          # integrate_targets: false,
+          deterministic_uuids: false
+else
+  install! 'cocoapods',
+          disable_input_output_paths: true,
+          generate_multiple_pod_projects: true,
+          # integrate_targets: false,
+          deterministic_uuids: false
+end
 
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
-# $flutter_source_import=true
-$flutter_source_import = false
-$Flutter_isRelease = true
 if $flutter_source_import
   $flutter_source_path="../flutter_cookbook"
   $FLUTTER_BUILD_MODE = 'release'
@@ -74,6 +83,7 @@ target 'DJTest' do
   pod 'LXToolKit', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
+  pod 'LXFlutterKit', :path => '../LXFlutterKit'
 
   ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
@@ -140,6 +150,7 @@ post_install do |installer|
   if $flutter_source_import
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
+      puts("-->flutter target: ${target}")
       flutter_additional_ios_build_settings(target)
     end
     installer.generated_projects.each do |project|
