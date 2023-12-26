@@ -5,6 +5,7 @@ CONFIGURATION='Debug'
 build_version=''
 if [ $CONFIGURATION = "Debug" -o $CONFIGURATION = "AdHoc" ]; then
 branchName=`git rev-parse --abbrev-ref HEAD`
+branchName=${branchName//\//_}
 current_date=$(date "+%Y%m%d")
 build_version=$branchName$current_date-$number_of_commits-$git_release_version
 else

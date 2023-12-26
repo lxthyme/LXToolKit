@@ -1,21 +1,32 @@
 source 'https://cdn.cocoapods.org'
 # source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
+$flutter_source_import=true
+# $flutter_source_import = false
+# $Flutter_isRelease = true
+
 use_frameworks!
 # use_modular_headers!
 inhibit_all_warnings!
 ENV['SWIFT_VERSION'] = '5'
 platform :ios, '14.0'
+if $flutter_source_import
 install! 'cocoapods',
-           disable_input_output_paths: true,
-           generate_multiple_pod_projects: true,
-           # integrate_targets: false,
-           deterministic_uuids: false
+          disable_input_output_paths: true,
+          # generate_multiple_pod_projects: true,
+          # integrate_targets: false,
+          deterministic_uuids: false
+else
+  install! 'cocoapods',
+          disable_input_output_paths: true,
+          generate_multiple_pod_projects: true,
+          # integrate_targets: false,
+          deterministic_uuids: false
+end
 
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
-$flutter_source_import=false
 if $flutter_source_import
   $flutter_source_path="../flutter_cookbook"
   $FLUTTER_BUILD_MODE = 'release'
@@ -72,6 +83,7 @@ target 'DJTest' do
   pod 'LXToolKit', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
+  pod 'LXFlutterKit', :path => '../LXFlutterKit'
 
   ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
@@ -89,14 +101,18 @@ target 'DJTest' do
   # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
 
   ############ flutter_cookbook
-  print "-->configurations: #{configuration_env}"
+  # print "-->configurations: #{configuration_env}"
   if $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
   else
     # pod 'Flutter', :podspec => '/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/flutter_cookbook/Release'
-    pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
-    # pod 'FlutterSDK/Debug', :path => '../3rd'
-    pod 'FlutterSDK/Release', :path => '../3rd'
+    if $Flutter_isRelease
+      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
+      pod 'FlutterSDK/Release', :path => '../3rd'
+    else
+      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Debug'
+      pod 'FlutterSDK/Debug', :path => '../3rd'
+    end
   end
 
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
@@ -134,7 +150,13 @@ post_install do |installer|
   if $flutter_source_import
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
+      puts("-->flutter target: ${target}")
       flutter_additional_ios_build_settings(target)
+    end
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        flutter_additional_ios_build_settings(target)
+      end
     end
   end
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']

@@ -405,6 +405,10 @@ private extension LXBaseVC {
         self.contentView.addSubview(contentStackView)
     }
     func baseMasonry() {
+        let typeNameString = self.xl.typeNameString
+        self.view.snp.setLabel("\(typeNameString).view")
+        self.contentView.snp.setLabel("\(typeNameString).contentView")
+        self.contentStackView.snp.setLabel("\(typeNameString).contentStackView")
         contentView.snp.makeConstraints {
             $0.edges.equalTo(self.view.safeAreaLayoutGuide)
         }

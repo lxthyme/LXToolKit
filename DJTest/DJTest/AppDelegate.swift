@@ -7,18 +7,15 @@
 
 import UIKit
 import Flutter
-import FlutterPluginRegistrant
 
 @main
 class AppDelegate: FlutterAppDelegate {
-    lazy var flutterEngine = FlutterEngine(name: "flutter_cookbook")
 
     override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
-        flutterEngine.run()
-        GeneratedPluginRegistrant.register(with: flutterEngine)
+        FlutterManager.shared.register()
         return true
     }
 

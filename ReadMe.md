@@ -10,6 +10,7 @@ dwarfdump -u /Users/lxthyme/Library/Developer/Xcode/DerivedData/DJTest-ekxswhvxo
 
 ```sh
 flutter build ios-framework --cocoapods --no-debug --no-profile --output=../3rd/flutter_cookbook
+flutter build ios-framework --cocoapods --output=../3rd/flutter_cookbook
 ```
 
 ## FirebaseCrashlytics
