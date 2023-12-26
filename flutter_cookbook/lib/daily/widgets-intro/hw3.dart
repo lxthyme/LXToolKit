@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // void main() => runApp(const MaterialApp(title: 'Flutter Tutorial', home: TutorialHome()));
 
@@ -9,9 +10,11 @@ class TutorialHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(
-          onPressed: null,
-          icon: Icon(Icons.menu),
+        leading: IconButton(
+          onPressed: () => {
+            Navigator.of(context).pop()
+          },
+          icon: const Icon(Icons.menu),
           tooltip: "Navigation menu",
         ),
         title: const Text('Example title'),

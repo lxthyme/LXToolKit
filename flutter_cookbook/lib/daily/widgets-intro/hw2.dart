@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MyScaffold extends StatelessWidget {
   const MyScaffold({Key? key}) : super(key: key);
@@ -9,7 +10,13 @@ class MyScaffold extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          // leading: const Icon(Icons.arrow_back_ios),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () => {
+              Navigator.of(context).pop(true)
+            },
+          ),
+          automaticallyImplyLeading: true,
           title: const Text('Material App Bar'),
         ),
         body: Column(
