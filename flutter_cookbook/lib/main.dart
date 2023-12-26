@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         restorationScopeId: 'rootGallery',
         title: 'Flutter Gallery',
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         // themeMode: ,
         // theme: ,
         // darkTheme: ,
@@ -239,7 +239,7 @@ class GalleryApp extends StatelessWidget {
           return MaterialApp(
             restorationScopeId: 'rootGallery',
             title: 'Flutter Gallery',
-            debugShowCheckedModeBanner: false,
+            debugShowCheckedModeBanner: true,
             themeMode: options.themeMode,
             theme: GalleryThemeData.lightThemeData.copyWith(
               platform: options.platform,
