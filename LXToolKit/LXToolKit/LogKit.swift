@@ -141,6 +141,7 @@ extension LogKit {
         case none
         case NSObject
         case vc = "VC"
+        case flutterVC = "FlutterVC"
         case view = "View"
         case vm = "ViewModel"
         case model = "Model"
