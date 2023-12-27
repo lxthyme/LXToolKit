@@ -100,7 +100,7 @@ public struct DJTestRouter {
     ])
     static let routerFlutter: LXOutlineOpt = .outline(.section(title: "Flutter"), subitems: [
         .subitem(.section(title: "Cookbook"), scene: .vc(provider: {
-            let flutterEngine = FlutterManager.shared.flutterEngine
+            guard let flutterEngine = FlutterManager.shared.flutterEngine else { return nil }
             CrashlyticsManager.setCustomKeysAndValues([
                 "tips": "flutter 异常: \(flutterEngine)",
             ])
