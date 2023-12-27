@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cookbook/tools/LXFlutterManager.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 
 // @pragma('vm:entry-point')
@@ -46,21 +47,24 @@ class _CounterHomePageState extends State<CounterHomePage> {
   @override
   void initState() {
     super.initState();
-    _channel = const MethodChannel("multiple-flutters");
-    _channel.setMethodCallHandler((call) async => {
-          if (call.method == "setCount")
-            {
-              setState(() {
-                _counter = call.arguments as int?;
-              })
-            }
-          else
-            {throw Exception("not implemented ${call.method}")}
+    _channel = LXFlutterChannel.multiCounter.getChannel();
+    _channel.setMethodCallHandler((call) async {
+      debugPrint("-->call[${call.method}]: ${call.arguments}");
+      debugPrint("-->setcount: ${MultiCounterFlutter.setCount.getName()}");
+
+      if (call.method == MultiCounterFlutter.setCount.getName()) {
+        setState(() {
+          _counter = call.arguments as int?;
         });
+      } else {
+        throw Exception("not implemented ${call.method}");
+      }
+    });
   }
 
   void _incrementCounter() {
-    _channel.invokeMethod<void>("incrementCount", _counter);
+    var scene = LXFlutterMethod(name: 'incrementCount', arguments: _counter);
+    _channel.xlInvokeMethod(scene);
   }
 
   @override
@@ -86,7 +90,8 @@ class _CounterHomePageState extends State<CounterHomePage> {
             ),
             TextButton(
               onPressed: () {
-                _channel.invokeMethod<void>('next', _counter);
+                var scene = LXFlutterMethod(name: 'next', arguments: _counter);
+                _channel.xlInvokeMethod(scene);
               },
               child: const Text('Next'),
             ),

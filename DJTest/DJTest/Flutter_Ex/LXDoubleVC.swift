@@ -10,8 +10,8 @@ import LXToolKit
 class LXDoubleVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    private let topVC = LXSingleVC(withEntryPoint: "topMain")
-    private let bottomVC = LXSingleVC(withEntryPoint: "bottomMain")
+    private let topVC = LXSingleVC(withEntryPoint: .topMain)
+    private let bottomVC = LXSingleVC(withEntryPoint: .bottomMain)
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

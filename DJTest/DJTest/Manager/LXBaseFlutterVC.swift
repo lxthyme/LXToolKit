@@ -14,12 +14,15 @@ open class LXBaseFlutterVC: FlutterViewController {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    public var channel: FlutterMethodChannel?
+    public var entrypoint: FlutterManager.EntryPoint
     // MARK: 🛠Life Cycle
     public required init(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented")}
-    public init(withEntryPoint entryPoint: String?) {
-        let newEngine = FlutterManager.shared.registerFromGroup(withEntryPoint: entryPoint)
-        super.init(engine: newEngine, nibName: nil, bundle: nil)
+    public init(withEntryPoint entryPoint: FlutterManager.EntryPoint) {
+        // guard let engine = entryPoint.channel.engine else {
+        //     fatalError("engine cant be nil! -->entryPoint: \(entryPoint)")
+        // }
+        self.entrypoint = entryPoint
+        super.init(engine: entryPoint.channel.engine, nibName: nil, bundle: nil)
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +52,7 @@ private extension LXBaseFlutterVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseFlutterVC {
     func basePrepareFlutter() {
-        channel = FlutterMethodChannel(name: FlutterManager.Channel.multiFlutters.rawValue, binaryMessenger: self.binaryMessenger)
+        // entrypoint.channel = FlutterMethodChannel(name: LXFlutterChannel.multiCounter.rawValue, binaryMessenger: self.binaryMessenger)
     }
     func basePrepareUI() {
         self.view.backgroundColor = .white

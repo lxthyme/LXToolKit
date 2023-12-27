@@ -44,9 +44,9 @@ extension LXSingleVC {}
 // MARK: 👀Public Actions
 extension LXSingleVC {
     func onCountUpdate(newCount: Int) {
-        if let channel {
-            channel.invokeMethod("setCount", arguments: newCount)
-        }
+        // if let channel = entrypoint.channel.channel {
+            entrypoint.channel.channel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: newCount)
+        // }
     }
 }
 
@@ -56,14 +56,14 @@ private extension LXSingleVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSingleVC {
     func prepareFlutter() {
-        channel?.invokeMethod("setCount", arguments: DataModel.shared.count)
-        channel?.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+        entrypoint.channel.channel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count)
+        entrypoint.channel.channel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(call.arguments)")
-            if call.method == "incrementCount" {
+            if call.method == LXFlutterMethod.MultiCounterScene.incrementCount.methodName {
                 let count = DataModel.shared.increament()
                 result(nil)
-            } else if call.method == "next" {
+            } else if call.method == LXFlutterMethod.MultiCounterScene.next.methodName {
                 let nativeVC = LXHostVC()
                 self.navigationController?.pushViewController(nativeVC, animated: true)
                 result(nil)

@@ -53,7 +53,7 @@ class LXHostVC: LXBaseVC {
         btn.addAction(UIAction(handler: {[weak self] _ in
             guard let self else { return }
             if (self.navigationController?.viewControllers.count ?? 0) % 4 == 3 {
-                let vc = LXSingleVC(withEntryPoint: nil)
+                let vc = LXSingleVC(withEntryPoint: .topMain)
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 let vc = LXDoubleVC()
