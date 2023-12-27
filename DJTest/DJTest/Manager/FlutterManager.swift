@@ -29,6 +29,7 @@ extension FlutterManager {
         case `default` = "FlutterDefaultDartEntrypoint"
         case topMain = "topMain"
         case bottomMain = "bottomMain"
+        case galleryApp = "galleryApp"
 
         var value: String? {
             switch self {
@@ -58,9 +59,6 @@ extension FlutterManager {
         init(entrypoint: EntryPoint, channelName: ChannelName) {
             self.entrypoint = entrypoint
             self.channelName = channelName
-            if case .default = channelName {
-                registerDefaultMethodChannel()
-            }
         }
     }
 }

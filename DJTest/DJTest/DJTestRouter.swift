@@ -129,6 +129,12 @@ public struct DJTestRouter {
         //     ]
         //     return nav
         }, transition: .alert)),
+        .subitem(.section(title: "Gallery App"), scene: .vc(provider: {
+            let channel = FlutterManager.Channel(entrypoint: .galleryApp, channelName: .default)
+            let vc = LXBaseFlutterVC(with: channel)
+            vc.modalPresentationStyle = .fullScreen
+            return vc
+        }, transition: .alert)),
         .subitem(.section(title: "Flutter Multi Channel"), scene: .vc(provider: {
             return LXHostVC()
         })),

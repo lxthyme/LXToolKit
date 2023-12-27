@@ -27,6 +27,7 @@ open class LXBaseFlutterVC: FlutterViewController {
         // Do any additional setup after loading the view.
         basePrepareUI()
         baseMasonry()
+        basePrepareFlutter()
     }
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -47,6 +48,11 @@ private extension LXBaseFlutterVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseFlutterVC {
+    func basePrepareFlutter() {
+        if case .default = channel.channelName {
+            channel.registerDefaultMethodChannel()
+        }
+    }
     func basePrepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""

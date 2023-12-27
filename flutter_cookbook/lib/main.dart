@@ -53,6 +53,8 @@ void main() async {
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
 void bottomMain() => runApp(const MultiCounter(color: Colors.green));
+@pragma('vm:entry-point')
+void galleryApp() => runApp(const GalleryApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({
