@@ -49,7 +49,7 @@ private extension LXBaseFlutterVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseFlutterVC {
     func basePrepareFlutter() {
-        channel = FlutterMethodChannel(name: FlutterManager.channelName, binaryMessenger: self.binaryMessenger)
+        channel = FlutterMethodChannel(name: FlutterManager.Channel.multiFlutters.rawValue, binaryMessenger: self.binaryMessenger)
     }
     func basePrepareUI() {
         self.view.backgroundColor = .white

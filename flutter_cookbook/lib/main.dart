@@ -4,8 +4,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_cookbook/daily/daily_demos.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
+import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/firebase_options.dart';
@@ -43,9 +45,14 @@ void main() async {
     //   return true;
     // };
   }
-  runApp(const GalleryApp());
+  // runApp(const GalleryApp());
   // runApp(const MyScaffold());
+  runApp(const MultiCounter(color: Colors.blue));
 }
+@pragma('vm:entry-point')
+void topMain() => runApp(const MultiCounter(color: Colors.blue));
+@pragma('vm:entry-point')
+void bottomMain() => runApp(const MultiCounter(color: Colors.green));
 
 class MyApp extends StatelessWidget {
   const MyApp({

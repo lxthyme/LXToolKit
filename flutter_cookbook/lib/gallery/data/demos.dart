@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
@@ -198,6 +199,26 @@ class Demos {
             buildRoute: (context) => DeferredWidget(
               dailyDemosLibrary,
               () => daily_demos.Counter(),
+            ),
+            code: CodeSegments.appbarDemo,
+          ),
+        ],
+      ),
+      GalleryDemo(
+        title: 'Multi Counter',
+        icon: GalleryIcons.appbar,
+        baseRoute: DemoPage.daily,
+        slug: 'MultiCounter',
+        subtitle: 'multi counter',
+        category: GalleryDemoCategory.daily,
+        configurations: [
+          GalleryDemoConfiguration(
+            title: localizations.demoAppBarTitle,
+            description: localizations.demoAppBarDescription,
+            documentationUrl: 'https://zhihu.com',
+            buildRoute: (context) => DeferredWidget(
+              dailyDemosLibrary,
+              () => daily_demos.MultiCounter(color: Colors.orange),
             ),
             code: CodeSegments.appbarDemo,
           ),

@@ -5,8 +5,9 @@
 //  Created by lxthyme on 2023/12/26.
 //
 import UIKit
+import LXToolKit
 
-class LXDoubleVC: UIViewController {
+class LXDoubleVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     private let topVC = LXSingleVC(withEntryPoint: "topMain")

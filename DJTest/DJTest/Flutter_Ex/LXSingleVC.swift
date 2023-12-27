@@ -11,13 +11,29 @@ import Flutter
 class LXSingleVC: LXBaseFlutterVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    private var count = 0
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         prepareUI()
+        prepareFlutter()
+
+        DataModel.shared.rx
+            .observe(\.count)
+            .subscribe {[weak self] result in
+                dlog("-->result[1]: \(result)")
+                switch result {
+                case .next(let count):
+                    self?.onCountUpdate(newCount: count)
+                default: break
+                }
+            }
+            .disposed(by: rx.disposeBag)
+        DataModel.shared.countChangedBlock = {[weak self] count in
+            dlog("-->result[2]: \(count)")
+            self?.onCountUpdate(newCount: count)
+        }
     }
 
 }
@@ -45,10 +61,10 @@ private extension LXSingleVC {
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(call.arguments)")
             if call.method == "incrementCount" {
-                self.count += 1
-                result(true)
+                let count = DataModel.shared.increament()
+                result(nil)
             } else if call.method == "next" {
-                let nativeVC = UIViewController()
+                let nativeVC = LXHostVC()
                 self.navigationController?.pushViewController(nativeVC, animated: true)
                 result(nil)
             } else {

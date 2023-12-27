@@ -10,17 +10,25 @@ import LXToolKit
 public class DataModel: LXBaseObject {
     // MARK: 🔗Vaiables
     static var shared = DataModel()
-    // var countChangedBlock: (count: Int) -> Void
-    @objc var count = 0
+    var countChangedBlock: ((_ count: Int) -> Void)?
+    @objc var count = 0 {
+        didSet {
+            self.countChangedBlock?(count)
+        }
+    }
 }
 
 // MARK: 👀Public Actions
 public extension DataModel {
-    func increament() {
+    @discardableResult
+    func increament() -> Int {
         self.count += 1
+        return self.count
     }
-    func decrement() {
+    @discardableResult
+    func decrement() -> Int {
         self.count -= 1
+        return self.count
     }
 }
 
