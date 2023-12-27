@@ -19,21 +19,12 @@ class LXSingleVC: LXBaseFlutterVC {
         prepareUI()
         prepareFlutter()
 
-        DataModel.shared.rx
-            .observe(\.count)
-            .subscribe {[weak self] result in
-                dlog("-->result[1]: \(result)")
-                switch result {
-                case .next(let count):
-                    self?.onCountUpdate(newCount: count)
-                default: break
-                }
+        DataModel.shared.count
+            .subscribe {[weak self] count in
+                dlog("-->result[SingleVC]: \(count)")
+                self?.onCountUpdate(newCount: count)
             }
             .disposed(by: rx.disposeBag)
-        DataModel.shared.countChangedBlock = {[weak self] count in
-            dlog("-->result[2]: \(count)")
-            self?.onCountUpdate(newCount: count)
-        }
     }
 
 }
@@ -45,7 +36,7 @@ extension LXSingleVC {}
 extension LXSingleVC {
     func onCountUpdate(newCount: Int) {
         // if let channel = entrypoint.channel.channel {
-            entrypoint.channel.channel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: newCount)
+            self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: newCount)
         // }
     }
 }
@@ -56,12 +47,12 @@ private extension LXSingleVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSingleVC {
     func prepareFlutter() {
-        entrypoint.channel.channel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count)
-        entrypoint.channel.channel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+        self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count.value)
+        self.channel.methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(call.arguments)")
             if call.method == LXFlutterMethod.MultiCounterScene.incrementCount.methodName {
-                let count = DataModel.shared.increament()
+                DataModel.shared.increament()
                 result(nil)
             } else if call.method == LXFlutterMethod.MultiCounterScene.next.methodName {
                 let nativeVC = LXHostVC()

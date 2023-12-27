@@ -21,6 +21,7 @@ import Flutter
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineOpt] = [
         DJTestRouter.routerDJTest,
+        DJTestRouter.routerFlutter,
     ]
     static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"))
     static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
@@ -100,19 +101,21 @@ public struct DJTestRouter {
     ])
     static let routerFlutter: LXOutlineOpt = .outline(.section(title: "Flutter"), subitems: [
         .subitem(.section(title: "Cookbook"), scene: .vc(provider: {
-            guard let flutterEngine = FlutterManager.shared.flutterEngine else { return nil }
-            CrashlyticsManager.setCustomKeysAndValues([
-                "tips": "flutter 异常: \(flutterEngine)",
-            ])
-            CrashlyticsManager.log(msg: "flutter 异常: \(flutterEngine)")
-            let flutterVC = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
-            CrashlyticsManager.setCustomKeysAndValues([
-                "tips": "flutterVC 异常",
-                "appDelegate": "\(flutterVC)",
-            ])
-            CrashlyticsManager.log(msg: "flutterVC 异常: \(flutterVC)")
-            flutterVC.modalPresentationStyle = .fullScreen
-            return flutterVC
+            // guard let flutterEngine = FlutterManager.shared.flutterEngine else { return nil }
+            // CrashlyticsManager.setCustomKeysAndValues([
+            //     "tips": "flutter 异常: \(flutterEngine)",
+            // ])
+            // CrashlyticsManager.log(msg: "flutter 异常: \(flutterEngine)")
+            // let flutterVC = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
+            // CrashlyticsManager.setCustomKeysAndValues([
+            //     "tips": "flutterVC 异常",
+            //     "appDelegate": "\(flutterVC)",
+            // ])
+            // CrashlyticsManager.log(msg: "flutterVC 异常: \(flutterVC)")
+            let channel = FlutterManager.Channel(entrypoint: .default, channelName: .default)
+            let vc = LXBaseFlutterVC(with: channel)
+            vc.modalPresentationStyle = .fullScreen
+            return vc
         // })),
         //     let nav = UINavigationController(rootViewController: flutterVC)
         //     nav.modalPresentationStyle = .fullScreen

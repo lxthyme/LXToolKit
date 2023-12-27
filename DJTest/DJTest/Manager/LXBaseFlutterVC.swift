@@ -14,15 +14,12 @@ open class LXBaseFlutterVC: FlutterViewController {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    public var entrypoint: FlutterManager.EntryPoint
+    public var channel: FlutterManager.Channel
     // MARK: 🛠Life Cycle
     public required init(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented")}
-    public init(withEntryPoint entryPoint: FlutterManager.EntryPoint) {
-        // guard let engine = entryPoint.channel.engine else {
-        //     fatalError("engine cant be nil! -->entryPoint: \(entryPoint)")
-        // }
-        self.entrypoint = entryPoint
-        super.init(engine: entryPoint.channel.engine, nibName: nil, bundle: nil)
+    public init(with channel: FlutterManager.Channel) {
+        self.channel = channel
+        super.init(engine: channel.engine, nibName: nil, bundle: nil)
     }
     open override func viewDidLoad() {
         super.viewDidLoad()

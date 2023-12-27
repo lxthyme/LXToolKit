@@ -191,7 +191,7 @@ private extension ViewController {
         }
         btnGo.snp.makeConstraints {
             // $0.center.equalToSuperview()
-            $0.width.equalTo(80)
+            // $0.width.equalTo(80)
             $0.height.equalTo(40)
         }
         btnReset.snp.makeConstraints {
@@ -201,7 +201,7 @@ private extension ViewController {
         }
         btnResourcesCount.snp.makeConstraints {
             // $0.center.equalToSuperview()
-            $0.width.greaterThanOrEqualTo(80)
+            // $0.width.greaterThanOrEqualTo(80)
             $0.height.equalTo(40)
         }
         // tvContent.snp.makeConstraints {

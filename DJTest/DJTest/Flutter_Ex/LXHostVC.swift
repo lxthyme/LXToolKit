@@ -52,8 +52,10 @@ class LXHostVC: LXBaseVC {
 
         btn.addAction(UIAction(handler: {[weak self] _ in
             guard let self else { return }
-            if (self.navigationController?.viewControllers.count ?? 0) % 4 == 3 {
-                let vc = LXSingleVC(withEntryPoint: .topMain)
+            let idx = (self.navigationController?.viewControllers.count ?? 0) / 2
+            if idx % 2 == 0 {
+                let channel = FlutterManager.Channel(entrypoint: .default, channelName: .default)
+                let vc = LXSingleVC(with: channel)
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
                 let vc = LXDoubleVC()
@@ -70,21 +72,12 @@ class LXHostVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
 
-        DataModel.shared.rx
-            .observe(\.count)
-            .subscribe {[weak self] result in
-                dlog("-->result[1]: \(result)")
-                switch result {
-                case .next(let count):
-                    self?.labCount.text = "\(count)"
-                default: break
-                }
+        DataModel.shared.count
+            .subscribe {[weak self] count in
+                dlog("-->result[hostVC]: \(count)")
+                self?.labCount.text = "\(count)"
             }
             .disposed(by: rx.disposeBag)
-        DataModel.shared.countChangedBlock = {[weak self] count in
-            dlog("-->result[2]: \(count)")
-            self?.labCount.text = "\(count)"
-        }
     }
 
 }

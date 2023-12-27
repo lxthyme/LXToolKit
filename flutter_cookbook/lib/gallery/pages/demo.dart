@@ -388,7 +388,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     }
 
     Widget page;
-    print('-->widget.restorationId: ${widget.restorationId}');
+    debugPrint('-->widget.restorationId: ${widget.restorationId}');
     if (isDesktop || isFoldable) {
       page = const Center(
         child: Text('demo2.dart'),
