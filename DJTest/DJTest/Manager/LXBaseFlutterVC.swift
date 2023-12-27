@@ -25,7 +25,6 @@ open class LXBaseFlutterVC: FlutterViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        basePrepareFlutter()
         basePrepareUI()
         baseMasonry()
     }
@@ -48,9 +47,6 @@ private extension LXBaseFlutterVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXBaseFlutterVC {
-    func basePrepareFlutter() {
-        // entrypoint.channel = FlutterMethodChannel(name: LXFlutterChannel.multiCounter.rawValue, binaryMessenger: self.binaryMessenger)
-    }
     func basePrepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
