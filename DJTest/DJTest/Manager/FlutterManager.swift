@@ -67,7 +67,7 @@ extension FlutterManager {
 public extension FlutterManager.Channel {
     func registerDefaultMethodChannel() {
         guard case .default = channelName else { return }
-        dlog("-->channel: \(channelName)\tentrypoint: \(entrypoint.value ?? "nil")")
+        dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
         methodChannel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {

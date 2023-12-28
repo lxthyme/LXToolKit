@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
 import 'package:flutter_cookbook/gallery/pages/home.dart';
 import 'package:flutter_cookbook/gallery/pages/settings.dart';
-import 'package:flutter_cookbook/tools/LXFlutterManager.dart';
+import 'package:flutter_cookbook/tools/flutter_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
@@ -215,16 +215,17 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                 padding: EdgeInsets.only(top: safeAreaTopPadding),
                 icon: const Icon(Icons.close),
                 onPressed: () {
-                  var scene = LXFlutterMethod.dismiss();
-                  LXFlutterManager.xlInvokeMethod(scene);
+                  var scene = LXSwiftMethod.dismiss();
+                  debugPrint("-->channelName: ${LXFlutterManager.channelDefault.name}");
+                  LXFlutterManager.channelDefault.xlInvokeMethod(scene);
                 },
               ),
               IconButton(
                 padding: EdgeInsets.only(top: safeAreaTopPadding),
                 icon: const Icon(Icons.shop),
                 onPressed: () {
-                  var scene2 = LXFlutterMethod.gotoStore(storeCode: '007780', storeType: '2020');
-                  LXFlutterManager.xlInvokeMethod(scene2);
+                  var scene2 = LXSwiftMethod.gotoStore(storeCode: '007780', storeType: '2020');
+                  LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
                 },
               ),
             ],

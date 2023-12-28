@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cookbook/tools/LXFlutterManager.dart';
+import 'package:flutter_cookbook/tools/flutter_manager.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 
 // @pragma('vm:entry-point')
@@ -47,13 +47,12 @@ class _CounterHomePageState extends State<CounterHomePage> {
   @override
   void initState() {
     super.initState();
-    _channel = LXFlutterChannel.multiCounter.getChannel();
+    _channel = MethodChannel(LXFlutterChannel.multiCounter.getChannelName());
     debugPrint("-->channelName: $_channel.name");
     _channel.setMethodCallHandler((call) async {
       debugPrint("-->call[${call.method}]: ${call.arguments}");
-      debugPrint("-->setcount: ${MultiCounterFlutter.setCount.getName()}");
 
-      if (call.method == MultiCounterFlutter.setCount.getName()) {
+      if (call.method == LXFlutterMultiCounterMethod.setCount.getName()) {
         setState(() {
           _counter = call.arguments as int?;
         });
@@ -64,7 +63,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
   }
 
   void _incrementCounter() {
-    var scene = LXFlutterMethod(name: 'incrementCount', arguments: _counter);
+    var scene = LXSwiftMethod(name: 'incrementCount', arguments: _counter);
     _channel.xlInvokeMethod(scene);
   }
 
@@ -91,7 +90,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
             ),
             TextButton(
               onPressed: () {
-                var scene = LXFlutterMethod(name: 'next', arguments: _counter);
+                var scene = LXSwiftMethod(name: 'next', arguments: _counter);
                 _channel.xlInvokeMethod(scene);
               },
               child: const Text('Next'),
