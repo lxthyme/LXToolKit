@@ -6,29 +6,21 @@
 //
 import UIKit
 import LXToolKit
+import RxRelay
 
 public class DataModel: LXBaseObject {
     // MARK: 🔗Vaiables
     static var shared = DataModel()
-    var countChangedBlock: ((_ count: Int) -> Void)?
-    @objc var count = 0 {
-        didSet {
-            self.countChangedBlock?(count)
-        }
-    }
+    let count = BehaviorRelay(value: 0)
 }
 
 // MARK: 👀Public Actions
 public extension DataModel {
-    @discardableResult
-    func increament() -> Int {
-        self.count += 1
-        return self.count
+    func increament() {
+        self.count.accept(self.count.value + 1)
     }
-    @discardableResult
-    func decrement() -> Int {
-        self.count -= 1
-        return self.count
+    func decrement() {
+        self.count.accept(self.count.value - 1)
     }
 }
 

@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
     ];
 
     if (isDesktop) {
-      print('-->home.dart > isDesktop');
+      debugPrint('-->home.dart > isDesktop');
       final desktopCategoryItems = <_DesktopCategoryItem>[
         _DesktopCategoryItem(
           category: GalleryDemoCategory.material,
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
         ),
       );
     } else {
-      print('-->home.dart > !isDesktop');
+      debugPrint('-->home.dart > !isDesktop');
       return Scaffold(
         body: _AnimatedHomePage(
           restorationId: 'animated_page',

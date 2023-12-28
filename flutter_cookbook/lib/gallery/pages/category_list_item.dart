@@ -289,7 +289,7 @@ class CategoryDemoItem extends StatelessWidget {
       child: MergeSemantics(
         child: InkWell(
           onTap: () {
-            print('-->onTap: ${DemoPage.baseRoute}/${demo.slug}');
+            debugPrint('-->onTap: ${DemoPage.baseRoute}/${demo.slug}');
             Navigator.of(context).restorablePushNamed(
               // '${DemoPage.baseRoute}/${demo.slug}',
               '$baseRoute/${demo.slug}',

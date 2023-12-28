@@ -20,7 +20,7 @@ class RouteConfiguration {
     Path(
       r'^' + DemoPage.baseRoute + r'/([\w-]+)$',
       (context, match) {
-        print('-->match: $match');
+        debugPrint('-->match: $match');
         return DemoPage(slug: match);
       },
       openInSecondScreen: false,
@@ -28,7 +28,7 @@ class RouteConfiguration {
     Path(
       r'^' + DemoPage.daily + r'/([\w-]+)$',
       (context, match) {
-        print('-->match: $match');
+        debugPrint('-->match: $match');
         return DemoPage(baseRoutee: DemoPage.daily, slug: match);
       },
       openInSecondScreen: false,

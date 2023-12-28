@@ -10,8 +10,14 @@ import LXToolKit
 class LXDoubleVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    private let topVC = LXSingleVC(withEntryPoint: .topMain)
-    private let bottomVC = LXSingleVC(withEntryPoint: .bottomMain)
+    private lazy var topVC: LXSingleVC = {
+        let channel = FlutterManager.Channel(entrypoint: .topMain, channelName: .multiCounter)
+        return LXSingleVC(with: channel)
+    }()
+    private let bottomVC: LXSingleVC = {
+        let channel = FlutterManager.Channel(entrypoint: .bottomMain, channelName: .multiCounter)
+        return LXSingleVC(with: channel)
+    }()
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

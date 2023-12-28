@@ -45,14 +45,16 @@ void main() async {
     //   return true;
     // };
   }
-  // runApp(const GalleryApp());
+  runApp(const GalleryApp());
   // runApp(const MyScaffold());
-  runApp(const MultiCounter(color: Colors.blue));
+  // runApp(const MultiCounter(color: Colors.blue));
 }
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
 void bottomMain() => runApp(const MultiCounter(color: Colors.green));
+@pragma('vm:entry-point')
+void galleryApp() => runApp(const GalleryApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -242,7 +244,7 @@ class GalleryApp extends StatelessWidget {
         builder: (context) {
           final options = GalleryOptions.of(context);
           final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
-          print('-->initialRoute: $initialRoute');
+          debugPrint('-->initialRoute: $initialRoute');
           return MaterialApp(
             restorationScopeId: 'rootGallery',
             title: 'Flutter Gallery',
@@ -267,7 +269,7 @@ class GalleryApp extends StatelessWidget {
             },
             onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
             onUnknownRoute: (settings) {
-              print('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+              debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
             },
           );
         },

@@ -13,7 +13,7 @@ class MyButton extends StatelessWidget {
       ),
       body: Center(child: GestureDetector(
         onTap: () {
-          print('My Button tapped!');
+          debugPrint('My Button tapped!');
         },
         child: Container(
           height: 50,

@@ -402,7 +402,7 @@ private extension LXBaseVC {
 
 
         self.view.addSubview(contentView)
-        self.contentView.addSubview(contentStackView)
+        self.view.addSubview(contentStackView)
     }
     func baseMasonry() {
         let typeNameString = self.xl.typeNameString

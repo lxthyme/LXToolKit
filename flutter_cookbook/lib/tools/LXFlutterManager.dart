@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 enum EntryPoint {
@@ -44,7 +45,7 @@ enum ChannelName {
 enum LXFlutterChannel {
   multiCounter;
 
-  String getChannelName() => "${LXFlutterManager.prefix}${toString()}";
+  String getChannelName() => "${LXFlutterManager.prefixFlutter}${toString()}";
 
   MethodChannel getChannel() => MethodChannel(getChannelName());
 
@@ -64,11 +65,11 @@ enum MultiCounterFlutter {
 
   String getName() {
     // "${LXFlutterManager.prefix}${toString()}";
-    var prefix = LXFlutterManager.prefix;
+    var prefix = LXFlutterManager.prefixFlutter;
     var name = "";
-    switch(this) {
+    switch (this) {
       case MultiCounterFlutter.setCount:
-      name = "setCount";
+        name = "setCount";
     }
     return "$prefix$name";
   }
@@ -81,7 +82,7 @@ class LXFlutterMethod {
   const LXFlutterMethod({
     required String name,
     this.arguments,
-  }) : methodName = "${LXFlutterManager.prefix}$name";
+  }) : methodName = "${LXFlutterManager.prefixSwift}$name";
 
   // LXFlutterMethod(this.methodName, this.arguments)
   //     : this.methodName = methodName,
@@ -105,19 +106,21 @@ extension MethodChannelEx on MethodChannel {
 }
 
 class LXFlutterManager {
-  static const String prefix = "flutter_";
+  static const String prefixFlutter = "flutter_";
+  static const String prefixSwift = "swift_";
   static const String identifier = "com.lx.flutter_cookbook";
   static const platform = MethodChannel(LXFlutterManager.identifier);
 
   static Future<String?> xlInvokeMethod(LXFlutterMethod method) async {
     String? result;
     try {
+      debugPrint("-->${method.methodName}: ${method.arguments}");
       result = await platform.invokeMethod(method.methodName, method.arguments);
-      platform.invokeListMethod(method.methodName);
+      // platform.invokeListMethod(method.methodName);
     } on PlatformException catch (e) {
-      print("-->PlatformException: ${e.message}");
+      debugPrint("-->PlatformException: ${e.message}");
     } catch (e) {
-      print("-->Exception: $e");
+      debugPrint("-->Exception: $e");
     }
     return result;
   }
