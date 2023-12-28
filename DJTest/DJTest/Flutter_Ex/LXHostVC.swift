@@ -54,7 +54,7 @@ class LXHostVC: LXBaseVC {
             guard let self else { return }
             let idx = (self.navigationController?.viewControllers.count ?? 0) / 2
             if idx % 2 == 0 {
-                let channel = FlutterManager.Channel(entrypoint: .default, channelName: .default)
+                let channel = FlutterManager.Channel(entrypoint: .topMain, channelName: .multiCounter)
                 let vc = LXSingleVC(with: channel)
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
