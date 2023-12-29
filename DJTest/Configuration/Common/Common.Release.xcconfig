@@ -16,4 +16,4 @@ PRODUCT_NAME = $(TARGET_NAME)
 // PRODUCT_NAME = $(TARGET_NAME)-Release
 // DISPLAY_NAME = $(inherited)-Release
 DISPLAY_NAME = $(DISPLAY_NAME)-Release
-INFOPLIST_FILE = info-Release.plist
+INFOPLIST_FILE = $(TARGET_NAME)/info-Release.plist
