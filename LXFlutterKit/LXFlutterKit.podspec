@@ -31,8 +31,6 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '11.0'
   s.static_framework = true
 
-  s.source_files = 'LXFlutterKit/Classes/**/*'
-
   # s.resource_bundles = {
   #   'LXFlutterKit' => ['LXFlutterKit/Assets/*.png']
   # }
@@ -40,7 +38,31 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'LXToolKit'
-  s.dependency 'Flutter'
-  s.dependency 'FlutterPluginRegistrant'
+
+  s.default_subspec = 'Core'
+  s.subspec 'Core' do |sub|
+    sub.source_files = 'LXFlutterKit/Classes/**/*'
+
+    s.dependency 'LXToolKit'
+  end
+  s.subspec 'Source' do |sub|
+    sub.dependency 'LXFlutterKit/Core'
+    sub.dependency 'Flutter'
+    sub.dependency 'FlutterPluginRegistrant'
+  end
+  s.subspec 'Debug' do |sub|
+    sub.dependency 'LXFlutterKit/Core'
+    sub.dependency 'Flutter'
+    sub.dependency 'FlutterSDK/Debug'
+  end
+  s.subspec 'Profile' do |sub|
+    sub.dependency 'LXFlutterKit/Core'
+    sub.dependency 'Flutter'
+    sub.dependency 'FlutterSDK/Profile'
+  end
+  s.subspec 'Release' do |sub|
+    sub.dependency 'LXFlutterKit/Core'
+    sub.dependency 'Flutter'
+    sub.dependency 'FlutterSDK/Release'
+  end
 end
