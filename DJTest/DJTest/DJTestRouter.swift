@@ -16,7 +16,7 @@ import FloatingPanel_Samples
 import FloatingPanel_SamplesObjC
 import FloatingPanel_Stocks
 import RxNetworks_Ex
-import Flutter
+import LXFlutterKit
 
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineOpt] = [

@@ -43,8 +43,6 @@
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */; };
 		BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA850F92B216B6100C6D019 /* LXFirstVC.swift */; };
-		BEB385562B3AE73300D14351 /* FlutterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385542B3AE73300D14351 /* FlutterManager.swift */; };
-		BEB385572B3AE73300D14351 /* LXBaseFlutterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385552B3AE73300D14351 /* LXBaseFlutterVC.swift */; };
 		BEB3855A2B3AE7B700D14351 /* LXSingleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385592B3AE7B700D14351 /* LXSingleVC.swift */; };
 		BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */; };
 		BEB3855E2B3AED7C00D14351 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855D2B3AED7C00D14351 /* DataModel.swift */; };
@@ -180,9 +178,8 @@
 		BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureAttributes.swift; sourceTree = "<group>"; };
 		BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRanger.swift; sourceTree = "<group>"; };
 		BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAMapTestVC.swift; sourceTree = "<group>"; };
+		BE9649972B3E950E00BCB578 /* Info-Debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
 		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
-		BEB385542B3AE73300D14351 /* FlutterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterManager.swift; sourceTree = "<group>"; };
-		BEB385552B3AE73300D14351 /* LXBaseFlutterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXBaseFlutterVC.swift; sourceTree = "<group>"; };
 		BEB385592B3AE7B700D14351 /* LXSingleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSingleVC.swift; sourceTree = "<group>"; };
 		BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXHostVC.swift; sourceTree = "<group>"; };
 		BEB3855D2B3AED7C00D14351 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -194,7 +191,7 @@
 		BEE5A3462AB974FA003339EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEE5A3482AB974FB003339EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEE5A34B2AB974FB003339EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BEE5A34D2AB974FB003339EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE5A34D2AB974FB003339EB /* Info-Release.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release.plist"; sourceTree = "<group>"; };
 		BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = DJTest.xcstrings; sourceTree = "<group>"; };
 		BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardWidget.swift; sourceTree = "<group>"; };
 		BEFA8DCF2AE8EDA400933131 /* AdventureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureViewModel.swift; sourceTree = "<group>"; };
@@ -256,8 +253,6 @@
 		BE29938A2AF0A28D00767EA0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				BEB385542B3AE73300D14351 /* FlutterManager.swift */,
-				BEB385552B3AE73300D14351 /* LXBaseFlutterVC.swift */,
 				BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */,
 				BE61F68F2B170B8A00C83812 /* TingYunManager.swift */,
 			);
@@ -464,7 +459,8 @@
 				BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */,
 				BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */,
 				BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */,
-				BEE5A34D2AB974FB003339EB /* Info.plist */,
+				BEE5A34D2AB974FB003339EB /* Info-Release.plist */,
+				BE9649972B3E950E00BCB578 /* Info-Debug.plist */,
 				BEFB9B1B2B0CC4FB008B35F7 /* DJTest-Bridging-Header.h */,
 			);
 			path = DJTest;
@@ -736,7 +732,6 @@
 				BE3067A82AE75D8C00E9577C /* ImageURLProtocol.swift in Sources */,
 				BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */,
 				BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */,
-				BEB385562B3AE73300D14351 /* FlutterManager.swift in Sources */,
 				BE3067B92AE7980700E9577C /* EmojiRangerSelection.swift in Sources */,
 				BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */,
 				BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */,
@@ -750,7 +745,6 @@
 				BEB3855E2B3AED7C00D14351 /* DataModel.swift in Sources */,
 				BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */,
 				BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */,
-				BEB385572B3AE73300D14351 /* LXBaseFlutterVC.swift in Sources */,
 				BEFA8E742AE90A8800933131 /* DetailView.swift in Sources */,
 				BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */,
 				BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */,
@@ -1040,7 +1034,8 @@
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DJTest/Info.plist;
+				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(DISPLAY_NAME)";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1079,7 +1074,8 @@
 				DEVELOPMENT_TEAM = 6C6JHMW46K;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DJTest/Info.plist;
+				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(DISPLAY_NAME)";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -7,6 +7,7 @@
 import UIKit
 import LXToolKit
 import Flutter
+import LXFlutterKit
 
 class LXSingleVC: LXBaseFlutterVC {
     // MARK: 📌UI

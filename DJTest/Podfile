@@ -83,7 +83,6 @@ target 'DJTest' do
   pod 'LXToolKit', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
-  pod 'LXFlutterKit', :path => '../LXFlutterKit'
 
   ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
@@ -102,6 +101,7 @@ target 'DJTest' do
 
   ############ flutter_cookbook
   # print "-->configurations: #{configuration_env}"
+  pod 'LXFlutterKit', :path => '../LXFlutterKit'
   if $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
   else
@@ -150,7 +150,7 @@ post_install do |installer|
   if $flutter_source_import
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
-      puts("-->flutter target: ${target}")
+      puts("-->flutter target: #{target.name}")
       flutter_additional_ios_build_settings(target)
     end
     installer.generated_projects.each do |project|

@@ -51,11 +51,11 @@ extension FlutterManager {
         lazy var engine: FlutterEngine = {
             return FlutterManager.shared.registerFromGroup(withEntryPoint: entrypoint.value)
         }()
-        lazy var methodChannel: FlutterMethodChannel = {
+        public lazy var methodChannel: FlutterMethodChannel = {
             return FlutterMethodChannel(name: channelName.name, binaryMessenger: engine.binaryMessenger)
         }()
 
-        init(entrypoint: EntryPoint, channelName: ChannelName) {
+        public init(entrypoint: EntryPoint, channelName: ChannelName) {
             self.entrypoint = entrypoint
             self.channelName = channelName
         }
@@ -70,7 +70,7 @@ public extension FlutterManager.Channel {
         methodChannel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {
-                UIViewController.top().dismiss(animated: true)
+                UIViewController.topViewController()?.dismiss(animated: true)
                 result(nil)
             } else {
                 result(FlutterMethodNotImplemented)
@@ -94,25 +94,25 @@ public protocol SceneFlutterProtocol {
     var methodName: String { get }
 }
 
-struct LXFlutterMethod {}
+public struct LXFlutterMethod {}
 // MARK: - 👀channel: default
-extension LXFlutterMethod {
+public extension LXFlutterMethod {
     enum DefaultScene: String, SceneSwiftProtocol {
         case dismiss
-        var methodName: String {
+        public var methodName: String {
             return "\(FlutterManager.PrefixSwift)\(self.rawValue)"
         }
     }
     enum MultiCounterScene: String, SceneSwiftProtocol {
         case incrementCount
         case next
-        var methodName: String {
+        public var methodName: String {
             return "\(FlutterManager.PrefixSwift)\(self.rawValue)"
         }
     }
     enum MultiCounterFlutterScene: String, SceneFlutterProtocol {
         case setCount
-        var methodName: String {
+        public var methodName: String {
             return "\(FlutterManager.PrefixFlutter)\(self.rawValue)"
         }
     }
@@ -158,7 +158,7 @@ private extension FlutterManager {
         channel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {
-                UIViewController.top().dismiss(animated: true)
+                UIViewController.topViewController()?.dismiss(animated: true)
                 result(nil)
             } else {
                 result(FlutterMethodNotImplemented)
