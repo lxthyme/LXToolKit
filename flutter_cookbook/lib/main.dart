@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_cookbook/daily/daily_demos.dart' deferred as daily_demos;
+import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
 import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
 import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
@@ -18,6 +19,7 @@ import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/backdrop.dart';
+import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_cookbook/gallery/routes.dart';
 import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
@@ -61,36 +63,68 @@ void bottomMain() => runApp(const MultiCounter(color: Colors.green));
 @pragma('vm:entry-point')
 void galleryApp() => runApp(const GalleryApp());
 
-LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
-LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
-LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
+// LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
+// LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
+// LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MyScaffold() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MyScaffold()));
+void daily_MyScaffold() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'MyScaffold',
+      baseRoutee: DemoPage.daily,
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_TutorialHome() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.TutorialHome()));
+void daily_TutorialHome() => runApp(const AppTemplate(
+        widget: DemoPage(
+      baseRoutee: DemoPage.daily,
+      slug: 'TutorialHome',
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MyButton() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MyButton()));
+void daily_MyButton() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'MyButton',
+      baseRoutee: DemoPage.daily,
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_Counter() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.Counter()));
+void daily_Counter() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'Counter',
+      baseRoutee: DemoPage.daily,
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MultiCounter() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MultiCounter(color: Colors.deepOrange)));
+void daily_MultiCounter() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'MultiCounter',
+      baseRoutee: DemoPage.daily,
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_app_bar() => runApp(const GalleryApp());
+void demo_app_bar() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'app-bar',
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_cupertino_activity_indicator() => runApp(DeferredWidget(cupertinoLoader, () => cupertino_demos.CupertinoProgressIndicatorDemo()));
+void demo_cupertino_activity_indicator() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'cupertino-activity-indicator',
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_cupertino_alert() => runApp(DeferredWidget(cupertinoLoader, () => cupertino_demos.CupertinoAlertDemo(type: AlertDemoType.alert)));
+void demo_cupertino_alert() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'cupertino-alert',
+    )));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_two_pane() => runApp(DeferredWidget(twopane_demos.loadLibrary, () => twopane_demos.TwoPaneDemo()));
+void demo_two_pane() => runApp(const AppTemplate(
+        widget: DemoPage(
+      slug: 'two-pane',
+    )));
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -307,6 +341,69 @@ class GalleryApp extends StatelessWidget {
             onUnknownRoute: (settings) {
               debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
             },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class AppTemplate extends StatelessWidget {
+  const AppTemplate({
+    super.key,
+    required this.widget,
+    this.initialRoute,
+    this.isTestMode = false,
+  });
+
+  final String? initialRoute;
+  final bool isTestMode;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return ModelBinding(
+      initialModel: GalleryOptions(
+        themeMode: ThemeMode.system,
+        textScaleFactor: systemTextScaleFactorOption,
+        customTextDirection: CustomTextDirection.localeBased,
+        locale: null,
+        timeDilation: timeDilation,
+        platform: defaultTargetPlatform,
+        isTestMode: isTestMode,
+      ),
+      child: Builder(
+        builder: (context) {
+          final options = GalleryOptions.of(context);
+          final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
+          debugPrint('-->initialRoute: $initialRoute');
+          return MaterialApp(
+            restorationScopeId: 'rootGallery',
+            title: 'Flutter Gallery',
+            debugShowCheckedModeBanner: true,
+            themeMode: options.themeMode,
+            theme: GalleryThemeData.lightThemeData.copyWith(
+              platform: options.platform,
+            ),
+            darkTheme: GalleryThemeData.darkThemeData.copyWith(
+              platform: options.platform,
+            ),
+            localizationsDelegates: const [
+              ...AppLocalizations.localizationsDelegates,
+              LocaleNamesLocalizationsDelegate(),
+            ],
+            initialRoute: initialRoute,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: options.locale,
+            localeListResolutionCallback: (locales, supportedLocales) {
+              deviceLocale = locales?.first;
+              return basicLocaleListResolution(locales, supportedLocales);
+            },
+            onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+            onUnknownRoute: (settings) {
+              debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+            },
+            home: widget,
           );
         },
       ),
