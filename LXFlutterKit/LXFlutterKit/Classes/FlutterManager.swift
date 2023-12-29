@@ -29,6 +29,15 @@ extension FlutterManager {
         case topMain = "topMain"
         case bottomMain = "bottomMain"
         case galleryApp = "galleryApp"
+        case daily_MyScaffold = "daily_MyScaffold"
+        case daily_TutorialHome = "daily_TutorialHome"
+        case daily_MyButton = "daily_MyButton"
+        case daily_Counter = "daily_Counter"
+        case daily_MultiCounter = "daily_MultiCounter"
+        case demo_app_bar = "demo_app_bar"
+        case demo_cupertino_activity_indicator = "demo_cupertino_activity_indicator"
+        case demo_cupertino_alert = "demo_cupertino_alert"
+        case demo_two_pane = "demo_two_pane"
 
         var value: String? {
             switch self {

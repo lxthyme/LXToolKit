@@ -4,12 +4,16 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_cookbook/daily/daily_demos.dart';
-import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
+import 'package:flutter_cookbook/daily/daily_demos.dart' deferred as daily_demos;
+import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
+import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
+import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
+import 'package:flutter_cookbook/gallery/demos/reference/two_pane_demo.dart' deferred as twopane_demos;
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
+import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
@@ -49,12 +53,44 @@ void main() async {
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
 }
+
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
 void bottomMain() => runApp(const MultiCounter(color: Colors.green));
 @pragma('vm:entry-point')
 void galleryApp() => runApp(const GalleryApp());
+
+LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
+LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
+LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MyScaffold() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MyScaffold()));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_TutorialHome() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.TutorialHome()));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MyButton() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MyButton()));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_Counter() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.Counter()));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MultiCounter() => runApp(DeferredWidget(dailyDemosLibrary, () => daily_demos.MultiCounter(color: Colors.deepOrange)));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_app_bar() => runApp(const GalleryApp());
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_cupertino_activity_indicator() => runApp(DeferredWidget(cupertinoLoader, () => cupertino_demos.CupertinoProgressIndicatorDemo()));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_cupertino_alert() => runApp(DeferredWidget(cupertinoLoader, () => cupertino_demos.CupertinoAlertDemo(type: AlertDemoType.alert)));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_two_pane() => runApp(DeferredWidget(twopane_demos.loadLibrary, () => twopane_demos.TwoPaneDemo()));
 
 class MyApp extends StatelessWidget {
   const MyApp({
