@@ -9,7 +9,6 @@ import Foundation
 import Flutter
 import FlutterPluginRegistrant
 import LXToolKit
-import LXToolKit_Example
 
 // typealias LXFlutterMethod = FlutterManager.DefaultMethod
 typealias LXFlutterChannel = FlutterManager.ChannelName
