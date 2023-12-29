@@ -59,7 +59,18 @@ This library contains some useful category and extension kits
 
   s.default_subspec = 'Core'
   s.subspec 'Core' do |sub|
-    sub.source_files = "LXToolKit/**/*.{swift,h,m,json}"
+    sub.source_files = [
+      # "LXToolKit/**/*.{swift,h,m,json}",
+      "LXToolKit/AssociateDefine.swift",
+      "LXToolKit/LogKit.swift",
+      "LXToolKit/LXMacro.swift",
+      "LXToolKit/R.generated.swift",
+      "LXToolKit/Base/**/*.{swift,h,m,json}",
+      "LXToolKit/Error/**/*.{swift,h,m,json}",
+      "LXToolKit/ExtensionKit/**/*.{swift,h,m,json}",
+      "LXToolKit/Kit/**/*.{swift,h,m,json}",
+      "LXToolKit/Sample/**/*.{swift,h,m,json}",
+    ]
     # sub.frameworks = 'UIKit', 'MapKit'
 
     # https://github.com/SnapKit/SnapKit
@@ -110,7 +121,7 @@ This library contains some useful category and extension kits
     # sub.dependency 'LXToolKit/'
   end
   s.subspec 'RxSwift' do |sub|
-    sub.source_files = "LXToolKit/3rd/RxSwift/*"
+    sub.source_files = "LXToolKit/3rd/RxSwift/**/*"
 
 
     # sub.dependency 'AFNetworking', '~> 2.3'
