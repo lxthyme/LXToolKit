@@ -41,7 +41,6 @@ extension FlutterManager {
     public enum ChannelName: String {
         case `default` = "com.lx.flutter_cookbook"
         case multiCounter = "multiple-counter"
-        // case channel(entrypoint: String?, engine: FlutterEngine, channel: FlutterMethodChannel)
         var name: String {
             return "\(FlutterManager.PrefixFlutter)\(self.rawValue)"
         }
