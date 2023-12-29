@@ -81,6 +81,7 @@ target 'DJTest' do
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC_Example'
 
   pod 'LXToolKit', :path => '../LXToolKit'
+  pod 'LXToolKit/3rd', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
 

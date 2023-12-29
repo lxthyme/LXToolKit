@@ -7,8 +7,10 @@
 
 import Foundation
 import Alamofire
+import RxSwift
 
-func connectedToInternet() -> Observable<Bool> {
+// An observable that completes when the app gets online (possibly completes immediately).
+public func connectedToInternet() -> Observable<Bool> {
     return ReachabilityManager.shared.reach
 }
 

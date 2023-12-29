@@ -33,8 +33,6 @@ This library contains some useful category and extension kits
   s.swift_versions = '5'
   s.cocoapods_version = '>= 1.4.0'
 
-  s.source_files = "LXToolKit/**/*.{swift,h,m,json}"
-
   s.resource_bundles = {
     'LXToolKit' => [
       'LXToolKit/Assets/*.png',
@@ -59,96 +57,117 @@ This library contains some useful category and extension kits
     ],
   }
 
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
-  # https://github.com/Alamofire/Alamofire
-  s.dependency "Alamofire"
-  # https://github.com/Moya/Moya
-  s.dependency 'Moya'#, '~> 13'
-  # https://github.com/ReactiveX/RxSwift
-  s.dependency 'RxSwift'#, '~> 5'
-  s.dependency 'RxCocoa'
-  # https://github.com/alibaba/HandyJSON
-  s.dependency 'HandyJSON'
-  # https://github.com/SnapKit/SnapKit
-  s.dependency 'SnapKit'
-  # https://github.com/krzyzanowskim/CryptoSwift
-  s.dependency 'CryptoSwift'
-  # https://github.com/SDWebImage/SDWebImage
-  s.dependency 'SDWebImage'
-  # s.source_files  = "LXToolKit/**/*.swift"
-  # s.dependency 'Apollo'
-  # s.dependency 'KeychainAccess'
-  # s.dependency 'Mixpanel'
-  s.dependency 'ObjectMapper'
-  # s.dependency 'Moya-ObjectMapper/RxSwift'
-  # s.dependency 'Firebase/Analytics'
-  # s.dependency 'Firebase/Crashlytics'
-  # s.dependency 'MessageKit'
-  s.dependency 'KafkaRefresh'
-  s.dependency 'Kingfisher'
-  # s.dependency 'IQKeyboardManagerSwift'
+  s.default_subspec = 'Core'
+  s.subspec 'Core' do |sub|
+    sub.source_files = "LXToolKit/**/*.{swift,h,m,json}"
+    # sub.frameworks = 'UIKit', 'MapKit'
 
-  # Logging
-  # https://github.com/CocoaLumberjack/CocoaLumberjack
-  s.dependency 'CocoaLumberjack/Swift'
-  # s.dependency 'FLEX'
-  # s.dependency 'RxViewController'
-  s.dependency 'RxOptional'
-  s.dependency 'RxGesture'
-  s.dependency 'SwifterSwift'
-  # s.dependency 'SwiftDate'
-  s.dependency 'Hero'
-  # s.dependency 'DropDown'
-  s.dependency 'Toast-Swift'
-  s.dependency 'NSObject+Rx'
-  s.dependency 'DZNEmptyDataSet'
-  s.dependency 'R.swift'
-  s.dependency 'Localize-Swift'
-  s.dependency 'SVProgressHUD'
-  s.dependency 'RxTheme'
-  s.dependency 'RxDataSources'
-  # s.dependency 'RAMAnimatedTabBarController'
-  # s.dependency 'WhatsNewKit'
-  s.dependency 'HMSegmentedControl'
-  s.dependency 'ImageSlideshow'
-  # s.dependency ''
-  # s.dependency ''
-  # s.dependency ''
-  # s.dependency ''
-  # s.dependency ''
-  # s.dependency ''
+    # https://github.com/SnapKit/SnapKit
+    sub.dependency 'SnapKit'
+    # https://github.com/krzyzanowskim/CryptoSwift
+    sub.dependency 'CryptoSwift'
+    # https://github.com/SDWebImage/SDWebImage
+    sub.dependency 'SDWebImage'
+    # s.source_files  = "LXToolKit/**/*.swift"
+    # sub.dependency 'Apollo'
+    # sub.dependency 'KeychainAccess'
+    # sub.dependency 'Mixpanel'
+    # sub.dependency 'MessageKit'
+    # sub.dependency 'IQKeyboardManagerSwift'
+
+    # Logging
+    # https://github.com/CocoaLumberjack/CocoaLumberjack
+    sub.dependency 'CocoaLumberjack/Swift'
+    # sub.dependency 'FLEX'
+    sub.dependency 'SwifterSwift'
+    # sub.dependency 'SwiftDate'
+    sub.dependency 'Hero'
+    # sub.dependency 'DropDown'
+    sub.dependency 'Toast-Swift'
+    sub.dependency 'DZNEmptyDataSet'
+    sub.dependency 'R.swift'
+    sub.dependency 'Localize-Swift'
+    sub.dependency 'SVProgressHUD'
+
+    # sub.dependency 'RAMAnimatedTabBarController'
+    # sub.dependency 'WhatsNewKit'
+    # sub.dependency ''
+    # sub.dependency ''
+    # sub.dependency ''
+    # sub.dependency ''
+    # sub.dependency ''
+    # sub.dependency ''
+  end
+  s.subspec '3rd' do |sub|
+    sub.dependency 'LXToolKit/RxSwift'
+    sub.dependency 'LXToolKit/Contacts'
+    sub.dependency 'LXToolKit/Firebase'
+    sub.dependency 'LXToolKit/Moya_HandyJSON'
+    sub.dependency 'LXToolKit/HMSegmentedControl'
+    sub.dependency 'LXToolKit/Kingfisher'
+    sub.dependency 'LXToolKit/KafkaRefresh'
+    sub.dependency 'LXToolKit/ImageSlideshow'
+    # sub.dependency 'LXToolKit/'
+  end
+  s.subspec 'RxSwift' do |sub|
+    sub.source_files = "LXToolKit/3rd/RxSwift/*"
 
 
-  # s.subspec "Core" do |ss|
-  ##    ss.source_files  = "LXToolKit/Core/**/*.swift", "LXToolKit/Core/Bwase/**/*.swift", "LXToolKit/Core/ExtensionKit/**/*.swift", "LXToolKit/Error/**/*.swift", "LXToolKit/Kit/**/*.swift"
-  #    ss.source_files  = "LXToolKit/**/*.swift"
-  #    ss.framework  = "Foundation"
-  # end
+    # sub.dependency 'AFNetworking', '~> 2.3'
+    # https://github.com/Alamofire/Alamofire
+    sub.dependency "Alamofire"
+    # https://github.com/ReactiveX/RxSwift
+    sub.dependency 'RxSwift'#, '~> 5'
+    sub.dependency 'RxCocoa'
+    sub.dependency 'RxGesture'
+    # sub.dependency 'RxViewController'
+    sub.dependency 'RxOptional'
+    sub.dependency 'NSObject+Rx'
+    sub.dependency 'RxTheme'
+    sub.dependency 'RxDataSources'
+  end
+  s.subspec 'Contacts' do |sub|
+    sub.source_files = "LXToolKit/3rd/Contacts/*"
 
-  # s.subspec "RxSwift" do |ss|
-  #    ss.source_files  = "LXToolKit/RxSwift"
-  #    ss.dependency "LXToolKit/**/*.swift"
-  #    ss.framework  = "Foundation"
-  #    ss.dependency "RxSwift", "~> 5.0"
-  # end
+    sub.frameworks = 'Contacts'
+  end
+  s.subspec 'Firebase' do |sub|
+    sub.source_files = "LXToolKit/3rd/Crashlytics/*"
 
-  # s.subspec "HandyJSON" do |ss|
-  #    ss.source_files  = "LXToolKit/HandyJSON"
-  #    ss.dependency "LXToolKit/**/*.swift"
-  #    ss.framework  = "Foundation"
-  #    ss.dependency "HandyJSON", "~> 5.0"
-  # end
+    sub.dependency 'Firebase/Analytics'
+    sub.dependency 'Firebase/Crashlytics'
+  end
+  s.subspec 'Moya_HandyJSON' do |sub|
+    sub.source_files = "LXToolKit/3rd/Moya-HandyJSON/**/*"
 
-  # s.subspec "Network" do |ss|
-  #    ss.source_files  = "LXToolKit/Network"
-  #    ss.dependency "LXToolKit/**/*.swift"
-  #    ss.framework  = "Foundation"
-  #    ss.dependency "Alamofire", "~> 4.0"
-  #    ss.dependency "Moya", '~>13.0'
-  #    ss.dependency "RxSwift", '~>5.0'
-  #    ss.dependency "HandyJSON", '~>5.0'
-  # end
+    # https://github.com/Moya/Moya
+    sub.dependency 'Moya'#, '~> 13'
+
+    # https://github.com/alibaba/HandyJSON
+    sub.dependency 'HandyJSON'
+    sub.dependency 'ObjectMapper'
+    # sub.dependency 'Moya-ObjectMapper/RxSwift'
+  end
+  s.subspec 'HMSegmentedControl' do |sub|
+    sub.source_files = "LXToolKit/3rd/HMSegmentedControl/*"
+
+    sub.dependency 'HMSegmentedControl'
+  end
+  s.subspec 'Kingfisher' do |sub|
+    sub.source_files = "LXToolKit/3rd/Kingfisher/*"
+
+    sub.dependency 'Kingfisher'
+  end
+  s.subspec 'KafkaRefresh' do |sub|
+    sub.source_files = "LXToolKit/3rd/KafkaRefresh/*"
+
+    sub.dependency 'KafkaRefresh'
+  end
+  s.subspec 'ImageSlideshow' do |sub|
+    sub.source_files = "LXToolKit/3rd/ImageSlideshow/*"
+
+    sub.dependency 'ImageSlideshow'
+  end
 
 end
 
