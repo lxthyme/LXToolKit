@@ -65,7 +65,7 @@ class ContactsManager: NSObject {
                     // Catching exception as enumerateContactsWithFetchRequest can throw errors
                 catch {
                     single(.failure(error))
-                    logError(error.localizedDescription)
+                    LogKit.kitLog(error.localizedDescription)
                 }
             @unknown default: break
             }

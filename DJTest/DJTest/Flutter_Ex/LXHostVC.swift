@@ -7,6 +7,7 @@
 import UIKit
 import RxSwift
 import LXToolKit
+import LXFlutterKit
 
 class LXHostVC: LXBaseVC {
     // MARK: 📌UI

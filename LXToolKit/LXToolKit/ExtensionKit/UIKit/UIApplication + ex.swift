@@ -15,8 +15,8 @@ public extension Swifty where Base: UIApplication {
         lazy var window = Base.shared.keyWindow
 
         let firstActiveScene = Base.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
             .filter { $0.activationState == .foregroundActive }
+            .compactMap { $0 as? UIWindowScene }
             .first
         guard #available(iOS 15.0, *) else {
             return firstActiveScene?

@@ -29,6 +29,7 @@ DISPLAY_NAME = $(TARGET_NAME)
 // ALWAYS_SEARCH_USER_PATHS = NO
 // LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks
 // INFOPLIST_FILE = $(SRCROOT)/dms/Info.plist
+INFOPLIST_FILE = $(TARGET_NAME)/Info-$(CONFIGURATION).plist
 // DEFINES_MODULE = YES
 // COMMON_OTHER_CFLAGS = -Wall -Wextra -Wfloat-equal -Wundef
 // CLANG_ENABLE_MODULES = YES

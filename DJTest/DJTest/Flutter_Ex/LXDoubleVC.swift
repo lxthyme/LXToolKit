@@ -6,6 +6,7 @@
 //
 import UIKit
 import LXToolKit
+import LXFlutterKit
 
 class LXDoubleVC: LXBaseVC {
     // MARK: 📌UI

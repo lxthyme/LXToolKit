@@ -1,9 +1,27 @@
 source 'https://cdn.cocoapods.org'
 # source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
-$flutter_source_import=true
-# $flutter_source_import = false
-# $Flutter_isRelease = true
+$flutter_source_import = false
+$Flutter_isDebug = false
+$Flutter_isProfile = false
+$Flutter_isRelease = false
+
+# $flutter_source_import=true
+# $Flutter_isDebug = true
+# $Flutter_isProfile = true
+$Flutter_isRelease = true
+
+tips = ""
+if $flutter_source_import
+  tips = "源码编译"
+elsif $Flutter_isDebug
+  tips = "Debug"
+elsif $Flutter_isProfile
+  tips = "Profile"
+else
+  tips = "Release"
+end
+puts("-->当前模式: #{tips.red}")
 
 use_frameworks!
 # use_modular_headers!
@@ -81,9 +99,9 @@ target 'DJTest' do
   pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC_Example'
 
   pod 'LXToolKit', :path => '../LXToolKit'
+  pod 'LXToolKit/3rd', :path => '../LXToolKit'
   pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
   pod 'DJTestKit', :path => '../DJTestKit'
-  pod 'LXFlutterKit', :path => '../LXFlutterKit'
 
   ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
@@ -104,15 +122,19 @@ target 'DJTest' do
   # print "-->configurations: #{configuration_env}"
   if $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
+    pod 'LXFlutterKit/Source', :path => '../LXFlutterKit'
+  elsif $Flutter_isDebug
+    pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Debug'
+    pod 'FlutterSDK/Debug', :path => '../3rd'
+    pod 'LXFlutterKit/Debug', :path => '../LXFlutterKit'
+  elsif $Flutter_isProfile
+    pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Profile'
+    pod 'FlutterSDK/Profile', :path => '../3rd'
+    pod 'LXFlutterKit/Profile', :path => '../LXFlutterKit'
   else
-    # pod 'Flutter', :podspec => '/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/flutter_cookbook/Release'
-    if $Flutter_isRelease
-      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
-      pod 'FlutterSDK/Release', :path => '../3rd'
-    else
-      pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Debug'
-      pod 'FlutterSDK/Debug', :path => '../3rd'
-    end
+    pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
+    pod 'FlutterSDK/Release', :path => '../3rd'
+    pod 'LXFlutterKit/Release', :path => '../LXFlutterKit'
   end
 
   # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
@@ -150,7 +172,7 @@ post_install do |installer|
   if $flutter_source_import
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
-      puts("-->flutter target: ${target}")
+      puts("-->flutter target: #{target.name}")
       flutter_additional_ios_build_settings(target)
     end
     installer.generated_projects.each do |project|
