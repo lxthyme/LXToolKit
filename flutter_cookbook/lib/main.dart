@@ -1,21 +1,15 @@
 import 'package:dual_screen/dual_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_cookbook/daily/daily_demos.dart' deferred as daily_demos;
-import 'package:flutter_cookbook/gallery/data/demos.dart';
-import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
-import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
-import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
-import 'package:flutter_cookbook/gallery/demos/reference/two_pane_demo.dart' deferred as twopane_demos;
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
-import 'package:flutter_cookbook/gallery/deferred_widget.dart';
-import 'package:flutter_cookbook/gallery/firebase_options.dart';
+// import 'package:flutter_cookbook/gallery/deferred_widget.dart';
+// import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/backdrop.dart';
@@ -23,6 +17,10 @@ import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_cookbook/gallery/routes.dart';
 import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
+import 'package:flutter_cookbook/routers/demos.cupertino.dart';
+import 'package:flutter_cookbook/routers/demos.daily.dart';
+import 'package:flutter_cookbook/routers/demos.material.dart';
+import 'package:flutter_cookbook/routers/demos.others.dart';
 // import 'package:flutter_cookbook/router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
@@ -68,63 +66,76 @@ void galleryApp() => runApp(const GalleryApp());
 // LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MyScaffold() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'MyScaffold',
-      baseRoutee: DemoPage.daily,
-    )));
+void daily_MyScaffold() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.myScaffold.baseRoute,
+        slug: DemosDaily.myScaffold.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_TutorialHome() => runApp(const AppTemplate(
-        widget: DemoPage(
-      baseRoutee: DemoPage.daily,
-      slug: 'TutorialHome',
-    )));
+void daily_TutorialHome() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.tutorialHome.baseRoute,
+        slug: DemosDaily.tutorialHome.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MyButton() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'MyButton',
-      baseRoutee: DemoPage.daily,
-    )));
+void daily_MyButton() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.myButton.baseRoute,
+        slug: DemosDaily.myButton.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_Counter() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'Counter',
-      baseRoutee: DemoPage.daily,
-    )));
+void daily_Counter() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.counter.baseRoute,
+        slug: DemosDaily.counter.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void daily_MultiCounter() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'MultiCounter',
-      baseRoutee: DemoPage.daily,
-    )));
+void daily_MultiCounter() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.multiCounter.baseRoute,
+        slug: DemosDaily.multiCounter.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_app_bar() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'app-bar',
-    )));
+void demo_app_bar() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosMaterial.appBar.baseRoute,
+        slug: DemosMaterial.appBar.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_cupertino_activity_indicator() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'cupertino-activity-indicator',
-    )));
+void demo_cupertino_activity_indicator() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosCupertino.cupertinoActivityIndicator.baseRoute,
+        slug: DemosCupertino.cupertinoActivityIndicator.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_cupertino_alert() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'cupertino-alert',
-    )));
+void demo_cupertino_alert() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosCupertino.cupertinoAlert.baseRoute,
+        slug: DemosCupertino.cupertinoAlert.slug,
+      ),
+    ));
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
-void demo_two_pane() => runApp(const AppTemplate(
-        widget: DemoPage(
-      slug: 'two-pane',
-    )));
+void demo_two_pane() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosOthers.twoPane.baseRoute,
+        slug: DemosOthers.twoPane.slug,
+      ),
+    ));
 
 class MyApp extends StatelessWidget {
   const MyApp({

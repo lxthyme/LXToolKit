@@ -38,6 +38,19 @@ enum GalleryDemoCategory {
   }
 }
 
+class GalleryRouterTest {
+  final String baseRoute;
+  final String slug;
+  // final GalleryDemo widget;
+  final GalleryDemo Function(AppLocalizations localizations) widget;
+
+  const GalleryRouterTest({
+    this.baseRoute = DemoPage.baseRoute,
+    required this.slug,
+    required this.widget,
+  });
+}
+
 class GalleryDemo {
   const GalleryDemo({
     required this.title,
@@ -83,17 +96,17 @@ class Demos {
   static Map<String?, GalleryDemo> asSlugToDemoMap(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     return LinkedHashMap<String?, GalleryDemo>.fromIterable(
-      all(localizations),
+      all.map((e) => e.widget(localizations)),
       key: (dynamic demo) => demo.slug as String?,
     );
   }
 
-  static List<GalleryDemo> all(AppLocalizations localizations) =>
-      DemosBannerAll.studies(localizations).values.toList() +
-      DemosDailyAll.dailyList(localizations) +
-      DemosMaterialAll.materialList(localizations) +
-      DemosCupertinoAll.cupertinoList(localizations) +
-      DemosOthersAll.otherList(localizations);
+  static List<GalleryRouterTest> all = DemosBannerAll.studies.values.toList() +
+      DemosDailyAll.dailyList +
+      DemosMaterialAll.materialList +
+      DemosCupertinoAll.cupertinoList +
+      DemosOthersAll.otherList;
 
-  static List<String> allDescriptions() => all(AppLocalizationsEn()).map((e) => e.describe).toList();
+  static List<String> allDescriptions() =>
+      all.map((e) => e.widget(AppLocalizationsEn())).map((e) => e.describe).toList();
 }

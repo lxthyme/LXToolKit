@@ -36,10 +36,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
     final localizations = AppLocalizations.of(context)!;
-    final studyDemos = DemosBannerAll.studies(localizations);
+    final studyDemos = DemosBannerAll.studies;
     final carouselCards = <Widget>[
       _CarouselCard(
-        demo: studyDemos['shrine'],
+        demo: studyDemos['shrine']?.widget(localizations),
         asset: const AssetImage(
           'assets/studies/shrine_card.png',
           package: 'flutter_gallery_assets',
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
             'assets/icons/material/material.png',
             package: 'flutter_gallery_assets',
           ),
-          demos: DemosMaterialAll.materialList(localizations),
+          demos: DemosMaterialAll.materialList.map((e) => e.widget(localizations)).toList(),
         ),
       ];
       return Scaffold(
@@ -264,7 +264,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_daily_list',
                 category: GalleryDemoCategory.daily,
                 imageString: 'assets/icons/material/material.png',
-                demos: DemosDailyAll.dailyList(localizations),
+                demos: DemosDailyAll.dailyList.map((e) => e.widget(localizations)).toList(),
                 initiallyExpanded: _isDailyListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isDailyListExpanded.value = shouldOpenList;
@@ -281,7 +281,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_material_category_list',
                 category: GalleryDemoCategory.material,
                 imageString: 'assets/icons/material/material.png',
-                demos: DemosMaterialAll.materialList(localizations),
+                demos: DemosMaterialAll.materialList.map((e) => e.widget(localizations)).toList(),
                 initiallyExpanded: _isMaterialListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isMaterialListExpanded.value = shouldOpenList;
@@ -298,7 +298,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_cupertino_category_list',
                 category: GalleryDemoCategory.cupertino,
                 imageString: 'assets/icons/cupertino/cupertino.png',
-                demos: DemosCupertinoAll.cupertinoList(localizations),
+                demos: DemosCupertinoAll.cupertinoList.map((e) => e.widget(localizations)).toList(),
                 initiallyExpanded: _isCupertinoListExpaned.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isCupertinoListExpaned.value = shouldOpenList;
@@ -315,7 +315,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_other_category_list',
                 category: GalleryDemoCategory.other,
                 imageString: 'assets/icons/reference/reference.png',
-                demos: DemosOthersAll.otherList(localizations),
+                demos: DemosOthersAll.otherList.map((e) => e.widget(localizations)).toList(),
                 initiallyExpanded: _isOtherListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isOtherListExpanded.value = shouldOpenList;

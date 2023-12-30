@@ -7,33 +7,34 @@ import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension DemosMaterialAll on DemosMaterial {
-  static List<GalleryDemo> materialList(AppLocalizations localizations) {
-    return [
-      DemosMaterial.appBar(localizations),
-    ];
-  }
+  static List<GalleryRouterTest> materialList = [
+    DemosMaterial.appBar,
+  ];
 }
 
 class DemosMaterial {
   static LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
-  static GalleryDemo appBar(AppLocalizations localizations) => GalleryDemo(
-        title: localizations.demoAppBarTitle,
-        icon: GalleryIcons.appbar,
-        slug: 'app-bar',
-        subtitle: localizations.demoAppBarSubtitle,
-        category: GalleryDemoCategory.material,
-        configurations: [
-          GalleryDemoConfiguration(
-            title: localizations.demoAppBarTitle,
-            description: localizations.demoAppBarDescription,
-            documentationUrl: '$kDocsBaseUrl/material/AppBar-class.html',
-            buildRoute: (context) => DeferredWidget(
-              materialDemosLibrary,
-              () => material_demos.AppBarDemo(),
-            ),
-            code: CodeSegments.appbarDemo,
+  static GalleryRouterTest appBar = GalleryRouterTest(
+    slug: '',
+    widget: (AppLocalizations localizations) => GalleryDemo(
+      title: localizations.demoAppBarTitle,
+      icon: GalleryIcons.appbar,
+      slug: 'app-bar',
+      subtitle: localizations.demoAppBarSubtitle,
+      category: GalleryDemoCategory.material,
+      configurations: [
+        GalleryDemoConfiguration(
+          title: localizations.demoAppBarTitle,
+          description: localizations.demoAppBarDescription,
+          documentationUrl: '$kDocsBaseUrl/material/AppBar-class.html',
+          buildRoute: (context) => DeferredWidget(
+            materialDemosLibrary,
+            () => material_demos.AppBarDemo(),
           ),
-        ],
-      );
+          code: CodeSegments.appbarDemo,
+        ),
+      ],
+    ),
+  );
   // static GalleryDemo t(AppLocalizations localizations) =>
 }
