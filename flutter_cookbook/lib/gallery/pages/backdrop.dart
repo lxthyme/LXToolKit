@@ -219,7 +219,6 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                 icon: const Icon(Icons.close),
                 onPressed: () {
                   var scene = LXSwiftMethod.dismiss();
-                  debugPrint('-->channelName: ${LXFlutterManager.channelDefault.name}');
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene);
                 },
               ),

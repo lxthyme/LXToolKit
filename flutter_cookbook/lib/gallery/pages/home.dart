@@ -45,10 +45,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
     final localizations = GalleryLocalizations.of(context)!;
-    final Map<String, GalleryDemo> studyDemos = {};
-    DemosBannerAll.studies.forEach((key, value) {
-      studyDemos[key] = value.widget(localizations);
-    });
+    final studyDemos =
+        DemosBannerAll.studies.map((key, value) => MapEntry(key, value.widget(localizations)));
     final carouselCards = <Widget>[
       _CarouselCard(
         demo: studyDemos['reply'],
@@ -208,8 +206,7 @@ class HomePage extends StatelessWidget {
                       },
                       excludeFromSemantics: true,
                       child: FadeInImage(
-                        image: Theme.of(context).colorScheme.brightness ==
-                                Brightness.dark
+                        image: Theme.of(context).colorScheme.brightness == Brightness.dark
                             ? const AssetImage(
                                 'assets/logo/flutter_logo.png',
                                 package: 'flutter_gallery_assets',
@@ -892,8 +889,7 @@ class _DesktopCarouselState extends State<_DesktopCarousel> {
     // Only check this after the _controller has been attached to the ListView.
     if (_controller.hasClients) {
       showPreviousButton = _controller.offset > 0;
-      showNextButton =
-          _controller.offset < _controller.position.maxScrollExtent;
+      showNextButton = _controller.offset < _controller.position.maxScrollExtent;
     }
 
     final isDesktop = isDisplayDesktop(context);
@@ -1019,9 +1015,7 @@ class _DesktopPageButton extends StatelessWidget {
     const padding = _horizontalDesktopPadding - buttonSize / 2;
     return ExcludeSemantics(
       child: Align(
-        alignment: isEnd
-            ? AlignmentDirectional.centerEnd
-            : AlignmentDirectional.centerStart,
+        alignment: isEnd ? AlignmentDirectional.centerEnd : AlignmentDirectional.centerStart,
         child: Container(
           width: buttonSize,
           height: buttonSize,
@@ -1051,6 +1045,7 @@ class _DesktopPageButton extends StatelessWidget {
     );
   }
 }
+
 class _CarouselCard extends StatelessWidget {
   const _CarouselCard({
     required this.demo,
@@ -1182,10 +1177,7 @@ class _StudyWrapperState extends State<StudyWrapper> {
                 alignment: widget.alignment,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: widget.hasBottomNavBar
-                          ? kBottomNavigationBarHeight + 16.0
-                          : 16.0),
+                      horizontal: 16.0, vertical: widget.hasBottomNavBar ? kBottomNavigationBarHeight + 16.0 : 16.0),
                   child: Semantics(
                     sortKey: const OrdinalSortKey(0),
                     label: GalleryLocalizations.of(context)!.backToGallery,
@@ -1196,8 +1188,7 @@ class _StudyWrapperState extends State<StudyWrapper> {
                       heroTag: _BackButtonHeroTag(),
                       key: const ValueKey('Back'),
                       onPressed: () {
-                        Navigator.of(context)
-                            .popUntil((route) => route.settings.name == '/');
+                        Navigator.of(context).popUntil((route) => route.settings.name == '/');
                       },
                       icon: IconTheme(
                         data: IconThemeData(color: colorScheme.onPrimary),
@@ -1205,8 +1196,7 @@ class _StudyWrapperState extends State<StudyWrapper> {
                       ),
                       label: Text(
                         MaterialLocalizations.of(context).backButtonTooltip,
-                        style: textTheme.labelLarge!
-                            .apply(color: colorScheme.onPrimary),
+                        style: textTheme.labelLarge!.apply(color: colorScheme.onPrimary),
                       ),
                     ),
                   ),

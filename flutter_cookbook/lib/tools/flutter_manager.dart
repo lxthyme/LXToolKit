@@ -134,6 +134,7 @@ extension MethodChannelEx on MethodChannel {
     } catch (e) {
       debugPrint('-->Exception: $e');
     }
+    debugPrint('-->[result]: $result');
     return Future(() => result);
   }
 }
