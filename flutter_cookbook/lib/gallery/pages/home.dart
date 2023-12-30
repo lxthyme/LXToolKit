@@ -3,11 +3,13 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/category_list_item.dart';
+import 'package:flutter_cookbook/gallery/pages/settings.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 // import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
 import 'package:flutter_cookbook/gallery/studies/shrine/colors.dart';
@@ -25,6 +27,7 @@ import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -149,6 +152,22 @@ class HomePage extends StatelessWidget {
           ),
           demos: DemosMaterialAll.materialList.map((e) => e.widget(localizations)).toList(),
         ),
+        _DesktopCategoryItem(
+          category: GalleryDemoCategory.cupertino,
+          asset: const AssetImage(
+            'assets/icons/cupertino/cupertino.png',
+            package: 'flutter_gallery_assets',
+          ),
+          demos: DemosCupertinoAll.cupertinoList.map((e) => e.widget(localizations)).toList(),
+        ),
+        _DesktopCategoryItem(
+          category: GalleryDemoCategory.other,
+          asset: const AssetImage(
+            'assets/icons/reference/reference.png',
+            package: 'flutter_gallery_assets',
+          ),
+          demos: DemosOthersAll.otherList.map((e) => e.widget(localizations)).toList(),
+        ),
       ];
       return Scaffold(
         body: ListView(
@@ -157,8 +176,68 @@ class HomePage extends StatelessWidget {
           padding: const EdgeInsetsDirectional.only(
             top: firstHeaderDesktopTopPadding,
           ),
-          children: const [
-            _DesktopHomeItem(child: _GalleryHeader()),
+          children: [
+            const _DesktopHomeItem(child: _GalleryHeader()),
+            _DesktopCarousel(
+              height: _carouselHeight(0.7, context),
+              children: carouselCards,
+            ),
+            const _DesktopHomeItem(child: _CategoriesHeader()),
+            SizedBox(
+              height: 585,
+              child: _DesktopHomeItem(
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: spaceBetween(28, desktopCategoryItems),
+                ),
+              ),
+            ),
+            const SizedBox(height: 81),
+            _DesktopHomeItem(
+              child: Row(
+                children: [
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () async {
+                        final url = Uri.parse('https://flutter.dev');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url);
+                        }
+                      },
+                      excludeFromSemantics: true,
+                      child: FadeInImage(
+                        image: Theme.of(context).colorScheme.brightness ==
+                                Brightness.dark
+                            ? const AssetImage(
+                                'assets/logo/flutter_logo.png',
+                                package: 'flutter_gallery_assets',
+                              )
+                            : const AssetImage(
+                                'assets/logo/flutter_logo_color.png',
+                                package: 'flutter_gallery_assets',
+                              ),
+                        placeholder: MemoryImage(kTransparentImage),
+                        fadeInDuration: entranceAnimationDuration,
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.end,
+                      children: [
+                        SettingsAbout(),
+                        SettingsFeedback(),
+                        SettingsAttribution(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 109),
           ],
         ),
       );
@@ -483,8 +562,12 @@ class _DesktopCategoryItem extends StatelessWidget {
               ),
               Flexible(
                 child: ListView.builder(
+                  // Makes integration tests possible.
+                  key: ValueKey('${category.name}DemoList'),
+                  primary: false,
                   itemBuilder: (context, index) =>
                       CategoryDemoItem(baseRoute: demos[index].baseRoute, demo: demos[index]),
+                  itemCount: demos.length,
                 ),
               ),
             ],
@@ -769,6 +852,205 @@ class __ModbileCarouselState extends State<_ModbileCarousel> with RestorationMix
   }
 }
 
+/// This creates a horizontally scrolling [ListView] of items.
+///
+/// This class uses a [ListView] with a custom [ScrollPhysics] to enable
+/// snapping behavior. A [PageView] was considered but does not allow for
+/// multiple pages visible without centering the first page.
+class _DesktopCarousel extends StatefulWidget {
+  const _DesktopCarousel({required this.height, required this.children});
+
+  final double height;
+  final List<Widget> children;
+
+  @override
+  _DesktopCarouselState createState() => _DesktopCarouselState();
+}
+
+class _DesktopCarouselState extends State<_DesktopCarousel> {
+  late ScrollController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = ScrollController();
+    _controller.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var showPreviousButton = false;
+    var showNextButton = true;
+    // Only check this after the _controller has been attached to the ListView.
+    if (_controller.hasClients) {
+      showPreviousButton = _controller.offset > 0;
+      showNextButton =
+          _controller.offset < _controller.position.maxScrollExtent;
+    }
+
+    final isDesktop = isDisplayDesktop(context);
+
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        height: widget.height,
+        constraints: const BoxConstraints(maxWidth: maxHomeItemWidth),
+        child: Stack(
+          children: [
+            ListView.builder(
+              padding: EdgeInsets.symmetric(
+                horizontal: isDesktop
+                    ? _horizontalDesktopPadding - _carouselItemDesktopMargin
+                    : _horizontalPadding - _carouselItemMobileMargin,
+              ),
+              scrollDirection: Axis.horizontal,
+              primary: false,
+              physics: const _SnappingScrollPhysics(),
+              controller: _controller,
+              itemExtent: _carouselItemWidth,
+              itemCount: widget.children.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: widget.children[index],
+              ),
+            ),
+            if (showPreviousButton)
+              _DesktopPageButton(
+                onTap: () {
+                  _controller.animateTo(
+                    _controller.offset - _carouselItemWidth,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+            if (showNextButton)
+              _DesktopPageButton(
+                isEnd: true,
+                onTap: () {
+                  _controller.animateTo(
+                    _controller.offset + _carouselItemWidth,
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Scrolling physics that snaps to the new item in the [_DesktopCarousel].
+class _SnappingScrollPhysics extends ScrollPhysics {
+  const _SnappingScrollPhysics({super.parent});
+
+  @override
+  _SnappingScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return _SnappingScrollPhysics(parent: buildParent(ancestor));
+  }
+
+  double _getTargetPixels(
+    ScrollMetrics position,
+    Tolerance tolerance,
+    double velocity,
+  ) {
+    final itemWidth = position.viewportDimension / 4;
+    var item = position.pixels / itemWidth;
+    if (velocity < -tolerance.velocity) {
+      item -= 0.5;
+    } else if (velocity > tolerance.velocity) {
+      item += 0.5;
+    }
+    return math.min(
+      item.roundToDouble() * itemWidth,
+      position.maxScrollExtent,
+    );
+  }
+
+  @override
+  Simulation? createBallisticSimulation(
+    ScrollMetrics position,
+    double velocity,
+  ) {
+    if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
+        (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
+      return super.createBallisticSimulation(position, velocity);
+    }
+    final tolerance = toleranceFor(position);
+    final target = _getTargetPixels(position, tolerance, velocity);
+    if (target != position.pixels) {
+      return ScrollSpringSimulation(
+        spring,
+        position.pixels,
+        target,
+        velocity,
+        tolerance: tolerance,
+      );
+    }
+    return null;
+  }
+
+  @override
+  bool get allowImplicitScrolling => true;
+}
+
+class _DesktopPageButton extends StatelessWidget {
+  const _DesktopPageButton({
+    this.isEnd = false,
+    this.onTap,
+  });
+
+  final bool isEnd;
+  final GestureTapCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    const buttonSize = 58.0;
+    const padding = _horizontalDesktopPadding - buttonSize / 2;
+    return ExcludeSemantics(
+      child: Align(
+        alignment: isEnd
+            ? AlignmentDirectional.centerEnd
+            : AlignmentDirectional.centerStart,
+        child: Container(
+          width: buttonSize,
+          height: buttonSize,
+          margin: EdgeInsetsDirectional.only(
+            start: isEnd ? 0 : padding,
+            end: isEnd ? padding : 0,
+          ),
+          child: Tooltip(
+            message: isEnd
+                ? MaterialLocalizations.of(context).nextPageTooltip
+                : MaterialLocalizations.of(context).previousPageTooltip,
+            child: Material(
+              color: Colors.black.withOpacity(0.5),
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: onTap,
+                child: Icon(
+                  isEnd ? Icons.arrow_forward_ios : Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class _CarouselCard extends StatelessWidget {
   const _CarouselCard({
     required this.demo,
@@ -860,3 +1142,81 @@ class _CarouselCard extends StatelessWidget {
 
 double _carouselHeight(double scaleFactor, BuildContext context) => math.max(
     _carouselHeightMin * GalleryOptions.of(context).textScaleFactor(context) * scaleFactor, _carouselHeightMin);
+
+/// Wrap the studies with this to display a back button and allow the user to
+/// exit them at any time.
+class StudyWrapper extends StatefulWidget {
+  const StudyWrapper({
+    super.key,
+    required this.study,
+    this.alignment = AlignmentDirectional.bottomStart,
+    this.hasBottomNavBar = false,
+  });
+
+  final Widget study;
+  final bool hasBottomNavBar;
+  final AlignmentDirectional alignment;
+
+  @override
+  State<StudyWrapper> createState() => _StudyWrapperState();
+}
+
+class _StudyWrapperState extends State<StudyWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return ApplyTextOptions(
+      child: Stack(
+        children: [
+          Semantics(
+            sortKey: const OrdinalSortKey(1),
+            child: RestorationScope(
+              restorationId: 'study_wrapper',
+              child: widget.study,
+            ),
+          ),
+          if (!isDisplayFoldable(context))
+            SafeArea(
+              child: Align(
+                alignment: widget.alignment,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: widget.hasBottomNavBar
+                          ? kBottomNavigationBarHeight + 16.0
+                          : 16.0),
+                  child: Semantics(
+                    sortKey: const OrdinalSortKey(0),
+                    label: GalleryLocalizations.of(context)!.backToGallery,
+                    button: true,
+                    enabled: true,
+                    excludeSemantics: true,
+                    child: FloatingActionButton.extended(
+                      heroTag: _BackButtonHeroTag(),
+                      key: const ValueKey('Back'),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .popUntil((route) => route.settings.name == '/');
+                      },
+                      icon: IconTheme(
+                        data: IconThemeData(color: colorScheme.onPrimary),
+                        child: const BackButtonIcon(),
+                      ),
+                      label: Text(
+                        MaterialLocalizations.of(context).backButtonTooltip,
+                        style: textTheme.labelLarge!
+                            .apply(color: colorScheme.onPrimary),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BackButtonHeroTag {}

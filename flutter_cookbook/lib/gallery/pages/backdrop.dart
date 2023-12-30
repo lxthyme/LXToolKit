@@ -54,9 +54,11 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
 
     _settingsPageFocusNode = FocusNode();
     _isSettingsOpenNotifier = ValueNotifier(false);
-    _settingsPage = widget.settingsPage ?? const SettingsPage();
+    _settingsPage = widget.settingsPage ??
+        SettingsPage(
+          animationController: _settingsPanelController,
+        );
     _homePage = widget.homePage ?? const HomePage();
-    // _homePage = widget.homePage ?? const MyScaffold();
   }
 
   @override
@@ -123,8 +125,8 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
           excluding: !isSettingsOpen,
           child: isSettingsOpen
               ? RawKeyboardListener(
-                  focusNode: _settingsPageFocusNode,
                   includeSemantics: false,
+                  focusNode: _settingsPageFocusNode,
                   onKey: (event) {
                     if (event.logicalKey == LogicalKeyboardKey.escape) {
                       _toggleSettings();
@@ -183,6 +185,9 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
             Semantics(
               sortKey: const OrdinalSortKey(3),
               child: ScaleTransition(
+                alignment: Directionality.of(context) == TextDirection.ltr
+                    ? Alignment.topRight
+                    : Alignment.topLeft,
                 scale: CurvedAnimation(
                   parent: _settingsPanelController,
                   curve: Curves.fastOutSlowIn,
