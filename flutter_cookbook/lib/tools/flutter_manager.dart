@@ -73,7 +73,7 @@ class LXSwiftMethod {
     required String comSid,
   }) =>
       LXSwiftMethod(name: 'resultFailureTest', arguments: {
-        'animated': storeCode,
+        'storeCode': storeCode,
         'storeType': storeType,
         'comSid': comSid,
       });
