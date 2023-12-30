@@ -13,7 +13,7 @@ extension DemosOthersAll on DemosOthers {
 
 class DemosOthers {
   static GalleryRouterTest twoPane = GalleryRouterTest(
-    slug: '',
+    slug: 'two-pane',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: localizations.demoTwoPaneTitle,
       icon: GalleryIcons.bottomSheetPersistent,

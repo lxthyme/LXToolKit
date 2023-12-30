@@ -39,7 +39,7 @@ extension FlutterManager {
         case demo_cupertino_alert = "demo_cupertino_alert"
         case demo_two_pane = "demo_two_pane"
 
-        var value: String? {
+        public var value: String? {
             switch self {
             case .default: return nil
             default: return self.rawValue
@@ -49,14 +49,14 @@ extension FlutterManager {
     public enum ChannelName: String {
         case `default` = "com.lx.flutter_cookbook"
         case multiCounter = "multiple-counter"
-        var name: String {
+        public var name: String {
             return "\(FlutterManager.PrefixFlutter)\(self.rawValue)"
         }
     }
     open class Channel {
-        var entrypoint: EntryPoint
-        var channelName: ChannelName
-        lazy var engine: FlutterEngine = {
+        public var entrypoint: EntryPoint
+        public var channelName: ChannelName
+        public lazy var engine: FlutterEngine = {
             return FlutterManager.shared.registerFromGroup(withEntryPoint: entrypoint.value)
         }()
         public lazy var methodChannel: FlutterMethodChannel = {

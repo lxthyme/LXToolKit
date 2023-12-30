@@ -15,7 +15,7 @@ extension DemosMaterialAll on DemosMaterial {
 class DemosMaterial {
   static LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
   static GalleryRouterTest appBar = GalleryRouterTest(
-    slug: '',
+    slug: 'app-bar',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: localizations.demoAppBarTitle,
       icon: GalleryIcons.appbar,

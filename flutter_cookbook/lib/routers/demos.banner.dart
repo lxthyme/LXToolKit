@@ -9,7 +9,7 @@ extension DemosBannerAll on DemosBanner {
 
 class DemosBanner {
   static GalleryRouterTest shrine = GalleryRouterTest(
-    slug: '',
+    studyId: 'shrine',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'Shrine',
       subtitle: localizations.shrineDescription,

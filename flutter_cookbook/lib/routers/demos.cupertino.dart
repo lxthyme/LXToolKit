@@ -24,7 +24,7 @@ extension DemosCupertinoAll on DemosCupertino {
 class DemosCupertino {
   static LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
   static GalleryRouterTest cupertinoActivityIndicator = GalleryRouterTest(
-    slug: '',
+    slug: 'cupertino-activity-indicator',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: localizations.demoCupertinoActivityIndicatorTitle,
       icon: GalleryIcons.cupertinoProgress,
@@ -46,7 +46,7 @@ class DemosCupertino {
     ),
   );
   static GalleryRouterTest cupertinoAlert = GalleryRouterTest(
-    slug: '',
+    slug: 'cupertino-alert',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: localizations.demoCupertinoAlertsTitle,
       icon: GalleryIcons.dialogs,

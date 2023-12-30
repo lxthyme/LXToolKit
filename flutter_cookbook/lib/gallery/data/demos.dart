@@ -39,16 +39,18 @@ enum GalleryDemoCategory {
 }
 
 class GalleryRouterTest {
+  final String? studyId;
   final String baseRoute;
-  final String slug;
+  final String? slug;
   // final GalleryDemo widget;
   final GalleryDemo Function(AppLocalizations localizations) widget;
 
   const GalleryRouterTest({
     this.baseRoute = DemoPage.baseRoute,
-    required this.slug,
+    this.slug,
+    this.studyId,
     required this.widget,
-  });
+  }) : assert(slug != null || studyId != null);
 }
 
 class GalleryDemo {

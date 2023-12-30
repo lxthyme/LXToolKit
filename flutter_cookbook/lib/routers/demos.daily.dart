@@ -20,7 +20,8 @@ extension DemosDailyAll on DemosDaily {
 class DemosDaily {
   static LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
   static GalleryRouterTest myScaffold = GalleryRouterTest(
-    slug: '',
+    baseRoute: DemoPage.daily,
+    slug: 'MyScaffold',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'MyScaffold',
       icon: GalleryIcons.appbar,
@@ -44,7 +45,8 @@ class DemosDaily {
   );
 
   static GalleryRouterTest tutorialHome = GalleryRouterTest(
-    slug: '',
+    baseRoute: DemoPage.daily,
+    slug: 'TutorialHome',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'TutorialHome',
       icon: GalleryIcons.appbar,
@@ -67,7 +69,8 @@ class DemosDaily {
     ),
   );
   static GalleryRouterTest myButton = GalleryRouterTest(
-    slug: '',
+    baseRoute: DemoPage.daily,
+    slug: 'MyButton',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'MyButton',
       icon: GalleryIcons.appbar,
@@ -90,7 +93,8 @@ class DemosDaily {
     ),
   );
   static GalleryRouterTest counter = GalleryRouterTest(
-    slug: '',
+    baseRoute: DemoPage.daily,
+    slug: 'Counter',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'Counter',
       icon: GalleryIcons.appbar,
@@ -113,7 +117,8 @@ class DemosDaily {
     ),
   );
   static GalleryRouterTest multiCounter = GalleryRouterTest(
-    slug: '',
+    baseRoute: DemoPage.daily,
+    slug: 'MultiCounter',
     widget: (AppLocalizations localizations) => GalleryDemo(
       title: 'Multi Counter',
       icon: GalleryIcons.appbar,

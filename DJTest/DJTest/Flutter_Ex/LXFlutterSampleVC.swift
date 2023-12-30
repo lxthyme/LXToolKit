@@ -5,7 +5,30 @@
 //  Created by lxthyme on 2023/12/29.
 //
 import UIKit
+import LXToolKit
 import LXFlutterKit
+import Flutter
+
+extension FlutterManager.Channel {
+    func registerMultiCounterMethodChannel() {
+        guard case .multiCounter = channelName else { return }
+        dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
+        methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+            guard let self else { return }
+            dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
+            if call.method == LXFlutterMethod.MultiCounterScene.incrementCount.methodName {
+                DataModel.shared.increament()
+                result(nil)
+            } else if call.method == LXFlutterMethod.MultiCounterScene.next.methodName {
+                let nativeVC = LXHostVC()
+                UIViewController.topViewController()?.navigationController?.pushViewController(nativeVC, animated: true)
+                result(nil)
+            } else {
+                result(FlutterMethodNotImplemented)
+            }
+        }
+    }
+}
 
 class LXFlutterSampleVC: LXBaseFlutterVC {
     // MARK: 📌UI
@@ -40,7 +63,13 @@ private extension LXFlutterSampleVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXFlutterSampleVC {
     func prepareFlutter() {
-
+        switch channel.channelName {
+        case .default:
+            // channel.registerDefaultMethodChannel()
+            break
+        case .multiCounter:
+            channel.registerMultiCounterMethodChannel()
+        }
     }
     func prepareUI() {
         self.view.backgroundColor = .white

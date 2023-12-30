@@ -49,20 +49,7 @@ private extension LXSingleVC {}
 private extension LXSingleVC {
     func prepareFlutter() {
         self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count.value)
-        self.channel.methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
-            guard let self else { return }
-            dlog("-->[Flutter]call: \(call.method)-\(call.arguments)")
-            if call.method == LXFlutterMethod.MultiCounterScene.incrementCount.methodName {
-                DataModel.shared.increament()
-                result(nil)
-            } else if call.method == LXFlutterMethod.MultiCounterScene.next.methodName {
-                let nativeVC = LXHostVC()
-                self.navigationController?.pushViewController(nativeVC, animated: true)
-                result(nil)
-            } else {
-                result(FlutterMethodNotImplemented)
-            }
-        }
+        self.channel.registerMultiCounterMethodChannel()
     }
     func prepareUI() {
         self.view.backgroundColor = .white

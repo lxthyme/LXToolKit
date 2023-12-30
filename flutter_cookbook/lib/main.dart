@@ -61,9 +61,6 @@ void bottomMain() => runApp(const MultiCounter(color: Colors.green));
 @pragma('vm:entry-point')
 void galleryApp() => runApp(const GalleryApp());
 
-// LibraryLoader dailyDemosLibrary = daily_demos.loadLibrary;
-// LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
-// LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
 @pragma('vm:entry-point')
 // ignore: non_constant_identifier_names
 void daily_MyScaffold() => runApp(AppTemplate(
