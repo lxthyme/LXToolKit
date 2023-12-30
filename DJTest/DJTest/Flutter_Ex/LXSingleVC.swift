@@ -21,9 +21,13 @@ class LXSingleVC: LXBaseFlutterVC {
         prepareFlutter()
 
         DataModel.shared.count
-            .subscribe {[weak self] count in
-                dlog("-->result[SingleVC]: \(count)")
-                self?.onCountUpdate(newCount: count)
+            .subscribe {[weak self] result in
+                dlog("-->result[SingleVC]: \(result)")
+                switch result {
+                case .next(let count):
+                    self?.onCountUpdate(newCount: count)
+                default: break
+                }
             }
             .disposed(by: rx.disposeBag)
     }

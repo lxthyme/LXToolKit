@@ -77,12 +77,43 @@ public extension FlutterManager.Channel {
         dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
         methodChannel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
-            if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {
-                UIViewController.topViewController()?.dismiss(animated: true)
-                result(nil)
-            } else {
+            guard let scene = LXFlutterMethod.DefaultScene.sceneFrom(title: call.method, arguments: call.arguments) else {
                 result(FlutterMethodNotImplemented)
+                return
             }
+            switch scene {
+            case .dismiss(let animated):
+                UIViewController.topViewController()?.dismiss(animated: animated)
+                result(nil)
+            case .push(let vcName, let animated):
+                if let nav = UIViewController.topViewController()?.navigationController,
+                   let vc = vcName.xl.getVCInstance() {
+                    nav.pushViewController(vc, animated: animated)
+                    result(true)
+                }
+            case .pop(let animated):
+                if let nav = UIViewController.topViewController()?.navigationController {
+                    nav.popViewController(animated: animated)
+                    result(true)
+                }
+            case .popTo(let vcName, let animated):
+                if let nav = UIViewController.topViewController()?.navigationController,
+                   let vc = vcName.xl.getVCInstance() {
+                    nav.popToViewController(vc, animated: animated)
+                    result(true)
+                }
+            case .popToRoot(let animated):
+                if let nav = UIViewController.topViewController()?.navigationController {
+                    nav.popToRootViewController(animated: animated)
+                    result(true)
+                }
+            case .setNavHidden(let isHidden, let animated):
+                if let nav = UIViewController.topViewController()?.navigationController {
+                    nav.setNavigationBarHidden(isHidden, animated: animated)
+                    result(true)
+                }
+            }
+            result(false)
         }
     }
 }
@@ -105,10 +136,62 @@ public protocol SceneFlutterProtocol {
 public struct LXFlutterMethod {}
 // MARK: - 👀channel: default
 public extension LXFlutterMethod {
-    enum DefaultScene: String, SceneSwiftProtocol {
-        case dismiss
+    enum DefaultScene: SceneSwiftProtocol {
+        case dismiss(animated: Bool)
+        case push(vcName: String, animated: Bool)
+        case pop(animated: Bool)
+        case popTo(vcName: String, animated: Bool)
+        case popToRoot(animated: Bool)
+        case setNavHidden(isHidden: Bool, animated: Bool)
+
         public var methodName: String {
-            return "\(FlutterManager.PrefixSwift)\(self.rawValue)"
+            return "\(FlutterManager.PrefixSwift)\(title)"
+        }
+        var title: String {
+            switch self {
+            case .dismiss: return "dismiss"
+            case .push:
+                return "push"
+            case .pop:
+                return "pop"
+            case .popTo:
+                return "popTo"
+            case .popToRoot:
+                return "popToRoot"
+            case .setNavHidden:
+                return "setNavHidden"
+            }
+        }
+        static func sceneFrom(title: String, arguments: Any?) -> DefaultScene? {
+            let params = arguments as? [String: Any]
+            switch title.removingPrefix(FlutterManager.PrefixSwift) {
+            case "dismiss":
+                let animated = params?["animated"] as? Bool
+                return .dismiss(animated: animated ?? true)
+            case "push":
+                if let vcName = params?["vcName"] as? String {
+                    let animated = params?["animated"] as? Bool
+                    return .push(vcName: vcName, animated: animated ?? true)
+                }
+            case "pop":
+                let animated = params?["animated"] as? Bool
+                return .pop(animated: animated ?? true)
+            case "popTo":
+                if let vcName = params?["vcName"] as? String {
+                    let animated = params?["animated"] as? Bool
+                    return .popTo(vcName: vcName, animated: animated ?? true)
+                }
+            case "popToRoot":
+                let animated = params?["animated"] as? Bool
+                return .popToRoot(animated: animated ?? true)
+            case "setNavHidden":
+                if let isHidden = params?["isHidden"] as? Bool {
+                    let animated = params?["animated"] as? Bool
+                    return .setNavHidden(isHidden: isHidden, animated: animated ?? true)
+                }
+            default: return nil
+            }
+            return nil
         }
     }
     enum MultiCounterScene: String, SceneSwiftProtocol {
@@ -163,15 +246,15 @@ private extension FlutterManager {
     func registerRouter() -> FlutterMethodChannel? {
         guard let flutterEngine else { return nil }
         let channel = FlutterMethodChannel(name: LXFlutterChannel.default.rawValue, binaryMessenger: flutterEngine.binaryMessenger)
-        channel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
-            dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
-            if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {
-                UIViewController.topViewController()?.dismiss(animated: true)
-                result(nil)
-            } else {
-                result(FlutterMethodNotImplemented)
-            }
-        }
+        // channel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
+        //     dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
+        //     if call.method == LXFlutterMethod.DefaultScene.dismiss.methodName {
+        //         UIViewController.topViewController()?.dismiss(animated: true)
+        //         result(nil)
+        //     } else {
+        //         result(FlutterMethodNotImplemented)
+        //     }
+        // }
         return channel
     }
 }

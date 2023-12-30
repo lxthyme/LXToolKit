@@ -48,7 +48,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
   void initState() {
     super.initState();
     _channel = MethodChannel(LXFlutterChannel.multiCounter.getChannelName());
-    debugPrint("-->channelName: $_channel.name");
+    debugPrint("-->channelName: ${_channel.name}");
     _channel.setMethodCallHandler((call) async {
       debugPrint("-->call[${call.method}]: ${call.arguments}");
 

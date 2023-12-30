@@ -74,9 +74,13 @@ class LXHostVC: LXBaseVC {
         prepareUI()
 
         DataModel.shared.count
-            .subscribe {[weak self] count in
-                dlog("-->result[hostVC]: \(count)")
-                self?.labCount.text = "\(count)"
+            .subscribe {[weak self] result in
+                dlog("-->result[hostVC]: \(result)")
+                switch result {
+                case .next(let count):
+                    self?.labCount.text = "\(count)"
+                default: break
+                }
             }
             .disposed(by: rx.disposeBag)
     }

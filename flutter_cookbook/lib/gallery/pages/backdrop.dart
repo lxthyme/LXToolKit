@@ -224,7 +224,7 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                 padding: EdgeInsets.only(top: safeAreaTopPadding),
                 icon: const Icon(Icons.shop),
                 onPressed: () {
-                  var scene2 = LXSwiftMethod.gotoStore(storeCode: '007780', storeType: '2020');
+                  var scene2 = LXSwiftMethod.popToRoot();
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
                 },
               ),

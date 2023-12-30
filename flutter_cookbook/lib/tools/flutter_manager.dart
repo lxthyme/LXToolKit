@@ -57,14 +57,48 @@ class LXSwiftMethod {
     this.arguments,
   }) : methodName = "${LXFlutterManager.prefixSwift}$name";
 
-  static LXSwiftMethod dismiss() => const LXSwiftMethod(name: "dismiss");
-  static LXSwiftMethod gotoStore({
-    required String storeCode,
-    required String storeType,
+  /// DefaultScene.dismiss
+  static LXSwiftMethod dismiss({
+    bool animated = true
+  }) => LXSwiftMethod(name: "dismiss", arguments: {
+    'animated': animated,
+  });
+  // DefaultScene.push(vcName: String)
+  static LXSwiftMethod push({
+    required String vcName,
+    bool animated = true
   }) =>
-      LXSwiftMethod(name: "test", arguments: {
-        "storeCode": storeCode,
-        "storeType": storeType,
+      LXSwiftMethod(name: "push", arguments: {
+        "vcName": vcName,
+        'animated': animated,
+      });
+  // DefaultScene.pop
+  static LXSwiftMethod pop({
+    bool animated = true
+  }) => const LXSwiftMethod(name: "pop");
+  // DefaultScene.popTo(vcName: String)
+  static LXSwiftMethod popTo({
+    required String vcName,
+    bool animated = true
+  }) =>
+      LXSwiftMethod(name: "popTo", arguments: {
+        "vcName": vcName,
+        'animated': animated,
+      });
+  // DefaultScene.popToRoot
+  static LXSwiftMethod popToRoot({
+    bool animated = true
+  }) => LXSwiftMethod(name: "popToRoot", arguments: {
+    'animated': animated,
+  });
+  // DefaultScene.setNavHidden(isHidden: Bool)
+  static LXSwiftMethod setNavHidden({
+    required bool isHidden,
+    bool animated = true
+  }) =>
+      LXSwiftMethod(name: "setNavHidden", arguments: {
+        "isHidden": isHidden,
+        'animated': animated,
       });
 }
 

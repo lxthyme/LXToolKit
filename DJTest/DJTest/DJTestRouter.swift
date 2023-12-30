@@ -157,7 +157,7 @@ public struct DJTestRouter {
                     return vc
                 })),
                 .subitem(.section(title: "Multi Counter"), scene: .vc(provider: {
-                    let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MultiCounter, channelName: .default)
+                    let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MultiCounter, channelName: .multiCounter)
                     return vc
                 })),
             ]),

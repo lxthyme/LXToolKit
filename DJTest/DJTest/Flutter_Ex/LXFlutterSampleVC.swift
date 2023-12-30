@@ -69,6 +69,16 @@ private extension LXFlutterSampleVC {
             break
         case .multiCounter:
             channel.registerMultiCounterMethodChannel()
+            DataModel.shared.count
+                .subscribe {[weak self] result in
+                    dlog("-->result[LXFlutterSampleVC]: \(result)")
+                    switch result {
+                    case .next(let count):
+                        self?.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: count)
+                    default: break
+                    }
+                }
+                .disposed(by: rx.disposeBag)
         }
     }
     func prepareUI() {

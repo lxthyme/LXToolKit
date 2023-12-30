@@ -53,7 +53,7 @@ class _DemoPageState extends State<DemoPage> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("-->demo page: ${widget.baseRoutee}-${widget.slug}: ${slugToDemoMap[widget.slug]}");
+    debugPrint("-->demo page: ${widget.baseRoutee}-${widget.slug}: ${slugToDemoMap[widget.slug]?.describe}");
     if (widget.slug == null || !slugToDemoMap.containsKey(widget.slug)) {
       Navigator.of(context).pop();
     }
