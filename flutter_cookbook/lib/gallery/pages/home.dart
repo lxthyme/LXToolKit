@@ -3,6 +3,11 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cookbook/routers/demos.banner.dart';
+import 'package:flutter_cookbook/routers/demos.cupertino.dart';
+import 'package:flutter_cookbook/routers/demos.daily.dart';
+import 'package:flutter_cookbook/routers/demos.material.dart';
+import 'package:flutter_cookbook/routers/demos.others.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
@@ -11,7 +16,7 @@ import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/category_list_item.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
-import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
+// import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
 import 'package:flutter_cookbook/gallery/studies/shrine/colors.dart';
 import 'package:flutter_cookbook/gallery/studies/shrine/routes.dart' as shrine_routes;
 
@@ -31,7 +36,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
     final localizations = AppLocalizations.of(context)!;
-    final studyDemos = Demos.studies(localizations);
+    final studyDemos = DemosBannerAll.studies(localizations);
     final carouselCards = <Widget>[
       _CarouselCard(
         demo: studyDemos['shrine'],
@@ -59,7 +64,7 @@ class HomePage extends StatelessWidget {
             'assets/icons/material/material.png',
             package: 'flutter_gallery_assets',
           ),
-          demos: Demos.materialDemos(localizations),
+          demos: DemosMaterialAll.materialList(localizations),
         ),
       ];
       return Scaffold(
@@ -259,7 +264,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_daily_list',
                 category: GalleryDemoCategory.daily,
                 imageString: 'assets/icons/material/material.png',
-                demos: Demos.dailyDemos(localizations),
+                demos: DemosDailyAll.dailyList(localizations),
                 initiallyExpanded: _isDailyListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isDailyListExpanded.value = shouldOpenList;
@@ -276,7 +281,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_material_category_list',
                 category: GalleryDemoCategory.material,
                 imageString: 'assets/icons/material/material.png',
-                demos: Demos.materialDemos(localizations),
+                demos: DemosMaterialAll.materialList(localizations),
                 initiallyExpanded: _isMaterialListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isMaterialListExpanded.value = shouldOpenList;
@@ -293,7 +298,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_cupertino_category_list',
                 category: GalleryDemoCategory.cupertino,
                 imageString: 'assets/icons/cupertino/cupertino.png',
-                demos: Demos.cupertinoDemos(localizations),
+                demos: DemosCupertinoAll.cupertinoList(localizations),
                 initiallyExpanded: _isCupertinoListExpaned.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isCupertinoListExpaned.value = shouldOpenList;
@@ -310,7 +315,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
                 restorationId: 'home_other_category_list',
                 category: GalleryDemoCategory.other,
                 imageString: 'assets/icons/reference/reference.png',
-                demos: Demos.otherDemos(localizations),
+                demos: DemosOthersAll.otherList(localizations),
                 initiallyExpanded: _isOtherListExpanded.value || isTestModel,
                 onTap: (shouldOpenList) {
                   _isOtherListExpanded.value = shouldOpenList;

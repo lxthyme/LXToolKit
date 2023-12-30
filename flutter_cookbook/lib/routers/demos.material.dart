@@ -7,7 +7,7 @@ import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension DemosMaterialAll on DemosMaterial {
-  static List<GalleryDemo> demosMaterialList(AppLocalizations localizations) {
+  static List<GalleryDemo> materialList(AppLocalizations localizations) {
     return [
       DemosMaterial.appBar(localizations),
     ];

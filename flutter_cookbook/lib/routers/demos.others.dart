@@ -6,7 +6,7 @@ import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension DemosOthersAll on DemosOthers {
-  static List<GalleryDemo> demosOtherList(AppLocalizations localizations) {
+  static List<GalleryDemo> otherList(AppLocalizations localizations) {
     return [
       DemosOthers.twoPane(localizations),
     ];

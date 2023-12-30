@@ -15,7 +15,7 @@ extension DemosCupertinoAll on DemosCupertino {
     return Future.wait(futures);
   }
 
-  static demosCupertinoList(AppLocalizations localizations) {
+  static cupertinoList(AppLocalizations localizations) {
     return [
       DemosCupertino.cupertinoActivityIndicator(localizations),
       DemosCupertino.cupertinoAlert(localizations),

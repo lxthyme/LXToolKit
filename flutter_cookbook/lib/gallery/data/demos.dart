@@ -3,11 +3,11 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
-import 'package:flutter_cookbook/gallery/data/demos.banner.dart';
-import 'package:flutter_cookbook/gallery/data/demos.cupertino.dart';
-import 'package:flutter_cookbook/gallery/data/demos.daily.dart';
-import 'package:flutter_cookbook/gallery/data/demos.material.dart';
-import 'package:flutter_cookbook/gallery/data/demos.others.dart';
+import 'package:flutter_cookbook/routers/demos.banner.dart';
+import 'package:flutter_cookbook/routers/demos.cupertino.dart';
+import 'package:flutter_cookbook/routers/demos.daily.dart';
+import 'package:flutter_cookbook/routers/demos.material.dart';
+import 'package:flutter_cookbook/routers/demos.others.dart';
 import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
@@ -90,10 +90,10 @@ class Demos {
 
   static List<GalleryDemo> all(AppLocalizations localizations) =>
       DemosBannerAll.studies(localizations).values.toList() +
-      DemosDailyAll.demosDailyList(localizations) +
-      DemosMaterialAll.demosMaterialList(localizations) +
-      DemosCupertinoAll.demosCupertinoList(localizations) +
-      DemosOthersAll.demosOtherList(localizations);
+      DemosDailyAll.dailyList(localizations) +
+      DemosMaterialAll.materialList(localizations) +
+      DemosCupertinoAll.cupertinoList(localizations) +
+      DemosOthersAll.otherList(localizations);
 
   static List<String> allDescriptions() => all(AppLocalizationsEn()).map((e) => e.describe).toList();
 }

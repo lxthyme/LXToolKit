@@ -8,7 +8,7 @@ import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension DemosDailyAll on DemosDaily {
-  static List<GalleryDemo> demosDailyList(AppLocalizations localizations) {
+  static List<GalleryDemo> dailyList(AppLocalizations localizations) {
     return [
       DemosDaily.myScaffold(localizations),
       DemosDaily.tutorialHome(localizations),
