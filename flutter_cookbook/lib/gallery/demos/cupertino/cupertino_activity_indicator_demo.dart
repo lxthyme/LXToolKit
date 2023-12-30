@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_cookbook/tools/flutter_manager.dart';
 
 // void main() => runApp(MaterialApp(title: 'Material App', home: CupertinoProgressIndicatorDemo()));
 

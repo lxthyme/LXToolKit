@@ -9,11 +9,11 @@ enum EntryPoint {
   String getName() {
     switch (this) {
       case EntryPoint.defaultt:
-        return "default";
+        return 'default';
       case EntryPoint.topMain:
-        return "topMain";
+        return 'topMain';
       case EntryPoint.bottomMain:
-        return "bottomMain";
+        return 'bottomMain';
     }
   }
 }
@@ -27,9 +27,9 @@ enum LXFlutterChannel {
   String getName() {
     switch (this) {
       case defaultt:
-        return "com.lx.flutter_cookbook";
+        return 'com.lx.flutter_cookbook';
       case LXFlutterChannel.multiCounter:
-        return "multiple-counter";
+        return 'multiple-counter';
     }
   }
 }
@@ -39,10 +39,10 @@ enum LXFlutterMultiCounterMethod {
 
   String getName() {
     var prefix = LXFlutterManager.prefixFlutter;
-    var name = "";
+    var name = '';
     switch (this) {
       case LXFlutterMultiCounterMethod.setCount:
-        name = "setCount";
+        name = 'setCount';
     }
     return "$prefix$name";
   }
@@ -60,7 +60,7 @@ class LXSwiftMethod {
   /// DefaultScene.dismiss
   static LXSwiftMethod dismiss({
     bool animated = true
-  }) => LXSwiftMethod(name: "dismiss", arguments: {
+  }) => LXSwiftMethod(name: 'dismiss', arguments: {
     'animated': animated,
   });
   // DefaultScene.push(vcName: String)
@@ -68,27 +68,27 @@ class LXSwiftMethod {
     required String vcName,
     bool animated = true
   }) =>
-      LXSwiftMethod(name: "push", arguments: {
-        "vcName": vcName,
+      LXSwiftMethod(name: 'push', arguments: {
+        'vcName': vcName,
         'animated': animated,
       });
   // DefaultScene.pop
   static LXSwiftMethod pop({
     bool animated = true
-  }) => const LXSwiftMethod(name: "pop");
+  }) => const LXSwiftMethod(name: 'pop');
   // DefaultScene.popTo(vcName: String)
   static LXSwiftMethod popTo({
     required String vcName,
     bool animated = true
   }) =>
-      LXSwiftMethod(name: "popTo", arguments: {
-        "vcName": vcName,
+      LXSwiftMethod(name: 'popTo', arguments: {
+        'vcName': vcName,
         'animated': animated,
       });
   // DefaultScene.popToRoot
   static LXSwiftMethod popToRoot({
     bool animated = true
-  }) => LXSwiftMethod(name: "popToRoot", arguments: {
+  }) => LXSwiftMethod(name: 'popToRoot', arguments: {
     'animated': animated,
   });
   // DefaultScene.setNavHidden(isHidden: Bool)
@@ -96,8 +96,8 @@ class LXSwiftMethod {
     required bool isHidden,
     bool animated = true
   }) =>
-      LXSwiftMethod(name: "setNavHidden", arguments: {
-        "isHidden": isHidden,
+      LXSwiftMethod(name: 'setNavHidden', arguments: {
+        'isHidden': isHidden,
         'animated': animated,
       });
 }
@@ -111,14 +111,14 @@ class LXFlutterMethod {
     this.arguments,
   }) : methodName = "${LXFlutterManager.prefixFlutter}$name";
 
-  static LXFlutterMethod dismiss() => const LXFlutterMethod(name: "dismiss");
+  static LXFlutterMethod dismiss() => const LXFlutterMethod(name: 'dismiss');
   static LXFlutterMethod gotoStore({
     required String storeCode,
     required String storeType,
   }) =>
-      LXFlutterMethod(name: "test", arguments: {
-        "storeCode": storeCode,
-        "storeType": storeType,
+      LXFlutterMethod(name: 'test', arguments: {
+        'storeCode': storeCode,
+        'storeType': storeType,
       });
 }
 
@@ -126,32 +126,32 @@ extension MethodChannelEx on MethodChannel {
   Future<T?> xlInvokeMethod<T>(LXSwiftMethod method) async {
     T? result;
     try {
-      debugPrint("-->${method.methodName}: ${method.arguments}");
+      debugPrint('-->${method.methodName}: ${method.arguments}');
       result = await invokeMethod(method.methodName, method.arguments);
       // platform.invokeListMethod(method.methodName);
     } on PlatformException catch (e) {
-      debugPrint("-->PlatformException: ${e.message}");
+      debugPrint('-->PlatformException: ${e.message}');
     } catch (e) {
-      debugPrint("-->Exception: $e");
+      debugPrint('-->Exception: $e');
     }
     return Future(() => result);
   }
 }
 
 class LXFlutterManager {
-  static const String prefixFlutter = "flutter_";
-  static const String prefixSwift = "swift_";
-  static const String identifier = "com.lx.flutter_cookbook";
+  static const String prefixFlutter = 'flutter_';
+  static const String prefixSwift = 'swift_';
+  static const String identifier = 'com.lx.flutter_cookbook';
   static final channelDefault = MethodChannel(LXFlutterChannel.defaultt.getChannelName());
 
   void registerDefaultChannel() {
     var channel = LXFlutterManager.channelDefault;
-    debugPrint("-->channelName: ${channel.name}");
+    debugPrint('-->channelName: ${channel.name}');
     channel.setMethodCallHandler((call) async {
-      debugPrint("-->call[${call.method}]: ${call.arguments}");
+      debugPrint('-->call[${call.method}]: ${call.arguments}');
       // if (call.method == LXFlutterMultiCounterMethod.setCount.getName()) {
       // } else {
-      throw Exception("not implemented ${call.method}");
+      throw Exception('not implemented ${call.method}');
       // }
     });
   }

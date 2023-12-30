@@ -1,10 +1,9 @@
-import 'package:flutter_cookbook/gallery/constants.dart';
-import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
 import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
+import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:flutter_cookbook/gallery/demos/material/material_demos.dart' deferred as material_demos;
 
 extension DemosMaterialAll on DemosMaterial {
   static List<GalleryRouterTest> materialList = [
@@ -16,7 +15,7 @@ class DemosMaterial {
   static LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
   static GalleryRouterTest appBar = GalleryRouterTest(
     slug: 'app-bar',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: localizations.demoAppBarTitle,
       icon: GalleryIcons.appbar,
       slug: 'app-bar',

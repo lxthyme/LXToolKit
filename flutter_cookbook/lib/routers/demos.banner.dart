@@ -1,5 +1,4 @@
 import 'package:flutter_cookbook/gallery/data/demos.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosBannerAll on DemosBanner {
   static Map<String, GalleryRouterTest> studies = {
@@ -10,7 +9,7 @@ extension DemosBannerAll on DemosBanner {
 class DemosBanner {
   static GalleryRouterTest shrine = GalleryRouterTest(
     studyId: 'shrine',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'Shrine',
       subtitle: localizations.shrineDescription,
       category: GalleryDemoCategory.study,

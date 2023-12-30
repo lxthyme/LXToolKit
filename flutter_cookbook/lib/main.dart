@@ -348,6 +348,7 @@ class GalleryApp extends StatelessWidget {
             onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
             onUnknownRoute: (settings) {
               debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+              return null;
             },
           );
         },
@@ -410,6 +411,7 @@ class AppTemplate extends StatelessWidget {
             onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
             onUnknownRoute: (settings) {
               debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+              return null;
             },
             home: widget,
           );

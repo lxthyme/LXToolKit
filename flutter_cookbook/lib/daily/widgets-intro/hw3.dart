@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 // void main() => runApp(const MaterialApp(title: 'Flutter Tutorial', home: TutorialHome()));
 
@@ -15,14 +14,14 @@ class TutorialHome extends StatelessWidget {
             Navigator.of(context).pop()
           },
           icon: const Icon(Icons.menu),
-          tooltip: "Navigation menu",
+          tooltip: 'Navigation menu',
         ),
         title: const Text('Example title'),
         actions: const [
           IconButton(
             onPressed: null,
             icon: Icon(Icons.search),
-            tooltip: "Search",
+            tooltip: 'Search',
           )
         ],
       ),

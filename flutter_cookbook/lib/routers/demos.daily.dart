@@ -5,7 +5,6 @@ import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_cookbook/gallery/pages/demo.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosDailyAll on DemosDaily {
   static List<GalleryRouterTest> dailyList = [
@@ -22,7 +21,7 @@ class DemosDaily {
   static GalleryRouterTest myScaffold = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MyScaffold',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'MyScaffold',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -47,7 +46,7 @@ class DemosDaily {
   static GalleryRouterTest tutorialHome = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'TutorialHome',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'TutorialHome',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -71,7 +70,7 @@ class DemosDaily {
   static GalleryRouterTest myButton = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MyButton',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'MyButton',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -95,7 +94,7 @@ class DemosDaily {
   static GalleryRouterTest counter = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'Counter',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'Counter',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -119,7 +118,7 @@ class DemosDaily {
   static GalleryRouterTest multiCounter = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MultiCounter',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: 'Multi Counter',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,

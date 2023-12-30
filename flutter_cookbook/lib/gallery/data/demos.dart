@@ -3,12 +3,12 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
+import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_cookbook/routers/demos.banner.dart';
 import 'package:flutter_cookbook/routers/demos.cupertino.dart';
 import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
-import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations_en.dart';
 

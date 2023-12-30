@@ -3,13 +3,6 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cookbook/routers/demos.banner.dart';
-import 'package:flutter_cookbook/routers/demos.cupertino.dart';
-import 'package:flutter_cookbook/routers/demos.daily.dart';
-import 'package:flutter_cookbook/routers/demos.material.dart';
-import 'package:flutter_cookbook/routers/demos.others.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
@@ -19,6 +12,12 @@ import 'package:flutter_cookbook/gallery/pages/splash.dart';
 // import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
 import 'package:flutter_cookbook/gallery/studies/shrine/colors.dart';
 import 'package:flutter_cookbook/gallery/studies/shrine/routes.dart' as shrine_routes;
+import 'package:flutter_cookbook/routers/demos.banner.dart';
+import 'package:flutter_cookbook/routers/demos.cupertino.dart';
+import 'package:flutter_cookbook/routers/demos.daily.dart';
+import 'package:flutter_cookbook/routers/demos.material.dart';
+import 'package:flutter_cookbook/routers/demos.others.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 const _horizontalPadding = 32.0;
 const _horizontalDesktopPadding = 81.0;
@@ -105,7 +104,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _GalleryHeader extends StatelessWidget {
-  const _GalleryHeader({super.key});
+  const _GalleryHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +116,7 @@ class _GalleryHeader extends StatelessWidget {
 }
 
 class _CategoriesHeader extends StatelessWidget {
-  const _CategoriesHeader({super.key});
+  const _CategoriesHeader();
 
   @override
   Widget build(BuildContext context) {

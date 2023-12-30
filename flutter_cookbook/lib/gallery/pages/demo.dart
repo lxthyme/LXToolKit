@@ -4,11 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
-import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:flutter_cookbook/gallery/codeviewer/code_style.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
@@ -16,7 +11,11 @@ import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/feature_discovery/feature_discovery.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
+import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
 import 'package:flutter_cookbook/gallery/themes/material_demo_theme_data.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 enum _DemoState {
   normal,
@@ -53,7 +52,7 @@ class _DemoPageState extends State<DemoPage> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("-->demo page: ${widget.baseRoutee}-${widget.slug}: ${slugToDemoMap[widget.slug]?.describe}");
+    debugPrint('-->demo page: ${widget.baseRoutee}-${widget.slug}: ${slugToDemoMap[widget.slug]?.describe}');
     if (widget.slug == null || !slugToDemoMap.containsKey(widget.slug)) {
       Navigator.of(context).pop();
     }

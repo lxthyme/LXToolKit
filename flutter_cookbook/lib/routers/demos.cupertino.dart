@@ -1,11 +1,10 @@
-import 'package:flutter_cookbook/gallery/constants.dart';
-import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
 import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
+import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
+import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_demos.dart' deferred as cupertino_demos;
 import 'package:flutter_cookbook/gallery/demos/cupertino/demo_types.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosCupertinoAll on DemosCupertino {
   Future<void> pumpDeferredLibraries() {
@@ -25,7 +24,7 @@ class DemosCupertino {
   static LibraryLoader cupertinoLoader = cupertino_demos.loadLibrary;
   static GalleryRouterTest cupertinoActivityIndicator = GalleryRouterTest(
     slug: 'cupertino-activity-indicator',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: localizations.demoCupertinoActivityIndicatorTitle,
       icon: GalleryIcons.cupertinoProgress,
       slug: 'cupertino-activity-indicator',
@@ -47,7 +46,7 @@ class DemosCupertino {
   );
   static GalleryRouterTest cupertinoAlert = GalleryRouterTest(
     slug: 'cupertino-alert',
-    widget: (GalleryLocalizations localizations) => GalleryDemo(
+    widget: (localizations) => GalleryDemo(
       title: localizations.demoCupertinoAlertsTitle,
       icon: GalleryIcons.dialogs,
       slug: 'cupertino-alert',

@@ -1,10 +1,9 @@
 // import 'dart:js';
 
-import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_activity_indicator_demo.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/daily/daily_demos.dart';
+import 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_activity_indicator_demo.dart';
+import 'package:go_router/go_router.dart';
 
 final Map<String, WidgetBuilder> routes = {
   // '/': ctx =>

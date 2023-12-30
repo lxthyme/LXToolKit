@@ -16,7 +16,7 @@ class MultiCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Multi Counter",
+      title: 'Multi Counter',
       theme: ThemeData(
         colorSchemeSeed: color,
         useMaterial3: true,
@@ -48,16 +48,16 @@ class _CounterHomePageState extends State<CounterHomePage> {
   void initState() {
     super.initState();
     _channel = MethodChannel(LXFlutterChannel.multiCounter.getChannelName());
-    debugPrint("-->channelName: ${_channel.name}");
+    debugPrint('-->channelName: ${_channel.name}');
     _channel.setMethodCallHandler((call) async {
-      debugPrint("-->call[${call.method}]: ${call.arguments}");
+      debugPrint('-->call[${call.method}]: ${call.arguments}');
 
       if (call.method == LXFlutterMultiCounterMethod.setCount.getName()) {
         setState(() {
           _counter = call.arguments as int?;
         });
       } else {
-        throw Exception("not implemented ${call.method}");
+        throw Exception('not implemented ${call.method}');
       }
     });
   }

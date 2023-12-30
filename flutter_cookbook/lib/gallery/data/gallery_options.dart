@@ -164,7 +164,7 @@ class ApplyTextOptions extends StatelessWidget {
 
     Widget widget = MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaleFactor: textScaleFactor,
+        textScaler: TextScaler.linear(textScaleFactor),
       ),
       child: child,
     );
