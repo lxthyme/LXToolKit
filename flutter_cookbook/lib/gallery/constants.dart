@@ -23,3 +23,7 @@ const Duration entranceAnimationDuration = Duration(milliseconds: 200);
 const double firstHeaderDesktopTopPadding = 5.0;
 
 final Uint8List kTransparentImage = transparent_image.kTransparentImage;
+
+// const _docsBaseUrl = 'https://api.flutter.dev/flutter';
+// const _docsAnimationsUrl = 'https://pub.dev/documentation/animations/latest/animations';
+const kDocsBaseUrl = 'https://api.flutter.dev/flutter';
