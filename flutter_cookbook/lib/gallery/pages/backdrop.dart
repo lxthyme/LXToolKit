@@ -185,9 +185,7 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
             Semantics(
               sortKey: const OrdinalSortKey(3),
               child: ScaleTransition(
-                alignment: Directionality.of(context) == TextDirection.ltr
-                    ? Alignment.topRight
-                    : Alignment.topLeft,
+                alignment: Directionality.of(context) == TextDirection.ltr ? Alignment.topRight : Alignment.topLeft,
                 scale: CurvedAnimation(
                   parent: _settingsPanelController,
                   curve: Curves.fastOutSlowIn,
@@ -224,9 +222,24 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
               ),
               IconButton(
                 padding: EdgeInsets.only(top: safeAreaTopPadding),
-                icon: const Icon(Icons.shop),
+                icon: const Icon(Icons.error),
                 onPressed: () {
-                  var scene2 = LXSwiftMethod.popToRoot();
+                  var scene2 = LXSwiftMethod.undefinedTest(
+                    storeCode: '007780',
+                    storeType: '2020',
+                  );
+                  LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
+                },
+              ),
+              IconButton(
+                padding: EdgeInsets.only(top: safeAreaTopPadding),
+                icon: const Icon(Icons.error_outline),
+                onPressed: () {
+                  var scene2 = LXSwiftMethod.resultFailureTest(
+                    storeCode: '007780',
+                    storeType: '2020',
+                    comSid: '2000',
+                  );
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
                 },
               ),

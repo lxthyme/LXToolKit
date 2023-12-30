@@ -9,6 +9,7 @@ import Foundation
 import Flutter
 import FlutterPluginRegistrant
 import LXToolKit
+import Toast_Swift
 
 // typealias LXFlutterMethod = FlutterManager.DefaultMethod
 typealias LXFlutterChannel = FlutterManager.ChannelName
@@ -122,6 +123,16 @@ public extension FlutterManager.Channel {
                     nav.setNavigationBarHidden(isHidden, animated: animated)
                     result(true)
                 }
+            case .toast(let title, let message, let imageNamed, let duration, let position, let completion):
+                let image: UIImage? = if let imageNamed, imageNamed.isNotEmpty {
+                    UIImage(named: imageNamed)
+                } else {
+                    nil
+                }
+                UIApplication.XL.keyWindow?.makeToast(message, duration: duration, position: position, title: title, image: image, completion: completion)
+                result(true)
+            case let .resultFailureTest(storeCode, storeType, comSid):
+                result(false)
             }
             FlutterManager.reportError(error: .callSwiftMethodFailure,
                                        call: call,
@@ -157,6 +168,9 @@ public extension LXFlutterMethod {
         case popTo(vcName: String, animated: Bool)
         case popToRoot(animated: Bool)
         case setNavHidden(isHidden: Bool, animated: Bool)
+        // UIApplication.XL.keyWindow?.makeToast(<#T##message: String?##String?#>, duration: <#T##TimeInterval#>, position: <#T##ToastPosition#>, title: <#T##String?#>, imageNamed: <#T##UIImage?#>, style: <#T##ToastStyle#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(_ didTap: Bool) -> Void#>)
+        case toast(message: String, title: String?, imageNamed: String?, duration: TimeInterval = 2, position: ToastPosition = .bottom, completion: ((_ didTap: Bool) -> Void)?)
+        case resultFailureTest(storeCode: String, storeType: String, comSid: String)
 
         public var methodName: String {
             return "\(FlutterManager.PrefixSwift)\(title)"
@@ -164,16 +178,13 @@ public extension LXFlutterMethod {
         var title: String {
             switch self {
             case .dismiss: return "dismiss"
-            case .push:
-                return "push"
-            case .pop:
-                return "pop"
-            case .popTo:
-                return "popTo"
-            case .popToRoot:
-                return "popToRoot"
-            case .setNavHidden:
-                return "setNavHidden"
+            case .push: return "push"
+            case .pop: return "pop"
+            case .popTo: return "popTo"
+            case .popToRoot: return "popToRoot"
+            case .setNavHidden: return "setNavHidden"
+            case .toast: return "toast"
+            case .resultFailureTest: return "resultFailureTest"
             }
         }
         static func sceneFrom(title: String, arguments: Any?) -> DefaultScene? {
@@ -202,6 +213,28 @@ public extension LXFlutterMethod {
                 if let isHidden = params?["isHidden"] as? Bool {
                     let animated = params?["animated"] as? Bool
                     return .setNavHidden(isHidden: isHidden, animated: animated ?? true)
+                }
+            case "toast":
+                if let message = params?["message"] as? String {
+                    let title = params?["title"] as? String
+                    let imageNamed = params?["imageNamed"] as? String
+                    let duration = params?["duration"] as? TimeInterval
+                    let position = params?["position"] as? String
+                    let completion = params?["completion"] as? (Bool) -> Void
+                    var pos: ToastPosition?
+                    switch position {
+                    case "top": pos = .top
+                    case "bottom": pos = .bottom
+                    case "center": pos = .center
+                    default: break
+                    }
+                    return .toast(message: message, title: title, imageNamed: imageNamed, duration: duration ?? 2, position: pos ?? .bottom, completion: completion)
+                }
+            case "resultFailureTest":
+                if let storeCode = params?["storeCode"] as? String,
+                   let storeType = params?["storeType"] as? String,
+                   let comSid = params?["comSid"] as? String {
+                    return .resultFailureTest(storeCode: storeCode, storeType: storeType, comSid: comSid)
                 }
             default: break
             }
