@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
 import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -165,7 +165,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: Text(AppLocalizations.of(context)!.demoInvalidURL),
+            title: Text(GalleryLocalizations.of(context)!.demoInvalidURL),
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -204,7 +204,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     final selectedIconColor = colorScheme.primary;
     final appBarPadding = isDesktop ? 20.0 : 0.0;
     final currentDemoState = _DemoState.values[_demoStateIndex.value];
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = GalleryLocalizations.of(context)!;
     final options = GalleryOptions.of(context);
 
     final appBar = AppBar(
@@ -356,7 +356,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
       final isDemoNormal = currentDemoState == _DemoState.normal;
       demoContent = Semantics(
-        label: '${AppLocalizations.of(context)!.demo}, ${widget.demo.title}',
+        label: '${GalleryLocalizations.of(context)!.demo}, ${widget.demo.title}',
         child: MouseRegion(
           cursor: isDemoNormal ? MouseCursor.defer : SystemMouseCursors.click,
           child: GestureDetector(
@@ -460,7 +460,7 @@ class _DemoSectionOptions extends StatelessWidget {
                 end: 24,
               ),
               child: Text(
-                AppLocalizations.of(context)!.demoOptionsTooltip,
+                GalleryLocalizations.of(context)!.demoOptionsTooltip,
                 style: textTheme.headlineMedium!.apply(
                   color: colorScheme.onSurface,
                   fontSizeDelta: isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
@@ -662,7 +662,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            AppLocalizations.of(context)!.demoCodeViewerCopiedToClipboardMessage,
+            GalleryLocalizations.of(context)!.demoCodeViewerCopiedToClipboardMessage,
           ),
         ),
       );
@@ -672,7 +672,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            AppLocalizations.of(context)!.demoCodeViewerFailedToCopyToClipboardMessage(exception),
+            GalleryLocalizations.of(context)!.demoCodeViewerFailedToCopyToClipboardMessage(exception),
           ),
         ),
       );
@@ -697,7 +697,7 @@ class CodeDisplayPage extends StatelessWidget {
               ),
             ),
             child: Text(
-              AppLocalizations.of(context)!.demoCodeViewerCopyAll,
+              GalleryLocalizations.of(context)!.demoCodeViewerCopyAll,
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

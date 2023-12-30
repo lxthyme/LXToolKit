@@ -9,8 +9,8 @@ import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
 import 'package:flutter_cookbook/gallery/pages/demo.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations_en.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations_en.dart';
 
 enum GalleryDemoCategory {
   daily,
@@ -24,7 +24,7 @@ enum GalleryDemoCategory {
     return name.toUpperCase();
   }
 
-  String? displayTitle(AppLocalizations localizations) {
+  String? displayTitle(GalleryLocalizations localizations) {
     switch (this) {
       case GalleryDemoCategory.other:
         return localizations.homeCategoryReference;
@@ -43,7 +43,7 @@ class GalleryRouterTest {
   final String baseRoute;
   final String? slug;
   // final GalleryDemo widget;
-  final GalleryDemo Function(AppLocalizations localizations) widget;
+  final GalleryDemo Function(GalleryLocalizations localizations) widget;
 
   const GalleryRouterTest({
     this.baseRoute = DemoPage.baseRoute,
@@ -96,7 +96,7 @@ class GalleryDemoConfiguration {
 
 class Demos {
   static Map<String?, GalleryDemo> asSlugToDemoMap(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = GalleryLocalizations.of(context)!;
     return LinkedHashMap<String?, GalleryDemo>.fromIterable(
       all.map((e) => e.widget(localizations)),
       key: (dynamic demo) => demo.slug as String?,
@@ -110,5 +110,5 @@ class Demos {
       DemosOthersAll.otherList;
 
   static List<String> allDescriptions() =>
-      all.map((e) => e.widget(AppLocalizationsEn())).map((e) => e.describe).toList();
+      all.map((e) => e.widget(GalleryLocalizationsEn())).map((e) => e.describe).toList();
 }

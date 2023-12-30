@@ -4,7 +4,7 @@ import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosMaterialAll on DemosMaterial {
   static List<GalleryRouterTest> materialList = [
@@ -16,7 +16,7 @@ class DemosMaterial {
   static LibraryLoader materialDemosLibrary = material_demos.loadLibrary;
   static GalleryRouterTest appBar = GalleryRouterTest(
     slug: 'app-bar',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: localizations.demoAppBarTitle,
       icon: GalleryIcons.appbar,
       slug: 'app-bar',
@@ -36,5 +36,5 @@ class DemosMaterial {
       ],
     ),
   );
-  // static GalleryDemo t(AppLocalizations localizations) =>
+  // static GalleryDemo t(GalleryLocalizations localizations) =>
 }

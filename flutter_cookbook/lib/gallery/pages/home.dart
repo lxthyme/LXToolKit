@@ -8,7 +8,7 @@ import 'package:flutter_cookbook/routers/demos.cupertino.dart';
 import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = GalleryLocalizations.of(context)!;
     final studyDemos = DemosBannerAll.studies;
     final carouselCards = <Widget>[
       _CarouselCard(
@@ -111,7 +111,7 @@ class _GalleryHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Header(
       color: Theme.of(context).colorScheme.primaryContainer,
-      text: AppLocalizations.of(context)!.homeHeaderGallery,
+      text: GalleryLocalizations.of(context)!.homeHeaderGallery,
     );
   }
 }
@@ -123,7 +123,7 @@ class _CategoriesHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Header(
       color: Theme.of(context).colorScheme.primary,
-      text: AppLocalizations.of(context)!.homeHeaderCategories,
+      text: GalleryLocalizations.of(context)!.homeHeaderCategories,
     );
   }
 }
@@ -229,7 +229,7 @@ class __AnimatedHomePageState extends State<_AnimatedHomePage> with RestorationM
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = GalleryLocalizations.of(context)!;
     final isTestModel = GalleryOptions.of(context).isTestMode;
 
     return Stack(
@@ -445,7 +445,7 @@ class _DesktopCategoryHeader extends StatelessWidget {
               child: Semantics(
                 header: true,
                 child: SelectableText(
-                  category.displayTitle(AppLocalizations.of(context)!)!,
+                  category.displayTitle(GalleryLocalizations.of(context)!)!,
                   style: Theme.of(context).textTheme.headlineSmall!.apply(
                         color: colorScheme.onSurface,
                       ),

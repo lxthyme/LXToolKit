@@ -22,7 +22,7 @@ import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
 // import 'package:flutter_cookbook/router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -165,11 +165,11 @@ class MyApp extends StatelessWidget {
         // theme: ,
         // darkTheme: ,
         localizationsDelegates: const [
-          ...AppLocalizations.localizationsDelegates,
+          ...GalleryLocalizations.localizationsDelegates,
           LocaleNamesLocalizationsDelegate(),
         ],
         initialRoute: initialRoute,
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: GalleryLocalizations.supportedLocales,
         // locale: ,
         // localeListResolutionCallback:(locales, supportedLocales) => {
         //   return basicLocaleListResolution(locales, supportedLocales);
@@ -335,11 +335,11 @@ class GalleryApp extends StatelessWidget {
               platform: options.platform,
             ),
             localizationsDelegates: const [
-              ...AppLocalizations.localizationsDelegates,
+              ...GalleryLocalizations.localizationsDelegates,
               LocaleNamesLocalizationsDelegate(),
             ],
             initialRoute: initialRoute,
-            supportedLocales: AppLocalizations.supportedLocales,
+            supportedLocales: GalleryLocalizations.supportedLocales,
             locale: options.locale,
             localeListResolutionCallback: (locales, supportedLocales) {
               deviceLocale = locales?.first;
@@ -397,11 +397,11 @@ class AppTemplate extends StatelessWidget {
               platform: options.platform,
             ),
             localizationsDelegates: const [
-              ...AppLocalizations.localizationsDelegates,
+              ...GalleryLocalizations.localizationsDelegates,
               LocaleNamesLocalizationsDelegate(),
             ],
             initialRoute: initialRoute,
-            supportedLocales: AppLocalizations.supportedLocales,
+            supportedLocales: GalleryLocalizations.supportedLocales,
             locale: options.locale,
             localeListResolutionCallback: (locales, supportedLocales) {
               deviceLocale = locales?.first;

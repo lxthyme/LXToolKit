@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:dual_screen/dual_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/gallery/pages/home.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
@@ -230,7 +230,7 @@ class _SplashBackLayer extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 100.0),
                 child: Center(
                   child: Text(
-                    AppLocalizations.of(context)!.splashSelectDemo,
+                    GalleryLocalizations.of(context)!.splashSelectDemo,
                   ),
                 ),
               )

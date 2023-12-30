@@ -5,7 +5,7 @@ import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 import 'package:flutter_cookbook/gallery/pages/demo.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosDailyAll on DemosDaily {
   static List<GalleryRouterTest> dailyList = [
@@ -22,7 +22,7 @@ class DemosDaily {
   static GalleryRouterTest myScaffold = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MyScaffold',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: 'MyScaffold',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -47,7 +47,7 @@ class DemosDaily {
   static GalleryRouterTest tutorialHome = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'TutorialHome',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: 'TutorialHome',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -71,7 +71,7 @@ class DemosDaily {
   static GalleryRouterTest myButton = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MyButton',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: 'MyButton',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -95,7 +95,7 @@ class DemosDaily {
   static GalleryRouterTest counter = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'Counter',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: 'Counter',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -119,7 +119,7 @@ class DemosDaily {
   static GalleryRouterTest multiCounter = GalleryRouterTest(
     baseRoute: DemoPage.daily,
     slug: 'MultiCounter',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: 'Multi Counter',
       icon: GalleryIcons.appbar,
       baseRoute: DemoPage.daily,
@@ -140,6 +140,6 @@ class DemosDaily {
       ],
     ),
   );
-  // static GalleryDemo (AppLocalizations localizations) =>
-  // static GalleryDemo (AppLocalizations localizations) =>
+  // static GalleryDemo (GalleryLocalizations localizations) =>
+  // static GalleryDemo (GalleryLocalizations localizations) =>
 }

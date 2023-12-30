@@ -6,7 +6,7 @@ import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
 import 'package:flutter_cookbook/gallery/pages/home.dart';
 import 'package:flutter_cookbook/gallery/pages/settings.dart';
 import 'package:flutter_cookbook/tools/flutter_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
@@ -216,7 +216,7 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                 icon: const Icon(Icons.close),
                 onPressed: () {
                   var scene = LXSwiftMethod.dismiss();
-                  debugPrint("-->channelName: ${LXFlutterManager.channelDefault.name}");
+                  debugPrint('-->channelName: ${LXFlutterManager.channelDefault.name}');
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene);
                 },
               ),
@@ -259,8 +259,8 @@ class _SettingsIcon extends AnimatedWidget {
 
   String _settingsSemanticLabel(bool isOpen, BuildContext context) {
     return isOpen
-        ? AppLocalizations.of(context)!.settingsButtonCloseLabel
-        : AppLocalizations.of(context)!.settingsButtonLabel;
+        ? GalleryLocalizations.of(context)!.settingsButtonCloseLabel
+        : GalleryLocalizations.of(context)!.settingsButtonLabel;
   }
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter_cookbook/gallery/codeviewer/code_segments.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
 import 'package:flutter_cookbook/gallery/data/icons.dart';
 import 'package:flutter_cookbook/gallery/deferred_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 extension DemosOthersAll on DemosOthers {
   static List<GalleryRouterTest> otherList = [
@@ -14,7 +14,7 @@ extension DemosOthersAll on DemosOthers {
 class DemosOthers {
   static GalleryRouterTest twoPane = GalleryRouterTest(
     slug: 'two-pane',
-    widget: (AppLocalizations localizations) => GalleryDemo(
+    widget: (GalleryLocalizations localizations) => GalleryDemo(
       title: localizations.demoTwoPaneTitle,
       icon: GalleryIcons.bottomSheetPersistent,
       slug: 'two-pane',
