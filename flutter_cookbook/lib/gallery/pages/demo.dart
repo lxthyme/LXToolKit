@@ -320,8 +320,8 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
         );
         break;
       default:
-        section = const Center(
-          child: Text('demo.dart'),
+        section = Center(
+          child: Text('demo.dart - $currentDemoState'),
         );
         break;
     }

@@ -11,7 +11,14 @@ import 'package:flutter_cookbook/gallery/pages/category_list_item.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 // import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
 import 'package:flutter_cookbook/gallery/studies/shrine/colors.dart';
+import 'package:flutter_cookbook/gallery/studies/rally/colors.dart';
+import 'package:flutter_cookbook/gallery/studies/crane/colors.dart';
+import 'package:flutter_cookbook/gallery/studies/crane/routes.dart' as crane_routes;
+import 'package:flutter_cookbook/gallery/studies/fortnightly/routes.dart' as fortnightly_routes;
+import 'package:flutter_cookbook/gallery/studies/rally/routes.dart' as rally_routes;
+import 'package:flutter_cookbook/gallery/studies/reply/routes.dart' as reply_routes;
 import 'package:flutter_cookbook/gallery/studies/shrine/routes.dart' as shrine_routes;
+import 'package:flutter_cookbook/gallery/studies/starter/routes.dart' as starter_app_routes;
 import 'package:flutter_cookbook/routers/demos.banner.dart';
 import 'package:flutter_cookbook/routers/demos.cupertino.dart';
 import 'package:flutter_cookbook/routers/demos.daily.dart';
@@ -35,10 +42,28 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
     final localizations = GalleryLocalizations.of(context)!;
-    final studyDemos = DemosBannerAll.studies;
+    final Map<String, GalleryDemo> studyDemos = {};
+    DemosBannerAll.studies.forEach((key, value) {
+      studyDemos[key] = value.widget(localizations);
+    });
     final carouselCards = <Widget>[
       _CarouselCard(
-        demo: studyDemos['shrine']?.widget(localizations),
+        demo: studyDemos['reply'],
+        asset: const AssetImage(
+          'assets/studies/reply_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: const Color(0xFF344955),
+        assetDark: const AssetImage(
+          'assets/studies/reply_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF1D2327),
+        textColor: Colors.white,
+        studyRoute: reply_routes.homeRoute,
+      ),
+      _CarouselCard(
+        demo: studyDemos['shrine'],
         asset: const AssetImage(
           'assets/studies/shrine_card.png',
           package: 'flutter_gallery_assets',
@@ -51,6 +76,65 @@ class HomePage extends StatelessWidget {
         assetDarkColor: const Color(0xFF543B3C),
         textColor: shrineBrown900,
         studyRoute: shrine_routes.loginRoute,
+      ),
+      _CarouselCard(
+        demo: studyDemos['rally'],
+        textColor: RallyColors.accountColors[0],
+        asset: const AssetImage(
+          'assets/studies/rally_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: const Color(0xFFD1F2E6),
+        assetDark: const AssetImage(
+          'assets/studies/rally_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF253538),
+        studyRoute: rally_routes.loginRoute,
+      ),
+      _CarouselCard(
+        demo: studyDemos['crane'],
+        asset: const AssetImage(
+          'assets/studies/crane_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: const Color(0xFFFBF6F8),
+        assetDark: const AssetImage(
+          'assets/studies/crane_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF591946),
+        textColor: cranePurple700,
+        studyRoute: crane_routes.defaultRoute,
+      ),
+      _CarouselCard(
+        demo: studyDemos['fortnightly'],
+        asset: const AssetImage(
+          'assets/studies/fortnightly_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: Colors.white,
+        assetDark: const AssetImage(
+          'assets/studies/fortnightly_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF1F1F1F),
+        studyRoute: fortnightly_routes.defaultRoute,
+      ),
+      _CarouselCard(
+        demo: studyDemos['starterApp'],
+        asset: const AssetImage(
+          'assets/studies/starter_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: const Color(0xFFFAF6FE),
+        assetDark: const AssetImage(
+          'assets/studies/starter_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF3F3D45),
+        textColor: Colors.black,
+        studyRoute: starter_app_routes.defaultRoute,
       ),
     ];
 
@@ -399,7 +483,8 @@ class _DesktopCategoryItem extends StatelessWidget {
               ),
               Flexible(
                 child: ListView.builder(
-                  itemBuilder: (context, index) => CategoryDemoItem(baseRoute: demos[index].baseRoute,demo: demos[index]),
+                  itemBuilder: (context, index) =>
+                      CategoryDemoItem(baseRoute: demos[index].baseRoute, demo: demos[index]),
                 ),
               ),
             ],

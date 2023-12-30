@@ -129,8 +129,8 @@ void demo_cupertino_alert() => runApp(AppTemplate(
 // ignore: non_constant_identifier_names
 void demo_two_pane() => runApp(AppTemplate(
       widget: DemoPage(
-        baseRoutee: DemosOthers.twoPane.baseRoute,
-        slug: DemosOthers.twoPane.slug,
+        baseRoutee: DemosOthers.demoTwoPane.baseRoute,
+        slug: DemosOthers.demoTwoPane.slug,
       ),
     ));
 
