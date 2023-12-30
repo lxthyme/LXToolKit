@@ -16,6 +16,9 @@ typealias LXFlutterChannel = FlutterManager.ChannelName
 enum FlutterrError: Error {
     /// flutter engine 启动失败
     case engineRunFailure
+    case FlutterMethodNotImplemented
+    case callSwiftMethodFailure
+    case callSwiftMethodMissing
 }
 
 let defaultChannel: FlutterManager.Channel = FlutterManager.Channel(entrypoint: .default, channelName: .default)
@@ -75,16 +78,23 @@ public extension FlutterManager.Channel {
     func registerDefaultMethodChannel() {
         guard case .default = channelName else { return }
         dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
-        methodChannel.setMethodCallHandler { (call: FlutterMethodCall, result: @escaping FlutterResult) in
+        methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+            guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             guard let scene = LXFlutterMethod.DefaultScene.sceneFrom(title: call.method, arguments: call.arguments) else {
+                FlutterManager.reportError(error: .FlutterMethodNotImplemented,
+                                           call: call,
+                                           channelName: channelName,
+                                           entryPoint: entrypoint)
                 result(FlutterMethodNotImplemented)
                 return
             }
             switch scene {
             case .dismiss(let animated):
-                UIViewController.topViewController()?.dismiss(animated: animated)
-                result(nil)
+                if let topVC = UIViewController.topViewController() {
+                    topVC.dismiss(animated: animated)
+                    result(true)
+                }
             case .push(let vcName, let animated):
                 if let nav = UIViewController.topViewController()?.navigationController,
                    let vc = vcName.xl.getVCInstance() {
@@ -113,6 +123,10 @@ public extension FlutterManager.Channel {
                     result(true)
                 }
             }
+            FlutterManager.reportError(error: .callSwiftMethodFailure,
+                                       call: call,
+                                       channelName: channelName,
+                                       entryPoint: entrypoint)
             result(false)
         }
     }
@@ -189,8 +203,13 @@ public extension LXFlutterMethod {
                     let animated = params?["animated"] as? Bool
                     return .setNavHidden(isHidden: isHidden, animated: animated ?? true)
                 }
-            default: return nil
+            default: break
             }
+            CrashlyticsManager.record(error: FlutterrError.callSwiftMethodMissing, userInfo: [
+                "method": title,
+                "prefix": FlutterManager.PrefixSwift,
+                "arguments": String(describing: arguments)
+            ])
             return nil
         }
     }
@@ -256,5 +275,24 @@ private extension FlutterManager {
         //     }
         // }
         return channel
+    }
+}
+
+// MARK: - 👀
+extension FlutterManager {
+    static func reportError(error: FlutterrError,
+                            call: FlutterMethodCall,
+                            channelName: ChannelName,
+                            entryPoint: EntryPoint) {
+        var userInfo: [String: Any] = [
+            "method": call.method,
+            "channel": channelName.name,
+            "entrypoint": entryPoint.value ?? "nil",
+            "date": Date().string()
+        ]
+        if let arguments = call.arguments {
+            userInfo["arguments"] = String(describing: call.arguments)
+        }
+        CrashlyticsManager.record(error: error, userInfo: userInfo)
     }
 }
