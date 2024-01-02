@@ -13,7 +13,7 @@ import LXToolKit
 class LXiOS15ButtonTestVC: LXBaseVC {
     // MARK: UI
     private lazy var segmentConfigurationStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.XL.allCases.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.ConfigurationEnum.allCases.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -43,7 +43,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         return s
     }()
     private lazy var segmentMacIdiomStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.MacIdiomStyle.XL.allCases.map { $0.xl.rawValue } )
+        let s = UISegmentedControl(items: UIButton.Configuration.MacIdiomStyle.XL.allCases.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -141,20 +141,6 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         .brown,
         .random
     ]
-    // var background: UIBackgroundConfiguration
-    // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -181,22 +167,24 @@ private extension LXiOS15ButtonTestVC {
     // config.titleAlignment = .center
     @objc func segmentConfigurationStyleChanged(sender: UISegmentedControl) {
         // config = UIButton.Configuration.plain()
-        switch UIButton.Configuration.XL.allCases[sender.selectedSegmentIndex] {
-        case .plain():
+        // switch UIButton.Configuration.XL.allCases[sender.selectedSegmentIndex] {
+        guard let item = UIButton.ConfigurationEnum.allCases[safe: sender.selectedSegmentIndex] else { return }
+        switch item {
+        case .plain:
             config = UIButton.Configuration.plain()
-        case .tinted():
+        case .tinted:
             config = UIButton.Configuration.tinted()
-        case .gray():
+        case .gray:
             config = UIButton.Configuration.gray()
-        case .filled():
+        case .filled:
             config = UIButton.Configuration.filled()
-        case .borderless():
+        case .borderless:
             config = UIButton.Configuration.borderless()
-        case .bordered():
+        case .bordered:
             config = UIButton.Configuration.bordered()
-        case .borderedTinted():
+        case .borderedTinted:
             config = UIButton.Configuration.borderedTinted()
-        case .borderedProminent():
+        case .borderedProminent:
             config = UIButton.Configuration.borderedProminent()
         default:
             config = UIButton.Configuration.plain()
@@ -274,7 +262,6 @@ private extension LXiOS15ButtonTestVC {
     @objc func segmentBaseBackgroundColorChanged(sender: UISegmentedControl) {}
     @objc func btnRenderAction(sender: UIButton) {}
 }
-
 
 // MARK: - UI Prepare & Masonry
 @available(iOS 15.0, *)

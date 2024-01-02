@@ -28,9 +28,6 @@ class LXPhotoCell {
 
             prepareUI()
         }
-        open override func prepareForReuse() {
-            super.prepareForReuse()
-        }
     }
     class AddPhoto: UICollectionViewCell {
         // MARK: 📌UI
@@ -47,9 +44,6 @@ class LXPhotoCell {
 
             prepareUI()
         }
-        open override func prepareForReuse() {
-            super.prepareForReuse()
-        }
     }
     class CameraCell: UICollectionViewCell {
         // MARK: 📌UI
@@ -65,9 +59,6 @@ class LXPhotoCell {
             super.init(frame: frame)
 
             prepareUI()
-        }
-        open override func prepareForReuse() {
-            super.prepareForReuse()
         }
     }
 }

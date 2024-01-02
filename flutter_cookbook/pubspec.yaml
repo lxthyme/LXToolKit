@@ -33,11 +33,10 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   go_router: ^10.0.0
   flutter_localizations:
     sdk: flutter
-  intl: any
   flutter_localized_locales: ^2.0.4
   dual_screen: ^1.0.4
   adaptive_breakpoints: ^0.1.6
@@ -52,9 +51,21 @@ dependencies:
   url_launcher: ^6.1.12
   shrine_images: ^2.0.2
   rally_assets: ^3.0.1
+  animations: ^2.0.2
+  collection: ^1.16.0
+  flutter_staggered_grid_view: ^0.6.1
+  intl: any # An exact version pin will be provided by the Flutter SDK
+  meta: ^1.7.0
+  package_info_plus: ^4.0.2
+  path_provider: ^2.0.11
+  provider: ^6.0.2
+  scoped_model: ^2.0.0
+  vector_math: ^2.1.2
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_driver:
     sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -63,17 +74,71 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  args: ^2.3.1
+  grinder: ^0.9.1
+  path: ^1.8.1
+  string_scanner: ^1.1.0
+  test: ^1.21.1
+  web_benchmarks: ^0.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-  generate: true
+  generate: true # Enables generation of localized strings from arb files
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  deferred-components:
+    - name: crane
+      libraries:
+        # Only one library from the loading unit is necessary.
+        - package:gallery/studies/crane/app.dart
+      assets:
+        - packages/flutter_gallery_assets/crane/destinations/eat_0.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_1.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_2.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_3.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_4.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_5.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_6.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_7.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_8.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_9.jpg
+        - packages/flutter_gallery_assets/crane/destinations/eat_10.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_0.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_1.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_2.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_3.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_4.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_5.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_6.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_7.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_8.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_9.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_10.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_11.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_12.jpg
+        - packages/flutter_gallery_assets/crane/destinations/fly_13.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_0.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_1.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_2.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_3.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_4.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_5.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_6.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_7.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_8.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_9.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_10.jpg
+        - packages/flutter_gallery_assets/crane/destinations/sleep_11.jpg
+        - packages/flutter_gallery_assets/crane/logo/logo.png
+        - packages/flutter_gallery_assets/fonts/google_fonts/Raleway-Medium.ttf
+        - packages/flutter_gallery_assets/fonts/google_fonts/Raleway-SemiBold.ttf
+        - packages/flutter_gallery_assets/fonts/google_fonts/Raleway-Regular.ttf
+        - packages/flutter_gallery_assets/fonts/google_fonts/Raleway-Light.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

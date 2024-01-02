@@ -24,20 +24,6 @@ class LXYYLabelMoreTestVC: LXBaseVC {
         label.textAlignment = .left
         return label
     }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -100,23 +86,9 @@ extension LXYYLabelMoreTestVC {
     }
     func masonry() {
         labTitle.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(100);
-            $0.left.equalToSuperview().offset(16);
-            $0.right.equalToSuperview().offset(-16);
+            $0.top.equalToSuperview().offset(100)
+            $0.left.equalToSuperview().offset(16)
+            $0.right.equalToSuperview().offset(-16)
         }
-    }
-    override open func bindViewModel() {
-        super.bindViewModel()
-        // guard let vm = viewModel as? LXYYLabelMoreTestVCVM else { return }
-
-        // let input = LXYYLabelMoreTestVCVM.Input()
-        // let output = vm.transform(input: input)
-
-        // output.dataList
-        //     .asDriver(onErrorJustReturn: [])
-        //     .drive(table.rx.items(cellIdentifier: <#LXEventCell#>.XL.reuseIdentifier, cellType: <#LXEventCell#>.self)) {tableView, vm, cell in
-        //         // cell.bind(to: vm)
-        //     }
-        //     .disposed(by: rx.disposeBag)
     }
 }

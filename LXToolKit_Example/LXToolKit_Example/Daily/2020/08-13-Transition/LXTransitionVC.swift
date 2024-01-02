@@ -101,11 +101,10 @@ extension LXTransitionVC: UIViewControllerAnimatedTransitioning {
 extension LXTransitionVC: UIViewControllerInteractiveTransitioning {
     func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {}
 
-
 }
 
 // MARK: - UIViewControllerContextTransitioning
-//extension LXTransitionVC: UIViewControllerContextTransitioning {}
+// extension LXTransitionVC: UIViewControllerContextTransitioning {}
 
 // MARK: - UIViewControllerTransitionCoordinator
 extension LXTransitionVC: UIViewControllerTransitionCoordinator {
@@ -223,7 +222,7 @@ extension LXTransitionVC: UITabBarControllerDelegate {
 // MARK: - UI Prepare & Masonry
 private extension LXTransitionVC {
     open func prepareUI() {
-        //[<#table#>].forEach(self.view.addSubview)
+        // [<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 

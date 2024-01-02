@@ -12,13 +12,13 @@ private let kMaskView_Tag = 1233212334
 
 // MARK: - 👀common maskView
 public extension Swifty where Base: UIWindow {
-    static func getCurrentMaskView() ->UIView? {
+    static func getCurrentMaskView() -> UIView? {
         return UIApplication
             .shared
             .keyWindow?
             .viewWithTag(kMaskView_Tag)
     }
-    static func maskView() ->UIView {
+    static func maskView() -> UIView {
         var bgView: UIView
         if let tmp = getCurrentMaskView() {
             bgView = tmp

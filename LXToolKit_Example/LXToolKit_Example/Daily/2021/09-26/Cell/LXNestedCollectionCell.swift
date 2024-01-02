@@ -19,9 +19,6 @@ class LXNestedCollectionCell: UICollectionViewCell {
 
         prepareUI()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 
 // MARK: 👀Public Actions
@@ -34,7 +31,7 @@ private extension LXNestedCollectionCell {}
 private extension LXNestedCollectionCell {
     func prepareUI() {
         self.contentView.backgroundColor = .cyan
-        //[<#table#>].forEach(self.contentView.addSubview)
+        // [<#table#>].forEach(self.contentView.addSubview)
         masonry()
     }
 

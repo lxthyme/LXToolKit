@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-func apiError(_ error: String) ->NSError {
+func apiError(_ error: String) -> NSError {
     return NSError(domain: "WikipediaAPI", code: -1, userInfo: [
         NSLocalizedDescriptionKey: error
     ])
@@ -19,8 +19,8 @@ func apiError(_ error: String) ->NSError {
 let WikipediaParseError = apiError("Error during parsing!")
 
 protocol WikipediaAPI {
-    func getSearchResults(_ query: String) ->Observable<[WikipediaSearchResult]>
-    func articleContent(_ searchResult: WikipediaSearchResult) ->Observable<WikipediaPage>
+    func getSearchResults(_ query: String) -> Observable<[WikipediaSearchResult]>
+    func articleContent(_ searchResult: WikipediaSearchResult) -> Observable<WikipediaPage>
 }
 
 class DefaultWikipediaAPI: WikipediaAPI {
@@ -30,7 +30,7 @@ class DefaultWikipediaAPI: WikipediaAPI {
 
     private init() {}
 
-    private func JSON(_ url: URL) ->Observable<Any> {
+    private func JSON(_ url: URL) -> Observable<Any> {
         return `$`.URLSession
             .rx.json(url: url)
             .trackActivity(loadingWikipediaData)
@@ -72,7 +72,7 @@ class DefaultWikipediaAPI: WikipediaAPI {
                 guard let json = jsonResult as? NSDictionary else {
                     throw exampleError("Parsing error!")
                 }
-                
+
                 return try WikipediaPage.parseJSON(json)
         }
         .observeOn(`$`.mainScheduler)

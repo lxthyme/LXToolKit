@@ -16,13 +16,13 @@ enum RetryResult {
 
 protocol Wireframe {
     func open(url: URL)
-    func promptFor<Action: CustomStringConvertible>(_ message: String, cancelAction: Action, actions: [Action]) ->Observable<Action>
+    func promptFor<Action: CustomStringConvertible>(_ message: String, cancelAction: Action, actions: [Action]) -> Observable<Action>
 }
 
 class DefaultWireframe {
     static let shared = DefaultWireframe()
 
-    private static func rootVC() ->UIViewController? {
+    private static func rootVC() -> UIViewController? {
         return UIApplication.shared.keyWindow?.rootViewController
     }
     static func presentAlert(title: String, message: String, style: UIAlertController.Style = .alert, actions: [UIAlertAction] = []) {
@@ -42,7 +42,7 @@ extension DefaultWireframe: Wireframe {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    func promptFor<Action>(_ message: String, cancelAction: Action, actions: [Action]) -> Observable<Action> where Action : CustomStringConvertible {
+    func promptFor<Action>(_ message: String, cancelAction: Action, actions: [Action]) -> Observable<Action> where Action: CustomStringConvertible {
         return Observable.create { observer in
             let alert = UIAlertController(title: "LXExample", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: cancelAction.description, style: .cancel, handler: { _ in

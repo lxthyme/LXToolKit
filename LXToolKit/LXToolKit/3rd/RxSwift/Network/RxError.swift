@@ -293,7 +293,7 @@ extension RxErrorModel {
 }
 
 // MARK: - 👀
-//public extension Error {
+// public extension Error {
 //    var toRxMoyaError: RxMoyaError {
 //        switch (self as NSError).code {
 //            case NSURLErrorTimedOut: return .timeout
@@ -480,4 +480,4 @@ extension RxErrorModel {
 //        }
 //        return errorMesg
 //    }
-//}
+// }

@@ -106,7 +106,6 @@ extension UICellAccessoryEnum: CustomStringConvertible {
     }
 }
 
-
 // MARK: - 👀
 extension UICellAccessory.DisplayedState: CustomStringConvertible {
     public var description: String {

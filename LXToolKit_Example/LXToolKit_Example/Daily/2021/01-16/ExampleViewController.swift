@@ -159,27 +159,26 @@ class ExampleViewController: UIViewController {
            let picker = YPImagePicker() and the configuration will be the same as the first picker. */
 
         /* Only show library pictures from the last 3 days */
-        //let threDaysTimeInterval: TimeInterval = 3 * 60 * 60 * 24
-        //let fromDate = Date().addingTimeInterval(-threDaysTimeInterval)
-        //let toDate = Date()
-        //let options = PHFetchOptions()
+        // let threDaysTimeInterval: TimeInterval = 3 * 60 * 60 * 24
+        // let fromDate = Date().addingTimeInterval(-threDaysTimeInterval)
+        // let toDate = Date()
+        // let options = PHFetchOptions()
         // options.predicate = NSPredicate(format: "creationDate > %@ && creationDate < %@", fromDate as CVarArg, toDate as CVarArg)
         //
-        ////Just a way to set order
-        //let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        //options.sortDescriptors = [sortDescriptor]
+        //// Just a way to set order
+        // let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        // options.sortDescriptors = [sortDescriptor]
         //
-        //config.library.options = options
+        // config.library.options = options
 
         config.library.preselectedItems = selectedItems
 
-
 		// Customise fonts
-		//config.fonts.menuItemFont = UIFont.systemFont(ofSize: 22.0, weight: .semibold)
-		//config.fonts.pickerTitleFont = UIFont.systemFont(ofSize: 22.0, weight: .black)
-		//config.fonts.rightBarButtonFont = UIFont.systemFont(ofSize: 22.0, weight: .bold)
-		//config.fonts.navigationBarTitleFont = UIFont.systemFont(ofSize: 22.0, weight: .heavy)
-		//config.fonts.leftBarButtonFont = UIFont.systemFont(ofSize: 22.0, weight: .heavy)
+		// config.fonts.menuItemFont = UIFont.systemFont(ofSize: 22.0, weight: .semibold)
+		// config.fonts.pickerTitleFont = UIFont.systemFont(ofSize: 22.0, weight: .black)
+		// config.fonts.rightBarButtonFont = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+		// config.fonts.navigationBarTitleFont = UIFont.systemFont(ofSize: 22.0, weight: .heavy)
+		// config.fonts.leftBarButtonFont = UIFont.systemFont(ofSize: 22.0, weight: .heavy)
 
         let picker = YPImagePicker(configuration: config)
 
@@ -209,7 +208,7 @@ class ExampleViewController: UIViewController {
 
                     let assetURL = video.url
                     let playerVC = AVPlayerViewController()
-                    let player = AVPlayer(playerItem: AVPlayerItem(url:assetURL))
+                    let player = AVPlayer(playerItem: AVPlayerItem(url: assetURL))
                     playerVC.player = player
 
                     picker.dismiss(animated: true, completion: { [weak self] in
@@ -228,7 +227,7 @@ class ExampleViewController: UIViewController {
         // }
 
         /* Single Video implementation. */
-        //picker.didFinishPicking { [unowned picker] items, cancelled in
+        // picker.didFinishPicking { [unowned picker] items, cancelled in
         //    if cancelled { picker.dismiss(animated: true, completion: nil); return }
         //
         //    self.selectedItems = items
@@ -243,7 +242,7 @@ class ExampleViewController: UIViewController {
         //        self?.present(playerVC, animated: true, completion: nil)
         //        print("😀 \(String(describing: self?.resolutionForLocalVideo(url: assetURL)!))")
         //    })
-        //}
+        // }
 
         present(picker, animated: true, completion: nil)
     }

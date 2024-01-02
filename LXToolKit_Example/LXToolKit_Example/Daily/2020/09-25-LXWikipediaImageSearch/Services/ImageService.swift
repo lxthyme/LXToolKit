@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol ImageService {
-    func imageFromURL(_ url: URL, reachabilityService: ReachabilityService) ->Observable<DownloadableImage>
+    func imageFromURL(_ url: URL, reachabilityService: ReachabilityService) -> Observable<DownloadableImage>
 }
 
 class DefaultImageService: ImageService {
@@ -31,7 +31,7 @@ class DefaultImageService: ImageService {
         _imageCache.countLimit = 20
     }
 
-    private func decodeImage(_ imageData: Data) ->Observable<UIImage> {
+    private func decodeImage(_ imageData: Data) -> Observable<UIImage> {
         return Observable.just(imageData)
             .observeOn(`$`.backgroundWorkScheduler)
             .map { data in
@@ -42,7 +42,7 @@ class DefaultImageService: ImageService {
         }
     }
 
-    private func _imageFromURL(_ url: URL) ->Observable<UIImage> {
+    private func _imageFromURL(_ url: URL) -> Observable<UIImage> {
         return Observable.deferred {
             let maybeImage = self._imageCache.object(forKey: url as AnyObject) as? UIImage
             let decodedImage: Observable<UIImage>

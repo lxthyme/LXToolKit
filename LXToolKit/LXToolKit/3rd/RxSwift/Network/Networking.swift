@@ -39,7 +39,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
             .flatMap { _ in// Turn the online state into a network request
                 return actualRequest
                     .filterSuccessfulStatusCodes()
-                    //TODO: 「lxthyme」💊评估是否需要保留
+                    // TODO: 「lxthyme」💊评估是否需要保留
                     // .do(onSuccess: { response in
                     // }, onError: { error in
                     //     if let error = error as? MoyaError {
@@ -137,7 +137,7 @@ extension NetworkingType {
     }
     static var plugins: [PluginType] {
         var plugins: [PluginType] = []
-        //TODO: 「lxthyme」💊评估是否需要保留
+        // TODO: 「lxthyme」💊评估是否需要保留
         // if AppConfig.Network.loggingEnabled {
         //     let formatter = NetworkLoggerPlugin.Configuration.Formatter { identifier, message, target in
         //         let date = defaultEntryDateFormatter().string(from: Date())

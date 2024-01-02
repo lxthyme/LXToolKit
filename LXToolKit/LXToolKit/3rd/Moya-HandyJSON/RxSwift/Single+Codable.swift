@@ -46,7 +46,7 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
             return Single.just(try response.mapHandyJSON(type, atKeyPath: keyPath))
         }
     }
-    
+
     /// Maps data received from the signal into an array of objects
     /// which implement the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.

@@ -15,7 +15,7 @@ extension AppDelegate {
     func configureNotification() {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
             let delegate = SampleNotificationDelegate()
             center.delegate = delegate
             notificationDelegate = delegate

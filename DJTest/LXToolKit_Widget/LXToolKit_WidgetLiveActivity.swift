@@ -69,7 +69,7 @@ extension LXToolKit_WidgetAttributes.ContentState {
     fileprivate static var smiley: LXToolKit_WidgetAttributes.ContentState {
         LXToolKit_WidgetAttributes.ContentState(emoji: "😀")
      }
-     
+
      fileprivate static var starEyes: LXToolKit_WidgetAttributes.ContentState {
          LXToolKit_WidgetAttributes.ContentState(emoji: "🤩")
      }

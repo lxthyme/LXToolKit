@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - 👀
-//extension LXMaJia {
+// extension LXMaJia {
 //    static func modifyFileName(sourceDir: String, oldClassPrefix: String, newClassPrefiix: String) {
 //        guard let allFiles = try? fm.contentsOfDirectory(atPath: sourceDir) else { return }
 //        var isDirectory: ObjCBool = true
@@ -62,11 +62,11 @@ import Foundation
 //            }
 //        }
 //    }
-//}
+// }
 
-//#pragma mark - 修改类名前缀
+// #pragma mark - 修改类名前缀
 
-//void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSString *newClassName) {
+// void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSString *newClassName) {
 //    // 文件内容 Const > DDConst (h,m,swift,xib,storyboard)
 //    NSFileManager *fm = [NSFileManager defaultManager];
 //    NSArray<NSString *> *files = [fm contentsOfDirectoryAtPath:sourceCodeDir error:nil];
@@ -99,9 +99,9 @@ import Foundation
 //            }
 //        }
 //    }
-//}
+// }
 
-//void modifyClassNamePrefix(NSMutableString *projectContent, NSString *sourceCodeDir, NSArray<NSString *> *ignoreDirNames, NSString *oldName, NSString *newName) {
+// void modifyClassNamePrefix(NSMutableString *projectContent, NSString *sourceCodeDir, NSArray<NSString *> *ignoreDirNames, NSString *oldName, NSString *newName) {
 //    NSFileManager *fm = [NSFileManager defaultManager];
 //
 //    // 遍历源代码文件 h 与 m 配对，swift
@@ -176,4 +176,4 @@ import Foundation
 //        NSString *regularExpression = [NSString stringWithFormat:@"\\b%@\\b", fileName];
 //        regularReplacement(projectContent, regularExpression, newClassName);
 //    }
-//}
+// }

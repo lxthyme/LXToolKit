@@ -194,7 +194,6 @@ private extension LXOutlineVC {
 
         [self.outlineCollectionView].forEach(self.view.addSubview)
 
-
         masonry()
     }
 

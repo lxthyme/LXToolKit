@@ -24,7 +24,6 @@ extension UIScrollView {
     }
 }
 
-
 // MARK: - 👀
 extension Reactive where Base: UITableView {
     var beginReloadData: Binder<Void> {

@@ -9,13 +9,13 @@ import Foundation
 import HandyJSON
 
 class LX0117Model: NSObject, HandyJSON {
-    var page : Int = 0
+    var page: Int = 0
     var total_page: Int = 0
 
     class ListItem: NSObject, HandyJSON {
         var year: String = ""
         var month: String = ""
-        var id : Int = 0
+        var id: Int = 0
         var title: String = ""
         var dt: Int = 0
         var growthValue: String = ""

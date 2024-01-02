@@ -73,17 +73,13 @@ class LXSongRecordCell: LXBaseCollectionCell {
         detaObservable.bind(to: cellModelHandle).disposed(by: rx.disposeBag)
         prepareUI()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 
 // MARK: 👀Public Actions
 extension LXSongRecordCell {
 
-
-    var cellModelHandle: Binder<LXSongCellVM>{
-        return Binder(self){ cell, model in
+    var cellModelHandle: Binder<LXSongCellVM> {
+        return Binder(self) { cell, model in
 
         }
     }

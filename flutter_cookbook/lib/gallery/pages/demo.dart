@@ -4,11 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cookbook/gallery/codeviewer/code_displayer.dart';
-import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:flutter_cookbook/gallery/codeviewer/code_style.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/demos.dart';
@@ -16,7 +11,11 @@ import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/feature_discovery/feature_discovery.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
+import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
 import 'package:flutter_cookbook/gallery/themes/material_demo_theme_data.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 enum _DemoState {
   normal,
@@ -53,6 +52,7 @@ class _DemoPageState extends State<DemoPage> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('-->demo page: ${widget.baseRoutee}-${widget.slug}: ${slugToDemoMap[widget.slug]?.describe}');
     if (widget.slug == null || !slugToDemoMap.containsKey(widget.slug)) {
       Navigator.of(context).pop();
     }
@@ -164,7 +164,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: Text(AppLocalizations.of(context)!.demoInvalidURL),
+            title: Text(GalleryLocalizations.of(context)!.demoInvalidURL),
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -203,7 +203,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
     final selectedIconColor = colorScheme.primary;
     final appBarPadding = isDesktop ? 20.0 : 0.0;
     final currentDemoState = _DemoState.values[_demoStateIndex.value];
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = GalleryLocalizations.of(context)!;
     final options = GalleryOptions.of(context);
 
     final appBar = AppBar(
@@ -320,8 +320,8 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
         );
         break;
       default:
-        section = const Center(
-          child: Text('demo.dart'),
+        section = Center(
+          child: Text('demo.dart - $currentDemoState'),
         );
         break;
     }
@@ -355,7 +355,7 @@ class _GalleryDemoPageState extends State<GalleryDemoPage> with RestorationMixin
 
       final isDemoNormal = currentDemoState == _DemoState.normal;
       demoContent = Semantics(
-        label: '${AppLocalizations.of(context)!.demo}, ${widget.demo.title}',
+        label: '${GalleryLocalizations.of(context)!.demo}, ${widget.demo.title}',
         child: MouseRegion(
           cursor: isDemoNormal ? MouseCursor.defer : SystemMouseCursors.click,
           child: GestureDetector(
@@ -459,7 +459,7 @@ class _DemoSectionOptions extends StatelessWidget {
                 end: 24,
               ),
               child: Text(
-                AppLocalizations.of(context)!.demoOptionsTooltip,
+                GalleryLocalizations.of(context)!.demoOptionsTooltip,
                 style: textTheme.headlineMedium!.apply(
                   color: colorScheme.onSurface,
                   fontSizeDelta: isDisplayDesktop(context) ? desktopDisplay1FontDelta : 0,
@@ -661,7 +661,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            AppLocalizations.of(context)!.demoCodeViewerCopiedToClipboardMessage,
+            GalleryLocalizations.of(context)!.demoCodeViewerCopiedToClipboardMessage,
           ),
         ),
       );
@@ -671,7 +671,7 @@ class CodeDisplayPage extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            AppLocalizations.of(context)!.demoCodeViewerFailedToCopyToClipboardMessage(exception),
+            GalleryLocalizations.of(context)!.demoCodeViewerFailedToCopyToClipboardMessage(exception),
           ),
         ),
       );
@@ -696,7 +696,7 @@ class CodeDisplayPage extends StatelessWidget {
               ),
             ),
             child: Text(
-              AppLocalizations.of(context)!.demoCodeViewerCopyAll,
+              GalleryLocalizations.of(context)!.demoCodeViewerCopyAll,
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

@@ -129,7 +129,6 @@ struct EmojiRangerWidgetEntryView: View {
     }
 }
 
-
 struct EmojiRangerWidget: Widget {
     func makeWidgetConfiguration() -> some WidgetConfiguration {
 #if os(watchOS)

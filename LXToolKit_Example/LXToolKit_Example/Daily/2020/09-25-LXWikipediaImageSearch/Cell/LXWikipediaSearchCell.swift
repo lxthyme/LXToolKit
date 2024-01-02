@@ -125,24 +125,9 @@ class LXWikipediaSearchCell: LXBaseTableCell {
             //            self.disposeBag = disposeBag
         }
     }
-    // override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    //     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    //
-    //     prepareUI()
-    // }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     override func prepareForReuse() {
         super.prepareForReuse()
         self.viewModel = nil
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

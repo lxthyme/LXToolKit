@@ -124,17 +124,17 @@ private extension LXStackTestVC {
             .throttle(.microseconds(300), scheduler: MainScheduler.instance)
             .subscribe { _ in
                 if idx % 4 == 0 {
-                    self.labTitle1.isHidden = true;
-                    self.labTitle2.isHidden = false;
+                    self.labTitle1.isHidden = true
+                    self.labTitle2.isHidden = false
                 } else if idx % 4 == 1 {
-                    self.labTitle1.isHidden = false;
-                    self.labTitle2.isHidden = true;
+                    self.labTitle1.isHidden = false
+                    self.labTitle2.isHidden = true
                 } else if idx % 4 == 2 {
-                    self.labTitle1.isHidden = true;
-                    self.labTitle2.isHidden = true;
+                    self.labTitle1.isHidden = true
+                    self.labTitle2.isHidden = true
                 } else if idx % 4 == 3 {
-                    self.labTitle1.isHidden = false;
-                    self.labTitle2.isHidden = false;
+                    self.labTitle1.isHidden = false
+                    self.labTitle2.isHidden = false
                 }
                 idx += 1
             }

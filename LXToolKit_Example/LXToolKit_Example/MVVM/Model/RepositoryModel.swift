@@ -156,7 +156,6 @@ extension RepositoryModel {
     }
 }
 
-
 extension RepositoryModel: Equatable {
     static func == (lhs: RepositoryModel, rhs: RepositoryModel) -> Bool {
         return lhs.fullname == rhs.fullname

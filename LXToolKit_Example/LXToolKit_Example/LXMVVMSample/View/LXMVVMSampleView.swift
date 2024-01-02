@@ -35,7 +35,7 @@ private extension LXMVVMSampleView {
         self.backgroundColor = .white
         // self.title = "<#title#>"
 
-        //[<#table#>].forEach(self.addSubview)
+        // [<#table#>].forEach(self.addSubview)
         masonry()
     }
 

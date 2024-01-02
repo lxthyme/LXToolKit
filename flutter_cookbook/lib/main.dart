@@ -1,24 +1,28 @@
 import 'package:dual_screen/dual_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_cookbook/daily/daily_demos.dart';
-import 'package:flutter_cookbook/daily/widgets-intro/Counter.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
-import 'package:flutter_cookbook/gallery/firebase_options.dart';
+// import 'package:flutter_cookbook/gallery/deferred_widget.dart';
+// import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
 import 'package:flutter_cookbook/gallery/pages/backdrop.dart';
+import 'package:flutter_cookbook/gallery/pages/demo.dart';
 import 'package:flutter_cookbook/gallery/pages/splash.dart';
 import 'package:flutter_cookbook/gallery/routes.dart';
 import 'package:flutter_cookbook/gallery/themes/gallery_theme_data.dart';
+import 'package:flutter_cookbook/routers/demos.cupertino.dart';
+import 'package:flutter_cookbook/routers/demos.daily.dart';
+import 'package:flutter_cookbook/routers/demos.material.dart';
+import 'package:flutter_cookbook/routers/demos.others.dart';
 // import 'package:flutter_cookbook/router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,12 +53,86 @@ void main() async {
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
 }
+
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
 void bottomMain() => runApp(const MultiCounter(color: Colors.green));
 @pragma('vm:entry-point')
 void galleryApp() => runApp(const GalleryApp());
+
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MyScaffold() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.myScaffold.baseRoute,
+        slug: DemosDaily.myScaffold.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_TutorialHome() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.tutorialHome.baseRoute,
+        slug: DemosDaily.tutorialHome.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MyButton() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.myButton.baseRoute,
+        slug: DemosDaily.myButton.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_Counter() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.counter.baseRoute,
+        slug: DemosDaily.counter.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void daily_MultiCounter() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosDaily.multiCounter.baseRoute,
+        slug: DemosDaily.multiCounter.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_app_bar() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosMaterial.appBar.baseRoute,
+        slug: DemosMaterial.appBar.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_cupertino_activity_indicator() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosCupertino.cupertinoActivityIndicator.baseRoute,
+        slug: DemosCupertino.cupertinoActivityIndicator.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_cupertino_alert() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosCupertino.cupertinoAlert.baseRoute,
+        slug: DemosCupertino.cupertinoAlert.slug,
+      ),
+    ));
+@pragma('vm:entry-point')
+// ignore: non_constant_identifier_names
+void demo_two_pane() => runApp(AppTemplate(
+      widget: DemoPage(
+        baseRoutee: DemosOthers.demoTwoPane.baseRoute,
+        slug: DemosOthers.demoTwoPane.slug,
+      ),
+    ));
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -87,11 +165,11 @@ class MyApp extends StatelessWidget {
         // theme: ,
         // darkTheme: ,
         localizationsDelegates: const [
-          ...AppLocalizations.localizationsDelegates,
+          ...GalleryLocalizations.localizationsDelegates,
           LocaleNamesLocalizationsDelegate(),
         ],
         initialRoute: initialRoute,
-        supportedLocales: AppLocalizations.supportedLocales,
+        supportedLocales: GalleryLocalizations.supportedLocales,
         // locale: ,
         // localeListResolutionCallback:(locales, supportedLocales) => {
         //   return basicLocaleListResolution(locales, supportedLocales);
@@ -257,11 +335,11 @@ class GalleryApp extends StatelessWidget {
               platform: options.platform,
             ),
             localizationsDelegates: const [
-              ...AppLocalizations.localizationsDelegates,
+              ...GalleryLocalizations.localizationsDelegates,
               LocaleNamesLocalizationsDelegate(),
             ],
             initialRoute: initialRoute,
-            supportedLocales: AppLocalizations.supportedLocales,
+            supportedLocales: GalleryLocalizations.supportedLocales,
             locale: options.locale,
             localeListResolutionCallback: (locales, supportedLocales) {
               deviceLocale = locales?.first;
@@ -270,7 +348,72 @@ class GalleryApp extends StatelessWidget {
             onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
             onUnknownRoute: (settings) {
               debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+              return null;
             },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class AppTemplate extends StatelessWidget {
+  const AppTemplate({
+    super.key,
+    required this.widget,
+    this.initialRoute,
+    this.isTestMode = false,
+  });
+
+  final String? initialRoute;
+  final bool isTestMode;
+  final Widget widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return ModelBinding(
+      initialModel: GalleryOptions(
+        themeMode: ThemeMode.system,
+        textScaleFactor: systemTextScaleFactorOption,
+        customTextDirection: CustomTextDirection.localeBased,
+        locale: null,
+        timeDilation: timeDilation,
+        platform: defaultTargetPlatform,
+        isTestMode: isTestMode,
+      ),
+      child: Builder(
+        builder: (context) {
+          final options = GalleryOptions.of(context);
+          final hasHinge = MediaQuery.of(context).hinge?.bounds != null;
+          debugPrint('-->initialRoute: $initialRoute');
+          return MaterialApp(
+            restorationScopeId: 'rootGallery',
+            title: 'Flutter Gallery',
+            debugShowCheckedModeBanner: true,
+            themeMode: options.themeMode,
+            theme: GalleryThemeData.lightThemeData.copyWith(
+              platform: options.platform,
+            ),
+            darkTheme: GalleryThemeData.darkThemeData.copyWith(
+              platform: options.platform,
+            ),
+            localizationsDelegates: const [
+              ...GalleryLocalizations.localizationsDelegates,
+              LocaleNamesLocalizationsDelegate(),
+            ],
+            initialRoute: initialRoute,
+            supportedLocales: GalleryLocalizations.supportedLocales,
+            locale: options.locale,
+            localeListResolutionCallback: (locales, supportedLocales) {
+              deviceLocale = locales?.first;
+              return basicLocaleListResolution(locales, supportedLocales);
+            },
+            onGenerateRoute: (settings) => RouteConfiguration.onGenerateRoute(settings, hasHinge),
+            onUnknownRoute: (settings) {
+              debugPrint('-->onUnknownRoute: ${settings.name}\t${settings.arguments}\n${settings.toString()}');
+              return null;
+            },
+            home: widget,
           );
         },
       ),

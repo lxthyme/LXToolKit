@@ -58,7 +58,7 @@ public extension Swifty where Base: UIView {
         let path = UIBezierPath(roundedRect: base.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: raddi, height: raddi))
 
         // 边框
-        if(borderWidth > 0) {
+        if borderWidth > 0 {
             let borderLayer = CAShapeLayer()
             borderLayer.frame = base.bounds
             borderLayer.path = path.cgPath

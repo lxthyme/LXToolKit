@@ -90,10 +90,6 @@ class ViewController: LXBaseVC {
 
         startActivity()
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 }
 
@@ -178,7 +174,7 @@ private extension ViewController {
             .disposed(by: rx.disposeBag)
     }
     func prepareUI() {
-        self.view.backgroundColor = .white;
+        self.view.backgroundColor = .white
         contentStackView.spacing = 10
         [btnGo, btnReset, btnResourcesCount, tvContent].forEach(contentStackView.addArrangedSubview)
         masonry()

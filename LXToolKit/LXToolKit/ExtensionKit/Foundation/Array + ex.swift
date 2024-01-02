@@ -7,9 +7,9 @@
 
 import Foundation
 
-//public extension Swifty where Base: Array<Any>, Base.Element: Equatabledo {
+// public extension Swifty where Base: Array<Any>, Base.Element: Equatabledo {
 //    typealias Element = Base.Element
-//}
+// }
 
 // MARK: - 👀
 extension Array where Element: Equatable {

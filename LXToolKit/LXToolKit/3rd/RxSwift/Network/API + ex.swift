@@ -34,7 +34,7 @@ let multiTargetEndpointClosure = { (target: MultiTarget) -> Endpoint in
     return defaultEndPoint
 }
 
-let requestClosure = { (endpoint: Endpoint, closure: @escaping (Result<URLRequest, MoyaError>) -> Void) ->Void in
+let requestClosure = { (endpoint: Endpoint, closure: @escaping (Result<URLRequest, MoyaError>) -> Void) -> Void in
     do {
         let urlRequest = try endpoint.urlRequest()
         closure(.success(urlRequest))
@@ -65,7 +65,7 @@ let manager = { () -> Alamofire.Session in
 let source = TokenSource()
 
 // MARK: - 🔥provider
-func getProvider<T: TargetType>(with target: T) ->MoyaProvider<T> {
+func getProvider<T: TargetType>(with target: T) -> MoyaProvider<T> {
     return MoyaProvider<T>(
         /// endpointClosure: TargetType --> EndPoint
         endpointClosure: makeEndpointClosure(with: target),

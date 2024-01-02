@@ -22,7 +22,7 @@ class NotificationService: UNNotificationServiceExtension {
             // Modify the notification content here...
             bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
 
-            var urlString:String? = nil
+            var urlString: String?
             if let aps = request.content.userInfo["aps"] as? [String: Any],
                 let alert = aps["alert"] as? [String: Any],
                 let urlImageString = alert["image"] as? String {
@@ -64,7 +64,7 @@ class NotificationService: UNNotificationServiceExtension {
 @available(iOSApplicationExtension 10.0, *)
 extension UNNotificationAttachment {
 
-    static func saveImageToDisk(fileIdentifier: String, data: NSData, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+    static func saveImageToDisk(fileIdentifier: String, data: NSData, options: [NSObject: AnyObject]?) -> UNNotificationAttachment? {
         let fileManager = FileManager.default
         let folderName = ProcessInfo.processInfo.globallyUniqueString
         let folderURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(folderName, isDirectory: true)

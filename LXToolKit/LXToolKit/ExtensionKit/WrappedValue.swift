@@ -7,9 +7,9 @@
 
 import Foundation
 
-//extension UIColor: NamespaceWrappable {}
-//extension UIView: NamespaceWrappable {}
-//extension NSObject: NamespaceWrappable {}
+// extension UIColor: NamespaceWrappable {}
+// extension UIView: NamespaceWrappable {}
+// extension NSObject: NamespaceWrappable {}
 
 extension Array: SwiftyCompatible {}
 
@@ -37,7 +37,7 @@ extension CATransform3D: SwiftyCompatible {}
 
 // MARK: - 👀UIButton
 @available(iOS 15.0, *)
-extension UIButton.Configuration: SwiftyCompatible {}
+extension UIButton.ConfigurationEnum: SwiftyCompatible {}
 @available(iOS 15.0, *)
 extension UIButton.Configuration.Size: SwiftyCompatible {}
 @available(iOS 15.0, *)

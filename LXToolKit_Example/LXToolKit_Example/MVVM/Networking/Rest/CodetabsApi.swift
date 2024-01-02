@@ -26,7 +26,7 @@ extension CodetabsApi: TargetType, ProductApiType {
         default: return .get
         }
     }
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return nil
     }
     var parameters: [String: Any]? {

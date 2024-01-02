@@ -52,7 +52,7 @@ open class LXBaseVC: UIViewController, Navigatable {
     // MARK: 📌UI
     public lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
-        sb.placeholder = ""//R.string.localizable.commonSearch()
+        sb.placeholder = ""// R.string.localizable.commonSearch()
         sb.isTranslucent = false
         sb.searchBarStyle = .minimal
 
@@ -86,7 +86,7 @@ open class LXBaseVC: UIViewController, Navigatable {
         return item
     }()
     public lazy var closeBarButton: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: nil,//R.image.icon_navigation_close(),
+        let item = UIBarButtonItem(image: nil,// R.image.icon_navigation_close(),
                                    style: .plain,
                                    target: self,
                                    action: nil)
@@ -132,7 +132,6 @@ open class LXBaseVC: UIViewController, Navigatable {
     public let orientationEvent = PublishSubject<Void>()
     public let motionShakeEvent = PublishSubject<Void>()
 
-
     // MARK: 🛠Life Cycle
     // public required init?(coder: NSCoder) {
     //     fatalError("init(coder:) has not been implemented")
@@ -157,19 +156,6 @@ open class LXBaseVC: UIViewController, Navigatable {
         if automaticallyAdjustsLeftBarButtonItem {
             adjustLeftBarButtonItem()
         }
-    }
-    open override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -360,14 +346,14 @@ private extension LXBaseVC {
             }
             .disposed(by: rx.disposeBag)
         orientationEvent
-            .subscribe(onNext:  { [weak self] () in
+            .subscribe(onNext: { [weak self] () in
                 self?.orientationChanged()
             })
             .disposed(by: rx.disposeBag)
     }
     func basePrepareVM() {
         closeBarButton.rx.tap.asObservable()
-            .subscribe(onNext:  { [weak self] () in
+            .subscribe(onNext: { [weak self] () in
                 self?.navigator.dismiss(sender: self)
             })
             .disposed(by: rx.disposeBag)
@@ -399,7 +385,6 @@ private extension LXBaseVC {
         // backBarButton.theme.tintColor = themeService.attribute { $0.secondary }
         // closeBarButton.theme.tintColor = themeService.attribute { $0.secondary }
         // theme.emptyDataSetImageTintColorBinder = themeService.attribute { $0.text }
-
 
         self.view.addSubview(contentView)
         self.view.addSubview(contentStackView)

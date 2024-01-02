@@ -94,7 +94,6 @@ private extension LXGridVC {
             // Fallback on earlier versions
         }
 
-
         masonry()
     }
 

@@ -13,10 +13,10 @@ class LXMusicVM: NSObject {
     // MARK: 🔗Vaiables
     var dataList: Observable<[LXMusicModel?]> = {
         let data = [
-            ["name": "无条件", "singer" : "陈奕迅"],
-            ["name": "你曾是少年", "singer" : "S.H.E"],
-            ["name": "从前的我", "singer" : "陈洁仪"],
-            ["name": "在木星", "singer" : "朴树"]
+            ["name": "无条件", "singer": "陈奕迅"],
+            ["name": "你曾是少年", "singer": "S.H.E"],
+            ["name": "从前的我", "singer": "陈洁仪"],
+            ["name": "在木星", "singer": "朴树"]
         ]
         let list = [LXMusicModel].deserialize(from: data) ?? []
         return Observable.just(list)

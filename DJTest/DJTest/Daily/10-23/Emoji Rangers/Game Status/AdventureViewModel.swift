@@ -80,7 +80,7 @@ extension AdventureViewModel {
     struct ActivityViewState: Sendable {
         var activityState: ActivityState
         var contentState: AdventureAttributes.ContentState
-        var pushToken: String? = nil
+        var pushToken: String?
 
         var shouldShowEndControls: Bool {
             switch activityState {
@@ -116,11 +116,11 @@ extension AdventureViewModel {
 @MainActor
 final class AdventureViewModel: ObservableObject {
     #if EmojiRangersConfig_Open
-    @Published var activityViewState: ActivityViewState? = nil
+    @Published var activityViewState: ActivityViewState?
     #endif
-    @Published var errorMessage: String? = nil
+    @Published var errorMessage: String?
 
-    private var currentActivity: Activity<AdventureAttributes>? = nil
+    private var currentActivity: Activity<AdventureAttributes>?
 
     func loadAdventrue(hero: EmojiRanger) {
         let activitiesForHero = Activity<AdventureAttributes>.activities.filter { $0.attributes.hero == hero
@@ -279,7 +279,7 @@ private extension AdventureViewModel {
             return
         }
 
-        var alertConfig: AlertConfiguration? = nil
+        var alertConfig: AlertConfiguration?
         let contentState: AdventureAttributes.ContentState
         if alert {
             let heroName = activity.attributes.hero.name

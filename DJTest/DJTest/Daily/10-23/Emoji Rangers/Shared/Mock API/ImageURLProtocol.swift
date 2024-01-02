@@ -66,4 +66,3 @@ class ImageURLProtocol: URLProtocol {
         return URLSession(configuration: config)
     }
 }
-

@@ -12,24 +12,6 @@ import RswiftResources
 import RxTheme
 
 open class LXNavigationController: UINavigationController {
-    // MARK: 📌UI
-    // MARK: 🔗Vaiables
-    // open override var preferredStatusBarStyle: UIStatusBarStyle {
-    //     return globalStatusBarStyle.value
-    // }
-    // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
 

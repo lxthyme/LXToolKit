@@ -33,13 +33,13 @@ extension LXBaseTableViewProtocol {
         // t.separatorInset = .zero
         t.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
         t.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.01))
-        
+
         // t.delegate = self
         // t.dataSource = self
         // t.rx.setDelegate(self).disposed(by: rx.disposeBag)
         // t.rx.setDataSource(self).disposed(by: rx.disposeBag)
         t.xl.adapterWith(parentVC: nil)
-        
+
         return t
     }
 }
@@ -50,14 +50,14 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
     // MARK: 🔗Vaiables
     public let headerRefreshTrigger = PublishSubject<Void>()
     public let footerRefreshTrigger = PublishSubject<Void>()
-    
+
     public let isHeaderLoading = BehaviorRelay(value: false)
     public let isFooterLoading = BehaviorRelay(value: false)
-    
+
     public lazy var table: LXBaseTableView = {
         return lazyTableView(style: .plain)
     }()
-    
+
     public var clearSelectionOnViewWillAppear = true
     public private(set) var style: UITableView.Style = UITableView.Style.plain
     // MARK: 🛠Life Cycle
@@ -72,21 +72,12 @@ open class LXBaseTableVC: LXBaseVC, LXBaseTableViewProtocol {
             deselectSelectedRow()
         }
     }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         basePrepareTableView()
@@ -128,12 +119,12 @@ private extension LXBaseTableVC {
         isFooterLoading
             .bind(to: table.footRefreshControl.rx.isAnimating)
             .disposed(by: rx.disposeBag)
-        
+
         table.footRefreshControl.autoRefreshOnFoot = true
         error.subscribe(onNext: { [weak self] error in
             self?.table.makeToast(error.localizedDescription,
                                   title: "⚠️警告",
-                                  image: nil,//R.image.icon_toast_warning(),
+                                  image: nil,// R.image.icon_toast_warning(),
                                   completion: nil)
         })
         .disposed(by: rx.disposeBag)
@@ -148,7 +139,7 @@ private extension LXBaseTableVC {
         vm?.footerLoading.asObservable()
             .bind(to: isFooterLoading)
             .disposed(by: rx.disposeBag)
-        
+
         Observable.of(isLoading.mapToVoid(),
                       emptyDataSet.imageTintColor.mapToVoid(),
                       languageChanged.asObservable())
@@ -169,7 +160,7 @@ private extension LXBaseTableVC {
             self.automaticallyAdjustsScrollViewInsets = false
         }
     }
-    
+
     func baseMasonry() {
         table.snp.setLabel("\(xl.typeNameString).table")
     }

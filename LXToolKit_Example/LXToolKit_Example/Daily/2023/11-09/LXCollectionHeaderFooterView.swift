@@ -26,9 +26,6 @@ open class LXCollectionHeaderFooterView: UICollectionReusableView {
 
         prepareUI()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 
 // MARK: 🌎LoadData
@@ -56,7 +53,7 @@ private extension LXCollectionHeaderFooterView {
         masonry()
     }
 
-    func masonry() { 
+    func masonry() {
         labTitle.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

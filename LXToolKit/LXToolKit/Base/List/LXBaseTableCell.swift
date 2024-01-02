@@ -34,21 +34,14 @@ open class LXBaseTableCell: UITableViewCell {
     public required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         basePrepareVM()
         basePrepareUI()
         baseMasonry()
     }
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
     open override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
         contentView.backgroundColor = selected ? selectionColor : .clear
     }
@@ -72,14 +65,14 @@ private extension LXBaseTableCell {
         contentView.backgroundColor = .white
         selectionStyle = .none
         selectionColor = .clear
-        
+
         // theme.selectionColor = themeService.attribute { $0.primary }
         // containerView.theme.backgroundColor = themeService.attribute { $0.primary }
-        
+
         [self.wrapperView].forEach(self.contentView.addSubview)
         [self.wrapperStackView].forEach(self.contentView.addSubview)
     }
-    
+
     func baseMasonry() {
         self.snp.setLabel("\(xl.typeNameString)")
         contentView.snp.setLabel("\(self.contentView.xl.typeNameString).contentView")

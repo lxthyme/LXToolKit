@@ -10,8 +10,8 @@ import Foundation
 
 func handleAssets(directory: String) {}
 
-//#pragma mark - 处理 Xcassets 中的图片文件
-//void handleXcassetsFiles(NSString *directory) {
+// #pragma mark - 处理 Xcassets 中的图片文件
+// void handleXcassetsFiles(NSString *directory) {
 //    NSFileManager *fm = [NSFileManager defaultManager];
 //    NSArray<NSString *> *files = [fm contentsOfDirectoryAtPath:directory error:nil];
 //    BOOL isDirectory;
@@ -68,4 +68,4 @@ func handleAssets(directory: String) {}
 //            matches = [expression matchesInString:fileContent options:0 range:NSMakeRange(0, fileContent.length)];
 //        }
 //    }
-//}
+// }

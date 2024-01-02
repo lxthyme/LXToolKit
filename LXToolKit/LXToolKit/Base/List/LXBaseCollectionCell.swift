@@ -35,9 +35,6 @@ open class LXBaseCollectionCell: UICollectionViewCell {
         basePrepareUI()
         baseMasonry()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 // MARK: 🌎LoadData
 public extension LXBaseCollectionCell {

@@ -51,7 +51,7 @@ public enum LXOutlineOpt {
         switch self {
         case .outline(_, _, let subitems, _):
             return subitems
-        case .subitem(_, _, _):
+        case .subitem:
             return nil
         }
     }

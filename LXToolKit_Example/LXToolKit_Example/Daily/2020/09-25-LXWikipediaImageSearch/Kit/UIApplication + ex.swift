@@ -10,6 +10,6 @@ import Foundation
 
 extension UIApplication {
     static var isInUITest: Bool {
-        return ProcessInfo.processInfo.environment["isUITest"] != nil;
+        return ProcessInfo.processInfo.environment["isUITest"] != nil
     }
 }

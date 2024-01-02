@@ -11,7 +11,6 @@ import Foundation
 #if !os(Linux)
 
 #if canImport(UIKit)
-import UIKit
 /// SwifterSwift: Color
 public typealias SFColor = UIColor
 #endif
@@ -27,11 +26,11 @@ import CoreImage
 #endif
 
 // MARK: - 👀XL
-//public extension UIColor {
+// public extension UIColor {
 //    static var xl: Swifty<UIColor>.Type {
 //        return UIColor.xl
 //    }
-//}
+// }
 
 public extension Swifty where Base: SFColor {
     struct PropertyItem {

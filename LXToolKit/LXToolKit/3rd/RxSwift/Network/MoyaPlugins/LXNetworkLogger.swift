@@ -8,7 +8,7 @@
 
 import UIKit
 import Moya
-//import Result
+// import Result
 
 func networkLogger(_ separator: String, terminator: String, items: Any...) {
     for item in items {
@@ -17,7 +17,7 @@ func networkLogger(_ separator: String, terminator: String, items: Any...) {
 }
 
 public let networkPlugin = LXNetworkLogger(
-//let networkPlugin = NetworkLoggerPlugin(
+// let networkPlugin = NetworkLoggerPlugin(
     verbose: true,
     cURL: true,
     output: networkLogger,

@@ -285,7 +285,7 @@ private extension LXOutlineVC {
         let layout = generateLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         // cv.backgroundColor = .white
-        return cv;
+        return cv
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt> {
         let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in

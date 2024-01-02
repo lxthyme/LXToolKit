@@ -15,7 +15,7 @@ import RxRelay
 
 class LXMVVMSampleVM: LXBaseViewModel {
     let provider = LXNetworking<APIManager>.defaultNetworking()
-    func requestRecome(completed: @escaping (_ model: LXResultModel) ->Void) {
+    func requestRecome(completed: @escaping (_ model: LXResultModel) -> Void) {
 //        provider.request(.recommend) { result in
 //            switch result {
 //                case .success(let response):

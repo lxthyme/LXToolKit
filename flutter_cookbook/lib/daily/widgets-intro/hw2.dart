@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class MyScaffold extends StatelessWidget {
-  const MyScaffold({Key? key}) : super(key: key);
+  const MyScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,7 @@ class MyScaffoldContent extends StatelessWidget {
           const IconButton(
             onPressed: null,
             icon: Icon(Icons.menu),
-            tooltip: "Navigation menu",
+            tooltip: 'Navigation menu',
           ),
           Expanded(
             child: title,
@@ -69,7 +68,7 @@ class MyScaffoldContent extends StatelessWidget {
           const IconButton(
             onPressed: null,
             icon: Icon(Icons.search),
-            tooltip: "Search",
+            tooltip: 'Search',
           )
         ],
       ),

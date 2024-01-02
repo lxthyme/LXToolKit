@@ -42,30 +42,30 @@ class LXPhotoAlbumVC: UIViewController {
 
         v.delegate = self
         v.dataSource = self
-        //v.prefetchDataSource = self
-        //v.dragDelegate = self
-        //v.dropDelegate = self
-        //v.isPrefetchingEnabled = true
+        // v.prefetchDataSource = self
+        // v.dragDelegate = self
+        // v.dropDelegate = self
+        // v.isPrefetchingEnabled = true
 
 //        v.backgroundColor = .white
-        //v.showsHorizontalScrollIndicator = true
-        //v.showsVerticalScrollIndicator = true
-        //v.alwaysBounceVertical = true
-        //v.alwaysBounceHorizontal = true
-        //v.allowsMultipleSelection = true
+        // v.showsHorizontalScrollIndicator = true
+        // v.showsVerticalScrollIndicator = true
+        // v.alwaysBounceVertical = true
+        // v.alwaysBounceHorizontal = true
+        // v.allowsMultipleSelection = true
 
-        //let header =  VPLoadingHeader.init(refreshingBlock: {
+        // let header =  VPLoadingHeader.init(refreshingBlock: {
         //    [weak self] in
         //    guard let `self` = self else { return }
         //    //self.loadData(true)
-        //})
-        //v.mj_header = header
-        //let footer = VPAutoLoadingFooter.init(refreshingBlock: {
+        // })
+        // v.mj_header = header
+        // let footer = VPAutoLoadingFooter.init(refreshingBlock: {
         //    [weak self] in
         //    guard let `self` = self else { return }
         //    //self.loadData(false)
-        //})
-        //v.mj_footer = footer
+        // })
+        // v.mj_footer = footer
 
         LXPhotoCell.AddPhoto.XL.register(v)
         LXPhotoCell.CameraCell.XL.register(v)
@@ -90,19 +90,6 @@ class LXPhotoAlbumVC: UIViewController {
     init(albumList: LXAlbumListModel) {
         self.albumList = albumList
         super.init(nibName: nil, bundle: nil)
-    }
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

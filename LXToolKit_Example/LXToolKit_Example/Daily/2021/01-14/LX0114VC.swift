@@ -53,19 +53,6 @@ class LX0114VC: UIViewController {
 //        dp.datePickerStyle = .automatic
         return dp
     }()
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -100,7 +87,7 @@ extension LX0114VC: PHPhotoLibraryChangeObserver {
 }
 
 // MARK: - 👀UIPickerViewDataSource
-//extension LX0114VC: UIPickerViewDataSource {
+// extension LX0114VC: UIPickerViewDataSource {
 //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
 //        return 20
 //    }
@@ -108,14 +95,14 @@ extension LX0114VC: PHPhotoLibraryChangeObserver {
 //    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 //        return 10
 //    }
-//}
+// }
 
 // MARK: - 👀UIPickerViewDelegate
-//extension LX0114VC: UIPickerViewDelegate {
+// extension LX0114VC: UIPickerViewDelegate {
 //    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 ////        pickerView.select
 //    }
-//}
+// }
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LX0114VC {

@@ -2,16 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_cookbook/daily/widgets-intro/hw2.dart';
-import 'package:flutter_cookbook/gallery/pages/home.dart';
-import 'package:flutter_cookbook/gallery/pages/settings.dart';
-import 'package:flutter_cookbook/tools/flutter_manager.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
 import 'package:flutter_cookbook/gallery/layout/adaptive.dart';
+import 'package:flutter_cookbook/gallery/pages/home.dart';
+import 'package:flutter_cookbook/gallery/pages/settings.dart';
 import 'package:flutter_cookbook/gallery/pages/settings_icon/icon.dart' as settings_icon;
+import 'package:flutter_cookbook/tools/flutter_manager.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 const double _settingsButtonWidth = 64;
 const double _settingsButtonHeightDesktop = 56;
@@ -56,9 +54,11 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
 
     _settingsPageFocusNode = FocusNode();
     _isSettingsOpenNotifier = ValueNotifier(false);
-    _settingsPage = widget.settingsPage ?? const SettingsPage();
+    _settingsPage = widget.settingsPage ??
+        SettingsPage(
+          animationController: _settingsPanelController,
+        );
     _homePage = widget.homePage ?? const HomePage();
-    // _homePage = widget.homePage ?? const MyScaffold();
   }
 
   @override
@@ -125,8 +125,8 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
           excluding: !isSettingsOpen,
           child: isSettingsOpen
               ? RawKeyboardListener(
-                  focusNode: _settingsPageFocusNode,
                   includeSemantics: false,
+                  focusNode: _settingsPageFocusNode,
                   onKey: (event) {
                     if (event.logicalKey == LogicalKeyboardKey.escape) {
                       _toggleSettings();
@@ -185,6 +185,7 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
             Semantics(
               sortKey: const OrdinalSortKey(3),
               child: ScaleTransition(
+                alignment: Directionality.of(context) == TextDirection.ltr ? Alignment.topRight : Alignment.topLeft,
                 scale: CurvedAnimation(
                   parent: _settingsPanelController,
                   curve: Curves.fastOutSlowIn,
@@ -216,15 +217,29 @@ class _BackdropState extends State<Backdrop> with TickerProviderStateMixin {
                 icon: const Icon(Icons.close),
                 onPressed: () {
                   var scene = LXSwiftMethod.dismiss();
-                  debugPrint("-->channelName: ${LXFlutterManager.channelDefault.name}");
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene);
                 },
               ),
               IconButton(
                 padding: EdgeInsets.only(top: safeAreaTopPadding),
-                icon: const Icon(Icons.shop),
+                icon: const Icon(Icons.error),
                 onPressed: () {
-                  var scene2 = LXSwiftMethod.gotoStore(storeCode: '007780', storeType: '2020');
+                  var scene2 = LXSwiftMethod.undefinedTest(
+                    storeCode: '007780',
+                    storeType: '2020',
+                  );
+                  LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
+                },
+              ),
+              IconButton(
+                padding: EdgeInsets.only(top: safeAreaTopPadding),
+                icon: const Icon(Icons.error_outline),
+                onPressed: () {
+                  var scene2 = LXSwiftMethod.resultFailureTest(
+                    storeCode: '007780',
+                    storeType: '2020',
+                    comSid: '2000',
+                  );
                   LXFlutterManager.channelDefault.xlInvokeMethod(scene2);
                 },
               ),
@@ -259,8 +274,8 @@ class _SettingsIcon extends AnimatedWidget {
 
   String _settingsSemanticLabel(bool isOpen, BuildContext context) {
     return isOpen
-        ? AppLocalizations.of(context)!.settingsButtonCloseLabel
-        : AppLocalizations.of(context)!.settingsButtonLabel;
+        ? GalleryLocalizations.of(context)!.settingsButtonCloseLabel
+        : GalleryLocalizations.of(context)!.settingsButtonLabel;
   }
 
   @override

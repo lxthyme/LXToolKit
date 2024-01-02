@@ -9,7 +9,6 @@ import Foundation
 import RxSwift
 import OSLog
 import CocoaLumberjack
-import RxSwift
 
 /// | level    | icon |
 /// | -------- | ---- |
@@ -36,10 +35,6 @@ enum LogType: String {
 public struct LogKit {
     typealias T = Logger
     let logger: T
-
-    init(logger: T) {
-        self.logger = logger
-    }
 }
 
 public let loggerNormal = LogKit(logger: Logger(subsystem: LogKit.subsystem, category: "Normal Logger"))

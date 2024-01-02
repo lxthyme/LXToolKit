@@ -19,7 +19,7 @@ class MainList extends StatelessWidget {
 }
 
 class List extends StatelessWidget {
-  const List({Key? key}) : super(key: key);
+  const List({super.key});
 
   @override
   Widget build(BuildContext context) {

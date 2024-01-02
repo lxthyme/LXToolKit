@@ -17,16 +17,6 @@ class LXListItemCell: UITableViewCell {
 
         prepareUI()
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 
 }
 
@@ -39,7 +29,7 @@ private extension LXListItemCell {}
 // MARK: - UI Prepare & Masonry
 private extension LXListItemCell {
     func prepareUI() {
-        //[<#table#>].forEach(self.contentView.addSubview)
+        // [<#table#>].forEach(self.contentView.addSubview)
         masonry()
     }
 

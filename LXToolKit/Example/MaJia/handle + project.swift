@@ -8,9 +8,8 @@
 
 import Foundation
 
-
-//#pragma mark - 修改工程名
-//void resetEntitlementsFileName(NSString *projectPbxprojFilePath, NSString *oldName, NSString *newName) {
+// #pragma mark - 修改工程名
+// void resetEntitlementsFileName(NSString *projectPbxprojFilePath, NSString *oldName, NSString *newName) {
 //    NSString *rootPath = projectPbxprojFilePath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent;
 //    NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:projectPbxprojFilePath encoding:NSUTF8StringEncoding error:nil];
 //
@@ -26,9 +25,9 @@ import Foundation
 //        NSString *newPath = [entitlementsPath.stringByDeletingLastPathComponent stringByAppendingPathComponent:[newName stringByAppendingPathExtension:@"entitlements"]];
 //        renameFile(entitlementsPath, newPath);
 //    }];
-//}
+// }
 
-//void resetBridgingHeaderFileName(NSString *projectPbxprojFilePath, NSString *oldName, NSString *newName) {
+// void resetBridgingHeaderFileName(NSString *projectPbxprojFilePath, NSString *oldName, NSString *newName) {
 //    NSString *rootPath = projectPbxprojFilePath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent;
 //    NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:projectPbxprojFilePath encoding:NSUTF8StringEncoding error:nil];
 //
@@ -44,9 +43,9 @@ import Foundation
 //        NSString *newPath = [entitlementsPath.stringByDeletingLastPathComponent stringByAppendingPathComponent:[newName stringByAppendingPathExtension:@"h"]];
 //        renameFile(entitlementsPath, newPath);
 //    }];
-//}
+// }
 
-//void replacePodfileContent(NSString *filePath, NSString *oldString, NSString *newString) {
+// void replacePodfileContent(NSString *filePath, NSString *oldString, NSString *newString) {
 //    NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 //
 //    NSString *regularExpression = [NSString stringWithFormat:@"target +'%@", oldString];
@@ -64,9 +63,9 @@ import Foundation
 //    }];
 //
 //    [fileContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-//}
+// }
 
-//void replaceProjectFileContent(NSString *filePath, NSString *oldString, NSString *newString) {
+// void replaceProjectFileContent(NSString *filePath, NSString *oldString, NSString *newString) {
 //    NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 //
 //    NSString *regularExpression = [NSString stringWithFormat:@"\\b%@\\b", oldString];
@@ -77,11 +76,11 @@ import Foundation
 //    }];
 //
 //    [fileContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
-//}
+// }
 
-//void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSString *newClassName);
+// void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSString *newClassName);
 
-//void modifyProjectName(NSString *projectDir, NSString *oldName, NSString *newName) {
+// void modifyProjectName(NSString *projectDir, NSString *oldName, NSString *newName) {
 //    NSString *sourceCodeDirPath = [projectDir stringByAppendingPathComponent:oldName];
 //    NSString *xcodeprojFilePath = [sourceCodeDirPath stringByAppendingPathExtension:@"xcodeproj"];
 //    NSString *xcworkspaceFilePath = [sourceCodeDirPath stringByAppendingPathExtension:@"xcworkspace"];
@@ -141,4 +140,4 @@ import Foundation
 //    if ([fm fileExistsAtPath:sourceCodeDirPath isDirectory:&isDirectory] && isDirectory) {
 //        renameFile(sourceCodeDirPath, [projectDir stringByAppendingPathComponent:newName]);
 //    }
-//}
+// }

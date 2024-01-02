@@ -51,7 +51,7 @@ open class LXStrenchableWebView: WKWebView {
 }
 
 extension LXStrenchableWebView {
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if context == &observerContext {
             if let _ = change?[.newKey] as? Double {
 

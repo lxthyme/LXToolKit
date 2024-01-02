@@ -32,7 +32,7 @@ private extension LXModalTransition {}
 class PresentationTransition: NSObject {}
 class DismissTransition: NSObject {}
 class InteractiveTransition: UIPercentDrivenInteractiveTransition {
-    var presentedVC: UIViewController? = nil
+    var presentedVC: UIViewController?
     /// 是否拖拽了一半以上
     var shouldComplete: Bool = false
 }
@@ -56,11 +56,11 @@ extension PresentationTransition: UIViewControllerAnimatedTransitioning {
         guard let toView = transitionContext.view(forKey: .to) else { return }
         containerView.addSubview(toView)
 
-        let frame = CGRectOffset(toView.frame, 0, LXMacro.Screen.height)
+        let frame = toView.frame.offsetBy(dx: 0, dy: LXMacro.Screen.height)
         toView.frame = frame
 
         UIView .animate(withDuration: 0.75) {
-            toView.frame = CGRectOffset(toView.frame, 0, -LXMacro.Screen.height)
+            toView.frame = toView.frame.offsetBy(dx: 0, dy: -LXMacro.Screen.height)
         } completion: { finished in
             transitionContext.completeTransition(finished)
         }
@@ -86,7 +86,7 @@ extension DismissTransition: UIViewControllerAnimatedTransitioning {
         guard let fromView = transitionContext.view(forKey: .from) else {
             return
         }
-        let finalFrame = CGRectOffset(fromView.frame, 0, LXMacro.Screen.height)
+        let finalFrame = fromView.frame.offsetBy(dx: 0, dy: LXMacro.Screen.height)
         if let toView = transitionContext.view(forKey: .to) {
             containerView.insertSubview(toView, at: 0)
         }

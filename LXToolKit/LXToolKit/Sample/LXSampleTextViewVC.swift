@@ -26,20 +26,6 @@ open class LXSampleTextViewVC: LXBaseVC {
         // tv.textContainerInset = UIEdgeInsets(top: 0, left: -padding, bottom: 0, right: -padding)
         return tv
     }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
 

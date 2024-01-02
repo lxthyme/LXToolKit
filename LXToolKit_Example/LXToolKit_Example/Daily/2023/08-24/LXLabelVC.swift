@@ -151,10 +151,6 @@ class LXLabelVC: LXBaseVC {
         //     }
         //     .disposed(by: self.rx.disposeBag)
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // labTitle1.roundCorners([.topRight, .bottomRight], radius: 16)
-    }
 
 }
 
@@ -205,7 +201,6 @@ private extension LXLabelVC {
     func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
-
 
         let text = "进口大串香蕉 重约900-1000g"
         labTitle1.text = "1: \(text)"

@@ -87,7 +87,6 @@ extension LXSectionDecorationVC: UICollectionViewDelegate {
     }
 }
 
-
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSectionDecorationVC {
     func prepareSnapshot() {

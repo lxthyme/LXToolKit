@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public extension Data {
     var hexString: String {
         withUnsafeBytes { (bytes: UnsafePointer<UInt8>) -> String in

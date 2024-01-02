@@ -83,6 +83,16 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXTable0120VC"), scene: .vc(provider: { LXTable0120VC(vm: LXBaseVM(), navigator: Navigator.default) })),
         // .LXiOS15ButtonTestVC,
         .subitem(.section(title: "LXiOS15VC"), scene: .vc(provider: { LXiOS15VC(vm: LXBaseVM(), navigator: Navigator.default) })),
+        .subitem(.section(title: "LXiOS15ButtonTestVC"), scene: .vc(provider: {
+            if #available(iOS 15.0, *) {
+                return LXiOS15ButtonTestVC()
+            } else {
+                // Fallback on earlier versions
+                let vc = LXSampleTextViewVC()
+                vc.title = "LXiOS15ButtonTestVC UnSupported"
+                return vc
+            }
+        })),
         .subitem(.section(title: "LXMasonryTestVCVC"), scene: .vc(provider: { LXMasonryTestVCVC(vm: LXBaseVM(), navigator: Navigator.default) })),
         // .login(vm: LXLoginVM(with: provider)),
         // .events(vm: LXEventsVM(with: .user(user: User()), provider: provider)),

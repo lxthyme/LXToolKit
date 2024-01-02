@@ -34,23 +34,9 @@ class LXOffScreenVC: LXBaseVC {
         iv.contentMode = .scaleAspectFill
         return iv
     }()
-    // MARK: Vaiables
-    // MARK: Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -58,7 +44,7 @@ class LXOffScreenVC: LXBaseVC {
         super.viewDidLayoutSubviews()
         testCornerRadius()
     }
-    
+
 }
 
 // MARK: LoadData
@@ -102,7 +88,7 @@ private extension LXOffScreenVC {
         [imgViewBG, imgViewBG1, imgViewBG2].forEach(self.view.addSubview)
         masonry()
     }
-    
+
     func masonry() {
         let inset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         //        imgViewBG.snp.makeConstraints {

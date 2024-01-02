@@ -18,7 +18,7 @@ import UIKit
 class LXEmptyView: UIView {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    var retryBlock: (() -> ())?
+    var retryBlock: (() -> Void)?
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,7 @@ private extension LXEmptyView {
         self.backgroundColor = UIColor.white
         // self.title = "<#title#>"
 
-        //[<#table#>].forEach(self.addSubview)
+        // [<#table#>].forEach(self.addSubview)
         masonry()
     }
 

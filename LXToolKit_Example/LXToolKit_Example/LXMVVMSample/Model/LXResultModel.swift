@@ -15,10 +15,10 @@ class LXResultModel: LXBaseModelProtocol {
     var errorTips: String?
     var f_origin_json: String?
     class ResultModel: NSObject, HandyJSON {
-        var author:String?
-        var content:String?
-        var category:String?
-        var origin:String?
+        var author: String?
+        var content: String?
+        var category: String?
+        var origin: String?
         required override init() {}
 
         // func mapping(mapper: HelpingMapper) {}

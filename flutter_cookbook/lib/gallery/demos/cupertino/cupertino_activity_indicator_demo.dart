@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 // void main() => runApp(MaterialApp(title: 'Material App', home: CupertinoProgressIndicatorDemo()));
 
@@ -7,30 +8,14 @@ class CupertinoProgressIndicatorDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoPageScaffold(
+    return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        // automaticallyImplyLeading: false,
-        // leading: Icon(Icons.arrow_back_ios),
-        // leading: CupertinoButton(
-        //   child: const Icon(Icons.arrow_back_ios),
-        //   // onPressed: (){},
-        //   onPressed: () => {
-        //     context.pop()
-        //   },
-        // ),
-        // leading: IconButton(
-        //   // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-        //   icon: Icon(Icons.arrow_back_ios),
-        //   onPressed: () {},
-        //   // onPressed: () => {
-        //   //   context.pop();
-        //   // },
-        // ),
+        automaticallyImplyLeading: false,
         middle: Text(
-          '活动指示器',
+          GalleryLocalizations.of(context)!.demoCupertinoActivityIndicatorTitle,
         ),
       ),
-      child: Center(
+      child: const Center(
         child: CupertinoActivityIndicator(),
       ),
     );

@@ -15,7 +15,7 @@ struct AdventureAttributes: ActivityAttributes {
         let currentHealthLevel: Double
         let eventDescription: String
     }
-    
+
     let hero: EmojiRanger
 }
 

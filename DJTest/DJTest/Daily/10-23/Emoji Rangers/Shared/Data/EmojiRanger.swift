@@ -10,16 +10,16 @@ import WidgetKit
 
 @available(iOS 16.2, *)
 struct EmojiRanger: Hashable, Codable, Identifiable {
-    
+
     static var typeDisplayRepresentation: TypeDisplayRepresentation = "EmojiRanger"
-    
+
     static let LeaderboardWidgetKind: String = "LeaderboardWidget"
     static let EmojiRangerWidgetKind: String = "EmojiRangerWidget"
-    
+
     var displayRepresentation: DisplayRepresentation {
         DisplayRepresentation(title: "\(avatar) \(name)")
     }
-    
+
     let name: String
     let avatar: String
     let healthLevel: Double
@@ -30,11 +30,11 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
     let level: Int
     let exp: Int
     let bio: String
-    
+
     var id: String {
         name
     }
-    
+
     static let panda = EmojiRanger(
         name: "Power Panda",
         avatar: "🐼",
@@ -46,7 +46,7 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         level: 3,
         exp: 600,
         bio: "Power Panda loves eating bamboo shoots and leaves.")
-    
+
     static let egghead = EmojiRanger(
         name: "Egghead",
         avatar: "🦄",
@@ -58,7 +58,7 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         level: 5,
         exp: 1000,
         bio: "Egghead comes from the magical land of Eggopolis and flies through the air with their magnificent mane billowing.")
-    
+
     static let spouty = EmojiRanger(
         name: "Spouty",
         avatar: "🐳",
@@ -70,28 +70,28 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         level: 50,
         exp: 20_000,
         bio: "Spouty rises from the depths to bring joy and laughter to everyone. They are best friends with Octo.")
-    
+
     static let availableHeros = [panda, egghead, spouty]
-    
+
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
-    
+
     var fullHealthDate: Date {
         let healthNeeded = min(1 - healthLevel, 1)
         let hoursUntilFullHealth = healthNeeded / healthRecoveryRatePerHour
         let minutesUntilFullHealth = (hoursUntilFullHealth * 60)
         let date = Calendar.current.date(byAdding: .minute, value: Int(minutesUntilFullHealth), to: Date())
-        
+
         return date ?? Date()
     }
-    
+
     var injuryDate: Date {
         let totalInjurySeconds = 3600 / healthRecoveryRatePerHour
         let injuryDate = fullHealthDate.advanced(by: -totalInjurySeconds)
         return injuryDate
     }
-    
+
     static func heroFromName(name: String?) -> EmojiRanger {
         guard let hero = (allHeros).first(where: { (hero) -> Bool in
             return hero.name == name
@@ -100,7 +100,7 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         }
         return hero
     }
-    
+
     static func heroFromURL(url: URL) -> EmojiRanger? {
         guard let hero = (allHeros).first(where: { (hero) -> Bool in
             return hero.url == url
@@ -109,15 +109,15 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         }
         return hero
     }
-    
+
     static let session = ImageURLProtocol.urlSession()
-    
-    static func loadLeaderboardData(completion:@escaping ([EmojiRanger]?, Error?) -> Void) {
+
+    static func loadLeaderboardData(completion: @escaping ([EmojiRanger]?, Error?) -> Void) {
         // Save a faux API to the temporary directory and fetch it.
         // In your app, you fetch it from a real API.
         do {
             let responseURL = FileManager.default.temporaryDirectory.appendingPathComponent("userData.json")
-            
+
             try fauxResponse.data(using: .utf8)?.write(to: responseURL)
             session.dataTask(with: responseURL) { (data, response, error) in
                 if let playerData = data {
@@ -135,28 +135,28 @@ struct EmojiRanger: Hashable, Codable, Identifiable {
         } catch {
             completion(nil, error)
         }
-        
+
     }
-    
+
     static let appGroup = "<App Group Here>"
-    
+
     static func setLastSelectedHero(heroName: String) {
         UserDefaults(suiteName: appGroup)?.setValue(heroName, forKey: "hero")
     }
-    
+
     static func getLastSelectedHero() -> EmojiRanger? {
         guard let name = UserDefaults(suiteName: appGroup)?.value(forKey: "hero") as? String else {
             return nil
         }
         return EmojiRanger.heroFromName(name: name)
     }
-    
+
     static func superchargeHeros() {
         var val = herosAreSupercharged()
         val.toggle()
         UserDefaults(suiteName: appGroup)?.setValue(val, forKey: "supercharged")
     }
-    
+
     static func herosAreSupercharged() -> Bool {
         guard let areCharged = UserDefaults(suiteName: appGroup)?.value(forKey: "supercharged") as? Bool else {
             return false
@@ -205,7 +205,7 @@ extension EmojiRanger {
         level: 13,
         exp: 2640,
         bio: "Loves dancing, spooking, and playing their trumpet 🎺.")
-    
+
     static let cake = EmojiRanger(
         name: "Cake",
         avatar: "🎂",
@@ -222,7 +222,7 @@ extension EmojiRanger {
         • 4 large eggs
         • 1 cup semi-sweet chocolate chips
         """)
-    
+
     static let octo = EmojiRanger(
         name: "Octo",
         avatar: "🐙",
@@ -234,9 +234,9 @@ extension EmojiRanger {
         level: 43,
         exp: 86_463,
         bio: "Can give eight hugs simultaneously. They are best friends with Spouty.")
-    
+
     static let additionalHeros = [spook, cake, octo]
-    
+
     static let allHeros = EmojiRanger.availableHeros + EmojiRanger.additionalHeros
 }
 

@@ -9,7 +9,7 @@ import AppIntents
 
 struct EmojiRangersIntents: AppIntent {
     static var title: LocalizedStringResource = "EmojiRangersIntents"
-    
+
     func perform() async throws -> some IntentResult {
         return .result()
     }
