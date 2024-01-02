@@ -24,21 +24,21 @@ public extension Swifty where Base == UIButton.Configuration {
     }
     var rawValue: String {
         switch base {
-        case .plain():
+        case .plain:
             return "plain"
-        case .tinted():
+        case .tinted:
             return "tinted"
-        case .gray():
+        case .gray:
             return "gray"
-        case .filled():
+        case .filled:
             return "filled"
-        case .borderless():
+        case .borderless:
             return "borderless"
-        case .bordered():
+        case .bordered:
             return "bordered"
-        case .borderedTinted():
+        case .borderedTinted:
             return "borderedTinted"
-        case .borderedProminent():
+        case .borderedProminent:
             return "borderedProminent"
         default:
             return "\(base.hashValue)"

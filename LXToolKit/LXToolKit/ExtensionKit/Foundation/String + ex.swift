@@ -11,7 +11,7 @@ import UIKit
 extension String: Error {}
 
 public extension Swifty where Base == String {
-//public extension Swifty where Base == String {
+// public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     /// - Returns: VC 实例
     func getVCInstance<T: UIViewController>(expect: T.Type = UIViewController.self) -> T? {
@@ -126,11 +126,11 @@ public extension Swifty where Base == String {
 
 // MARK: - 👀
 public extension Swifty where Base == String {
-    func toFloat() ->Float? {
+    func toFloat() -> Float? {
         let numberFormatter = NumberFormatter()
         return numberFormatter.number(from: base)?.floatValue
     }
-    func toDouble() ->Double? {
+    func toDouble() -> Double? {
         let numberFormatter = NumberFormatter()
         return numberFormatter.number(from: base)?.doubleValue
     }

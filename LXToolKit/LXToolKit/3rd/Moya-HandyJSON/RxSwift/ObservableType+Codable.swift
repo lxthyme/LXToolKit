@@ -46,7 +46,7 @@ public extension ObservableType where Element == Response {
             return Observable.just(try response.mapHandyJSON(T.self, atKeyPath: keyPath))
         }
     }
-    
+
     /// Maps data received from the signal into an array of objects
     /// which implement the Mappable protocol and returns the result back
     /// If the conversion fails, the signal errors.
@@ -55,8 +55,8 @@ public extension ObservableType where Element == Response {
             return Observable.just(try response.mapHandyJSONArray(T.self, atKeyPath: keyPath))
         }
     }
-    
-    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->Observable<T> {
+
+    func mapBaseHandyJSON<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> Observable<T> {
         return flatMap { response -> Observable<T> in
             return Observable.just(try response.mapBaseHandyJSON(T.self, atKeyPath: keyPath))
 //            return Observable.just(try response.mapBaseModel(T.self))

@@ -6,8 +6,8 @@
 //
 import UIKit
 
-fileprivate typealias Section = String
-fileprivate typealias Item = Int
+private typealias Section = String
+private typealias Item = Int
 
 open class LXSampleListVC: LXBaseVC {
     // MARK: 📌UI
@@ -21,19 +21,6 @@ open class LXSampleListVC: LXBaseVC {
         return cv
     }()
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
-    // MARK: 🛠Life Cycle
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     open override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,7 +41,7 @@ extension LXSampleListVC {
     // func suspendTransitionAnimator(_ suspended: Bool) {}
     // var transitionAnimator: UIViewPropertyAnimator? {}
     func show(animated: Bool = false, completion: (() -> Void)? = nil) {
-        
+
     }
 }
 
@@ -68,17 +55,17 @@ private extension LXSampleListVC {
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         // item.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
         // group.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         let section = NSCollectionLayoutSection(group: group)
         // section.interGroupSpacing = <#8.0#>
         // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-    
+
         return UICollectionViewCompositionalLayout(section: section)
     }
     func generateCollectionView() -> UICollectionView {

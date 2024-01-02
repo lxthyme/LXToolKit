@@ -8,9 +8,9 @@
 
 import Foundation
 
-//#pragma mark - 生成垃圾代码
+// #pragma mark - 生成垃圾代码
 
-//void recursiveDirectory(NSString *directory, NSArray<NSString *> *ignoreDirNames, void(^handleMFile)(NSString *mFilePath), void(^handleSwiftFile)(NSString *swiftFilePath)) {
+// void recursiveDirectory(NSString *directory, NSArray<NSString *> *ignoreDirNames, void(^handleMFile)(NSString *mFilePath), void(^handleSwiftFile)(NSString *swiftFilePath)) {
 //    NSFileManager *fm = [NSFileManager defaultManager];
 //    NSArray<NSString *> *files = [fm contentsOfDirectoryAtPath:directory error:nil];
 //    BOOL isDirectory;
@@ -34,9 +34,9 @@ import Foundation
 //            handleSwiftFile([directory stringByAppendingPathComponent:fileName]);
 //        }
 //    }
-//}
+// }
 
-//NSString * getImportString(NSString *hFileContent, NSString *mFileContent) {
+// NSString * getImportString(NSString *hFileContent, NSString *mFileContent) {
 //    NSMutableString *ret = [NSMutableString string];
 //
 //    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"^ *[@#]import *.+" options:NSRegularExpressionAnchorsMatchLines|NSRegularExpressionUseUnicodeWordBoundaries error:nil];
@@ -56,33 +56,33 @@ import Foundation
 //    }];
 //
 //    return ret;
-//}
+// }
 
-//static NSString *const kHClassFileTemplate = @"\
-//%@\n\
-//@interface %@ (%@)\n\
-//%@\n\
-//@end\n";
+// static NSString *const kHClassFileTemplate = @"\
+// %@\n\
+// @interface %@ (%@)\n\
+// %@\n\
+// @end\n";
 
-//static NSString *const kMClassFileTemplate = @"\
-//#import \"%@+%@.h\"\n\
-//@implementation %@ (%@)\n\
-//%@\n\
-//@end\n";
+// static NSString *const kMClassFileTemplate = @"\
+// #import \"%@+%@.h\"\n\
+// @implementation %@ (%@)\n\
+// %@\n\
+// @end\n";
 
-//static NSString *const kHNewClassFileTemplate = @"\
-//#import <Foundation/Foundation.h>\n\
-//@interface %@: NSObject\n\
-//%@\n\
-//@end\n";
+// static NSString *const kHNewClassFileTemplate = @"\
+// #import <Foundation/Foundation.h>\n\
+// @interface %@: NSObject\n\
+// %@\n\
+// @end\n";
 
-//static NSString *const kMNewClassFileTemplate = @"\
-//#import \"%@.h\"\n\
-//@implementation %@\n\
-//%@\n\
-//@end\n";
+// static NSString *const kMNewClassFileTemplate = @"\
+// #import \"%@.h\"\n\
+// @implementation %@\n\
+// %@\n\
+// @end\n";
 
-//void generateSpamCodeFile(NSString *outDirectory, NSString *mFilePath, GSCSourceType type, NSMutableString *categoryCallImportString, NSMutableString *categoryCallFuncString, NSMutableString *newClassCallImportString, NSMutableString *newClassCallFuncString) {
+// void generateSpamCodeFile(NSString *outDirectory, NSString *mFilePath, GSCSourceType type, NSMutableString *categoryCallImportString, NSMutableString *categoryCallFuncString, NSMutableString *newClassCallImportString, NSMutableString *newClassCallFuncString) {
 //    NSString *mFileContent = [NSString stringWithContentsOfFile:mFilePath encoding:NSUTF8StringEncoding error:nil];
 //    NSString *regexStr;
 //    switch (type) {
@@ -232,19 +232,19 @@ import Foundation
 //
 //        [newClassCallImportString appendFormat:@"#import \"%@\"\n", fileName];
 //    }];
-//}
+// }
 
-//static NSString *const kSwiftFileTemplate = @"\
-//%@\n\
-//extension %@ {\n%@\
-//}\n";
+// static NSString *const kSwiftFileTemplate = @"\
+// %@\n\
+// extension %@ {\n%@\
+// }\n";
 
-//static NSString *const kSwiftMethodTemplate = @"\
+// static NSString *const kSwiftMethodTemplate = @"\
 //    func %@%@(_ %@: String%@) {\n\
 //        print(%@)\n\
 //    }\n";
 
-//void generateSwiftSpamCodeFile(NSString *outDirectory, NSString *swiftFilePath) {
+// void generateSwiftSpamCodeFile(NSString *outDirectory, NSString *swiftFilePath) {
 //    NSString *swiftFileContent = [NSString stringWithContentsOfFile:swiftFilePath encoding:NSUTF8StringEncoding error:nil];
 //
 //    // 查找 class 声明
@@ -301,4 +301,4 @@ import Foundation
 //        fileContent = [fileContent stringByAppendingFormat:kSwiftFileTemplate, fileImportStrings, className, methodsString];
 //        [fileContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 //    }];
-//}
+// }

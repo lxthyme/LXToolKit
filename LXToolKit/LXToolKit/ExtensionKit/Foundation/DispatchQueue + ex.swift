@@ -20,7 +20,7 @@ extension Swifty where Base: DispatchQueue {
         base.asyncAfter(deadline: .now() + delay, execute: closure)
     }
 
-    public func once(_ token: String, block:() -> Void) {
+    public func once(_ token: String, block: () -> Void) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
 
@@ -36,7 +36,7 @@ public extension Swifty where Base: DispatchQueue {
     // This method will dispatch the `block` to self.
     // If `self` is the main queue, and current thread is main thread, the block
     // will be invoked immediately instead of being dispatched.
-    func safeAsync(_ block: @escaping ()->Void) {
+    func safeAsync(_ block: @escaping () -> Void) {
         if base === DispatchQueue.main && Thread.isMainThread {
             block()
         } else {

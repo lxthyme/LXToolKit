@@ -221,7 +221,7 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
 // MARK: - 👀
 extension UIListContentConfiguration.TextProperties {
     public var desc: String {
-        var t_showsExpansionTextWhenTruncated: Bool? = nil
+        var t_showsExpansionTextWhenTruncated: Bool?
         if #available(iOS 16.0, *) {
             t_showsExpansionTextWhenTruncated = showsExpansionTextWhenTruncated
         }

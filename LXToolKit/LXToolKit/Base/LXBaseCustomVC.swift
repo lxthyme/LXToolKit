@@ -33,4 +33,3 @@ open class LXBaseCustomVC<CustomView: UIView>: LXBaseVC {
     }
 
 }
-

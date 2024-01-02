@@ -115,7 +115,7 @@ private extension UIImage {
 
         return delay
     }
-    static func gcdForArray(_ array: Array<Int>) -> Int {
+    static func gcdForArray(_ array: [Int]) -> Int {
         if array.isEmpty {
             return 1
         }

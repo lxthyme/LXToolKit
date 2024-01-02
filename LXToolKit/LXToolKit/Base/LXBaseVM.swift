@@ -17,11 +17,10 @@ open class LXBaseViewModel: NSObject {
     }
 }
 
-
 public protocol LXViewModelType {
     associatedtype Input
     associatedtype Output
-    
+
     func transform(input: Input) -> Output
 }
 
@@ -33,21 +32,21 @@ open class LXBaseVM: LXBaseViewModel/**, LXViewModelType*/ {
     }
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    
+
     // public let provider: DJAPI
     public var page = 1
-    
+
     public let loading = ActivityIndicator()
     public let headerLoading = ActivityIndicator()
     public let footerLoading = ActivityIndicator()
-    
+
     public let error = ErrorTracker()
     // public let serverError = PublishSubject<Error>()
     public let parsedError = PublishSubject<Error>()
     public override init() {
         // self.provider = provider
         super.init()
-        
+
         basePrepareVM()
         basePrepareUI()
         baseMasonry()

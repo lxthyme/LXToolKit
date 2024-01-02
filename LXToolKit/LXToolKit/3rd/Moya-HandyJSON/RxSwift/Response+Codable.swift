@@ -95,7 +95,7 @@ public extension Response {
             throw MoyaError.statusCode(self)
         }
         if keyPath.isEmpty {
-            guard let json = try mapJSON() as? [[String : Any]],
+            guard let json = try mapJSON() as? [[String: Any]],
                   let list = [T].deserialize(from: json) else {
                 throw MoyaError.jsonMapping(self)
             }
@@ -119,7 +119,7 @@ public extension Response {
         }
         return item
     }
-    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws ->[T] {
+    func mapBaseHandyJSONArray<T: HandyJSON>(_ type: T.Type, atKeyPath keyPath: String = "") throws -> [T] {
         var baseModel = try mapHandyJSON(LXBaseListGenericHandyJSON<T>.self, atKeyPath: keyPath)
         baseModel.f_origin_json = try? mapString()
 
@@ -157,17 +157,17 @@ public extension Response {
     func mapMapperArray<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let json = try mapJSON()
         if keyPath.isEmpty {
-            guard let array = json as? [[String : Any]] else {
+            guard let array = json as? [[String: Any]] else {
                 throw MoyaError.jsonMapping(self)
             }
             let object = Mapper<T>(context: context).mapArray(JSONArray: array)
         }
-        guard let array = (json as? NSDictionary)?.value(forKeyPath: keyPath) as? [[String : Any]] else {
+        guard let array = (json as? NSDictionary)?.value(forKeyPath: keyPath) as? [[String: Any]] else {
             throw MoyaError.jsonMapping(self)
         }
         return Mapper<T>(context: context).mapArray(JSONArray: array)
     }
-    
+
     func mapBaseMapper<T: Mappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> T {
         let baseModel = try mapMapper(LXBaseGenericMapper<T>.self, atKeyPath: keyPath, context: context)
 
@@ -215,12 +215,12 @@ public extension Response {
     func mapMapperArray<T: ImmutableMappable>(_ type: T.Type, atKeyPath keyPath: String = "", context: MapContext? = nil) throws -> [T] {
         let json = try mapJSON()
         if keyPath.isEmpty {
-            guard let array = json as? [[String : Any]] else {
+            guard let array = json as? [[String: Any]] else {
                 throw MoyaError.jsonMapping(self)
             }
             return try Mapper<T>(context: context).mapArray(JSONArray: array)
         }
-        guard let array = (json as? NSDictionary)?.value(forKeyPath: keyPath) as? [[String : Any]] else {
+        guard let array = (json as? NSDictionary)?.value(forKeyPath: keyPath) as? [[String: Any]] else {
             throw MoyaError.jsonMapping(self)
         }
         return try Mapper<T>(context: context).mapArray(JSONArray: array)

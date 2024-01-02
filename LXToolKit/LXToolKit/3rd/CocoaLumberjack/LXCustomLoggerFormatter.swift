@@ -17,7 +17,7 @@ public class LXCustomLoggerFormatter: NSObject, DDLogFormatter {
         dateFormmater.dateFormat = "yyyy/MM/dd HH:mm:ss:SSS"
     }
 
-    //MARK: - DDLogFormatter
+    // MARK: - DDLogFormatter
     public func format(message logMessage: DDLogMessage) -> String? {
 
         let logLevel: String

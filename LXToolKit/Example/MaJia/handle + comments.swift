@@ -8,8 +8,8 @@
 
 import Foundation
 
-//#pragma mark - 删除注释
-//void deleteComments(NSString *directory, NSArray<NSString *> *ignoreDirNames) {
+// #pragma mark - 删除注释
+// void deleteComments(NSString *directory, NSArray<NSString *> *ignoreDirNames) {
 //    NSFileManager *fm = [NSFileManager defaultManager];
 //    NSArray<NSString *> *files = [fm contentsOfDirectoryAtPath:directory error:nil];
 //    BOOL isDirectory;
@@ -28,4 +28,4 @@ import Foundation
 //        regularReplacement(fileContent, @"^\\s*\\n",                @"");
 //        [fileContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 //    }
-//}
+// }

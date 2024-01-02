@@ -31,4 +31,3 @@ public extension Swifty where Base: UITableView {
         }
     }
 }
-

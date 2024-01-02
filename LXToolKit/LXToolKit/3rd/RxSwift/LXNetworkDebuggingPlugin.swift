@@ -14,12 +14,12 @@ public typealias APIParameters = Alamofire.Parameters
 
 /// 网络打印，DEBUG模式内置插件
 /// Network printing, DEBUG mode built in plugin.
-public struct LXNetworkDebuggingPlugin {//}: PluginPropertiesable {
+public struct LXNetworkDebuggingPlugin {// }: PluginPropertiesable {
 
     // public var plugins: APIPlugins = []
     // 
     public let options: Options
-    
+
     public init(options: Options = .default) {
         self.options = options
     }
@@ -27,16 +27,16 @@ public struct LXNetworkDebuggingPlugin {//}: PluginPropertiesable {
 
 extension LXNetworkDebuggingPlugin {
     public struct Options {
-        
+
         public static let `default`: Options = .init(logOptions: .default)
-        
+
         let logOptions: LogOptions
-        
+
         public init(logOptions: LogOptions) {
             self.logOptions = logOptions
         }
     }
-    
+
     /// Enable print request information.
     var openDebugRequest: Bool {
         switch options.logOptions {
@@ -61,7 +61,7 @@ extension LXNetworkDebuggingPlugin.Options {
     public struct LogOptions: OptionSet {
         public let rawValue: Int
         public init(rawValue: Int) { self.rawValue = rawValue }
-        
+
         /// Enable print request information.
         public static let request: LogOptions = LogOptions(rawValue: 1 << 0)
         /// Turn on printing the response result.
@@ -120,14 +120,14 @@ extension LXNetworkDebuggingPlugin: Moya.PluginType {
 }
 
 extension LXNetworkDebuggingPlugin {
-    
+
     private func printRequest(_ target: TargetType/**, plugins: APIPlugins*/) {
         guard options.logOptions.contains(.logEnabled) else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSZ"
         formatter.locale = Locale.current
         let date = formatter.string(from: Date())
-        var parameters: APIParameters? = nil
+        var parameters: APIParameters?
         if case .requestParameters(let parame, _) = target.task {
             parameters = parame
         }
@@ -152,13 +152,13 @@ extension LXNetworkDebuggingPlugin {
                   """)
         }
     }
-    
+
     // private func pluginString(_ plugins: APIPlugins) -> String {
     //     return plugins.reduce("") { $0 + $1.pluginName + " " }
     // }
-    
+
     private func requestFullLink(with target: TargetType) -> String {
-        var parameters: APIParameters? = nil
+        var parameters: APIParameters?
         if case .requestParameters(let parame, _) = target.task {
             parameters = parame
         }
@@ -176,7 +176,7 @@ extension LXNetworkDebuggingPlugin {
 }
 
 extension LXNetworkDebuggingPlugin {
-    
+
     private func ansysisResult(_ target: TargetType, _ result: Result<Moya.Response, MoyaError>, local: Bool) {
         switch result {
         case let .success(response):
@@ -198,14 +198,14 @@ extension LXNetworkDebuggingPlugin {
             printResponse(target, error.localizedDescription, local, false)
         }
     }
-    
+
     private func printResponse(_ target: TargetType, _ json: String?, _ local: Bool, _ success: Bool) {
         guard options.logOptions.contains(.logEnabled) else { return }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSSZ"
         formatter.locale = Locale.current
         let date = formatter.string(from: Date())
-        var parameters: APIParameters? = nil
+        var parameters: APIParameters?
         if case .requestParameters(let parame, _) = target.task {
             parameters = parame
         }

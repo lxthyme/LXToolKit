@@ -21,7 +21,7 @@ public extension UIDevice {
         }
 
         switch identifier {
-        //iPhone
+        // iPhone
         case "iPhone1,1": return "iPhone 1G"
         case "iPhone1,2": return "iPhone 3G"
         case "iPhone2,1": return "iPhone 3GS"
@@ -56,14 +56,14 @@ public extension UIDevice {
         case "iPhone12,1": return "iPhone11"
         case "iPhone12,3": return "iPhone11 Pro"
         case "iPhone12,5": return "iPhone11 Pro Max"
-        //iPod
+        // iPod
         case "iPod1,1": return "iPod Touch 1G"
         case "iPod2,1": return "iPod Touch 2G"
         case "iPod3,1": return "iPod Touch 3G"
         case "iPod4,1": return "iPod Touch 4G"
         case "iPod5,1": return "iPod Touch 5G"
         case "iPod7,1": return "iPod Touch 6G"
-        //iPad
+        // iPad
         case "iPad1,1": return "iPad"
         case "iPad1,2": return "iPad 3G"
         case "iPad2,1": return "iPad 2 (WiFi)"
@@ -112,9 +112,9 @@ public extension UIDevice {
         case "iPad8,6": return "iPad Pro 3rd Gen (12.9 inch, 1TB, WiFi)"
         case "iPad8,7": return "iPad Pro 3rd Gen (12.9 inch, WiFi+Cellular)"
         case "iPad8,8": return "iPad Pro 3rd Gen (12.9 inch, 1TB, WiFi+Cellular)"
-        //AppleTV
+        // AppleTV
         case "AppleTV5,3": return "Apple TV"
-        //Simulator
+        // Simulator
         case "i386", "x86_64": return "Simulator"
         default: return identifier
         }

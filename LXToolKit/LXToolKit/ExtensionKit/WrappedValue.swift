@@ -7,9 +7,9 @@
 
 import Foundation
 
-//extension UIColor: NamespaceWrappable {}
-//extension UIView: NamespaceWrappable {}
-//extension NSObject: NamespaceWrappable {}
+// extension UIColor: NamespaceWrappable {}
+// extension UIView: NamespaceWrappable {}
+// extension NSObject: NamespaceWrappable {}
 
 extension Array: SwiftyCompatible {}
 

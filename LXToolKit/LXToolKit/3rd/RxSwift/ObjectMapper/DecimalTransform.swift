@@ -14,7 +14,7 @@ open class DecimalTransform: ObjectMapper.TransformType {
     // MARK: 🛠Life Cycle
     public init() {}
     public func transformFromJSON(_ value: Any?) -> Decimal? {
-        var result: Decimal? = nil
+        var result: Decimal?
         if let num = value as? Double {
             result = Decimal(num)
         } else if let num = value as? NSNumber {

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - 👀
 public extension Swifty where Base == Int {
-    static func toInt(from bool: Bool) ->Int {
+    static func toInt(from bool: Bool) -> Int {
         return bool ? 1 : 0
     }
 }

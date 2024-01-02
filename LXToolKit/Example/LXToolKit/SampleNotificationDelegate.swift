@@ -11,7 +11,7 @@ import UserNotifications
 import UserNotificationsUI
 import LXToolKit
 
-class SampleNotificationDelegate: NSObject , UNUserNotificationCenterDelegate {
+class SampleNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
         dlog("openSettingsFor: ", notification)
     }
@@ -20,9 +20,9 @@ class SampleNotificationDelegate: NSObject , UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         dlog("willPresent: ", notification)
-        completionHandler([.alert,.sound])
+        completionHandler([.alert, .sound])
     }
-    
+
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -43,5 +43,3 @@ class SampleNotificationDelegate: NSObject , UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
-

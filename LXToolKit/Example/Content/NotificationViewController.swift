@@ -14,11 +14,6 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
 
     @IBOutlet weak var imageView: UIImageView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any required interface initialization here.
-    }
- 
     func didReceive(_ notification: UNNotification) {
         print("didReceive: ", notification)
         let content = notification.request.content

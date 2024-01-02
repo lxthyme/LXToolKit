@@ -39,27 +39,27 @@ public struct NamespaceWrapper<T>: TypeWrapperProtocol {
 }
 
 // MARK: - 🔥XLWrapper
-//public final class XLWrapper<Base> {
+// public final class XLWrapper<Base> {
 //    public let base: Base
 //    public init(_ base: Base) {
 //        self.base = base
 //    }
-//}
+// }
 //
-//public protocol XLProtocol {
+// public protocol XLProtocol {
 //    associatedtype XLType
 //    var xl: XLType { get }
 //    static var xl: XLType.Type { get }
-//}
-//// MARK: - 👀
-//public extension XLProtocol {
+// }
+// MARK: - 👀
+// public extension XLProtocol {
 //    public var xl: XLWrapper<Self> {
 //        return XLWrapper(self)
 //    }
 //    public static var xl: XLWrapper<Self>.Type {
 //        return XLWrapper<Self>.self
 //    }
-//}
+// }
 
 /**
  Use `Swifty` proxy as customization point for constrained protocol extensions.

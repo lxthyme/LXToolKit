@@ -228,7 +228,6 @@ public extension UIImage {
     }
 }
 
-
 // MARK: - 👀
 public extension Swifty where Base: UIView {
     func addStretchableImage(image: UIImage, withContentCenter rect: CGRect) {
