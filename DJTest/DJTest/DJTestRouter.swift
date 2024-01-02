@@ -130,11 +130,11 @@ public struct DJTestRouter {
         .subitem(.section(title: "default entrypoint"), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .default, channelName: .default)
             return vc
-        })),
+        }, transition: .alert)),
         .subitem(.section(title: "Gallery App"), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .galleryApp, channelName: .default)
             return vc
-        })),
+        }, transition: .alert)),
         .subitem(.section(title: "Flutter Multi Channel"), scene: .vc(provider: {
             return LXHostVC()
         })),
