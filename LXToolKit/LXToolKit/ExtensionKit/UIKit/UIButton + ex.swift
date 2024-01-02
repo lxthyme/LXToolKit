@@ -8,19 +8,42 @@
 import Foundation
 
 // MARK: - 👀UIButton.Configuration
-@available(iOS 15.0, *)
-public extension Swifty where Base == UIButton.Configuration {
-    static var allCases: [UIButton.Configuration] {
-        return [
-            .plain(),
-            .tinted(),
-            .gray(),
-            .filled(),
-            .borderless(),
-            .bordered(),
-            .borderedTinted(),
-            .borderedProminent(),
-        ]
+public extension UIButton {
+    enum ConfigurationEnum: CaseIterable {
+        case plain
+        case tinted
+        case gray
+        case filled
+        case borderless
+        case bordered
+        case borderedTinted
+        case borderedProminent
+    }
+}
+public extension Swifty where Base == UIButton.ConfigurationEnum {
+    static func from(value: String) -> UIButton.ConfigurationEnum? {
+        let item: UIButton.ConfigurationEnum?
+        switch value {
+        case "plain":
+            item = .plain
+        case "tinted":
+            item = .tinted
+        case "gray":
+            item = .gray
+        case "filled":
+            item = .filled
+        case "borderless":
+            item = .borderless
+        case "bordered":
+            item = .bordered
+        case "borderedTinted":
+            item = .borderedTinted
+        case "borderedProminent":
+            item = .borderedProminent
+        default:
+            item = nil
+        }
+        return item
     }
     var rawValue: String {
         switch base {
@@ -40,8 +63,6 @@ public extension Swifty where Base == UIButton.Configuration {
             return "borderedTinted"
         case .borderedProminent:
             return "borderedProminent"
-        default:
-            return "\(base.hashValue)"
         }
     }
 }

@@ -40,7 +40,7 @@ R.generated.swift
 rswift.log
 
 # SwiftLint
-.swiftlint.yml
+# .swiftlint.yml
 
 # DJNewClassify2
 # DJNewClassify3

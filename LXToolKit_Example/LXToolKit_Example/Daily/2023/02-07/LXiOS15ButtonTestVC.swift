@@ -13,7 +13,7 @@ import LXToolKit
 class LXiOS15ButtonTestVC: LXBaseVC {
     // MARK: UI
     private lazy var segmentConfigurationStyle: UISegmentedControl = {
-        let s = UISegmentedControl(items: UIButton.Configuration.XL.allCases.map { $0.xl.rawValue })
+        let s = UISegmentedControl(items: UIButton.ConfigurationEnum.allCases.map { $0.xl.rawValue })
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
@@ -167,7 +167,9 @@ private extension LXiOS15ButtonTestVC {
     // config.titleAlignment = .center
     @objc func segmentConfigurationStyleChanged(sender: UISegmentedControl) {
         // config = UIButton.Configuration.plain()
-        switch UIButton.Configuration.XL.allCases[sender.selectedSegmentIndex] {
+        // switch UIButton.Configuration.XL.allCases[sender.selectedSegmentIndex] {
+        guard let item = UIButton.ConfigurationEnum.allCases[safe: sender.selectedSegmentIndex] else { return }
+        switch item {
         case .plain:
             config = UIButton.Configuration.plain()
         case .tinted:
