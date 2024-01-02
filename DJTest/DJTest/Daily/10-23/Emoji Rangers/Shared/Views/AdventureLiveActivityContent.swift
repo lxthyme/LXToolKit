@@ -14,7 +14,7 @@ struct AdventureLiveActivityContent: View {
     let hero: EmojiRanger
     let isStale: Bool
     let contentState: AdventureAttributes.ContentState
-    
+
     var body: some View {
         VStack(alignment: .center) {
             HStack(content: {
@@ -131,7 +131,6 @@ struct StatsView: View {
         .frame(height: 30)
     }
 }
-
 
 @available(iOS 16.2, *)
 #Preview {
