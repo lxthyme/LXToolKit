@@ -17,6 +17,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentConfigurationStyleChanged(sender:)), for: .valueChanged)
 
@@ -27,6 +28,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentButtonSizeChanged(sender:)), for: .valueChanged)
 
@@ -37,6 +39,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentCornerStyleChanged(sender:)), for: .valueChanged)
 
@@ -47,6 +50,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentMacIdiomStyleChanged(sender:)), for: .valueChanged)
 
@@ -57,6 +61,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentTitleAlignmentChanged(sender:)), for: .valueChanged)
 
@@ -67,6 +72,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentBaseForegroundColorChanged(sender:)), for: .valueChanged)
 
@@ -77,6 +83,7 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         s.selectedSegmentIndex = 0
         s.isMomentary = false
         s.apportionsSegmentWidthsByContent = true
+        s.selectedSegmentTintColor = .magenta
 
         s.addTarget(self, action: #selector(segmentBaseBackgroundColorChanged(sender:)), for: .valueChanged)
 
@@ -98,35 +105,45 @@ class LXiOS15ButtonTestVC: LXBaseVC {
     // MARK: Vaiables
     var config = UIButton.Configuration.plain() {
         didSet {
-            // config.background
-            config.baseForegroundColor = .yellow
-            config.baseBackgroundColor = .magenta
-            btnRender.configuration = config
-            btnRender.setNeedsUpdateConfiguration()
+            config.contentInsets = .init(top: 3, leading: 5, bottom: 3, trailing: 5)
+
+            segmentButtonSize.selectedSegmentIndex = 0
+            segmentCornerStyle.selectedSegmentIndex = 0
+            segmentMacIdiomStyle.selectedSegmentIndex = 0
+            segmentTitleAlignment.selectedSegmentIndex = 0
+            segmentBaseForegroundColor.selectedSegmentIndex = 0
+            segmentBaseBackgroundColor.selectedSegmentIndex = 0
+            updateButtonBackgroundConfig()
         }
     }
     var cornerStyle: UIButton.Configuration.CornerStyle = .medium {
         didSet {
-            config.cornerStyle = cornerStyle
-            btnRender.setNeedsUpdateConfiguration()
+            updateButtonBackgroundConfig()
         }
     }
     var buttonSize: UIButton.Configuration.Size = .medium {
         didSet {
-            config.buttonSize = buttonSize
-            btnRender.setNeedsUpdateConfiguration()
+            updateButtonBackgroundConfig()
         }
     }
     var macIdiomStyle: UIButton.Configuration.MacIdiomStyle = .automatic {
         didSet {
-            config.macIdiomStyle = macIdiomStyle
-            btnRender.setNeedsUpdateConfiguration()
+            updateButtonBackgroundConfig()
         }
     }
     var titleAlignment: UIButton.Configuration.TitleAlignment = .center {
         didSet {
-            config.titleAlignment = titleAlignment
-            btnRender.setNeedsUpdateConfiguration()
+            updateButtonBackgroundConfig()
+        }
+    }
+    var baseBackgroundColor: UIColor? = .white {
+        didSet {
+            updateButtonBackgroundConfig()
+        }
+    }
+    var baseForegroundColor: UIColor? = .white {
+        didSet {
+            updateButtonBackgroundConfig()
         }
     }
     let colorList: [UIColor] = [
@@ -147,6 +164,15 @@ class LXiOS15ButtonTestVC: LXBaseVC {
         // Do any additional setup after loading the view.
         prepareUI()
     }
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeLeft
+    }
+    // override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+    //     return .landscapeLeft
+    // }
 }
 
 // MARK: LoadData
@@ -155,7 +181,19 @@ extension LXiOS15ButtonTestVC {}
 
 // MARK: Public Actions
 @available(iOS 15.0, *)
-extension LXiOS15ButtonTestVC {}
+extension LXiOS15ButtonTestVC {
+    func updateButtonBackgroundConfig() {
+        var config = self.config
+        config.cornerStyle = cornerStyle
+        config.buttonSize = buttonSize
+        config.macIdiomStyle = macIdiomStyle
+        config.titleAlignment = titleAlignment
+        config.baseBackgroundColor = baseBackgroundColor
+        config.baseForegroundColor = baseForegroundColor
+        btnRender.configuration = config
+        btnRender.setNeedsUpdateConfiguration()
+    }
+}
 
 // MARK: Private Actions
 @available(iOS 15.0, *)
@@ -189,10 +227,6 @@ private extension LXiOS15ButtonTestVC {
         default:
             config = UIButton.Configuration.plain()
         }
-        segmentButtonSize.selectedSegmentIndex = 0
-        segmentCornerStyle.selectedSegmentIndex = 0
-        segmentMacIdiomStyle.selectedSegmentIndex = 0
-        segmentTitleAlignment.selectedSegmentIndex = 0
     }
     @objc func segmentButtonSizeChanged(sender: UISegmentedControl) {
         // config.buttonSize = .medium
@@ -258,8 +292,12 @@ private extension LXiOS15ButtonTestVC {
             titleAlignment = .automatic
         }
     }
-    @objc func segmentBaseForegroundColorChanged(sender: UISegmentedControl) {}
-    @objc func segmentBaseBackgroundColorChanged(sender: UISegmentedControl) {}
+    @objc func segmentBaseForegroundColorChanged(sender: UISegmentedControl) {
+        baseForegroundColor = colorList[safe: sender.selectedSegmentIndex]
+    }
+    @objc func segmentBaseBackgroundColorChanged(sender: UISegmentedControl) {
+        baseBackgroundColor = colorList[safe: sender.selectedSegmentIndex]
+    }
     @objc func btnRenderAction(sender: UIButton) {}
 }
 
@@ -288,8 +326,9 @@ private extension LXiOS15ButtonTestVC {
 
     func masonry() {
         self.contentStackView.setCustomSpacing(20, after: segmentTitleAlignment)
-        self.contentStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
+        self.contentStackView.snp.remakeConstraints {
+            $0.top.equalTo(self.view.snp.topMargin).offset(20)
+            $0.centerX.equalToSuperview()
         }
     }
 }
