@@ -36,20 +36,6 @@ class LXStrenchableWebVC: LXBaseVC {
         // @objc func <#btnAction#>(sender: UIButton) {}
         return btn
     }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -134,7 +120,7 @@ private extension LXStrenchableWebVC {
 
 // MARK: 🔐Private Actions
 private extension LXStrenchableWebVC {
-    func mockData() ->String {
+    func mockData() -> String {
         return """
         <style type=\"text/css\">img{display:block;width:100%;height:auto;}</style><img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_472741848.jpg' /> <img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_1552278410.jpg' /> <img style=\"width:100%;height:auto\" src='http://img.iblimg.com/fast2home-1/offlinegoods/desc/DESC_1594069036.jpg' /><script type=\"text/javascript\">!function(){var t=document.getElementsByTagName(\"table\");if(t&&t.length){var e=[],n=!0,r=!1,a=void 0;try{for(var i,o=t[Symbol.iterator]();!(n=(i=o.next()).done);n=!0){var l=i.value;e.push(l.offsetWidth)}}catch(t){r=!0,a=t}finally{try{!n&&o.return&&o.return()}finally{if(r)throw a}}e.sort(function(t,e){return e-t});var u=window.screen.availWidth/e[0],c=document.createElement(\"meta\");c.setAttribute(\"name\",\"viewport\"),c.setAttribute(\"content\",\"width=device-width,minimum-scale=\"+u+\",maximum-scale=\"+u+\",user-scalable=no\"),document.body.appendChild(c)}}();</script>
         """

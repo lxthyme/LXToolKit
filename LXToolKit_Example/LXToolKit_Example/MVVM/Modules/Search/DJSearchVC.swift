@@ -153,7 +153,7 @@ class DJSearchVC: LXBaseTableVC {
         let v = LXHMSegmentedControl(sectionImages: images,
                                      sectionSelectedImages: selectedImages,
                                      titlesForSections: titles.map { $0.title })
-        v.selectedSegmentIndex = 0;
+        v.selectedSegmentIndex = 0
         v.prepareVM()
         v.snp.makeConstraints {
             $0.width.equalTo(220)
@@ -220,19 +220,6 @@ class DJSearchVC: LXBaseTableVC {
     // MARK: 🔗Vaiables
     let sortRepositoryItem = BehaviorRelay(value: SortRepositoryItems.bestMatch)
     let sortUserItem = BehaviorRelay(value: SortUserItems.bestMatch)
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -275,7 +262,7 @@ extension DJSearchVC {
                                      selection: table.rx.modelSelected(SearchSectionItem.self).asDriver())
         let output = vm.transform(input: input)
 
-        let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell:{ dataSource, tableView, indexPath, item in
+        let dataSource = RxTableViewSectionedReloadDataSource<SearchSection>(configureCell: { dataSource, tableView, indexPath, item in
             switch item {
             case .trendingRepositoriesItem(let cellVM):
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TrendingRepositoryCell.trendingRepositoriesItem", for: indexPath) as? DJSearchDefaultCell
@@ -392,10 +379,10 @@ private extension DJSearchVC {}
 private extension DJSearchVC {
     func prepareTableView() {
         table.backgroundColor = .clear
-        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingRepositoriesItem")
-        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.trendingUsersItem")
-        table.register(DJRepositoryCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.repositoriesItem")
-        table.register(DJUserCell.self, forCellReuseIdentifier:"TrendingRepositoryCell.usersItem")
+        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier: "TrendingRepositoryCell.trendingRepositoriesItem")
+        table.register(DJSearchDefaultCell.self, forCellReuseIdentifier: "TrendingRepositoryCell.trendingUsersItem")
+        table.register(DJRepositoryCell.self, forCellReuseIdentifier: "TrendingRepositoryCell.repositoriesItem")
+        table.register(DJUserCell.self, forCellReuseIdentifier: "TrendingRepositoryCell.usersItem")
     }
     func prepareVM() {
         languageChanged.subscribe(onNext: {[weak self] () in

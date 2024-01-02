@@ -39,20 +39,6 @@ class LXWebViewTestVC: LXBaseVC {
         v.uiDelegate = self
         return v
     }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -118,7 +104,7 @@ extension LXWebViewTestVC: WKNavigationDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXWebViewTestVC {
     func prepareUI() {
-        self.view.backgroundColor = .white;
+        self.view.backgroundColor = .white
         // webView.scrollView.rx.contentSize
         //     .subscribe(onNext: {[weak self] event in
         //         guard let `self` = self else { return }

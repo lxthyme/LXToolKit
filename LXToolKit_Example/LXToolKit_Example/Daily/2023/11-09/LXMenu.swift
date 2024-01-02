@@ -41,7 +41,7 @@ class LXMenu: UIControl {
         } else {
             selectedAction = nil
         }
-        return UIMenu(title: "", children: items.map{ proxyAction($0, selected: $0 == selectedAction) })
+        return UIMenu(title: "", children: items.map { proxyAction($0, selected: $0 == selectedAction) })
     }
     var selectedIndex: Int = -1 {
         didSet {

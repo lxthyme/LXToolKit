@@ -19,12 +19,12 @@ private class MyView: LXBaseView {
     }
     convenience init(vc: LXMVVMSampleVC) {
         self.init(frame: .zero)
-        
+
         self.vc = vc
-        
+
         prepareUI()
     }
-    
+
 }
 
 // MARK: 🌎LoadData
@@ -43,10 +43,10 @@ private extension MyView {
         let b = a[1...3]
         let c = Array(b)
         self.backgroundColor = .white
-        //[<#table#>].forEach(self.addSubview)
+        // [<#table#>].forEach(self.addSubview)
         masonry()
     }
-    
+
     func masonry() {}
 }
 
@@ -76,7 +76,7 @@ class LXMVVMSampleVC: LXBaseVC {
     // }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         prepareUI()
     }
@@ -93,9 +93,9 @@ private extension LXMVVMSampleVC {}
 
 private extension LXMVVMSampleVC {
     func prepareUI() {
-        //[<#table#>].forEach(self.view.addSubview)
+        // [<#table#>].forEach(self.view.addSubview)
         masonry()
     }
-    
+
     func masonry() {}
 }

@@ -11,7 +11,7 @@ import SDWebImage
 
 // MARK: - 👀
 extension Reactive where Base: UIImageView {
-    func xl_setImage(placeholder: UIImage? = UIImage(named: "placeholderimage")) ->Binder<String> {
+    func xl_setImage(placeholder: UIImage? = UIImage(named: "placeholderimage")) -> Binder<String> {
         return Binder(base) { iv, url in
             iv.sd_setImage(with: URL(string: url),
                            placeholderImage: placeholder,

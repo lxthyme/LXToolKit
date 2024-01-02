@@ -243,7 +243,7 @@ extension LXAlbumListModel {
         var type: LXAlbumListModel.MediaType = .unknown
         var duration: String = ""
         var isSelected: Bool = false
-        private var pri_editImage: UIImage? = nil
+        private var pri_editImage: UIImage?
         var editImage: UIImage? {
             set {
                 pri_editImage = newValue
@@ -266,7 +266,7 @@ extension LXAlbumListModel {
             return CGFloat(self.asset.pixelWidth) / CGFloat(self.asset.pixelHeight)
         }
         var previewSize: CGSize {
-            let scale: CGFloat = 2 //UIScreen.main.scale
+            let scale: CGFloat = 2 // UIScreen.main.scale
             if self.whRatio > 1 {
                 let h = min(UIScreen.main.bounds.height, ZLMaxImageWidth) * scale
                 let w = h * self.whRatio

@@ -79,7 +79,6 @@ class LXListItemModel: NSObject, HandyJSON {
     // override var debugDescription: String { return "" }
 }
 
-
 // MARK: - <#Title...#>
 private extension LXListItemModel {
     func readArchive() {
@@ -101,7 +100,7 @@ private extension LXListItemModel {
 
 // MARK: - <#Title...#>
 extension LXListItemModel {
-    func sortedPhotos() ->[LXListItemModel.Photo] {
+    func sortedPhotos() -> [LXListItemModel.Photo] {
         return self.photoList.sorted { (p1, p2) -> Bool in
             if let d1 = p1.creationDate, let d2 = p2.creationDate {
                 return d1.compare(d2) == .orderedAscending

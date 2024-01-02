@@ -51,19 +51,6 @@ class LXCubeVC: UIViewController {
     }()
     // MARK: 🔗Vaiables
     lazy var faces = [f0View, f1View, f2View, f3View, f4View, f5View]
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -171,38 +158,38 @@ private let LIGHT_DIRECTION: (x: Float, y: Float, z: Float) = (x: 0, y: 1, z: -0
 private let AMBIENT_LIGHT: CGFloat = 0.5
 private extension LXCubeVC {
     func start() {
-        //set up the container sublayer transform
+        // set up the container sublayer transform
         var perspective = CATransform3DIdentity
         perspective.m34 = -1.0 / 500.0
 //        perspective = CATransform3DRotate(perspective, -.pi / 4, 1, 0, 0)
 //        perspective = CATransform3DRotate(perspective, -.pi / 4, 0, 1, 0)
         self.containerView.layer.sublayerTransform = perspective
-        //add cube face 1
+        // add cube face 1
         var transform = CATransform3DMakeTranslation(0, 0, 100)
         addFace(idx: 0, withTransform: transform)
-        //add cube face 2
+        // add cube face 2
         transform = CATransform3DMakeTranslation(100, 0, 0)
         transform = CATransform3DRotate(transform, .pi / 2, 0, 1, 0)
         addFace(idx: 1, withTransform: transform)
-        //add cube face 3
+        // add cube face 3
         transform = CATransform3DMakeTranslation(0, -100, 0)
         transform = CATransform3DRotate(transform, .pi / 2, 1, 0, 0)
         addFace(idx: 2, withTransform: transform)
-        //add cube face 4
+        // add cube face 4
         transform = CATransform3DMakeTranslation(0, 100, 0)
         transform = CATransform3DRotate(transform, -.pi / 2, 1, 0, 0)
         addFace(idx: 3, withTransform: transform)
-        //add cube face 5
+        // add cube face 5
         transform = CATransform3DMakeTranslation(-100, 0, 0)
         transform = CATransform3DRotate(transform, -.pi / 2, 0, 1, 0)
         addFace(idx: 4, withTransform: transform)
-        //add cube face 6
+        // add cube face 6
         transform = CATransform3DMakeTranslation(0, 0, -100)
         transform = CATransform3DRotate(transform, .pi, 0, 1, 0)
         addFace(idx: 5, withTransform: transform)
     }
     func applyLightingToFace(face: CALayer) {
-        //add lighting layer
+        // add lighting layer
         let layer = CALayer()
         layer.frame = face.bounds
         face.addSublayer(layer)
@@ -212,7 +199,7 @@ private extension LXCubeVC {
         let transform = face.transform
         let matrix4 = transform.xl.convertToGLKMatrix4
         let matrix3 = GLKMatrix4GetMatrix3(matrix4)
-        //get face normal
+        // get face normal
         var normal = GLKVector3Make(0, 0, 1)
         normal = GLKMatrix3MultiplyVector3(matrix3, normal)
         normal = GLKVector3Normalize(normal)
@@ -236,7 +223,7 @@ private extension LXCubeVC {
         face.center = CGPoint(x: kContainerWidth / 2, y: kContainerWidth / 2)
         // apply the transform
         face.layer.transform = transform
-        //apply lighting
+        // apply lighting
         applyLightingToFace(face: face.layer)
     }
 }

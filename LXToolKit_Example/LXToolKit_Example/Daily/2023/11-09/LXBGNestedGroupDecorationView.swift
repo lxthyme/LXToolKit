@@ -15,9 +15,6 @@ open class LXBGNestedGroupDecorationView: UICollectionReusableView {
 
         prepareUI()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 
 // MARK: 👀Public Actions

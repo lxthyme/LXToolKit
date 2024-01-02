@@ -9,41 +9,33 @@
 import UIKit
 
 public class UUHud: UIView {
-    
+
 //    private var animatImageV:YYAnimatedImageView?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         createSubview()
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func createSubview() {
-        
+
 //        let image = YYImage(named: "loading")
 //        animatImageV = YYAnimatedImageView(image: image)
 //        animatImageV?.alpha = 0
 //        addSubview(animatImageV!)
     }
-    
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-//        animatImageV?.snp.makeConstraints({ (snp) in
-//            snp.width.height.equalTo(150)
-//            snp.center.equalTo(self.snp.center)
-//        })
-    }
-    
+
     /// show in window
     @objc public class func showHud() {
         self.showHud(inView: UIApplication.shared.keyWindow!)
     }
-    
+
     /// show in a view
-    @objc public class func showHud(inView:UIView) {
+    @objc public class func showHud(inView: UIView) {
         for view in inView.subviews {
             if view.isKind(of: UUHud.self) {
                 UUHud.hideHud(inView: inView)
@@ -59,16 +51,16 @@ public class UUHud: UIView {
 //            hud.animatImageV?.transform = CGAffineTransform.identity
 //            
 //        }, completion: nil)
-        
+
     }
-    
+
     /// hide from window
-    @objc public class func hideHud(){
+    @objc public class func hideHud() {
         self.hideHud(inView: UIApplication.shared.keyWindow!)
     }
-    
+
     /// hide from a view
-    @objc public class func hideHud(inView:UIView){
+    @objc public class func hideHud(inView: UIView) {
         for view in inView.subviews {
             if view.isKind(of: UUHud.self) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -82,4 +74,3 @@ public class UUHud: UIView {
         }
     }
 }
-

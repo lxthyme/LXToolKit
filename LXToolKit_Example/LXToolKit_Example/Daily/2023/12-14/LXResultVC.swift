@@ -7,10 +7,10 @@
 import UIKit
 import LXToolKit
 
-fileprivate typealias Section = String
-fileprivate typealias Item = ResultItem
+private typealias Section = String
+private typealias Item = ResultItem
 
-fileprivate enum ResultItem {
+private enum ResultItem {
     case suggested(title: String)
     case product(product: Product)
 }
@@ -50,19 +50,6 @@ class LXResultVC: LXBaseVC {
                 refreshCollectionView()
             }
         }
-    }
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -200,7 +187,6 @@ extension LXResultVC: UICollectionViewDelegate {
         }
     }
 }
-
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXResultVC {

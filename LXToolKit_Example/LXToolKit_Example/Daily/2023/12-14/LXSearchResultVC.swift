@@ -6,8 +6,8 @@
 //
 import UIKit
 
-fileprivate typealias Section = String
-fileprivate typealias Item = Int
+private typealias Section = String
+private typealias Item = Int
 
 class LXSearchResultVC: UIViewController {
     // MARK: 📌UI

@@ -9,7 +9,6 @@
 import Foundation
 import Kingfisher
 
-
  extension UIImage {
     @objc static func emoticonImage(with filePath: String) -> UIImage? {
 //

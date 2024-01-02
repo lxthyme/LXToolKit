@@ -55,7 +55,7 @@ enum DJHomeTabBarItem: Int {
         animation.theme.textSelectedColor = themeService.attribute { $0.secondary }
         return animation
     }
-    
+
     private func controller(with vm: LXBaseVM, navigator: Navigator) -> UIViewController {
         switch self {
         case .search:
@@ -175,4 +175,3 @@ private extension DJHomeTabBarVC {
     }
     func masonry() {}
 }
-

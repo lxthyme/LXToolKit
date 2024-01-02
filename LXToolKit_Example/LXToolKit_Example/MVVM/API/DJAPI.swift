@@ -20,7 +20,7 @@ private let assetDir: URL = {
 
 enum DJAPI: LXToolKit.DJAPI {
     case download(url: URL, fileName: String?)
-    
+
     case searchRepositories(query: String, sort: String, order: String, page: Int)
 
     case searchUsers(query: String, sort: String, order: String, page: Int)
@@ -73,7 +73,7 @@ extension DJAPI: TargetType {
             return "/search/users"
         }
     }
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         if let token = AuthManager.shared.token {
             switch token.type() {
             case .basic(let token):

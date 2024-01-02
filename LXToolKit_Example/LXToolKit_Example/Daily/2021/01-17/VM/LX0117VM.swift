@@ -9,7 +9,7 @@
 import UIKit
 
 struct  WOLGrowthHistoryApiService {
-    ///当前请求页码
+    /// 当前请求页码
     var currentPage = 1
     /// 请求Action
     lazy var historyListRequest = Action<WOLGrowthHistoryApiServiceDicModel, LX0117Model>.init { (model) -> Observable<LX0117Model> in
@@ -27,9 +27,9 @@ struct WOLGrowthHistoryApiServiceDicModel {
 }
 
 enum WOLRequestType {
-    ///下拉刷新
+    /// 下拉刷新
     case down
-    ///上拉刷新
+    /// 上拉刷新
     case up
 }
 
@@ -54,9 +54,9 @@ extension LX0117VM {
 
     }
     struct Output {
-        ///请求数据
+        /// 请求数据
         lazy var requestData = PublishSubject<(LX0117Model, WOLRequestType)>()
-        ///请求异常处理
+        /// 请求异常处理
         lazy var requestError = PublishSubject<ActionError>()
         /// 上拉刷新状态输出
         lazy var footerState = PublishSubject<Int>()

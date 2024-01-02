@@ -23,7 +23,7 @@ private extension UICellConfigurationState {
 class LXItemListCell: UICollectionViewListCell {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    private var item: LXCustomCellListVC.Item? = nil
+    private var item: LXCustomCellListVC.Item?
     // MARK: 🛠Life Cycle
     override var configurationState: UICellConfigurationState {
         var state = super.configurationState

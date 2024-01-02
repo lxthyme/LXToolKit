@@ -82,18 +82,18 @@ class LXCollectionVC: UIViewController {
         // v.dropDelegate = self
         // v.isPrefetchingEnabled = true
 
-        //let header =  VPLoadingHeader.init(refreshingBlock: {
+        // let header =  VPLoadingHeader.init(refreshingBlock: {
         //    [weak self] in
         //    guard let `self` = self else { return }
         //    //self.loadData(true)
-        //})
-        //v.mj_header = header
-        //let footer = VPAutoLoadingFooter.init(refreshingBlock: {
+        // })
+        // v.mj_header = header
+        // let footer = VPAutoLoadingFooter.init(refreshingBlock: {
         //    [weak self] in
         //    guard let `self` = self else { return }
         //    //self.loadData(false)
-        //})
-        //v.mj_footer = footer
+        // })
+        // v.mj_footer = footer
 
         v.register(LXCollectionCell.self, forCellWithReuseIdentifier: LXCollectionCell.XL.reuseIdentifier)
         v.register(LXCollectionHeaderFooterView.self, forSupplementaryViewOfKind: LXCollectionVC.sectionHeaderElementKind, withReuseIdentifier: LXCollectionHeaderFooterView.XL.reuseIdentifier)
@@ -165,7 +165,6 @@ private extension LXCollectionVC {
                                                                                 elementKind: LXCollectionVC.sectionFooterElementKind,
                                                                                 alignment: .bottom)
 
-
                 let leadingItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),
                                                              heightDimension: .fractionalHeight(1))
                 let leadingItem = NSCollectionLayoutItem(layoutSize: leadingItemSize)
@@ -198,7 +197,7 @@ private extension LXCollectionVC {
                 sectionHeader.pinToVisibleBounds = true
                 sectionHeader.zIndex = 2
                 section.boundarySupplementaryItems = [sectionHeader, sectionFooter]
-                if(sectionKind == .orthogonal || sectionKind == .groupOne) {
+                if sectionKind == .orthogonal || sectionKind == .groupOne {
                     bgNestedGroupDecoration.zIndex = 99
                     section.orthogonalScrollingBehavior = self.orthogonalScrollingBehavior
                     // section.orthogonalScrollingProperties = .DecelerationRate

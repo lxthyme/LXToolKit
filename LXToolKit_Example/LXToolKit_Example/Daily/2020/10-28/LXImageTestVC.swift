@@ -13,24 +13,10 @@ class LXImageTestVC: UIViewController {
     // MARK: 📌UI
     private lazy var imgViewBG: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "sign_bg")//?.resizableImage(withCapInsets: UIEdgeInsets(top: 300, left: 300, bottom: 300, right: 300), resizingMode: .stretch)
+        iv.image = UIImage(named: "sign_bg")// ?.resizableImage(withCapInsets: UIEdgeInsets(top: 300, left: 300, bottom: 300, right: 300), resizingMode: .stretch)
         iv.contentMode = .scaleAspectFill
         return iv
     }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

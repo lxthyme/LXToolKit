@@ -121,7 +121,6 @@ class LXSongVM: NSObject {
 //            .bind(to: service.getRecordList.inputs)
 //            .disposed(by: disposeBag)
 
-
     }
 }
 

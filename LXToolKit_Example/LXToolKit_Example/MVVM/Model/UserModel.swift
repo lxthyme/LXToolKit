@@ -285,4 +285,3 @@ extension TrendingUserModel: Equatable {
         return lhs.username == rhs.username
     }
 }
-

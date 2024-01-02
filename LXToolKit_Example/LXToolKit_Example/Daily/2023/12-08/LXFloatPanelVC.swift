@@ -8,8 +8,8 @@ import UIKit
 import FloatingPanel
 import LXToolKit
 
-fileprivate typealias Section = String
-fileprivate typealias Item = Int
+private typealias Section = String
+private typealias Item = Int
 
 class LXFloatPanelVC: LXBaseVC {
     // MARK: 📌UI
@@ -112,7 +112,6 @@ extension LXFloatPanelVC: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
-
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXFloatPanelVC {

@@ -10,7 +10,7 @@ import UIKit
 import LXToolKit
 
 typealias LXCellConfigureBlock = (_ cell: UITableViewCell, _ item: AnyObject) -> Void
-typealias LXDidSelectRowAt = (_ indexPath: IndexPath) ->Void
+typealias LXDidSelectRowAt = (_ indexPath: IndexPath) -> Void
 
 class LXLightedDataSource: NSObject {
     // MARK: UI

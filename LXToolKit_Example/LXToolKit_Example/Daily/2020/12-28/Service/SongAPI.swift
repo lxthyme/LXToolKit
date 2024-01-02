@@ -13,9 +13,9 @@ enum SongService {
     case recordList(sort: String?, page: Int?, pageSize: Int?) /// 儿歌列表
     /// 音乐广场
     case musicCenter
-    ///我的录制
+    /// 我的录制
     case myRecord
-    ///成长值充值记录
+    /// 成长值充值记录
     case growthRecord(page: Int, lastYearMonth: String, last_id: String)
 }
 // MARK: - 👀

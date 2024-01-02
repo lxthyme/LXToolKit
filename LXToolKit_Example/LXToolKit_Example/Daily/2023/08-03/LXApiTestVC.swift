@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Result
+// import Result
 import Moya
 import RxSwift
 import LXToolKit
@@ -84,7 +84,7 @@ private extension LXApiTestVC {
 private extension LXApiTestVC {
     func prepareUI() {
         self.view.backgroundColor = .white
-        //[<#table#>].forEach(self.view.addSubview)
+        // [<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 

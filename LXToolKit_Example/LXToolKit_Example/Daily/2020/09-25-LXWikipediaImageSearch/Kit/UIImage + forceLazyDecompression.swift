@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - 👀
 extension UIImage {
-    func forceLazyImageDecompression() ->UIImage {
+    func forceLazyImageDecompression() -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
         self.draw(at: .zero)
         UIGraphicsEndImageContext()

@@ -10,7 +10,7 @@ import DJTestKit
 
 class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.snapshot().sectionIdentifiers[section];
+        return self.snapshot().sectionIdentifiers[section]
     }
 }
 
@@ -208,7 +208,7 @@ extension LXToolKitTestVC {
         let json = params?.keys.sorted()
             .reduce("", { $0 + $1 + (params?[$1].debugDescription ?? "") }) ?? ""
         if #available(iOS 11.0, *) {
-            let _ = try? JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
+            _ = try? JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
         } else {
             // Fallback on earlier versions
         }

@@ -40,7 +40,7 @@ final public class Application: NSObject {
                               codetabsProvider: codetabsProvider)
         provider = restApi
 
-        //TODO: 「lxthyme」💊评估是否需要保留
+        // TODO: 「lxthyme」💊评估是否需要保留
         // if let token = authManager.token,
         //    !AppConfig.Network.useStaging {
         //     switch token.type() {
@@ -70,7 +70,7 @@ extension Application {
             let rootVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
             let detailVC = DJHomeTabBarVC(vm: vm, navigator: Navigator.default)
             let splitVC = UISplitViewController()
-            splitVC.viewControllers = [rootVC , detailVC]
+            splitVC.viewControllers = [rootVC, detailVC]
             self.navigator.show(segue: .vc(provider: { splitVC }, transition: .root(in: window)), sender: nil)
         }
     }

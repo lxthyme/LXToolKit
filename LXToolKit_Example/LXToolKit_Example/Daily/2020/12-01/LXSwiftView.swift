@@ -9,33 +9,33 @@
 import UIKit
 
 @objc
-protocol WOLCommentToolBarDelegate : class {
+protocol WOLCommentToolBarDelegate: class {
 
     @objc func chatToolBarShouldChangeFrameWithInputEvents(_ chatToolBar: WOLCommentToolBar, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat) -> Bool
-    @objc func chatToolBarShouldChangeFrameWithKeyboardEvents(_ chatToolBar: WOLCommentToolBar, height:CGFloat, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat, isRise: Bool) -> Bool
-    @objc func chatToolBarDidHiden(_ chatToolBar: WOLCommentToolBar);
+    @objc func chatToolBarShouldChangeFrameWithKeyboardEvents(_ chatToolBar: WOLCommentToolBar, height: CGFloat, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat, isRise: Bool) -> Bool
+    @objc func chatToolBarDidHiden(_ chatToolBar: WOLCommentToolBar)
     @objc func chatToolBarTotalHeight(_ chatToolBar: WOLCommentToolBar, height: CGFloat)
-    //@或是#页面的出现
+    // @或是#页面的出现
     @objc func personViewOrTopViewIsShow(isShow: Bool)
-    @objc func contentCountChange(count :Int)
+    @objc func contentCountChange(count: Int)
 }
 
-extension WOLCommentToolBarDelegate{
+extension WOLCommentToolBarDelegate {
 
-    func chatToolBarShouldChangeFrameWithInputEvents(_ chatToolBar: WOLCommentToolBar, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat) -> Bool{return true}
-    func chatToolBarShouldChangeFrameWithKeyboardEvents(_ chatToolBar: WOLCommentToolBar, height:CGFloat, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat, isRise: Bool) -> Bool{return true}
-    func chatToolBarDidHiden(_ chatToolBar: WOLCommentToolBar){}
-    func chatToolBarTotalHeight(_ chatToolBar: WOLCommentToolBar, height: CGFloat){}
-    //@或是#页面的出现
-    func personViewOrTopViewIsShow(isShow: Bool){ }
-    func contentCountChange(count :Int){}
+    func chatToolBarShouldChangeFrameWithInputEvents(_ chatToolBar: WOLCommentToolBar, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat) -> Bool {return true}
+    func chatToolBarShouldChangeFrameWithKeyboardEvents(_ chatToolBar: WOLCommentToolBar, height: CGFloat, estimatedFrame: CGRect, currentFrame: CGRect, duration: CGFloat, isRise: Bool) -> Bool {return true}
+    func chatToolBarDidHiden(_ chatToolBar: WOLCommentToolBar) {}
+    func chatToolBarTotalHeight(_ chatToolBar: WOLCommentToolBar, height: CGFloat) {}
+    // @或是#页面的出现
+    func personViewOrTopViewIsShow(isShow: Bool) { }
+    func contentCountChange(count: Int) {}
 
 }
 
 @objc
-protocol WOLCommentToolBarDataSource : AnyObject {
+protocol WOLCommentToolBarDataSource: AnyObject {
 
-    @objc func chatToolBarSendTextMessage(_ chatToolBar :WOLCommentToolBar, string: NSAttributedString, emoticonText: String?)
+    @objc func chatToolBarSendTextMessage(_ chatToolBar: WOLCommentToolBar, string: NSAttributedString, emoticonText: String?)
     @objc func chatToolBarTextChanged(_ chatToolBar: WOLCommentToolBar, attributedText: NSAttributedString, emoticonText: String?)
 
 //    @available(*, deprecated, message: "请使用最新的带有 emoticonText 的将包含表情包文本.")
@@ -91,7 +91,7 @@ private extension LXSwiftView {
         self.backgroundColor = UIColor.white
         // self.title = "<#title#>"
 
-        //[<#table#>].forEach(self.addSubview)
+        // [<#table#>].forEach(self.addSubview)
         masonry()
     }
 

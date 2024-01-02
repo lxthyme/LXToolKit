@@ -9,21 +9,6 @@
 import UIKit
 
 class LXTTTTT: UIViewController {
-    // MARK: 📌UI
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,7 +59,7 @@ private extension LXTTTTT {
         self.view.backgroundColor = UIColor.white
         // self.title = "<#title#>"
 
-        //[<#table#>].forEach(self.view.addSubview)
+        // [<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 

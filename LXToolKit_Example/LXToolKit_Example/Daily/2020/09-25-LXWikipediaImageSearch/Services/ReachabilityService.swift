@@ -76,7 +76,7 @@ class DefaultReachabilityService: ReachabilityService {
 
 // MARK: - 👀
 extension ObservableConvertibleType {
-    func retryOnBecomesReachable(_ valueOnFailure: Element, reachabilityService: ReachabilityService) ->Observable<Element> {
+    func retryOnBecomesReachable(_ valueOnFailure: Element, reachabilityService: ReachabilityService) -> Observable<Element> {
         return self
             .asObservable()
             .catch { e -> Observable<Element> in

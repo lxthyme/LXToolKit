@@ -8,7 +8,7 @@
 import UIKit
 import LXToolKit
 
-//typealias LXDidSelectRowAt = (_ indexPath: IndexPath) ->Void
+// typealias LXDidSelectRowAt = (_ indexPath: IndexPath) ->Void
 
 class LXMVVMSampleDataSource: NSObject {
     // MARK: 📌UI
@@ -31,7 +31,7 @@ extension LXMVVMSampleDataSource {}
 private extension LXMVVMSampleDataSource {}
 
 // MARK: - UITableViewDataSource
-//extension LXMVVMSampleDataSource: UITableViewDataSource {
+// extension LXMVVMSampleDataSource: UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return dataList.count
 //    }
@@ -41,11 +41,11 @@ private extension LXMVVMSampleDataSource {}
 //        cell.textLabel?.text = item.debugDescription
 //        return cell
 //    }
-//}
-//// MARK: - UITableViewDelegate
-//extension LXMVVMSampleDataSource: UITableViewDelegate {
+// }
+// MARK: - UITableViewDelegate
+// extension LXMVVMSampleDataSource: UITableViewDelegate {
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        tableView.deselectRow(at: indexPath, animated: true)
 //        didSelectRowAt?(indexPath)
 //    }
-//}
+// }

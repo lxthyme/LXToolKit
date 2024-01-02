@@ -17,19 +17,6 @@ class LXBaseVMVC2: UIViewController {
     }()
     // MARK: 🔗Vaiables
     private lazy var retryInputObservable = PublishSubject<Void>()
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +33,7 @@ extension LXBaseVMVC2 {}
 extension LXBaseVMVC2 {
     func requestAgin() {}
 
-    func requestErrorWithEmptyConfig(errorType: ActionError){
+    func requestErrorWithEmptyConfig(errorType: ActionError) {
         self.emptyView.removeFromSuperview()
         self.emptyView.retryBlock = {
             self.requestAgin()
@@ -69,7 +56,7 @@ private extension LXBaseVMVC2 {
         self.view.backgroundColor = UIColor.white
         // self.title = "<#title#>"
 
-        //[<#table#>].forEach(self.view.addSubview)
+        // [<#table#>].forEach(self.view.addSubview)
         masonry()
     }
 

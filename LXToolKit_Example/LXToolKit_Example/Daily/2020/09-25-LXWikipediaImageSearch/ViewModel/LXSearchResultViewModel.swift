@@ -31,7 +31,7 @@ class LXSearchResultViewModel: LXBaseVM {
         self.title = configureTitle(URLs).asDriver(onErrorJustReturn: "Error during fetching!")
     }
 
-    func configureTitle(_ imageURLs: Observable<[URL]>) ->Observable<String> {
+    func configureTitle(_ imageURLs: Observable<[URL]>) -> Observable<String> {
         let loadingValue: [URL]? = nil
 
         return imageURLs
@@ -48,7 +48,7 @@ class LXSearchResultViewModel: LXBaseVM {
         .retryOnBecomesReachable("⚠️ Service offline ⚠️", reachabilityService: `$`.reachabilityService)
     }
 
-    func configureImageURLs() ->Observable<[URL]> {
+    func configureImageURLs() -> Observable<[URL]> {
         return API
             .articleContent(searchResult)
             .observeOn(`$`.backgroundWorkScheduler)

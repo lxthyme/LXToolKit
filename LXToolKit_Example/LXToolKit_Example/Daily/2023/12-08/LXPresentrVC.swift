@@ -249,44 +249,27 @@ class LXPresentrVC: LXBaseVC {
         return presenter
     }()
     let transition = LXModalTransition()
-    private var presentationType: PresentationType = .topHalf //{
+    private var presentationType: PresentationType = .topHalf // {
     //     didSet {
     //         btnPresentationType.setTitle("\(presentationType)", for: .normal)
     //     }
     // }
-    private var transitionType: TransitionType? = nil //{
+    private var transitionType: TransitionType? // {
     //     didSet {
     //         btnTransitionType.setTitle("\(transitionType)", for: .normal)
     //     }
     // }
-    private var dismissTransitionType: TransitionType? = nil //{
+    private var dismissTransitionType: TransitionType? // {
     //     didSet {
     //         btnDismissTransitionType.setTitle("\(dismissTransitionType)", for: .normal)
     //     }
     // }
-    private var dismissAnimated = true //{
-    //     didSet {
-    //         btnDismissAnimated.setTitle("dismissAnimated: \(dismissAnimated)", for: .normal)
-    //     }
-    // }
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+    private var dismissAnimated = true // {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
 
         // showPanelContentVC()
         showPresentr()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

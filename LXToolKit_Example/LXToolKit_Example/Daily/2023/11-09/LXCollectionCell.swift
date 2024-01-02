@@ -26,9 +26,6 @@ class LXCollectionCell: UICollectionViewCell {
 
         prepareUI()
     }
-    open override func prepareForReuse() {
-        super.prepareForReuse()
-    }
 }
 
 // MARK: 🌎LoadData

@@ -13,7 +13,7 @@ struct WikipediaPage {
     let title: String
     let text: String
 
-    static func parseJSON(_ json: NSDictionary) throws ->WikipediaPage {
+    static func parseJSON(_ json: NSDictionary) throws -> WikipediaPage {
         guard
             let parse = json.value(forKey: "parse"),
             let title = (parse as AnyObject).value(forKey: "title") as? String,

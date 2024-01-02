@@ -7,8 +7,8 @@
 import UIKit
 import LXToolKit
 
-fileprivate typealias Section = String
-fileprivate typealias Item = Product
+private typealias Section = String
+private typealias Item = Product
 
 // MARK: - 🔐
 extension LXSearchVC {
@@ -84,9 +84,6 @@ class LXSearchVC: LXBaseVC {
         self.presentedViewController: \(self.presentedViewController)
         self.presentingViewController: \(self.presentingViewController)
         """)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

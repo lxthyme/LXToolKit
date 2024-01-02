@@ -25,7 +25,6 @@ enum TokenType {
 
 struct Token: HandyJSON {
 
-
     // MARK: 🔗Vaiables
     var isValid = false
 

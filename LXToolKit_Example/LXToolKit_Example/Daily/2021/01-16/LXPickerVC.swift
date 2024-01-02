@@ -8,8 +8,8 @@
 
 import UIKit
 import Photos
-//import PhotosUI
-//import YPImagePicker
+// import PhotosUI
+// import YPImagePicker
 
 class LXPickerVC: UIViewController {
     // MARK: 📌UI
@@ -128,19 +128,6 @@ class LXPickerVC: UIViewController {
     private lazy var albumVC: UIViewController = {
         return UIViewController()
     }()
-    // MARK: 🛠Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
