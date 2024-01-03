@@ -91,24 +91,65 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
         guard let configuration else {
             return "\(title): UnSupported"
         }
+        var desc = ""
+        let prefix = "\n   "
+        var idx = 1
+        if let image = configuration.image {
+            desc += "\(prefix)\(idx). image: \(image.description)"
+        }
+        idx += 1
+        if configuration.imageProperties.desc.isNotEmpty {
+            desc += "\(prefix)\(idx). imageProperties: \(configuration.imageProperties.desc)"
+        }
+        idx += 1
+        if let text = configuration.text,
+           text.isNotEmpty {
+            desc += "\(prefix)\(idx). text: \(text)"
+        }
+        idx += 1
+        if let attributedText = configuration.attributedText {
+            desc += "\(prefix)\(idx). attributedText: \(attributedText.description)"
+        }
+        idx += 1
+        if configuration.textProperties.desc.isNotEmpty {
+            desc += "\(prefix)\(idx). textProperties: \(configuration.textProperties.desc)"
+        }
+        idx += 1
+        if let secondaryText = configuration.secondaryText,
+           secondaryText.isNotEmpty {
+            desc += "\(prefix)\(idx). secondaryText: \(secondaryText)"
+        }
+        idx += 1
+        if let secondaryAttributedText = configuration.secondaryAttributedText {
+            desc += "\(prefix)\(idx). secondaryAttributedText: \(secondaryAttributedText.description)"
+        }
+        idx += 1
+        if configuration.secondaryTextProperties.desc.isNotEmpty {
+            desc += "\(prefix)\(idx). secondaryTextProperties: \(configuration.secondaryTextProperties.desc)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)"
+        idx += 1
+        if configuration.directionalLayoutMargins != .zero {
+            desc += "\(prefix)\(idx). directionalLayoutMargins: \(configuration.directionalLayoutMargins)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). prefersSideBySideTextAndSecondaryText: \(configuration.prefersSideBySideTextAndSecondaryText)"
+        idx += 1
+        if configuration.imageToTextPadding != 0 {
+            desc += "\(prefix)\(idx). imageToTextPadding: \(configuration.imageToTextPadding)"
+        }
+        idx += 1
+        if configuration.textToSecondaryTextHorizontalPadding != 0 {
+            desc += "\(prefix)\(idx). textToSecondaryTextHorizontalPadding: \(configuration.textToSecondaryTextHorizontalPadding)"
+        }
+        idx += 1
+        if configuration.textToSecondaryTextVerticalPadding != 0 {
+            desc += "\(prefix)\(idx). textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)"
+        }
+        idx += 1
         return """
-
-        \(title):
-            1. image: \(configuration.image?.description ?? "NaN")
-            2. imageProperties: \(configuration.imageProperties.desc)
-            3. text: \(configuration.text ?? "NaN")
-            4. attributedText: \(configuration.attributedText?.description ?? "NaN")
-            5. textProperties: \(configuration.textProperties.desc)
-            6. secondaryText: \(configuration.secondaryText ?? "NaN")
-            7. secondaryAttributedText: \(configuration.secondaryAttributedText?.description ?? "NaN")
-            8. secondaryTextProperties: \(configuration.secondaryTextProperties.desc)
-            9. axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)
-            10. directionalLayoutMargins: \(configuration.directionalLayoutMargins)
-            11. prefersSideBySideTextAndSecondaryText: \(configuration.prefersSideBySideTextAndSecondaryText)
-            12. imageToTextPadding: \(configuration.imageToTextPadding)
-            13. textToSecondaryTextHorizontalPadding: \(configuration.textToSecondaryTextHorizontalPadding)
-            14. textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)
-
+        \(desc)
         """
     }
 }
@@ -245,15 +286,37 @@ extension UIListContentConfiguration.TextProperties {
 // MARK: - 👀
 extension UIListContentConfiguration.ImageProperties {
     public var desc: String {
+        var desc = ""
+        var idx = 1
+        let prefix = "\n        "
+        if let preferredSymbolConfiguration {
+            desc += "\(prefix)\(idx). preferredSymbolConfiguration: \(preferredSymbolConfiguration.description)"
+        }
+        idx += 1
+        if let tintColor {
+            desc += "\(prefix)\(idx). tintColor: \(tintColor.description)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). tintColorTransformer: \(tintColorTransformer.debugDescription)"
+        idx += 1
+        if cornerRadius > 0 {
+            desc += "\(prefix)\(idx). cornerRadius: \(cornerRadius)"
+        }
+        idx += 1
+        if maximumSize != .zero {
+            desc += "\(prefix)\(idx). maximumSize: \(maximumSize)"
+        }
+        idx += 1
+        if reservedLayoutSize != .zero {
+            desc += "\(prefix)\(idx). reservedLayoutSize: \(reservedLayoutSize)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). accessibilityIgnoresInvertColors: \(accessibilityIgnoresInvertColors)"
+        idx += 1
+        desc += "\(prefix)\(idx). ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)"
+        idx += 1
         return """
-            1. preferredSymbolConfiguration: \(preferredSymbolConfiguration?.description ?? "NaN")
-            2. tintColor: \(tintColor?.description ?? "NaN")
-            3. tintColorTransformer: \(tintColorTransformer.debugDescription )
-            4. cornerRadius: \(cornerRadius)
-            5. maximumSize: \(maximumSize)
-            6. reservedLayoutSize: \(reservedLayoutSize)
-            7. accessibilityIgnoresInvertColors: \(accessibilityIgnoresInvertColors)
-            8. ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)
+        \(desc)
         """
     }
 }
