@@ -21,6 +21,9 @@ class LXSingleVC: LXBaseFlutterVC {
         prepareFlutter()
 
         DataModel.shared.count
+            .filter {[weak self] _ in
+                return self?.isVisible ?? false
+            }
             .subscribe {[weak self] result in
                 dlog("-->result[SingleVC]: \(result)")
                 switch result {
@@ -54,6 +57,9 @@ private extension LXSingleVC {
     func prepareFlutter() {
         self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count.value)
         self.channel.registerMultiCounterMethodChannel()
+
+        channel.extraChannelName = [.default]
+        channel.tryRegisterExtraDefaultMethodChannel()
     }
     func prepareUI() {
         self.view.backgroundColor = .white

@@ -60,6 +60,10 @@ extension FlutterManager {
     open class Channel {
         public var entrypoint: EntryPoint
         public var channelName: ChannelName
+        private lazy var extraChannel: [FlutterMethodChannel] = {
+            return extraChannelName.map { FlutterMethodChannel(name: $0.name, binaryMessenger: engine.binaryMessenger) }
+        }()
+        public var extraChannelName: [ChannelName] = []
         public lazy var engine: FlutterEngine = {
             return FlutterManager.shared.registerFromGroup(withEntryPoint: entrypoint.value)
         }()
@@ -76,9 +80,23 @@ extension FlutterManager {
 
 // MARK: - 👀
 public extension FlutterManager.Channel {
-    func registerDefaultMethodChannel() {
+    func tryRegisterExtraDefaultMethodChannel() {
+        guard extraChannelName.isNotEmpty else { return }
+        zip(self.extraChannelName, self.extraChannel).forEach {[weak self] (channelName, methodChannel)
+            in
+            guard let self else { return }
+            if case .default = channelName {
+                dlog("-->channel[Extera]: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
+                registerDefaultMethodChannel(methodChannel: methodChannel)
+            }
+        }
+    }
+    func tryRegisterDefaultMethodChannel() {
         guard case .default = channelName else { return }
         dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
+        registerDefaultMethodChannel(methodChannel: methodChannel)
+    }
+    func registerDefaultMethodChannel(methodChannel: FlutterMethodChannel) {
         methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")

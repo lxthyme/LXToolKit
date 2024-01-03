@@ -63,13 +63,12 @@ private extension LXFlutterSampleVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXFlutterSampleVC {
     func prepareFlutter() {
-        switch channel.channelName {
-        case .default:
-            // channel.registerDefaultMethodChannel()
-            break
-        case .multiCounter:
+        if case .multiCounter = channel.channelName {
             channel.registerMultiCounterMethodChannel()
             DataModel.shared.count
+                .filter {[weak self] _ in
+                    return self?.isVisible ?? false
+                }
                 .subscribe {[weak self] result in
                     dlog("-->result[LXFlutterSampleVC]: \(result)")
                     switch result {

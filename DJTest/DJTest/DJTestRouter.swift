@@ -60,17 +60,21 @@ public struct DJTestRouter {
         .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
         .subitem(.section(title: "UIListContentConfiguration.Ex.allCases"), scene: .vc(provider: {
-            let exContent = UIListContentConfiguration.Ex.allCases
+            let exContent = UIListContentConfiguration.Ex.allCases.map { LXSampleItem(title: $0.title, content: $0.description) }
             dlog("UIListContentConfiguration.Ex: \(exContent)")
-            let vc = LXSampleTextViewVC()
-            vc.dataFill(content: "\(exContent)")
+            // let vc = LXSampleTextViewVC()
+            // vc.dataFill(content: "\(exContent)")
+            let vc = LXSampleListVC()
+            vc.dataFill(list: exContent)
             return vc
         })),
         .subitem(.section(title: "UIBackgroundConfiguration.Ex.allCases"), scene: .vc(provider: {
-            let exBg = UIBackgroundConfiguration.Ex.allCases
+            let exBg = UIBackgroundConfiguration.Ex.allCases.map { LXSampleItem(title: $0.title, content: $0.description) }
             dlog("UIBackgroundConfiguration.Ex: \(exBg)")
-            let vc = LXSampleTextViewVC()
-            vc.dataFill(content: "\(exBg)")
+            // let vc = LXSampleTextViewVC()
+            // vc.dataFill(content: "\(exBg)")
+            let vc = LXSampleListVC()
+            vc.dataFill(list: exBg)
             return vc
         })),
     ])
