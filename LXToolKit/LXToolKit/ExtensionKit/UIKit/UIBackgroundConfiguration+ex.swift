@@ -206,7 +206,7 @@ public extension UIBackgroundConfiguration {
                 }
             }
         }
-        var title: String {
+        public var title: String {
             switch self {
             case .clear: return ".clear"
             case .listPlainCell: return ".listPlainCell"
@@ -240,45 +240,135 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
             imageDesc = "--UnAvailable--"
             imageContentModeDesc = "--UnAvailable--"
         }
+        var desc = ""
+        var idx = 1
+        let prefix = "\n    "
+        if let customView = configuration.customView {
+            desc += "\(prefix)\(idx). customView: \(customView)"
+        }
+        idx += 1
+        if configuration.cornerRadius > 0 {
+            desc += "\(prefix)\(idx). cornerRadius: \(configuration.cornerRadius)"
+        }
+        idx += 1
+        if configuration.backgroundInsets != .zero {
+            desc += "\(prefix)\(idx). backgroundInsets: \(configuration.backgroundInsets)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). edgesAddingLayoutMarginsToBackgroundInsets: \(configuration.edgesAddingLayoutMarginsToBackgroundInsets)"
+        idx += 1
+        if let backgroundColor = configuration.backgroundColor {
+            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor)"
+        }
+        idx += 1
+        if let backgroundColorTransformer = configuration.backgroundColorTransformer {
+            desc += "\(prefix)\(idx). backgroundColorTransformer: \(backgroundColorTransformer)"
+        }
+        idx += 1
+        if let visualEffect = configuration.visualEffect {
+            desc += "\(prefix)\(idx). visualEffect: \(visualEffect)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). image: \(imageDesc)"
+        idx += 1
+        desc += "\(prefix)\(idx). imageContentMode: \(imageContentModeDesc)"
+        idx += 1
+        if let strokeColor = configuration.strokeColor {
+            desc += "\(prefix)\(idx). strokeColor: \(strokeColor)"
+        }
+        idx += 1
+        if let strokeColorTransformer = configuration.strokeColorTransformer {
+            desc += "\(prefix)\(idx). strokeColorTransformer: \(strokeColorTransformer)"
+        }
+        idx += 1
+        if configuration.strokeWidth > 0 {
+            desc += "\(prefix)\(idx). strokeWidth: \(configuration.strokeWidth)"
+        }
+        idx += 1
+        if configuration.strokeOutset > 0 {
+            desc += "\(prefix)\(idx). strokeOutset: \(configuration.strokeOutset)"
+        }
+        idx += 1
         return """
-        \(title):
-            1. customView: \(configuration.customView?.description ?? "NaN")
-            2. cornerRadius: \(configuration.cornerRadius)
-            3. backgroundInsets: \(configuration.backgroundInsets)
-            4. edgesAddingLayoutMarginsToBackgroundInsets: \(configuration.edgesAddingLayoutMarginsToBackgroundInsets)
-            5. backgroundColor: \(configuration.backgroundColor?.description ?? "NaN")
-            6. backgroundColorTransformer: \(configuration.backgroundColorTransformer.debugDescription)
-            7. visualEffect: \(configuration.visualEffect?.description ?? "NaN")
-            8. image: \(imageDesc)
-            9. imageContentMode: \(imageContentModeDesc)
-            10. strokeColor: \(configuration.strokeColor?.description ?? "NaN")
-            11. strokeColorTransformer: \(configuration.strokeColorTransformer.debugDescription)
-            12. strokeWidth: \(configuration.strokeWidth)
-            13. strokeOutset: \(configuration.strokeOutset)
+        \(desc)
         """
+    }
+}
+
+// MARK: - 👀
+extension NSLineBreakMode: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .byWordWrapping: return ".byWordWrapping"
+        case .byCharWrapping: return ".byCharWrapping"
+        case .byClipping: return ".byClipping"
+        case .byTruncatingHead: return ".byTruncatingHead"
+        case .byTruncatingTail: return ".byTruncatingTail"
+        case .byTruncatingMiddle: return ".byTruncatingMiddle"
+        @unknown default: return "Unknown-NSLineBreakMode(\(self.rawValue)"
+        }
+    }
+}
+
+// MARK: - 👀
+extension UIAxis: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .horizontal: return ".horizontal"
+        case .vertical: return ".vertical"
+        case .both: return ".both"
+        default: return "Unknown-UIAxis(\(self.rawValue)"
+        }
     }
 }
 
 // MARK: - 👀
 extension UIListContentConfiguration.TextProperties {
     public var desc: String {
-        var t_showsExpansionTextWhenTruncated: Bool?
-        if #available(iOS 16.0, *) {
-            t_showsExpansionTextWhenTruncated = showsExpansionTextWhenTruncated
+        var t_showsExpansionTextWhenTruncated: String = if #available(iOS 16.0, *) {
+            "\(showsExpansionTextWhenTruncated)"
+        } else {
+            "UnSupported"
         }
+        var desc = ""
+        var idx = 1
+        let prefix = "\n        "
+        desc += "\(prefix)\(idx). font: \(font)"
+        idx += 1
+        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())"
+        idx += 1
+        if let colorTransformer {
+            desc += "\(prefix)\(idx). colorTransformer: \(colorTransformer)"
+        }
+        idx += 1
+        if alignment != .natural {
+            desc += "\(prefix)\(idx). alignment: \(alignment)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). lineBreakMode: \(lineBreakMode)"
+        idx += 1
+        if numberOfLines > 0 {
+            desc += "\(prefix)\(idx). numberOfLines: \(numberOfLines)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). adjustsFontSizeToFitWidth: \(adjustsFontSizeToFitWidth)"
+        idx += 1
+        if minimumScaleFactor > 0 {
+            desc += "\(prefix)\(idx). minimumScaleFactor: \(minimumScaleFactor)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)"
+        idx += 1
+        desc += "\(prefix)\(idx). adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)"
+        idx += 1
+        desc += "\(prefix)\(idx). showsExpansionTextWhenTruncated: \(t_showsExpansionTextWhenTruncated)"
+        idx += 1
+        if transform != .none {
+            desc += "\(prefix)\(idx). transform: \(transform)"
+        }
+        idx += 1
         return """
-            1. font: \(font)
-            2. color: \(color)
-            3. colorTransformer: \(colorTransformer.debugDescription)
-            4. alignment: \(alignment)
-            5. lineBreakMode: \(lineBreakMode)
-            6. numberOfLines: \(numberOfLines)
-            7. adjustsFontSizeToFitWidth: \(adjustsFontSizeToFitWidth)
-            8. minimumScaleFactor: \(minimumScaleFactor)
-            9. allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)
-            10. adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)
-            11. showsExpansionTextWhenTruncated: \(t_showsExpansionTextWhenTruncated?.description ?? "UnSupported")
-            12. transform: \(transform)
+        \(desc)
         """
     }
 }
@@ -297,7 +387,9 @@ extension UIListContentConfiguration.ImageProperties {
             desc += "\(prefix)\(idx). tintColor: \(tintColor.description)"
         }
         idx += 1
-        desc += "\(prefix)\(idx). tintColorTransformer: \(tintColorTransformer.debugDescription)"
+        if let tintColorTransformer {
+            desc += "\(prefix)\(idx). tintColorTransformer: \(tintColorTransformer)"
+        }
         idx += 1
         if cornerRadius > 0 {
             desc += "\(prefix)\(idx). cornerRadius: \(cornerRadius)"
@@ -325,21 +417,45 @@ extension UIListContentConfiguration.ImageProperties {
 @available(iOS 14.5, *)
 extension UIListSeparatorConfiguration {
     public var desc: String {
-        let visualEffect: String = if #available(iOS 15.0, *) {
-            "\(visualEffect?.description ?? "NaN")"
+        let visualEffectDesc: String? = if #available(iOS 15.0, *) {
+            if let visualEffect {
+                "\(visualEffect.description)"
+            } else {
+                nil
+            }
         } else {
             // Fallback on earlier versions
             "UnSupported"
         }
+        var desc = ""
+        let prefix = "\n    "
+        var idx = 1
+        desc += "\(prefix)\(idx). topSeparatorVisibility: \(topSeparatorVisibility)"
+        idx += 1
+        desc += "2. bottomSeparatorVisibility: \(bottomSeparatorVisibility)"
+        idx += 1
+        if UIListSeparatorConfiguration.automaticInsets != .zero {
+            desc += "\(prefix)\(idx). UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)"
+        }
+        idx += 1
+        if topSeparatorInsets != .zero {
+            desc += "\(prefix)\(idx). topSeparatorInsets: \(topSeparatorInsets)"
+        }
+        idx += 1
+        if bottomSeparatorInsets != .zero {
+            desc += "\(prefix)\(idx). bottomSeparatorInsets: \(bottomSeparatorInsets)"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())"
+        idx += 1
+        desc += "\(prefix)\(idx). multipleSelectionColor: \(multipleSelectionColor)"
+        idx += 1
+        if let visualEffectDesc {
+            desc += "\(prefix)\(idx). visualEffect: \(visualEffectDesc)"
+        }
+        idx += 1
         return """
-            1. topSeparatorVisibility: \(topSeparatorVisibility)
-            2. bottomSeparatorVisibility: \(bottomSeparatorVisibility)
-            3. UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)
-            4. topSeparatorInsets: \(topSeparatorInsets)
-            5. bottomSeparatorInsets: \(bottomSeparatorInsets)
-            6. color: \(color)
-            7. multipleSelectionColor: \(multipleSelectionColor)
-            8. visualEffect: \(visualEffect)
+        \(desc)
         """
     }
 }
@@ -348,17 +464,41 @@ extension UIListSeparatorConfiguration {
 extension UICollectionLayoutListConfiguration {
     @available(iOS 15.0, *)
     public var desc: String {
+        var desc = ""
+        let prefix = "\n    "
+        var idx = 1
+        desc += "\(prefix)\(idx). appearance: \(appearance)"
+        idx += 1
+        desc += "\(prefix)\(idx). showsSeparators: \(showsSeparators)"
+        idx += 1
+        desc += "\(prefix)\(idx). separatorConfiguration: \(separatorConfiguration)"
+        idx += 1
+        if let itemSeparatorHandler {
+            desc += "\(prefix)\(idx). itemSeparatorHandler: \(String(describing: itemSeparatorHandler))"
+        }
+        idx += 1
+        if let backgroundColor {
+            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.description)"
+        }
+        idx += 1
+        if let leadingSwipeActionsConfigurationProvider {
+            desc += "\(prefix)\(idx). leadingSwipeActionsConfigurationProvider: \(String(describing: leadingSwipeActionsConfigurationProvider))"
+        }
+        idx += 1
+        if let trailingSwipeActionsConfigurationProvider {
+            desc += "\(prefix)\(idx). trailingSwipeActionsConfigurationProvider: \(String(describing: trailingSwipeActionsConfigurationProvider))"
+        }
+        idx += 1
+        desc += "\(prefix)\(idx). headerMode: \(headerMode)"
+        idx += 1
+        desc += "\(prefix)\(idx). footerMode: \(footerMode)"
+        idx += 1
+        if let headerTopPadding {
+            desc += "\(prefix)\(idx). headerTopPadding: \(headerTopPadding)"
+        }
+        idx += 1
         return """
-            1. appearance: \(appearance)
-            2. showsSeparators: \(showsSeparators)
-            3. separatorConfiguration: \(separatorConfiguration)
-            4. itemSeparatorHandler: \(itemSeparatorHandler.debugDescription)
-            5. backgroundColor: \(backgroundColor?.description ?? "NaN")
-            6. leadingSwipeActionsConfigurationProvider: \(leadingSwipeActionsConfigurationProvider.debugDescription)
-            7. trailingSwipeActionsConfigurationProvider: \(trailingSwipeActionsConfigurationProvider.debugDescription)
-            8. headerMode: \(headerMode)
-            9. footerMode: \(footerMode)
-            10. headerTopPadding: \(headerTopPadding ?? 0)
+        \(desc)
         """
     }
 }
