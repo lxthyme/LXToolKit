@@ -21,6 +21,8 @@ public enum DJTestType: Hashable {
     case dynamicIsland
     // case DJRSwiftResource
     case djTest
+    case t3rd
+    case flutter
 
     public func hash(into hasher: inout Hasher) {
         switch self {
@@ -34,6 +36,10 @@ public enum DJTestType: Hashable {
             hasher.combine("dynamicIsland")
         case .djTest:
             hasher.combine("DJTest")
+        case .t3rd:
+            hasher.combine("3rd")
+        case .flutter:
+            hasher.combine("flutter")
         }
     }
     public static func == (lhs: DJTestType, rhs: DJTestType) -> Bool {
@@ -59,6 +65,10 @@ public extension DJTestType {
             return "dynamicIsland"
         case .djTest:
             return "DJTest"
+        case .t3rd:
+            return "3rd"
+        case .flutter:
+            return "flutter"
         }
     }
     func intValue() -> Int {
@@ -68,6 +78,8 @@ public extension DJTestType {
         case .DJSwiftModule: return 3
         case .dynamicIsland: return 4
         case .djTest: return 5
+        case .t3rd: return 6
+        case .flutter: return 7
         }
     }
     static func fromInt(idx: Int) -> Self? {
@@ -84,6 +96,8 @@ public extension DJTestType {
             return .djTest// (title: "", provider: {
             //     Cls.init()
             // })
+        case 6: return .t3rd
+        case 7: return .flutter
         default: return nil
         }
     }
@@ -123,6 +137,9 @@ public extension DJTestType {
         defaults.setValue("", forKey: DJTestType.LXToolKitObjC_Example.userDefaultsKey)
         defaults.setValue("", forKey: DJTestType.DJSwiftModule.userDefaultsKey)
         defaults.setValue("", forKey: DJTestType.dynamicIsland.userDefaultsKey)
+        defaults.setValue("", forKey: DJTestType.djTest.userDefaultsKey)
+        defaults.setValue("", forKey: DJTestType.t3rd.userDefaultsKey)
+        defaults.setValue("", forKey: DJTestType.flutter.userDefaultsKey)
     }
 }
 
