@@ -50,7 +50,7 @@ private extension LXBaseFlutterVC {}
 private extension LXBaseFlutterVC {
     func basePrepareFlutter() {
         if case .default = channel.channelName {
-            channel.registerDefaultMethodChannel()
+            channel.tryRegisterDefaultMethodChannel()
         }
     }
     func basePrepareUI() {

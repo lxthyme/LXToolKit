@@ -74,6 +74,9 @@ class LXHostVC: LXBaseVC {
         prepareUI()
 
         DataModel.shared.count
+            .filter {[weak self] _ in
+                return self?.isVisible ?? false
+            }
             .subscribe {[weak self] result in
                 dlog("-->result[hostVC]: \(result)")
                 switch result {

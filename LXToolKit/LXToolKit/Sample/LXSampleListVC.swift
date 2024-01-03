@@ -6,8 +6,17 @@
 //
 import UIKit
 
-private typealias Section = String
-private typealias Item = Int
+fileprivate typealias Section = String
+
+public struct LXSampleItem: Hashable {
+    public var title: String
+    public var content: String?
+
+    public init(title: String, content: String? = nil) {
+        self.title = title
+        self.content = content
+    }
+}
 
 open class LXSampleListVC: LXBaseVC {
     // MARK: 📌UI
@@ -20,7 +29,8 @@ open class LXSampleListVC: LXBaseVC {
         cv.delegate = self
         return cv
     }()
-    private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
+    private var dataList: [LXSampleItem] = []
+    private var dataSource: UICollectionViewDiffableDataSource<Section, LXSampleItem>?
     open override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,12 +38,19 @@ open class LXSampleListVC: LXBaseVC {
         prepareCollectionView()
         prepareUI()
     }
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        let snapshot = generateSnapshot(list: dataList)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+    }
 
 }
 
 // MARK: 🌎LoadData
-extension LXSampleListVC {
-    func dataFill() {}
+public extension LXSampleListVC {
+    func dataFill(list: [LXSampleItem]) {
+        dataList = list
+    }
 }
 
 // MARK: 👀Public Actions
@@ -57,7 +74,7 @@ private extension LXSampleListVC {
         // item.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(44))
+                                               heightDimension: .estimated(144))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
         // group.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
@@ -76,27 +93,31 @@ private extension LXSampleListVC {
         cv.delegate = self
         return cv
     }
-    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { cell, indexPath, item in
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, LXSampleItem> {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXSampleItem> { cell, indexPath, item in
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = "\(item)"
+            contentConfig.text = item.title
+            contentConfig.secondaryText = item.content
+            contentConfig.textProperties.numberOfLines = 0
+            contentConfig.secondaryTextProperties.numberOfLines = 0
             cell.contentConfiguration = contentConfig
 
             let bgConfig: UIBackgroundConfiguration = .clear()
             cell.backgroundConfiguration = bgConfig
         }
-        return UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, item in
+        return UICollectionViewDiffableDataSource<Section, LXSampleItem>(collectionView: collectionView) { collectionView, indexPath, item in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
         }
     }
     // dataSource.apply(snapshot, animatingDifferences: true)
     // private var snapshot: !
-    func generateSnapshot() -> NSDiffableDataSourceSnapshot<Section, Item> {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections(["233"])
-        snapshot.appendItems(Array(0..<100))
-        dataSource.apply(snapshot, animatingDifferences: false)
+    func generateSnapshot(list: [LXSampleItem]) -> NSDiffableDataSourceSnapshot<Section, LXSampleItem> {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, LXSampleItem>()
+        list.forEach { item in
+            snapshot.appendSections([item.title])
+            snapshot.appendItems([item], toSection: item.title)
+        }
         return snapshot
     }
 }
@@ -113,8 +134,6 @@ private extension LXSampleListVC {
     func prepareCollectionView() {
         // collectionView = generateCollectionView()
         dataSource = generateDataSource()
-        let snapshot = generateSnapshot()
-        dataSource.apply(snapshot, animatingDifferences: true)
     }
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden
