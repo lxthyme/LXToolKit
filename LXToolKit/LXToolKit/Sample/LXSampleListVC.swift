@@ -26,6 +26,7 @@ open class LXSampleListVC: LXBaseVC {
         let cv = UICollectionView(frame: .zero,
                                   collectionViewLayout: layout)
         // cv.backgroundColor = <#.systemGroupedBackground#>
+        cv.backgroundColor = .clear
         cv.delegate = self
         return cv
     }()
@@ -72,18 +73,23 @@ private extension LXSampleListVC {
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         // item.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .estimated(144))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
         // group.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-
+        
         let section = NSCollectionLayoutSection(group: group)
         // section.interGroupSpacing = <#8.0#>
         // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-
+        
         return UICollectionViewCompositionalLayout(section: section)
+        // var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        // // config.headerMode = <#.supplementary#>
+        // // config.footerMode = <#.supplementary#>
+        // // config.backgroundColor = .white
+        // return  UICollectionViewCompositionalLayout.list(using: config)
     }
     func generateCollectionView() -> UICollectionView {
         let layout = generateLayout()
@@ -94,14 +100,15 @@ private extension LXSampleListVC {
         return cv
     }
     func generateDataSource() -> UICollectionViewDiffableDataSource<Section, LXSampleItem> {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXSampleItem> { cell, indexPath, item in
+        let cellRegistration = UICollectionView.CellRegistration<LXSampleCell, LXSampleItem> { cell, indexPath, item in
             // cell.labTitle.text = "\(<#item#>)"
-            var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = item.title
-            contentConfig.secondaryText = item.content
-            contentConfig.textProperties.numberOfLines = 0
-            contentConfig.secondaryTextProperties.numberOfLines = 0
-            cell.contentConfiguration = contentConfig
+            // var contentConfig = LXSampleContentConfiguration()
+            // contentConfig.title = item.title
+            // contentConfig.content = item.content
+            // // contentConfig.textProperties.numberOfLines = 0
+            // // contentConfig.secondaryTextProperties.numberOfLines = 0
+            // cell.contentConfiguration = contentConfig
+            cell.item = item
 
             let bgConfig: UIBackgroundConfiguration = .clear()
             cell.backgroundConfiguration = bgConfig

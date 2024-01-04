@@ -153,7 +153,7 @@ extension LogKit {
     }
     // MARK: 🛠Life Cycle
     public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType) {
-        let msg = "---------->>>\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type) <<<----------"
+        let msg = "----->>>\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type)"
         loggerViewCycle.trace("\(msg)")
     }
 }

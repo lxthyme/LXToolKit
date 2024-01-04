@@ -99,13 +99,15 @@ extension ViewController {
         let CFBundleVersion: String? = try? LXMacro.InfoPlistKey[.CFBundleVersion]
         let CFBundleShortVersionString: String? = try? LXMacro.InfoPlistKey[.CFBundleShortVersionString]
         tvContent.text = """
-        Version: \(CFBundleVersion ?? "")(\(CFBundleShortVersionString ?? "''"))
+        Version: \(CFBundleVersion ?? "NaN")(\(CFBundleShortVersionString ?? "NaN"))
         AutoJumpRoute: \(DJTestType.AutoJumpRouteRouter)
-        LXToolKit_Example: \(DJTestType.LXToolKit_Example.userRouter)
-        LXToolKitObjC_Example: \(DJTestType.LXToolKitObjC_Example.userRouter)
-        DJSwiftModule: \(DJTestType.DJSwiftModule.userRouter)
-        dynamicIsland: \(DJTestType.dynamicIsland.userRouter)
-        djTest: \(DJTestType.djTest.userRouter)
+        LXToolKit_Example[\(DJTestType.LXToolKit_Example.intValue())]: \(DJTestType.LXToolKit_Example.userRouter)
+        LXToolKitObjC_Example[\(DJTestType.LXToolKitObjC_Example.intValue())]: \(DJTestType.LXToolKitObjC_Example.userRouter)
+        DJSwiftModule[\(DJTestType.DJSwiftModule.intValue())]: \(DJTestType.DJSwiftModule.userRouter)
+        dynamicIsland[\(DJTestType.dynamicIsland.intValue())]: \(DJTestType.dynamicIsland.userRouter)
+        djTest[\(DJTestType.djTest.intValue())]: \(DJTestType.djTest.userRouter)
+        3rd[\(DJTestType.t3rd.intValue())]: \(DJTestType.t3rd.userRouter)
+        flutter[\(DJTestType.flutter.intValue())]: \(DJTestType.flutter.userRouter)
         """
     }
 }

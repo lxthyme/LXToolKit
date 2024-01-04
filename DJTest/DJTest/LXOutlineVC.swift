@@ -139,6 +139,10 @@ private extension LXOutlineVC {
             DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.typeNameString)
         } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
             DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.typeNameString)
+        } else if let _ = try? DJTestRouter.router3rd.xl_first(where: { $0 == menuItem }) {
+            DJTestType.t3rd.updateRouter(vcName: vc.xl.typeNameString)
+        } else if let _ = try? DJTestRouter.routerFlutter.xl_first(where: { $0 == menuItem }) {
+            DJTestType.flutter.updateRouter(vcName: vc.xl.typeNameString)
         } else {
             TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
                 "menuItem": menuItem.description,
