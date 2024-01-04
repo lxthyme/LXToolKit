@@ -62,6 +62,8 @@ class LXSampleContentView: LXBaseView {
         tv.textAlignment = .left
         tv.returnKeyType = .done
         tv.keyboardType = .default
+        tv.showsHorizontalScrollIndicator = false
+        tv.showsVerticalScrollIndicator = false
         // tv.textContainer.maximumNumberOfLines = 0
         // tv.textContainer.lineBreakMode = .byTruncatingTail
         // tv.contentInset = .zero
@@ -72,9 +74,9 @@ class LXSampleContentView: LXBaseView {
     private lazy var labTitle: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = .systemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .black
-        // label.numberOfLines = 0
+        label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .left
         label.adjustsFontForContentSizeCategory = true
@@ -126,7 +128,7 @@ private extension LXSampleContentView {
             $0.right.lessThanOrEqualToSuperview()
         }
         tvContent.snp.makeConstraints {
-            $0.top.equalTo(labTitle.snp.bottom).offset(10)
+            $0.top.equalTo(labTitle.snp.bottom)//.offset(10)
             $0.left.equalToSuperview()
             $0.right.lessThanOrEqualToSuperview()
             $0.bottom.equalToSuperview()
