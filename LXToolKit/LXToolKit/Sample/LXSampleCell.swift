@@ -116,6 +116,8 @@ private extension LXSampleContentView {
         // self.backgroundColor = .white
 
         [labTitle, tvContent].forEach(self.addSubview)
+        labTitle.xl.setVerticalHuggingAndCompressionResistance()
+        tvContent.xl.setVerticalHuggingAndCompressionResistance()
         masonry()
     }
     func masonry() {

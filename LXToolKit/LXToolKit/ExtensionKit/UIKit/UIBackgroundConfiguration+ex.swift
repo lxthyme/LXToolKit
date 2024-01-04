@@ -148,9 +148,7 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
             desc += "\(prefix)\(idx). textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)"
         }
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
 
@@ -231,11 +229,11 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
         guard let configuration else {
             return "UnSupported"
         }
-        let imageDesc: String
+        let imageDesc: String?
         let imageContentModeDesc: String
         if #available(iOS 15.0, *) {
-            imageDesc = configuration.image?.description ?? "NaN"
-            imageContentModeDesc = configuration.imageContentMode.rawValue.description
+            imageDesc = configuration.image?.description
+            imageContentModeDesc = configuration.imageContentMode.description
         } else {
             imageDesc = "--UnAvailable--"
             imageContentModeDesc = "--UnAvailable--"
@@ -258,7 +256,7 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
         desc += "\(prefix)\(idx). edgesAddingLayoutMarginsToBackgroundInsets: \(configuration.edgesAddingLayoutMarginsToBackgroundInsets)"
         idx += 1
         if let backgroundColor = configuration.backgroundColor {
-            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor)"
+            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.xl.getColorName())"
         }
         idx += 1
         if let backgroundColorTransformer = configuration.backgroundColorTransformer {
@@ -269,12 +267,14 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
             desc += "\(prefix)\(idx). visualEffect: \(visualEffect)"
         }
         idx += 1
-        desc += "\(prefix)\(idx). image: \(imageDesc)"
+        if let imageDesc {
+            desc += "\(prefix)\(idx). image: \(imageDesc)"
+        }
         idx += 1
         desc += "\(prefix)\(idx). imageContentMode: \(imageContentModeDesc)"
         idx += 1
         if let strokeColor = configuration.strokeColor {
-            desc += "\(prefix)\(idx). strokeColor: \(strokeColor)"
+            desc += "\(prefix)\(idx). strokeColor: \(strokeColor.xl.getColorName())"
         }
         idx += 1
         if let strokeColorTransformer = configuration.strokeColorTransformer {
@@ -289,9 +289,7 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
             desc += "\(prefix)\(idx). strokeOutset: \(configuration.strokeOutset)"
         }
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
 
@@ -314,10 +312,47 @@ extension NSLineBreakMode: CustomStringConvertible {
 extension UIAxis: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .horizontal: return ".horizontal"
-        case .vertical: return ".vertical"
-        case .both: return ".both"
+        case .horizontal: return "UIAxis.horizontal"
+        case .vertical: return "UIAxis.vertical"
+        case .both: return "UIAxis.both"
         default: return "Unknown-UIAxis(\(self.rawValue)"
+        }
+    }
+}
+
+// MARK: - ✈️NSDirectionalRectEdge
+extension NSDirectionalRectEdge: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .all: return "NSDirectionalRectEdge.all"
+        case .top: return "NSDirectionalRectEdge.top"
+        case .leading: return "NSDirectionalRectEdge.leading"
+        case .trailing: return "NSDirectionalRectEdge.trailing"
+        case .bottom: return "NSDirectionalRectEdge.bottom"
+        case []: return "NSDirectionalRectEdge.none"
+        default: return "NSDirectionalRectEdge(rawValue: \(self.rawValue))"
+        }
+    }
+}
+
+// MARK: - ✈️UIView.ContentMode
+extension UIView.ContentMode: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .scaleToFill: return "UIView.ContentMode.scaleToFill"
+        case .scaleAspectFit: return "UIView.ContentMode.scaleAspectFit"
+        case .scaleAspectFill: return "UIView.ContentMode.scaleAspectFill"
+        case .redraw: return "UIView.ContentMode.redraw"
+        case .center: return "UIView.ContentMode.center"
+        case .top: return "UIView.ContentMode.top"
+        case .bottom: return "UIView.ContentMode.bottom"
+        case .left: return "UIView.ContentMode.left"
+        case .right: return "UIView.ContentMode.right"
+        case .topLeft: return "UIView.ContentMode.topLeft"
+        case .topRight: return "UIView.ContentMode.topRight"
+        case .bottomLeft: return "UIView.ContentMode.bottomLeft"
+        case .bottomRight: return "UIView.ContentMode.bottomRight"
+        @unknown default: return "UIView.ContentMode(rawValue: \(self.rawValue))"
         }
     }
 }
@@ -367,9 +402,7 @@ extension UIListContentConfiguration.TextProperties {
             desc += "\(prefix)\(idx). transform: \(transform)"
         }
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
 
@@ -407,9 +440,7 @@ extension UIListContentConfiguration.ImageProperties {
         idx += 1
         desc += "\(prefix)\(idx). ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)"
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
 
@@ -432,7 +463,7 @@ extension UIListSeparatorConfiguration {
         var idx = 1
         desc += "\(prefix)\(idx). topSeparatorVisibility: \(topSeparatorVisibility)"
         idx += 1
-        desc += "2. bottomSeparatorVisibility: \(bottomSeparatorVisibility)"
+        desc += "\(prefix)\(idx). bottomSeparatorVisibility: \(bottomSeparatorVisibility)"
         idx += 1
         if UIListSeparatorConfiguration.automaticInsets != .zero {
             desc += "\(prefix)\(idx). UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)"
@@ -448,15 +479,13 @@ extension UIListSeparatorConfiguration {
         idx += 1
         desc += "\(prefix)\(idx). color: \(color.xl.getColorName())"
         idx += 1
-        desc += "\(prefix)\(idx). multipleSelectionColor: \(multipleSelectionColor)"
+        desc += "\(prefix)\(idx). multipleSelectionColor: \(multipleSelectionColor.xl.getColorName())"
         idx += 1
         if let visualEffectDesc {
             desc += "\(prefix)\(idx). visualEffect: \(visualEffectDesc)"
         }
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
 
@@ -497,8 +526,6 @@ extension UICollectionLayoutListConfiguration {
             desc += "\(prefix)\(idx). headerTopPadding: \(headerTopPadding)"
         }
         idx += 1
-        return """
-        \(desc)
-        """
+        return desc
     }
 }
