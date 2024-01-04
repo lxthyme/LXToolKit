@@ -190,10 +190,11 @@ private extension LXToolKitTestVC {
     }
     func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
-        if let scene = outlineOpt?.scene,
+        if let outlineOpt,
+           let scene = outlineOpt.scene,
            let vc = navigator.show(segue: scene, sender: self) {
-            vc.title = outlineOpt?.section.title
-            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.typeNameString)
+            vc.title = outlineOpt.section.title
+            DJTestType.LXToolKit_Example.updateRouter(section: outlineOpt.section)
         }
     }
 }
