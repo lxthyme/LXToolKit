@@ -170,7 +170,7 @@ public extension UIBackgroundConfiguration {
         case UITableViewCellDefaultBackgroundConfiguration
         case UITableViewHeaderFooterViewDefaultBackgroundConfiguration
 
-        var configuration: UIBackgroundConfiguration? {
+        public var configuration: UIBackgroundConfiguration? {
             switch self {
             case .clear: return .clear()
             case .listPlainCell: return .listPlainCell()
