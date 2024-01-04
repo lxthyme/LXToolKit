@@ -8,16 +8,6 @@ import UIKit
 
 fileprivate typealias Section = String
 
-public struct LXSampleItem: Hashable {
-    public var title: String
-    public var content: String?
-
-    public init(title: String, content: String? = nil) {
-        self.title = title
-        self.content = content
-    }
-}
-
 open class LXSampleListVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -122,8 +112,10 @@ private extension LXSampleListVC {
     func generateSnapshot(list: [LXSampleItem]) -> NSDiffableDataSourceSnapshot<Section, LXSampleItem> {
         var snapshot = NSDiffableDataSourceSnapshot<Section, LXSampleItem>()
         list.forEach { item in
-            snapshot.appendSections([item.title])
-            snapshot.appendItems([item], toSection: item.title)
+            if let title = item.title {
+                snapshot.appendSections([title])
+                snapshot.appendItems([item], toSection: title)
+            }
         }
         return snapshot
     }

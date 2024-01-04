@@ -22,20 +22,25 @@ struct LXSampleBackgroundConfiguration {
         return background
     }
 }
-public struct LXSampleContentConfiguration {
-    var title: String?
-    var content: String?
-    var highlightColor: UIColor?
+public struct LXSampleItem {
+    public var title: String?
+    public var content: String?
+    public var highlightColor: UIColor?
+
+    public init(title: String? = nil, content: String? = nil) {
+        self.title = title
+        self.content = content
+    }
 }
 // MARK: - ✈️Hashable
-extension LXSampleContentConfiguration: Hashable {}
+extension LXSampleItem: Hashable {}
 // MARK: - ✈️UIContentConfiguration
-extension LXSampleContentConfiguration: UIContentConfiguration {
+extension LXSampleItem: UIContentConfiguration {
     public func makeContentView() -> UIView & UIContentView {
         return LXSampleContentView(contentConfig: self)
     }
 
-    public func updated(for state: UIConfigurationState) -> LXSampleContentConfiguration {
+    public func updated(for state: UIConfigurationState) -> LXSampleItem {
         guard let state = state as? UICellConfigurationState else { return self }
         var updatedConfig = self
         if state.isSelected || state.isHighlighted {
@@ -76,9 +81,9 @@ class LXSampleContentView: LXBaseView {
         return label
     }()
     // MARK: 🔗Vaiables
-    private var appliedConfiguration: LXSampleContentConfiguration!
+    private var appliedConfiguration: LXSampleItem!
     // MARK: 🛠Life Cycle
-    convenience init(contentConfig: LXSampleContentConfiguration) {
+    convenience init(contentConfig: LXSampleItem) {
         self.init(frame: .zero)
         prepareUI()
         apply(configuration: contentConfig)
@@ -86,7 +91,7 @@ class LXSampleContentView: LXBaseView {
 }
 // MARK: 🌎LoadData
 extension LXSampleContentView {
-    private func apply(configuration: LXSampleContentConfiguration) {
+    private func apply(configuration: LXSampleItem) {
         guard appliedConfiguration != configuration else { return }
         appliedConfiguration = configuration
 
@@ -100,7 +105,7 @@ extension LXSampleContentView: UIContentView {
     var configuration: UIContentConfiguration {
         get { appliedConfiguration }
         set {
-            guard let newConfig = newValue as? LXSampleContentConfiguration else { return }
+            guard let newConfig = newValue as? LXSampleItem else { return }
             apply(configuration: newConfig)
         }
     }
@@ -111,6 +116,8 @@ private extension LXSampleContentView {
         // self.backgroundColor = .white
 
         [labTitle, tvContent].forEach(self.addSubview)
+        labTitle.xl.setVerticalHuggingAndCompressionResistance()
+        tvContent.xl.setVerticalHuggingAndCompressionResistance()
         masonry()
     }
     func masonry() {
@@ -139,7 +146,7 @@ class LXSampleCell: LXBaseCollectionCell {
     override func updateConfiguration(using state: UICellConfigurationState) {
         backgroundConfiguration = LXSampleBackgroundConfiguration.configuration(for: state)
 
-        var content = LXSampleContentConfiguration().updated(for: state)
+        var content = LXSampleItem().updated(for: state)
         content.title = item?.title
         content.content = item?.content
         if state.isSelected || state.isHighlighted {
