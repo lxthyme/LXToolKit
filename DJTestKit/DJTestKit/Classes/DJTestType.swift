@@ -130,6 +130,9 @@ public extension DJTestType {
     // static func updateAutoJumpRoute(_ type: DJTestType) {
     //     UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
     // }
+    static func clearRouter(level: DJTestTypeRouterLevel) {
+        UserDefaults.standard.set("", forKey: level.rawValue)
+    }
     static func updateRouter(level: DJTestTypeRouterLevel, section: LXSection) {
         UserDefaults.standard.set(section.title, forKey: level.rawValue)
     }
@@ -166,6 +169,8 @@ public extension DJTestType {
         defaults.setValue("", forKey: DJTestType.djTest.userDefaultsKey)
         defaults.setValue("", forKey: DJTestType.t3rd.userDefaultsKey)
         defaults.setValue("", forKey: DJTestType.flutter.userDefaultsKey)
+        defaults.setValue("", forKey: DJTestTypeRouterLevel.router1.rawValue)
+        defaults.setValue("", forKey: DJTestTypeRouterLevel.router2.rawValue)
     }
 }
 
@@ -173,8 +178,16 @@ open class DJTestTypeObjc: NSObject {}
 
 // MARK: - 👀
 public extension DJTestTypeObjc {
-    @objc public static func updateObjcDefaults(vcName: String) {
-        // DJTestType.LXToolKitObjC_Example.updateRouter(section: .section(title: vcName))
+    @objc public static func clearRouter1() {
+        DJTestType.clearRouter(level: .router1)
+    }
+    @objc public static func clearRouter2() {
+        DJTestType.clearRouter(level: .router2)
+    }
+    @objc public static func updateObjcRouter1Defaults(vcName: String) {
+        DJTestType.updateRouter(level: .router1, section: .section(title: vcName))
+    }
+    @objc public static func updateObjcRouter2Defaults(vcName: String) {
         DJTestType.updateRouter(level: .router2, section: .section(title: vcName))
     }
 }

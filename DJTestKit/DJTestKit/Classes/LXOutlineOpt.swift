@@ -70,9 +70,9 @@ extension LXOutlineOpt: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .outline(let section, _, let subitems, let uuid):
-            hasher.combine("[outline]\(section.title)")
+            hasher.combine("\(section.title)")
         case .subitem(let section, let vc, let uuid):
-            hasher.combine("[subitem]\(section.title)")
+            hasher.combine("\(section.title)")
         }
     }
     public static func == (lhs: LXOutlineOpt, rhs: LXOutlineOpt) -> Bool {

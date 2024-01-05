@@ -116,6 +116,7 @@ private extension LXOutlineVC {
 
                 Navigator.default.show(segue: .vc(provider: {
                     let vc = LXSampleTextViewVC()
+                    vc.title = menuItem.section.title
                     vc.dataFillUnSupport(content: menuItem.section.title)
                     return vc
                 }), sender: self)
@@ -151,15 +152,20 @@ private extension LXOutlineVC {
               let router1Menu = try? self.menuItems.xl_first(where: { $0.section.title == router1 }) else {
                   return
         }
+        if(router1Menu.section.title == LXOutlineVC.XL.typeNameString) {
+            return
+        }
         if let scene = router1Menu.scene {
-            Navigator.default.show(segue: scene, sender: self)
+            let vc = Navigator.default.show(segue: scene, sender: self)
+            vc?.title = router1Menu.section.title
         }
         guard let router2 = DJTestTypeRouterLevel.router2.getDefaultsValue(),
-              let router2Menu = try? router1Menu.xl_first(where: { $0.section.title == router2 }) else {
+              let router2Menu = try? self.menuItems.xl_first(where: { $0.section.title == router2 }) else {
             return
         }
         if let scene = router2Menu.scene {
-            Navigator.default.show(segue: scene, sender: self)
+            let vc = Navigator.default.show(segue: scene, sender: self)
+            vc?.title = router1Menu.section.title
         }
     }
     func gotoAutoJumpRouteScene() {

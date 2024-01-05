@@ -53,10 +53,11 @@
     // [imgView addSymbolEffect:NSSymbolBounceEffect];
 }
 - (void)gotoRoute:(NSString *)route {
-    if([route isEmpty]) {
+    if(!route || [route isEmpty]) {
         return;
     }
-    [DJTestTypeObjc updateObjcDefaultsWithVcName:route];
+    [DJTestTypeObjc clearRouter1];
+    [DJTestTypeObjc updateObjcRouter2DefaultsWithVcName:route];
     Class cls = NSClassFromString(route);
     if(cls) {
         UIViewController *vc = [[cls alloc]init];
