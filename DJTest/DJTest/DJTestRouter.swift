@@ -43,6 +43,7 @@ public struct DJTestRouter {
     static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
         // DJTestType.DJSwiftModule.updateRouter(section: .section(title: "DJSwiftModule"))
         DJTestType.updateRouter(level: .router1, section: .section(title: "DJSwiftModule"))
+        DJTestType.clearRouter(level: .router2)
         let window = UIApplication.XL.keyWindow
         Application.shared.presentInitialScreen(in: window)
         return nil
