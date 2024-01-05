@@ -107,14 +107,14 @@ extension DJTestType {
     public static func updateAutoJumpRoute(_ type: DJTestType) {
         UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
     }
-    public func updateRouter(vcName: String) {
-        guard vcName != "LXToolKitTestVC",
-        vcName != "LXToolKitObjCTestVC",
-        vcName != "LXToolKitObjCTestSwiftVC" else {
+    public func updateRouter(section: LXSection) {
+        guard section.title != "LXToolKitTestVC",
+              section.title != "LXToolKitObjCTestVC",
+              section.title != "LXToolKitObjCTestSwiftVC" else {
             return
         }
         UserDefaults.standard.set(self.intValue(), forKey: DJTestType.AutoJumpRoute)
-        UserDefaults.standard.set(vcName, forKey: userDefaultsKey)
+        UserDefaults.standard.set(section.title, forKey: userDefaultsKey)
     }
     public static var AutoJumpRouteRouter: Int {
         return UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
@@ -148,6 +148,6 @@ open class DJTestTypeObjc: NSObject {}
 // MARK: - 👀
 public extension DJTestTypeObjc {
     @objc public static func updateObjcDefaults(vcName: String) {
-        DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vcName)
+        DJTestType.LXToolKitObjC_Example.updateRouter(section: .section(title: vcName))
     }
 }

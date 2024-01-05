@@ -59,20 +59,20 @@ private extension LXSampleListVC {}
 // MARK: - 🔐
 private extension LXSampleListVC {
     func generateLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        // item.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-        
+        // let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+        //                                       heightDimension: .estimated(74.0))
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .estimated(144))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                               heightDimension: .estimated(84))
+        let item = NSCollectionLayoutItem(layoutSize: groupSize)
+        // item.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10.0, bottom: 10.0, trailing: 10.0)
+
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
                                                        subitems: [item])
-        // group.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
-        
+        // group.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10.0, bottom: 0.0, trailing: 10.0)
+
         let section = NSCollectionLayoutSection(group: group)
-        // section.interGroupSpacing = <#8.0#>
-        // section.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+        // section.interGroupSpacing = 10
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 10.0, bottom: 10.0, trailing: 10.0)
         
         return UICollectionViewCompositionalLayout(section: section)
         // var config = UICollectionLayoutListConfiguration(appearance: .sidebar)

@@ -130,19 +130,19 @@ private extension LXOutlineVC {
         }
         vc.title = menuItem.section.title
         if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
-            DJTestType.DJSwiftModule.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.DJSwiftModule.updateRouter(section: menuItem.section)
         } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
-            DJTestType.dynamicIsland.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.dynamicIsland.updateRouter(section: menuItem.section)
         } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
-            DJTestType.djTest.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.djTest.updateRouter(section: menuItem.section)
         } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKit_Example.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.LXToolKit_Example.updateRouter(section: menuItem.section)
         } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKitObjC_Example.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.LXToolKitObjC_Example.updateRouter(section: menuItem.section)
         } else if let _ = try? DJTestRouter.router3rd.xl_first(where: { $0 == menuItem }) {
-            DJTestType.t3rd.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.t3rd.updateRouter(section: menuItem.section)
         } else if let _ = try? DJTestRouter.routerFlutter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.flutter.updateRouter(vcName: vc.xl.typeNameString)
+            DJTestType.flutter.updateRouter(section: menuItem.section)
         } else {
             TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
                 "menuItem": menuItem.description,
@@ -160,16 +160,17 @@ private extension LXOutlineVC {
             ])
             return
         }
-        let scene = item.scene != nil ? item.scene : item.subitems?.first?.scene
-        guard let scene else {
-            dlog("-->gotoScene error on scene[2]")
-            TingYunManager.reportEvent(name: "restore scene failure", properties: [
-                "route1": type.title,
-                "scene": scene?.description ?? ""
-            ])
-            return
-        }
+
+        // guard let scene else {
+        //     dlog("-->gotoScene error on scene[2]")
+        //     TingYunManager.reportEvent(name: "restore scene failure", properties: [
+        //         "route1": type.title,
+        //         "scene": scene?.description ?? ""
+        //     ])
+        //     return
+        // }
         let vc: UIViewController?
+        if let scene = item.scene {
         switch scene {
         case .vc(let provider, _):
             vc = provider()
@@ -226,7 +227,16 @@ private extension LXOutlineVC {
             }
             vc.autoJumpRoute = itemOpt
         }
+        } else {
+            let route2 = type.userRouter
+            let t2Scene = try? item.xl_first { tmp in
+                return tmp.section.title == route2
+            }
+            vc = t2Scene?.scene?.vcProvider?()
+        }
+        if let vc {
         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

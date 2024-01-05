@@ -92,63 +92,63 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
             return "\(title): UnSupported"
         }
         var desc = ""
-        let prefix = "\n   "
+        let prefix = "   "
         var idx = 1
         if let image = configuration.image {
-            desc += "\(prefix)\(idx). image: \(image.description)"
+            desc += "\(prefix)\(idx). image: \(image.description)\n"
         }
         idx += 1
         if configuration.imageProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). imageProperties: \(configuration.imageProperties.desc)"
+            desc += "\(prefix)\(idx). imageProperties: \(configuration.imageProperties.desc)\n"
         }
         idx += 1
         if let text = configuration.text,
            text.isNotEmpty {
-            desc += "\(prefix)\(idx). text: \(text)"
+            desc += "\(prefix)\(idx). text: \(text)\n"
         }
         idx += 1
         if let attributedText = configuration.attributedText {
-            desc += "\(prefix)\(idx). attributedText: \(attributedText.description)"
+            desc += "\(prefix)\(idx). attributedText: \(attributedText.description)\n"
         }
         idx += 1
         if configuration.textProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). textProperties: \(configuration.textProperties.desc)"
+            desc += "\(prefix)\(idx). textProperties: \(configuration.textProperties.desc)\n"
         }
         idx += 1
         if let secondaryText = configuration.secondaryText,
            secondaryText.isNotEmpty {
-            desc += "\(prefix)\(idx). secondaryText: \(secondaryText)"
+            desc += "\(prefix)\(idx). secondaryText: \(secondaryText)\n"
         }
         idx += 1
         if let secondaryAttributedText = configuration.secondaryAttributedText {
-            desc += "\(prefix)\(idx). secondaryAttributedText: \(secondaryAttributedText.description)"
+            desc += "\(prefix)\(idx). secondaryAttributedText: \(secondaryAttributedText.description)\n"
         }
         idx += 1
         if configuration.secondaryTextProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). secondaryTextProperties: \(configuration.secondaryTextProperties.desc)"
+            desc += "\(prefix)\(idx). secondaryTextProperties: \(configuration.secondaryTextProperties.desc)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)"
+        desc += "\(prefix)\(idx). axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)\n"
         idx += 1
         if configuration.directionalLayoutMargins != .zero {
-            desc += "\(prefix)\(idx). directionalLayoutMargins: \(configuration.directionalLayoutMargins)"
+            desc += "\(prefix)\(idx). directionalLayoutMargins: \(configuration.directionalLayoutMargins)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). prefersSideBySideTextAndSecondaryText: \(configuration.prefersSideBySideTextAndSecondaryText)"
+        desc += "\(prefix)\(idx). prefersSideBySideTextAndSecondaryText: \(configuration.prefersSideBySideTextAndSecondaryText)\n"
         idx += 1
         if configuration.imageToTextPadding != 0 {
-            desc += "\(prefix)\(idx). imageToTextPadding: \(configuration.imageToTextPadding)"
+            desc += "\(prefix)\(idx). imageToTextPadding: \(configuration.imageToTextPadding)\n"
         }
         idx += 1
         if configuration.textToSecondaryTextHorizontalPadding != 0 {
-            desc += "\(prefix)\(idx). textToSecondaryTextHorizontalPadding: \(configuration.textToSecondaryTextHorizontalPadding)"
+            desc += "\(prefix)\(idx). textToSecondaryTextHorizontalPadding: \(configuration.textToSecondaryTextHorizontalPadding)\n"
         }
         idx += 1
         if configuration.textToSecondaryTextVerticalPadding != 0 {
-            desc += "\(prefix)\(idx). textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)"
+            desc += "\(prefix)\(idx). textToSecondaryTextVerticalPadding: \(configuration.textToSecondaryTextVerticalPadding)\n"
         }
         idx += 1
-        return desc
+        return desc.removingSuffix("\n")
     }
 }
 
@@ -240,56 +240,56 @@ extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
         }
         var desc = ""
         var idx = 1
-        let prefix = "\n    "
+        let prefix = "    "
         if let customView = configuration.customView {
-            desc += "\(prefix)\(idx). customView: \(customView)"
+            desc += "\(prefix)\(idx). customView: \(customView)\n"
         }
         idx += 1
         if configuration.cornerRadius > 0 {
-            desc += "\(prefix)\(idx). cornerRadius: \(configuration.cornerRadius)"
+            desc += "\(prefix)\(idx). cornerRadius: \(configuration.cornerRadius)\n"
         }
         idx += 1
         if configuration.backgroundInsets != .zero {
-            desc += "\(prefix)\(idx). backgroundInsets: \(configuration.backgroundInsets)"
+            desc += "\(prefix)\(idx). backgroundInsets: \(configuration.backgroundInsets)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). edgesAddingLayoutMarginsToBackgroundInsets: \(configuration.edgesAddingLayoutMarginsToBackgroundInsets)"
+        desc += "\(prefix)\(idx). edgesAddingLayoutMarginsToBackgroundInsets: \(configuration.edgesAddingLayoutMarginsToBackgroundInsets)\n"
         idx += 1
         if let backgroundColor = configuration.backgroundColor {
-            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.xl.getColorName())"
+            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.xl.getColorName())\n"
         }
         idx += 1
         if let backgroundColorTransformer = configuration.backgroundColorTransformer {
-            desc += "\(prefix)\(idx). backgroundColorTransformer: \(backgroundColorTransformer)"
+            desc += "\(prefix)\(idx). backgroundColorTransformer: \(backgroundColorTransformer)\n"
         }
         idx += 1
         if let visualEffect = configuration.visualEffect {
-            desc += "\(prefix)\(idx). visualEffect: \(visualEffect)"
+            desc += "\(prefix)\(idx). visualEffect: \(visualEffect)\n"
         }
         idx += 1
         if let imageDesc {
-            desc += "\(prefix)\(idx). image: \(imageDesc)"
+            desc += "\(prefix)\(idx). image: \(imageDesc)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). imageContentMode: \(imageContentModeDesc)"
+        desc += "\(prefix)\(idx). imageContentMode: \(imageContentModeDesc)\n"
         idx += 1
         if let strokeColor = configuration.strokeColor {
-            desc += "\(prefix)\(idx). strokeColor: \(strokeColor.xl.getColorName())"
+            desc += "\(prefix)\(idx). strokeColor: \(strokeColor.xl.getColorName())\n"
         }
         idx += 1
         if let strokeColorTransformer = configuration.strokeColorTransformer {
-            desc += "\(prefix)\(idx). strokeColorTransformer: \(strokeColorTransformer)"
+            desc += "\(prefix)\(idx). strokeColorTransformer: \(strokeColorTransformer)\n"
         }
         idx += 1
         if configuration.strokeWidth > 0 {
-            desc += "\(prefix)\(idx). strokeWidth: \(configuration.strokeWidth)"
+            desc += "\(prefix)\(idx). strokeWidth: \(configuration.strokeWidth)\n"
         }
         idx += 1
         if configuration.strokeOutset > 0 {
-            desc += "\(prefix)\(idx). strokeOutset: \(configuration.strokeOutset)"
+            desc += "\(prefix)\(idx). strokeOutset: \(configuration.strokeOutset)\n"
         }
         idx += 1
-        return desc
+        return desc.removingSuffix("\n")
     }
 }
 
@@ -366,40 +366,41 @@ extension UIListContentConfiguration.TextProperties {
             "UnSupported"
         }
         var desc = ""
+        var desc = "\n"
         var idx = 1
-        let prefix = "\n        "
-        desc += "\(prefix)\(idx). font: \(font)"
+        let prefix = "        "
+        desc += "\(prefix)\(idx). font: \(font)\n"
         idx += 1
-        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())"
+        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())\n"
         idx += 1
         if let colorTransformer {
-            desc += "\(prefix)\(idx). colorTransformer: \(colorTransformer)"
+            desc += "\(prefix)\(idx). colorTransformer: \(colorTransformer)\n"
         }
         idx += 1
         if alignment != .natural {
-            desc += "\(prefix)\(idx). alignment: \(alignment)"
+            desc += "\(prefix)\(idx). alignment: \(alignment)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). lineBreakMode: \(lineBreakMode)"
+        desc += "\(prefix)\(idx). lineBreakMode: \(lineBreakMode)\n"
         idx += 1
         if numberOfLines > 0 {
-            desc += "\(prefix)\(idx). numberOfLines: \(numberOfLines)"
+            desc += "\(prefix)\(idx). numberOfLines: \(numberOfLines)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). adjustsFontSizeToFitWidth: \(adjustsFontSizeToFitWidth)"
+        desc += "\(prefix)\(idx). adjustsFontSizeToFitWidth: \(adjustsFontSizeToFitWidth)\n"
         idx += 1
         if minimumScaleFactor > 0 {
-            desc += "\(prefix)\(idx). minimumScaleFactor: \(minimumScaleFactor)"
+            desc += "\(prefix)\(idx). minimumScaleFactor: \(minimumScaleFactor)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)"
+        desc += "\(prefix)\(idx). allowsDefaultTighteningForTruncation: \(allowsDefaultTighteningForTruncation)\n"
         idx += 1
-        desc += "\(prefix)\(idx). adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)"
+        desc += "\(prefix)\(idx). adjustsFontForContentSizeCategory: \(adjustsFontForContentSizeCategory)\n"
         idx += 1
-        desc += "\(prefix)\(idx). showsExpansionTextWhenTruncated: \(t_showsExpansionTextWhenTruncated)"
+        desc += "\(prefix)\(idx). showsExpansionTextWhenTruncated: \(t_showsExpansionTextWhenTruncated)\n"
         idx += 1
         if transform != .none {
-            desc += "\(prefix)\(idx). transform: \(transform)"
+            desc += "\(prefix)\(idx). transform: \(transform)\n"
         }
         idx += 1
         return desc
@@ -409,36 +410,36 @@ extension UIListContentConfiguration.TextProperties {
 // MARK: - 👀
 extension UIListContentConfiguration.ImageProperties {
     public var desc: String {
-        var desc = ""
+        var desc = "\n"
         var idx = 1
-        let prefix = "\n        "
+        let prefix = "        "
         if let preferredSymbolConfiguration {
-            desc += "\(prefix)\(idx). preferredSymbolConfiguration: \(preferredSymbolConfiguration.description)"
+            desc += "\(prefix)\(idx). preferredSymbolConfiguration: \(preferredSymbolConfiguration.description)\n"
         }
         idx += 1
         if let tintColor {
-            desc += "\(prefix)\(idx). tintColor: \(tintColor.description)"
+            desc += "\(prefix)\(idx). tintColor: \(tintColor.description)\n"
         }
         idx += 1
         if let tintColorTransformer {
-            desc += "\(prefix)\(idx). tintColorTransformer: \(tintColorTransformer)"
+            desc += "\(prefix)\(idx). tintColorTransformer: \(tintColorTransformer)\n"
         }
         idx += 1
         if cornerRadius > 0 {
-            desc += "\(prefix)\(idx). cornerRadius: \(cornerRadius)"
+            desc += "\(prefix)\(idx). cornerRadius: \(cornerRadius)\n"
         }
         idx += 1
         if maximumSize != .zero {
-            desc += "\(prefix)\(idx). maximumSize: \(maximumSize)"
+            desc += "\(prefix)\(idx). maximumSize: \(maximumSize)\n"
         }
         idx += 1
         if reservedLayoutSize != .zero {
-            desc += "\(prefix)\(idx). reservedLayoutSize: \(reservedLayoutSize)"
+            desc += "\(prefix)\(idx). reservedLayoutSize: \(reservedLayoutSize)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). accessibilityIgnoresInvertColors: \(accessibilityIgnoresInvertColors)"
+        desc += "\(prefix)\(idx). accessibilityIgnoresInvertColors: \(accessibilityIgnoresInvertColors)\n"
         idx += 1
-        desc += "\(prefix)\(idx). ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)"
+        desc += "\(prefix)\(idx). ImageProperties.standardDimension: \(UIListContentConfiguration.ImageProperties.standardDimension)\n"
         idx += 1
         return desc
     }
@@ -458,34 +459,34 @@ extension UIListSeparatorConfiguration {
             // Fallback on earlier versions
             "UnSupported"
         }
-        var desc = ""
-        let prefix = "\n    "
+        var desc = "\n"
+        let prefix = "    "
         var idx = 1
-        desc += "\(prefix)\(idx). topSeparatorVisibility: \(topSeparatorVisibility)"
+        desc += "\(prefix)\(idx). topSeparatorVisibility: \(topSeparatorVisibility)\n"
         idx += 1
-        desc += "\(prefix)\(idx). bottomSeparatorVisibility: \(bottomSeparatorVisibility)"
+        desc += "\(prefix)\(idx). bottomSeparatorVisibility: \(bottomSeparatorVisibility)\n"
         idx += 1
         if UIListSeparatorConfiguration.automaticInsets != .zero {
-            desc += "\(prefix)\(idx). UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)"
+            desc += "\(prefix)\(idx). UIListSeparatorConfiguration.automaticInsets: \(UIListSeparatorConfiguration.automaticInsets)\n"
         }
         idx += 1
         if topSeparatorInsets != .zero {
-            desc += "\(prefix)\(idx). topSeparatorInsets: \(topSeparatorInsets)"
+            desc += "\(prefix)\(idx). topSeparatorInsets: \(topSeparatorInsets)\n"
         }
         idx += 1
         if bottomSeparatorInsets != .zero {
-            desc += "\(prefix)\(idx). bottomSeparatorInsets: \(bottomSeparatorInsets)"
+            desc += "\(prefix)\(idx). bottomSeparatorInsets: \(bottomSeparatorInsets)\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())"
+        desc += "\(prefix)\(idx). color: \(color.xl.getColorName())\n"
         idx += 1
-        desc += "\(prefix)\(idx). multipleSelectionColor: \(multipleSelectionColor.xl.getColorName())"
+        desc += "\(prefix)\(idx). multipleSelectionColor: \(multipleSelectionColor.xl.getColorName())\n"
         idx += 1
         if let visualEffectDesc {
-            desc += "\(prefix)\(idx). visualEffect: \(visualEffectDesc)"
+            desc += "\(prefix)\(idx). visualEffect: \(visualEffectDesc)\n"
         }
         idx += 1
-        return desc
+        return desc.removingSuffix("\n")
     }
 }
 
@@ -494,38 +495,38 @@ extension UICollectionLayoutListConfiguration {
     @available(iOS 15.0, *)
     public var desc: String {
         var desc = ""
-        let prefix = "\n    "
+        let prefix = "    "
         var idx = 1
-        desc += "\(prefix)\(idx). appearance: \(appearance)"
+        desc += "\(prefix)\(idx). appearance: \(appearance)\n"
         idx += 1
-        desc += "\(prefix)\(idx). showsSeparators: \(showsSeparators)"
+        desc += "\(prefix)\(idx). showsSeparators: \(showsSeparators)\n"
         idx += 1
-        desc += "\(prefix)\(idx). separatorConfiguration: \(separatorConfiguration)"
+        desc += "\(prefix)\(idx). separatorConfiguration: \(separatorConfiguration)\n"
         idx += 1
         if let itemSeparatorHandler {
-            desc += "\(prefix)\(idx). itemSeparatorHandler: \(String(describing: itemSeparatorHandler))"
+            desc += "\(prefix)\(idx). itemSeparatorHandler: \(String(describing: itemSeparatorHandler))\n"
         }
         idx += 1
         if let backgroundColor {
-            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.description)"
+            desc += "\(prefix)\(idx). backgroundColor: \(backgroundColor.description)\n"
         }
         idx += 1
         if let leadingSwipeActionsConfigurationProvider {
-            desc += "\(prefix)\(idx). leadingSwipeActionsConfigurationProvider: \(String(describing: leadingSwipeActionsConfigurationProvider))"
+            desc += "\(prefix)\(idx). leadingSwipeActionsConfigurationProvider: \(String(describing: leadingSwipeActionsConfigurationProvider))\n"
         }
         idx += 1
         if let trailingSwipeActionsConfigurationProvider {
-            desc += "\(prefix)\(idx). trailingSwipeActionsConfigurationProvider: \(String(describing: trailingSwipeActionsConfigurationProvider))"
+            desc += "\(prefix)\(idx). trailingSwipeActionsConfigurationProvider: \(String(describing: trailingSwipeActionsConfigurationProvider))\n"
         }
         idx += 1
-        desc += "\(prefix)\(idx). headerMode: \(headerMode)"
+        desc += "\(prefix)\(idx). headerMode: \(headerMode)\n"
         idx += 1
-        desc += "\(prefix)\(idx). footerMode: \(footerMode)"
+        desc += "\(prefix)\(idx). footerMode: \(footerMode)\n"
         idx += 1
         if let headerTopPadding {
-            desc += "\(prefix)\(idx). headerTopPadding: \(headerTopPadding)"
+            desc += "\(prefix)\(idx). headerTopPadding: \(headerTopPadding)\n"
         }
         idx += 1
-        return desc
+        return desc.removingSuffix("\n")
     }
 }
