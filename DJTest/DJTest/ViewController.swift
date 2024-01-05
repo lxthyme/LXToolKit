@@ -100,16 +100,8 @@ extension ViewController {
         let CFBundleShortVersionString: String? = try? LXMacro.InfoPlistKey[.CFBundleShortVersionString]
         tvContent.text = """
         Version: \(CFBundleVersion ?? "NaN")(\(CFBundleShortVersionString ?? "NaN"))
-        \(DJTestTypeRouterLevel.router1.rawValue): \(DJTestTypeRouterLevel.router1.getDefaultsValue() ?? "NaN")
-        \(DJTestTypeRouterLevel.router2.rawValue): \(DJTestTypeRouterLevel.router2.getDefaultsValue() ?? "NaN")
-        AutoJumpRoute: \(DJTestType.fromInt(idx:DJTestType.AutoJumpRouteRouter)?.description ?? "NaN")
-        LXToolKit_Example[\(DJTestType.LXToolKit_Example.intValue())]: \(DJTestType.LXToolKit_Example.userRouter)
-        LXToolKitObjC_Example[\(DJTestType.LXToolKitObjC_Example.intValue())]: \(DJTestType.LXToolKitObjC_Example.userRouter)
-        DJSwiftModule[\(DJTestType.DJSwiftModule.intValue())]: \(DJTestType.DJSwiftModule.userRouter)
-        dynamicIsland[\(DJTestType.dynamicIsland.intValue())]: \(DJTestType.dynamicIsland.userRouter)
-        djTest[\(DJTestType.djTest.intValue())]: \(DJTestType.djTest.userRouter)
-        3rd[\(DJTestType.t3rd.intValue())]: \(DJTestType.t3rd.userRouter)
-        flutter[\(DJTestType.flutter.intValue())]: \(DJTestType.flutter.userRouter)
+        \(DJAutoRouter.router1.rawValue): \(DJAutoRouter.router1.getDefaultsValue() ?? "NaN")
+        \(DJAutoRouter.router2.rawValue): \(DJAutoRouter.router2.getDefaultsValue() ?? "NaN")
         """
     }
 }
@@ -159,7 +151,7 @@ private extension ViewController {
         btnReset.rx.controlEvent(.touchUpInside)
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .subscribe {[weak self] _ in
-                DJTestType.clearAllData()
+                DJAutoRouter.clearAllData()
                 self?.dataFill()
             }
             .disposed(by: rx.disposeBag)

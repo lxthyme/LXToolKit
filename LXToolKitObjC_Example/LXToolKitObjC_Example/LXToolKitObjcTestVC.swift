@@ -21,7 +21,6 @@ open class LXToolKitObjCTestSwiftVC: LXBaseVC {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<String, LXOutlineOpt>!
     // MARK: 🔗Vaiables
-    public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +31,6 @@ open class LXToolKitObjCTestSwiftVC: LXBaseVC {
     }
     open override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-
-        gotoScene(by: autoJumpRoute)
-        autoJumpRoute = nil
     }
 }
 
@@ -105,8 +101,7 @@ private extension LXToolKitObjCTestSwiftVC {
            let scene = outlineOpt.scene {
             let vc = navigator.show(segue: scene, sender: self)
             vc?.title = outlineOpt.section.title
-            // DJTestType.LXToolKitObjC_Example.updateRouter(section: outlineOpt.section)
-            DJTestType.updateRouter(level: .router2, section: outlineOpt.section)
+            DJAutoRouter.router2.updateRouter(section: outlineOpt.section)
         }
     }
 }
