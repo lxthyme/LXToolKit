@@ -194,7 +194,8 @@ private extension LXToolKitTestVC {
            let scene = outlineOpt.scene,
            let vc = navigator.show(segue: scene, sender: self) {
             vc.title = outlineOpt.section.title
-            DJTestType.LXToolKit_Example.updateRouter(section: outlineOpt.section)
+            // DJTestType.LXToolKit_Example.updateRouter(section: outlineOpt.section)
+            DJTestType.updateRouter(level: .router2, section: outlineOpt.section)
         }
     }
 }

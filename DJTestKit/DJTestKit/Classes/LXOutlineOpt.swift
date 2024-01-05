@@ -70,13 +70,25 @@ extension LXOutlineOpt: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .outline(let section, _, let subitems, let uuid):
-            hasher.combine("[outline]\(section.title)_\(uuid)")
+            hasher.combine("[outline]\(section.title)")
         case .subitem(let section, let vc, let uuid):
-            hasher.combine("[subitem]\(section.title)_\(uuid)")
+            hasher.combine("[subitem]\(section.title)")
         }
     }
     public static func == (lhs: LXOutlineOpt, rhs: LXOutlineOpt) -> Bool {
         return lhs.hashValue == rhs.hashValue
+    }
+}
+
+// MARK: - 👀
+public extension Array where Element == LXOutlineOpt {
+    func xl_first(where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt? {
+        for item in self {
+            if let result = try? item.xl_first(where: predicate) {
+                return result
+            }
+        }
+        return nil
     }
 }
 

@@ -62,7 +62,7 @@ class LXOutlineVC: LXBaseVC {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         if isFirstAppearing {
-            gotoAutoJumpRouteScene()
+            gotoAutoJumpRouteScene2()
         }
         isFirstAppearing = false
     }
@@ -119,123 +119,101 @@ private extension LXOutlineVC {
                     vc.dataFillUnSupport(content: menuItem.section.title)
                     return vc
                 }), sender: self)
-            } else if let provider = menuItem.scene?.vcProvider {
-                let result = provider()
-                TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
-                    "menuItem": menuItem.description,
-                    "provider": result?.xl.typeNameString ?? ""
-                ])
             }
             return
         }
+        // DJTestRouter.
         vc.title = menuItem.section.title
-        if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
-            DJTestType.DJSwiftModule.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
-            DJTestType.dynamicIsland.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
-            DJTestType.djTest.updateRouter(section: menuItem.section)
-        } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKit_Example.updateRouter(section: menuItem.section)
-        } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKitObjC_Example.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.router3rd.xl_first(where: { $0 == menuItem }) {
-            DJTestType.t3rd.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerFlutter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.flutter.updateRouter(section: menuItem.section)
-        } else {
-            TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
-                "menuItem": menuItem.description,
-            ])
-            // fatalError("save AutoJumpRoute not found for \(menuItem)")
+        DJTestType.updateRouter(level: .router1, section: menuItem.section)
+        // if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
+        //     DJTestType.DJSwiftModule.updateRouter(section: menuItem.section)
+        // } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.dynamicIsland.updateRouter(section: menuItem.section)
+        // } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.djTest.updateRouter(section: menuItem.section)
+        // } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.LXToolKit_Example.updateRouter(section: menuItem.section)
+        // } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.LXToolKitObjC_Example.updateRouter(section: menuItem.section)
+        // } else if let _ = try? DJTestRouter.router3rd.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.t3rd.updateRouter(section: menuItem.section)
+        // } else if let _ = try? DJTestRouter.routerFlutter.xl_first(where: { $0 == menuItem }) {
+        //     DJTestType.flutter.updateRouter(section: menuItem.section)
+        // } else {
+        //     TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
+        //         "menuItem": menuItem.description,
+        //     ])
+        //     // fatalError("save AutoJumpRoute not found for \(menuItem)")
+        // }
+    }
+    func gotoAutoJumpRouteScene2() {
+        guard let router1 = DJTestTypeRouterLevel.router1.getDefaultsValue(),
+              let router1Menu = try? self.menuItems.xl_first(where: { $0.section.title == router1 }) else {
+                  return
+        }
+        if let scene = router1Menu.scene {
+            Navigator.default.show(segue: scene, sender: self)
+        }
+        guard let router2 = DJTestTypeRouterLevel.router2.getDefaultsValue(),
+              let router2Menu = try? router1Menu.xl_first(where: { $0.section.title == router2 }) else {
+            return
+        }
+        if let scene = router2Menu.scene {
+            Navigator.default.show(segue: scene, sender: self)
         }
     }
     func gotoAutoJumpRouteScene() {
         let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
         guard let type = DJTestType.fromInt(idx: route1Int),
               let item = self.menuItems.first(where: { $0.section.title == type.title }) else {
-            dlog("-->gotoScene error on scene[1]")
-            TingYunManager.reportEvent(name: "restore Route1 failure", properties: [
+            let userInfo = [
                 "route1Int": "\(route1Int)",
-            ])
+                // "type": type.description,
+            ]
+            dlog("-->gotoScene error on scene[1]: \(userInfo)")
+            CrashlyticsManager.record(error: DJTestTypeError.autoJumpRouter1Failure, userInfo: userInfo)
             return
         }
-
-        // guard let scene else {
-        //     dlog("-->gotoScene error on scene[2]")
-        //     TingYunManager.reportEvent(name: "restore scene failure", properties: [
-        //         "route1": type.title,
-        //         "scene": scene?.description ?? ""
-        //     ])
-        //     return
-        // }
-        let vc: UIViewController?
+        var hadFindRouter = false
+        var route1VC: UIViewController?
         if let scene = item.scene {
-        switch scene {
-        case .vc(let provider, _):
-            vc = provider()
-            // type.updateRouter(vcName: <#T##String#>)
-        case .vcString(let vcString, _):
-            vc = vcString.xl.getVCInstance()
-            // type.updateRouter(vcName: vcString)
-        case .openURL:
-            vc = nil
-            break
+            hadFindRouter = true
+            route1VC = Navigator.default.show(segue: scene, sender: self)
         }
-        guard let vc else { return }
         let route2 = type.userRouter
-        if let vc = vc as? LXToolKitTestVC {
-            let itemOpt: LXOutlineOpt
-            do {
-                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.section.title == route2 })
-            } catch {
-                dlog("-->error: \(error)")
-                TingYunManager.reportEvent(name: "kit scene not found", properties: [
-                    "route2": route2
-                ])
-                itemOpt = .subitem(.section(title: "LXToolKit_Example.\(route2)"),
-                                   scene: .vcString(vcString:
-                                                        "LXToolKit_Example." +
-                                                    // "LXOutlineVC"
-                                                    // "LXLabelVC"
-                                                    // "LXStack1206VC"
-                                                    // "LXTableTestVC"
-                                                    // "LXRxSwiftTestVC"
-                                                    route2
-                                                   ))
+        if let t2Menu = try? item.xl_first(where: { $0.section.title == route2 }),
+           let t2Scene = t2Menu.scene {
+            hadFindRouter = true
+            Observable.empty()
+                .delay(.milliseconds(300), scheduler: MainScheduler.instance)
+                .subscribe {[weak self] event in
+                    print(event)
+                    dlog("-->e: \(event)")
+                    Navigator.default.show(segue: t2Scene, sender: self)
+                }
+                .disposed(by: rx.disposeBag)
+        } else if let route1VC {
+            if route1VC.isKind(of: LXToolKitTestVC.self) ||
+                route1VC.isKind(of: LXToolKitObjCTestVC.self) ||
+                route1VC.isKind(of: LXToolKitObjCTestSwiftVC.self) {
+            } else {
+                let userInfo = [
+                    "type": type.description,
+                    "route1": type.title,
+                    "route2": route2,
+                ]
+                dlog("-->gotoScene error on autoJumpRoute[2]: \(userInfo)")
+                CrashlyticsManager.record(error: DJTestTypeError.autoJumpRouter2Failure, userInfo: userInfo)
             }
-            vc.autoJumpRoute = itemOpt
-        } else if let vc = vc as? LXToolKitObjCTestVC {
-            vc.autoJumpRoute = route2
-        } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
-            var itemOpt: LXOutlineOpt
-            do {
-                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.section.title == route2 })
-            } catch {
-                dlog("-->error: \(error)")
-                TingYunManager.reportEvent(name: "objc scene not found", properties: [
-                    "route2": route2
-                ])
-                itemOpt = .subitem(.section(title: "LXToolKitObjC.\(route2)"),
-                                   scene: .vcString(vcString: "LXToolKitObjc_Example" +
-                                                    // "LXLabelTestVC"
-                                                    // "LXPopTestVC"
-                                                    // "DJCommentVC"
-                                                    // "LXViewAnimationARCTestVC"
-                                                    // "LXCollectionTestVC"
-                                                    route2))
-            }
-            vc.autoJumpRoute = itemOpt
         }
-        } else {
-            let route2 = type.userRouter
-            let t2Scene = try? item.xl_first { tmp in
-                return tmp.section.title == route2
-            }
-            vc = t2Scene?.scene?.vcProvider?()
-        }
-        if let vc {
-        self.navigationController?.pushViewController(vc, animated: true)
+        if !hadFindRouter {
+            let userInfo = [
+                "type": type.description,
+                "route1": type.title,
+                "route2": route2,
+            ]
+            dlog("-->gotoScene error on autoJumpRoute: \(userInfo)")
+            CrashlyticsManager.record(error: DJTestTypeError.autoJumpRouter1Failure, userInfo: userInfo)
         }
     }
 }

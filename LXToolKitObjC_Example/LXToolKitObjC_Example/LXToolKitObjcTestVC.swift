@@ -105,7 +105,8 @@ private extension LXToolKitObjCTestSwiftVC {
            let scene = outlineOpt.scene,
            let vc = navigator.show(segue: scene, sender: self) {
             vc.title = outlineOpt.section.title
-            DJTestType.LXToolKitObjC_Example.updateRouter(section: outlineOpt.section)
+            // DJTestType.LXToolKitObjC_Example.updateRouter(section: outlineOpt.section)
+            DJTestType.updateRouter(level: .router2, section: outlineOpt.section)
         }
     }
 }

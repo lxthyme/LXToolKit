@@ -100,7 +100,9 @@ extension ViewController {
         let CFBundleShortVersionString: String? = try? LXMacro.InfoPlistKey[.CFBundleShortVersionString]
         tvContent.text = """
         Version: \(CFBundleVersion ?? "NaN")(\(CFBundleShortVersionString ?? "NaN"))
-        AutoJumpRoute: \(DJTestType.AutoJumpRouteRouter)
+        \(DJTestTypeRouterLevel.router1.rawValue): \(DJTestTypeRouterLevel.router1.getDefaultsValue() ?? "NaN")
+        \(DJTestTypeRouterLevel.router2.rawValue): \(DJTestTypeRouterLevel.router2.getDefaultsValue() ?? "NaN")
+        AutoJumpRoute: \(DJTestType.fromInt(idx:DJTestType.AutoJumpRouteRouter)?.description ?? "NaN")
         LXToolKit_Example[\(DJTestType.LXToolKit_Example.intValue())]: \(DJTestType.LXToolKit_Example.userRouter)
         LXToolKitObjC_Example[\(DJTestType.LXToolKitObjC_Example.intValue())]: \(DJTestType.LXToolKitObjC_Example.userRouter)
         DJSwiftModule[\(DJTestType.DJSwiftModule.intValue())]: \(DJTestType.DJSwiftModule.userRouter)

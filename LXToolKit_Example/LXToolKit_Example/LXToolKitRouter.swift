@@ -28,9 +28,9 @@ public extension LXToolKitRouter {
 // MARK: - 🔐
 internal extension LXToolKitRouter {
     static let routerSwiftDaily: LXOutlineOpt = .outline(.section(title: "Swift Daily"), subitems: [
-        .subitem(.section(title: "DJSwiftTestCaseVC"), scene: .vc(provider: { DJSwiftTestCaseVC() })),
-        .subitem(.section(title: "DJSwiftTestCaseVC"), scene: .vc(provider: { DJSwiftTestCaseVC() })),
-        .subitem(.section(title: "LXRxSwiftTestVC"), scene: .vc(provider: { LXRxSwiftTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
+        .subitem(.section(title: "DJSwiftTestCaseVC(1)"), scene: .vc(provider: { DJSwiftTestCaseVC() })),
+        .subitem(.section(title: "DJSwiftTestCaseVC(2)"), scene: .vc(provider: { DJSwiftTestCaseVC() })),
+        .subitem(.section(title: "LXRxSwiftTestVC(3)"), scene: .vc(provider: { LXRxSwiftTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
     ].reversed())
     static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
         .subitem(.section(title: "LX03_08_03VC"), scene: .vc(provider: { LX03_08_03VC() })),
@@ -66,8 +66,8 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
     ].reversed())
     static let routerMVVM: LXOutlineOpt = .outline(.section(title: "MVVM"), subitems: [
-        .subitem(.section(title: "baidu.com"), scene: .openURL(url: URL(string: "http://baidu.com"))),
-        .subitem(.section(title: "baidu.com"), scene: .openURL(url: URL(string: "http://baidu.com"))),
+        .subitem(.section(title: "baidu.com(1)"), scene: .openURL(url: URL(string: "http://baidu.com"))),
+        .subitem(.section(title: "baidu.com(2)"), scene: .openURL(url: URL(string: "http://baidu.com"))),
         .subitem(.section(title: "baidu.com(inWebView)"), scene: .openURL(url: URL(string: "http://baidu.com"), inWebView: true)),
         // .subitem(.section(title: "DJHomeTabBarVM", scene: .tabs(vm: DJHomeTabBarVM(authorized: false))),
         .subitem(.section(title: "DJHomeTabBarVC + UISplitViewController"), scene: .vc(provider: {
@@ -77,7 +77,7 @@ internal extension LXToolKitRouter {
         })),
         .subitem(.section(title: "LXMVVMSampleVC"), scene: .vc(provider: { LXMVVMSampleVC() })),
         // .subitem(.section(title: "HomeViewController"), scene: .vc(provider: { HomeViewController() })),
-        .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
+        // .subitem(.section(title: "LXAttributedStringVC"), scene: .vc(provider: { LXAttributedStringVC() })),
     ].reversed())
     static let router2022: LXOutlineOpt = .outline(.section(title: "2022"), subitems: [
         .subitem(.section(title: "LXTable0120VC"), scene: .vc(provider: { LXTable0120VC(vm: LXBaseVM(), navigator: Navigator.default) })),
@@ -115,7 +115,7 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "LXRx0225VC"), scene: .vc(provider: { LXRx0225VC() })),
         .subitem(.section(title: "LX0324EventsVC"), scene: .vc(provider: { LX0324EventsVC() })),
         .subitem(.section(title: "LXNestedTableVC"), scene: .vc(provider: { LXNestedTableVC() })),
-        .subitem(.section(title: "LXTableTestVC"), scene: .vc(provider: { LXTableTestVC() })),
+        .subitem(.section(title: "LXTableTestObjcVC"), scene: .vc(provider: { LXTableTestObjCVC() })),
         .subitem(.section(title: "LX1019TestVC"), scene: .vc(provider: { LX1019TestVC() })),
         .subitem(.section(title: "LXHugTestVC"), scene: .vc(provider: { LXHugTestVC() })),
         .subitem(.section(title: "LXStack1206VC"), scene: .vc(provider: { LXStack1206VC() })),

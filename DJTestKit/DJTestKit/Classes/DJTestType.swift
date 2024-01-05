@@ -8,7 +8,21 @@
 import Foundation
 import LXToolKit
 
-public enum DJTestType: Hashable {
+public enum DJTestTypeError: Error {
+    case autoJumpRouter1Failure
+    case autoJumpRouter2Failure
+}
+
+public enum DJTestTypeRouterLevel: String {
+    case router1 = "level router1"
+    case router2 = "level router2"
+
+    public func getDefaultsValue() -> String? {
+        return UserDefaults.standard.string(forKey: rawValue)
+    }
+}
+
+public enum DJTestType {
     public static let AutoJumpRoute = "autoJumpRoute.route"
 
     // case LXToolKit
@@ -23,7 +37,10 @@ public enum DJTestType: Hashable {
     case djTest
     case t3rd
     case flutter
+}
 
+// MARK: - ✈️Hashable
+extension DJTestType: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .LXToolKit_Example:
@@ -47,29 +64,35 @@ public enum DJTestType: Hashable {
     }
 }
 
-// MARK: - 👀
-public extension DJTestType {
-    var title: String {
+// MARK: - ✈️CustomStringConvertible
+extension DJTestType: CustomStringConvertible {
+    public var description: String {
         switch self {
             // case .LXToolKit:
             //     return "LXToolKit"
         case .LXToolKit_Example:
-            return "LXToolKit_Example"
+            return ".LXToolKit_Example"
             // case .LXToolKitObjC:
             //     return "LXToolKitObjC"
         case .LXToolKitObjC_Example:
-            return "LXToolKitObjC_Example"
+            return ".LXToolKitObjC_Example"
         case .DJSwiftModule:
-            return "DJSwiftModule"
+            return ".DJSwiftModule"
         case .dynamicIsland:
-            return "dynamicIsland"
+            return ".dynamicIsland"
         case .djTest:
-            return "DJTest"
+            return ".DJTest"
         case .t3rd:
-            return "3rd"
+            return ".3rd"
         case .flutter:
-            return "flutter"
+            return ".Flutter"
         }
+    }
+}
+// MARK: - 👀
+public extension DJTestType {
+    var title: String {
+        return self.description.removingPrefix(".")
     }
     func intValue() -> Int {
         switch self {
@@ -103,9 +126,12 @@ public extension DJTestType {
     }
 }
 // MARK: - 👀
-extension DJTestType {
-    public static func updateAutoJumpRoute(_ type: DJTestType) {
-        UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
+public extension DJTestType {
+    // static func updateAutoJumpRoute(_ type: DJTestType) {
+    //     UserDefaults.standard.set(type.intValue(), forKey: DJTestType.AutoJumpRoute)
+    // }
+    static func updateRouter(level: DJTestTypeRouterLevel, section: LXSection) {
+        UserDefaults.standard.set(section.title, forKey: level.rawValue)
     }
     public func updateRouter(section: LXSection) {
         guard section.title != "LXToolKitTestVC",
@@ -148,6 +174,7 @@ open class DJTestTypeObjc: NSObject {}
 // MARK: - 👀
 public extension DJTestTypeObjc {
     @objc public static func updateObjcDefaults(vcName: String) {
-        DJTestType.LXToolKitObjC_Example.updateRouter(section: .section(title: vcName))
+        // DJTestType.LXToolKitObjC_Example.updateRouter(section: .section(title: vcName))
+        DJTestType.updateRouter(level: .router2, section: .section(title: vcName))
     }
 }
