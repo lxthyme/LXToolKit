@@ -56,7 +56,6 @@
     if(!route || [route isEmpty]) {
         return;
     }
-    [DJTestTypeObjc clearRouter1];
     [DJTestTypeObjc updateObjcRouter2DefaultsWithVcName:route];
     Class cls = NSClassFromString(route);
     if(cls) {
