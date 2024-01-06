@@ -244,6 +244,10 @@ $sandbox_list = [
 ]
 $static_objc_list = [
   'DJRSwiftResource',
+  'LXToolKit',
+  'LXToolKit_Example',
+  'LXToolKitObjC',
+  'LXToolKitObjC_Example',
   #
   'CHTCollectionViewWaterfallLayout',
   'CocoaDebug',
