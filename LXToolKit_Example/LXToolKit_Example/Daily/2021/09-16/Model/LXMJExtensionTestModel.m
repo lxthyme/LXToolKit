@@ -35,7 +35,7 @@
     // JSON -> User
     LXMJExtensionTestModel *user = [LXMJExtensionTestModel mj_objectWithKeyValues:dict];
 
-    NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+    NSLog(@"name=%@, icon=%@, age=%u, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
     // name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
     NSLog(@"user: %@", @[
         user.mj_JSONData,

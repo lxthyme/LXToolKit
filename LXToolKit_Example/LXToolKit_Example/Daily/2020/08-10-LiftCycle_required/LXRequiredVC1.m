@@ -24,7 +24,7 @@
     [super viewWillDisappear:YES];
 }
 - (void)viewDidDisappear:(BOOL)animated {
-//    [super viewDidDisappear:YES];
+   [super viewDidDisappear:YES];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
