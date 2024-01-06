@@ -337,7 +337,7 @@ class DemosCupertino {
           documentationUrl: '$kDocsBaseUrl/cupertino/CupertinoTabBar-class.html',
           buildRoute: (_) => DeferredWidget(
             cupertinoLoader,
-            () => cupertino_demos.TodoText(),
+            () => cupertino_demos.CupertinoTabBarDemo(),
           ),
           code: CodeSegments.cupertinoNavigationDemo,
         ),

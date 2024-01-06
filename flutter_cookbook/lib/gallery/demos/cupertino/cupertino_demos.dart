@@ -6,6 +6,7 @@ export 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_button_demo.d
 export 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_navigation_bar_demo.dart';
 export 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_scrollbar_demo.dart';
 export 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_segmented_control_demo.dart';
+export 'package:flutter_cookbook/gallery/demos/cupertino/cupertino_tab_bar_demo.dart';
 class TodoText extends StatelessWidget {
   const TodoText({
     super.key,
