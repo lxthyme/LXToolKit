@@ -283,7 +283,7 @@ private extension LXOutlineVC {
             // }
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, _, let subitems, _):
+                case .outline(_, _, let subitems):
                     addItems(subitems, to: menuItem)
                 case .subitem:
                     break
@@ -294,7 +294,7 @@ private extension LXOutlineVC {
         for menuItem in self.menuItems {
             snapshot.append([menuItem], to: nil)
             switch menuItem {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 addItems(subitems, to: menuItem)
             case .subitem:
                 break
@@ -319,7 +319,7 @@ private extension LXOutlineVC {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, _, let subitems, _):
+                case .outline(_, _, let subitems):
                     if !snapshot.contains(menuItem) {
                         snapshot.append([menuItem], to: parent)
                     }
@@ -337,7 +337,7 @@ private extension LXOutlineVC {
         var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
         for menuItem in self.menuItems {
             switch menuItem {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()

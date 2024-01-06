@@ -38,18 +38,18 @@ extension LXSection: Hashable {
 }
 
 public enum LXOutlineOpt {
-    case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt], uuid: UUID = UUID())
-    case subitem(_ section: LXSection, scene: Navigator.Scene? = nil, uuid: UUID = UUID())
+    case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt])
+    case subitem(_ section: LXSection, scene: Navigator.Scene? = nil)
 
     public var section: LXSection {
         switch self {
-        case .outline(let section, _, _, _), .subitem(let section, _, _):
+        case .outline(let section, _, _), .subitem(let section, _):
             return section
         }
     }
     public var subitems: [LXOutlineOpt]? {
         switch self {
-        case .outline(_, _, let subitems, _):
+        case .outline(_, _, let subitems):
             return subitems
         case .subitem:
             return nil
@@ -57,9 +57,9 @@ public enum LXOutlineOpt {
     }
     public var scene: Navigator.Scene? {
         switch self {
-        case .outline(_, let scene, _, _):
+        case .outline(_, let scene, _):
             return scene
-        case .subitem(_, let scene, _):
+        case .subitem(_, let scene):
             return scene
         }
     }
@@ -69,9 +69,9 @@ public enum LXOutlineOpt {
 extension LXOutlineOpt: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .outline(let section, _, let subitems, let uuid):
+        case .outline(let section, _, let subitems):
             hasher.combine("\(section.title)")
-        case .subitem(let section, let vc, let uuid):
+        case .subitem(let section, let vc):
             hasher.combine("\(section.title)")
         }
     }
@@ -97,7 +97,7 @@ public extension LXOutlineOpt {
     func xl_first(where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt {
         func first2(from opt: LXOutlineOpt, where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt? {
             switch opt {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 if try predicate(opt) {
                     return opt
                 }
@@ -124,9 +124,9 @@ public extension LXOutlineOpt {
 extension LXOutlineOpt: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .outline(let section, let scene, let subitems, let uuid):
+        case .outline(let section, let scene, let subitems):
             return ".outline(\(section.title), scene: \(scene?.description ?? ""), subitems: \(subitems))"
-        case .subitem(let section, let scene, let uuid):
+        case .subitem(let section, let scene):
             return ".subitem(\(section.title), scene: \(scene?.description ?? ""))"
         }
     }

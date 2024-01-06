@@ -20,7 +20,7 @@ public enum DJAutoRouter: String {
 
 // MARK: - 👀
 public extension DJAutoRouter {
-    public func getDefaultsValue() -> String? {
+    func getDefaultsValue() -> String? {
         return UserDefaults.standard.string(forKey: rawValue)
     }
     func clearRouter() {
@@ -39,16 +39,16 @@ open class DJTestTypeObjc: NSObject {}
 
 // MARK: - 👀
 public extension DJTestTypeObjc {
-    @objc public static func clearRouter1() {
+    @objc static func clearRouter1() {
         DJAutoRouter.router1.clearRouter()
     }
-    @objc public static func clearRouter2() {
+    @objc static func clearRouter2() {
         DJAutoRouter.router2.clearRouter()
     }
-    @objc public static func updateObjcRouter1Defaults(vcName: String) {
+    @objc static func updateObjcRouter1Defaults(vcName: String) {
         DJAutoRouter.router1.updateRouter(section: .section(title: vcName))
     }
-    @objc public static func updateObjcRouter2Defaults(vcName: String) {
+    @objc static func updateObjcRouter2Defaults(vcName: String) {
         DJAutoRouter.router2.updateRouter(section: .section(title: vcName))
     }
 }

@@ -26,6 +26,7 @@ puts("-->当前模式: #{tips.red}")
 use_frameworks!
 # use_modular_headers!
 inhibit_all_warnings!
+# :inhibit_warnings => false
 ENV['SWIFT_VERSION'] = '5'
 platform :ios, '14.0'
 if $flutter_source_import
@@ -91,17 +92,17 @@ target 'DJTest' do
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
   # pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
-  pod 'DJRSwiftResource', :path => '../DJRSwiftResource'
+  pod 'DJRSwiftResource', :inhibit_warnings => false, :path => '../DJRSwiftResource'
 
-  # pod 'LXSwiftUIKit', :path => '../LXSwiftUIKit'
+  # pod 'LXSwiftUIKit', :inhibit_warnings => false, :path => '../LXSwiftUIKit'
 
-  pod 'LXToolKit_Example', :path => '../LXToolKit_Example'
-  pod 'LXToolKitObjC_Example', :path => '../LXToolKitObjC_Example'
+  pod 'LXToolKit_Example', :inhibit_warnings => false, :path => '../LXToolKit_Example'
+  pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
 
-  pod 'LXToolKit', :path => '../LXToolKit'
-  pod 'LXToolKit/3rd', :path => '../LXToolKit'
-  pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
-  pod 'DJTestKit', :path => '../DJTestKit'
+  pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit'
+  pod 'LXToolKit/3rd', :inhibit_warnings => false, :path => '../LXToolKit'
+  pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
+  pod 'DJTestKit', :inhibit_warnings => false, :path => '../DJTestKit'
 
   ############ FloatingPanel
   pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
