@@ -366,7 +366,6 @@ extension UIListContentConfiguration.TextProperties {
             "UnSupported"
         }
         var desc = ""
-        var desc = "\n"
         var idx = 1
         let prefix = "        "
         desc += "\(prefix)\(idx). font: \(font)\n"

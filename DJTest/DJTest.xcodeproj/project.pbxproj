@@ -659,6 +659,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist",
+				"${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}",
 			);
 			name = FirebaseCrashlytics;
 			outputFileListPaths = (
@@ -667,7 +672,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->4.1: \", ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->5.1: \", ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

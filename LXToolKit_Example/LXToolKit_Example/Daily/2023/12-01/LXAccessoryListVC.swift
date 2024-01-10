@@ -597,7 +597,8 @@ extension LXAccessoryListVC: UICollectionViewDelegate {
             """)
             return vc
         })
-        Navigator.default.show(segue: scene, sender: self)
+        let vc = Navigator.default.show(segue: scene, sender: self)
+        vc?.title = item.section.title
     }
 }
 

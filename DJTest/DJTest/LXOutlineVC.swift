@@ -30,7 +30,6 @@ class LXOutlineVC: LXBaseVC {
     private static let sectionBackgroundDecorationElementKind = "sectionBackgroundDecorationElementKind"
     private var isFirstAppearing = true
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
-    var autoJumpRoute: DJTestType?
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
             DJTestRouter.router233,
@@ -110,132 +109,40 @@ private extension LXOutlineVC {
     func gotoScene(by menuItem: LXOutlineOpt) {
         guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
-            // DJTestType.LXToolKit_Example.updateRouter(vcName: "")
             if menuItem.section.title.hasPrefix("Section ") ||
                 menuItem.section.title.hasPrefix("Item ") {
 
                 Navigator.default.show(segue: .vc(provider: {
                     let vc = LXSampleTextViewVC()
+                    vc.title = menuItem.section.title
                     vc.dataFillUnSupport(content: menuItem.section.title)
                     return vc
                 }), sender: self)
-            } else if let provider = menuItem.scene?.vcProvider {
-                let result = provider()
-                TingYunManager.reportEvent(name: "scene.vcProvider 异常", properties: [
-                    "menuItem": menuItem.description,
-                    "provider": result?.xl.typeNameString ?? ""
-                ])
             }
             return
         }
         vc.title = menuItem.section.title
-        if let _ = try? DJTestRouter.routerDJSwiftModule.xl_first(where: { $0 == menuItem}) {
-            DJTestType.DJSwiftModule.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerDynamicIsland.xl_first(where: { $0 == menuItem }) {
-            DJTestType.dynamicIsland.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerDJTest.xl_first(where: { $0 == menuItem }) {
-            DJTestType.djTest.updateRouter(section: menuItem.section)
-        } else if let _ = try? LXToolKitRouter.kitRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKit_Example.updateRouter(section: menuItem.section)
-        } else if let _ = try? LXToolKitObjcRouter.objcRouter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.LXToolKitObjC_Example.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.router3rd.xl_first(where: { $0 == menuItem }) {
-            DJTestType.t3rd.updateRouter(section: menuItem.section)
-        } else if let _ = try? DJTestRouter.routerFlutter.xl_first(where: { $0 == menuItem }) {
-            DJTestType.flutter.updateRouter(section: menuItem.section)
-        } else {
-            TingYunManager.reportEvent(name: "set AutoJumpRoute [menuItem] not found", properties: [
-                "menuItem": menuItem.description,
-            ])
-            // fatalError("save AutoJumpRoute not found for \(menuItem)")
-        }
+        DJAutoRouter.router1.updateRouter(section: menuItem.section)
     }
     func gotoAutoJumpRouteScene() {
-        let route1Int = UserDefaults.standard.integer(forKey: DJTestType.AutoJumpRoute)
-        guard let type = DJTestType.fromInt(idx: route1Int),
-              let item = self.menuItems.first(where: { $0.section.title == type.title }) else {
-            dlog("-->gotoScene error on scene[1]")
-            TingYunManager.reportEvent(name: "restore Route1 failure", properties: [
-                "route1Int": "\(route1Int)",
-            ])
+        guard let router1 = DJAutoRouter.router1.getDefaultsValue(),
+              let router1Menu = try? self.menuItems.xl_first(where: { $0.section.title == router1 }) else {
+                  return
+        }
+        if(router1Menu.section.title == LXOutlineVC.XL.typeNameString) {
             return
         }
-
-        // guard let scene else {
-        //     dlog("-->gotoScene error on scene[2]")
-        //     TingYunManager.reportEvent(name: "restore scene failure", properties: [
-        //         "route1": type.title,
-        //         "scene": scene?.description ?? ""
-        //     ])
-        //     return
-        // }
-        let vc: UIViewController?
-        if let scene = item.scene {
-        switch scene {
-        case .vc(let provider, _):
-            vc = provider()
-            // type.updateRouter(vcName: <#T##String#>)
-        case .vcString(let vcString, _):
-            vc = vcString.xl.getVCInstance()
-            // type.updateRouter(vcName: vcString)
-        case .openURL:
-            vc = nil
-            break
+        if let scene = router1Menu.scene {
+            let vc = Navigator.default.show(segue: scene, sender: self)
+            vc?.title = router1Menu.section.title
         }
-        guard let vc else { return }
-        let route2 = type.userRouter
-        if let vc = vc as? LXToolKitTestVC {
-            let itemOpt: LXOutlineOpt
-            do {
-                itemOpt = try LXToolKitRouter.kitRouter.xl_first(where: { $0.section.title == route2 })
-            } catch {
-                dlog("-->error: \(error)")
-                TingYunManager.reportEvent(name: "kit scene not found", properties: [
-                    "route2": route2
-                ])
-                itemOpt = .subitem(.section(title: "LXToolKit_Example.\(route2)"),
-                                   scene: .vcString(vcString:
-                                                        "LXToolKit_Example." +
-                                                    // "LXOutlineVC"
-                                                    // "LXLabelVC"
-                                                    // "LXStack1206VC"
-                                                    // "LXTableTestVC"
-                                                    // "LXRxSwiftTestVC"
-                                                    route2
-                                                   ))
-            }
-            vc.autoJumpRoute = itemOpt
-        } else if let vc = vc as? LXToolKitObjCTestVC {
-            vc.autoJumpRoute = route2
-        } else if let vc = vc as? LXToolKitObjCTestSwiftVC {
-            var itemOpt: LXOutlineOpt
-            do {
-                itemOpt = try LXToolKitObjcRouter.objcRouter.xl_first(where: { $0.section.title == route2 })
-            } catch {
-                dlog("-->error: \(error)")
-                TingYunManager.reportEvent(name: "objc scene not found", properties: [
-                    "route2": route2
-                ])
-                itemOpt = .subitem(.section(title: "LXToolKitObjC.\(route2)"),
-                                   scene: .vcString(vcString: "LXToolKitObjc_Example" +
-                                                    // "LXLabelTestVC"
-                                                    // "LXPopTestVC"
-                                                    // "DJCommentVC"
-                                                    // "LXViewAnimationARCTestVC"
-                                                    // "LXCollectionTestVC"
-                                                    route2))
-            }
-            vc.autoJumpRoute = itemOpt
+        guard let router2 = DJAutoRouter.router2.getDefaultsValue(),
+              let router2Menu = try? self.menuItems.xl_first(where: { $0.section.title == router2 }) else {
+            return
         }
-        } else {
-            let route2 = type.userRouter
-            let t2Scene = try? item.xl_first { tmp in
-                return tmp.section.title == route2
-            }
-            vc = t2Scene?.scene?.vcProvider?()
-        }
-        if let vc {
-        self.navigationController?.pushViewController(vc, animated: true)
+        if let scene = router2Menu.scene {
+            let vc = Navigator.default.show(segue: scene, sender: self)
+            vc?.title = router1Menu.section.title
         }
     }
 }
@@ -376,7 +283,7 @@ private extension LXOutlineVC {
             // }
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, _, let subitems, _):
+                case .outline(_, _, let subitems):
                     addItems(subitems, to: menuItem)
                 case .subitem:
                     break
@@ -387,7 +294,7 @@ private extension LXOutlineVC {
         for menuItem in self.menuItems {
             snapshot.append([menuItem], to: nil)
             switch menuItem {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 addItems(subitems, to: menuItem)
             case .subitem:
                 break
@@ -412,7 +319,7 @@ private extension LXOutlineVC {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
                 switch menuItem {
-                case .outline(_, _, let subitems, _):
+                case .outline(_, _, let subitems):
                     if !snapshot.contains(menuItem) {
                         snapshot.append([menuItem], to: parent)
                     }
@@ -430,7 +337,7 @@ private extension LXOutlineVC {
         var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
         for menuItem in self.menuItems {
             switch menuItem {
-            case .outline(_, _, let subitems, _):
+            case .outline(_, _, let subitems):
                 snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()

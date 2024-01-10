@@ -98,7 +98,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
         return snapshot
     }
     // MARK: 🔗Vaiables
-    public var autoJumpRoute: LXOutlineOpt?
     // MARK: 🛠Life Cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,9 +124,6 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     open override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-
-        gotoScene(by: autoJumpRoute)
-        autoJumpRoute = nil
     }
 }
 
@@ -194,7 +190,7 @@ private extension LXToolKitTestVC {
            let scene = outlineOpt.scene,
            let vc = navigator.show(segue: scene, sender: self) {
             vc.title = outlineOpt.section.title
-            DJTestType.LXToolKit_Example.updateRouter(section: outlineOpt.section)
+            DJAutoRouter.router2.updateRouter(section: outlineOpt.section)
         }
     }
 }
