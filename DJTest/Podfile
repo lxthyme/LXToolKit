@@ -5,6 +5,7 @@ $flutter_source_import = false
 $Flutter_isDebug = false
 $Flutter_isProfile = false
 $Flutter_isRelease = false
+$DaoJiaPath = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia'
 
 # $flutter_source_import=true
 # $Flutter_isDebug = true
@@ -155,6 +156,7 @@ target 'DJTest' do
   pod 'RxSwiftExt', '~> 6.2'
   # pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
   pod 'RxNetworks'#, '0.4.4'
+  pod 'CacheX', '1.0.1'
 
 
   # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
@@ -166,6 +168,26 @@ target 'DJTest' do
   # pod 'AMapLocation-NO-IDFA'
   # pod 'FirebaseAnalytics'
   # pod 'FirebaseCrashlytics'
+
+  source 'https://gitlab.bl.com/iOS/BLRepositories.git'
+  pod 'AvoidCrash'
+  pod 'SensorsAnalyticsSDK', '4.0.1', :subspecs => ['Location','Base','Core']
+  pod 'AMap3DMap-NO-IDFA','9.6.0'
+  pod 'AMapSearch-NO-IDFA','9.5.0'
+  pod 'AMapLocation-NO-IDFA', '2.10.0'
+
+  pod 'DJBusinessModule', :path => "#{$DaoJiaPath}/DJBusinessModule"
+  pod 'BLCartService', :path => './'
+  pod 'BLOrder', :path => './'
+  # pod 'DJBusinessTools', :path=>'$DaoJiaPath/DJBusinessTools', :inhibit_warnings => false
+  # pod 'DJiOSAppImages', :path=>'$DaoJiaPath/DJiOSAppImages', :inhibit_warnings => false
+  # pod 'DJGlobalStoreManager', :path=>'$DaoJiaPath/DJGlobalStoreManager', :inhibit_warnings => false
+  # pod 'DJBusinessCategoryRouterCenter', :path => '$DaoJiaPath/DJBusinessCategoryRouterCenter', :inhibit_warnings => false
+  # pod 'BLNetworking', :path => '$DaoJiaPath/BLNetworking'
+  # pod 'BLRawAPIManager', :path => '$DaoJiaPath/BLRawAPIManager'
+  # pod 'BLImage', :path => '$DaoJiaPath/BLImage'
+  # pod 'IBLProgressHud', :path => '$DaoJiaPath/IBLProgressHud'
+  # # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
 
 end
 
@@ -311,6 +333,9 @@ def generateConfig(target, config, project_deployment_version)
   end
 end
 
+daojia_list = [
+  'AFNetworking','AMap3DMap-NO-IDFA','AMapFoundation-NO-IDFA','AMapLocation-NO-IDFA','AMapSearch-NO-IDFA','AmapAPIManager','Aspects','AvoidCrash','BLAPIManagers','BLAPPInfoModule','BLAddressCRUD','BLAdvertResourceJumpManager','BLAreaManager','BLAutoScrollBannerHeaderView','BLBusinessCategoryAMapAPI','BLBusinessCategoryAddress','BLBusinessCategoryAdvertResource','BLBusinessCategoryBLStore','BLBusinessCategoryCheckRedCardInfo','BLBusinessCategoryCloudStore','BLBusinessCategoryCoupon','BLBusinessCategoryPagemanager','BLBusinessCategoryResourceRecorder','BLBusinessCategoryRouterCenter','BLBusinessCategorySensor','BLBusinessCategoryWebViewControllers','BLBusinessContext','BLCancelOrderView','BLCartService','BLCategories','BLCheckRedCardInfo','BLCollectionViewHeaderLayout','BLCountDownTool','BLCoupon','BLCouponCenterModule','BLCouponCommonComponents','BLDaoJiaAlertView','BLDragView','BLHomeDataSource','BLHomePageViewComponents','BLHorScrollGoodsDetailCell','BLImage','BLKeychainManager','BLLog','BLLoginRegister','BLMapModule','BLMediator','BLNetworking','BLNetworkingCategory','BLOrder','BLOrderConfirmBottomView','BLOrderConfirmCouponActionSheet','BLOrderConfirmNormalActionSheet','BLOrderConfirmRuleAlertView','BLOrderConfirmTableViewCells','BLOrderConfirmTableViewHeaderFooterViews','BLOrderUnavailableGoodsPopView','BLPagerListView','BLPagerView','BLPanicBuyEveryDay','BLPanicBuyViewComponents','BLPayCode','BLPaySuccessful','BLPopDownMenu','BLProtocolManager','BLRangeSlider','BLRawAPIManager','BLRealNameInformation','BLRefresh','BLSafeFetchDataFunctions','BLSearchBarContext','BLSecurePasswordAlertView','BLSecurePasswordView','BLSelectAddressViewController','BLSensorTrack','BLShare','BLShuMeiRisk','BLTabbar','BLTwoBallRotationView','BLUITools','BLViewDownloadsInvoice','BLWeChatSDK','BLWebViewControllers','BLiOSAppImages','CRRouter','CTAppContext','CTAppContext_BaiLian','CTHandyCategories','CTMediator','CTPersistance','CTVideoPlayerView','CTWKWebView','CTWebViewComponents','CTWebviewTarget','DACircularProgress','DJBusinessCategoryRouterCenter','DJBusinessModule','DJBusinessTools','DJGlobalStoreManager','DJiOSAppImages','FXBlurView','HTHorizontalSelectionList','HWPanModal','HandyFrame','IBLAddressSelectPickerView','IBLNavigationBar','IBLOrderConfirmAlertView','IBLPopDownMenu','IBLProgressHud','IBLTitleScrollView','IBLToastView','IQKeyboardManager','JSONKit','JhtMarquee','LinkedME_LinkAccount','M13BadgeView','MMPopupView','MWPhotoBrowser','RisoAppContext','SDCycleScrollView','SQLCipher','SensorsAnalyticsSDK','Toast','VerticalAlignmentLabel','WechatOpenSDK','YYCache','YYImage','YYWebImage','iCarousel',
+]
 def fix_deployment_target(target, config, project_deployment_version)
   # old_version = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
   # new_version = project_deployment_version
@@ -321,7 +346,11 @@ def fix_deployment_target(target, config, project_deployment_version)
   #   #   bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
   #   # end
   # end
-  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+  # if daojia_list.include?(pod.name)
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+  # else
+  #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+  # end
   # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
   #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
@@ -371,32 +400,41 @@ end
 #   end
 # end
 
-# static_frameworks = [
-# # 'DJBusinessModuleSwift',
-# 'RxNetworks',
-# # 'Toast-Swift', 'HandyJSON', 'Moya', 'RxSwift', 'Alamofire',
-# # 'FirebaseCrashlytics',
-# # 'FirebaseCore',
-# # 'GoogleUtilities', 'PromisesObjC',
-# # 'FirebaseCoreDiagnostics', 'GoogleDataTransport', 'nanopb',
-# # 'FirebaseCoreInternal',
-# # 'FirebaseInstallations',
-# ]
-# pre_install do |installer|
-#   installer.pod_targets.each do |pod|
-#     # 注意这里和上面的不同
-#     if !static_frameworks.include?(pod.name)
-#       def pod.static_framework?;
-#         true
-#       end
-#       def pod.build_type;
-#         Pod::BuildType.static_library
-#       end
-#     end
-#   end
-# end
-
+static_frameworks = [
+# 'DJBusinessModuleSwift',
+'RxNetworks',
+'Toast-Swift', 'HandyJSON', 'Moya', 'RxSwift', 'Alamofire',
+'FirebaseCore','FirebaseCoreExtension','FirebaseInstallations','GoogleDataTransport','GoogleUtilities','nanopb',
+'SDWebImage', 'DZNEmptyDataSet', 'SVProgressHUD', 'HMSegmentedControl', 'KafkaRefresh',
+'Masonry', 'ReactiveCocoa', 'YYModel', 'Colours', 'IGListKit', 'MBProgressHUD',
+'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
+'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
+'IGListDiffKit', 'RxSwift',
+'MJRefresh', 'YYText', 'JXCategoryView',
+'pop', 'CHTCollectionViewWaterfallLayout', 'Mantle', 'MJExtension',
+]
 pre_install do |installer|
-  # workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
-	Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+  installer.pod_targets.each do |pod|
+    # 注意这里和上面的不同
+    # if !daojia_list.include?(pod.name)
+    #   def pod.static_framework?;
+    #     true
+    #   end
+    #   def pod.build_type;
+    #     Pod::BuildType.static_library
+    #   end
+    if !static_frameworks.include?(pod.name)
+      def pod.static_framework?;
+        true
+      end
+      def pod.build_type;
+        Pod::BuildType.static_library
+      end
+    end
+  end
 end
+
+# pre_install do |installer|
+#   # workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
+# 	Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+# end
