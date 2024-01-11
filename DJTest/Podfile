@@ -42,6 +42,7 @@ else
           generate_multiple_pod_projects: true,
           # integrate_targets: false,
           deterministic_uuids: false
+          # incremental_installation: true,
 end
 
 workspace 'DJTest.xcworkspace'
@@ -346,11 +347,11 @@ def fix_deployment_target(target, config, project_deployment_version)
   #   #   bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = new_version
   #   # end
   # end
-  # if daojia_list.include?(pod.name)
+  if daojia_list.include?(pod.name)
     config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-  # else
-  #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-  # end
+  else
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+  end
   # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
   #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
