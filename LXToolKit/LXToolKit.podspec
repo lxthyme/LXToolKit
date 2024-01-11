@@ -102,7 +102,7 @@ This library contains some useful category and extension kits
 
     # sub.dependency 'RAMAnimatedTabBarController'
     # sub.dependency 'WhatsNewKit'
-    # sub.dependency ''
+    sub.dependency 'Toast-Swift'
     # sub.dependency ''
     # sub.dependency ''
     # sub.dependency ''
@@ -110,6 +110,7 @@ This library contains some useful category and extension kits
     # sub.dependency ''
   end
   s.subspec '3rd' do |sub|
+    # sub.dependency 'LXToolKit/Core'
     sub.dependency 'LXToolKit/RxSwift'
     sub.dependency 'LXToolKit/Contacts'
     sub.dependency 'LXToolKit/Firebase'
@@ -157,7 +158,7 @@ This library contains some useful category and extension kits
     # https://github.com/alibaba/HandyJSON
     sub.dependency 'HandyJSON'
     sub.dependency 'ObjectMapper'
-    # sub.dependency 'Moya-ObjectMapper/RxSwift'
+    sub.dependency 'Moya-ObjectMapper/RxSwift'
   end
   s.subspec 'HMSegmentedControl' do |sub|
     sub.source_files = "LXToolKit/3rd/HMSegmentedControl/*"
