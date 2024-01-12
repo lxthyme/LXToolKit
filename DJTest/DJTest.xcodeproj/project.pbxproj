@@ -44,6 +44,9 @@
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */; };
 		BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA850F92B216B6100C6D019 /* LXFirstVC.swift */; };
+		BEB228782B50C1DE00B182AE /* DJTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB228772B50C1DE00B182AE /* DJTest.m */; };
+		BEB2287C2B50C20900B182AE /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB2287A2B50C20900B182AE /* LibsManager.swift */; };
+		BEB2287D2B50C20900B182AE /* DJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB2287B2B50C20900B182AE /* DJRouter.m */; };
 		BEB3855A2B3AE7B700D14351 /* LXSingleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385592B3AE7B700D14351 /* LXSingleVC.swift */; };
 		BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */; };
 		BEB3855E2B3AED7C00D14351 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855D2B3AED7C00D14351 /* DataModel.swift */; };
@@ -182,6 +185,11 @@
 		BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAMapTestVC.swift; sourceTree = "<group>"; };
 		BE9649972B3E950E00BCB578 /* Info-Debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
 		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
+		BEB228762B50C1DE00B182AE /* DJTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJTest.h; sourceTree = "<group>"; };
+		BEB228772B50C1DE00B182AE /* DJTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJTest.m; sourceTree = "<group>"; };
+		BEB228792B50C20900B182AE /* DJRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRouter.h; sourceTree = "<group>"; };
+		BEB2287A2B50C20900B182AE /* LibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
+		BEB2287B2B50C20900B182AE /* DJRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRouter.m; sourceTree = "<group>"; };
 		BEB385592B3AE7B700D14351 /* LXSingleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSingleVC.swift; sourceTree = "<group>"; };
 		BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXHostVC.swift; sourceTree = "<group>"; };
 		BEB3855D2B3AED7C00D14351 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -408,6 +416,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		BEB228752B50C1D300B182AE /* DJ */ = {
+			isa = PBXGroup;
+			children = (
+				BEB228792B50C20900B182AE /* DJRouter.h */,
+				BEB2287B2B50C20900B182AE /* DJRouter.m */,
+				BEB2287A2B50C20900B182AE /* LibsManager.swift */,
+				BEB228762B50C1DE00B182AE /* DJTest.h */,
+				BEB228772B50C1DE00B182AE /* DJTest.m */,
+			);
+			path = DJ;
+			sourceTree = "<group>";
+		};
 		BEB385582B3AE79400D14351 /* Flutter_Ex */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +467,7 @@
 		BEE5A33E2AB974FA003339EB /* DJTest */ = {
 			isa = PBXGroup;
 			children = (
+				BEB228752B50C1D300B182AE /* DJ */,
 				BEB385582B3AE79400D14351 /* Flutter_Ex */,
 				BE3067D12AE7A00600E9577C /* DJTest.entitlements */,
 				BE720D9B2AE68CB300F016C5 /* Daily */,
@@ -761,6 +782,7 @@
 				BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */,
 				BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */,
 				BE720D9E2AE68CB300F016C5 /* DJActivityVC.swift in Sources */,
+				BEB228782B50C1DE00B182AE /* DJTest.m in Sources */,
 				BEFA8DD02AE8EDA400933131 /* AdventureViewModel.swift in Sources */,
 				BE3067B22AE76FCF00E9577C /* AllCharactersView.swift in Sources */,
 				BEE5A3402AB974FA003339EB /* AppDelegate.swift in Sources */,
@@ -773,7 +795,9 @@
 				BEFA8E742AE90A8800933131 /* DetailView.swift in Sources */,
 				BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */,
 				BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */,
+				BEB2287D2B50C20900B182AE /* DJRouter.m in Sources */,
 				BE56655F2B2C3CAD00D24B7C /* DJTestRouter.swift in Sources */,
+				BEB2287C2B50C20900B182AE /* LibsManager.swift in Sources */,
 				BEFA8DD42AE8EDC400933131 /* AdventureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

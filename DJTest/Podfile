@@ -96,15 +96,15 @@ def pod_LXToolKit
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
   # pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
-  # pod 'DJRSwiftResource', :inhibit_warnings => false, :path => '../DJRSwiftResource'
+  pod 'DJRSwiftResource', :inhibit_warnings => false, :path => '../DJRSwiftResource'
 
   # pod 'LXSwiftUIKit', :inhibit_warnings => false, :path => '../LXSwiftUIKit'
 
   pod 'LXToolKit_Example', :inhibit_warnings => false, :path => '../LXToolKit_Example'
-  # pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
+  pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
 
   pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit', :subspecs => ['Core', '3rd']
-  # pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
+  pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
   pod 'DJTestKit', :inhibit_warnings => false, :path => '../DJTestKit'
 
   ############ FloatingPanel
@@ -192,7 +192,7 @@ target 'DJTest' do
 
   pod_LXToolKit()
 
-  # pod_flutter()
+  pod_flutter()
 
   # use_frameworks! :linkage => :dynamic
   # # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
@@ -513,6 +513,7 @@ static_frameworks = [
 'Toast-Swift', 'RxSwiftExt',
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
 'Masonry', 'MBProgressHUD',
+'ReactiveCocoa', 'LXToolKitObjC', 'YYModel', 'Colours', 'IGListKit', 'IGListDiffKit', 'JXCategoryView', 'JXPagingView', 'pop', 'CHTCollectionViewWaterfallLayout',
 ]
 pre_install do |installer|
   installer.pod_targets.each do |pod|

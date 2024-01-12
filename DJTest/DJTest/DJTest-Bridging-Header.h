@@ -3,12 +3,12 @@
 //
 
 // #import <Bugly/Bugly.h>
-#import <tingyunApp/NBSAppAgent.h>
+// #import <tingyunApp/NBSAppAgent.h>
 
 #ifndef EmojiRangersConfig_Open
 #define EmojiRangersConfig_Open true
 #endif
-
+#import "DJRouter.h"
 // #define LOG_LEVEL_DEF ddLogLevel
 // #import <CocoaLumberjack/CocoaLumberjack.h>
 // static const DDLogLevel ddLogLevel = DDLogLevelVerbose;

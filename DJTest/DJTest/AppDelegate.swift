@@ -16,6 +16,7 @@ class AppDelegate: FlutterAppDelegate {
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
         // FlutterManager.shared.register()
+        LibsManager2.shared.registerApp(launchOptions: launchOptions)
         return true
     }
 
