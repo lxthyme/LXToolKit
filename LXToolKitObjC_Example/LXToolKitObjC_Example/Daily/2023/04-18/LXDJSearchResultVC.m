@@ -8,7 +8,7 @@
 #import <Masonry/Masonry.h>
 #import <YYText/YYText.h>
 #import <DJRSwiftResource/DJRSwiftResource-Swift.h>
-#import "UICollectionViewLeftAlignedLayout.h"
+#import <UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h>
 
 #import "LXDJSearchResultHeaderView.h"
 #import "LXDJSearchHistoryCell.h"

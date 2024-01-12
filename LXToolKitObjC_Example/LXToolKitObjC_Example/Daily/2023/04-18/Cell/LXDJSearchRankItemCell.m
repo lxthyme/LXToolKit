@@ -8,7 +8,7 @@
 #import <Masonry/Masonry.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <DJRSwiftResource/DJRSwiftResource-Swift.h>
-#import "UICollectionViewLeftAlignedLayout.h"
+#import <UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.h>
 
 #import "LXDJGoodsPriceView.h"
 #import "LXDJGoodsTagCell.h"
