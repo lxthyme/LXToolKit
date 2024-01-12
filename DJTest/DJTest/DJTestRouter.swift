@@ -59,25 +59,42 @@ public struct DJTestRouter {
     }))
     static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
         .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
-        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: { LXOutlineVC() })),
+        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: {
+            if #available(iOS 14.0, *) {
+                LXOutlineVC()
+            } else {
+                // Fallback on earlier versions
+                nil
+            }
+        })),
         .subitem(.section(title: "UIListContentConfiguration.Ex.allCases"), scene: .vc(provider: {
+            let vc = LXSampleListVC()
+            if #available(iOS 14.0, *) {
             let exContent = UIListContentConfiguration.Ex.allCases
                 .map { LXSampleItem(title: $0.title, content: $0.description) }
             dlog("UIListContentConfiguration.Ex: \(exContent)")
             // let vc = LXSampleTextViewVC()
             // vc.dataFill(content: "\(exContent)")
-            let vc = LXSampleListVC()
             vc.dataFill(list: exContent)
+            }
             return vc
         })),
         .subitem(.section(title: "UIBackgroundConfiguration.Ex.allCases"), scene: .vc(provider: {
+            let vc = LXSampleListVC()
+            if #available(iOS 14.0, *) {
             let exBg = UIBackgroundConfiguration.Ex.allCases
                 .map { LXSampleItem(title: $0.title, content: $0.description) }
             dlog("UIBackgroundConfiguration.Ex: \(exBg)")
             // let vc = LXSampleTextViewVC()
             // vc.dataFill(content: "\(exBg)")
-            let vc = LXSampleListVC()
             vc.dataFill(list: exBg)
+            }
+            return vc
+        })),
+    ])
+    static let routerDJ: LXOutlineOpt = .outline(.section(title: "DJBusinessModule"), subitems: [
+        .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
+            let vc = DJRouter.getMain()
             return vc
         })),
     ])
@@ -90,8 +107,14 @@ public struct DJTestRouter {
             return MapsEntry.entryVC()
         })),
         .subitem(.section(title: "FloatingPanel Maps-SwiftUI"), scene: .vc(provider: {
+            if #available(iOS 14.0, *) {
             let vc = UIHostingController(rootView: MapsSwiftUIEntry(), ignoresKeyboard: true)
             return vc
+            } else {
+                let vc = LXSampleTextViewVC()
+                vc.dataFill(content: "FloatingPanel Maps-SwiftUI")
+                return vc
+            }
         })),
         .subitem(.section(title: "FloatingPanel Samples"), scene: .vc(provider: {
             return SamplesEntry.entryVC()

@@ -38,6 +38,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
+            DJTestRouter.routerDJ,
             DJTestRouter.router3rd,
             DJTestRouter.routerFlutter,
             /// Others

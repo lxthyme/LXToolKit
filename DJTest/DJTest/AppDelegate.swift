@@ -15,6 +15,7 @@ class AppDelegate: FlutterAppDelegate {
         // Override point for customization after application launch.
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
+        DJRouter.registerApp(launchOptions)
         // FlutterManager.shared.register()
         return true
     }

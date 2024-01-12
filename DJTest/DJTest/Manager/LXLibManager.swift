@@ -20,15 +20,15 @@ class LXLibManager {
         // setupAMap()
         // setupBugly()
         // setupUMeng()
-        setupTingYun()
+        // setupTingYun()
     }
 }
 
 // MARK: - 👀
 private extension LXLibManager {
-    static func setupTingYun() {
-        NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
-    }
+    // static func setupTingYun() {
+    //     NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
+    // }
     static func setupUMeng() {
         // UMLaunch.setRootVCCls(ViewController.self)
         // let config = UMAPMConfig.default()
