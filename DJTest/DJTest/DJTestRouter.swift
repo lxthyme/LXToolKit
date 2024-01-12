@@ -95,8 +95,21 @@ public struct DJTestRouter {
     static let routerDJ: LXOutlineOpt = .outline(.section(title: "DJBusinessModule"), subitems: [
         .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
             let vc = DJRouter.getMain()
+            let btn = UIButton()
+            btn.backgroundColor = .XL.randomGolden
+            btn.layerCornerRadius = 8
+            btn.setTitle("Closed", for: .normal)
+            btn.setTitleColor(.XL.randomLight, for: .normal)
+            btn.frame = CGRect(x: 150, y: 0, width: 80, height: 44)
+            if #available(iOS 14.0, *) {
+                btn.addAction(UIAction(handler: { _ in
+                    UIViewController.topViewController()?.dismiss(animated: true)
+                }), for: .touchUpInside)
+            }
+            vc.modalPresentationStyle = .fullScreen
+            vc.view.addSubview(btn)
             return vc
-        })),
+        }, transition: .alert)),
     ])
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
         .subitem(.section(title: "Fatal Error Test"), scene: .vc(provider: {

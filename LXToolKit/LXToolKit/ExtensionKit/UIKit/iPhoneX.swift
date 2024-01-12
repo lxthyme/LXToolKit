@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct iPhoneX {
-    var isIphoneX: Bool {
+public struct iPhoneX {
+    public var isIphoneX: Bool {
         guard #available(iOS 11.0, *) else {
             return false
         }
         return UIApplication.shared.keyWindow?.safeAreaInsets != UIEdgeInsets.zero
     }
-    var safeareaInsets: UIEdgeInsets {
+    public var safeareaInsets: UIEdgeInsets {
         guard #available(iOS 11.0, *) else {
             return .zero
         }
