@@ -1,13 +1,15 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'DJRSwiftResource_Example' do
   pod 'DJRSwiftResource', :path => '../'
 
+  pod 'R.swift', '~>7.3'
+
   target 'DJRSwiftResource_Tests' do
     inherit! :search_paths
 
-    
+
   end
 end

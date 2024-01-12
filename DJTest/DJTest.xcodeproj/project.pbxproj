@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3451B3D8ACB9B1C9E9598A37 /* Pods_DJTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */; };
 		BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */; };
+		BE0E35F12B5182B900F661E1 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E35EE2B5182B900F661E1 /* LibsManager.swift */; };
+		BE0E35F22B5182B900F661E1 /* DJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E35EF2B5182B900F661E1 /* DJRouter.m */; };
 		BE1390A82B0B6903009B2BAA /* LXOutlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */; };
 		BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */; };
 		BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
@@ -36,6 +38,7 @@
 		BE435ABA2AD794440076780C /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB92AD794440076780C /* AppIntent.swift */; };
 		BE435ABC2AD794450076780C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE435ABB2AD794450076780C /* Assets.xcassets */; };
 		BE435AC02AD794450076780C /* LXToolKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE49D2662B51274F0001B3D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3482AB974FB003339EB /* Assets.xcassets */; };
 		BE5267DB2B3F130200F1371C /* LXFlutterSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5267DA2B3F130200F1371C /* LXFlutterSampleVC.swift */; };
 		BE56655F2B2C3CAD00D24B7C /* DJTestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56655E2B2C3CAD00D24B7C /* DJTestRouter.swift */; };
 		BE61F6902B170B8A00C83812 /* TingYunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE61F68F2B170B8A00C83812 /* TingYunManager.swift */; };
@@ -52,7 +55,6 @@
 		BEE5A3422AB974FA003339EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3412AB974FA003339EB /* SceneDelegate.swift */; };
 		BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE5A3432AB974FA003339EB /* ViewController.swift */; };
 		BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3452AB974FA003339EB /* Main.storyboard */; };
-		BEE5A3492AB974FB003339EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3482AB974FB003339EB /* Assets.xcassets */; };
 		BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */; };
 		BEF4B3602AF3397900DA0607 /* DJTest.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */; };
 		BEFA8DB52AE8E79F00933131 /* LeaderboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */; };
@@ -132,6 +134,9 @@
 		83B8ED913EE52F4C5A9F4151 /* Pods-DJTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJTest.debug.xcconfig"; path = "Target Support Files/Pods-DJTest/Pods-DJTest.debug.xcconfig"; sourceTree = "<group>"; };
 		96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BE0E35EE2B5182B900F661E1 /* LibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
+		BE0E35EF2B5182B900F661E1 /* DJRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRouter.m; sourceTree = "<group>"; };
+		BE0E35F02B5182B900F661E1 /* DJRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRouter.h; sourceTree = "<group>"; };
 		BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOutlineVC.swift; sourceTree = "<group>"; };
 		BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLibManager.swift; sourceTree = "<group>"; };
 		BE3067A22AE75AB400E9577C /* GameColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColors.swift; sourceTree = "<group>"; };
@@ -337,6 +342,16 @@
 			path = LXToolKit_Widget;
 			sourceTree = "<group>";
 		};
+		BE491F9E2B50D6160001B3D8 /* DJ */ = {
+			isa = PBXGroup;
+			children = (
+				BE0E35F02B5182B900F661E1 /* DJRouter.h */,
+				BE0E35EF2B5182B900F661E1 /* DJRouter.m */,
+				BE0E35EE2B5182B900F661E1 /* LibsManager.swift */,
+			);
+			path = DJ;
+			sourceTree = "<group>";
+		};
 		BE4AC6782B294DD000254989 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +462,7 @@
 		BEE5A33E2AB974FA003339EB /* DJTest */ = {
 			isa = PBXGroup;
 			children = (
+				BE491F9E2B50D6160001B3D8 /* DJ */,
 				BEB385582B3AE79400D14351 /* Flutter_Ex */,
 				BE3067D12AE7A00600E9577C /* DJTest.entitlements */,
 				BE720D9B2AE68CB300F016C5 /* Daily */,
@@ -607,8 +623,8 @@
 				BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */,
 				BEF4B3602AF3397900DA0607 /* DJTest.xcstrings in Resources */,
 				BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */,
-				BEE5A3492AB974FB003339EB /* Assets.xcassets in Resources */,
 				BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */,
+				BE49D2662B51274F0001B3D8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,9 +774,11 @@
 				BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */,
 				BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */,
 				BE3067B92AE7980700E9577C /* EmojiRangerSelection.swift in Sources */,
+				BE0E35F22B5182B900F661E1 /* DJRouter.m in Sources */,
 				BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */,
 				BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */,
 				BE720D9E2AE68CB300F016C5 /* DJActivityVC.swift in Sources */,
+				BE0E35F12B5182B900F661E1 /* LibsManager.swift in Sources */,
 				BEFA8DD02AE8EDA400933131 /* AdventureViewModel.swift in Sources */,
 				BE3067B22AE76FCF00E9577C /* AllCharactersView.swift in Sources */,
 				BEE5A3402AB974FA003339EB /* AppDelegate.swift in Sources */,
@@ -1068,7 +1086,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1108,7 +1126,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
