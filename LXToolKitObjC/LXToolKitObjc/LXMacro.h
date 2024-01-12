@@ -30,4 +30,7 @@
 
 #define kBOOLString(__bool__) ((__bool__) ? @"YES" : @"NO")
 
+/// 像素对齐
+#define kFixed0_5 ([UIScreen mainScreen].scale >= 3 ? 0.75f : 0.5f)
+
 #endif /* LXMacro_h */
