@@ -6,7 +6,7 @@
 //
 #import "LXBaseView.h"
 #import <Masonry/Masonry.h>
-#import "DJLogger.h"
+#import "LXLogger.h"
 
 @interface LXBaseView() {
 }

@@ -1,12 +1,12 @@
 //
-//  DJLogger.h
+//  LXLogger.h
 //  DJBusinessTools
 //
 //  Created by lxthyme on 2022/2/24.
 //
 
-#ifndef DJLogger_h
-#define DJLogger_h
+#ifndef LXLogger_h
+#define LXLogger_h
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 #if DEBUG
@@ -55,4 +55,4 @@
 #define commonlog(...)
 #endif
 
-#endif /* DJLogger_h */
+#endif /* LXLogger_h */

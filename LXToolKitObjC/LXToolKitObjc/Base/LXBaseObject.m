@@ -5,7 +5,7 @@
 //  Created by lxthyme on 2022/6/22.
 //
 #import "LXBaseObject.h"
-#import "DJLogger.h"
+#import "LXLogger.h"
 
 @interface LXBaseObject() {
 }

@@ -1,18 +1,18 @@
 //
-//  iPhoneX.m
+//  LXiPhoneX.m
 //  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/6/28.
 //
-#import "iPhoneX.h"
+#import "LXiPhoneX.h"
 #import <UIKit/UIApplication.h>
 
-@interface iPhoneX() {
+@interface LXiPhoneX() {
 }
 
 @end
 
-@implementation iPhoneX
+@implementation LXiPhoneX
 
 #pragma mark -
 #pragma mark - 👀Public Actions

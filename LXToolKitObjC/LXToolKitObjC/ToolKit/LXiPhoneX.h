@@ -1,5 +1,5 @@
 //
-//  iPhoneX.h
+//  LXiPhoneX.h
 //  LXToolKitObjC
 //
 //  Created by lxthyme on 2022/6/28.
@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface iPhoneX : NSObject {
+@interface LXiPhoneX : NSObject {
 }
 
 /// 是否带有刘海
