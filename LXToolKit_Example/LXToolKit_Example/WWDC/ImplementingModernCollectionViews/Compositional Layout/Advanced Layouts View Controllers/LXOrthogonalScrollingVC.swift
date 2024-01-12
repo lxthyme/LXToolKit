@@ -54,27 +54,13 @@ class LXOrthogonalScrollingVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, Int> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
-            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
-            cell.contentView.backgroundColor = .cornflowerBlue
-            // cell.contentView.layer.masksToBounds = true
-            cell.contentView.layer.cornerRadius = 8
-            cell.contentView.layer.borderColor = UIColor.black.cgColor
-            cell.contentView.layer.borderWidth = 1
-            cell.labTitle.textAlignment = .center
-            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
-        }
-        return UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareCollectionView()
         prepareUI()
-        prepareSnapshot()
     }
 
 }
@@ -88,7 +74,24 @@ extension LXOrthogonalScrollingVC {
 extension LXOrthogonalScrollingVC {}
 
 // MARK: 🔐Private Actions
-private extension LXOrthogonalScrollingVC {}
+@available(iOS 14.0, *)
+private extension LXOrthogonalScrollingVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Int, Int> {
+        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
+            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
+            cell.contentView.backgroundColor = .cornflowerBlue
+            // cell.contentView.layer.masksToBounds = true
+            cell.contentView.layer.cornerRadius = 8
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderWidth = 1
+            cell.labTitle.textAlignment = .center
+            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
+        }
+        return UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) { collectionView, indexPath, item in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+    }
+}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXOrthogonalScrollingVC: UICollectionViewDelegate {
@@ -99,7 +102,10 @@ extension LXOrthogonalScrollingVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXOrthogonalScrollingVC {
-    func prepareSnapshot() {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         let itemsPerSection = 30
         var identifierOffset = 0

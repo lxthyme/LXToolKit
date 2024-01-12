@@ -52,7 +52,30 @@ class LXSectionHeadersFootersVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, Int> = {
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    // MARK: 🛠Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXSectionHeadersFootersVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXSectionHeadersFootersVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXSectionHeadersFootersVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Int, Int> {
         let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
         }
@@ -76,27 +99,8 @@ class LXSectionHeadersFootersVC: LXBaseVC {
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == LXSectionHeadersFootersVC.sectionHeaderElementKind ? headerRegistration : footerRegistration, for: indexPath)
         }
         return dataSource
-    }()
-    // MARK: 🛠Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXSectionHeadersFootersVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXSectionHeadersFootersVC {}
-
-// MARK: 🔐Private Actions
-private extension LXSectionHeadersFootersVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXSectionHeadersFootersVC: UICollectionViewDelegate {
@@ -107,6 +111,11 @@ extension LXSectionHeadersFootersVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSectionHeadersFootersVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Section Headers/Footers"

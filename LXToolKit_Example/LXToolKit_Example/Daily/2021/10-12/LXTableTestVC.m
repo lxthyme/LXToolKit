@@ -186,8 +186,6 @@
 
         if (@available(iOS 11.0, *)) {
             _table.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            // Fallback on earlier versions
         }
 
         [_table setBackgroundColor:[UIColor magentaColor]];

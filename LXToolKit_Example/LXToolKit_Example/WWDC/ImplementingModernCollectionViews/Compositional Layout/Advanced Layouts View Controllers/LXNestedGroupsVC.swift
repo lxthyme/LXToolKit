@@ -56,26 +56,13 @@ class LXNestedGroupsVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Int> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
-            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
-            // cell.contentView.layer.masksToBounds = true
-            cell.contentView.backgroundColor = .cornflowerBlue
-            cell.contentView.layer.cornerRadius = 8.0
-            cell.contentView.layer.borderColor = UIColor.black.cgColor
-            cell.contentView.layer.borderWidth = 1
-            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
-        }
-        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         prepareUI()
-        prepareSnapshot()
+        prepareCollectionView()
     }
 
 }
@@ -89,7 +76,23 @@ extension LXNestedGroupsVC {
 extension LXNestedGroupsVC {}
 
 // MARK: 🔐Private Actions
-private extension LXNestedGroupsVC {}
+@available(iOS 14.0, *)
+private extension LXNestedGroupsVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Int> {
+        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
+            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
+            // cell.contentView.layer.masksToBounds = true
+            cell.contentView.backgroundColor = .cornflowerBlue
+            cell.contentView.layer.cornerRadius = 8.0
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderWidth = 1
+            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
+        }
+        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, item in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+    }
+}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXNestedGroupsVC: UICollectionViewDelegate {
@@ -100,7 +103,10 @@ extension LXNestedGroupsVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXNestedGroupsVC {
-    func prepareSnapshot() {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(0..<100))

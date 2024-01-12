@@ -54,7 +54,30 @@ class LXDistinctSectionsVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int> = {
+    private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int>!
+    // MARK: 🛠Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXDistinctSectionsVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXDistinctSectionsVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXDistinctSectionsVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<SectionLayoutKind, Int> {
         let listCellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(item)"
         }
@@ -70,30 +93,16 @@ class LXDistinctSectionsVC: LXBaseVC {
         return UICollectionViewDiffableDataSource<SectionLayoutKind, Int>(collectionView: collectionView) { collectionView, indexPath, item in
             return SectionLayoutKind(rawValue: indexPath.section)! == .list ? collectionView.dequeueConfiguredReusableCell(using: listCellRegistration, for: indexPath, item: item) : collectionView.dequeueConfiguredReusableCell(using: textCellRegistration, for: indexPath, item: item)
         }
-    }()
-    // MARK: 🛠Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXDistinctSectionsVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXDistinctSectionsVC {}
-
-// MARK: 🔐Private Actions
-private extension LXDistinctSectionsVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXDistinctSectionsVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Distinct Sections"

@@ -8,6 +8,7 @@ import UIKit
 import LXToolKit
 import Presentr
 
+@available(iOS 14.0, *)
 class LXPresentrVC: LXBaseVC {
     // MARK: 📌UI
     lazy var alertController: AlertViewController = {
@@ -281,14 +282,17 @@ class LXPresentrVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXPresentrVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXPresentrVC {}
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXPresentrVC {
     func showPanelContentVC() {
         let vc = LXSampleListVC()
@@ -317,6 +321,7 @@ private extension LXPresentrVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 private extension LXPresentrVC {
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden

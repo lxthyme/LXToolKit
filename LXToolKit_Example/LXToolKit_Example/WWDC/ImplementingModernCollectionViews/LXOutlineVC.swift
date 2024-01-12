@@ -106,6 +106,7 @@ extension LXOutlineVC {
 // MARK: 👀Public Actions
 extension LXOutlineVC {}
 
+@available(iOS 14.0, *)
 extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         let listConfig = UICollectionLayoutListConfiguration(appearance: .sidebar)
@@ -187,10 +188,12 @@ private extension LXOutlineVC {
         self.view.backgroundColor = .white
         self.edgesForExtendedLayout = []
 
+        if #available(iOS 14.0, *) {
         self.outlineCollectionView = generateCollectionView()
         self.dataSource = generateDataSource()
         let snapshot = initialSnapshot()
         self.dataSource.apply(snapshot, to: .main, animatingDifferences: false)
+        }
 
         [self.outlineCollectionView].forEach(self.view.addSubview)
 

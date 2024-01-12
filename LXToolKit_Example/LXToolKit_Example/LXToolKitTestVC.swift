@@ -206,8 +206,6 @@ extension LXToolKitTestVC {
             .reduce("", { $0 + $1 + (params?[$1].debugDescription ?? "") }) ?? ""
         if #available(iOS 11.0, *) {
             _ = try? JSONSerialization.data(withJSONObject: [], options: .sortedKeys)
-        } else {
-            // Fallback on earlier versions
         }
         dlog("json: \(json)")
     }

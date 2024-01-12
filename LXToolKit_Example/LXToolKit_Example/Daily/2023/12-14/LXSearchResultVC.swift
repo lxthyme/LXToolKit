@@ -11,14 +11,7 @@ private typealias Item = Int
 
 class LXSearchResultVC: UIViewController {
     // MARK: 📌UI
-    public lazy var collectionView: UICollectionView = {
-        let layout = generateLayout()
-        let cv = UICollectionView(frame: .zero,
-                                  collectionViewLayout: layout)
-        // cv.backgroundColor = <#.systemGroupedBackground#>
-        cv.delegate = self
-        return cv
-    }()
+    public var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
     // MARK: 🛠Life Cycle
@@ -42,6 +35,7 @@ extension LXSearchResultVC {}
 private extension LXSearchResultVC {}
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXSearchResultVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -104,14 +98,17 @@ extension LXSearchResultVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSearchResultVC {
     func prepareCollectionView() {
-        // collectionView = generateCollectionView()
+        if #available(iOS 14.0, *) {
+        collectionView = generateCollectionView()
         dataSource = generateDataSource()
         let snapshot = generateSnapshot()
         dataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden
         // navigationItem.title = ""
+        if #available(iOS 14.0, *) {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(systemItem: .search, primaryAction: UIAction(handler: {[weak self] _ in
                 guard let self else { return }
@@ -122,6 +119,7 @@ private extension LXSearchResultVC {
                 self.present(nav, animated: true)
             }))
         ]
+        }
 
         [collectionView].forEach(self.view.addSubview)
 

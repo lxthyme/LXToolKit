@@ -84,7 +84,29 @@ class LXOrthogonalBehaviorVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, Int> = {
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXOrthogonalBehaviorVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXOrthogonalBehaviorVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXOrthogonalBehaviorVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Int, Int> {
         let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
             cell.contentView.backgroundColor = .cornflowerBlue
@@ -108,27 +130,8 @@ class LXOrthogonalBehaviorVC: LXBaseVC {
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: indexPath)
         }
         return dataSource
-    }()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
-        prepareSnapshot()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXOrthogonalBehaviorVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXOrthogonalBehaviorVC {}
-
-// MARK: 🔐Private Actions
-private extension LXOrthogonalBehaviorVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXOrthogonalBehaviorVC: UICollectionViewDelegate {
@@ -139,7 +142,10 @@ extension LXOrthogonalBehaviorVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXOrthogonalBehaviorVC {
-    func prepareSnapshot() {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         let itemsPerSection = 18
         var identifierOffset = 0

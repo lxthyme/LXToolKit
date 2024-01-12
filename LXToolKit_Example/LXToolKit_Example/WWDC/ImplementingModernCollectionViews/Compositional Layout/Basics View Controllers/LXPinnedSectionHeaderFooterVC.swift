@@ -54,7 +54,29 @@ class LXPinnedSectionHeaderFooterVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, Int> = {
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXPinnedSectionHeaderFooterVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXPinnedSectionHeaderFooterVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXPinnedSectionHeaderFooterVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Int, Int> {
         let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
         }
@@ -79,26 +101,8 @@ class LXPinnedSectionHeaderFooterVC: LXBaseVC {
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: elementKind == LXPinnedSectionHeaderFooterVC.sectionHeaderElementKind ? headerRegistration : footerRegistration, for: indexPath)
         }
         return dataSource
-    }()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXPinnedSectionHeaderFooterVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXPinnedSectionHeaderFooterVC {}
-
-// MARK: 🔐Private Actions
-private extension LXPinnedSectionHeaderFooterVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXPinnedSectionHeaderFooterVC: UICollectionViewDelegate {
@@ -109,6 +113,11 @@ extension LXPinnedSectionHeaderFooterVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXPinnedSectionHeaderFooterVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Pinned Section Headers"

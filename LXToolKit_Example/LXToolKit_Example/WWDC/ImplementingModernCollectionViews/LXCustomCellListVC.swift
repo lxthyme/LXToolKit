@@ -63,33 +63,15 @@ extension LXCustomCellListVC {
 
 class LXCustomCellListVC: LXBaseVC {
     // MARK: 📌UI
-    private lazy var layout: UICollectionViewLayout = {
-        let config = UICollectionLayoutListConfiguration(appearance: .plain)
-        return UICollectionViewCompositionalLayout.list(using: config)
-    }()
-    private lazy var collectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero,
-                                  collectionViewLayout: layout)
-        // cv.backgroundColor = <#.systemBackground#>
-        cv.delegate = self
-        return cv
-    }()
+    private var collectionView: UICollectionView!
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXCustomListCell, Item> { cell, indexPath, item in
-            cell.updateWithItem(item)
-            cell.accessories = [.disclosureIndicator()]
-        }
-        return UICollectionViewDiffableDataSource<Section, LXCustomCellListVC.Item>(collectionView: collectionView) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareCollectionView()
         prepareUI()
-        prepareSnapshot()
     }
 
 }
@@ -103,7 +85,29 @@ extension LXCustomCellListVC {
 extension LXCustomCellListVC {}
 
 // MARK: 🔐Private Actions
-private extension LXCustomCellListVC {}
+@available(iOS 14.0, *)
+private extension LXCustomCellListVC {
+    func generateLayout() -> UICollectionViewLayout {
+        let config = UICollectionLayoutListConfiguration(appearance: .plain)
+        return UICollectionViewCompositionalLayout.list(using: config)
+    }
+    func generateCollectionView() -> UICollectionView {
+        let cv = UICollectionView(frame: .zero,
+                                  collectionViewLayout: generateLayout())
+        // cv.backgroundColor = <#.systemBackground#>
+        cv.delegate = self
+        return cv
+    }
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
+        let cellRegistration = UICollectionView.CellRegistration<LXCustomListCell, Item> { cell, indexPath, item in
+            cell.updateWithItem(item)
+            cell.accessories = [.disclosureIndicator()]
+        }
+        return UICollectionViewDiffableDataSource<Section, LXCustomCellListVC.Item>(collectionView: collectionView) { collectionView, indexPath, item in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+    }
+}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXCustomCellListVC: UICollectionViewDelegate {
@@ -114,7 +118,11 @@ extension LXCustomCellListVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXCustomCellListVC {
-    func prepareSnapshot() {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            collectionView = generateCollectionView()
+            dataSource = generateDataSource()
+        }
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.main])
         snapshot.appendItems(Item.all)

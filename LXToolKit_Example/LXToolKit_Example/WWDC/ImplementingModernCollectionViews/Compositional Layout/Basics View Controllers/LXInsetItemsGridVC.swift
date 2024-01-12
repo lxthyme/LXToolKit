@@ -36,23 +36,12 @@ class LXInsetItemsGridVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Int> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, itemIdentifier in
-            cell.labTitle.text = "\(itemIdentifier)"
-            cell.contentView.backgroundColor = .cornflowerBlue
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 1.0
-            cell.labTitle.textAlignment = .center
-            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
-        }
-        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareCollectionView()
         prepareUI()
     }
 
@@ -65,10 +54,30 @@ extension LXInsetItemsGridVC {}
 extension LXInsetItemsGridVC {}
 
 // MARK: 🔐Private Actions
-private extension LXInsetItemsGridVC {}
+@available(iOS 14.0, *)
+private extension LXInsetItemsGridVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Int> {
+        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, itemIdentifier in
+            cell.labTitle.text = "\(itemIdentifier)"
+            cell.contentView.backgroundColor = .cornflowerBlue
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1.0
+            cell.labTitle.textAlignment = .center
+            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
+        }
+        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        }
+    }
+}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXInsetItemsGridVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Inset Items Grid"

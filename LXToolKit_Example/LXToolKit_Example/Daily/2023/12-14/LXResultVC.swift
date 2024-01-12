@@ -105,6 +105,7 @@ private extension LXResultVC {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXResultVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -191,8 +192,10 @@ extension LXResultVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXResultVC {
     func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
         collectionView = generateCollectionView()
         dataSource = generateDataSource()
+        }
         // let snapshot = generateSnapshot()
         // dataSource.apply(snapshot, animatingDifferences: true)
     }
