@@ -28,6 +28,7 @@ struct Avatar: View {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension View {
     func invalidatableContentIfPossible() -> some View {
         if #available(iOS 17.0, *) {

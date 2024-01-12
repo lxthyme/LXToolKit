@@ -11,6 +11,7 @@ import ActivityKit
 import DJTestKit
 import LXToolKit
 
+@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnAppearance: UIButton = {
@@ -69,12 +70,15 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: - 🔐Activity
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     // func testLogKit() {
     //     dlog("1. dlog")
@@ -105,13 +109,14 @@ private extension LXOutlineVC {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func gotoScene(by menuItem: LXOutlineOpt) {
         guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             if menuItem.section.title.hasPrefix("Section ") ||
                 menuItem.section.title.hasPrefix("Item ") {
-
+    
                 Navigator.default.show(segue: .vc(provider: {
                     let vc = LXSampleTextViewVC()
                     vc.title = menuItem.section.title
@@ -148,6 +153,7 @@ private extension LXOutlineVC {
 }
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -403,6 +409,7 @@ private extension LXOutlineVC {
     }
 }
 
+@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     // func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
     //     guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return true }
@@ -429,6 +436,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {

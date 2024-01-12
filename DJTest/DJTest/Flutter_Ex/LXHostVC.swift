@@ -34,9 +34,11 @@ class LXHostVC: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
+        if #available(iOS 14.0, *) {
         btn.addAction(UIAction(handler: { _ in
             DataModel.shared.increament()
         }), for: .touchUpInside)
+        }
         return btn
     }()
     private lazy var btnNext: UIButton = {
@@ -51,6 +53,7 @@ class LXHostVC: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
+        if #available(iOS 14.0, *) {
         btn.addAction(UIAction(handler: {[weak self] _ in
             guard let self else { return }
             let idx = (self.navigationController?.viewControllers.count ?? 0) / 2
@@ -63,6 +66,7 @@ class LXHostVC: LXBaseVC {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }), for: .touchUpInside)
+        }
         return btn
     }()
     // MARK: 🔗Vaiables
