@@ -11,15 +11,7 @@ fileprivate typealias Section = String
 open class LXSampleListVC: LXBaseVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
-    public lazy var collectionView: UICollectionView = {
-        let layout = generateLayout()
-        let cv = UICollectionView(frame: .zero,
-                                  collectionViewLayout: layout)
-        // cv.backgroundColor = <#.systemGroupedBackground#>
-        cv.backgroundColor = .clear
-        cv.delegate = self
-        return cv
-    }()
+    public var collectionView: UICollectionView!
     private var dataList: [LXSampleItem] = []
     private var dataSource: UICollectionViewDiffableDataSource<Section, LXSampleItem>?
     open override func viewDidLoad() {
@@ -31,8 +23,10 @@ open class LXSampleListVC: LXBaseVC {
     }
     open override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-        let snapshot = generateSnapshot(list: dataList)
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        if #available(iOS 14.0, *) {
+            let snapshot = generateSnapshot(list: dataList)
+            dataSource?.apply(snapshot, animatingDifferences: true)
+        }
     }
 
 }
@@ -57,6 +51,7 @@ extension LXSampleListVC {
 private extension LXSampleListVC {}
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXSampleListVC {
     func generateLayout() -> UICollectionViewLayout {
         // let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -131,8 +126,10 @@ extension LXSampleListVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSampleListVC {
     func prepareCollectionView() {
-        // collectionView = generateCollectionView()
+        if #available(iOS 14.0, *) {
+        collectionView = generateCollectionView()
         dataSource = generateDataSource()
+        }
     }
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden

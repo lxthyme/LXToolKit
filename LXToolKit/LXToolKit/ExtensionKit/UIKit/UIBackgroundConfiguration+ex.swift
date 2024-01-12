@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - 👀UIListContentConfiguration
 // public extension Swifty where Base == UIListContentConfiguration {
+@available(iOS 14.0, *)
 public extension UIListContentConfiguration {
     enum Ex: CaseIterable {
         case cell
@@ -85,7 +86,7 @@ public extension UIListContentConfiguration {
         }
     }
 }
-
+@available(iOS 14.0, *)
 extension UIListContentConfiguration.Ex: CustomStringConvertible {
     public var description: String {
         guard let configuration else {
@@ -153,6 +154,7 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
 }
 
 // MARK: - 👀UIBackgroundConfiguration
+@available(iOS 14.0, *)
 public extension UIBackgroundConfiguration {
     enum Ex: CaseIterable {
         case clear
@@ -224,6 +226,7 @@ public extension UIBackgroundConfiguration {
 }
 
 // MARK: - ✈️CustomStringConvertible
+@available(iOS 14.0, *)
 extension UIBackgroundConfiguration.Ex: CustomStringConvertible {
     public var description: String {
         guard let configuration else {
@@ -309,6 +312,7 @@ extension NSLineBreakMode: CustomStringConvertible {
 }
 
 // MARK: - 👀
+@available(iOS 13.4, *)
 extension UIAxis: CustomStringConvertible {
     public var description: String {
         switch self {
@@ -358,6 +362,7 @@ extension UIView.ContentMode: CustomStringConvertible {
 }
 
 // MARK: - 👀
+@available(iOS 14.0, *)
 extension UIListContentConfiguration.TextProperties {
     public var desc: String {
         var t_showsExpansionTextWhenTruncated: String = if #available(iOS 16.0, *) {
@@ -407,6 +412,7 @@ extension UIListContentConfiguration.TextProperties {
 }
 
 // MARK: - 👀
+@available(iOS 14.0, *)
 extension UIListContentConfiguration.ImageProperties {
     public var desc: String {
         var desc = "\n"
@@ -490,6 +496,7 @@ extension UIListSeparatorConfiguration {
 }
 
 // MARK: - 👀UICollectionLayoutListConfiguration
+@available(iOS 14.0, *)
 extension UICollectionLayoutListConfiguration {
     @available(iOS 15.0, *)
     public var desc: String {
