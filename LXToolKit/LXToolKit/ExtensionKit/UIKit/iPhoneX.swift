@@ -12,12 +12,12 @@ public struct iPhoneX {
         guard #available(iOS 11.0, *) else {
             return false
         }
-        return UIApplication.shared.keyWindow?.safeAreaInsets != UIEdgeInsets.zero
+        return UIApplication.XL.keyWindow?.safeAreaInsets != UIEdgeInsets.zero
     }
     public var safeareaInsets: UIEdgeInsets {
         guard #available(iOS 11.0, *) else {
             return .zero
         }
-        return UIApplication.shared.keyWindow?.safeAreaInsets ?? .zero
+        return UIApplication.XL.keyWindow?.safeAreaInsets ?? .zero
     }
 }
