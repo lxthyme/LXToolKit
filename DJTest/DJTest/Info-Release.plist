@@ -28,6 +28,11 @@
 	<string>i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>UIAppFonts</key>
+    <array>
+        <string>misans.ttf</string>
+        <string>impact.ttf</string>
+    </array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -61,18 +61,22 @@ extension LXOutlineParamCell {
     }
     @available(iOS 15.0, *)
     func configBtn(title: String, defaultValue: String) {
-        let list = defaultValue
+        let menuList = defaultValue
             .components(separatedBy: ",")
+        let subitems = menuList
             .map {[weak self] item in
                 UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
                     self?.tfTextField.text = item
                 }
             }
-        if list.isNotEmpty {
+        if subitems.isNotEmpty {
             toggleBtnStyle(hasMenu: true)
             let opt: UIMenu.Options = .singleSelection
             btnTitle.showsMenuAsPrimaryAction = true
-            btnTitle.menu = UIMenu(title: title, options: opt, children: list)
+            btnTitle.menu = UIMenu(title: title, options: opt, children: subitems)
+
+            tfTextField.text = menuList.first
+            currentSelected = menuList.first ?? ""
         } else {
             toggleBtnStyle(hasMenu: false)
         }

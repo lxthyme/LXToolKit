@@ -21,6 +21,8 @@
 #import <AMapLocationKit/AMapLocationManager.h>
 #import <MAMapKit/MAMapView.h>
 
+#import <BLNetworkingCategory/BLMediator+BLNetwoking.h>
+
 @interface DJRouter() {
 }
 
@@ -38,6 +40,7 @@
     // #else
     // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentRelease;
     // #endif
+    [[BLMediator sharedInstance] BLNetworking_config];
 
     NSString *sensorUrl = @"https://sensorsdata.bl.com/sa?project=default";
     SAConfigOptions *options = [[SAConfigOptions alloc]initWithServerURL:sensorUrl launchOptions:launchOptions];
