@@ -30,21 +30,14 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-+ (UIViewController *)getMain {
-    DJTabbarViewController *vc = [[DJTabbarViewController alloc]initWithDictionary:@{
-        @"storeCode": @"007780",
-        @"storeType": @"2020",
-    }];
-    return vc;
-}
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions {
     [AvoidCrash becomeEffective];
 
-// #if defined DEBUG
-        // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
-// #else
-        [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentRelease;
-// #endif
+    // #if defined DEBUG
+    // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentDevelop;
+    // #else
+    // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentRelease;
+    // #endif
 
     NSString *sensorUrl = @"https://sensorsdata.bl.com/sa?project=default";
     SAConfigOptions *options = [[SAConfigOptions alloc]initWithServerURL:sensorUrl launchOptions:launchOptions];
@@ -59,6 +52,48 @@
     [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
     [AMapSearchAPI updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
     [AMapSearchAPI updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+}
+
+#pragma mark -
+#pragma mark - 👀Public Actions
++ (void)toggleEnv {
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    if(ctx.apiEnviroment == CTServiceAPIEnviromentRelease) {
+        ctx.apiEnviroment = CTServiceAPIEnviromentDevelop;
+    } else {
+        ctx.apiEnviroment = CTServiceAPIEnviromentRelease;
+    }
+}
++ (void)toggleEnvTo:(CTServiceAPIEnviroment)env {
+    [CTAppContext sharedInstance].apiEnviroment = env;
+}
++ (NSString *)getCurrentEnv {
+    NSString *title = @"";
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    switch (ctx.apiEnviroment) {
+    case CTServiceAPIEnviromentDevelop: {
+        title =  @"Debug";
+    } break;
+    case CTServiceAPIEnviromentRelease: {
+        title =  @"Prd";
+    } break;
+    case CTServiceAPIEnviromentPreRelease: {
+        title =  @"Gray";
+    } break;
+    case CTServiceAPIEnviromentNotSetted: {
+        title = @"NotSetted";
+        break;
+    }
+    }
+    return title;
+}
++ (UIViewController *)getMain:(NSString *)storeCode
+                    storeType:(NSString *)storeType {
+    DJTabbarViewController *vc = [[DJTabbarViewController alloc]initWithDictionary:@{
+        @"storeCode": storeCode,
+        @"storeType": storeType,
+    }];
+    return vc;
 }
 
 #pragma mark -

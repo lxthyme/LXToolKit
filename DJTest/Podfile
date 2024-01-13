@@ -165,6 +165,7 @@ def pod_DJ
   pod 'IBLProgressHud', :path => "#{$DaoJiaPath}/IBLProgressHud"
   # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
   # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
+  pod 'BLShoppingCartModule'
 
   pod 'SDWebImage', '5.9.2'
   pod 'MWPhotoBrowser', :podspec => './'
@@ -219,6 +220,9 @@ target 'DJTest' do
     pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
     # pod 'SDWebImage', :git => 'git@github.com:SDWebImage/SDWebImage.git'
 
+    # CHTCollectionViewWaterfallLayout
+    # UICollectionViewLeftAlignedLayout
+    # UIApplication.shared.keyWindow
 end
 
 post_install do |installer|
@@ -378,7 +382,8 @@ def fix_deployment_target(target, config, project_deployment_version)
 end
 
 def fix_deployment_team(config)
-  # config.build_settings['VALID_ARCHS'] = 'x86_64 armv7 arm64'
+  # config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+  # config.build_settings['VALID_ARCHS'] = '$(ARCHS_STANDARD) x86_64-apple-ios-simulator'
   # puts("VALID_ARCHS[2]: #{config.build_settings['VALID_ARCHS']}")
   config.build_settings['ENABLE_BITCODE'] = 'NO'
   # config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64 x86_64'

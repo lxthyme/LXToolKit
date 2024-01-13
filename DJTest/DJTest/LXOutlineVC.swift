@@ -38,7 +38,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
-            DJTestRouter.routerDJ,
+            DJTestRouter.routerDJ(),
             DJTestRouter.router3rd,
             DJTestRouter.routerFlutter,
             /// Others
@@ -248,12 +248,25 @@ private extension LXOutlineVC {
             let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
+        let cellParamRegistration = UICollectionView.CellRegistration<LXOutlineParamCell, LXOutlineOpt> { (cell, indexPath, item) in
+            // Populate the cell with our item description.
+            // cell.label.text = "\(<#item#>)"
+            let tmp = item.section.title.components(separatedBy: ":")
+            cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], defaultValue: tmp[safe: 2])
+            cell.accessories = [
+                .disclosureIndicator()
+            ]
+        }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
             case .outline:
                 return collectionView.dequeueConfiguredReusableCell(using: outlineRegistration, for: indexPath, item: item)
             case .subitem:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+                if item.section.title.contains("👉") {
+                    return collectionView.dequeueConfiguredReusableCell(using: cellParamRegistration, for: indexPath, item: item)
+                } else {
+                    return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+                }
             }
         }
         dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
@@ -431,8 +444,30 @@ extension LXOutlineVC: UICollectionViewDelegate {
         // if random == 6 {
         //     fatalError("test assert: \(random) at \(Date())")
         // }
+        guard menuItem.section.title.contains("👉") else {
+            gotoScene(by: menuItem)
+            return
+        }
+        let tmp = menuItem.section.title.components(separatedBy: ":")
+        switch tmp.first ?? "" {
+        case DJRouterPath.getMain.title:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
+            let param = cell.currentValue.components(separatedBy: "/")
+            guard let storeCode = param[safe: 1],
+                  let storeType = param[safe: 2],
+                  storeCode.isNotEmpty,
+                  storeType.isNotEmpty else {
+                return
+            }
+            let scene: Navigator.Scene = .vc(provider: {
+                let vc = DJRouter.getMain(storeCode, storeType: storeType)
+                let nav = DJTestRouter.createNav(rootVC: vc)
+                return nav
+            }, transition: .alert)
+            Navigator.default.show(segue: scene, sender: self)
+        default: break
+        }
 
-        gotoScene(by: menuItem)
     }
 }
 

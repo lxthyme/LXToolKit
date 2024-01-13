@@ -70,51 +70,44 @@ public struct DJTestRouter {
         .subitem(.section(title: "UIListContentConfiguration.Ex.allCases"), scene: .vc(provider: {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
-            let exContent = UIListContentConfiguration.Ex.allCases
-                .map { LXSampleItem(title: $0.title, content: $0.description) }
-            dlog("UIListContentConfiguration.Ex: \(exContent)")
-            // let vc = LXSampleTextViewVC()
-            // vc.dataFill(content: "\(exContent)")
-            vc.dataFill(list: exContent)
+                let exContent = UIListContentConfiguration.Ex.allCases
+                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                dlog("UIListContentConfiguration.Ex: \(exContent)")
+                // let vc = LXSampleTextViewVC()
+                // vc.dataFill(content: "\(exContent)")
+                vc.dataFill(list: exContent)
             }
             return vc
         })),
         .subitem(.section(title: "UIBackgroundConfiguration.Ex.allCases"), scene: .vc(provider: {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
-            let exBg = UIBackgroundConfiguration.Ex.allCases
-                .map { LXSampleItem(title: $0.title, content: $0.description) }
-            dlog("UIBackgroundConfiguration.Ex: \(exBg)")
-            // let vc = LXSampleTextViewVC()
-            // vc.dataFill(content: "\(exBg)")
-            vc.dataFill(list: exBg)
+                let exBg = UIBackgroundConfiguration.Ex.allCases
+                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                dlog("UIBackgroundConfiguration.Ex: \(exBg)")
+                // let vc = LXSampleTextViewVC()
+                // vc.dataFill(content: "\(exBg)")
+                vc.dataFill(list: exBg)
             }
             return vc
         })),
     ])
-    static let routerDJ: LXOutlineOpt = .outline(.section(title: "DJBusinessModule"), subitems: [
-        .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
-            let vc = DJRouter.getMain()
-            let btn = UIButton()
-            btn.backgroundColor = .XL.randomGolden
-            btn.layerCornerRadius = 8
-            btn.setTitle("Closed", for: .normal)
-            btn.setTitleColor(.XL.randomLight, for: .normal)
-            btn.frame = CGRect(x: 150, y: 0, width: 80, height: 44)
-            if #available(iOS 14.0, *) {
-                btn.addAction(UIAction(handler: { _ in
-                    UIViewController.topViewController()?.dismiss(animated: true)
-                }), for: .touchUpInside)
-            }
-            vc.modalPresentationStyle = .fullScreen
-            vc.view.addSubview(btn)
-            return vc
-        }, transition: .alert)),
-    ])
+    static let routerDJ: () -> LXOutlineOpt = {
+        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv()))"), subitems: [
+            .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
+                DJRouter.toggleEnv();
+                return nil
+            })),
+            .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
+                let vc = DJRouter.getMain("", storeType: "")
+                return DJTestRouter.createNav(rootVC: vc)
+            }, transition: .alert)),
+            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, (sit)/007780/2020, (prd)/004517/2010, (prd)/003754/2010")),
+        ])
+    }
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
         .subitem(.section(title: "Fatal Error Test"), scene: .vc(provider: {
             fatalError("test")
-            return nil
         })),
         .subitem(.section(title: "FloatingPanel Maps"), scene: .vc(provider: {
             return MapsEntry.entryVC()
@@ -228,4 +221,38 @@ public struct DJTestRouter {
             ]),
         ]),
     ])
+}
+
+// MARK: - 🔐
+extension DJTestRouter {
+    // func delayA(_ dueTime: RxTimeInterval = .milliseconds(1500), block:() -> Void) -> Disposable {
+    //     return Observable.just(1)
+    //         .delay(dueTime, scheduler: MainScheduler.instance)
+    //         .subscribe { result in
+    //             dlog("-->result: \(result)")
+    //             block()
+    //         }
+    //         // .disposed(by: rx.disposeBag)
+    // }
+    static func createNav(rootVC: UIViewController) -> UINavigationController {
+        let btn = UIButton()
+        btn.backgroundColor = .XL.randomGolden
+        btn.layerCornerRadius = 8
+        btn.setTitle("Closed", for: .normal)
+        btn.setTitleColor(.XL.randomLight, for: .normal)
+        btn.frame = CGRect(x: 150, y: UIApplication.XL.keyWindow?.safeAreaInsets.top ?? 0, width: 80, height: 44)
+        // btn.frame = CGRect(x: 150, y: iPhoneX.safeareaInsets.top, width: 80, height: 44)
+        if #available(iOS 14.0, *) {
+            btn.addAction(UIAction(handler: { _ in
+                let topVC = UIViewController.topViewController()
+                topVC?.dismiss(animated: true)
+            }), for: .touchUpInside)
+        }
+        let nav = UINavigationController(rootViewController: rootVC)
+        nav.modalPresentationStyle = .fullScreen
+        nav.isNavigationBarHidden = true
+        nav.interactivePopGestureRecognizer?.isEnabled = true
+        nav.view.addSubview(btn)
+        return nav
+    }
 }

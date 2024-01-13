@@ -13,6 +13,18 @@ import UIKit
 // import AMapLocationKit
 // import MAMapKit
 
+enum DJRouterPath {
+    case getMain
+
+    var title: String {
+        var tmp = ""
+        switch self {
+        case .getMain: tmp = "指定进店"
+        }
+        return "👉\(tmp)"
+    }
+}
+
 class DJLibsManager: NSObject {
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
