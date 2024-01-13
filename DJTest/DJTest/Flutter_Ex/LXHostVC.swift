@@ -24,7 +24,7 @@ class LXHostVC: LXBaseVC {
     }()
     private lazy var btnAdd: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -43,7 +43,7 @@ class LXHostVC: LXBaseVC {
     }()
     private lazy var btnNext: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8

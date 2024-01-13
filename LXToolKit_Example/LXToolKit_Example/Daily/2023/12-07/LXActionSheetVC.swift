@@ -12,7 +12,7 @@ class LXActionSheetVC: LXBaseVC {
     private lazy var btnShowActionSheet: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
 

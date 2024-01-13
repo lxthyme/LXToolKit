@@ -256,6 +256,9 @@ private extension LXOutlineVC {
             cell.accessories = [
                 .disclosureIndicator()
             ]
+
+            let bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
         }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {

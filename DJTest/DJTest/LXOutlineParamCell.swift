@@ -12,7 +12,7 @@ class LXOutlineParamCell: UICollectionViewListCell {
     // MARK: 📌UI
     private lazy var btnTitle: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         btn.layer.masksToBounds = true
 
@@ -114,14 +114,15 @@ private extension LXOutlineParamCell {
 
     func masonry() {
         btnTitle.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
             $0.left.equalToSuperview().offset(15)
-            $0.height.equalTo(44)
+            $0.centerY.equalToSuperview()
         }
         tfTextField.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(10)
             $0.left.equalTo(btnTitle.snp.right).offset(10)
             $0.right.equalToSuperview().offset(-15)
+            $0.bottom.equalToSuperview().offset(-10)
+            $0.height.equalTo(35)
         }
     }
 }
