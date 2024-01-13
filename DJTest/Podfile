@@ -25,9 +25,9 @@ else
 end
 puts("-->当前模式: #{tips.red}")
 
-use_frameworks!
+# use_frameworks!
 # use_frameworks! :linkage => :static
-# use_frameworks! :linkage => :dynamic
+use_frameworks! :linkage => :dynamic
 # use_modular_headers!
 # , :linkage => :static
 # , :linkage => :dynamic
@@ -432,7 +432,7 @@ end
 static_frameworks = [
 'DJRSwiftResource', 'FloatingPanel_Maps', 'FloatingPanel_Maps-SwiftUI', 'FloatingPanel_Samples', 'FloatingPanel_SamplesObjC', 'FloatingPanel_Stocks', 'DJTestKit', 'LXFlutterKit', 'LXToolKit', 'LXToolKit_Example', 'RxNetworks_Ex',
 'LXToolKitObjC', 'LXToolKitObjC_Example', 'IGListKit', 'UICollectionViewLeftAlignedLayout',
-# 'IGListDiffKit',
+'IGListDiffKit',
 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
