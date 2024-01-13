@@ -7,6 +7,7 @@
 
 import UIKit
 import Flutter
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: FlutterAppDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: FlutterAppDelegate {
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
         DJRouter.registerApp(launchOptions)
+        IQKeyboardManager.shared.enable = true
         // FlutterManager.shared.register()
         return true
     }
