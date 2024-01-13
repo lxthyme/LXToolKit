@@ -312,14 +312,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DJRSwiftResource_Example/Pods-DJRSwiftResource_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DJRSwiftResource/DJRSwiftResource.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DJRSwiftResource.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RswiftResources.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
