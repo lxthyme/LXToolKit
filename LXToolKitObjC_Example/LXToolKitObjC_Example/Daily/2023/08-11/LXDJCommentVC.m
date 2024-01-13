@@ -124,7 +124,7 @@
     self.categoryView.selectedAttributeTitles = [self.titleList.rac_sequence map:^id(NSString *value) {
         return [self makeAttr:value count:3800 isSelected:YES];
     }].array;
-    self.categoryView.listContainer = self.listContainerView;
+    // self.categoryView.listContainer = self.listContainerView;
 
     [self.view addSubview:self.categoryView];
     [self.view addSubview:self.listContainerView];
@@ -174,7 +174,8 @@
 }
 - (JXCategoryListContainerView *)listContainerView {
     if(!_listContainerView){
-        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_ScrollView delegate:self];
+        // JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithType:JXCategoryListContainerType_ScrollView delegate:self];
+        JXCategoryListContainerView *v = [[JXCategoryListContainerView alloc]initWithDelegate:self];
         // v.backgroundColor = [UIColor <#whiteColor#>];
         _listContainerView = v;
     }
