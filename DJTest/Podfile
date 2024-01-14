@@ -127,6 +127,8 @@ def pod_flutter
   else
     pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
     pod 'FlutterSDK/Release', :path => '../3rd'
+    # pod 'Flutter', :podspec => '../3rd/gsy_app/Release'
+    # pod 'GSYSDK/Release', :path => '../3rd'
     pod 'LXFlutterKit/Release', :path => '../LXFlutterKit'
   end
 end
@@ -282,6 +284,7 @@ $sandbox_list = [
   'FirebaseAnalytics',
   'Flutter',
   'FlutterSDK',
+  'GSYSDK',
   'DJRSwiftResource',
   'LXToolKit',
   'LXToolKit_Example',

@@ -64,5 +64,6 @@ TODO: Add long description of the pod here.
     sub.dependency 'LXFlutterKit/Core'
     sub.dependency 'Flutter'
     sub.dependency 'FlutterSDK/Release'
+    # sub.dependency 'GSYSDK/Release'
   end
 end
