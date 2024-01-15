@@ -7,10 +7,10 @@
 
 import UIKit
 import SwiftUI
-import LXToolKit_Example
-import LXToolKitObjC_Example
+import LXToolKit
 import ActivityKit
 import DJTestKit
+import RxSwift
 
 class ViewController: LXBaseVC {
     // MARK: 📌UI
@@ -73,6 +73,7 @@ class ViewController: LXBaseVC {
     }()
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
+    @available(iOS 13.0, *)
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         dataFill()

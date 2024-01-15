@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14.0, *)
 public struct MapsSwiftUIEntry: View {
     public init() {}
     public var body: some View {
@@ -20,6 +21,7 @@ public struct MapsSwiftUIEntry: View {
     }
 }
 
+@available(iOS 14.0, *)
 #Preview {
     MapsSwiftUIEntry()
 }

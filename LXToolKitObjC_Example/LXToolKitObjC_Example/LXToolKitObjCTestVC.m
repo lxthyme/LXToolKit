@@ -9,7 +9,7 @@
 #import "LXToolKitObjCTestVC.h"
 #import "LXLoginVC.h"
 #import "LX0527VC.h"
-#import "DJCommentVC.h"
+#import "LXDJCommentVC.h"
 #import <DJTestKit/DJTestKit-Swift.h>
 
 @interface LXToolKitObjCTestVC ()<UITableViewDataSource,UITableViewDelegate> {
@@ -141,13 +141,13 @@
             @"LXURLCompVC",
             @"LXWebViewTestVC",
             @"LXSwiftOCTestVC",
-            @"DJSearchResultVC",
+            @"LXDJSearchResultVC",
             @"LXUpdateLayoutVC",
             @"LXPopTestVC",
             @"LXNumberFormatterVC",
             @"LXScrollVC",
             @"LXCollectionTestVC",
-            @"DJCommentVC",
+            @"LXDJCommentVC",
             @"LXLabelTestVC",
             @"LXViewAnimationARCTestVC",
         ];

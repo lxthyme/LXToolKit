@@ -8,18 +8,20 @@ import UIKit
 import SnapKit
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 fileprivate extension UIConfigurationStateCustomKey {
     static let item = UIConfigurationStateCustomKey("com.apple.ItemListCell.item")
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension UICellConfigurationState {
     var item: LXCustomCellListVC.Item? {
         set { self[.item] = newValue }
         get { return self[.item] as? LXCustomCellListVC.Item }
     }
 }
-
+@available(iOS 14.0, *)
 class LXItemListCell: UICollectionViewListCell {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
@@ -37,7 +39,7 @@ class LXItemListCell: UICollectionViewListCell {
         setNeedsUpdateConfiguration()
     }
 }
-
+@available(iOS 14.0, *)
 class LXCustomListCell: LXItemListCell {
     // MARK: 📌UI
     private lazy var imgViewCategory: UIImageView = {
@@ -105,9 +107,11 @@ class LXCustomListCell: LXItemListCell {
 }
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXCustomListCell {}
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXCustomListCell {
     func defaultListContentConfiguration() -> UIListContentConfiguration {
         return .subtitleCell()
@@ -115,6 +119,7 @@ private extension LXCustomListCell {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 private extension LXCustomListCell {
     func prepareUI() {
         // self.contentView.backgroundColor = .white

@@ -37,6 +37,7 @@ extension LXGridVC {
 // MARK: 👀Public Actions
 extension LXGridVC {}
 
+@available(iOS 14.0, *)
 private extension LXGridVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
@@ -90,8 +91,6 @@ private extension LXGridVC {
             dataSource.apply(snapshot, animatingDifferences: false)
 
             [collectionView].forEach(self.view.addSubview)
-        } else {
-            // Fallback on earlier versions
         }
 
         masonry()

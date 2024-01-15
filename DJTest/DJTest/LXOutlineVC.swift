@@ -11,6 +11,7 @@ import ActivityKit
 import DJTestKit
 import LXToolKit
 
+@available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnAppearance: UIButton = {
@@ -37,6 +38,7 @@ class LXOutlineVC: LXBaseVC {
             LXToolKitRouter.kitRouter,
             LXToolKitObjcRouter.objcRouter,
             DJTestRouter.routerDJTest,
+            DJTestRouter.routerDJ(),
             DJTestRouter.router3rd,
             DJTestRouter.routerFlutter,
             /// Others
@@ -69,12 +71,15 @@ class LXOutlineVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXOutlineVC {}
 
 // MARK: - 🔐Activity
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     // func testLogKit() {
     //     dlog("1. dlog")
@@ -105,13 +110,14 @@ private extension LXOutlineVC {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func gotoScene(by menuItem: LXOutlineOpt) {
         guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             if menuItem.section.title.hasPrefix("Section ") ||
                 menuItem.section.title.hasPrefix("Item ") {
-
+    
                 Navigator.default.show(segue: .vc(provider: {
                     let vc = LXSampleTextViewVC()
                     vc.title = menuItem.section.title
@@ -148,6 +154,7 @@ private extension LXOutlineVC {
 }
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func generateLayout() -> UICollectionViewLayout {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -241,12 +248,28 @@ private extension LXOutlineVC {
             let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
+        let cellParamRegistration = UICollectionView.CellRegistration<LXOutlineParamCell, LXOutlineOpt> { (cell, indexPath, item) in
+            // Populate the cell with our item description.
+            // cell.label.text = "\(<#item#>)"
+            let tmp = item.section.title.components(separatedBy: ":")
+            cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], defaultValue: tmp[safe: 2])
+            cell.accessories = [
+                .disclosureIndicator()
+            ]
+
+            let bgConfig = UIBackgroundConfiguration.clear()
+            cell.backgroundConfiguration = bgConfig
+        }
         let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
             switch item {
             case .outline:
                 return collectionView.dequeueConfiguredReusableCell(using: outlineRegistration, for: indexPath, item: item)
             case .subitem:
-                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+                if item.section.title.contains("👉") {
+                    return collectionView.dequeueConfiguredReusableCell(using: cellParamRegistration, for: indexPath, item: item)
+                } else {
+                    return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+                }
             }
         }
         dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
@@ -403,6 +426,7 @@ private extension LXOutlineVC {
     }
 }
 
+@available(iOS 14.0, *)
 extension LXOutlineVC: UICollectionViewDelegate {
     // func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
     //     guard let menuItem = dataSource.itemIdentifier(for: indexPath) else { return true }
@@ -423,12 +447,35 @@ extension LXOutlineVC: UICollectionViewDelegate {
         // if random == 6 {
         //     fatalError("test assert: \(random) at \(Date())")
         // }
+        guard menuItem.section.title.contains("👉") else {
+            gotoScene(by: menuItem)
+            return
+        }
+        let tmp = menuItem.section.title.components(separatedBy: ":")
+        switch tmp.first ?? "" {
+        case DJRouterPath.getMain.title:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
+            let param = cell.currentValue.components(separatedBy: "/")
+            guard let storeCode = param[safe: 1],
+                  let storeType = param[safe: 2],
+                  storeCode.isNotEmpty,
+                  storeType.isNotEmpty else {
+                return
+            }
+            let scene: Navigator.Scene = .vc(provider: {
+                let vc = DJRouter.getMain(storeCode, storeType: storeType)
+                let nav = DJTestRouter.createNav(rootVC: vc)
+                return nav
+            }, transition: .alert)
+            Navigator.default.show(segue: scene, sender: self)
+        default: break
+        }
 
-        gotoScene(by: menuItem)
     }
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 private extension LXOutlineVC {
     func prepareCollectionView() {
         if #available(iOS 14.0, *) {

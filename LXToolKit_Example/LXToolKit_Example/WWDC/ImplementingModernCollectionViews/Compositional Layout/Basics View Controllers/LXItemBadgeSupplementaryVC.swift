@@ -59,7 +59,29 @@ class LXItemBadgeSupplementaryVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Model> = {
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Model>!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXItemBadgeSupplementaryVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXItemBadgeSupplementaryVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXItemBadgeSupplementaryVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Model> {
         let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Model> { cell, indexPath, model in
             cell.labTitle.text = "\(model.title)"
             cell.contentView.backgroundColor = .cornflowerBlue
@@ -83,29 +105,16 @@ class LXItemBadgeSupplementaryVC: LXBaseVC {
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: $2)
         }
         return dataSource
-    }()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXItemBadgeSupplementaryVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXItemBadgeSupplementaryVC {}
-
-// MARK: 🔐Private Actions
-private extension LXItemBadgeSupplementaryVC {}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXItemBadgeSupplementaryVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Item Badges"

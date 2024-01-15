@@ -42,24 +42,13 @@ class LXTwoColumnVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Int> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
-            cell.labTitle.text = "\(item)"
-            cell.contentView.backgroundColor = .cornflowerBlue
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 1.0
-            cell.labTitle.textAlignment = .center
-            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
-        }
-        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        prepareCollectionView()
         prepareUI()
     }
 
@@ -72,10 +61,30 @@ extension LXTwoColumnVC {}
 extension LXTwoColumnVC {}
 
 // MARK: 🔐Private Actions
-private extension LXTwoColumnVC {}
+@available(iOS 14.0, *)
+private extension LXTwoColumnVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Section, Int> {
+        let cellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
+            cell.labTitle.text = "\(item)"
+            cell.contentView.backgroundColor = .cornflowerBlue
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderWidth = 1.0
+            cell.labTitle.textAlignment = .center
+            cell.labTitle.font = .preferredFont(forTextStyle: .title1)
+        }
+        return UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, item in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+    }
+}
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXTwoColumnVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Two-Column Grid"

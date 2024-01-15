@@ -13,6 +13,7 @@ import LXToolKit_Example
 // import MAMapKit
 // import Firebase
 import Toast_Swift
+import IQKeyboardManagerSwift
 
 class LXLibManager {
     static func setupLibs() {
@@ -20,14 +21,18 @@ class LXLibManager {
         // setupAMap()
         // setupBugly()
         // setupUMeng()
-        setupTingYun()
+        // setupTingYun()
+        setupIQKeyboardManager()
     }
 }
 
 // MARK: - 👀
 private extension LXLibManager {
-    static func setupTingYun() {
-        NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
+    // static func setupTingYun() {
+    //     NBSAppAgent.start(withAppID: AppConfig.TingYun.AppKey)
+    // }
+    static func setupIQKeyboardManager() {
+        // IQKeyboardManager.shared.enable = true
     }
     static func setupUMeng() {
         // UMLaunch.setRootVCCls(ViewController.self)

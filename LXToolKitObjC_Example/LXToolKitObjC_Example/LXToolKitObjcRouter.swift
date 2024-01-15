@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwifterSwift
+// import SwifterSwift
 import DJTestKit
 import LXToolKitObjC
 import SwiftUI
@@ -33,14 +33,14 @@ internal extension LXToolKitObjcRouter {
     static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
         .subitem(.section(title: "LXURLCompVC"), scene: .vc(provider: { LXURLCompVC()  })),
         .subitem(.section(title: "LXWebViewTestVC"), scene: .vc(provider: { LXWebViewTestVC()  })),
-        .subitem(.section(title: "DJSearchResultVC"), scene: .vc(provider: { DJSearchResultVC()  })),
+        .subitem(.section(title: "DJSearchResultVC"), scene: .vc(provider: { LXDJSearchResultVC()  })),
         // .subitem(.section(title: "LXIGListKitTestVC"), scene: .vc(provider: { LXIGListKitTestVC()  })),
         .subitem(.section(title: "LXCollectionTestVC"), scene: .vc(provider: { LXCollectionTestVC()  })),
         .subitem(.section(title: "LXNumberFormatterVC"), scene: .vc(provider: { LXNumberFormatterVC()  })),
         .subitem(.section(title: "LXPopTestVC"), scene: .vc(provider: { LXPopTestVC()  })),
         .subitem(.section(title: "LXScrollVC"), scene: .vc(provider: { LXScrollVC()  })),
         .subitem(.section(title: "LXUpdateLayoutVC"), scene: .vc(provider: { LXUpdateLayoutVC()  })),
-        .subitem(.section(title: "DJCommentVC"), scene: .vc(provider: { DJCommentVC()  })),
+        .subitem(.section(title: "LXDJCommentVC"), scene: .vc(provider: { LXDJCommentVC()  })),
         .subitem(.section(title: "LXLabelTestVC"), scene: .vc(provider: { LXLabelTestVC()  })),
         .subitem(.section(title: "LXViewAnimationARCTestVC"), scene: .vc(provider: { LXViewAnimationARCTestVC()  })),
     ].reversed())

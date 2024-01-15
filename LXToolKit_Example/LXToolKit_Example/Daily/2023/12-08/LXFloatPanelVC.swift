@@ -16,6 +16,10 @@ class LXFloatPanelVC: LXBaseVC {
     // MARK: 🔗Vaiables
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<String, Int>!
+    private var state: FloatingPanelState = .full
+    private var isRemovalInteractionEnabled = false
+    private var nearbyState: FloatingPanelState = .full
+    private var contentMode: FloatingPanelController.ContentMode = .static
     // MARK: 🛠Life Cycle
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
@@ -47,6 +51,8 @@ private extension LXFloatPanelVC {
 
         let contentVC = LXSampleListVC()
         fpc.set(contentViewController: contentVC)
+        fpc.isRemovalInteractionEnabled = isRemovalInteractionEnabled
+        fpc.contentMode = contentMode
 
         fpc.track(scrollView: contentVC.collectionView)
         fpc.addPanel(toParent: self)
@@ -57,6 +63,7 @@ private extension LXFloatPanelVC {
 // extension LXFloatPanelVC: Floatingpan {}
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXFloatPanelVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -106,6 +113,28 @@ private extension LXFloatPanelVC {
     }
 }
 
+// MARK: - 🔐
+@available(iOS 14.0, *)
+private extension LXFloatPanelVC {
+    func generateRightNavItemList() -> [UIBarButtonItem] {
+        return [
+            // UIBarButtonItem(title: "FloatingPanelBehavior", menu: UIMenu(children: [
+            //     UIAction(title: "", handler: { _ in
+            //         <#code#>
+            //     })
+            // ])),
+            UIBarButtonItem(title: "", menu: UIMenu(children: [
+            ])),
+            UIBarButtonItem(title: "", menu: UIMenu(children: [
+            ])),
+            UIBarButtonItem(title: "", menu: UIMenu(children: [
+            ])),
+            UIBarButtonItem(title: "", menu: UIMenu(children: [
+            ])),
+        ]
+    }
+}
+
 // MARK: - ✈️UICollectionViewDelegate
 extension LXFloatPanelVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -116,14 +145,19 @@ extension LXFloatPanelVC: UICollectionViewDelegate {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXFloatPanelVC {
     func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
         collectionView = generateCollectionView()
         dataSource = generateDataSource()
         let snapshot = generateSnapshot()
         dataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
     func prepareUI() {
         self.view.backgroundColor = .white
         // navigationItem.title = ""
+        if #available(iOS 14.0, *) {
+            navigationItem.rightBarButtonItems = generateRightNavItemList()
+        }
 
         [collectionView].forEach(self.view.addSubview)
 

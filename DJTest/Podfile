@@ -1,6 +1,7 @@
 source 'https://cdn.cocoapods.org'
 # source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
+$Flutter_disabled = false
 $flutter_source_import = false
 $Flutter_isDebug = false
 $Flutter_isProfile = false
@@ -8,13 +9,16 @@ $Flutter_isRelease = false
 $DaoJiaPath = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia'
 $DaoJiaPathFixed = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia.fixed'
 
+# $Flutter_disabled = true
 # $flutter_source_import=true
 # $Flutter_isDebug = true
 # $Flutter_isProfile = true
 $Flutter_isRelease = true
 
 tips = ""
-if $flutter_source_import
+if $Flutter_disabled
+  tips = 'disabled'
+elsif $flutter_source_import
   tips = "源码编译"
 elsif $Flutter_isDebug
   tips = "Debug"
@@ -25,9 +29,9 @@ else
 end
 puts("-->当前模式: #{tips.red}")
 
-use_frameworks!
+# use_frameworks!
 # use_frameworks! :linkage => :static
-# use_frameworks! :linkage => :dynamic
+use_frameworks! :linkage => :dynamic
 # use_modular_headers!
 # , :linkage => :static
 # , :linkage => :dynamic
@@ -72,62 +76,49 @@ end
 
 def pod_LXToolKit
   use_frameworks! :linkage => :dynamic
-  # pod 'DJObjcModule', :path => '../DJObjcModule'
-  # pod 'DJSwiftModule', :path => '../DJSwiftModule'
-  # pod 'LXToolKit', :path => '../LXToolKit'
-  # pod 'LXToolKitObjC', :path => '../LXToolKitObjC'
-  # pod 'DJBusinessModuleSwift', :path => '../../../BL.repo/DaoJia/DJBusinessModuleSwift'
-	# pod 'Masonry'
-  # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
-  # pod 'RxNetworks'#, :modular_headers => true
 
-  # pod 'YYText'
-  # pod 'MJRefresh'
-  # pod 'Action'
-  # pod 'YPImagePicker'
-  # pod 'GoogleMobileAds'
-  # pod 'FirebaseAnalytics'
-  # pod 'MJExtension'
-  # pod 'Mantle'
-  # pod 'FirebaseCrashlytics'
-  # pod 'ObjectMapper'
   pod 'R.swift', '~> 7.0'
   # pod 'DJObjcModule', :path => '../DJObjcModule'
   # pod 'DJSwiftModule', :path => '../DJSwiftModule'
-  # pod 'DJRSwiftTest', :path => '../DJRSwiftTest'
   # pod 'DJBusinessModuleSwift', :path => '../DJBusinessModuleSwift'
   pod 'DJRSwiftResource', :inhibit_warnings => false, :path => '../DJRSwiftResource'
+  pod 'DJTestKit', :inhibit_warnings => false, :path => '../DJTestKit'
 
   # pod 'LXSwiftUIKit', :inhibit_warnings => false, :path => '../LXSwiftUIKit'
 
+  pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit', :subspecs => ['Core', '3rd']
   pod 'LXToolKit_Example', :inhibit_warnings => false, :path => '../LXToolKit_Example'
+
+  pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
   pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
 
-  pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit', :subspecs => ['Core', '3rd']
-  pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
-  pod 'DJTestKit', :inhibit_warnings => false, :path => '../DJTestKit'
-
   ############ FloatingPanel
-  # pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
-  # pod 'FloatingPanel_Maps-SwiftUI', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps-SwiftUI.podspec'
-  # pod 'FloatingPanel_Samples', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Samples.podspec'
-  # pod 'FloatingPanel_SamplesObjC', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_SamplesObjC.podspec'
-  # pod 'FloatingPanel_Stocks', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Stocks.podspec'
+  pod 'FloatingPanel_Maps', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps.podspec'
+  pod 'FloatingPanel_Maps-SwiftUI', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Maps-SwiftUI.podspec'
+  pod 'FloatingPanel_Samples', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Samples.podspec'
+  pod 'FloatingPanel_SamplesObjC', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_SamplesObjC.podspec'
+  pod 'FloatingPanel_Stocks', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__Modal/FloatingPanel/FloatingPanel_Stocks.podspec'
 
   ############ RxNetworks
-  # pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
+  # pod 'RxNetworks'#, '~>0.4'
+  pod 'RxNetworks', :podspec => './'
+  # pod 'CacheX', '1.0.1'
+  pod 'CacheX', :podspec => './'#, :modular_headers => true
+  pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
 
   ############ SwiftHub_Ex
   # pod 'SwiftHub_Ex', :path => '../3rd/SwiftHub_Ex/SwiftHub_Ex.podspec'
   # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
   # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
+
 end
 
 def pod_flutter
   use_frameworks! :linkage => :dynamic
   ############ flutter_cookbook
   # print "-->configurations: #{configuration_env}"
-  if $flutter_source_import
+  if $Flutter_disabled
+  elsif $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
     pod 'LXFlutterKit/Source', :path => '../LXFlutterKit'
   elsif $Flutter_isDebug
@@ -139,9 +130,26 @@ def pod_flutter
     pod 'FlutterSDK/Profile', :path => '../3rd'
     pod 'LXFlutterKit/Profile', :path => '../LXFlutterKit'
   else
+    pod 'LXFlutterKit/Release', :path => '../LXFlutterKit'
     pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Release'
     pod 'FlutterSDK/Release', :path => '../3rd'
-    pod 'LXFlutterKit/Release', :path => '../LXFlutterKit'
+    # pod 'Flutter', :podspec => '../3rd/gsy_app/Release'
+    # pod 'GSYSDK/Release', :path => '../3rd'
+  end
+end
+
+def pod_flutter_installer(installer)
+  if $flutter_source_import
+    flutter_post_install(installer) if defined?(flutter_post_install)
+    installer.pods_project.targets.each do |target|
+      puts("-->flutter target: #{target.name}")
+      flutter_additional_ios_build_settings(target)
+    end
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        flutter_additional_ios_build_settings(target)
+      end
+    end
   end
 end
 
@@ -149,32 +157,31 @@ def pod_DJ
   use_frameworks! :linkage => :static
 
   source 'https://gitlab.bl.com/iOS/BLRepositories.git'
+
+  pod 'DJBusinessModule', :path => "#{$DaoJiaPath}/DJBusinessModule"
+  pod 'BLCartService', :podspec => './'
+  pod 'BLOrder', :podspec => './'
+  pod 'BLMapModule', :podspec => './'
+  pod 'DJBusinessTools', :path=>"#{$DaoJiaPath}/DJBusinessTools", :inhibit_warnings => false
+  pod 'DJiOSAppImages', :path=>"#{$DaoJiaPath}/DJiOSAppImages", :inhibit_warnings => false
+  pod 'DJGlobalStoreManager', :path=>"#{$DaoJiaPath}/DJGlobalStoreManager", :inhibit_warnings => false
+  pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
+  pod 'BLNetworking', :path => "#{$DaoJiaPath}/BLNetworking"
+  pod 'BLRawAPIManager', :path => "#{$DaoJiaPath}/BLRawAPIManager"
+  pod 'BLImage', :path => "#{$DaoJiaPath}/BLImage"
+  pod 'IBLProgressHud', :path => "#{$DaoJiaPath}/IBLProgressHud"
+  # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
+  # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
+  pod 'BLShoppingCartModule'
+
+  pod 'SDWebImage', '5.9.2'
+  pod 'MWPhotoBrowser', :podspec => './'
+
   pod 'AvoidCrash'
   pod 'SensorsAnalyticsSDK', '4.0.1', :subspecs => ['Location','Base','Core']
-  pod 'AMap3DMap-NO-IDFA','9.6.0'
-  pod 'AMapSearch-NO-IDFA','9.5.0'
+  pod 'AMap3DMap-NO-IDFA', '9.7.0'
+  pod 'AMapSearch-NO-IDFA', '9.5.0'
   pod 'AMapLocation-NO-IDFA', '2.10.0'
-
-  pod 'DJBusinessModule', :path => "#{$DaoJiaPathFixed}/DJBusinessModule"
-  pod 'BLCartService', :path => './'
-  pod 'BLOrder', :path => './'
-  # pod 'DJBusinessTools', :path=>'$DaoJiaPath/DJBusinessTools', :inhibit_warnings => false
-  # pod 'DJiOSAppImages', :path=>'$DaoJiaPath/DJiOSAppImages', :inhibit_warnings => false
-  # pod 'DJGlobalStoreManager', :path=>'$DaoJiaPath/DJGlobalStoreManager', :inhibit_warnings => false
-  # pod 'DJBusinessCategoryRouterCenter', :path => '$DaoJiaPath/DJBusinessCategoryRouterCenter', :inhibit_warnings => false
-  # pod 'BLNetworking', :path => '$DaoJiaPath/BLNetworking'
-  # pod 'BLRawAPIManager', :path => '$DaoJiaPath/BLRawAPIManager'
-  # pod 'BLImage', :path => '$DaoJiaPath/BLImage'
-  # pod 'IBLProgressHud', :path => '$DaoJiaPath/IBLProgressHud'
-  # # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
-
-  # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
-  # pod 'AMap3DMap-NO-IDFA','9.6.0'
-  # pod 'AMapSearch-NO-IDFA','9.5.0'
-  # pod 'AMapLocation-NO-IDFA', '2.10.0'
-  # pod 'AMap3DMap-NO-IDFA'
-  # pod 'AMapSearch-NO-IDFA'
-  # pod 'AMapLocation-NO-IDFA'
   # pod 'FirebaseAnalytics'
   # pod 'FirebaseCrashlytics'
   # pod 'MJRefresh', '3.1.12'
@@ -190,39 +197,27 @@ target 'DJTest' do
   # :execution_position => :before_compile,
   # :script => script_BuildVersionIncrement
 
-  pod_LXToolKit()
-
   pod_flutter()
+  pod_LXToolKit()
+  pod_DJ()
+
 
   # use_frameworks! :linkage => :dynamic
-  # # pod 'LXtingyunApp', :path => '../thirdparty/LXtingyunApp'
-  # pod 'tingyunApp', '2.17.3'
-
-  # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
   # pod 'CocoaDebug', :configurations => ['Debug']
   # # pod 'Bugly'
   # # pod 'UMCommon'    # 必须集成
   # # pod 'UMDevice'    # 必须集成
   # # pod 'UMAPM'   # 必选，APM组件，原错误分析升级为独立产品U-APM
 
-  # # RxNetworks
-  # # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
-  # # pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
-  # #pod 'RxNetworks', '~>0.4'
+  # pod 'YYCache', :git => 'git@github.com:ibireme/YYCache.git'
+  # pod 'MBProgressHUD', :git => 'git@github.com:jdg/MBProgressHUD.git'
   # pod 'RxSwiftExt', '~> 6.2'
-  # # pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
-  # # pod 'RxNetworks'
-  # # pod 'CacheX', '1.0.1'
-  pod 'RxNetworks', :podspec => './'
-  pod 'CacheX', :podspec => './'#, :modular_headers => true
-  # pod_DJ()
+  # pod 'RxSwiftExt', :git => 'git@github.com:RxSwiftCommunity/RxSwiftExt.git', :tag => '6.2.0'
+
   # pod 'MJRefresh', '3.1.12'#, :modular_headers => true
   # pod 'JXCategoryView', '1.3.12'#, :modular_headers => true
   # pod 'YYModel'#, :modular_headers => true
   # pod 'Masonry'#, :modular_headers => true
-
-  # pod 'LXToolKit', :path => "/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/LXToolKit", :subspecs => ['Core', '3rd']
-    # pod 'LXToolKitObjC', :path => "/Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/LXToolKitObjC"
 
     # pod 'SDWebImage'
     pod 'DZNEmptyDataSet'
@@ -232,60 +227,14 @@ target 'DJTest' do
     pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
     # pod 'SDWebImage', :git => 'git@github.com:SDWebImage/SDWebImage.git'
 
-    source 'https://gitlab.bl.com/iOS/BLRepositories.git'
-    pod 'AvoidCrash'
-    pod 'SensorsAnalyticsSDK', '4.0.1', :subspecs => ['Location','Base','Core']
-    pod 'AMap3DMap-NO-IDFA','9.6.0'
-    pod 'AMapSearch-NO-IDFA','9.5.0'
-    pod 'AMapLocation-NO-IDFA', '2.10.0'
-
-    pod 'DJBusinessModule', :path => "#{$DaoJiaPathFixed}/DJBusinessModule"
-    pod 'DJBusinessTools', :path=>"#{$DaoJiaPathFixed}/DJBusinessTools", :inhibit_warnings => false
-    pod 'DJiOSAppImages', :path=>"#{$DaoJiaPathFixed}/DJiOSAppImages", :inhibit_warnings => false
-    pod 'DJGlobalStoreManager', :path=>"#{$DaoJiaPath}/DJGlobalStoreManager", :inhibit_warnings => false
-    pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
-    pod 'BLNetworking', :path => "#{$DaoJiaPath}/BLNetworking"
-    # pod 'BLRawAPIManager', :path => '../../DaoJia/BLRawAPIManager'
-    pod 'BLImage', :path => "#{$DaoJiaPath}/BLImage"
-    pod 'IBLProgressHud', :path => "#{$DaoJiaPath}/IBLProgressHud"
-    # pod 'BLCashier', :path => '../../DaoJia/BLCashier'../../
-
-    # pod 'GoogleUtilities', :modular_headers => true
-    # pod 'FirebaseCore', :modular_headers => true
-    # pod 'FirebaseCoreExtension', :modular_headers => true
-    # pod 'FirebaseInstallations', :modular_headers => true
-    # pod 'GoogleDataTransport', :modular_headers => true
-    # pod 'GoogleUtilities', :modular_headers => true
-    # pod 'nanopb', :modular_headers => true
-    # pod 'SDWebImage', :modular_headers => true
-    # pod 'DZNEmptyDataSet', :modular_headers => true
-    # pod 'SVProgressHUD', :modular_headers => true
-    # pod 'HMSegmentedControl', :modular_headers => true
-    # pod 'KafkaRefresh', :modular_headers => true
-    # pod 'SDWebImage', :modular_headers => true
-    # pod 'DZNEmptyDataSet', :modular_headers => true
-    # pod 'SVProgressHUD', :modular_headers => true
-    # pod 'HMSegmentedControl', :modular_headers => true
-    # pod 'KafkaRefresh', :modular_headers => true
-    # pod 'HandyJSON', :modular_headers => true
-    pod 'SDWebImage', '5.9.2'
-    # pod 'MWPhotoBrowser', '6'
-    pod 'MWPhotoBrowser', :podspec => './'
+    # CHTCollectionViewWaterfallLayout
+    # UICollectionViewLeftAlignedLayout
+    # UIApplication.shared.keyWindow
 end
 
 post_install do |installer|
-  if $flutter_source_import
-    flutter_post_install(installer) if defined?(flutter_post_install)
-    installer.pods_project.targets.each do |target|
-      puts("-->flutter target: #{target.name}")
-      flutter_additional_ios_build_settings(target)
-    end
-    installer.generated_projects.each do |project|
-      project.targets.each do |target|
-        flutter_additional_ios_build_settings(target)
-      end
-    end
-  end
+  pod_flutter_installer(installer)
+
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
   # installer.pods_project.targets.each do |target|
   #   puts(">>>[1]: #{target.name.red}")
@@ -340,6 +289,7 @@ $sandbox_list = [
   'FirebaseAnalytics',
   'Flutter',
   'FlutterSDK',
+  'GSYSDK',
   'DJRSwiftResource',
   'LXToolKit',
   'LXToolKit_Example',
@@ -409,7 +359,6 @@ def generateConfig(target, config, project_deployment_version)
 	# config.build_settings['MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS'] = "gnu11 gnu++14";
   if !$sandbox_list.include?(target.name)
     config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'YES'
-  # puts("-->target.name: ", $static_objc_list)
   elsif !$static_objc_list.include?(target.name)
     config.build_settings['ENABLE_MODULE_VERIFIER'] = 'NO'
   end
@@ -432,7 +381,7 @@ def fix_deployment_target(target, config, project_deployment_version)
   if $daojia_list.include?(target.name)
     config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
   else
-    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
   end
   # config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
   # if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
@@ -441,7 +390,8 @@ def fix_deployment_target(target, config, project_deployment_version)
 end
 
 def fix_deployment_team(config)
-  # config.build_settings['VALID_ARCHS'] = 'x86_64 armv7 arm64'
+  # config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+  # config.build_settings['VALID_ARCHS'] = '$(ARCHS_STANDARD) x86_64-apple-ios-simulator'
   # puts("VALID_ARCHS[2]: #{config.build_settings['VALID_ARCHS']}")
   config.build_settings['ENABLE_BITCODE'] = 'NO'
   # config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64 x86_64'
@@ -473,7 +423,6 @@ end
 #   installer.generated_projects.each do |project|
 #     project.targets.each do |target|
 #       target.build_configurations.each do |config|
-#         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.1'
 #         xcconfig_path = config.base_configuration_reference.real_path
 #         xcconfig = File.read(xcconfig_path)
 #         xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
@@ -489,31 +438,16 @@ pre_install do |installer|
 end
 
 static_frameworks = [
-# 'DJBusinessModuleSwift',
-# 'RxNetworks',
-# 'Toast-Swift', 'HandyJSON', 'Moya', 'RxSwift', 'Alamofire',
-# 'FirebaseCore','FirebaseCoreExtension','FirebaseInstallations','GoogleDataTransport','GoogleUtilities','nanopb',
-# 'SDWebImage', 'DZNEmptyDataSet', 'SVProgressHUD', 'HMSegmentedControl', 'KafkaRefresh',
-# 'Masonry', 'YYModel', 'RxNetworks', 'CacheX',
-# 'ReactiveCocoa', 'Colours', 'IGListKit', 'MBProgressHUD',
-# 'CocoaDebug',
-# 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
-# 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
-# 'IGListDiffKit', 'RxSwift',
-# 'MJRefresh', 'YYText', 'JXCategoryView',
-# 'pop', 'CHTCollectionViewWaterfallLayout', 'Mantle', 'MJExtension',
-# 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
-# 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
-# 'CocoaLumberjack',
-# 'AlamofireImage', 'MessageKit', 'Moya', 'Moya-ObjectMapper', 'YPImagePicker',  'Alamofire', 'Toast-Swift', 'HandyJSON', 'FloatingPanel', 'LXToolKitObjC', 'JXPagingView', 'RxSwiftExt', 'Action', 'SteviaLayout', 'PryntTrimmerView', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'lottie-ios', 'Presentr',
-'DJRSwiftResource', 'FloatingPanel_Maps', 'FloatingPanel_Maps-SwiftUI', 'FloatingPanel_Samples', 'FloatingPanel_SamplesObjC', 'FloatingPanel_Stocks', 'DJTestKit', 'LXFlutterKit', 'LXToolKit', 'LXToolKit_Example', 'LXToolKitObjC_Example', 'RxNetworks_Ex',
+'DJRSwiftResource', 'FloatingPanel_Maps', 'FloatingPanel_Maps-SwiftUI', 'FloatingPanel_Samples', 'FloatingPanel_SamplesObjC', 'FloatingPanel_Stocks', 'DJTestKit', 'LXFlutterKit', 'LXToolKit', 'LXToolKit_Example', 'RxNetworks_Ex',
+'LXToolKitObjC', 'LXToolKitObjC_Example', 'IGListKit', 'UICollectionViewLeftAlignedLayout',
+'IGListDiffKit',
 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
 'Toast-Swift', 'RxSwiftExt',
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
 'Masonry', 'MBProgressHUD',
-'ReactiveCocoa', 'LXToolKitObjC', 'YYModel', 'Colours', 'IGListKit', 'IGListDiffKit', 'JXCategoryView', 'JXPagingView', 'pop', 'CHTCollectionViewWaterfallLayout',
+'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',
 ]
 pre_install do |installer|
   installer.pod_targets.each do |pod|

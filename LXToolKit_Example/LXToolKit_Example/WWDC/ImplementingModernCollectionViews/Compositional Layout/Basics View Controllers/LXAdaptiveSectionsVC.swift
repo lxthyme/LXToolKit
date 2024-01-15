@@ -55,7 +55,31 @@ class LXAdaptiveSectionsVC: LXBaseVC {
         cv.delegate = self
         return cv
     }()
-    private lazy var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int> = {
+    private var dataSource: UICollectionViewDiffableDataSource<SectionLayoutKind, Int>!
+    // MARK: 🔗Vaiables
+    // MARK: 🛠Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        prepareCollectionView()
+        prepareUI()
+    }
+
+}
+
+// MARK: 🌎LoadData
+extension LXAdaptiveSectionsVC {
+    func dataFill() {}
+}
+
+// MARK: 👀Public Actions
+extension LXAdaptiveSectionsVC {}
+
+// MARK: 🔐Private Actions
+@available(iOS 14.0, *)
+private extension LXAdaptiveSectionsVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<SectionLayoutKind, Int> {
         let listCellRegistration = UICollectionView.CellRegistration<LXTextCell, Int> { cell, indexPath, item in
             cell.labTitle.text = "\(item)"
         }
@@ -71,28 +95,8 @@ class LXAdaptiveSectionsVC: LXBaseVC {
         return UICollectionViewDiffableDataSource<SectionLayoutKind, Int>(collectionView: collectionView) { collectionView, indexPath, item in
             return SectionLayoutKind(rawValue: indexPath.section)! == .list ? collectionView.dequeueConfiguredReusableCell(using: listCellRegistration, for: indexPath, item: item) : collectionView.dequeueConfiguredReusableCell(using: textCellRegistration, for: indexPath, item: item)
         }
-    }()
-    // MARK: 🔗Vaiables
-    // MARK: 🛠Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        prepareUI()
     }
-
 }
-
-// MARK: 🌎LoadData
-extension LXAdaptiveSectionsVC {
-    func dataFill() {}
-}
-
-// MARK: 👀Public Actions
-extension LXAdaptiveSectionsVC {}
-
-// MARK: 🔐Private Actions
-private extension LXAdaptiveSectionsVC {}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
@@ -103,6 +107,11 @@ extension LXAdaptiveSectionsVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXAdaptiveSectionsVC {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
+    }
     func prepareUI() {
         self.view.backgroundColor = .white
         navigationItem.title = "Adaptive Sections"

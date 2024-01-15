@@ -41,6 +41,7 @@ extension LXToolKitObjCTestSwiftVC {}
 extension LXToolKitObjCTestSwiftVC {}
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXToolKitObjCTestSwiftVC {
     func generateLayout() -> UICollectionViewLayout {
         var config = UICollectionLayoutListConfiguration(appearance: .sidebar)
@@ -129,9 +130,6 @@ private extension LXToolKitObjCTestSwiftVC {
             dataSource = generateDataSource()
             let snapshot = generateSnapshot()
             self.dataSource.apply(snapshot, animatingDifferences: true)
-        } else {
-            // Fallback on earlier versions
-            // table.dataSource = self
         }
     }
     func prepareUI() {

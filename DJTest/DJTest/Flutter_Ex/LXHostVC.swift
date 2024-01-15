@@ -24,7 +24,7 @@ class LXHostVC: LXBaseVC {
     }()
     private lazy var btnAdd: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -34,14 +34,16 @@ class LXHostVC: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
+        if #available(iOS 14.0, *) {
         btn.addAction(UIAction(handler: { _ in
             DataModel.shared.increament()
         }), for: .touchUpInside)
+        }
         return btn
     }()
     private lazy var btnNext: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -51,6 +53,7 @@ class LXHostVC: LXBaseVC {
         btn.setBackgroundColor(color: .cyan, forState: .normal)
         btn.setBackgroundColor(color: .cyan.withAlphaComponent(0.5), forState: .highlighted)
 
+        if #available(iOS 14.0, *) {
         btn.addAction(UIAction(handler: {[weak self] _ in
             guard let self else { return }
             let idx = (self.navigationController?.viewControllers.count ?? 0) / 2
@@ -63,6 +66,7 @@ class LXHostVC: LXBaseVC {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }), for: .touchUpInside)
+        }
         return btn
     }()
     // MARK: 🔗Vaiables

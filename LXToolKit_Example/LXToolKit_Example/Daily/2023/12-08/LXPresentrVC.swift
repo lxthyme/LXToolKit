@@ -8,6 +8,7 @@ import UIKit
 import LXToolKit
 import Presentr
 
+@available(iOS 14.0, *)
 class LXPresentrVC: LXBaseVC {
     // MARK: 📌UI
     lazy var alertController: AlertViewController = {
@@ -26,7 +27,7 @@ class LXPresentrVC: LXBaseVC {
     private lazy var btnShow: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
 
@@ -43,7 +44,7 @@ class LXPresentrVC: LXBaseVC {
     }()
     private lazy var btnPresentationType: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -88,7 +89,7 @@ class LXPresentrVC: LXBaseVC {
     }()
     private lazy var btnTransitionType: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -137,7 +138,7 @@ class LXPresentrVC: LXBaseVC {
     }()
     private lazy var btnDismissTransitionType: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -186,7 +187,7 @@ class LXPresentrVC: LXBaseVC {
     }()
     private lazy var btnDismissAnimated: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
@@ -225,7 +226,7 @@ class LXPresentrVC: LXBaseVC {
     private lazy var btnShowPresentr: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
 
@@ -281,14 +282,17 @@ class LXPresentrVC: LXBaseVC {
 }
 
 // MARK: 🌎LoadData
+@available(iOS 14.0, *)
 extension LXPresentrVC {
     func dataFill() {}
 }
 
 // MARK: 👀Public Actions
+@available(iOS 14.0, *)
 extension LXPresentrVC {}
 
 // MARK: 🔐Private Actions
+@available(iOS 14.0, *)
 private extension LXPresentrVC {
     func showPanelContentVC() {
         let vc = LXSampleListVC()
@@ -317,6 +321,7 @@ private extension LXPresentrVC {
 }
 
 // MARK: - 🍺UI Prepare & Masonry
+@available(iOS 14.0, *)
 private extension LXPresentrVC {
     func prepareUI() {
         self.view.backgroundColor = .XL.randomGolden

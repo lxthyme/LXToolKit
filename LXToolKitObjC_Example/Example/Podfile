@@ -9,6 +9,8 @@ install! 'cocoapods',
 target 'LXToolKitObjC_Example_Example' do
   pod 'LXToolKitObjC_Example', :path => '../'
   pod 'LXToolKitObjC', :path => '../../LXToolKitObjC'
+  pod 'DJRSwiftResource', :path => '../../DJRSwiftResource'
+  pod 'DJTestKit', :path => '../../DJTestKit'
 
   target 'LXToolKitObjC_Example_Tests' do
     inherit! :search_paths

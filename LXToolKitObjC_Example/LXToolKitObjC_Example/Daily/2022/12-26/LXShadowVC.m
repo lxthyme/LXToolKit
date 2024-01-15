@@ -10,7 +10,7 @@
 #import <LXToolKitObjC/UIColor+ex.h>
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
-#import "DJZitiRuleTipModel.h"
+#import "LXDJZitiRuleTipModel.h"
 
 @interface LXShadowVC() {
 }
@@ -82,13 +82,13 @@
             @"value": @"请在下单或指定自提最晚时间+24小时内完成自提，超时未取将取消订单，支付款将原路返回。"
         }]
     };
-    DJZitiRuleTipModel *model = [DJZitiRuleTipModel yy_modelWithJSON:data];
+    LXDJZitiRuleTipModel *model = [LXDJZitiRuleTipModel yy_modelWithJSON:data];
     __block NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc]init];
     // style.lineHeightMultiple = 1.5f;
     // style.paragraphSpacingBefore = 20.f;
-    [model.ruleLt enumerateObjectsUsingBlock:^(DJZitiRuleTipItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        // DJZitiRuleTipItemModel *item1 = data.ruleLt[idx];
+    [model.ruleLt enumerateObjectsUsingBlock:^(LXDJZitiRuleTipItemModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // LXDJZitiRuleTipItemModel *item1 = data.ruleLt[idx];
 
         UIFont *font1 = [UIFont boldSystemFontOfSize:kWPercentage(14)];
         style.lineSpacing = 10 - (font1.lineHeight - font1.pointSize);

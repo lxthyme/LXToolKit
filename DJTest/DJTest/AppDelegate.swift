@@ -7,6 +7,7 @@
 
 import UIKit
 import Flutter
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: FlutterAppDelegate {
@@ -15,8 +16,10 @@ class AppDelegate: FlutterAppDelegate {
         // Override point for customization after application launch.
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
+        DJRouter.registerApp(launchOptions)
+        IQKeyboardManager.shared.enable = true
         // FlutterManager.shared.register()
-        LibsManager2.shared.registerApp(launchOptions: launchOptions)
+        // GeneratedPluginRegistrant.register(with: flutterEngine)
         return true
     }
 

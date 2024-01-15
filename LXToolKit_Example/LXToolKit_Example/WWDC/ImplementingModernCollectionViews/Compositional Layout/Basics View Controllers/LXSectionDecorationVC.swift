@@ -45,18 +45,7 @@ class LXSectionDecorationVC: LXBaseVC {
         return cv
     }()
     // MARK: 🔗Vaiables
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, Int> = {
-        let cellRegistration = UICollectionView.CellRegistration<LXListCell, Int> { cell, indexPath, item in
-            let sectionIdentifier = self.currentSnapshot.sectionIdentifiers[indexPath.section]
-            let numberOfItemsInSection = self.currentSnapshot.numberOfItems(inSection: sectionIdentifier)
-            let isLastCell = indexPath.item + 1 == numberOfItemsInSection
-            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
-            cell.seperatorView.isHidden = isLastCell
-        }
-        return UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) { collectionView, indexPath, item in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
-        }
-    }()
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
     var currentSnapshot = NSDiffableDataSourceSnapshot<Int, Int>()
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
@@ -64,7 +53,7 @@ class LXSectionDecorationVC: LXBaseVC {
 
         // Do any additional setup after loading the view.
         prepareUI()
-        prepareSnapshot()
+        prepareCollectionView()
     }
 
 }
@@ -78,7 +67,21 @@ extension LXSectionDecorationVC {
 extension LXSectionDecorationVC {}
 
 // MARK: 🔐Private Actions
-private extension LXSectionDecorationVC {}
+@available(iOS 14.0, *)
+private extension LXSectionDecorationVC {
+    func generateDataSource() -> UICollectionViewDiffableDataSource<Int, Int> {
+        let cellRegistration = UICollectionView.CellRegistration<LXListCell, Int> { cell, indexPath, item in
+            let sectionIdentifier = self.currentSnapshot.sectionIdentifiers[indexPath.section]
+            let numberOfItemsInSection = self.currentSnapshot.numberOfItems(inSection: sectionIdentifier)
+            let isLastCell = indexPath.item + 1 == numberOfItemsInSection
+            cell.labTitle.text = "\(indexPath.section), \(indexPath.item)"
+            cell.seperatorView.isHidden = isLastCell
+        }
+        return UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) { collectionView, indexPath, item in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+    }
+}
 
 // MARK: - ✈️UICollectionViewDelegate
 extension LXSectionDecorationVC: UICollectionViewDelegate {
@@ -89,7 +92,10 @@ extension LXSectionDecorationVC: UICollectionViewDelegate {
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSectionDecorationVC {
-    func prepareSnapshot() {
+    func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
+            dataSource = generateDataSource()
+        }
         let itemsPerSection = 5
         let sections = Array(0..<5)
         var itemOffset = 0

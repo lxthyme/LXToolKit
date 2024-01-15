@@ -48,7 +48,7 @@ TODO: Add long description of the pod here.
   script_Rswift = <<-CMD
   rswift_path="$PODS_ROOT/R.swift/rswift"
   generated_path="#{Dir.pwd}/#{s.module_name}"
-  "${rswift_path}" generate --access-level public "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
+  #"${rswift_path}" generate --access-level public "${generated_path}/R.generated.swift" > "${generated_path}/rswift.log"
   CMD
   s.script_phase = {
     :name => "#{s.module_name}.R.swift",
@@ -78,5 +78,7 @@ TODO: Add long description of the pod here.
   s.dependency 'DJRSwiftResource'
   s.dependency 'DJTestKit'
   s.dependency 'CHTCollectionViewWaterfallLayout/ObjC'
+  s.dependency 'IGListKit'
+  s.dependency 'UICollectionViewLeftAlignedLayout'
   # s.dependency ''
 end

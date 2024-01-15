@@ -9,7 +9,7 @@ import LXToolKit
 import Flutter
 import LXFlutterKit
 
-class LXSingleVC: LXBaseFlutterVC {
+class LXSingleVC: LXFlutterVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
@@ -44,7 +44,7 @@ extension LXSingleVC {}
 extension LXSingleVC {
     func onCountUpdate(newCount: Int) {
         // if let channel = entrypoint.channel.channel {
-            self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: newCount)
+            self.channel.methodChannel?.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: newCount)
         // }
     }
 }
@@ -55,7 +55,7 @@ private extension LXSingleVC {}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSingleVC {
     func prepareFlutter() {
-        self.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count.value)
+        self.channel.methodChannel?.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: DataModel.shared.count.value)
         self.channel.registerMultiCounterMethodChannel()
 
         channel.extraChannelName = [.default]

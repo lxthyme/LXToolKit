@@ -176,7 +176,9 @@ extension NetworkingType {
                 request.httpShouldHandleCookies = false
                 closure(.success(request))
             } catch {
-                loggerKit.error(error)
+                if #available(iOS 14.0, *) {
+                    loggerKit.error(error)
+                }
             }
         }
     }

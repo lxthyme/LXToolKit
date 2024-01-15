@@ -8,6 +8,7 @@ import UIKit
 import LXToolKit
 import RxSwift
 import AlamofireImage
+import RxViewController
 
 class LXRxSwiftTestVC: LXBaseVC {
     // MARK: 📌UI
@@ -243,6 +244,43 @@ private extension LXRxSwiftTestVC {
         //     observer.onNext(5)
         // }
         // await tmp()
+    }
+    func testM5() {
+        var count = BehaviorRelay(value: 1)
+        count
+            // .take {[weak self] _ in
+            //     return self?.viewIfLoaded?.window != nil
+            // }
+            .filter {[weak self] _ in
+                return self?.isVisible ?? false
+            }
+        // 永远不发送任何事件
+        let observable4 = Observable.never()
+            .map { 1 }
+
+        observable4
+            .subscribe(onNext: { event in
+                print(event)
+            })
+            .disposed(by: rx.disposeBag)
+        // 只发送一个完成事件
+        let observable2 = Observable.empty()
+            .map { 1 }
+
+        observable2
+            .subscribe(onNext: { event in
+                print(event)
+            })
+            .disposed(by: rx.disposeBag)
+
+        Observable.empty()
+            .subscribe { ele in
+                // let a: Int = ele
+                print(ele)
+                // switch ele {
+                // case .n
+                // }
+            }
     }
 }
 

@@ -7,16 +7,18 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import <CTAppContext/CTAppContext.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DJRouter: NSObject {
 }
-
-+ (UIViewController *)gotoMain;
-
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions;
 
++ (void)toggleEnv;
++ (void)toggleEnvTo:(CTServiceAPIEnviroment)env;
++ (NSString *)getCurrentEnv;
+
++ (UIViewController *)getMain:(NSString *)storeCode storeType:(NSString *)storeType;
 @end
 
 NS_ASSUME_NONNULL_END

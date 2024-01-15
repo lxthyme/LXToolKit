@@ -57,7 +57,16 @@ internal extension LXToolKitRouter {
             }
         })),
         LXOutlineOpt.subitem(.section(title: "LXActionSheetVC"), scene: .vc(provider: { LXActionSheetVC() })),
-        LXOutlineOpt.subitem(.section(title: "LXPresentrVC"), scene: .vc(provider: { LXPresentrVC() })),
+        LXOutlineOpt.subitem(.section(title: "LXPresentrVC"), scene: .vc(provider: {
+            if #available(iOS 14.0, *) {
+                return LXPresentrVC()
+            } else {
+                // Fallback on earlier versions
+                let vc = LXSampleTextViewVC()
+                vc.dataFill(content: "LXPresentrVC")
+                return vc
+            }
+        })),
         LXOutlineOpt.subitem(.section(title: "LXFloatPanelVC"), scene: .vc(provider: { LXFloatPanelVC() })),
         LXOutlineOpt.subitem(.section(title: "LXSearchVC"), scene: .vc(provider: { LXSearchVC() })),
         LXOutlineOpt.subitem(.section(title: "LXSearchResultVC"), scene: .vc(provider: { LXSearchResultVC() })),

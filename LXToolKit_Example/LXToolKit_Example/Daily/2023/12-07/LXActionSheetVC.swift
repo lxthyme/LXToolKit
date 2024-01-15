@@ -12,7 +12,7 @@ class LXActionSheetVC: LXBaseVC {
     private lazy var btnShowActionSheet: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 5, vertical: 3)
+        btn.contentEdgeInsets = UIEdgeInsets(horizontal: 10, vertical: 6)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 8
 
@@ -20,9 +20,11 @@ class LXActionSheetVC: LXBaseVC {
         btn.setBackgroundColor(color: .XL.randomGolden, forState: .normal)
         btn.setBackgroundColor(color: .XL.randomGolden.withAlphaComponent(0.3), forState: .highlighted)
 
+        if #available(iOS 14.0, *) {
         btn.addAction(UIAction(handler: {[weak self] _ in
             self?.showActionSheet2()
         }), for: .touchUpInside)
+        }
 
         return btn
     }()
@@ -45,6 +47,7 @@ extension LXActionSheetVC {}
 
 // MARK: 🔐Private Actions
 private extension LXActionSheetVC {
+    @available(iOS 14.0, *)
     func showActionSheet() {
         let alert = UIAlertController(title: "tit\nle", message: "me\nss\nag\ne", preferredStyle: .actionSheet)
 

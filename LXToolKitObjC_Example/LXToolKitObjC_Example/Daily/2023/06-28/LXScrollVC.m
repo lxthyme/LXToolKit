@@ -8,14 +8,14 @@
 
 #import <Masonry/Masonry.h>
 #import "MyCollectionCell.h"
-#import "MainScrollView.h"
+#import "LXMainScrollView.h"
 
 @interface LXScrollVC()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout> {
 }
 @property(nonatomic, strong)UIControl *navView;
 @property(nonatomic, strong)UILabel *sectionView;
 @property(nonatomic, strong)UIView *wrapperView;
-@property(nonatomic, strong)MainScrollView *bgScrollView;
+@property(nonatomic, strong)LXMainScrollView *bgScrollView;
 @property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, strong)UICollectionView *collectionView;
 
@@ -237,9 +237,9 @@
     }
     return _wrapperView;
 }
-- (MainScrollView *)bgScrollView {
+- (LXMainScrollView *)bgScrollView {
     if(!_bgScrollView){
-        MainScrollView *sv = [[MainScrollView alloc]init];
+        LXMainScrollView *sv = [[LXMainScrollView alloc]init];
         sv.backgroundColor = [UIColor whiteColor];
         // sv.pagingEnabled = <#YES#>;
         // sv.bounds = <#YES#>;

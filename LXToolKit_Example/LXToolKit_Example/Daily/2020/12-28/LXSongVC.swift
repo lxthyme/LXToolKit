@@ -67,8 +67,6 @@ class LXSongVC: LXBaseVC {
         // v.mj_footer = footer
         if #available(iOS 13.0, *) {
             v.automaticallyAdjustsScrollIndicatorInsets = false
-        } else {
-            // Fallback on earlier versions
         }
         edgesForExtendedLayout = []
         automaticallyAdjustsScrollViewInsets = true

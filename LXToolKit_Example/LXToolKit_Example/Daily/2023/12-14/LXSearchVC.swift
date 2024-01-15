@@ -119,8 +119,10 @@ extension LXSearchVC {
             Product(title: ProductKind.BlueGardenia, yearIntroduced: dateFormatter.date(from: "2006")!, introPrice: 25.00, color: .blue)
         ]
 
+        if #available(iOS 14.0, *) {
         let snapshot = generateSnapshot()
         dataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
 }
 
@@ -218,6 +220,7 @@ extension LXSearchVC: UISearchBarDelegate {
 }
 
 // MARK: - 🔐
+@available(iOS 14.0, *)
 private extension LXSearchVC {
     func generateLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -273,8 +276,10 @@ private extension LXSearchVC {
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSearchVC {
     func prepareCollectionView() {
+        if #available(iOS 14.0, *) {
         collectionView = generateCollectionView()
         dataSource = generateDataSource()
+        }
         // let snapshot = generateSnapshot()
         // dataSource.apply(snapshot, animatingDifferences: true)
     }
