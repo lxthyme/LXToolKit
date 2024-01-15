@@ -55,13 +55,13 @@ void main() async {
     //   return true;
     // };
   }
-  // runApp(const GalleryApp());
+  runApp(const GalleryApp());
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
-  runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: login.LoginPage.sName),
-  ));
+  // runApp(ConfigWrapper(
+  //   config: EnvConfig.fromJson(config),
+  //   child: FlutterReduxApp(initialRoute: login.LoginPage.sName),
+  // ));
 }
 // ---------------------- GSY APP entry-point ----------------------
 @pragma('vm:entry-point')
