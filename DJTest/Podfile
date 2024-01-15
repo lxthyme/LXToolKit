@@ -10,10 +10,10 @@ $DaoJiaPath = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia'
 $DaoJiaPathFixed = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia.fixed'
 
 # $Flutter_disabled = true
-$flutter_source_import = true
+# $flutter_source_import = true
 # $Flutter_isDebug = true
 # $Flutter_isProfile = true
-# $Flutter_isRelease = true
+$Flutter_isRelease = true
 
 tips = ""
 if $Flutter_disabled
