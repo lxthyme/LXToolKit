@@ -30,6 +30,7 @@
 		BE3067D72AE7A53E00E9577C /* EmojiRangersWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BE3067D62AE7A53E00E9577C /* EmojiRangersWidget.intentdefinition */; };
 		BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BE3067D62AE7A53E00E9577C /* EmojiRangersWidget.intentdefinition */; };
 		BE3069A32AE7AC4200E9577C /* EmojiRangersWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BE3067D62AE7A53E00E9577C /* EmojiRangersWidget.intentdefinition */; };
+		BE41011F2B550D1600E260F7 /* LXFlutterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE41011E2B550D1600E260F7 /* LXFlutterVC.swift */; };
 		BE435AAF2AD794430076780C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE435AAE2AD794430076780C /* WidgetKit.framework */; };
 		BE435AB12AD794430076780C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE435AB02AD794430076780C /* SwiftUI.framework */; };
 		BE435AB42AD794440076780C /* LXToolKit_WidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB32AD794440076780C /* LXToolKit_WidgetBundle.swift */; };
@@ -160,6 +161,7 @@
 		BE3067D32AE7A05400E9577C /* EmojiRangersIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmojiRangersIntents.entitlements; sourceTree = "<group>"; };
 		BE3067D42AE7A29A00E9577C /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BE3067D62AE7A53E00E9577C /* EmojiRangersWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = EmojiRangersWidget.intentdefinition; sourceTree = "<group>"; };
+		BE41011E2B550D1600E260F7 /* LXFlutterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFlutterVC.swift; sourceTree = "<group>"; };
 		BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LXToolKit_WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE435AAE2AD794430076780C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		BE435AB02AD794430076780C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -430,6 +432,7 @@
 				BEB3855F2B3AEEFA00D14351 /* LXDoubleVC.swift */,
 				BEB3855D2B3AED7C00D14351 /* DataModel.swift */,
 				BE5267DA2B3F130200F1371C /* LXFlutterSampleVC.swift */,
+				BE41011E2B550D1600E260F7 /* LXFlutterVC.swift */,
 			);
 			path = Flutter_Ex;
 			sourceTree = "<group>";
@@ -540,11 +543,11 @@
 				BEE5A3382AB974FA003339EB /* Sources */,
 				BEE5A3392AB974FA003339EB /* Frameworks */,
 				BEE5A33A2AB974FA003339EB /* Resources */,
-				1D309D2AB8969FF1F0EBFABA /* [CP] Embed Pods Frameworks */,
 				BE435AC12AD794450076780C /* Embed Foundation Extensions */,
 				BE3067CE2AE79C4600E9577C /* Embed ExtensionKit Extensions */,
 				BE68A5F72AEBD92200267457 /* FirebaseCrashlytics */,
 				F30D86F4BFAE0AB0F883B584 /* [CP] Copy Pods Resources */,
+				EDE44A64A33561BAC21451C0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -631,21 +634,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1D309D2AB8969FF1F0EBFABA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJTest/Pods-DJTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6E689153D0C27833FBA34369 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -690,6 +678,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->4.1: \", ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->5.1: \", ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
+		};
+		EDE44A64A33561BAC21451C0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJTest/Pods-DJTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		F30D86F4BFAE0AB0F883B584 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -771,6 +774,7 @@
 				BE3067B72AE795ED00E9577C /* SuperCharge.swift in Sources */,
 				BE3067A52AE75AE600E9577C /* HealthLevelShape.swift in Sources */,
 				BE3067A82AE75D8C00E9577C /* ImageURLProtocol.swift in Sources */,
+				BE41011F2B550D1600E260F7 /* LXFlutterVC.swift in Sources */,
 				BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */,
 				BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */,
 				BE3067B92AE7980700E9577C /* EmojiRangerSelection.swift in Sources */,

@@ -18,8 +18,9 @@ open class LXBaseFlutterVC: FlutterViewController {
     // MARK: 🛠Life Cycle
     public required init(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented")}
     public init(with channel: FlutterManager.Channel) {
+        guard let engine = channel.engine else { fatalError("flutter engine can't be nil. -->enging: \(channel.engine)") }
         self.channel = channel
-        super.init(engine: channel.engine, nibName: nil, bundle: nil)
+        super.init(engine: engine, nibName: nil, bundle: nil)
     }
     open override func viewDidLoad() {
         super.viewDidLoad()

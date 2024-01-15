@@ -63,7 +63,7 @@ TODO: Add long description of the pod here.
   s.subspec 'Release' do |sub|
     sub.dependency 'LXFlutterKit/Core'
     sub.dependency 'Flutter'
-    sub.dependency 'FlutterSDK/Release'
+    # sub.dependency 'FlutterSDK/Release'
     # sub.dependency 'GSYSDK/Release'
   end
 end

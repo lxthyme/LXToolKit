@@ -19,6 +19,7 @@ class AppDelegate: FlutterAppDelegate {
         DJRouter.registerApp(launchOptions)
         IQKeyboardManager.shared.enable = true
         // FlutterManager.shared.register()
+        // GeneratedPluginRegistrant.register(with: flutterEngine)
         return true
     }
 

@@ -174,11 +174,11 @@ public struct DJTestRouter {
         .outline(.section(title: "GSY"), subitems: [
             .subitem(.section(title: "home"), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyHome, channelName: .default)
-                return vc
+                return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
             .subitem(.section(title: "login"), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyLogin, channelName: .default)
-                return vc
+                return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
         ]),
         .outline(.section(title: "Pages"), subitems: [

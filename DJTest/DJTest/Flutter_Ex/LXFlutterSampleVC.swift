@@ -13,7 +13,7 @@ extension FlutterManager.Channel {
     func registerMultiCounterMethodChannel() {
         guard case .multiCounter = channelName else { return }
         dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
-        methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+        methodChannel?.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             if call.method == LXFlutterMethod.MultiCounterScene.incrementCount.methodName {
@@ -30,7 +30,7 @@ extension FlutterManager.Channel {
     }
 }
 
-class LXFlutterSampleVC: LXBaseFlutterVC {
+class LXFlutterSampleVC: LXFlutterVC {
     // MARK: 📌UI
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
@@ -73,7 +73,7 @@ private extension LXFlutterSampleVC {
                     dlog("-->result[LXFlutterSampleVC]: \(result)")
                     switch result {
                     case .next(let count):
-                        self?.channel.methodChannel.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: count)
+                        self?.channel.methodChannel?.xl_invokeMethod(method: LXFlutterMethod.MultiCounterFlutterScene.setCount, with: count)
                     default: break
                     }
                 }

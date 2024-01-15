@@ -1,6 +1,7 @@
 source 'https://cdn.cocoapods.org'
 # source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
+$Flutter_disabled = false
 $flutter_source_import = false
 $Flutter_isDebug = false
 $Flutter_isProfile = false
@@ -8,13 +9,16 @@ $Flutter_isRelease = false
 $DaoJiaPath = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia'
 $DaoJiaPathFixed = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia.fixed'
 
+# $Flutter_disabled = true
 # $flutter_source_import=true
 # $Flutter_isDebug = true
 # $Flutter_isProfile = true
 $Flutter_isRelease = true
 
 tips = ""
-if $flutter_source_import
+if $Flutter_disabled
+  tips = 'disabled'
+elsif $flutter_source_import
   tips = "源码编译"
 elsif $Flutter_isDebug
   tips = "Debug"
@@ -113,7 +117,8 @@ def pod_flutter
   use_frameworks! :linkage => :dynamic
   ############ flutter_cookbook
   # print "-->configurations: #{configuration_env}"
-  if $flutter_source_import
+  if $Flutter_disabled
+  elsif $flutter_source_import
     install_all_flutter_pods(flutter_application_path)
     pod 'LXFlutterKit/Source', :path => '../LXFlutterKit'
   elsif $Flutter_isDebug

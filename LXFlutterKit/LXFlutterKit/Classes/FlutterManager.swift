@@ -7,7 +7,7 @@
 
 import Foundation
 import Flutter
-import FlutterPluginRegistrant
+// import FlutterPluginRegistrant
 import LXToolKit
 import Toast_Swift
 
@@ -64,13 +64,16 @@ extension FlutterManager {
         public var entrypoint: EntryPoint
         public var channelName: ChannelName
         private lazy var extraChannel: [FlutterMethodChannel] = {
+            guard let engine else { return [] }
             return extraChannelName.map { FlutterMethodChannel(name: $0.name, binaryMessenger: engine.binaryMessenger) }
         }()
         public var extraChannelName: [ChannelName] = []
-        public lazy var engine: FlutterEngine = {
-            return FlutterManager.shared.registerFromGroup(withEntryPoint: entrypoint.value)
-        }()
-        public lazy var methodChannel: FlutterMethodChannel = {
+        public var engine: FlutterEngine?
+        // public lazy var engine: FlutterEngine = {
+        //     return FlutterManager.shared.registerFromGroup(withEntryPoint: entrypoint.value)
+        // }()
+        public lazy var methodChannel: FlutterMethodChannel? = {
+            guard let engine else { return nil }
             return FlutterMethodChannel(name: channelName.name, binaryMessenger: engine.binaryMessenger)
         }()
 
@@ -99,8 +102,8 @@ public extension FlutterManager.Channel {
         dlog("-->channel: \(channelName.name)\tentrypoint: \(entrypoint.value ?? "nil")")
         registerDefaultMethodChannel(methodChannel: methodChannel)
     }
-    func registerDefaultMethodChannel(methodChannel: FlutterMethodChannel) {
-        methodChannel.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+    func registerDefaultMethodChannel(methodChannel: FlutterMethodChannel?) {
+        methodChannel?.setMethodCallHandler {[weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
             guard let self else { return }
             dlog("-->[Flutter]call: \(call.method)-\(String(describing: call.arguments))")
             guard let scene = LXFlutterMethod.DefaultScene.sceneFrom(title: call.method, arguments: call.arguments) else {
@@ -284,7 +287,7 @@ public extension LXFlutterMethod {
 
 open class FlutterManager {
     // MARK: 🔗Vaiables
-    static let shared = FlutterManager()
+    public static let shared = FlutterManager()
     public static let identifier = "com.lx.flutter_cookbook"
     fileprivate static let PrefixFlutter = "flutter_"
     fileprivate static let PrefixSwift = "swift_"
@@ -302,14 +305,14 @@ extension FlutterManager {
             CrashlyticsManager.record(error: FlutterrError.engineRunFailure)
             return
         }
-        GeneratedPluginRegistrant.register(with: flutterEngine)
+        // GeneratedPluginRegistrant.register(with: flutterEngine)
 
         self.flutterEngine = flutterEngine
         registerRouter()
     }
-    private func registerFromGroup(withEntryPoint entryPoint: String?) -> FlutterEngine {
+    public func registerFromGroup(withEntryPoint entryPoint: String?) -> FlutterEngine {
         let newEngine = flutterEngineGroup.makeEngine(withEntrypoint: entryPoint, libraryURI: nil)
-        GeneratedPluginRegistrant.register(with: newEngine)
+        // GeneratedPluginRegistrant.register(with: newEngine)
         return newEngine
     }
 }
