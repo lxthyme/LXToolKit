@@ -180,6 +180,10 @@ public struct DJTestRouter {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyLogin, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
+            .subitem(.section(title: "asset test"), scene: .vc(provider: {
+                let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyAssetTest, channelName: .default)
+                return DJTestRouter.createNav(rootVC: vc)
+            }, transition: .alert)),
         ]),
         .outline(.section(title: "Pages"), subitems: [
             .outline(.section(title: "Daily"), subitems: [

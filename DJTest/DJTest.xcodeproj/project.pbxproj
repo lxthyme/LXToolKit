@@ -540,6 +540,7 @@
 			buildConfigurationList = BEE5A3502AB974FB003339EB /* Build configuration list for PBXNativeTarget "DJTest" */;
 			buildPhases = (
 				6E689153D0C27833FBA34369 /* [CP] Check Pods Manifest.lock */,
+				E01413BC9015AD1D29F1D276 /* [CP-User] Run Flutter Build flutter_cookbook Script */,
 				BEE5A3382AB974FA003339EB /* Sources */,
 				BEE5A3392AB974FA003339EB /* Frameworks */,
 				BEE5A33A2AB974FA003339EB /* Resources */,
@@ -547,7 +548,7 @@
 				BE3067CE2AE79C4600E9577C /* Embed ExtensionKit Extensions */,
 				BE68A5F72AEBD92200267457 /* FirebaseCrashlytics */,
 				F30D86F4BFAE0AB0F883B584 /* [CP] Copy Pods Resources */,
-				EDE44A64A33561BAC21451C0 /* [CP] Embed Pods Frameworks */,
+				40B5EA6108E8C0A8A0D8D8FB /* [CP-User] Embed Flutter Build flutter_cookbook Script */,
 			);
 			buildRules = (
 			);
@@ -634,6 +635,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		40B5EA6108E8C0A8A0D8D8FB /* [CP-User] Embed Flutter Build flutter_cookbook Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Embed Flutter Build flutter_cookbook Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../flutter_cookbook/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh embed_and_thin";
+		};
 		6E689153D0C27833FBA34369 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,20 +690,15 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n\necho \"-->1: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\necho \"-->2: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}\necho \"-->3: \", ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\necho \"-->4: \", $(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist\necho \"-->4.1: \", ${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\necho \"-->5: \", $(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)\necho \"-->5.1: \", ${TARGET_BUILD_DIR}/${EXECUTABLE_PATH}\necho \"-->TARGET_BUILD_DIR: \", $TARGET_BUILD_DIR\necho \"-->UNLOCALIZED_RESOURCES_FOLDER_PATH: \", $UNLOCALIZED_RESOURCES_FOLDER_PATH\necho \"EXECUTABLE_PATH: \", $EXECUTABLE_PATH\n";
 		};
-		EDE44A64A33561BAC21451C0 /* [CP] Embed Pods Frameworks */ = {
+		E01413BC9015AD1D29F1D276 /* [CP-User] Run Flutter Build flutter_cookbook Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
+			name = "[CP-User] Run Flutter Build flutter_cookbook Script";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJTest/Pods-DJTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../flutter_cookbook/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
 		};
 		F30D86F4BFAE0AB0F883B584 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
