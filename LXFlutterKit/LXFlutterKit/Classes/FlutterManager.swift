@@ -45,6 +45,7 @@ extension FlutterManager {
 
         case gsyHome = "gsyHome"
         case gsyLogin = "gsyLogin"
+        case gsyAssetTest = "gsyAssetTest"
 
         public var value: String? {
             switch self {

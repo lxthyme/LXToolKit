@@ -32,9 +32,7 @@ import 'package:gsy_app/app.dart';
 import 'package:gsy_app/env/config_wrapper.dart';
 import 'package:gsy_app/env/dev.dart';
 import 'package:gsy_app/env/env_config.dart';
-import 'package:gsy_app/page/assets-test.dart';
-import 'package:gsy_app/page/home/home_page.dart';
-import 'package:gsy_app/page/login/login_page.dart' as login;
+import 'package:gsy_app/router.dart';
 
 void main() async {
   // runApp(const MyApp());
@@ -57,7 +55,10 @@ void main() async {
     // };
   }
   runApp(const GalleryApp());
-  // runApp(const AssetsTest());
+  // runApp(ConfigWrapper(
+  //   config: EnvConfig.fromJson(config),
+  //   child: FlutterReduxApp(initialRoute: RouterName.assetTest),
+  // ));
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
   // runApp(ConfigWrapper(
@@ -65,24 +66,30 @@ void main() async {
   //   child: FlutterReduxApp(initialRoute: login.LoginPage.sName),
   // ));
 }
+
 // ---------------------- GSY APP entry-point ----------------------
-@pragma('vm:entry-point')
-void assetsTestHome() {
-  return runApp(const AssetsTest());
-}
 @pragma('vm:entry-point')
 void gsyHome() {
   return runApp(ConfigWrapper(
-      config: EnvConfig.fromJson(config),
-      child: FlutterReduxApp(initialRoute: HomePage.sName),
-    ));
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.home),
+  ));
 }
+
 @pragma('vm:entry-point')
 void gsyLogin() {
   return runApp(ConfigWrapper(
-      config: EnvConfig.fromJson(config),
-      child: FlutterReduxApp(initialRoute: login.LoginPage.sName),
-    ));
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.login),
+  ));
+}
+
+@pragma('vm:entry-point')
+void gsyAssetTest() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.assetTest),
+  ));
 }
 // ---------------------- GSY APP entry-point「END」 ----------------------
 

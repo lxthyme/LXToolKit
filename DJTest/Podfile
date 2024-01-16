@@ -10,7 +10,7 @@ $DaoJiaPath = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia'
 $DaoJiaPathFixed = '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia.fixed'
 
 # $Flutter_disabled = true
-# $flutter_source_import=true
+# $flutter_source_import = true
 # $Flutter_isDebug = true
 # $Flutter_isProfile = true
 $Flutter_isRelease = true
@@ -60,13 +60,6 @@ workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
 plugin 'cocoapods-pod-linkage'
-
-if $flutter_source_import
-  $flutter_source_path="../flutter_cookbook"
-  $FLUTTER_BUILD_MODE = 'release'
-  flutter_application_path = $flutter_source_path
-  load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
-end
 
 # script_BuildVersionIncrement = <<-CMD
 # # Type a script or drag a script file from your workspace to insert its path.
@@ -119,7 +112,12 @@ def pod_flutter
   # print "-->configurations: #{configuration_env}"
   if $Flutter_disabled
   elsif $flutter_source_import
+    $flutter_source_path="../flutter_cookbook"
+    $FLUTTER_BUILD_MODE = 'release'
+    flutter_application_path = $flutter_source_path
+    load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
     install_all_flutter_pods(flutter_application_path)
+
     pod 'LXFlutterKit/Source', :path => '../LXFlutterKit'
   elsif $Flutter_isDebug
     pod 'Flutter', :podspec => '../3rd/flutter_cookbook/Debug'
@@ -442,7 +440,7 @@ static_frameworks = [
 'LXToolKitObjC', 'LXToolKitObjC_Example', 'IGListKit', 'UICollectionViewLeftAlignedLayout',
 'IGListDiffKit',
 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
-'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
+'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'FirebaseABTesting', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
 'Toast-Swift', 'RxSwiftExt',
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
