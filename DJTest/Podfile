@@ -215,7 +215,7 @@ target 'DJTest' do
   # pod 'MJRefresh', '3.1.12'#, :modular_headers => true
   # pod 'JXCategoryView', '1.3.12'#, :modular_headers => true
   # pod 'YYModel'#, :modular_headers => true
-  # pod 'Masonry'#, :modular_headers => true
+  pod 'Masonry'
 
     # pod 'SDWebImage'
     pod 'DZNEmptyDataSet'
@@ -446,6 +446,9 @@ static_frameworks = [
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
 'Masonry', 'MBProgressHUD',
 'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',
+'connectivity_plus', 'package_info_plus', 'path_provider_foundation', 'url_launcher_ios',
+'firebase_core', 'firebase_analytics', 'firebase_crashlytics', 'firebase_performance', 'FirebaseRemoteConfig', 'FirebaseSharedSwift', 'FirebasePerformance',
+'FMDB', 'ReachabilitySwift', 'device_info_plus', 'fluttertoast', 'permission_handler_apple', 'share_plus', 'shared_preferences_ios', 'sqflite', 'webview_flutter_wkwebview',
 ]
 pre_install do |installer|
   installer.pod_targets.each do |pod|

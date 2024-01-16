@@ -1,4 +1,0 @@
-[submodule "gsy_app"]
-	path = gsy_app
-	url = git@github.com:lxthyme/github_app_flutter.git
-	branch = main
