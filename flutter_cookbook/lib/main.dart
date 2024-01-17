@@ -57,7 +57,7 @@ void main() async {
   runApp(const GalleryApp());
   // runApp(ConfigWrapper(
   //   config: EnvConfig.fromJson(config),
-  //   child: FlutterReduxApp(initialRoute: RouterName.assetTest),
+  //   child: FlutterReduxApp(initialRoute: RouterName.login),
   // ));
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
