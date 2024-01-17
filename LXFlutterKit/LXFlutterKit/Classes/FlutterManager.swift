@@ -43,6 +43,7 @@ extension FlutterManager {
         case demo_cupertino_alert = "demo_cupertino_alert"
         case demo_two_pane = "demo_two_pane"
 
+        case gsyDefault = "gsyDefault"
         case gsyHome = "gsyHome"
         case gsyLogin = "gsyLogin"
         case gsyAssetTest = "gsyAssetTest"

@@ -69,6 +69,13 @@ void main() async {
 
 // ---------------------- GSY APP entry-point ----------------------
 @pragma('vm:entry-point')
+void gsyDefault() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.welcome),
+  ));
+}
+@pragma('vm:entry-point')
 void gsyHome() {
   return runApp(ConfigWrapper(
     config: EnvConfig.fromJson(config),

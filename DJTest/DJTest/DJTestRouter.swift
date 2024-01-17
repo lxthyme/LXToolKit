@@ -171,6 +171,10 @@ public struct DJTestRouter {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .galleryApp, channelName: .default)
             return vc
         }, transition: .alert)),
+        .subitem(.section(title: "GSY App"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyDefault, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
         .outline(.section(title: "GSY"), subitems: [
             .subitem(.section(title: "home"), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyHome, channelName: .default)
