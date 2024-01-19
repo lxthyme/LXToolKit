@@ -36,9 +36,9 @@ extension LXMacro {
 extension LXMacro {
     public enum BuildConfiguration {
         public enum Error: Swift.Error {
-            case missingKey, invalidValue
+            case missingKey, invalidValue(value: Any)
         }
-        static func value<T>(for key: String) throws -> T where T: LosslessStringConvertible {
+        static func value<T>(for key: String) throws -> T {
             guard let obj = Bundle.main.object(forInfoDictionaryKey: key) else {
                 throw Error.missingKey
             }
@@ -46,13 +46,14 @@ extension LXMacro {
             switch obj {
             case let value as T:
                 return value
-            case let string as String:
-                guard let value = T(string) else { fallthrough }
-                return value
-            default: throw Error.invalidValue
+            // case let value as String:
+            //     guard let value = T(value) else { fallthrough }
+            //     return value
+                // return T(value)
+            default: throw Error.invalidValue(value: obj)
             }
         }
-        public static subscript<T>(key: String) -> T where T: LosslessStringConvertible {
+        public static subscript<T>(key: String) -> T where T: AnyObject {
             get throws {
                 return try BuildConfiguration.value(for: key)
             }
@@ -72,6 +73,7 @@ extension LXMacro {
         case PRODUCT_BUNDLE_IDENTIFIER
         case PRODUCT_NAME
         case CURRENT_PROJECT_VERSION
+        case NSUserActivityTypes
         case custom(key: String)
 
         var key: String {
@@ -85,10 +87,11 @@ extension LXMacro {
             case .PRODUCT_BUNDLE_IDENTIFIER: return "PRODUCT_BUNDLE_IDENTIFIER"
             case .PRODUCT_NAME: return "PRODUCT_NAME"
             case .CURRENT_PROJECT_VERSION: return "CURRENT_PROJECT_VERSION"
+            case .NSUserActivityTypes: return "NSUserActivityTypes"
             case .custom(let key): return key
             }
         }
-        public static subscript<T>(key: InfoPlistKey) -> T where T: LosslessStringConvertible {
+        public static subscript<T>(key: InfoPlistKey) -> T {
             get throws {
                 return try BuildConfiguration.value(for: key.key)
             }
