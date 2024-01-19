@@ -149,7 +149,8 @@ extension LXSearchVC: SuggestedSearchDelegate {
         }
     }
     func didSelectProduct(product: Product) {
-        // let detailVC = 
+        let detailVC = LXSearchDetailVC.detailVC(from: product)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
@@ -272,6 +273,14 @@ private extension LXSearchVC {
         return snapshot
     }
 }
+
+// MARK: - ✈️UICollectionViewDelegate
+extension LXSearchVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
 
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSearchVC {
