@@ -67,15 +67,15 @@ extension LXOutlineParamCell {
         let subitems = mockList
             .map {[weak self] item in
                 let prefix = item.components(separatedBy: "/").first?.trimmed
-                if prefix?.isEmpty ?? false ||
-                    prefix == DJEnv.getCurrentEnv().rawValue {
-                    return UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
-                        self?.tfTextField.text = item
+                let isActionEnabled = (prefix?.isEmpty ?? false) || prefix == DJEnv.getCurrentEnv().rawValue
+                let action = UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
+                    if !isActionEnabled {
+                        return
                     }
-                } else {
-                    return UIAction(title: item, attributes: .disabled, state: self?.currentSelected == item ? .on : .off) { _ in
-                    }
+                    self?.tfTextField.text = item
                 }
+                action.attributes = isActionEnabled ? [] : .disabled
+                return action
             }
         if subitems.isNotEmpty {
             toggleBtnStyle(hasMenu: true)
