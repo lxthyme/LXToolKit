@@ -50,23 +50,31 @@ class LXOutlineParamCell: UICollectionViewListCell {
 // MARK: 🌎LoadData
 @available(iOS 14.0, *)
 extension LXOutlineParamCell {
-    func dataFill(title: String, placeholder: String?, defaultValue: String? = nil) {
+    func dataFill(title: String, placeholder: String?, mockList: [String]? = nil, defaultValue: String? = nil) {
         btnTitle.setTitle(title, for: .normal)
         tfTextField.placeholder = placeholder
-        tfTextField.text = defaultValue?.components(separatedBy: "/").first
+        tfTextField.text = defaultValue
+        currentSelected = defaultValue ?? ""
         if #available(iOS 15.0, *),
-           let defaultValue {
-            configBtn(title: title, defaultValue: defaultValue)
+           let mockList,
+           mockList.isNotEmpty {
+            configBtn(title: title, mockList: mockList)
         }
     }
     @available(iOS 15.0, *)
-    func configBtn(title: String, defaultValue: String) {
-        let menuList = defaultValue
-            .components(separatedBy: ",")
-        let subitems = menuList
+    func configBtn(title: String, mockList: [String]) {
+        let disabledAttributes = UIMenuElement.Attributes.disabled
+        let subitems = mockList
             .map {[weak self] item in
-                UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
-                    self?.tfTextField.text = item
+                let prefix = item.components(separatedBy: "/").first?.trimmed
+                if prefix?.isEmpty ?? false ||
+                    prefix == DJEnv.getCurrentEnv().rawValue {
+                    return UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
+                        self?.tfTextField.text = item
+                    }
+                } else {
+                    return UIAction(title: item, attributes: .disabled, state: self?.currentSelected == item ? .on : .off) { _ in
+                    }
                 }
             }
         if subitems.isNotEmpty {
@@ -74,9 +82,6 @@ extension LXOutlineParamCell {
             let opt: UIMenu.Options = .singleSelection
             btnTitle.showsMenuAsPrimaryAction = true
             btnTitle.menu = UIMenu(title: title, options: opt, children: subitems)
-
-            tfTextField.text = menuList.first
-            currentSelected = menuList.first ?? ""
         } else {
             toggleBtnStyle(hasMenu: false)
         }

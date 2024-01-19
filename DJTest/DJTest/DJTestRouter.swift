@@ -93,7 +93,7 @@ public struct DJTestRouter {
         })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
-        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv()))"), subitems: [
+        return .outline(.section(title: "DJBusinessModule(\(DJEnv.getCurrentEnv()))"), subitems: [
             .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
                 DJRouter.toggleEnv();
                 return nil
@@ -102,7 +102,7 @@ public struct DJTestRouter {
                 let vc = DJRouter.getMain("", storeType: "")
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
-            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, (sit)/007780/2020, (prd)/004517/2010, (prd)/003754/2010")),
+            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
         ])
     }
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [

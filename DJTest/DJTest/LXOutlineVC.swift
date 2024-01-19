@@ -252,7 +252,12 @@ private extension LXOutlineVC {
             // Populate the cell with our item description.
             // cell.label.text = "\(<#item#>)"
             let tmp = item.section.title.components(separatedBy: ":")
-            cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], defaultValue: tmp[safe: 2])
+            // let env = DJRouter.getCurrentEnv()
+            let mockList: [String]? = tmp[safe: 2]?
+                .components(separatedBy: ",")
+            let defaultValue = mockList?
+                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJEnv.getCurrentEnv().rawValue })
+            cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
             ]
