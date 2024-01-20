@@ -31,7 +31,7 @@ puts("-->当前模式: #{tips.red}")
 
 # use_frameworks!
 # use_frameworks! :linkage => :static
-use_frameworks! :linkage => :dynamic
+use_frameworks!# :linkage => :dynamic
 # use_modular_headers!
 # , :linkage => :static
 # , :linkage => :dynamic
@@ -59,7 +59,7 @@ end
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
-plugin 'cocoapods-pod-linkage'
+# plugin 'cocoapods-pod-linkage'
 
 # script_BuildVersionIncrement = <<-CMD
 # # Type a script or drag a script file from your workspace to insert its path.
@@ -68,7 +68,7 @@ plugin 'cocoapods-pod-linkage'
 # CMD
 
 def pod_LXToolKit
-  use_frameworks! :linkage => :dynamic
+  use_frameworks!# :linkage => :dynamic
 
   pod 'R.swift', '~> 7.0'
   # pod 'DJObjcModule', :path => '../DJObjcModule'
@@ -107,7 +107,7 @@ def pod_LXToolKit
 end
 
 def pod_flutter
-  use_frameworks! :linkage => :dynamic
+  use_frameworks!# :linkage => :dynamic
   ############ flutter_cookbook
   # print "-->configurations: #{configuration_env}"
   if $Flutter_disabled
@@ -152,7 +152,7 @@ def pod_flutter_installer(installer)
 end
 
 def pod_DJ
-  use_frameworks! :linkage => :static
+  use_frameworks!# :linkage => :static
 
   source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
