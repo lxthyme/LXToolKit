@@ -31,7 +31,7 @@ puts("-->当前模式: #{tips.red}")
 
 # use_frameworks!
 # use_frameworks! :linkage => :static
-use_frameworks! :linkage => :dynamic
+use_frameworks!# :linkage => :dynamic
 # use_modular_headers!
 # , :linkage => :static
 # , :linkage => :dynamic
@@ -59,7 +59,7 @@ end
 workspace 'DJTest.xcworkspace'
 project 'DJTest.xcodeproj'
 
-plugin 'cocoapods-pod-linkage'
+# plugin 'cocoapods-pod-linkage'
 
 # script_BuildVersionIncrement = <<-CMD
 # # Type a script or drag a script file from your workspace to insert its path.
@@ -68,7 +68,7 @@ plugin 'cocoapods-pod-linkage'
 # CMD
 
 def pod_LXToolKit
-  use_frameworks! :linkage => :dynamic
+  use_frameworks!# :linkage => :dynamic
 
   pod 'R.swift', '~> 7.0'
   # pod 'DJObjcModule', :path => '../DJObjcModule'
@@ -107,7 +107,7 @@ def pod_LXToolKit
 end
 
 def pod_flutter
-  use_frameworks! :linkage => :dynamic
+  use_frameworks!# :linkage => :dynamic
   ############ flutter_cookbook
   # print "-->configurations: #{configuration_env}"
   if $Flutter_disabled
@@ -152,7 +152,7 @@ def pod_flutter_installer(installer)
 end
 
 def pod_DJ
-  use_frameworks! :linkage => :static
+  use_frameworks!# :linkage => :static
 
   source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
@@ -389,10 +389,11 @@ end
 
 def fix_deployment_team(config)
   # config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-  # config.build_settings['VALID_ARCHS'] = '$(ARCHS_STANDARD) x86_64-apple-ios-simulator'
+  # config.build_settings['VALID_ARCHS'] = '$(ARCHS_STANDARD) x86_64 x86_64-apple-ios-simulator'
   # puts("VALID_ARCHS[2]: #{config.build_settings['VALID_ARCHS']}")
   config.build_settings['ENABLE_BITCODE'] = 'NO'
-  # config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64 x86_64'
+  # arm64 x86_64
+  config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
   config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
   config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
   # config.build_settings['DEVELOPMENT_TEAM'] = '6C6JHMW46K'
@@ -448,7 +449,12 @@ static_frameworks = [
 'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',
 'connectivity_plus', 'package_info_plus', 'path_provider_foundation', 'url_launcher_ios',
 'firebase_core', 'firebase_analytics', 'firebase_crashlytics', 'firebase_performance', 'FirebaseRemoteConfig', 'FirebaseSharedSwift', 'FirebasePerformance',
-'FMDB', 'ReachabilitySwift', 'device_info_plus', 'fluttertoast', 'permission_handler_apple', 'share_plus', 'shared_preferences_ios', 'sqflite', 'webview_flutter_wkwebview',
+# gsy_app
+'FMDB', 'ReachabilitySwift', 'device_info_plus', 'permission_handler_apple', 'share_plus', 'shared_preferences_ios', 'sqflite', 'webview_flutter_wkwebview',
+# FlutterUnit
+'DKPhotoGallery', 'DKImagePickerController', 'SwiftyGif', 'file_picker', 'r_upgrade', 'shared_preferences_foundation',
+'Flutter',
+# , 'fluttertoast'
 ]
 pre_install do |installer|
   installer.pod_targets.each do |pod|

@@ -100,7 +100,10 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
         }
         idx += 1
         if configuration.imageProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). imageProperties: \(configuration.imageProperties.desc)\n"
+            desc += """
+                    \(prefix)\(idx). imageProperties:
+                    \(configuration.imageProperties.desc)
+                    """
         }
         idx += 1
         if let text = configuration.text,
@@ -113,20 +116,36 @@ extension UIListContentConfiguration.Ex: CustomStringConvertible {
         }
         idx += 1
         if configuration.textProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). textProperties: \(configuration.textProperties.desc)\n"
+            desc += """
+
+                    \(prefix)\(idx). textProperties:
+                    \(configuration.textProperties.desc)
+                    """
         }
         idx += 1
         if let secondaryText = configuration.secondaryText,
            secondaryText.isNotEmpty {
-            desc += "\(prefix)\(idx). secondaryText: \(secondaryText)\n"
+            desc += """
+
+                    \(prefix)\(idx). secondaryText:
+                    \(secondaryText)
+                    """
         }
         idx += 1
         if let secondaryAttributedText = configuration.secondaryAttributedText {
-            desc += "\(prefix)\(idx). secondaryAttributedText: \(secondaryAttributedText.description)\n"
+            desc += """
+
+                    \(prefix)\(idx). secondaryAttributedText:
+                    \(secondaryAttributedText.description)
+                    """
         }
         idx += 1
         if configuration.secondaryTextProperties.desc.isNotEmpty {
-            desc += "\(prefix)\(idx). secondaryTextProperties: \(configuration.secondaryTextProperties.desc)\n"
+            desc += """
+
+                    \(prefix)\(idx). secondaryTextProperties:
+                    \(configuration.secondaryTextProperties.desc)
+                    """
         }
         idx += 1
         desc += "\(prefix)\(idx). axesPreservingSuperviewLayoutMargins: \(configuration.axesPreservingSuperviewLayoutMargins)\n"
@@ -415,7 +434,7 @@ extension UIListContentConfiguration.TextProperties {
 @available(iOS 14.0, *)
 extension UIListContentConfiguration.ImageProperties {
     public var desc: String {
-        var desc = "\n"
+        var desc = ""
         var idx = 1
         let prefix = "        "
         if let preferredSymbolConfiguration {
@@ -464,7 +483,7 @@ extension UIListSeparatorConfiguration {
             // Fallback on earlier versions
             "UnSupported"
         }
-        var desc = "\n"
+        var desc = ""
         let prefix = "    "
         var idx = 1
         desc += "\(prefix)\(idx). topSeparatorVisibility: \(topSeparatorVisibility)\n"

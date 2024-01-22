@@ -7,8 +7,8 @@
 
 import Foundation
 
-// struct Product: Codable {
-struct Product {
+struct Product: Codable {
+// struct Product {
     var title: String
     var yearIntroduced: Date
     var introPrice: Double
@@ -33,12 +33,31 @@ struct Product {
         return df
     }()
 
-    // init(title: String, yearIntroduced: Date, introPrice: Double, color: ColorKind) {
-    //     self.title = title
-    //     self.yearIntroduced = yearIntroduced
-    //     self.introPrice = introPrice
-    //     self.color = color
-    // }
+    init(title: String, yearIntroduced: Date, introPrice: Double, color: ColorKind) {
+        self.title = title
+        self.yearIntroduced = yearIntroduced
+        self.introPrice = introPrice
+        self.color = color
+    }
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(yearIntroduced, forKey: .yearIntroduced)
+        try container.encode(introPrice, forKey: .introPrice)
+        try container.encode(color.rawValue, forKey: .color)
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.yearIntroduced = try container.decode(Date.self, forKey: .yearIntroduced)
+        self.introPrice = try container.decode(Double.self, forKey: .introPrice)
+        let tmp = try container.decode(Int.self, forKey: .color)
+        if let color = Product.ColorKind(rawValue: tmp) {
+            self.color = color
+        } else {
+            self.color = .undedefined
+        }
+    }
 }
 
 // MARK: - 🔐

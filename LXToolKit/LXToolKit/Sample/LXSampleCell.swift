@@ -6,8 +6,8 @@
 //
 import UIKit
 
+@available(iOS 14.0, *)
 struct LXSampleBackgroundConfiguration {
-    @available(iOS 14.0, *)
     static func configuration(for state: UICellConfigurationState) -> UIBackgroundConfiguration {
         var background = UIBackgroundConfiguration.clear()
         background.cornerRadius = 10
@@ -36,13 +36,11 @@ public struct LXSampleItem {
 // MARK: - ✈️Hashable
 extension LXSampleItem: Hashable {}
 // MARK: - ✈️UIContentConfiguration
+@available(iOS 14.0, *)
 extension LXSampleItem: UIContentConfiguration {
-    @available(iOS 14.0, *)
     public func makeContentView() -> UIView & UIContentView {
         return LXSampleContentView(contentConfig: self)
     }
-
-    @available(iOS 14.0, *)
     public func updated(for state: UIConfigurationState) -> LXSampleItem {
         guard let state = state as? UICellConfigurationState else { return self }
         var updatedConfig = self
@@ -106,8 +104,8 @@ extension LXSampleContentView {
     }
 }
 // MARK: - ✈️UIContentView
+@available(iOS 14.0, *)
 extension LXSampleContentView: UIContentView {
-    @available(iOS 14.0, *)
     var configuration: UIContentConfiguration {
         get { appliedConfiguration }
         set {
@@ -139,19 +137,17 @@ private extension LXSampleContentView {
         }
     }
 }
+@available(iOS 14.0, *)
 class LXSampleCell: LXBaseCollectionCell {
     // MARK: 📌UI
     // required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     // MARK: 🔗Vaiables
     var item: LXSampleItem? {
         didSet {
-            if #available(iOS 14.0, *) {
             setNeedsUpdateConfiguration()
-            }
         }
     }
     // MARK: 🛠Life Cycle
-    @available(iOS 14.0, *)
     override func updateConfiguration(using state: UICellConfigurationState) {
         backgroundConfiguration = LXSampleBackgroundConfiguration.configuration(for: state)
 

@@ -93,7 +93,7 @@ public struct DJTestRouter {
         })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
-        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv()))"), subitems: [
+        return .outline(.section(title: "DJBusinessModule(\(DJEnv.getCurrentEnv()))"), subitems: [
             .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
                 DJRouter.toggleEnv();
                 return nil
@@ -102,7 +102,7 @@ public struct DJTestRouter {
                 let vc = DJRouter.getMain("", storeType: "")
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
-            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, (sit)/007780/2020, (prd)/004517/2010, (prd)/003754/2010")),
+            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
         ])
     }
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
@@ -171,7 +171,19 @@ public struct DJTestRouter {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .galleryApp, channelName: .default)
             return vc
         }, transition: .alert)),
-        .outline(.section(title: "GSY"), subitems: [
+        .subitem(.section(title: "GSY App"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyDefault, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
+        .subitem(.section(title: "entry point switch"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .switch, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
+        .subitem(.section(title: "FlutterUnit"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .flutterUnit, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
+        .outline(.section(title: "GSY Pages"), subitems: [
             .subitem(.section(title: "home"), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyHome, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
@@ -185,7 +197,7 @@ public struct DJTestRouter {
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
         ]),
-        .outline(.section(title: "Pages"), subitems: [
+        .outline(.section(title: "Gallery Pages"), subitems: [
             .outline(.section(title: "Daily"), subitems: [
                 .subitem(.section(title: "MyScaffold"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyScaffold, channelName: .default)

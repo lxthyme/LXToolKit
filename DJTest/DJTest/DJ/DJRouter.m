@@ -70,25 +70,9 @@
 + (void)toggleEnvTo:(CTServiceAPIEnviroment)env {
     [CTAppContext sharedInstance].apiEnviroment = env;
 }
-+ (NSString *)getCurrentEnv {
-    NSString *title = @"";
++ (CTServiceAPIEnviroment)getCurrentEnv {
     CTAppContext *ctx = [CTAppContext sharedInstance];
-    switch (ctx.apiEnviroment) {
-    case CTServiceAPIEnviromentDevelop: {
-        title =  @"Debug";
-    } break;
-    case CTServiceAPIEnviromentRelease: {
-        title =  @"Prd";
-    } break;
-    case CTServiceAPIEnviromentPreRelease: {
-        title =  @"Gray";
-    } break;
-    case CTServiceAPIEnviromentNotSetted: {
-        title = @"NotSetted";
-        break;
-    }
-    }
-    return title;
+    return ctx.apiEnviroment;
 }
 + (UIViewController *)getMain:(NSString *)storeCode
                     storeType:(NSString *)storeType {

@@ -31,3 +31,23 @@
 - [ ] pages/settings_list_item.dart
 - [ ] demos/
 - [ ] studies/
+
+## plist[debug]
+
+```plist
+<key>NSLocalNetworkUsageDescription</key>
+<string>local network tips</string>
+<key>NSLocalNetworkUsageDescription</key>
+  <string>local network usage</string>
+<key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
+ </dict>
+<key>NSBonjourServices</key>
+  <array>
+    <string>_dartVmService._tcp</string>
+  </array>
+```
