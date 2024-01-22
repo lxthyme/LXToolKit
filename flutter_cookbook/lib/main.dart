@@ -21,6 +21,7 @@ import 'package:flutter_cookbook/routers/demos.cupertino.dart';
 import 'package:flutter_cookbook/routers/demos.daily.dart';
 import 'package:flutter_cookbook/routers/demos.material.dart';
 import 'package:flutter_cookbook/routers/demos.others.dart';
+import 'package:flutter_cookbook/switch_entrypoint_page.dart';
 // import 'package:flutter_cookbook/router.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
@@ -54,11 +55,8 @@ void main() async {
     //   return true;
     // };
   }
-  runApp(const GalleryApp());
-  // runApp(ConfigWrapper(
-  //   config: EnvConfig.fromJson(config),
-  //   child: FlutterReduxApp(initialRoute: RouterName.login),
-  // ));
+  // runApp(const GalleryApp());
+  runApp(const AppTemplate(widget: SwitchEntryPointPage()));
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
   // runApp(ConfigWrapper(
@@ -67,38 +65,38 @@ void main() async {
   // ));
 }
 
-// ---------------------- GSY APP entry-point ----------------------
-@pragma('vm:entry-point')
-void gsyDefault() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.welcome),
-  ));
-}
-@pragma('vm:entry-point')
-void gsyHome() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.home),
-  ));
-}
+// // ---------------------- GSY APP entry-point ----------------------
+// @pragma('vm:entry-point')
+// void gsyDefault() {
+//   return runApp(ConfigWrapper(
+//     config: EnvConfig.fromJson(config),
+//     child: FlutterReduxApp(initialRoute: RouterName.welcome),
+//   ));
+// }
+// @pragma('vm:entry-point')
+// void gsyHome() {
+//   return runApp(ConfigWrapper(
+//     config: EnvConfig.fromJson(config),
+//     child: FlutterReduxApp(initialRoute: RouterName.home),
+//   ));
+// }
 
-@pragma('vm:entry-point')
-void gsyLogin() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.login),
-  ));
-}
+// @pragma('vm:entry-point')
+// void gsyLogin() {
+//   return runApp(ConfigWrapper(
+//     config: EnvConfig.fromJson(config),
+//     child: FlutterReduxApp(initialRoute: RouterName.login),
+//   ));
+// }
 
-@pragma('vm:entry-point')
-void gsyAssetTest() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.assetTest),
-  ));
-}
-// ---------------------- GSY APP entry-point「END」 ----------------------
+// @pragma('vm:entry-point')
+// void gsyAssetTest() {
+//   return runApp(ConfigWrapper(
+//     config: EnvConfig.fromJson(config),
+//     child: FlutterReduxApp(initialRoute: RouterName.assetTest),
+//   ));
+// }
+// // ---------------------- GSY APP entry-point「END」 ----------------------
 
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
