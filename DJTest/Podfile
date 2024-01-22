@@ -449,7 +449,12 @@ static_frameworks = [
 'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',
 'connectivity_plus', 'package_info_plus', 'path_provider_foundation', 'url_launcher_ios',
 'firebase_core', 'firebase_analytics', 'firebase_crashlytics', 'firebase_performance', 'FirebaseRemoteConfig', 'FirebaseSharedSwift', 'FirebasePerformance',
-'FMDB', 'ReachabilitySwift', 'device_info_plus', 'fluttertoast', 'permission_handler_apple', 'share_plus', 'shared_preferences_ios', 'sqflite', 'webview_flutter_wkwebview',
+# gsy_app
+'FMDB', 'ReachabilitySwift', 'device_info_plus', 'permission_handler_apple', 'share_plus', 'shared_preferences_ios', 'sqflite', 'webview_flutter_wkwebview',
+# FlutterUnit
+'DKPhotoGallery', 'DKImagePickerController', 'SwiftyGif', 'file_picker', 'r_upgrade', 'shared_preferences_foundation',
+'Flutter',
+# , 'fluttertoast'
 ]
 pre_install do |installer|
   installer.pod_targets.each do |pod|

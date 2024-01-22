@@ -48,6 +48,9 @@ extension FlutterManager {
         case gsyLogin = "gsyLogin"
         case gsyAssetTest = "gsyAssetTest"
 
+        case `switch` = "entrypointSwitch"
+        case flutterUnit = "entrypointFlutterUnit"
+
         public var value: String? {
             switch self {
             case .default: return nil

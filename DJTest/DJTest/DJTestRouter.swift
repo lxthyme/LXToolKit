@@ -175,7 +175,15 @@ public struct DJTestRouter {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyDefault, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .outline(.section(title: "GSY"), subitems: [
+        .subitem(.section(title: "entry point switch"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .switch, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
+        .subitem(.section(title: "FlutterUnit"), scene: .vc(provider: {
+            let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .flutterUnit, channelName: .default)
+            return DJTestRouter.createNav(rootVC: vc)
+        }, transition: .alert)),
+        .outline(.section(title: "GSY Pages"), subitems: [
             .subitem(.section(title: "home"), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyHome, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
@@ -189,7 +197,7 @@ public struct DJTestRouter {
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
         ]),
-        .outline(.section(title: "Pages"), subitems: [
+        .outline(.section(title: "Gallery Pages"), subitems: [
             .outline(.section(title: "Daily"), subitems: [
                 .subitem(.section(title: "MyScaffold"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyScaffold, channelName: .default)

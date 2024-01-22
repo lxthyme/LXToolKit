@@ -31,13 +31,16 @@ dependencies:
     sdk: flutter
 
   gsy_app:
-    # publish_to: none
-    path: ./gsy_app
+    path: gsy_app
+  flutter_unit:
+    path: packages/flutter_unit
+  app:
+    path: packages/flutter_unit/packages/app
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.4
-  go_router: ^10.0.0
+  go_router: ^12.0.0
   flutter_localizations:
     sdk: flutter
   flutter_localized_locales: ^2.0.4
@@ -182,6 +185,7 @@ flutter:
   #
   assets:
     # - packages/gsy_app/static/
+    # - packages/flutter_unit/assets/app/iconfont/toly_icon.dart
     - gsy_app/static/font/iconfont.ttf
     - gsy_app/static/font/google_kavivanar.ttf
     - packages/flutter_gallery_assets/assets/studies/shrine_card_dark.png

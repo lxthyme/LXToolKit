@@ -2,7 +2,3 @@
 	path = flutter_cookbook/gsy_app
 	url = git@github.com:lxthyme/github_app_flutter.git
 	branch = main
-[submodule "flutter_cookbook/packages/flutter_unit"]
-	path = flutter_cookbook/packages/flutter_unit
-	url = git@github.com:toly1994328/FlutterUnit.git
-	branch = master
