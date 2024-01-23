@@ -1,13 +1,18 @@
+import 'package:app/app.dart';
 import 'package:dual_screen/dual_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/hw3.dart';
 import 'package:flutter_cookbook/daily/widgets-intro/multiCounter.dart';
 import 'package:flutter_cookbook/gallery/constants.dart';
 import 'package:flutter_cookbook/gallery/data/gallery_options.dart';
+import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/deferred_widget.dart';
 // import 'package:flutter_cookbook/gallery/firebase_options.dart';
 // import 'package:flutter_cookbook/gallery/galleryRoot.dart';
@@ -25,6 +30,8 @@ import 'package:flutter_cookbook/switch_entrypoint_page.dart';
 // import 'package:flutter_cookbook/router.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
+import 'package:flutter_unit/app/bloc_wrapper.dart';
+import 'package:flutter_unit/app/flutter_unit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:go_router/go_router.dart';
@@ -44,16 +51,16 @@ void main() async {
       defaultTargetPlatform != TargetPlatform.windows &&
       defaultTargetPlatform != TargetPlatform.macOS) {
     WidgetsFlutterBinding.ensureInitialized();
-    // await Firebase.initializeApp(
-    //   options: DefaultFirebaseOptions.currentPlatform,
-    // );
-    // FlutterError.onError = (details) {
-    //   FirebaseCrashlytics.instance.recordFlutterFatalError(details);
-    // };
-    // PlatformDispatcher.instance.onError = (exception, stackTrace) {
-    //   FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
-    //   return true;
-    // };
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    FlutterError.onError = (details) {
+      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+    };
+    PlatformDispatcher.instance.onError = (exception, stackTrace) {
+      FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
+      return true;
+    };
   }
   // runApp(const GalleryApp());
   runApp(const AppTemplate(widget: SwitchEntryPointPage()));
@@ -65,39 +72,55 @@ void main() async {
   // ));
 }
 
-// // ---------------------- GSY APP entry-point ----------------------
-// @pragma('vm:entry-point')
-// void gsyDefault() {
-//   return runApp(ConfigWrapper(
-//     config: EnvConfig.fromJson(config),
-//     child: FlutterReduxApp(initialRoute: RouterName.welcome),
-//   ));
-// }
-// @pragma('vm:entry-point')
-// void gsyHome() {
-//   return runApp(ConfigWrapper(
-//     config: EnvConfig.fromJson(config),
-//     child: FlutterReduxApp(initialRoute: RouterName.home),
-//   ));
-// }
+// ---------------------- FlutterUnit entry-point ----------------------
+@pragma('vm:entry-point')
+void entrypointFlutterUnit() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //滚动性能优化 1.22.0
+  GestureBinding.instance.resamplingEnabled = true;
+  WindowsAdapter.setSize();
+  return runApp( BlocWrapper(child: FlutterUnit3()));
+}
+// ---------------------- FlutterUnit entry-point「END」 ----------------------
 
-// @pragma('vm:entry-point')
-// void gsyLogin() {
-//   return runApp(ConfigWrapper(
-//     config: EnvConfig.fromJson(config),
-//     child: FlutterReduxApp(initialRoute: RouterName.login),
-//   ));
-// }
+// ---------------------- GSY APP entry-point ----------------------
+@pragma('vm:entry-point')
+void gsyDefault() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.welcome),
+  ));
+}
+@pragma('vm:entry-point')
+void gsyHome() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.home),
+  ));
+}
 
-// @pragma('vm:entry-point')
-// void gsyAssetTest() {
-//   return runApp(ConfigWrapper(
-//     config: EnvConfig.fromJson(config),
-//     child: FlutterReduxApp(initialRoute: RouterName.assetTest),
-//   ));
-// }
-// // ---------------------- GSY APP entry-point「END」 ----------------------
+@pragma('vm:entry-point')
+void gsyLogin() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.login),
+  ));
+}
 
+@pragma('vm:entry-point')
+void gsyAssetTest() {
+  return runApp(ConfigWrapper(
+    config: EnvConfig.fromJson(config),
+    child: FlutterReduxApp(initialRoute: RouterName.assetTest),
+  ));
+}
+// ---------------------- GSY APP entry-point「END」 ----------------------
+
+// ---------------------- Gallery entry-point ----------------------
+@pragma('vm:entry-point')
+void entrypointSwitch() {
+  return runApp(const AppTemplate(widget: SwitchEntryPointPage()));
+}
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
@@ -177,7 +200,7 @@ void demo_two_pane() => runApp(AppTemplate(
         slug: DemosOthers.demoTwoPane.slug,
       ),
     ));
-
+// ---------------------- Gallery entry-point「END」 ----------------------
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
