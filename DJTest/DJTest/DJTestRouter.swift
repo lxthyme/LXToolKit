@@ -165,11 +165,11 @@ public struct DJTestRouter {
         // }, transition: .alert)),
         .subitem(.section(title: "default entrypoint"), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .default, channelName: .default)
-            return vc
+            return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
         .subitem(.section(title: "Gallery App"), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .galleryApp, channelName: .default)
-            return vc
+            return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
         .subitem(.section(title: "GSY App"), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyDefault, channelName: .default)
@@ -201,46 +201,46 @@ public struct DJTestRouter {
             .outline(.section(title: "Daily"), subitems: [
                 .subitem(.section(title: "MyScaffold"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyScaffold, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
                 .subitem(.section(title: "TutorialHome"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_TutorialHome, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
                 .subitem(.section(title: "MyButton"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyButton, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
                 .subitem(.section(title: "Counter"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_Counter, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
                 .subitem(.section(title: "Multi Counter"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MultiCounter, channelName: .multiCounter)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
             ]),
             .outline(.section(title: "Material"), subitems: [
                 .subitem(.section(title: "应用栏"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_app_bar, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
             ]),
             .outline(.section(title: "Cupertino"), subitems: [
                 .subitem(.section(title: "活动指示器"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_cupertino_activity_indicator, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
                 .subitem(.section(title: "提醒"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_cupertino_alert, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
             ]),
             .outline(.section(title: "样式演示和其他演示"), subitems: [
-                .subitem(.section(title: " TwoPane"), scene: .vc(provider: {
+                .subitem(.section(title: "TwoPane"), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_two_pane, channelName: .default)
-                    return vc
-                })),
+                    return DJTestRouter.createNav(rootVC: vc)
+                }, transition: .alert)),
             ]),
         ]),
     ])
