@@ -10,56 +10,6 @@ import 'package:gsy_app/env/dev.dart';
 import 'package:gsy_app/env/env_config.dart';
 import 'package:gsy_app/router.dart';
 
-// ---------------------- entry-point ----------------------
-@pragma('vm:entry-point')
-void entrypointSwitch() {
-  return runApp(const AppTemplate(widget: SwitchEntryPointPage()));
-}
-// ---------------------- entry-point「END」 ----------------------
-// ---------------------- GSY APP entry-point ----------------------
-@pragma('vm:entry-point')
-void gsyDefault() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.welcome),
-  ));
-}
-@pragma('vm:entry-point')
-void gsyHome() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.home),
-  ));
-}
-
-@pragma('vm:entry-point')
-void gsyLogin() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.login),
-  ));
-}
-
-@pragma('vm:entry-point')
-void gsyAssetTest() {
-  return runApp(ConfigWrapper(
-    config: EnvConfig.fromJson(config),
-    child: FlutterReduxApp(initialRoute: RouterName.assetTest),
-  ));
-}
-// ---------------------- GSY APP entry-point「END」 ----------------------
-
-// ---------------------- FlutterUnit entry-point ----------------------
-@pragma('vm:entry-point')
-void entrypointFlutterUnit() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //滚动性能优化 1.22.0
-  GestureBinding.instance.resamplingEnabled = true;
-  WindowsAdapter.setSize();
-  return runApp( BlocWrapper(child: FlutterUnit3()));
-}
-// ---------------------- FlutterUnit entry-point「END」 ----------------------
-
 class SwitchEntryPointPage extends StatelessWidget {
   const SwitchEntryPointPage({super.key});
 
