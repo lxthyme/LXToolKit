@@ -140,7 +140,6 @@ def pod_flutter_installer(installer)
   if $flutter_source_import
     flutter_post_install(installer) if defined?(flutter_post_install)
     installer.pods_project.targets.each do |target|
-      puts("-->flutter target: #{target.name}")
       flutter_additional_ios_build_settings(target)
     end
     installer.generated_projects.each do |project|
@@ -236,6 +235,10 @@ post_install do |installer|
   idx1=0
   idx2=0
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+  list = installer.pods_project.targets.map{ |item| item.name }
+  puts("
+-->[pods_project[#{list.size}]:  #{list.join(', ').red}
+")
   # installer.pods_project.targets.each do |target|
   #   idx1+=1
   #   puts("-->[1-#{idx1}]:  #{target.name.red}")
@@ -244,11 +247,15 @@ post_install do |installer|
   #     generateConfig(target, config, project_deployment_version)
   #   end
   # end
+  list = installer.generated_projects.map{ |project| project.targets.flat_map{ |item| item.name } }.flatten()
+  puts("
+-->[generated_projects[#{list.size}]:  #{list.join(', ').red}
+")
   installer.generated_projects.each do |project|
     # puts(">>>project.build_configurations.first.build_settings: #{project.build_configurations.first.build_settings}")
     project.targets.each do |target|
-      idx2+=1
-      puts("-->[2-#{idx2}]:  #{target.name.red}")
+      # idx2+=1
+      # puts("-->[2-#{idx2}]:  #{target.name.red}")
       # puts("-->[2-#{idx2}]:  #{target.name.red}	#{target.build_configurations}")
       target.build_configurations.each do |config|
         generateConfig(target, config, project_deployment_version)
