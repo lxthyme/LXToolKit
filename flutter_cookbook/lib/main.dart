@@ -62,8 +62,8 @@ void main() async {
       return true;
     };
   }
-  // runApp(const GalleryApp());
-  runApp(const AppTemplate(widget: SwitchEntryPointPage()));
+  runApp(const GalleryApp());
+  // runApp(const AppTemplate(widget: SwitchEntryPointPage()));
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
   // runApp(ConfigWrapper(
