@@ -51,16 +51,20 @@ void main() async {
       defaultTargetPlatform != TargetPlatform.windows &&
       defaultTargetPlatform != TargetPlatform.macOS) {
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    FlutterError.onError = (details) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
-    };
-    PlatformDispatcher.instance.onError = (exception, stackTrace) {
-      FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
-      return true;
-    };
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      FlutterError.onError = (details) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+      };
+      PlatformDispatcher.instance.onError = (exception, stackTrace) {
+        FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
+        return true;
+      };
+    } catch (e) {
+      debugPrint('-->Firebase.instance error: $e');
+    }
   }
   runApp(const GalleryApp());
   // runApp(const AppTemplate(widget: SwitchEntryPointPage()));
