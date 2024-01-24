@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
 
   gsy_app:
-    path: gsy_app
+    path: packages/gsy_app
   flutter_unit:
     path: packages/flutter_unit
   app:
@@ -166,12 +166,12 @@ flutter:
     - family: GalleryIcons
       fonts:
         - asset: packages/flutter_gallery_assets/fonts/GalleryIcons.ttf
-    - family: wxcIconFont
-      fonts:
-        - asset: gsy_app/static/font/iconfont.ttf
-    - family: google_kavivanar
-      fonts:
-        - asset: gsy_app/static/font/google_kavivanar.ttf
+    # - family: wxcIconFont
+    #   fonts:
+    #     - asset: gsy_app/static/font/iconfont.ttf
+    # - family: google_kavivanar
+    #   fonts:
+    #     - asset: gsy_app/static/font/google_kavivanar.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
@@ -186,8 +186,8 @@ flutter:
   assets:
     # - packages/gsy_app/static/
     # - packages/flutter_unit/assets/app/iconfont/toly_icon.dart
-    - gsy_app/static/font/iconfont.ttf
-    - gsy_app/static/font/google_kavivanar.ttf
+    # - gsy_app/static/font/iconfont.ttf
+    # - gsy_app/static/font/google_kavivanar.ttf
     - packages/flutter_gallery_assets/assets/studies/shrine_card_dark.png
     - packages/flutter_gallery_assets/assets/studies/starter_card.png
     - packages/flutter_gallery_assets/assets/studies/starter_card_dark.png
