@@ -37,34 +37,32 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
   end
-  idx1=0
-  idx2=0
+  list = installer.pods_project.targets.map{ |item| item.name }
+  puts("
+-->[pods_project[#{list.size}]:  #{list.join(', ').red}
+")
   installer.pods_project.targets.each do |target|
-    idx1+=1
-    puts("-->[1-#{idx1}]:  #{target.name.red}")
-    # puts(">>>[1-#{idx1}]:  #{target.name.red}\t#{target.build_configurations}")
     target.build_configurations.each do |config|
       generateConfig(target, config)
     end
   end
+  list = installer.generated_projects.map{ |project| project.targets.flat_map{ |item| item.name } }.flatten()
+  puts("
+-->[generated_projects[#{list.size}]:  #{list.join(', ').red}
+")
   installer.generated_projects.each do |project|
     project.targets.each do |target|
-      idx2+=1
-      puts("-->[2-#{idx2}]:  #{target.name.red}")
-      # puts(">>>[2-#{idx2}]:  #{target.name.red}\t#{target.build_configurations}")
       target.build_configurations.each do |config|
         generateConfig(target, config)
       end
     end
     # project.build_configurations.each do |bc|
-    #   puts(">>>[3]: #{bc}")
     #   # generateConfig(target, bc)
     # end
   end
 end
 
 def generateConfig(target, config)
-  puts("  -->#{target} #{config}:")
   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
   # config.build_settings['DEVELOPMENT_TEAM'] = '6C6JHMW46K'
   # config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
