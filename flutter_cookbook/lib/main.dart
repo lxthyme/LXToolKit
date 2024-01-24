@@ -79,7 +79,7 @@ void entrypointFlutterUnit() {
   //滚动性能优化 1.22.0
   GestureBinding.instance.resamplingEnabled = true;
   WindowsAdapter.setSize();
-  return runApp( BlocWrapper(child: FlutterUnit3()));
+  return runApp(BlocWrapper(child: FlutterUnit3()));
 }
 // ---------------------- FlutterUnit entry-point「END」 ----------------------
 
@@ -91,6 +91,7 @@ void gsyDefault() {
     child: FlutterReduxApp(initialRoute: RouterName.welcome),
   ));
 }
+
 @pragma('vm:entry-point')
 void gsyHome() {
   return runApp(ConfigWrapper(
@@ -121,6 +122,7 @@ void gsyAssetTest() {
 void entrypointSwitch() {
   return runApp(const AppTemplate(widget: SwitchEntryPointPage()));
 }
+
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
@@ -200,6 +202,7 @@ void demo_two_pane() => runApp(AppTemplate(
         slug: DemosOthers.demoTwoPane.slug,
       ),
     ));
+
 // ---------------------- Gallery entry-point「END」 ----------------------
 class MyApp extends StatelessWidget {
   const MyApp({

@@ -46,6 +46,8 @@
         <string>com.example.apple-samplecode.SuggestedSearch.mainRestored</string>
         <string>com.example.apple-samplecode.SuggestedSearch.detailRestored</string>
     </array>
+    <key>FLTEnableImpeller</key>
+    <false />
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
