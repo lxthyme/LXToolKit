@@ -233,21 +233,23 @@ end
 post_install do |installer|
   pod_flutter_installer(installer)
 
+  idx1=0
+  idx2=0
   project_deployment_version = installer.pods_project.build_configurations.first.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
   # installer.pods_project.targets.each do |target|
-  #   puts(">>>[1]: #{target.name.red}")
-  #   puts(">>>[1]:  #{target}	#{target.build_configurations}")
+  #   idx1+=1
+  #   puts("-->[1-#{idx1}]:  #{target.name.red}")
+  #   puts("-->[1-#{idx1}]:  #{target.name.red}	#{target.build_configurations}")
   #   target.build_configurations.each do |config|
   #     generateConfig(target, config, project_deployment_version)
   #   end
   # end
-  idx=0
   installer.generated_projects.each do |project|
     # puts(">>>project.build_configurations.first.build_settings: #{project.build_configurations.first.build_settings}")
     project.targets.each do |target|
-      idx+=1
-      # puts(">>>[2-#{idx}]:  #{target.name.red}")
-      # puts(">>>[2-#{idx}]:  #{target}	#{target.build_configurations}")
+      idx2+=1
+      puts("-->[2-#{idx2}]:  #{target.name.red}")
+      # puts("-->[2-#{idx2}]:  #{target.name.red}	#{target.build_configurations}")
       target.build_configurations.each do |config|
         generateConfig(target, config, project_deployment_version)
       end
