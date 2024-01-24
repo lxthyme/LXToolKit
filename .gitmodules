@@ -2,3 +2,7 @@
 	path = flutter_cookbook/packages/flutter_unit
 	url = https://github.com/lxthyme/FlutterUnit.git
 	branch = damon/fixed
+[submodule "flutter_cookbook/packages/gsy_app"]
+	path = flutter_cookbook/packages/gsy_app
+	url = git@github.com:lxthyme/github_app_flutter.git
+	branch = damon/fixed
