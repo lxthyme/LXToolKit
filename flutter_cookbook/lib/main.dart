@@ -51,19 +51,23 @@ void main() async {
       defaultTargetPlatform != TargetPlatform.windows &&
       defaultTargetPlatform != TargetPlatform.macOS) {
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    FlutterError.onError = (details) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(details);
-    };
-    PlatformDispatcher.instance.onError = (exception, stackTrace) {
-      FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
-      return true;
-    };
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      FlutterError.onError = (details) {
+        FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+      };
+      PlatformDispatcher.instance.onError = (exception, stackTrace) {
+        FirebaseCrashlytics.instance.recordError(exception, stackTrace, fatal: true);
+        return true;
+      };
+    } catch (e) {
+      debugPrint('-->Firebase.instance error: $e');
+    }
   }
-  // runApp(const GalleryApp());
-  runApp(const AppTemplate(widget: SwitchEntryPointPage()));
+  runApp(const GalleryApp());
+  // runApp(const AppTemplate(widget: SwitchEntryPointPage()));
   // runApp(const MyScaffold());
   // runApp(const MultiCounter(color: Colors.blue));
   // runApp(ConfigWrapper(
@@ -79,7 +83,7 @@ void entrypointFlutterUnit() {
   //滚动性能优化 1.22.0
   GestureBinding.instance.resamplingEnabled = true;
   WindowsAdapter.setSize();
-  return runApp( BlocWrapper(child: FlutterUnit3()));
+  return runApp(BlocWrapper(child: FlutterUnit3()));
 }
 // ---------------------- FlutterUnit entry-point「END」 ----------------------
 
@@ -91,6 +95,7 @@ void gsyDefault() {
     child: FlutterReduxApp(initialRoute: RouterName.welcome),
   ));
 }
+
 @pragma('vm:entry-point')
 void gsyHome() {
   return runApp(ConfigWrapper(
@@ -121,6 +126,7 @@ void gsyAssetTest() {
 void entrypointSwitch() {
   return runApp(const AppTemplate(widget: SwitchEntryPointPage()));
 }
+
 @pragma('vm:entry-point')
 void topMain() => runApp(const MultiCounter(color: Colors.blue));
 @pragma('vm:entry-point')
@@ -200,6 +206,7 @@ void demo_two_pane() => runApp(AppTemplate(
         slug: DemosOthers.demoTwoPane.slug,
       ),
     ));
+
 // ---------------------- Gallery entry-point「END」 ----------------------
 class MyApp extends StatelessWidget {
   const MyApp({

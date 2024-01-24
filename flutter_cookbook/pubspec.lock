@@ -715,7 +715,7 @@ packages:
   gsy_app:
     dependency: "direct main"
     description:
-      path: gsy_app
+      path: "packages/gsy_app"
       relative: true
     source: path
     version: "1.0.0+1"

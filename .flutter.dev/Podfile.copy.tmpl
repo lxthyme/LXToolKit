@@ -1,0 +1,71 @@
+platform :ios, '13.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure \"flutter pub get\" is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found2 in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+
+  pod 'FlutterPluginRegistrant', :path => File.join('Flutter', 'FlutterPluginRegistrant'), :inhibit_warnings => true
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+  end
+  list = installer.pods_project.targets.map{ |item| item.name }
+  puts("
+-->[pods_project[#{list.size}]:  #{list.join(', ').red}
+")
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      generateConfig(target, config)
+    end
+  end
+  list = installer.generated_projects.map{ |project| project.targets.flat_map{ |item| item.name } }.flatten()
+  puts("
+-->[generated_projects[#{list.size}]:  #{list.join(', ').red}
+")
+  installer.generated_projects.each do |project|
+    project.targets.each do |target|
+      target.build_configurations.each do |config|
+        generateConfig(target, config)
+      end
+    end
+    # project.build_configurations.each do |bc|
+    #   # generateConfig(target, bc)
+    # end
+  end
+end
+
+def generateConfig(target, config)
+  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+  # config.build_settings['DEVELOPMENT_TEAM'] = '6C6JHMW46K'
+  # config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
+  config.build_settings['DEAD_CODE_STRIPPING'] = 'YES'
+  config.build_settings['CODE_SIGN_IDENTITY'] = ''
+end
