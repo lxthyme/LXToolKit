@@ -148,6 +148,9 @@ private extension LXTestVC202401 {
         presentationController: \(self.presentationController?.description ?? "--")
         presentedViewController: \(self.presentedViewController?.description ?? "--")
         presentingViewController: \(self.presentingViewController?.description ?? "--")
+        parent: \(self.parent?.description ?? "---")
+        isBeingPresented: \(self.isBeingPresented)
+        isBeingDismissed: \(self.isBeingDismissed)
         """
         dlog(info)
         return info

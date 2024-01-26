@@ -35,6 +35,7 @@ internal extension LXToolKitRouter {
     ].reversed())
     static let router2024: LXOutlineOpt = .outline(.section(title: "2024"), subitems: [
         .subitem(.section(title: "LXTestVC202401"), scene: .vc(provider: { LXTestVC202401() })),
+        .subitem(.section(title: "LXTestListCycleVC"), scene: .vc(provider: { LXTestListCycleVC() })),
     ]);
     static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
         .subitem(.section(title: "LX03_08_03VC"), scene: .vc(provider: { LX03_08_03VC() })),
