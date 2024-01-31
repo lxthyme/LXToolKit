@@ -96,7 +96,7 @@
         //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.backgroundColor = [UIColor brownColor];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
     return cell;
 }
 #pragma mark - ✈️UITableViewDelegate
