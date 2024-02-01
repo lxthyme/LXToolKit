@@ -103,6 +103,10 @@ public struct DJTestRouter {
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
             .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
+            .subitem(.section(title: "DJQuickHomeVC"), scene: .vc(provider: {
+                let vc = DJRouter.getQuickHome()
+                return DJTestRouter.createNav(rootVC: vc)
+            }, transition: .alert)),
         ])
     }
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [

@@ -23,6 +23,8 @@
 
 #import <BLNetworkingCategory/BLMediator+BLNetwoking.h>
 
+#import "DJQuickHomeVC.h"
+
 @interface DJRouter() {
 }
 
@@ -81,6 +83,10 @@
         @"storeType": storeType,
     }];
     return vc;
+}
+
++ (UIViewController *)getQuickHome {
+    return [[DJQuickHomeVC alloc]init];
 }
 
 #pragma mark -
