@@ -15,7 +15,6 @@
 @interface LXToolKitObjCTestVC ()<UITableViewDataSource,UITableViewDelegate> {
 }
 @property(nonatomic, strong)UITableView *table;
-@property(nonatomic, strong)NSArray *dataList;
 
 @end
 
@@ -150,6 +149,7 @@
             @"LXDJCommentVC",
             @"LXLabelTestVC",
             @"LXViewAnimationARCTestVC",
+            @"DJTestObjc01VC",
         ];
         _dataList = [[list reverseObjectEnumerator] allObjects];
     }

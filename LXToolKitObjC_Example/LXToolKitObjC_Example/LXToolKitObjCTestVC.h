@@ -10,6 +10,7 @@
 
 @interface LXToolKitObjCTestVC : UIViewController {
 }
+@property(nonatomic, strong)NSArray<NSString *> *dataList;
 @property(nonatomic, copy)NSString *autoJumpRoute;
 
 @end

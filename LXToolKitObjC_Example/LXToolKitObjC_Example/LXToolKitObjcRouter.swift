@@ -19,6 +19,7 @@ public extension LXToolKitObjcRouter {
         .subitem(.section(title: "LXToolKitObjC_Example(Swift)"), scene: .vc(provider: { LXToolKitObjCTestSwiftVC() })),
         .subitem(.section(title: "LXToolKitObjC_Example(Objc)"), scene: .vc(provider: { LXToolKitObjCTestVC() })),
         routerMVVM,
+        router2024,
         router2023,
         router2022,
     ])
@@ -29,6 +30,9 @@ internal extension LXToolKitObjcRouter {
     static let routerMVVM: LXOutlineOpt = .outline(.section(title: "MVVM"), subitems: [
         .subitem(.section(title: "LXLoginVC"), scene: .vc(provider: { LXLoginVC()  })),
 
+    ].reversed())
+    static let router2024: LXOutlineOpt = .outline(.section(title: "2024"), subitems: [
+        .subitem(.section(title: "DJTestObjc01VC"), scene: .vc(provider: { DJTestObjc01VC()  })),
     ].reversed())
     static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
         .subitem(.section(title: "LXURLCompVC"), scene: .vc(provider: { LXURLCompVC()  })),
