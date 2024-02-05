@@ -138,9 +138,17 @@ private extension LXOutlineVC {
         if(router1Menu.section.title == LXOutlineVC.XL.typeNameString) {
             return
         }
+        var router1VC: UIViewController?
         if let scene = router1Menu.scene {
-            let vc = Navigator.default.show(segue: scene, sender: self)
-            vc?.title = router1Menu.section.title
+            router1VC = Navigator.default.show(segue: scene, sender: self)
+            router1VC?.title = router1Menu.section.title
+        }
+        /// LXToolKitObjCTestVC 跳转二级页面使用 String -> Class 方式, 如果 dataList 包含 router2, 则设置 autoJumpRoute 即可自动跳转
+        if let vc = router1VC as? LXToolKitObjCTestVC,
+           let router2 = DJAutoRouter.router2.getDefaultsValue(),
+           vc.dataList.contains(router2) {
+            vc.autoJumpRoute = router2
+            return
         }
         guard let router2 = DJAutoRouter.router2.getDefaultsValue(),
               let router2Menu = try? self.menuItems.xl_first(where: { $0.section.title == router2 }) else {

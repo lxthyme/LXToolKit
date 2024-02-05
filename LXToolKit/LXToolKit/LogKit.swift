@@ -159,6 +159,16 @@ extension LogKit {
         case `init` = "Initial"
         case `deinit` = "Deinited"
         case didReceiveMemoryWarning
+        case viewDidLoad
+        case viewWillAppear
+        case viewIsAppearing
+        case viewDidAppear
+        case viewWillDisappear
+        case viewDidDisappear
+        case viewWillLayoutSubviews
+        case viewDidLayoutSubviews
+        case willMoveToParent
+        case didMoveToParent
     }
     // MARK: 🛠Life Cycle
     public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType) {

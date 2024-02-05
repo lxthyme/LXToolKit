@@ -15,7 +15,7 @@ public protocol Navigatable {
 }
 
 // MARK: - 👀
-public extension Navigator {
+extension Navigator {
     // MARK: - segues list, all app scenes
     public enum Scene {
         case openURL(url: URL?, inWebView: Bool = false, transition: Transition = .navigation(type: .cover(direction: .left)))

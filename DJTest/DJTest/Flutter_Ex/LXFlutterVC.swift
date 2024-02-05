@@ -15,7 +15,7 @@ class LXFlutterVC: LXBaseFlutterVC {
     required init(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(with channel: FlutterManager.Channel) {
         channel.engine = FlutterManager.shared.registerFromGroup(withEntryPoint: channel.entrypoint.value);
-        guard let engine = channel.engine else { fatalError("flutter engine can't be nil. -->enging: \(channel.engine)") }
+        guard let engine = channel.engine else { fatalError("flutter engine can't be nil. -->enging: \(channel.engine?.description ?? "--")") }
         GeneratedPluginRegistrant.register(with: engine)
         super.init(with: channel)
     }

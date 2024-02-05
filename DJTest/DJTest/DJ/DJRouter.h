@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (CTServiceAPIEnviroment)getCurrentEnv;
 
 + (UIViewController *)getMain:(NSString *)storeCode storeType:(NSString *)storeType;
+
++ (UIViewController *)getQuickHome;
 @end
 
 NS_ASSUME_NONNULL_END

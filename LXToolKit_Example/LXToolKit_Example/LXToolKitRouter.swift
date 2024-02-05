@@ -17,6 +17,7 @@ public extension LXToolKitRouter {
     static let kitRouter: LXOutlineOpt = .outline(.section(title: "LXToolKit_Example"), subitems: [
         .subitem(.section(title: "LXToolKitTestVC"), scene: .vc(provider: { LXToolKitTestVC() })),
         LXToolKitRouter.routerSwiftDaily,
+        LXToolKitRouter.router2024,
         LXToolKitRouter.router2023,
         LXToolKitRouter.routerWWWDC,
         LXToolKitRouter.routerMVVM,
@@ -32,6 +33,10 @@ internal extension LXToolKitRouter {
         .subitem(.section(title: "DJSwiftTestCaseVC(2)"), scene: .vc(provider: { DJSwiftTestCaseVC() })),
         .subitem(.section(title: "LXRxSwiftTestVC(3)"), scene: .vc(provider: { LXRxSwiftTestVC(vm: LXBaseVM(), navigator: Navigator.default) })),
     ].reversed())
+    static let router2024: LXOutlineOpt = .outline(.section(title: "2024"), subitems: [
+        .subitem(.section(title: "LXTestVC202401"), scene: .vc(provider: { LXTestVC202401() })),
+        .subitem(.section(title: "LXTestListCycleVC"), scene: .vc(provider: { LXTestListCycleVC() })),
+    ]);
     static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
         .subitem(.section(title: "LX03_08_03VC"), scene: .vc(provider: { LX03_08_03VC() })),
         .subitem(.section(title: "LXApiTestVC"), scene: .vc(provider: { LXApiTestVC() })),
