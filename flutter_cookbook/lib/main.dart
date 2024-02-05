@@ -66,14 +66,12 @@ void main() async {
       debugPrint('-->Firebase.instance error: $e');
     }
   }
-  runApp(const GalleryApp());
-  // runApp(const AppTemplate(widget: SwitchEntryPointPage()));
-  // runApp(const MyScaffold());
-  // runApp(const MultiCounter(color: Colors.blue));
-  // runApp(ConfigWrapper(
-  //   config: EnvConfig.fromJson(config),
-  //   child: FlutterReduxApp(initialRoute: login.LoginPage.sName),
-  // ));
+  galleryApp();
+  // entrypointFlutterUnit();
+  // entrypointSwitch();
+  // daily_MyScaffold();
+  // daily_MultiCounter();
+  // gsyDefault();
 }
 
 // ---------------------- FlutterUnit entry-point ----------------------
