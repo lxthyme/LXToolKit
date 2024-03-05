@@ -99,6 +99,9 @@ def pod_LXToolKit
   pod 'CacheX', :podspec => './'#, :modular_headers => true
   pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
 
+  # https://github.com/vtourraine/AcknowList
+  pod 'AcknowList'
+
   ############ SwiftHub_Ex
   # pod 'SwiftHub_Ex', :path => '../3rd/SwiftHub_Ex/SwiftHub_Ex.podspec'
   # pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'  # https://github.com/ivanbruel/Moya-ObjectMapper
@@ -231,6 +234,10 @@ end
 
 post_install do |installer|
   pod_flutter_installer(installer)
+
+  # copy acknowledgments to settings.bundle
+  # require 'fileutils'
+  FileUtils.cp_r('Pods/Target Support Files/Pods-DJTest/Pods-DJTest-acknowledgements.plist', 'DJTest/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
 
   idx1=0
   idx2=0
@@ -453,6 +460,7 @@ static_frameworks = [
 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'FirebaseABTesting', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
 'Toast-Swift', 'RxSwiftExt',
+'AcknowList',
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
 'Masonry', 'MBProgressHUD',
 'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',

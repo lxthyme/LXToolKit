@@ -48,6 +48,7 @@
 		BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */; };
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BE855BB92AF0A64D00F95956 /* LXAMapTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */; };
+		BE99436D2B96C20A00A08BA0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE99436C2B96C20A00A08BA0 /* Settings.bundle */; };
 		BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA850F92B216B6100C6D019 /* LXFirstVC.swift */; };
 		BEABE2992B5251CC00CD07B6 /* LXOutlineParamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEABE2982B5251CC00CD07B6 /* LXOutlineParamCell.swift */; };
 		BEB3855A2B3AE7B700D14351 /* LXSingleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385592B3AE7B700D14351 /* LXSingleVC.swift */; };
@@ -194,6 +195,7 @@
 		BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiRanger.swift; sourceTree = "<group>"; };
 		BE855BB82AF0A64D00F95956 /* LXAMapTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAMapTestVC.swift; sourceTree = "<group>"; };
 		BE9649972B3E950E00BCB578 /* Info-Debug.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Debug.plist"; sourceTree = "<group>"; };
+		BE99436C2B96C20A00A08BA0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
 		BEABE2982B5251CC00CD07B6 /* LXOutlineParamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOutlineParamCell.swift; sourceTree = "<group>"; };
 		BEB385592B3AE7B700D14351 /* LXSingleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSingleVC.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */,
 				BEE5A34D2AB974FB003339EB /* Info-Release.plist */,
 				BE9649972B3E950E00BCB578 /* Info-Debug.plist */,
+				BE99436C2B96C20A00A08BA0 /* Settings.bundle */,
 				BEFB9B1B2B0CC4FB008B35F7 /* DJTest-Bridging-Header.h */,
 				BE6D74E42B6A32BA000700DF /* PrefixHeader.pch */,
 			);
@@ -656,6 +659,7 @@
 				BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */,
 				BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */,
 				BE49D2662B51274F0001B3D8 /* Assets.xcassets in Resources */,
+				BE99436D2B96C20A00A08BA0 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

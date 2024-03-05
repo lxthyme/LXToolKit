@@ -10,6 +10,7 @@ import LXToolKitObjC_Example
 import ActivityKit
 import DJTestKit
 import LXToolKit
+import AcknowList
 
 @available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
@@ -33,6 +34,15 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
+            LXOutlineOpt.subitem(.section(title: "AcknowListViewController"), scene: .vc(provider: {
+                let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
+                if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
+                    return AcknowListViewController(plistFileURL: url)
+                }
+                let vc = LXSampleTextViewVC()
+                vc.dataFillUnSupport(content: "Pods-acknowledgements.plist file not found!")
+                return vc
+            })),
             DJTestRouter.router233,
             DJTestRouter.routerItem,
             LXToolKitRouter.kitRouter,
