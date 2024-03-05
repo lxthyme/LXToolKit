@@ -23,16 +23,15 @@ extension Array where Element: Equatable {
 }
 
 // MARK: - 👀
-public extension Array {
-    /// 检查一个索引值是否在数组边界内
+public extension Collection {
+    /// SwifterSwift: Safe protects the array from out of bounds by use of optional.
     ///
-    /// eg: array[guarded: 5] ?? 0
+    ///        let arr = [1, 2, 3, 4, 5]
+    ///        arr[safe: 1] -> 2
+    ///        arr[safe: 10] -> nil
     ///
-    /// - Parameter idx: idx
-    subscript(xl_guarded idx: Int) -> Element? {
-        guard (startIndex..<endIndex).contains(idx) else {
-            return nil
-        }
-        return self[idx]
+    /// - Parameter index: index of element to access element.
+    subscript(xl_safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }
