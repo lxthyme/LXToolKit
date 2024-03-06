@@ -71,7 +71,7 @@ public struct DJTestRouter {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exContent = UIListContentConfiguration.Ex.allCases
-                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                    .map { LXSampleItem(title: $0.title, attributedContent: LXSampleItem.makeAttribute(from: $0.description)) }
                 dlog("UIListContentConfiguration.Ex: \(exContent)")
                 // let vc = LXSampleTextViewVC()
                 // vc.dataFill(content: "\(exContent)")
@@ -83,12 +83,22 @@ public struct DJTestRouter {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exBg = UIBackgroundConfiguration.Ex.allCases
-                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                    .map { LXSampleItem(title: $0.title, attributedContent: LXSampleItem.makeAttribute(from: $0.description)) }
                 dlog("UIBackgroundConfiguration.Ex: \(exBg)")
                 // let vc = LXSampleTextViewVC()
                 // vc.dataFill(content: "\(exBg)")
                 vc.dataFill(list: exBg)
             }
+            return vc
+        })),
+        .subitem(.section(title: "CharacterSet.Ex.allCases"), scene: .vc(provider: {
+            let vc = LXSampleListVC()
+            let exContent = CharacterSet.Ex.allCases
+                .map { LXSampleItem(title: $0.title, content: $0.characterSet.allCharacters().map({ "\($0)" }).joined(separator: ", ")) }
+            dlog("CharacterSet.Ex: \(exContent)")
+            // let vc = LXSampleTextViewVC()
+            // vc.dataFill(content: "\(exContent)")
+            vc.dataFill(list: exContent)
             return vc
         })),
     ])

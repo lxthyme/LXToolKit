@@ -78,7 +78,7 @@ class ViewController: LXBaseVC {
         super.viewIsAppearing(animated)
         dataFill()
         refreshResourcesCount()
-        testReadInfoKey()
+        // testReadInfoKey()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

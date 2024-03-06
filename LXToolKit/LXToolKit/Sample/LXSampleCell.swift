@@ -26,11 +26,13 @@ struct LXSampleBackgroundConfiguration {
 public struct LXSampleItem {
     public var title: String?
     public var content: String?
+    public var attributedContent: NSAttributedString?
     public var highlightColor: UIColor?
 
-    public init(title: String? = nil, content: String? = nil) {
+    public init(title: String? = nil, content: String? = nil, attributedContent: NSAttributedString? = nil) {
         self.title = title
         self.content = content
+        self.attributedContent = attributedContent
     }
 }
 // MARK: - ✈️Hashable
@@ -99,7 +101,11 @@ extension LXSampleContentView {
         appliedConfiguration = configuration
 
         labTitle.text = configuration.title
-        tvContent.attributedText = makeAttribute(from: configuration.content)
+        if let attributedContent = configuration.attributedContent {
+            tvContent.attributedText = attributedContent
+        } else {
+            tvContent.text = configuration.content
+        }
         backgroundColor = configuration.highlightColor
     }
 }
@@ -115,41 +121,6 @@ extension LXSampleContentView: UIContentView {
     }
 }
 
-// MARK: - 🔐
-private extension LXSampleContentView {
-    func makeAttribute(from info: String?) -> NSAttributedString? {
-        guard let info else { return nil }
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.lightGray,
-            .font: UIFont.systemFont(ofSize: 14)
-        ]
-        let contentAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont.boldSystemFont(ofSize: 16)
-        ]
-        let commonAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.cyan,
-            .font: UIFont.boldSystemFont(ofSize: 14)
-        ]
-        let attr = NSMutableAttributedString()
-        info.components(separatedBy: "\n")
-            .forEach { item in
-                let tmp = item.components(separatedBy: ":")
-                if tmp.count >= 2 {
-                    let title = tmp.first?.trimmed ?? ""
-                    let content = tmp[1...].joined(separator: ":")
-                    let itemAttr = NSMutableAttributedString()
-                    itemAttr.append(NSAttributedString(string: "\(title): ", attributes: titleAttributes))
-                    itemAttr.append(NSAttributedString(string: content, attributes: contentAttributes))
-                    attr.append(itemAttr)
-                } else {
-                    attr.append(NSAttributedString(string: item, attributes: commonAttributes))
-                }
-                attr.append(NSAttributedString(string: "\n"))
-            }
-        return attr
-    }
-}
 // MARK: - 🍺UI Prepare & Masonry
 private extension LXSampleContentView {
     func prepareUI() {
@@ -190,6 +161,7 @@ class LXSampleCell: LXBaseCollectionCell {
         var content = LXSampleItem().updated(for: state)
         content.title = item?.title
         content.content = item?.content
+        content.attributedContent = item?.attributedContent
         if state.isSelected || state.isHighlighted {
             content.highlightColor = .cyan.withAlphaComponent(0.5)
         }

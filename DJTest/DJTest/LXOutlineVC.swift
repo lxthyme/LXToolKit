@@ -76,6 +76,8 @@ class LXOutlineVC: LXBaseVC {
             gotoAutoJumpRouteScene()
         }
         isFirstAppearing = false
+
+        // testCharacterSet()
     }
 
 }
@@ -168,6 +170,25 @@ private extension LXOutlineVC {
             let vc = Navigator.default.show(segue: scene, sender: self)
             vc?.title = router1Menu.section.title
         }
+    }
+}
+
+// MARK: - 🔐
+@available(iOS 14.0, *)
+private extension LXOutlineVC {
+    func testCharacterSet() {
+        let set = CharacterSet.urlQueryAllowed
+        print("set: \(set)")
+        dlog("set: \(set)")
+        dlog("set: \(set.description)")
+        dlog("set: \(set.debugDescription)")
+        dlog("set: \(String(describing: set))")
+        dlog("set: \(String(reflecting: set))")
+        dlog("set: \(set.allCharacters())")
+        let data = set.bitmapRepresentation
+        let desc = String(data: data, encoding: .utf8)
+        // let img = UIImage(data: set.bitmapRepresentation)
+        dlog("set: \(desc ?? "--")")
     }
 }
 
