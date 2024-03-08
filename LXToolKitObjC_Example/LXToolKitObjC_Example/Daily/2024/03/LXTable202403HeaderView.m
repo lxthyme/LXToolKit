@@ -40,7 +40,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.contentView.backgroundColor = [[UIColor magentaColor] colorWithAlphaComponent:0.3];
+    self.contentView.backgroundColor = [UIColor yellowColor];
 
     [self.contentView addSubview:self.labTitle];
 
@@ -60,9 +60,9 @@
     if(!_labTitle){
         UILabel *label = [[UILabel alloc]init];
         label.text = @"";
-        label.font = [UIFont systemFontOfSize:kWPercentage(20.f)];
-        label.textColor = [UIColor blackColor];
-        // label.backgroundColor = [UIColor <#cyanColor#>];
+        label.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+        label.textColor = [UIColor colorWithHex:0x666666];
+        label.backgroundColor = [UIColor colorWithHex:0xF4F6FA];
         label.numberOfLines = 1;
         label.textAlignment = NSTextAlignmentCenter;
         label.lineBreakMode = NSLineBreakByTruncatingTail;

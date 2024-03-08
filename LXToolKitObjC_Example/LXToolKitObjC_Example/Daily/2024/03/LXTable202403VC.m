@@ -8,12 +8,13 @@
 
 #import <Masonry/Masonry.h>
 #import "LXTable202403HeaderView.h"
+#import "LXTable202403SectionView.h"
 
-#define kDJClassifyQuicklyPinHeight 44.f
+#define kDJClassifyQuicklyPinHeight 88.f
 
 @interface LXTable202403VC()<UITableViewDataSource, UITableViewDelegate> {
 }
-@property(nonatomic, strong)UIView *tableHeaderView;
+@property(nonatomic, strong)LXTable202403SectionView *tableHeaderView;
 @property(nonatomic, strong)UITableView *table;
 
 @end
@@ -54,9 +55,9 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill {
-    self.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 100);
+    self.tableHeaderView.frame = CGRectMake(0, -44, SCREEN_WIDTH, kDJClassifyQuicklyPinHeight);
     UIView *header = [[UIView alloc]init];
-    header.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 100);
+    header.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, kDJClassifyQuicklyPinHeight);
     header.backgroundColor = [UIColor redColor];
     [header addSubview:self.tableHeaderView];
     self.table.tableHeaderView = header;
@@ -76,7 +77,7 @@
     return 10;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 10;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UITableViewCell.xl_identifier forIndexPath:indexPath];
@@ -94,7 +95,7 @@
     return header;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return kDJClassifyQuicklyPinHeight;
+    return 44.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.f;
@@ -117,7 +118,7 @@
     // CGRect rect = [self.view convertRect:self.table.tableHeaderView.frame fromView:self.table];
     CGRect rect = self.tableHeaderView.frame;
     CGFloat rectY = rect.origin.y;
-    CGFloat pinOffset = 100 - kDJClassifyQuicklyPinHeight;
+    CGFloat pinOffset = 0;
     if(offsetY >= pinOffset) {
         rect.origin.y = offsetY - pinOffset;
     } else {
@@ -130,7 +131,7 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareTableView {
-    self.table.contentInset = UIEdgeInsetsMake(kDJClassifyQuicklyPinHeight, 0, 0, 0);
+    // self.table.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
     [self.table xl_registerForCell:[UITableViewCell class]];
     [self.table xl_registerForHeaderFooterView:[LXTable202403HeaderView class]];
 }
@@ -154,10 +155,9 @@
 }
 
 #pragma mark Lazy Property
-- (UIView *)tableHeaderView {
+- (LXTable202403SectionView *)tableHeaderView {
     if(!_tableHeaderView){
-        UIView *v = [[UIView alloc]init];
-        v.backgroundColor = [UIColor cyanColor];
+        LXTable202403SectionView *v = [[LXTable202403SectionView alloc]init];
         _tableHeaderView = v;
     }
     return _tableHeaderView;
