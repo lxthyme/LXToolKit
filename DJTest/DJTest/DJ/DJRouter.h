@@ -10,6 +10,15 @@
 #import <CTAppContext/CTAppContext.h>
 #import <DJGlobalStoreManager/DJStoreManager.h>
 NS_ASSUME_NONNULL_BEGIN
+#pragma mark -
+#pragma mark - 👀保存多环境登录信息
+@interface CTAppContext (BaiLianTest)
+
+- (NSString *)getUserInfoLocalStorageKey;
+- (NSString *)getPlusLocalStorageKey;
+
+@end
+
 @interface DJRouter: NSObject {
 }
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions;

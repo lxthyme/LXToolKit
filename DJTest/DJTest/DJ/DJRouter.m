@@ -42,6 +42,8 @@
     // #else
     // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentRelease;
     // #endif
+    /// 从 localStorage 中恢复登录信息
+    [DJRouter backupLoginfo];
     [[BLMediator sharedInstance] BLNetworking_config];
 
     NSString *sensorUrl = @"https://sensorsdata.bl.com/sa?project=default";
@@ -64,13 +66,18 @@
 + (void)toggleEnv {
     CTAppContext *ctx = [CTAppContext sharedInstance];
     if(ctx.apiEnviroment == CTServiceAPIEnviromentRelease) {
-        ctx.apiEnviroment = CTServiceAPIEnviromentDevelop;
+        [DJRouter toggleEnvTo:CTServiceAPIEnviromentDevelop];
     } else {
-        ctx.apiEnviroment = CTServiceAPIEnviromentRelease;
+        [DJRouter toggleEnvTo:CTServiceAPIEnviromentRelease];
     }
 }
 + (void)toggleEnvTo:(CTServiceAPIEnviroment)env {
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    if(ctx.apiEnviroment == env) {
+        return;
+    }
     [CTAppContext sharedInstance].apiEnviroment = env;
+    [DJRouter backupLoginfo];
 }
 + (CTServiceAPIEnviroment)getCurrentEnv {
     CTAppContext *ctx = [CTAppContext sharedInstance];
@@ -87,6 +94,18 @@
 
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];
+}
+
+#pragma mark -
+#pragma mark - 🔐Private Actions
+/// 从 localStorage 中恢复登录信息
++ (void)backupLoginfo {
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
+    ctx.userInfo = [defaults dictionaryForKey:userInfoKey];
+    NSString *plusKey = [ctx getPlusLocalStorageKey];
+    ctx.plusInfo = [defaults dictionaryForKey:plusKey];
 }
 
 #pragma mark -
@@ -233,7 +252,7 @@
     // && eq_leaveDJTimeStr
     && eq_storeModel
     // && eq_sceneQueryModel
-    && eq_storeDictionary
+    // && eq_storeDictionary
     && eq_inStoreStyle
     // && eq_tdStoreModel
     // && eq_shopCart_storeModel
@@ -287,4 +306,98 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 
+@end
+
+#pragma mark -
+#pragma mark - 👀添加黑名单(防止 json 转换异常)
+@interface DJStoreManager (addBlackList)
+@end
+
+@implementation DJStoreManager (addBlackList)
++ (nullable NSArray<NSString *> *)modelPropertyBlacklist {
+    return @[
+        @"djqueryFastCartGroupAPIManager"
+    ];
+}
+@end
+
+#pragma mark -
+#pragma mark - 👀保存多环境登录信息
+@implementation CTAppContext (BaiLianTest)
++(void)load {
+    Method method3 = class_getInstanceMethod([self class], @selector(updatePlusInfo:));
+    Method method4 = class_getInstanceMethod([self class], @selector(xl_updatePlusInfo:));
+    method_exchangeImplementations(method3, method4);
+
+    Method method5 = class_getInstanceMethod([self class], @selector(cleanPlusInfo));
+    Method method6 = class_getInstanceMethod([self class], @selector(xl_cleanPlusInfo));
+    method_exchangeImplementations(method5, method6);
+
+    Method method7 = class_getInstanceMethod([self class], @selector(updateUserInfo:));
+    Method method8 = class_getInstanceMethod([self class], @selector(xl_updateUserInfo:));
+    method_exchangeImplementations(method7, method8);
+
+    Method method9 = class_getInstanceMethod([self class], @selector(cleanUserInfo));
+    Method method10 = class_getInstanceMethod([self class], @selector(xl_cleanUserInfo));
+    method_exchangeImplementations(method9, method10);
+}
+- (NSString *)getLoginLocalStorageKey {
+    CTServiceAPIEnviroment env = [DJRouter getCurrentEnv];
+    NSMutableString *key = [@"DJTest.gStore." mutableCopy];
+    switch(env) {
+    case CTServiceAPIEnviromentDevelop: {
+        [key appendString:@"develop"];
+    } break;
+    case CTServiceAPIEnviromentPreRelease: {
+        [key appendString:@"beta"];
+    } break;
+    default: {
+        [key appendString:@"release"];
+    } break;
+    }
+    return key;
+}
+/// kBaiLianCTAppContextKeyPlusInfo
+- (NSString *)getPlusLocalStorageKey {
+    NSString *key = [self getLoginLocalStorageKey];
+    return [NSString stringWithFormat:@"%@.plus", key];
+}
+/// kCTAppContextUserDefaultKeyUserInfo
+- (NSString *)getUserInfoLocalStorageKey {
+    NSString *key = [self getLoginLocalStorageKey];
+    return [NSString stringWithFormat:@"%@.userInfo", key];
+}
+
+- (void)xl_updatePlusInfo:(NSDictionary *)plusInfo {
+    self.plusInfo = plusInfo;
+
+    NSString *key = [self getPlusLocalStorageKey];
+    [[NSUserDefaults standardUserDefaults] setObject:plusInfo forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    self.plusInfo = plusInfo;
+}
+- (void)xl_cleanPlusInfo {
+    self.plusInfo = nil;
+
+    NSString *key = [self getPlusLocalStorageKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)xl_updateUserInfo:(NSDictionary *)userInfo {
+    self.userInfo = userInfo;
+
+    NSString *key = [self getUserInfoLocalStorageKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.userInfo forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)xl_cleanUserInfo {
+    self.userInfo = nil;
+
+    NSString *key = [self getUserInfoLocalStorageKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end
