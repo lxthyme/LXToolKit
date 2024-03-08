@@ -32,6 +32,16 @@ extension CharacterSet {
         case urlQueryAllowed
         case urlFragmentAllowed
 
+        public static var urlSet: [CharacterSet.Ex] {
+            return [
+                .urlUserAllowed,
+                .urlPasswordAllowed,
+                .urlHostAllowed,
+                .urlPathAllowed,
+                .urlQueryAllowed,
+                .urlFragmentAllowed,
+            ]
+        }
         public var title: String {
             switch self {
             case .controlCharacters: return ".controlCharacters"
@@ -88,14 +98,21 @@ extension CharacterSet {
 // MARK: - 👀
 extension CharacterSet.Ex: CustomStringConvertible {
     public var description: String {
-        return characterSet.allCharacters().description
+        return characterSet
+            .allCharacters()
+            .description
     }
 }
 
 // MARK: - 👀
 extension CharacterSet {
+    // public func allCharacters(key: String) -> [Character] {
     public func allCharacters() -> [Character] {
+        // let defaults = UserDefaults.standard
         var result: [Character] = []
+        // if let localStorage = defaults.value(forKey: key) as? [Character] {
+        //     return localStorage
+        // }
         for tmp in [0...16] {
             let plane = tmp.lowerBound
             if !self.hasMember(inPlane: UInt8(plane)) {
@@ -109,5 +126,23 @@ extension CharacterSet {
             }
         }
         return result
+    }
+}
+
+// MARK: - 👀
+extension CharacterSet.Ex {
+    public func format() -> [String] {
+        var content: [String]? = characterSet
+            .allCharacters()
+            .map({ "\($0)" })
+            .group(by: 100)?
+            .map({ $0.joined(separator: ", ") })
+            .map { item in
+                var content = item.replacingOccurrences(of: "0, 1, 2, 3, 4, 5, 6, 7, 8, 9", with: "[0-9]")
+                content = content.replacingOccurrences(of: "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z", with: "[A-Z]")
+                content = content.replacingOccurrences(of: "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z", with: "[a-z]")
+                return content
+            }
+        return content ?? []
     }
 }

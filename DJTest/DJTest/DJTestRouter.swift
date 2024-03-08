@@ -92,12 +92,21 @@ public struct DJTestRouter {
             return vc
         })),
         .subitem(.section(title: "CharacterSet.Ex.allCases"), scene: .vc(provider: {
-            let vc = LXSampleListVC()
-            let exContent = CharacterSet.Ex.allCases
-                .map { LXSampleItem(title: $0.title, content: $0.characterSet.allCharacters().map({ "\($0)" }).joined(separator: ", ")) }
+            let exContent = CharacterSet.Ex
+                .allCases
+                // .urlSet
+                .flatMap { item in
+                    var idx = 0
+                    let list = item.format()
+                    let count = list.count
+                    return list
+                        .map { item2 in
+                            idx += 1
+                            return LXSampleItem(title: "\(item.title) - \(idx)/\(count)", content: "\(item2)")
+                        }
+                }
             dlog("CharacterSet.Ex: \(exContent)")
-            // let vc = LXSampleTextViewVC()
-            // vc.dataFill(content: "\(exContent)")
+            let vc = LXSampleListVC()
             vc.dataFill(list: exContent)
             return vc
         })),
