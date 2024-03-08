@@ -110,10 +110,13 @@ public struct DJTestRouter {
             })),
             .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
                 let vc = DJRouter.getMain("", storeType: "")
-                return DJTestRouter.createNav(rootVC: vc)
+                return DJTestRouter.createNav(rootVC: vc) {
+                    DJRouter.saveToJSON()
+                }
             }, transition: .alert)),
             .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
             .subitem(.section(title: "DJQuickHomeVC"), scene: .vc(provider: {
+                DJRouter.backupFromJSON()
                 let vc = DJRouter.getQuickHome()
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
@@ -271,7 +274,7 @@ extension DJTestRouter {
     //         }
     //         // .disposed(by: rx.disposeBag)
     // }
-    static func createNav(rootVC: UIViewController) -> UINavigationController {
+    static func createNav(rootVC: UIViewController, dismiss:(() -> Void)? = nil) -> UINavigationController {
         let btn = UIButton()
         btn.backgroundColor = .XL.randomGolden
         btn.layerCornerRadius = 8
@@ -281,6 +284,7 @@ extension DJTestRouter {
         // btn.frame = CGRect(x: 150, y: iPhoneX.safeareaInsets.top, width: 80, height: 44)
         if #available(iOS 14.0, *) {
             btn.addAction(UIAction(handler: { _ in
+                dismiss?()
                 let topVC = UIViewController.topViewController()
                 topVC?.dismiss(animated: true)
             }), for: .touchUpInside)

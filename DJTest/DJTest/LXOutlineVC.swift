@@ -508,7 +508,9 @@ extension LXOutlineVC: UICollectionViewDelegate {
             }
             let scene: Navigator.Scene = .vc(provider: {
                 let vc = DJRouter.getMain(storeCode, storeType: storeType)
-                let nav = DJTestRouter.createNav(rootVC: vc)
+                let nav = DJTestRouter.createNav(rootVC: vc) {
+                    DJRouter.saveToJSON()
+                }
                 return nav
             }, transition: .alert)
             Navigator.default.show(segue: scene, sender: self)

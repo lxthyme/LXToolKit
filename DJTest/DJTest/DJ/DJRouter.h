@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CTAppContext/CTAppContext.h>
+#import <DJGlobalStoreManager/DJStoreManager.h>
 NS_ASSUME_NONNULL_BEGIN
 @interface DJRouter: NSObject {
 }
@@ -20,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIViewController *)getMain:(NSString *)storeCode storeType:(NSString *)storeType;
 
 + (UIViewController *)getQuickHome;
+
+#pragma mark -
+#pragma mark - 👀备份全局门店信息
++ (void)saveToJSON;
++ (DJStoreManager *)backupFromJSON;
+
 @end
 
 NS_ASSUME_NONNULL_END
