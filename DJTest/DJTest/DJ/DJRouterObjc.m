@@ -66,14 +66,6 @@
     CTAppContext *ctx = [CTAppContext sharedInstance];
     return ctx.apiEnviroment;
 }
-+ (UIViewController *)getMain:(NSString *)storeCode
-                    storeType:(NSString *)storeType {
-    DJTabbarViewController *vc = [[DJTabbarViewController alloc]initWithDictionary:@{
-        @"storeCode": storeCode,
-        @"storeType": storeType,
-    }];
-    return vc;
-}
 
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];

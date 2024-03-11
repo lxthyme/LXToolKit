@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions;
 
-+ (UIViewController *)getMain:(NSString *)storeCode storeType:(NSString *)storeType;
 + (UIViewController *)getQuickHome;
 
 @end

@@ -31,13 +31,32 @@ open class DJRouter: NSObject {
     }
 }
 
+public extension DJRouter {
+    static func getMain(storeCode: String? = nil, storeType: String? = nil) -> UIViewController? {
+        var params = [
+            "url": "blmodule://quickHome/home"
+        ]
+        if let storeCode, storeCode.isNotEmpty,
+            let storeType, storeType.isNotEmpty {
+            params["url"] = "blmodule://quickHome/home?storeCode=\(storeCode)&storeType=\(storeType)"
+        }
+        let vc = BLMediator.sharedInstance().djBusinessModule_NewMain(params)
+        return vc
+    }
+    static func getQuickHome() -> UIViewController {
+        return DJRouterObjc.getQuickHome()
+    }
+}
+
 /// Api 环境
 public extension DJRouter {
     static func toggleEnv() {
         let ctx = CTAppContext.sharedInstance()!
         if(ctx.apiEnviroment == .release) {
+            UIViewController.getTopVC()?.view.makeToast("已切换到 sit")
             toggleEnvTo(env: .develop)
         } else {
+            UIViewController.getTopVC()?.view.makeToast("已切换到 release")
             toggleEnvTo(env: .release)
         }
     }
@@ -95,7 +114,7 @@ public extension DJRouter {
     static func backupToLocalStorage(localInfo: String) {
         guard let localObj = try? localInfo.data(using: .utf8)?.jsonObject() as? [String: Any] else { return }
         let ctx = CTAppContext.sharedInstance()!
-        let gStore = DJStoreManager.sharedInstance()
+        // let gStore = DJStoreManager.sharedInstance()
         let defaults = UserDefaults.standard
         let sitTest = {
             ctx.apiEnviroment = .develop
@@ -185,7 +204,7 @@ public extension DJRouter {
             let plusInfo = defaults.dictionary(forKey: plusKey)
             let gStoreInfo = defaults.dictionary(forKey: gStoreKey)
             prdInfo["userInfo"] = userInfo
-            prdInfo["plusInfo"] = plusKey
+            prdInfo["plusInfo"] = plusInfo
             prdInfo["gStore"] = gStoreInfo
         }
 
@@ -255,7 +274,9 @@ public extension DJRouter {
         let key = getEnvLocalStorageKey()
         guard let jsonString = defaults.value(forKey: key),
               let model = DJStoreManager.yy_model(withJSON: jsonString) else { return }
-        checkEqual(gStore: gStore, model: model)
+        if gStore.storeModel.isValid() {
+            checkEqual(gStore: gStore, model: model)
+        }
 
         gStore.sendType = model.sendType
         gStore.sceneId = model.sceneId
@@ -381,44 +402,44 @@ public extension DJRouter {
             return
         }
         var result = ""
-        // if !eq_sendType { result.append("eq_sendType: \(LXMacro.boolString(eq_sendType))\n") }
-        // if !eq_sceneId { result.append("eq_sceneId: \(LXMacro.boolString(eq_sceneId))\n") }
-        // if !eq_longtitude { result.append("eq_longtitude: \(LXMacro.boolString(eq_longtitude))\n") }
-        // if !eq_latitude { result.append("eq_latitude: \(LXMacro.boolString(eq_latitude))\n") }
-        // if !eq_currentAddress { result.append("eq_currentAddress: \(LXMacro.boolString(eq_currentAddress))\n") }
-        // // if !eq_addressRawDic { result.append("eq_addressRawDic: \(LXMacro.boolString(eq_addressRawDic))\n") }
-        // if !eq_orderSourceCode { result.append("eq_orderSourceCode: \(LXMacro.boolString(eq_orderSourceCode))\n") }
-        // if !eq_nearShopListArr { result.append("eq_nearShopListArr: \(LXMacro.boolString(eq_nearShopListArr))\n") }
-        // if !eq_locationAdress { result.append("eq_locationAdress: \(LXMacro.boolString(eq_locationAdress))\n") }
-        // if !eq_locationCity { result.append("eq_locationCity: \(LXMacro.boolString(eq_locationCity))\n") }
-        // if !eq_bl_ad { result.append("eq_bl_ad: \(LXMacro.boolString(eq_bl_ad))\n") }
-        // if !eq_djHomeStyle { result.append("eq_djHomeStyle: \(LXMacro.boolString(eq_djHomeStyle))\n") }
-        // if !eq_isChangeNet { result.append("eq_isChangeNet: \(LXMacro.boolString(eq_isChangeNet))\n") }
-        // if !eq_isDaoJiaApp { result.append("eq_isDaoJiaApp: \(LXMacro.boolString(eq_isDaoJiaApp))\n") }
-        // if !eq_djHomeSearchStr { result.append("eq_djHomeSearchStr: \(LXMacro.boolString(eq_djHomeSearchStr))\n") }
-        // if !eq_djModuleType { result.append("eq_djModuleType: \(LXMacro.boolString(eq_djModuleType))\n") }
-        // if !eq_sourceValue { result.append("eq_sourceValue: \(LXMacro.boolString(eq_sourceValue))\n") }
-        // if !eq_packageArray { result.append("eq_packageArray: \(LXMacro.boolString(eq_packageArray))\n") }
-        // if !eq_isDeveloper { result.append("eq_isDeveloper: \(LXMacro.boolString(eq_isDeveloper))\n") }
-        // if !eq_developerLatitude { result.append("eq_developerLatitude: \(LXMacro.boolString(eq_developerLatitude))\n") }
-        // if !eq_developerLongtitude { result.append("eq_developerLongtitude: \(LXMacro.boolString(eq_developerLongtitude))\n") }
-        // if !eq_djClassifyHeaderType { result.append("eq_djClassifyHeaderType: \(LXMacro.boolString(eq_djClassifyHeaderType))\n") }
-        // if !eq_headerBgColorStr { result.append("eq_headerBgColorStr: \(LXMacro.boolString(eq_headerBgColorStr))\n") }
-        // if !eq_head4FCDefColor { result.append("eq_head4FCDefColor: \(LXMacro.boolString(eq_head4FCDefColor))\n") }
-        // if !eq_head4FCActiveColor { result.append("eq_head4FCActiveColor: \(LXMacro.boolString(eq_head4FCActiveColor))\n") }
-        // if !eq_labelColor { result.append("eq_labelColor: \(LXMacro.boolString(eq_labelColor))\n") }
-        // if !eq_classifyShowIndex { result.append("eq_classifyShowIndex: \(LXMacro.boolString(eq_classifyShowIndex))\n") }
-        // if !eq_isFirstShowClassify { result.append("eq_isFirstShowClassify: \(LXMacro.boolString(eq_isFirstShowClassify))\n") }
-        // if !eq_leaveDJTimeStr { result.append("eq_leaveDJTimeStr: \(LXMacro.boolString(eq_leaveDJTimeStr))\n") }
-        // if !eq_storeModel { result.append("eq_storeModel: \(LXMacro.boolString(eq_storeModel))\n") }
-        // if !eq_sceneQueryModel { result.append("eq_sceneQueryModel: \(LXMacro.boolString(eq_sceneQueryModel))\n") }
-        // // if !eq_storeDictionary { result.append("eq_storeDictionary: \(LXMacro.boolString(eq_storeDictionary))\n") }
-        // if !eq_inStoreStyle { result.append("eq_inStoreStyle: \(LXMacro.boolString(eq_inStoreStyle))\n") }
-        // if !eq_tdStoreModel { result.append("eq_tdStoreModel: \(LXMacro.boolString(eq_tdStoreModel))\n") }
-        // if !eq_shopCart_storeModel { result.append("eq_shopCart_storeModel: \(LXMacro.boolString(eq_shopCart_storeModel))\n") }
-        // if !eq_shopCart_tdStoreModel { result.append("eq_shopCart_tdStoreModel: \(LXMacro.boolString(eq_shopCart_tdStoreModel))\n") }
-        // if !eq_headType { result.append("eq_headType: \(LXMacro.boolString(eq_headType))\n") }
-        // if !eq_homeSelectTabType { result.append("eq_homeSelectTabType: \(LXMacro.boolString(eq_homeSelectTabType))\n") }
+        if !eq_sendType { result.append("eq_sendType: \(eq_sendType)\n") }
+        if !eq_sceneId { result.append("eq_sceneId: \(eq_sceneId)\n") }
+        if !eq_longtitude { result.append("eq_longtitude: \(eq_longtitude)\n") }
+        if !eq_latitude { result.append("eq_latitude: \(eq_latitude)\n") }
+        if !eq_currentAddress { result.append("eq_currentAddress: \(eq_currentAddress)\n") }
+        // if !eq_addressRawDic { result.append("eq_addressRawDic: \(eq_addressRawDic)\n") }
+        if !eq_orderSourceCode { result.append("eq_orderSourceCode: \(eq_orderSourceCode)\n") }
+        if !eq_nearShopListArr { result.append("eq_nearShopListArr: \(eq_nearShopListArr)\n") }
+        if !eq_locationAdress { result.append("eq_locationAdress: \(eq_locationAdress)\n") }
+        if !eq_locationCity { result.append("eq_locationCity: \(eq_locationCity)\n") }
+        if !eq_bl_ad { result.append("eq_bl_ad: \(eq_bl_ad)\n") }
+        if !eq_djHomeStyle { result.append("eq_djHomeStyle: \(eq_djHomeStyle)\n") }
+        if !eq_isChangeNet { result.append("eq_isChangeNet: \(eq_isChangeNet)\n") }
+        if !eq_isDaoJiaApp { result.append("eq_isDaoJiaApp: \(eq_isDaoJiaApp)\n") }
+        if !eq_djHomeSearchStr { result.append("eq_djHomeSearchStr: \(eq_djHomeSearchStr)\n") }
+        if !eq_djModuleType { result.append("eq_djModuleType: \(eq_djModuleType)\n") }
+        if !eq_sourceValue { result.append("eq_sourceValue: \(eq_sourceValue)\n") }
+        if !eq_packageArray { result.append("eq_packageArray: \(eq_packageArray)\n") }
+        if !eq_isDeveloper { result.append("eq_isDeveloper: \(eq_isDeveloper)\n") }
+        if !eq_developerLatitude { result.append("eq_developerLatitude: \(eq_developerLatitude)\n") }
+        if !eq_developerLongtitude { result.append("eq_developerLongtitude: \(eq_developerLongtitude)\n") }
+        if !eq_djClassifyHeaderType { result.append("eq_djClassifyHeaderType: \(eq_djClassifyHeaderType)\n") }
+        if !eq_headerBgColorStr { result.append("eq_headerBgColorStr: \(eq_headerBgColorStr)\n") }
+        if !eq_head4FCDefColor { result.append("eq_head4FCDefColor: \(eq_head4FCDefColor)\n") }
+        if !eq_head4FCActiveColor { result.append("eq_head4FCActiveColor: \(eq_head4FCActiveColor)\n") }
+        if !eq_labelColor { result.append("eq_labelColor: \(eq_labelColor)\n") }
+        if !eq_classifyShowIndex { result.append("eq_classifyShowIndex: \(eq_classifyShowIndex)\n") }
+        if !eq_isFirstShowClassify { result.append("eq_isFirstShowClassify: \(eq_isFirstShowClassify)\n") }
+        if !eq_leaveDJTimeStr { result.append("eq_leaveDJTimeStr: \(eq_leaveDJTimeStr)\n") }
+        if !eq_storeModel { result.append("eq_storeModel: \(eq_storeModel)\n") }
+        if !eq_sceneQueryModel { result.append("eq_sceneQueryModel: \(eq_sceneQueryModel)\n") }
+        // if !eq_storeDictionary { result.append("eq_storeDictionary: \(eq_storeDictionary)\n") }
+        if !eq_inStoreStyle { result.append("eq_inStoreStyle: \(eq_inStoreStyle)\n") }
+        if !eq_tdStoreModel { result.append("eq_tdStoreModel: \(eq_tdStoreModel)\n") }
+        if !eq_shopCart_storeModel { result.append("eq_shopCart_storeModel: \(eq_shopCart_storeModel)\n") }
+        if !eq_shopCart_tdStoreModel { result.append("eq_shopCart_tdStoreModel: \(eq_shopCart_tdStoreModel)\n") }
+        if !eq_headType { result.append("eq_headType: \(eq_headType)\n") }
+        if !eq_homeSelectTabType { result.append("eq_homeSelectTabType: \(eq_homeSelectTabType)\n") }
         dlog("result: \(result)")
     }
     // static func () {}

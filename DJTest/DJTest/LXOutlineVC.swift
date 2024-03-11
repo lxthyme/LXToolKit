@@ -501,13 +501,11 @@ extension LXOutlineVC: UICollectionViewDelegate {
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")
             guard let storeCode = param[safe: 1],
-                  let storeType = param[safe: 2],
-                  storeCode.isNotEmpty,
-                  storeType.isNotEmpty else {
+                  let storeType = param[safe: 2] else {
                 return
             }
             let scene: Navigator.Scene = .vc(provider: {
-                let vc = DJRouterObjc.getMain(storeCode, storeType: storeType)
+                let vc = DJRouter.getMain(storeCode: storeCode, storeType: storeType)!
                 let nav = DJTestRouter.createNav(rootVC: vc) {
                     DJRouter.saveGStore()
                 }

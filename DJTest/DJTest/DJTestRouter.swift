@@ -118,7 +118,7 @@ public struct DJTestRouter {
                 return nil
             })),
             .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
-                let vc = DJRouterObjc.getMain("", storeType: "")
+                let vc = DJRouter.getMain()
                 return DJTestRouter.createNav(rootVC: vc) {
                     DJRouter.saveGStore()
                 }
