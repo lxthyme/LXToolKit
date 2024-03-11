@@ -8,7 +8,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DJQuickHomeVC: UIViewController {
+@interface DJQuickHomeVC: DJBaseVC {
 }
 
 @end
