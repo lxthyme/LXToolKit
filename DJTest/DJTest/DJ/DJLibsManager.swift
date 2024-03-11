@@ -55,23 +55,3 @@ extension DJLibsManager {
 
 // MARK: 🔐Private Actions
 private extension DJLibsManager {}
-
-enum DJEnv: String {
-    case sit = "sit"
-    case prd = "prd"
-    case gray = "gray"
-}
-
-// MARK: - 👀
-extension DJEnv {
-    static func getCurrentEnv() -> DJEnv {
-        let env = DJRouterObjc.getCurrentEnv()
-        switch env {
-        case .develop: return .sit
-        case .preRelease: return .gray
-        case .release, .notSetted: return .prd
-        @unknown default:
-            return .prd
-        }
-    }
-}

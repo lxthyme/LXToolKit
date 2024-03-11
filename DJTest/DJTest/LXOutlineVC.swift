@@ -295,7 +295,7 @@ private extension LXOutlineVC {
             let mockList: [String]? = tmp[safe: 2]?
                 .components(separatedBy: ",")
             let defaultValue = mockList?
-                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJEnv.getCurrentEnv().rawValue })
+                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnvEnum().rawValue })
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
@@ -509,7 +509,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
             let scene: Navigator.Scene = .vc(provider: {
                 let vc = DJRouterObjc.getMain(storeCode, storeType: storeType)
                 let nav = DJTestRouter.createNav(rootVC: vc) {
-                    DJRouterObjc.saveGStore()
+                    DJRouter.saveGStore()
                 }
                 return nav
             }, transition: .alert)

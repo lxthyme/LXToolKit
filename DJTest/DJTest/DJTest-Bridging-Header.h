@@ -10,6 +10,8 @@
 #endif
 
 #import "DJRouterObjc.h"
+#import <DJGlobalStoreManager/DJStoreManager.h>
+#import <CTAppContext_BaiLian/CTAppContext+BaiLian.h>
 
 // #define LOG_LEVEL_DEF ddLogLevel
 // #import <CocoaLumberjack/CocoaLumberjack.h>

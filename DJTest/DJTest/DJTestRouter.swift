@@ -112,15 +112,15 @@ public struct DJTestRouter {
         })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
-        return .outline(.section(title: "DJBusinessModule(\(DJEnv.getCurrentEnv()))"), subitems: [
+        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnvEnum()))"), subitems: [
             .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
-                DJRouterObjc.toggleEnv();
+                DJRouter.toggleEnv();
                 return nil
             })),
             .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
                 let vc = DJRouterObjc.getMain("", storeType: "")
                 return DJTestRouter.createNav(rootVC: vc) {
-                    DJRouterObjc.saveGStore()
+                    DJRouter.saveGStore()
                 }
             }, transition: .alert)),
             .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
@@ -129,7 +129,7 @@ public struct DJTestRouter {
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
             .subitem(.section(title: "[All Env]show current login & gStore info"), scene: .vc(provider: {
-                let result = DJRouterObjc.showCurrentLocalStorageInfo()
+                let result = DJRouter.showCurrentLocalStorageInfo()
                 let info = [
                     "info": result.jsonString()
                 ]
@@ -139,7 +139,7 @@ public struct DJTestRouter {
             .subitem(.section(title: "backup login & gStore info"), scene: .vc(provider: {
                 let json: String? = nil
                 if let json {
-                    DJRouterObjc.backup(toLocalStorage: json)
+                    DJRouter.backupToLocalStorage(localInfo: json)
                     dlog("--->json: \(json)")
                 } else {
                     dlog("--> 请先手动设置 json")
@@ -147,7 +147,7 @@ public struct DJTestRouter {
                 return nil
             })),
             .subitem(.section(title: "show current context"), scene: .vc(provider: {
-                DJRouterObjc.showCurrentCtxInfo()
+                DJRouter.showCurrentCtxInfo()
                 return nil
             })),
         ])
