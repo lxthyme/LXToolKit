@@ -9,7 +9,7 @@
 #define EmojiRangersConfig_Open true
 #endif
 
-#import "DJRouter.h"
+#import "DJRouterObjc.h"
 
 // #define LOG_LEVEL_DEF ddLogLevel
 // #import <CocoaLumberjack/CocoaLumberjack.h>

@@ -1,11 +1,11 @@
 //
-//  DJRouter.m
+//  DJRouterObjc.m
 //  DaoJia_Example
 //
 //  Created by lxthyme on 2024/1/10.
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
-#import "DJRouter.h"
+#import "DJRouterObjc.h"
 #import <Masonry/Masonry.h>
 #import <BLSafeFetchDataFunctions/BLSafeFetchDataFunctions.h>
 #import <BLCategories/UIColor+Hex.h>
@@ -25,12 +25,12 @@
 
 #import "DJQuickHomeVC.h"
 
-@interface DJRouter() {
+@interface DJRouterObjc() {
 }
 
 @end
 
-@implementation DJRouter
+@implementation DJRouterObjc
 
 #pragma mark -
 #pragma mark - 👀Public Actions
@@ -43,7 +43,7 @@
     // [CTAppContext sharedInstance].apiEnviroment = CTServiceAPIEnviromentRelease;
     // #endif
     /// 从 localStorage 中恢复登录信息
-    [DJRouter backupLoginfo];
+    [DJRouterObjc backupAllInfo];
     [[BLMediator sharedInstance] BLNetworking_config];
 
     NSString *sensorUrl = @"https://sensorsdata.bl.com/sa?project=default";
@@ -66,9 +66,9 @@
 + (void)toggleEnv {
     CTAppContext *ctx = [CTAppContext sharedInstance];
     if(ctx.apiEnviroment == CTServiceAPIEnviromentRelease) {
-        [DJRouter toggleEnvTo:CTServiceAPIEnviromentDevelop];
+        [DJRouterObjc toggleEnvTo:CTServiceAPIEnviromentDevelop];
     } else {
-        [DJRouter toggleEnvTo:CTServiceAPIEnviromentRelease];
+        [DJRouterObjc toggleEnvTo:CTServiceAPIEnviromentRelease];
     }
 }
 + (void)toggleEnvTo:(CTServiceAPIEnviroment)env {
@@ -77,7 +77,8 @@
         return;
     }
     [CTAppContext sharedInstance].apiEnviroment = env;
-    [DJRouter backupLoginfo];
+    [DJRouterObjc backupLogInfo];
+    [DJRouterObjc backupGStore];
 }
 + (CTServiceAPIEnviroment)getCurrentEnv {
     CTAppContext *ctx = [CTAppContext sharedInstance];
@@ -98,20 +99,160 @@
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
++ (void)backupAllInfo {
+    [self backupLogInfo];
+    [self backupGStore];
+}
+/// 手动迁移登录 & 全局门店
++ (void)transferLoginInfo {
+    NSDictionary *tmp = [DJRouterObjc showCurrentLocalStorageInfo];
+    NSString *json = [tmp yy_modelToJSONString];
+    NSDictionary *info = @{
+        @"json": json
+    };
+    [DJRouterObjc backupToLocalStorage:json];
+    NSLog(@"--->END");
+}
 /// 从 localStorage 中恢复登录信息
-+ (void)backupLoginfo {
++ (void)backupLogInfo {
     CTAppContext *ctx = [CTAppContext sharedInstance];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
-    ctx.userInfo = [defaults dictionaryForKey:userInfoKey];
-    NSString *plusKey = [ctx getPlusLocalStorageKey];
-    ctx.plusInfo = [defaults dictionaryForKey:plusKey];
-}
+    NSDictionary *userInfo = [defaults dictionaryForKey:userInfoKey];
 
+    NSString *plusKey = [ctx getPlusLocalStorageKey];
+    NSDictionary *plusInfo = [defaults dictionaryForKey:plusKey];
+
+    [ctx xl_updateUserInfo:userInfo];
+    [ctx xl_updatePlusInfo:plusInfo];
+}
+/// 迁移登录信息 & 全局门店信息到另一台设备
++ (void)backupToLocalStorage:(NSString *)localInfo {
+    NSDictionary *localObj = [localInfo yy_modelToJSONObject];
+
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CTServiceAPIEnviroment previousEnv = ctx.apiEnviroment;
+    {
+        ctx.apiEnviroment = CTServiceAPIEnviromentDevelop;
+        NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
+        NSString *plusKey = [ctx getPlusLocalStorageKey];
+        NSString *gStoreKey = [DJRouterObjc getEnvLocalStorageKey];
+
+        NSDictionary *sitObj = dictionaryFromObject(localObj, @"sit");
+        NSDictionary *userInfo = dictionaryFromObject(sitObj, @"userInfo");
+        NSDictionary *plusInfo = dictionaryFromObject(sitObj, @"plusInfo");
+        NSDictionary *gStoreInfo = dictionaryFromObject(sitObj, @"gStore");
+
+        if(userInfo.allKeys.count > 0) {
+            [defaults setValue:userInfo forKey:userInfoKey];
+            [defaults setValue:plusInfo forKey:plusKey];
+        } else {
+            NSLog(@"-->[SIT]登录信息为空, skipping...");
+        }
+        if(gStoreInfo.allKeys.count > 0) {
+            [defaults setValue:gStoreInfo forKey:gStoreKey];
+        } else {
+            NSLog(@"-->[SIT]全局门店信息为空, skipping...");
+        }
+    }
+    {
+        ctx.apiEnviroment = CTServiceAPIEnviromentRelease;
+        NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
+        NSString *plusKey = [ctx getPlusLocalStorageKey];
+        NSString *gStoreKey = [DJRouterObjc getEnvLocalStorageKey];
+
+        NSDictionary *prdObj = dictionaryFromObject(localObj, @"prd");
+        NSDictionary *userInfo = dictionaryFromObject(prdObj, @"userInfo");
+        NSDictionary *plusInfo = dictionaryFromObject(prdObj, @"plusInfo");
+        NSDictionary *gStore = dictionaryFromObject(prdObj, @"gStore");
+
+        if(userInfo.allKeys.count > 0) {
+            [defaults setValue:userInfo forKey:userInfoKey];
+            [defaults setValue:plusInfo forKey:plusKey];
+        } else {
+            NSLog(@"-->[PRD]登录信息为空, skipping...");
+        }
+        if(gStore.allKeys.count > 0) {
+            [defaults setValue:gStore forKey:gStoreKey];
+        } else {
+            NSLog(@"-->[PRD]全局门店信息为空, skipping...");
+        }
+    }
+    ctx.apiEnviroment = previousEnv;
+}
+/// [全环境]显示当前缓存的登录信息 & 全局门店信息
++ (NSDictionary *)showCurrentLocalStorageInfo {
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CTServiceAPIEnviroment previousEnv = ctx.apiEnviroment;
+    __block NSMutableDictionary *prdInfo = [NSMutableDictionary dictionary];
+    __block NSMutableDictionary *sitInfo = [NSMutableDictionary dictionary];
+    {
+        ctx.apiEnviroment = CTServiceAPIEnviromentDevelop;
+        NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
+        NSString *plusKey = [ctx getPlusLocalStorageKey];
+        NSString *gStoreKey = [DJRouterObjc getEnvLocalStorageKey];
+
+        NSDictionary *userInfo = [defaults dictionaryForKey:userInfoKey];
+        NSDictionary *plusInfo = [defaults dictionaryForKey:plusKey];
+        NSDictionary *gStore = [defaults dictionaryForKey:gStoreKey];
+        [sitInfo addEntriesFromDictionary:@{
+            @"userInfo": userInfo,
+            @"plusInfo": plusInfo,
+            @"gStore": gStore,
+        }];
+    }
+    {
+        ctx.apiEnviroment = CTServiceAPIEnviromentRelease;
+        NSString *userInfoKey = [ctx getUserInfoLocalStorageKey];
+        NSString *plusKey = [ctx getPlusLocalStorageKey];
+        NSString *gStoreKey = [DJRouterObjc getEnvLocalStorageKey];
+
+        NSDictionary *userInfo = [defaults dictionaryForKey:userInfoKey];
+        NSDictionary *plusInfo = [defaults dictionaryForKey:plusKey];
+        NSDictionary *gStore = [defaults dictionaryForKey:gStoreKey];
+        [prdInfo addEntriesFromDictionary:@{
+            @"userInfo": userInfo,
+            @"plusInfo": plusInfo,
+            @"gStore": gStore,
+        }];
+    }
+    ctx.apiEnviroment = previousEnv;
+
+    return @{
+        @"sit": sitInfo,
+        @"prd": prdInfo,
+    };
+}
+/// 根据当前环境显示当前登录信息
++ (void)showCurrentCtxInfo {
+    CTAppContext *ctx = [CTAppContext sharedInstance];
+    DJStoreManager *gStore = [DJStoreManager sharedInstance];
+    if(ctx.apiEnviroment == CTServiceAPIEnviromentDevelop) {
+        NSDictionary *sit = @{
+            @"memberMobilePhoneNumber": ctx.memberMobilePhoneNumber,
+            @"memberToken": ctx.memberToken,
+            @"shopName": gStore.storeModel.shopName,
+            @"shopId": gStore.storeModel.shopId,
+        };
+        NSLog(@"-->Current Info[SIT]: %@", sit);
+    }
+    if(ctx.apiEnviroment == CTServiceAPIEnviromentRelease) {
+        NSDictionary *prd = @{
+            @"memberMobilePhoneNumber": ctx.memberMobilePhoneNumber,
+            @"memberToken": ctx.memberToken,
+            @"shopName": gStore.storeModel.shopName,
+            @"shopId": gStore.storeModel.shopId,
+        };
+        NSLog(@"-->Current Info[PRD]: %@", prd);
+    }
+}
 #pragma mark -
 #pragma mark - 👀备份全局门店信息
 + (NSString *)getEnvLocalStorageKey {
-    CTServiceAPIEnviroment env = [DJRouter getCurrentEnv];
+    CTServiceAPIEnviroment env = [DJRouterObjc getCurrentEnv];
     NSMutableString *key = [@"DJTest.gStore." mutableCopy];
     switch(env) {
     case CTServiceAPIEnviromentDevelop: {
@@ -126,19 +267,21 @@
     }
     return key;
 }
-+ (void)saveToJSON {
+/// 将全局门店缓存到 NSUserDefaults
++ (void)saveGStore {
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
     NSDictionary *json = [gStore yy_modelToJSONObject];
-    NSString *key = [DJRouter getEnvLocalStorageKey];
+    NSString *key = [DJRouterObjc getEnvLocalStorageKey];
     [[NSUserDefaults standardUserDefaults]setValue:json forKey:key];
 }
-+ (DJStoreManager *)backupFromJSON {
-    NSString *key = [DJRouter getEnvLocalStorageKey];
+/// 从 NSUserDefaults 中恢复全局门店
++ (DJStoreManager *)backupGStore {
+    NSString *key = [DJRouterObjc getEnvLocalStorageKey];
     NSString *jsonString = [[NSUserDefaults standardUserDefaults] valueForKey:key];
     DJStoreManager *model = [DJStoreManager yy_modelWithJSON:jsonString];
     DJStoreManager *gStore = [DJStoreManager sharedInstance];
     if(gStore.storeModel) {
-        [DJRouter checkEqual:gStore model:model];
+        [DJRouterObjc checkEqual:gStore model:model];
     }
     gStore.sendType = model.sendType;
     gStore.sceneId = model.sceneId;
@@ -342,7 +485,7 @@
     method_exchangeImplementations(method9, method10);
 }
 - (NSString *)getLoginLocalStorageKey {
-    CTServiceAPIEnviroment env = [DJRouter getCurrentEnv];
+    CTServiceAPIEnviroment env = [DJRouterObjc getCurrentEnv];
     NSMutableString *key = [@"DJTest.gStore." mutableCopy];
     switch(env) {
     case CTServiceAPIEnviromentDevelop: {
@@ -370,7 +513,7 @@
 
 - (void)xl_updatePlusInfo:(NSDictionary *)plusInfo {
     self.plusInfo = plusInfo;
-
+    NSLog(@"-->[CTAppContext]更新 plus 信息");
     NSString *key = [self getPlusLocalStorageKey];
     [[NSUserDefaults standardUserDefaults] setObject:plusInfo forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -379,7 +522,7 @@
 }
 - (void)xl_cleanPlusInfo {
     self.plusInfo = nil;
-
+    NSLog(@"-->[CTAppContext]清空 plus 信息");
     NSString *key = [self getPlusLocalStorageKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -387,7 +530,7 @@
 
 - (void)xl_updateUserInfo:(NSDictionary *)userInfo {
     self.userInfo = userInfo;
-
+    NSLog(@"-->[CTAppContext]更新用户信息");
     NSString *key = [self getUserInfoLocalStorageKey];
     [[NSUserDefaults standardUserDefaults] setObject:self.userInfo forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -395,7 +538,7 @@
 
 - (void)xl_cleanUserInfo {
     self.userInfo = nil;
-
+    NSLog(@"-->[CTAppContext]清空用户信息");
     NSString *key = [self getUserInfoLocalStorageKey];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];

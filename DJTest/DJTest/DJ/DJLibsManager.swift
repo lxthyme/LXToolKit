@@ -65,7 +65,7 @@ enum DJEnv: String {
 // MARK: - 👀
 extension DJEnv {
     static func getCurrentEnv() -> DJEnv {
-        let env = DJRouter.getCurrentEnv()
+        let env = DJRouterObjc.getCurrentEnv()
         switch env {
         case .develop: return .sit
         case .preRelease: return .gray

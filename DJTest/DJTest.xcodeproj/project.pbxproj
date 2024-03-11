@@ -10,7 +10,7 @@
 		3451B3D8ACB9B1C9E9598A37 /* Pods_DJTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */; };
 		BE0C98B82AF23BA400489AD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */; };
 		BE0E35F12B5182B900F661E1 /* DJLibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0E35EE2B5182B900F661E1 /* DJLibsManager.swift */; };
-		BE0E35F22B5182B900F661E1 /* DJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E35EF2B5182B900F661E1 /* DJRouter.m */; };
+		BE0E35F22B5182B900F661E1 /* DJRouterObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E35EF2B5182B900F661E1 /* DJRouterObjc.m */; };
 		BE1390A82B0B6903009B2BAA /* LXOutlineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */; };
 		BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */; };
 		BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
@@ -61,6 +61,7 @@
 		BEE5A3472AB974FA003339EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3452AB974FA003339EB /* Main.storyboard */; };
 		BEE5A34C2AB974FB003339EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A34A2AB974FB003339EB /* LaunchScreen.storyboard */; };
 		BEF4B3602AF3397900DA0607 /* DJTest.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */; };
+		BEF991152B9EAB1C00DB9692 /* DJRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF991142B9EAB1C00DB9692 /* DJRouter.swift */; };
 		BEFA8DB52AE8E79F00933131 /* LeaderboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */; };
 		BEFA8DB72AE8E8C100933131 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BEFA8DB82AE8E8C200933131 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
@@ -139,8 +140,8 @@
 		96BB082225CCC74FBFAF704B /* Pods_DJTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DJTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0C98B72AF23BA400489AD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE0E35EE2B5182B900F661E1 /* DJLibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJLibsManager.swift; sourceTree = "<group>"; };
-		BE0E35EF2B5182B900F661E1 /* DJRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRouter.m; sourceTree = "<group>"; };
-		BE0E35F02B5182B900F661E1 /* DJRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRouter.h; sourceTree = "<group>"; };
+		BE0E35EF2B5182B900F661E1 /* DJRouterObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJRouterObjc.m; sourceTree = "<group>"; };
+		BE0E35F02B5182B900F661E1 /* DJRouterObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJRouterObjc.h; sourceTree = "<group>"; };
 		BE1390A72B0B6903009B2BAA /* LXOutlineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOutlineVC.swift; sourceTree = "<group>"; };
 		BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLibManager.swift; sourceTree = "<group>"; };
 		BE3067A22AE75AB400E9577C /* GameColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColors.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		BEE5A34B2AB974FB003339EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEE5A34D2AB974FB003339EB /* Info-Release.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Release.plist"; sourceTree = "<group>"; };
 		BEF4B35F2AF3397900DA0607 /* DJTest.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = DJTest.xcstrings; sourceTree = "<group>"; };
+		BEF991142B9EAB1C00DB9692 /* DJRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJRouter.swift; sourceTree = "<group>"; };
 		BEFA8DB32AE8E79F00933131 /* LeaderboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardWidget.swift; sourceTree = "<group>"; };
 		BEFA8DCF2AE8EDA400933131 /* AdventureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureViewModel.swift; sourceTree = "<group>"; };
 		BEFA8DD32AE8EDC400933131 /* AdventureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureView.swift; sourceTree = "<group>"; };
@@ -355,8 +357,9 @@
 		BE491F9E2B50D6160001B3D8 /* DJ */ = {
 			isa = PBXGroup;
 			children = (
-				BE0E35F02B5182B900F661E1 /* DJRouter.h */,
-				BE0E35EF2B5182B900F661E1 /* DJRouter.m */,
+				BE0E35F02B5182B900F661E1 /* DJRouterObjc.h */,
+				BE0E35EF2B5182B900F661E1 /* DJRouterObjc.m */,
+				BEF991142B9EAB1C00DB9692 /* DJRouter.swift */,
 				BE0E35EE2B5182B900F661E1 /* DJLibsManager.swift */,
 			);
 			path = DJ;
@@ -809,10 +812,11 @@
 				BE3067A52AE75AE600E9577C /* HealthLevelShape.swift in Sources */,
 				BE3067A82AE75D8C00E9577C /* ImageURLProtocol.swift in Sources */,
 				BE41011F2B550D1600E260F7 /* LXFlutterVC.swift in Sources */,
+				BEF991152B9EAB1C00DB9692 /* DJRouter.swift in Sources */,
 				BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */,
 				BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */,
 				BE3067B92AE7980700E9577C /* EmojiRangerSelection.swift in Sources */,
-				BE0E35F22B5182B900F661E1 /* DJRouter.m in Sources */,
+				BE0E35F22B5182B900F661E1 /* DJRouterObjc.m in Sources */,
 				BEE5A3442AB974FA003339EB /* ViewController.swift in Sources */,
 				BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */,
 				BE720D9E2AE68CB300F016C5 /* DJActivityVC.swift in Sources */,
