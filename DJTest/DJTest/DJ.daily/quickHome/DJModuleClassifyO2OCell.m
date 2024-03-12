@@ -27,7 +27,7 @@
 
 #pragma mark -
 #pragma mark - 🌎LoadData
-- (void)dataFill:(DJClassifyQuickly *)quicklyModel {
+- (void)dataFill:(DJJSCateSlideModel *)quicklyModel {
     self.classifyO2OVC.classifyVM.quicklyModel = quicklyModel;
     // [self.classifyO2OVC reloadData];
     /// 刷新专享券数据

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 @property(nonatomic, strong)DJClassifyQuicklyO2OVC *classifyO2OVC;
 
-- (void)dataFill:(DJClassifyQuickly *)quicklyModel;
+- (void)dataFill:(DJJSCateSlideModel *)quicklyModel;
 
 @end
 

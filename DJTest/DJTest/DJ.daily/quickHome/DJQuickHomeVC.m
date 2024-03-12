@@ -56,7 +56,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == kDJClassifyModuleSection) {
-        DJClassifyQuickly *quicklyModel = [[DJClassifyQuickly alloc]init];
+        DJJSCateSlideModel *quicklyModel = [[DJJSCateSlideModel alloc]init];
         quicklyModel.resourceId = @"20221114";
         [self.classifyView dataFill:quicklyModel];
         return self.classifyView;
