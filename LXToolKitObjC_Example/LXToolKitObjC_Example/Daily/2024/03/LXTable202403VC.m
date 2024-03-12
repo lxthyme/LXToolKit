@@ -148,9 +148,7 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.xl_safeAreaLayoutGuideTop);
-        make.left.right.equalTo(@0.f);
-        make.bottom.equalTo(self.view.xl_safeAreaLayoutGuideBottom);
+        make.edges.equalTo(@0.f);
     }];
 }
 
@@ -184,7 +182,7 @@
         t.dataSource = self;
 
         if (@available(iOS 11.0, *)) {
-            t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            // t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         if(@available(iOS 13.0, *)) {
             t.automaticallyAdjustsScrollIndicatorInsets = NO;
