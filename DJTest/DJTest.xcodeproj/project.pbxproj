@@ -43,7 +43,6 @@
 		BE5267DB2B3F130200F1371C /* LXFlutterSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5267DA2B3F130200F1371C /* LXFlutterSampleVC.swift */; };
 		BE56655F2B2C3CAD00D24B7C /* DJTestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56655E2B2C3CAD00D24B7C /* DJTestRouter.swift */; };
 		BE6D6CDD2B6A2E59000700DF /* DJQuickHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6D6CDC2B6A2E59000700DF /* DJQuickHomeVC.m */; };
-		BE6D74E72B6A4D4E000700DF /* DJModuleClassifyO2OCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6D74E62B6A4D4E000700DF /* DJModuleClassifyO2OCell.m */; };
 		BE720D9E2AE68CB300F016C5 /* DJActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */; };
 		BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */; };
 		BE720DA72AE68FAA00F016C5 /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
@@ -188,8 +187,6 @@
 		BE6D6CDB2B6A2E59000700DF /* DJQuickHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJQuickHomeVC.h; sourceTree = "<group>"; };
 		BE6D6CDC2B6A2E59000700DF /* DJQuickHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJQuickHomeVC.m; sourceTree = "<group>"; };
 		BE6D74E42B6A32BA000700DF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		BE6D74E52B6A4D4E000700DF /* DJModuleClassifyO2OCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DJModuleClassifyO2OCell.h; sourceTree = "<group>"; };
-		BE6D74E62B6A4D4E000700DF /* DJModuleClassifyO2OCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJModuleClassifyO2OCell.m; sourceTree = "<group>"; };
 		BE720D9D2AE68CB300F016C5 /* DJActivityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJActivityVC.swift; sourceTree = "<group>"; };
 		BE720D9F2AE68EED00F016C5 /* EmojiRangersWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRangersWidget.swift; sourceTree = "<group>"; };
 		BE720DA42AE68FAA00F016C5 /* AdventureAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureAttributes.swift; sourceTree = "<group>"; };
@@ -401,8 +398,6 @@
 			children = (
 				BE6D6CDB2B6A2E59000700DF /* DJQuickHomeVC.h */,
 				BE6D6CDC2B6A2E59000700DF /* DJQuickHomeVC.m */,
-				BE6D74E52B6A4D4E000700DF /* DJModuleClassifyO2OCell.h */,
-				BE6D74E62B6A4D4E000700DF /* DJModuleClassifyO2OCell.m */,
 			);
 			path = quickHome;
 			sourceTree = "<group>";
@@ -798,7 +793,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE6D74E72B6A4D4E000700DF /* DJModuleClassifyO2OCell.m in Sources */,
 				BE3067B02AE76A5300E9577C /* AdventureLiveActivityContent.swift in Sources */,
 				BE3067AE2AE7674100E9577C /* AvatarView.swift in Sources */,
 				BEB385602B3AEEFA00D14351 /* LXDoubleVC.swift in Sources */,
