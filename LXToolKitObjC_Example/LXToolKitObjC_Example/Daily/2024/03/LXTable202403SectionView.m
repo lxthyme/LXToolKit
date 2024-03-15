@@ -42,7 +42,10 @@
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor cyanColor];
+
+    self.topView.hidden = YES;
+    self.rightView.hidden = YES;
 
     [self addSubview:self.topView];
     [self addSubview:self.rightView];

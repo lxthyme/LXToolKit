@@ -9,6 +9,7 @@
 #import <Masonry/Masonry.h>
 #import "LXTable202403HeaderView.h"
 #import "LXTable202403SectionView.h"
+#import <MJRefresh/MJRefresh.h>
 
 #define kDJClassifyQuicklyPinHeight 88.f
 
@@ -55,15 +56,20 @@
 #pragma mark -
 #pragma mark - 🌎LoadData
 - (void)dataFill {
-    self.tableHeaderView.frame = CGRectMake(0, -44, SCREEN_WIDTH, kDJClassifyQuicklyPinHeight);
+    self.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, kDJClassifyQuicklyPinHeight);
     UIView *header = [[UIView alloc]init];
     header.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, kDJClassifyQuicklyPinHeight);
-    header.backgroundColor = [UIColor redColor];
+    // header.backgroundColor = [UIColor redColor];
     [header addSubview:self.tableHeaderView];
     self.table.tableHeaderView = header;
-    header.layer.zPosition = 1;
-    [self.table bringSubviewToFront:header];
+    // header.layer.zPosition = 1;
+    // [self.table bringSubviewToFront:header];
     // self.table.tableHeaderView = self.tableHeaderView;
+
+    // [self.view addSubview:self.tableHeaderView];
+    // self.table.contentInset = UIEdgeInsetsMake(kDJClassifyQuicklyPinHeight + 64, 0, 0, 0);
+    self.table.mj_header.ignoredScrollViewContentInsetTop = -kDJClassifyQuicklyPinHeight;// - 54;
+    // self.table.bounces = YES;
 }
 
 #pragma mark -
@@ -110,23 +116,30 @@
 #pragma mark -
 #pragma mark - ✈️UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(scrollViewDidEndDecelerating:) withObject:scrollView];
-}
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    // [self performSelector:@selector(scrollViewDidEndDecelerating:) withObject:scrollView];
     CGFloat offsetY = scrollView.contentOffset.y;
-    // CGRect rect = [self.view convertRect:self.table.tableHeaderView.frame fromView:self.table];
-    CGRect rect = self.tableHeaderView.frame;
-    CGFloat rectY = rect.origin.y;
-    CGFloat pinOffset = 0;
-    if(offsetY >= pinOffset) {
-        rect.origin.y = offsetY - pinOffset;
+    NSLog(@"-->offsetY: %f", offsetY);
+    if(offsetY <= 0) {
+        self.tableHeaderView.frame = CGRectMake(0, offsetY, SCREEN_WIDTH, kDJClassifyQuicklyPinHeight);
     } else {
-        rect.origin.y = 0;
+        self.tableHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, kDJClassifyQuicklyPinHeight);
     }
-    NSLog(@"-->[%.2f]: %.2f -> %.2f", offsetY, rectY, rect.origin.y);
-    self.tableHeaderView.frame = rect;
 }
+// - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//     CGFloat offsetY = scrollView.contentOffset.y;
+//     // CGRect rect = [self.view convertRect:self.table.tableHeaderView.frame fromView:self.table];
+//     CGRect rect = self.tableHeaderView.frame;
+//     CGFloat rectY = rect.origin.y;
+//     CGFloat pinOffset = 0;
+//     if(offsetY >= pinOffset) {
+//         rect.origin.y = offsetY - pinOffset;
+//     } else {
+//         rect.origin.y = 0;
+//     }
+//     NSLog(@"-->[%.2f]: %.2f -> %.2f", offsetY, rectY, rect.origin.y);
+//     self.tableHeaderView.frame = rect;
+// }
 
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
@@ -134,6 +147,44 @@
     // self.table.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
     [self.table xl_registerForCell:[UITableViewCell class]];
     [self.table xl_registerForHeaderFooterView:[LXTable202403HeaderView class]];
+
+    WEAKSELF(self)
+    MJRefreshNormalHeader *header = [[MJRefreshNormalHeader alloc]init];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.arrowView.image = nil;
+    header.stateLabel.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+    header.stateLabel.textColor = [UIColor colorWithHex:0x888888];
+    [header setTitle:@"下拉至上一个分类" forState:MJRefreshStateIdle];
+    [header setTitle:@"松开至上一个分类" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [header setTitle:@"will refresh" forState:MJRefreshStateWillRefresh];
+    // [header setTitle:@"已经是第一个分类了" forState:MJRefreshStateNoMoreData];
+    [header setTitle:@"" forState:MJRefreshStateNoMoreData];
+    header.refreshingBlock = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // !weakSelf.refreshBlock ?: weakSelf.refreshBlock(YES);
+            [weakSelf.table.mj_header endRefreshing];
+        });
+    };
+    MJRefreshBackStateFooter *footer = [[MJRefreshBackStateFooter alloc]init];
+    footer.ignoredScrollViewContentInsetBottom = LXiPhoneX.xl_safeareaInsets.bottom;
+    footer.stateLabel.font = [UIFont systemFontOfSize:kWPercentage(12.f)];
+    footer.stateLabel.textColor = [UIColor colorWithHex:0x888888];
+    [footer setTitle:@"上拉至下一个分类" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松开至下一个分类" forState:MJRefreshStatePulling];
+    [footer setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"will refresh" forState:MJRefreshStateWillRefresh];
+    // [footer setTitle:@"已经是最后一个分类了" forState:MJRefreshStateNoMoreData];
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    footer.refreshingBlock = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // !weakSelf.refreshBlock ?: weakSelf.refreshBlock(NO);
+            [weakSelf.table.mj_footer endRefreshing];
+        });
+    };
+
+    self.table.mj_header = header;
+    self.table.mj_footer = footer;
 }
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -148,7 +199,10 @@
 - (void)masonry {
     // MASAttachKeys(<#...#>)
     [self.table mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0.f);
+        // make.edges.equalTo(@0.f);
+        make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        make.left.right.equalTo(@0.f);
+        make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
     }];
 }
 
@@ -182,7 +236,7 @@
         t.dataSource = self;
 
         if (@available(iOS 11.0, *)) {
-            // t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
         if(@available(iOS 13.0, *)) {
             t.automaticallyAdjustsScrollIndicatorInsets = NO;
