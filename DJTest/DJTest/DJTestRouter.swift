@@ -47,7 +47,8 @@ public struct DJTestRouter {
         Application.shared.presentInitialScreen(in: window)
         return nil
     }))
-    static let routerDynamicIsland: LXOutlineOpt = .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
+    static let routerDynamicIsland: LXOutlineOpt = .outline(.section(title: "Dynamic Island"), subitems: [
+        .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
         if #available(iOS 16.2, *) {
             return UIHostingController(rootView: EmojiRangersView())
         } else {
@@ -56,7 +57,16 @@ public struct DJTestRouter {
             vc.dataFillUnSupport(content: "当前设备不支持灵动岛!")
             return vc
         }
-    }))
+    })),
+        .subitem(.section(title: "LXDynamicLandVC"), scene: .vc(provider: {
+            guard #available(iOS 16.2, *) else {
+                let vc = LXSampleTextViewVC()
+                vc.dataFillUnSupport(content: "iOS 14.0 Dynamic Land Extension Demo VC")
+                return vc
+            }
+            return LXDynamicLandVC()
+        })),
+    ])
     static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
         .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: {

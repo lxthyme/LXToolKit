@@ -9,22 +9,24 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+@available(iOS 16.2, *)
 struct DynamicLandExtensionAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
-        var emoji: String
+        let currentHealthLevel: Double
+        let eventDescription: String
     }
 
     // Fixed non-changing properties about your activity go here!
-    var name: String
+    var hero: EmojiRanger
 }
-
+@available(iOS 16.2, *)
 struct DynamicLandExtensionLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: DynamicLandExtensionAttributes.self) { context in
+        ActivityConfiguration(for: DynamicLandExtensionAttributes.self) { (context: ActivityViewContext<DynamicLandExtensionAttributes>) in
             // Lock screen/banner UI goes here
             VStack {
-                Text("Hello \(context.state.emoji)")
+                Text("Hello \(context.attributes.hero.name)")
             }
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
@@ -40,15 +42,15 @@ struct DynamicLandExtensionLiveActivity: Widget {
                     Text("Trailing")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.emoji)")
+                    Text("Bottom \(context.state.eventDescription)")
                     // more content
                 }
             } compactLeading: {
                 Text("L")
             } compactTrailing: {
-                Text("T \(context.state.emoji)")
+                Text("T \(context.state.currentHealthLevel)")
             } minimal: {
-                Text(context.state.emoji)
+                Text("M \(context.state.currentHealthLevel)")
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
@@ -56,22 +58,25 @@ struct DynamicLandExtensionLiveActivity: Widget {
     }
 }
 
+@available(iOS 16.2, *)
 extension DynamicLandExtensionAttributes {
     fileprivate static var preview: DynamicLandExtensionAttributes {
-        DynamicLandExtensionAttributes(name: "World")
+        DynamicLandExtensionAttributes(hero: .spouty)
     }
 }
 
+@available(iOS 16.2, *)
 extension DynamicLandExtensionAttributes.ContentState {
     fileprivate static var smiley: DynamicLandExtensionAttributes.ContentState {
-        DynamicLandExtensionAttributes.ContentState(emoji: "😀")
+        DynamicLandExtensionAttributes.ContentState(currentHealthLevel: 0.2, eventDescription: "smiley description")
      }
      
      fileprivate static var starEyes: DynamicLandExtensionAttributes.ContentState {
-         DynamicLandExtensionAttributes.ContentState(emoji: "🤩")
+         DynamicLandExtensionAttributes.ContentState(currentHealthLevel: 0.4, eventDescription: "star eyes description")
      }
 }
 
+@available(iOS 17.0, *)
 #Preview("Notification", as: .content, using: DynamicLandExtensionAttributes.preview) {
    DynamicLandExtensionLiveActivity()
 } contentStates: {

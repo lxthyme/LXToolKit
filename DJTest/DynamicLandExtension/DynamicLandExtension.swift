@@ -51,6 +51,7 @@ struct DynamicLandExtensionEntryView : View {
     }
 }
 
+@available(iOS 17.0, *)
 struct DynamicLandExtension: Widget {
     let kind: String = "DynamicLandExtension"
 
@@ -76,6 +77,7 @@ extension ConfigurationAppIntent {
     }
 }
 
+@available(iOS 17.0, *)
 #Preview(as: .systemSmall) {
     DynamicLandExtension()
 } timeline: {
