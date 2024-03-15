@@ -32,6 +32,7 @@ import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:flutter_unit/app/bloc_wrapper.dart';
 import 'package:flutter_unit/app/flutter_unit.dart';
+import 'package:flutter_unit_copy/app/flutter_unit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:go_router/go_router.dart';
@@ -72,6 +73,7 @@ void main() async {
   // daily_MyScaffold();
   // daily_MultiCounter();
   // gsyDefault();
+  // flutterUnitCopyApp();
 }
 
 // ---------------------- FlutterUnit entry-point ----------------------
@@ -82,6 +84,13 @@ void entrypointFlutterUnit() {
   GestureBinding.instance.resamplingEnabled = true;
   WindowsAdapter.setSize();
   return runApp(BlocWrapper(child: FlutterUnit3()));
+}
+// ---------------------- FlutterUnit entry-point「END」 ----------------------
+
+// ---------------------- GSY APP entry-point ----------------------
+@pragma('vm:entry-point')
+void flutterUnitCopyApp() {
+  return runApp(const AppTemplate(widget: FlutterUnitPage()));
 }
 // ---------------------- FlutterUnit entry-point「END」 ----------------------
 

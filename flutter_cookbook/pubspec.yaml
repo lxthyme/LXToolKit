@@ -34,6 +34,8 @@ dependencies:
     path: packages/gsy_app
   flutter_unit:
     path: packages/flutter_unit
+  flutter_unit_copy:
+    path: packages/flutter_unit_copy
   app:
     path: packages/flutter_unit/packages/app
 
