@@ -28,9 +28,7 @@ class LXDynamicLandVC: LXBaseVC {
         // btn.addTarget(self, action: #selector(btnStart(sender:)), for: .touchUpInside)
         // @objc func btnStart(sender: UIButton) {}
         btn.addAction(UIAction(handler: {[weak self]_ in
-            if #available(iOS 16.2, *) {
-                ActivityVM.shareInstance.startActivity()
-            }
+            ActivityVM.shareInstance.startActivity()
         }), for: .touchUpInside)
         return btn
     }()

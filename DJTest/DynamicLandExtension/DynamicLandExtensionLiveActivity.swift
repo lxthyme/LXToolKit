@@ -25,32 +25,46 @@ struct DynamicLandExtensionLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: DynamicLandExtensionAttributes.self) { (context: ActivityViewContext<DynamicLandExtensionAttributes>) in
             // Lock screen/banner UI goes here
-            VStack {
-                Text("Hello \(context.attributes.hero.name)")
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
+            // VStack {
+            //     Text("Hello \(context.attributes.hero.name)")
+            // }
+            LXEmojiLiveActivityView(hero: context.attributes.hero, isStale: context.isStale, contentState: context.state)
+                .activityBackgroundTint(Color.liveActivityBackground.opacity(0.25))
+            // .activitySystemActionForegroundColor(Color.black)
 
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here.  Compose the expanded UI through
                 // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+                    // Text("Leading")
+                    LXActivityAvatarView(hero: context.attributes.hero)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    // Text("Trailing")
+                    LXActivityStatsView(hero: context.attributes.hero, isStale: context.isStale)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.eventDescription)")
-                    // more content
+                    // Text("Bottom \(context.state.eventDescription)")
+                    LXActivityHealthBar(currentHealthLevel: context.state.currentHealthLevel)
+
+                    LXActivityEventDescriptionView(hero: context.attributes.hero, contentState: context.state)
                 }
             } compactLeading: {
-                Text("L")
+                // Text("L")
+                LXAvatarView(hero: context.attributes.hero, includeBackground: true)
             } compactTrailing: {
-                Text("T \(context.state.currentHealthLevel)")
+                // Text("T \(context.state.currentHealthLevel)")
+                ProgressView(value: context.state.currentHealthLevel, total: 1) {
+                    Text("\(Int(context.state.currentHealthLevel * 100))")
+                }
+                .progressViewStyle(.circular)
+                .tint(context.state.currentHealthLevel <= 0.2 ? .red : .green)
             } minimal: {
-                Text("M \(context.state.currentHealthLevel)")
+                // Text("M \(context.state.currentHealthLevel)")
+                ProgressView(value: context.state.currentHealthLevel, total: 1) {
+                    LXAvatarView(hero: context.attributes.hero, includeBackground: false)
+                }
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)

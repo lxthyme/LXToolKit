@@ -30,6 +30,7 @@
 		BE1FBD6B2BA4424D00B9A7CB /* EmojiRanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */; };
 		BE1FBD6C2BA4426B00B9A7CB /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A72AE75D8C00E9577C /* ImageURLProtocol.swift */; };
 		BE1FBD6D2BA442B300B9A7CB /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
+		BE1FBD6E2BA46EFD00B9A7CB /* HealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */; };
 		BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */; };
 		BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
 		BE3067A52AE75AE600E9577C /* HealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */; };
@@ -68,6 +69,11 @@
 		BE99436D2B96C20A00A08BA0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BE99436C2B96C20A00A08BA0 /* Settings.bundle */; };
 		BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA850F92B216B6100C6D019 /* LXFirstVC.swift */; };
 		BEABE2992B5251CC00CD07B6 /* LXOutlineParamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEABE2982B5251CC00CD07B6 /* LXOutlineParamCell.swift */; };
+		BEACF6E82BA7EB28000FADAF /* LXAppIntentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACF6E62BA7EAD6000FADAF /* LXAppIntentProvider.swift */; };
+		BEACF6E92BA81E5D000FADAF /* SuperCharge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067B62AE795ED00E9577C /* SuperCharge.swift */; };
+		BEACF6EE2BA824E7000FADAF /* LXLeaderboardProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACF6EA2BA822F1000FADAF /* LXLeaderboardProvider.swift */; };
+		BEACF6F52BA82853000FADAF /* LXAllCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACF6F12BA8268B000FADAF /* LXAllCharactersView.swift */; };
+		BEACF6F62BA8285C000FADAF /* LXHealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEACF6F32BA82773000FADAF /* LXHealthLevelShape.swift */; };
 		BEB3855A2B3AE7B700D14351 /* LXSingleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB385592B3AE7B700D14351 /* LXSingleVC.swift */; };
 		BEB3855C2B3AEB7F00D14351 /* LXHostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */; };
 		BEB3855E2B3AED7C00D14351 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB3855D2B3AED7C00D14351 /* DataModel.swift */; };
@@ -233,6 +239,10 @@
 		BE99436C2B96C20A00A08BA0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		BEA850F92B216B6100C6D019 /* LXFirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXFirstVC.swift; sourceTree = "<group>"; };
 		BEABE2982B5251CC00CD07B6 /* LXOutlineParamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXOutlineParamCell.swift; sourceTree = "<group>"; };
+		BEACF6E62BA7EAD6000FADAF /* LXAppIntentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAppIntentProvider.swift; sourceTree = "<group>"; };
+		BEACF6EA2BA822F1000FADAF /* LXLeaderboardProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLeaderboardProvider.swift; sourceTree = "<group>"; };
+		BEACF6F12BA8268B000FADAF /* LXAllCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAllCharactersView.swift; sourceTree = "<group>"; };
+		BEACF6F32BA82773000FADAF /* LXHealthLevelShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXHealthLevelShape.swift; sourceTree = "<group>"; };
 		BEB385592B3AE7B700D14351 /* LXSingleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXSingleVC.swift; sourceTree = "<group>"; };
 		BEB3855B2B3AEB7F00D14351 /* LXHostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXHostVC.swift; sourceTree = "<group>"; };
 		BEB3855D2B3AED7C00D14351 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
@@ -316,9 +326,12 @@
 		BE1FBD4C2BA434D400B9A7CB /* DynamicLandExtension */ = {
 			isa = PBXGroup;
 			children = (
+				BEACF6F02BA82673000FADAF /* View */,
+				BEACF6E52BA7EAB1000FADAF /* Intent Providers */,
 				BE1FBD4D2BA434D400B9A7CB /* DynamicLandExtensionBundle.swift */,
 				BE1FBD4F2BA434D400B9A7CB /* DynamicLandExtensionLiveActivity.swift */,
 				BE1FBD512BA434D400B9A7CB /* DynamicLandExtension.swift */,
+				BEACF6EA2BA822F1000FADAF /* LXLeaderboardProvider.swift */,
 				BE1FBD532BA434D400B9A7CB /* AppIntent.swift */,
 				BE1FBD552BA434D600B9A7CB /* Assets.xcassets */,
 				BE1FBD572BA434D600B9A7CB /* Info.plist */,
@@ -526,6 +539,23 @@
 				BE720DA52AE68FAA00F016C5 /* EmojiRanger.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		BEACF6E52BA7EAB1000FADAF /* Intent Providers */ = {
+			isa = PBXGroup;
+			children = (
+				BEACF6E62BA7EAD6000FADAF /* LXAppIntentProvider.swift */,
+			);
+			path = "Intent Providers";
+			sourceTree = "<group>";
+		};
+		BEACF6F02BA82673000FADAF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEACF6F12BA8268B000FADAF /* LXAllCharactersView.swift */,
+				BEACF6F32BA82773000FADAF /* LXHealthLevelShape.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BEB385582B3AE79400D14351 /* Flutter_Ex */ = {
@@ -857,10 +887,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1FBD6E2BA46EFD00B9A7CB /* HealthLevelShape.swift in Sources */,
+				BEACF6E92BA81E5D000FADAF /* SuperCharge.swift in Sources */,
 				BE1FBD692BA441A500B9A7CB /* LXAvatarView.swift in Sources */,
 				BE1FBD6C2BA4426B00B9A7CB /* ImageURLProtocol.swift in Sources */,
 				BE1FBD6B2BA4424D00B9A7CB /* EmojiRanger.swift in Sources */,
 				BE1FBD522BA434D400B9A7CB /* DynamicLandExtension.swift in Sources */,
+				BEACF6F62BA8285C000FADAF /* LXHealthLevelShape.swift in Sources */,
+				BEACF6F52BA82853000FADAF /* LXAllCharactersView.swift in Sources */,
+				BEACF6E82BA7EB28000FADAF /* LXAppIntentProvider.swift in Sources */,
+				BEACF6EE2BA824E7000FADAF /* LXLeaderboardProvider.swift in Sources */,
 				BE1FBD6A2BA441B000B9A7CB /* LXActivityAvatarView.swift in Sources */,
 				BE1FBD542BA434D400B9A7CB /* AppIntent.swift in Sources */,
 				BE1FBD6D2BA442B300B9A7CB /* GameColors.swift in Sources */,

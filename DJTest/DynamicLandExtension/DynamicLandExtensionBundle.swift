@@ -13,6 +13,7 @@ import SwiftUI
 struct DynamicLandExtensionBundle: WidgetBundle {
     var body: some Widget {
         DynamicLandExtension()
+        LXLeaderboardWidget()
         DynamicLandExtensionLiveActivity()
     }
 }
