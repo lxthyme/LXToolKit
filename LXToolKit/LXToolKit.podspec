@@ -72,13 +72,16 @@ This library contains some useful category and extension kits
       "LXToolKit/Sample/**/*.{swift,h,m,json}",
     ]
     # sub.frameworks = 'UIKit', 'MapKit'
+    sub.dependency 'LXToolKit/RxSwift'
+    sub.dependency 'LXToolKit/Moya_HandyJSON'
+    sub.dependency 'LXToolKit/KafkaRefresh'
 
     # https://github.com/SnapKit/SnapKit
     sub.dependency 'SnapKit'
     # https://github.com/krzyzanowskim/CryptoSwift
     sub.dependency 'CryptoSwift'
     # https://github.com/SDWebImage/SDWebImage
-    sub.dependency 'SDWebImage'
+    # sub.dependency 'SDWebImage'
     # s.source_files  = "LXToolKit/**/*.swift"
     # sub.dependency 'Apollo'
     # sub.dependency 'KeychainAccess'
@@ -111,14 +114,15 @@ This library contains some useful category and extension kits
   end
   s.subspec '3rd' do |sub|
     # sub.dependency 'LXToolKit/Core'
-    sub.dependency 'LXToolKit/RxSwift'
+    # sub.dependency 'LXToolKit/RxSwift'
     sub.dependency 'LXToolKit/Contacts'
     sub.dependency 'LXToolKit/Firebase'
-    sub.dependency 'LXToolKit/Moya_HandyJSON'
+    # sub.dependency 'LXToolKit/Moya_HandyJSON'
     sub.dependency 'LXToolKit/HMSegmentedControl'
     sub.dependency 'LXToolKit/Kingfisher'
-    sub.dependency 'LXToolKit/KafkaRefresh'
+    # sub.dependency 'LXToolKit/KafkaRefresh'
     sub.dependency 'LXToolKit/ImageSlideshow'
+    sub.dependency 'LXToolKit/SDWebImage'
     # sub.dependency 'LXToolKit/'
   end
   s.subspec 'RxSwift' do |sub|
@@ -137,6 +141,10 @@ This library contains some useful category and extension kits
     sub.dependency 'NSObject+Rx'
     sub.dependency 'RxTheme'
     sub.dependency 'RxDataSources'
+  end
+  s.subspec 'SDWebImage' do |sub|
+    sub.source_files = "LXToolKit/3rd/SDWebImage/*"
+    sub.dependency 'SDWebImage'
   end
   s.subspec 'Contacts' do |sub|
     sub.source_files = "LXToolKit/3rd/Contacts/*"

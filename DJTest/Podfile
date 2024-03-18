@@ -81,6 +81,8 @@ def pod_LXToolKit
 
   pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit', :subspecs => ['Core', '3rd']
   pod 'LXToolKit_Example', :inhibit_warnings => false, :path => '../LXToolKit_Example'
+    # pod 'ObjectMapper', '~>4.2'
+    pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
 
   pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
   pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
@@ -224,8 +226,6 @@ target 'DJTest' do
     pod 'DZNEmptyDataSet'
     pod 'SVProgressHUD'
     pod 'RxSwiftExt', '~> 6.2'
-    # pod 'ObjectMapper', '~>4.2'
-    pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
     # pod 'SDWebImage', :git => 'git@github.com:SDWebImage/SDWebImage.git'
 
     # CHTCollectionViewWaterfallLayout
