@@ -47,7 +47,8 @@ public struct DJTestRouter {
         Application.shared.presentInitialScreen(in: window)
         return nil
     }))
-    static let routerDynamicIsland: LXOutlineOpt = .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
+    static let routerDynamicIsland: LXOutlineOpt = .outline(.section(title: "Dynamic Island"), subitems: [
+        .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
         if #available(iOS 16.2, *) {
             return UIHostingController(rootView: EmojiRangersView())
         } else {
@@ -56,7 +57,16 @@ public struct DJTestRouter {
             vc.dataFillUnSupport(content: "当前设备不支持灵动岛!")
             return vc
         }
-    }))
+    })),
+        .subitem(.section(title: "LXDynamicLandVC"), scene: .vc(provider: {
+            guard #available(iOS 16.2, *) else {
+                let vc = LXSampleTextViewVC()
+                vc.dataFillUnSupport(content: "iOS 14.0 Dynamic Land Extension Demo VC")
+                return vc
+            }
+            return LXDynamicLandVC()
+        })),
+    ])
     static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
         .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
         .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: {
@@ -71,7 +81,7 @@ public struct DJTestRouter {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exContent = UIListContentConfiguration.Ex.allCases
-                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                    .map { LXSampleItem(title: $0.title, attributedContent: LXSampleItem.makeAttribute(from: $0.description)) }
                 dlog("UIListContentConfiguration.Ex: \(exContent)")
                 // let vc = LXSampleTextViewVC()
                 // vc.dataFill(content: "\(exContent)")
@@ -83,7 +93,7 @@ public struct DJTestRouter {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exBg = UIBackgroundConfiguration.Ex.allCases
-                    .map { LXSampleItem(title: $0.title, content: $0.description) }
+                    .map { LXSampleItem(title: $0.title, attributedContent: LXSampleItem.makeAttribute(from: $0.description)) }
                 dlog("UIBackgroundConfiguration.Ex: \(exBg)")
                 // let vc = LXSampleTextViewVC()
                 // vc.dataFill(content: "\(exBg)")
@@ -91,22 +101,65 @@ public struct DJTestRouter {
             }
             return vc
         })),
+        .subitem(.section(title: "CharacterSet.Ex.allCases"), scene: .vc(provider: {
+            let exContent = CharacterSet.Ex
+                .allCases
+                // .urlSet
+                .flatMap { item in
+                    var idx = 0
+                    let list = item.format()
+                    let count = list.count
+                    return list
+                        .map { item2 in
+                            idx += 1
+                            return LXSampleItem(title: "\(item.title) - \(idx)/\(count)", content: "\(item2)")
+                        }
+                }
+            dlog("CharacterSet.Ex: \(exContent)")
+            let vc = LXSampleListVC()
+            vc.dataFill(list: exContent)
+            return vc
+        })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
-        return .outline(.section(title: "DJBusinessModule(\(DJEnv.getCurrentEnv()))"), subitems: [
+        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnvEnum()))"), subitems: [
             .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
                 DJRouter.toggleEnv();
                 return nil
             })),
             .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
-                let vc = DJRouter.getMain("", storeType: "")
-                return DJTestRouter.createNav(rootVC: vc)
+                let vc = DJRouter.getMain()!
+                return DJTestRouter.createNav(rootVC: vc) {
+                    DJRouter.saveGStore()
+                }
             }, transition: .alert)),
             .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
             .subitem(.section(title: "DJQuickHomeVC"), scene: .vc(provider: {
-                let vc = DJRouter.getQuickHome()
+                let vc = DJRouterObjc.getQuickHome()
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
+            .subitem(.section(title: "[All Env]show current login & gStore info"), scene: .vc(provider: {
+                let result = DJRouter.showCurrentLocalStorageInfo()
+                let info = [
+                    "info": result.jsonString()
+                ]
+                dlog("-->info: \(info)")
+                return nil
+            })),
+            .subitem(.section(title: "backup login & gStore info"), scene: .vc(provider: {
+                let json: String? = nil
+                if let json {
+                    DJRouter.backupToLocalStorage(localInfo: json)
+                    dlog("--->json: \(json)")
+                } else {
+                    dlog("--> 请先手动设置 json")
+                }
+                return nil
+            })),
+            .subitem(.section(title: "show current context"), scene: .vc(provider: {
+                DJRouter.showCurrentCtxInfo()
+                return nil
+            })),
         ])
     }
     static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
@@ -261,7 +314,7 @@ extension DJTestRouter {
     //         }
     //         // .disposed(by: rx.disposeBag)
     // }
-    static func createNav(rootVC: UIViewController) -> UINavigationController {
+    static func createNav(rootVC: UIViewController, dismiss:(() -> Void)? = nil) -> UINavigationController {
         let btn = UIButton()
         btn.backgroundColor = .XL.randomGolden
         btn.layerCornerRadius = 8
@@ -271,6 +324,7 @@ extension DJTestRouter {
         // btn.frame = CGRect(x: 150, y: iPhoneX.safeareaInsets.top, width: 80, height: 44)
         if #available(iOS 14.0, *) {
             btn.addAction(UIAction(handler: { _ in
+                dismiss?()
                 let topVC = UIViewController.topViewController()
                 topVC?.dismiss(animated: true)
             }), for: .touchUpInside)

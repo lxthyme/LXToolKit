@@ -6,9 +6,9 @@
 //
 import UIKit
 import RxSwift
-import RxCocoa
-import ObjectMapper
-import Moya
+// import RxCocoa
+// import ObjectMapper
+// import Moya
 
 open class LXBaseViewModel: NSObject {
     deinit {

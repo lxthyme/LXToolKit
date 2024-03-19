@@ -18,4 +18,7 @@ extension Swifty where Base == Bundle {
         let assetPath = Bundle(for: cls.self).bundlePath
         return Bundle(path: NSString(string: assetPath).appendingPathComponent(bundleName))
     }
+    public static func settingsBundle(for cls: AnyClass) -> Bundle? {
+        return Bundle.XL.bundle(for: cls, bundleName: "Settings.bundle")
+    }
 }

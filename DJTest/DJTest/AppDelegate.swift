@@ -16,7 +16,9 @@ class AppDelegate: FlutterAppDelegate {
         // Override point for customization after application launch.
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
-        DJRouter.registerApp(launchOptions)
+        /// 从 localStorage 中恢复登录信息
+        DJRouter.backupAllInfo()
+        DJRouterObjc.registerApp(launchOptions)
         IQKeyboardManager.shared.enable = true
         // FlutterManager.shared.register()
         // GeneratedPluginRegistrant.register(with: flutterEngine)

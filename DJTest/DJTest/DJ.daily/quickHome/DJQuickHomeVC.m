@@ -6,13 +6,14 @@
 //
 #import "DJQuickHomeVC.h"
 
-#import <JXPageListView/JXPageListView.h>
-#import "DJModuleQuickHomeView.h"
+#import "DJModuleClassifyO2OCell.h"
 
-@interface DJQuickHomeVC()<UITableViewDelegate, UITableViewDataSource, JXPageListViewDelegate> {
+#define kDJClassifyModuleSection 2
+
+@interface DJQuickHomeVC()<UITableViewDelegate, UITableViewDataSource> {
 }
-@property(nonatomic, strong)JXPageListView *pageListView;
-@property(nonatomic, strong)DJModuleQuickHomeView *classifyView;
+@property(nonatomic, strong)UITableView *table;
+@property(nonatomic, strong)DJModuleClassifyO2OCell *classifyView;
 
 @end
 
@@ -40,21 +41,12 @@
 #pragma mark -
 #pragma mark - 🔐Private Actions
 
-#pragma mark -
-#pragma mark - ✈️JXPageListViewDelegate
-- (NSArray<UIView<JXPageListViewListDelegate> *> *)listViewsInPageListView:(JXPageListView *)pageListView {
-    return @[self.classifyView];
-}
-- (void)pinCategoryView:(JXCategoryBaseView *)pinCategoryView didSelectedItemAtIndex:(NSInteger)index {
-    self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
-}
-
 #pragma mark - ✈️UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2 + 1;
+    return kDJClassifyModuleSection + 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 2) {
+    if(section == kDJClassifyModuleSection) {
         return 1;
     }
     if(section == 0) {
@@ -63,8 +55,11 @@
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 2) {
-        return [self.pageListView listContainerCellForRowAtIndexPath:indexPath];
+    if(indexPath.section == kDJClassifyModuleSection) {
+        DJJSCateSlideModel *quicklyModel = [[DJJSCateSlideModel alloc]init];
+        quicklyModel.resourceId = @"20221114";
+        [self.classifyView dataFill:quicklyModel];
+        return self.classifyView;
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UITableViewCell.xl_identifier forIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"Custom cell:%ld-%ld", indexPath.section, indexPath.row];
@@ -77,8 +72,8 @@
 }
 #pragma mark - ✈️UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 2) {
-        return [self.pageListView listContainerCellHeight];
+    if(indexPath.section == kDJClassifyModuleSection) {
+        return SCREEN_HEIGHT;
     }
     if(indexPath.section == 0) {
         return 70;
@@ -90,20 +85,12 @@
 }
 
 #pragma mark -
-#pragma mark - ✈️UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    // CGFloat offsetY = scrollView.contentOffset.y;
-    // NSLog(@"-->offsetY: %f", offsetY);
-    [self.pageListView mainTableViewDidScroll:scrollView];
-}
-
-#pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
     self.view.backgroundColor = [UIColor whiteColor];
     // navigationItem.title = @"";
 
-    [self.view addSubview:self.pageListView];
+    [self.view addSubview:self.table];
 
     [self masonry];
 }
@@ -111,34 +98,60 @@
 #pragma mark Masonry
 - (void)masonry {
     // MASAttachKeys(<#...#>)
-    [self.pageListView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.table mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0.f);
     }];
 }
 
 #pragma mark Lazy Property
-- (JXPageListView *)pageListView {
-    if(!_pageListView){
-        JXPageListView *v = [[JXPageListView alloc]initWithDelegate:self];
-        v.listViewScrollStateSaveEnabled = YES;
-        // v.pinCategoryViewVerticalOffset = 200;
-        // v.pinCategoryViewHeight = 80;
-        // v.pinCategoryView.titles = @[];
+- (UITableView *)table {
+    if(!_table) {
+        UITableView *t = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        t.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+        t.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
+        // t.backgroundColor = [UIColor <#whiteColor#>];
+        t.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        t.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+        t.separatorStyle = UITableViewCellSeparatorStyleNone;
+        t.estimatedRowHeight = UITableViewAutomaticDimension;
+        t.rowHeight = 44.f;
+        t.sectionHeaderHeight = 0.f;
+        t.sectionFooterHeight = 0.f;
+        t.estimatedSectionHeaderHeight = 0;
+        t.estimatedSectionFooterHeight = 0;
+        t.showsHorizontalScrollIndicator = NO;
+        t.showsVerticalScrollIndicator = NO;
 
-        v.mainTableView.dataSource = self;
-        v.mainTableView.delegate = self;
-        v.mainTableView.scrollsToTop = NO;
-        [v.mainTableView xl_registerForCell:[UITableViewCell class]];
-        _pageListView = v;
+        t.delegate = self;
+        t.dataSource = self;
+
+        if (@available(iOS 11.0, *)) {
+            t.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        if(@available(iOS 13.0, *)) {
+            t.automaticallyAdjustsScrollIndicatorInsets = NO;
+        }
+        if(@available(iOS 15.0, *)) {
+            t.sectionHeaderTopPadding = 0.f;
+        }
+
+        [t xl_registerForCell:[DJModuleClassifyO2OCell class]];
+        [t xl_registerForCell:[UITableViewCell class]];
+
+        _table = t;
     }
-    return _pageListView;
+    return _table;
 }
-- (DJModuleQuickHomeView *)classifyView {
+- (DJModuleClassifyO2OCell *)classifyView {
     if(!_classifyView){
         WEAKSELF(self)
-        DJModuleQuickHomeView *v = [[DJModuleQuickHomeView alloc]initWithRefreshBlock:^{
-            [weakSelf.pageListView reloadWithoutRefreshData];
-        }];
+        DJModuleClassifyO2OCell *v = [[DJModuleClassifyO2OCell alloc]init];
+        v.classifyO2OVC.scrollToTopBlock = ^{
+            if([weakSelf.table numberOfSections] > kDJClassifyModuleSection &&
+               [weakSelf.table numberOfRowsInSection:kDJClassifyModuleSection] > 0) {
+                [weakSelf.table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kDJClassifyModuleSection] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
+        };
         _classifyView = v;
     }
     return _classifyView;

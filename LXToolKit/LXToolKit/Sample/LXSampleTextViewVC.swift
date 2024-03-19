@@ -43,7 +43,7 @@ public extension LXSampleTextViewVC {
     func dataFillUnSupport(title: String = "UnSupported", content: String) {
         let attr = NSMutableAttributedString()
         if title.isNotEmpty {
-            attr.append(NSAttributedString(string: title, attributes: [
+            attr.append(NSAttributedString(string: "\(title)\n\n", attributes: [
                 .foregroundColor: UIColor.black,
                 .font: UIFont.boldSystemFont(ofSize: 20)
             ]))

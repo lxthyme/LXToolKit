@@ -63,11 +63,10 @@ extension LXOutlineParamCell {
     }
     @available(iOS 15.0, *)
     func configBtn(title: String, mockList: [String]) {
-        let disabledAttributes = UIMenuElement.Attributes.disabled
         let subitems = mockList
             .map {[weak self] item in
                 let prefix = item.components(separatedBy: "/").first?.trimmed
-                let isActionEnabled = (prefix?.isEmpty ?? false) || prefix == DJEnv.getCurrentEnv().rawValue
+                let isActionEnabled = (prefix?.isEmpty ?? false) || prefix == DJRouter.getCurrentEnvEnum().rawValue
                 let action = UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
                     if !isActionEnabled {
                         return

@@ -81,6 +81,8 @@ def pod_LXToolKit
 
   pod 'LXToolKit', :inhibit_warnings => false, :path => '../LXToolKit', :subspecs => ['Core', '3rd']
   pod 'LXToolKit_Example', :inhibit_warnings => false, :path => '../LXToolKit_Example'
+    # pod 'ObjectMapper', '~>4.2'
+    pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
 
   pod 'LXToolKitObjC', :inhibit_warnings => false, :path => '../LXToolKitObjC'
   pod 'LXToolKitObjC_Example', :inhibit_warnings => false, :path => '../LXToolKitObjC_Example'
@@ -98,6 +100,9 @@ def pod_LXToolKit
   # pod 'CacheX', '1.0.1'
   pod 'CacheX', :podspec => './'#, :modular_headers => true
   pod 'RxNetworks_Ex', :path => '/Users/lxthyme/Desktop/Lucky/_lxthyme.franework/iOS.framework/__MVVM/RxNetworks/RxNetworks_Ex.podspec'
+
+  # https://github.com/vtourraine/AcknowList
+  pod 'AcknowList'
 
   ############ SwiftHub_Ex
   # pod 'SwiftHub_Ex', :path => '../3rd/SwiftHub_Ex/SwiftHub_Ex.podspec'
@@ -182,6 +187,7 @@ def pod_DJ
   # pod 'FirebaseAnalytics'
   # pod 'FirebaseCrashlytics'
   # pod 'MJRefresh', '3.1.12'
+  # pod 'MJRefresh', :git => 'git@github.com:CoderMJLee/MJRefresh.git'
   # pod 'JXCategoryView', '1.3.12'
 end
 
@@ -220,8 +226,6 @@ target 'DJTest' do
     pod 'DZNEmptyDataSet'
     pod 'SVProgressHUD'
     pod 'RxSwiftExt', '~> 6.2'
-    # pod 'ObjectMapper', '~>4.2'
-    pod 'Moya-ObjectMapper/RxSwift', :git => 'https://github.com/p-rob/Moya-ObjectMapper.git', :branch => 'master'
     # pod 'SDWebImage', :git => 'git@github.com:SDWebImage/SDWebImage.git'
 
     # CHTCollectionViewWaterfallLayout
@@ -231,6 +235,10 @@ end
 
 post_install do |installer|
   pod_flutter_installer(installer)
+
+  # copy acknowledgments to settings.bundle
+  # require 'fileutils'
+  FileUtils.cp_r('Pods/Target Support Files/Pods-DJTest/Pods-DJTest-acknowledgements.plist', 'DJTest/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
 
   idx1=0
   idx2=0
@@ -453,6 +461,7 @@ static_frameworks = [
 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'FirebaseABTesting', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
 'Toast-Swift', 'RxSwiftExt',
+'AcknowList',
 'Mantle', 'MJExtension', 'YYText', 'Action', 'YPImagePicker', 'SteviaLayout', 'PryntTrimmerView', 'MJRefresh', 'Mixpanel-swift', 'Apollo', 'KeychainAccess', 'MessageKit', 'InputBarAccessoryView', 'IQKeyboardManagerSwift', 'RxViewController', 'SwiftDate', 'DateToolsSwift', 'DropDown', 'WhatsNewKit', 'RAMAnimatedTabBarController', 'BonMot', 'RxNetworks', 'lottie-ios', 'CacheX', 'AlamofireImage', 'FloatingPanel', 'Presentr',
 'Masonry', 'MBProgressHUD',
 'ReactiveCocoa', 'YYModel', 'Colours', 'JXCategoryView', 'pop', 'CHTCollectionViewWaterfallLayout', 'JXPagingView',

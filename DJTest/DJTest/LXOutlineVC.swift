@@ -10,6 +10,7 @@ import LXToolKitObjC_Example
 import ActivityKit
 import DJTestKit
 import LXToolKit
+import AcknowList
 
 @available(iOS 14.0, *)
 class LXOutlineVC: LXBaseVC {
@@ -33,6 +34,15 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     private lazy var menuItems: [LXOutlineOpt] = {
         return [
+            LXOutlineOpt.subitem(.section(title: "AcknowListViewController"), scene: .vc(provider: {
+                let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
+                if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
+                    return AcknowListViewController(plistFileURL: url)
+                }
+                let vc = LXSampleTextViewVC()
+                vc.dataFillUnSupport(content: "Pods-acknowledgements.plist file not found!")
+                return vc
+            })),
             DJTestRouter.router233,
             DJTestRouter.routerItem,
             LXToolKitRouter.kitRouter,
@@ -66,6 +76,8 @@ class LXOutlineVC: LXBaseVC {
             gotoAutoJumpRouteScene()
         }
         isFirstAppearing = false
+
+        // testCharacterSet()
     }
 
 }
@@ -158,6 +170,25 @@ private extension LXOutlineVC {
             let vc = Navigator.default.show(segue: scene, sender: self)
             vc?.title = router1Menu.section.title
         }
+    }
+}
+
+// MARK: - 🔐
+@available(iOS 14.0, *)
+private extension LXOutlineVC {
+    func testCharacterSet() {
+        let set = CharacterSet.urlQueryAllowed
+        print("set: \(set)")
+        dlog("set: \(set)")
+        dlog("set: \(set.description)")
+        dlog("set: \(set.debugDescription)")
+        dlog("set: \(String(describing: set))")
+        dlog("set: \(String(reflecting: set))")
+        dlog("set: \(set.allCharacters())")
+        let data = set.bitmapRepresentation
+        let desc = String(data: data, encoding: .utf8)
+        // let img = UIImage(data: set.bitmapRepresentation)
+        dlog("set: \(desc ?? "--")")
     }
 }
 
@@ -264,7 +295,7 @@ private extension LXOutlineVC {
             let mockList: [String]? = tmp[safe: 2]?
                 .components(separatedBy: ",")
             let defaultValue = mockList?
-                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJEnv.getCurrentEnv().rawValue })
+                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnvEnum().rawValue })
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
@@ -470,14 +501,14 @@ extension LXOutlineVC: UICollectionViewDelegate {
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")
             guard let storeCode = param[safe: 1],
-                  let storeType = param[safe: 2],
-                  storeCode.isNotEmpty,
-                  storeType.isNotEmpty else {
+                  let storeType = param[safe: 2] else {
                 return
             }
             let scene: Navigator.Scene = .vc(provider: {
-                let vc = DJRouter.getMain(storeCode, storeType: storeType)
-                let nav = DJTestRouter.createNav(rootVC: vc)
+                let vc = DJRouter.getMain(storeCode: storeCode, storeType: storeType)!
+                let nav = DJTestRouter.createNav(rootVC: vc) {
+                    DJRouter.saveGStore()
+                }
                 return nav
             }, transition: .alert)
             Navigator.default.show(segue: scene, sender: self)

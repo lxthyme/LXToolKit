@@ -47,6 +47,42 @@ extension LXSampleListVC {
     }
 }
 
+// MARK: - 🔐
+extension LXSampleItem {
+    public static func makeAttribute(from info: String?) -> NSAttributedString? {
+        guard let info else { return nil }
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.lightGray,
+            .font: UIFont.systemFont(ofSize: 14)
+        ]
+        let contentAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.boldSystemFont(ofSize: 16)
+        ]
+        let commonAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.cyan,
+            .font: UIFont.boldSystemFont(ofSize: 14)
+        ]
+        let attr = NSMutableAttributedString()
+        info.components(separatedBy: "\n")
+            .forEach { item in
+                let tmp = item.components(separatedBy: ":")
+                if tmp.count >= 2 {
+                    let title = tmp.first?.trimmed ?? ""
+                    let content = tmp[1...].joined(separator: ":")
+                    let itemAttr = NSMutableAttributedString()
+                    itemAttr.append(NSAttributedString(string: "\(title): ", attributes: titleAttributes))
+                    itemAttr.append(NSAttributedString(string: content, attributes: contentAttributes))
+                    attr.append(itemAttr)
+                } else {
+                    attr.append(NSAttributedString(string: item, attributes: commonAttributes))
+                }
+                attr.append(NSAttributedString(string: "\n"))
+            }
+        return attr
+    }
+}
+
 // MARK: 🔐Private Actions
 private extension LXSampleListVC {}
 
