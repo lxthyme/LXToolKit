@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getUserInfoLocalStorageKey;
 - (NSString *)getPlusLocalStorageKey;
 
-- (void)xl_updatePlusInfo:(NSDictionary *)plusInfo;
+- (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo;
 - (void)xl_cleanPlusInfo;
-- (void)xl_updateUserInfo:(NSDictionary *)userInfo;
+- (void)xl_updateUserInfo:(NSDictionary * _Nullable)userInfo;
 - (void)xl_cleanUserInfo;
 
 @end

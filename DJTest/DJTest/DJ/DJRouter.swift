@@ -6,6 +6,7 @@
 //
 import UIKit
 import LXToolKit
+import KeychainAccess
 
 public enum DJEnv: String {
     case sit = "sit"
@@ -66,8 +67,8 @@ public extension DJRouter {
             return
         }
         ctx.apiEnviroment = env
-        backupLogInfo()
-        // backgs
+        DJSavedData.backupLogInfo()
+        DJSavedData.backupGStore()
     }
     // public static func getCurrentEnv() -> CTServiceAPIEnviroment {
     //     let ctx = CTAppContext.sharedInstance()!
@@ -76,16 +77,93 @@ public extension DJRouter {
     // static func getMain(storeCode: String, storeType: String) -> UIViewController {}
     // static func getQuickHome() -> UIViewController {}
 }
+// MARK: 👀全局门店 & 用户信息备份
+extension DJSavedData {
+    /// 将全局门店缓存到 NSUserDefaults
+    static func saveGStore() {
+        let ctx = CTAppContext.sharedInstance()!
+        let gStore = DJStoreManager.sharedInstance()
+        let currentEnv = ctx.apiEnviroment
 
-// MARK: 👀信息迁移
-public extension DJRouter {
+        let storeInfo: DJSavedData = .storeInfo
+
+        let storeInfoJson = gStore.yy_modelToJSONString() ?? ""
+        storeInfo.updateValue(currentEnv, value: storeInfoJson)
+    }
+    /// 将全局门店缓存到 NSUserDefaults
+    static func saveLoginInfo() {
+        let ctx = CTAppContext.sharedInstance()!
+        let currentEnv = ctx.apiEnviroment
+
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+
+        let userInfoJson = ctx.userInfo.jsonString() ?? ""
+        userInfo.updateValue(currentEnv, value: userInfoJson)
+
+        let plusInfoJson = ctx.plusInfo.jsonString() ?? ""
+        plusInfo.updateValue(currentEnv, value: plusInfoJson)
+    }
+
+}
+extension DJSavedData {
+    /// [全环境]显示当前缓存的登录信息 & 全局门店信息
+    static func showCurrentLocalInfo() -> [String: Any] {
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+        let storeInfo: DJSavedData = .storeInfo
+        return [
+            "sit": [
+                "userInfo": userInfo.getValue(.develop),
+                "plusInfo": plusInfo.getValue(.develop),
+                "gStore": storeInfo.getValue(.develop),
+            ],
+            "prd": [
+                "userInfo": userInfo.getValue(.develop),
+                "plusInfo": plusInfo.getValue(.develop),
+                "gStore": storeInfo.getValue(.develop),
+            ]
+        ]
+    }
+    /// 根据当前环境显示当前登录信息
+    static func showCurrentContextInfo() {
+        let ctx = CTAppContext.sharedInstance()!
+        let gStore = DJStoreManager.sharedInstance()
+        if ctx.apiEnviroment == .develop {
+            var sit: [String: Any] = [:]
+            if let tel = ctx.memberMobilePhoneNumber {
+                sit["memberMobilePhoneNumber"] = tel
+            }
+            if let token = ctx.memberToken {
+                sit["memberToken"] = token
+            }
+            sit["shopName"] = gStore.storeModel.shopName
+            sit["shopId"] = gStore.storeModel.shopId
+            dlog("-->Current Info[SIT]: \(sit)")
+        }
+        if ctx.apiEnviroment == .release {
+            var prd: [String: Any] = [:]
+            if let tel = ctx.memberMobilePhoneNumber {
+                prd["memberMobilePhoneNumber"] = tel
+            }
+            if let token = ctx.memberToken {
+                prd["memberToken"] = token
+            }
+            prd["shopName"] = gStore.storeModel.shopName
+            prd["shopId"] = gStore.storeModel.shopId
+            dlog("-->Current Info[PRD]: \(prd)")
+        }
+    }
+}
+// MARK: 👀全局门店 & 用户信息恢复
+extension DJSavedData {
     static func backupAllInfo() {
         backupLogInfo()
         backupGStore()
     }
     /// 手动迁移登录 & 全局门店
     static func transferLoginInfo() {
-        let tmp = showCurrentLocalStorageInfo()
+        let tmp = DJSavedData.showCurrentLocalInfo()
         guard let json = tmp.jsonString() else { return }
         let info = [
             "json": json
@@ -93,186 +171,71 @@ public extension DJRouter {
         backupToLocalStorage(localInfo: json)
         dlog("--->END")
     }
-}
-// MARK: 👀登录信息备份 & 恢复
-public extension DJRouter {
     /// 从 localStorage 中恢复登录信息
     static func backupLogInfo() {
         let ctx = CTAppContext.sharedInstance()!
-        let defaults = UserDefaults.standard
+        let currentEnv = ctx.apiEnviroment
 
-        let userInfoKey = ctx.getUserInfoLocalStorageKey()
-        let plusKey = ctx.getPlusLocalStorageKey()
-        if let userInfo = defaults.dictionary(forKey: userInfoKey) {
-            let plusInfo = defaults.dictionary(forKey: plusKey) ?? [:]
-
-            ctx.xl_updateUserInfo(userInfo)
-            ctx.xl_updatePlusInfo(plusInfo)
-        }
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+        ctx.xl_updateUserInfo(userInfo.getDictionary(currentEnv))
+        ctx.xl_updatePlusInfo(plusInfo.getDictionary(currentEnv))
     }
     /// 迁移登录信息 & 全局门店信息到另一台设备
     static func backupToLocalStorage(localInfo: String) {
         guard let localObj = try? localInfo.data(using: .utf8)?.jsonObject() as? [String: Any] else { return }
-        let ctx = CTAppContext.sharedInstance()!
-        // let gStore = DJStoreManager.sharedInstance()
-        let defaults = UserDefaults.standard
-        let sitTest = {
-            ctx.apiEnviroment = .develop
 
+        let storeInfo: DJSavedData = .storeInfo
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+        let sitTest = {
             let sitObj = localObj["sit"] as? [String: Any]
             if let userInfoObj = sitObj?["userInfo"] as? [String: Any],
                userInfoObj.isNotEmpty {
-                let userInfoKey = ctx.getUserInfoLocalStorageKey()
-                let plusKey = ctx.getPlusLocalStorageKey()
-
-                defaults.set(userInfoObj, forKey: userInfoKey)
-
+                userInfo.updateDictionary(.develop, value: userInfoObj)
                 let plusInfoObj = sitObj?["plusInfo"] as? [String: Any]
-                defaults.set(plusInfoObj, forKey: plusKey)
-
+                plusInfo.updateDictionary(.develop, value: plusInfoObj)
             } else {
                 dlog("-->[SIT]登录信息为空, skipping...")
             }
             if let gStoreObj = sitObj?["gStore"] as? [String: Any],
                gStoreObj.isNotEmpty {
-                let gStoreKey = getEnvLocalStorageKey()
-                defaults.set(gStoreObj, forKey: gStoreKey)
+                storeInfo.updateDictionary(.develop, value: gStoreObj)
             } else {
                 dlog("-->[SIT]全局门店信息为空, skipping...")
             }
         }
         let prdTest = {
-            ctx.apiEnviroment = .release
-
             let prdObj = localObj["prd"] as? [String: Any]
             if let userInfoObj = prdObj?["userInfo"] as? [String: Any],
                userInfoObj.isNotEmpty {
-                let userInfoKey = ctx.getUserInfoLocalStorageKey()
-                let plusKey = ctx.getPlusLocalStorageKey()
-
-                defaults.set(userInfoObj, forKey: userInfoKey)
-
+                userInfo.updateDictionary(.release, value: userInfoObj)
                 let plusInfoObj = prdObj?["plusInfo"] as? [String: Any]
-                defaults.set(plusInfoObj, forKey: plusKey)
-
+                plusInfo.updateDictionary(.release, value: plusInfoObj)
             } else {
                 dlog("-->[SIT]登录信息为空, skipping...")
             }
             if let gStoreObj = prdObj?["gStore"] as? [String: Any],
                gStoreObj.isNotEmpty {
-                let gStoreKey = getEnvLocalStorageKey()
-                defaults.set(gStoreObj, forKey: gStoreKey)
+                storeInfo.updateDictionary(.develop, value: gStoreObj)
             } else {
                 dlog("-->[SIT]全局门店信息为空, skipping...")
             }
         }
-
-        let previousEnv = ctx.apiEnviroment
         sitTest()
         prdTest()
-        ctx.apiEnviroment = previousEnv
-    }
-    /// [全环境]显示当前缓存的登录信息 & 全局门店信息
-    static func showCurrentLocalStorageInfo() -> [String: Any] {
-        let ctx = CTAppContext.sharedInstance()!
-        let defaults = UserDefaults.standard
-
-        var sitInfo: [String: Any] = [:]
-        var prdInfo: [String: Any] = [:]
-
-        let sitTest = {
-            ctx.apiEnviroment = .develop
-            let userInfoKey = ctx.getUserInfoLocalStorageKey()
-            let plusKey = ctx.getPlusLocalStorageKey()
-            let gStoreKey = getEnvLocalStorageKey()
-
-            let userInfo = defaults.dictionary(forKey: userInfoKey)
-            let plusInfo = defaults.dictionary(forKey: plusKey)
-            let gStoreInfo = defaults.dictionary(forKey: gStoreKey)
-            sitInfo["userInfo"] = userInfo
-            sitInfo["plusInfo"] = plusInfo
-            sitInfo["gStore"] = gStoreInfo
-        }
-
-        let prdTest = {
-            ctx.apiEnviroment = .release
-            let userInfoKey = ctx.getUserInfoLocalStorageKey()
-            let plusKey = ctx.getPlusLocalStorageKey()
-            let gStoreKey = getEnvLocalStorageKey()
-
-            let userInfo = defaults.dictionary(forKey: userInfoKey)
-            let plusInfo = defaults.dictionary(forKey: plusKey)
-            let gStoreInfo = defaults.dictionary(forKey: gStoreKey)
-            prdInfo["userInfo"] = userInfo
-            prdInfo["plusInfo"] = plusInfo
-            prdInfo["gStore"] = gStoreInfo
-        }
-
-        let previousEnv = ctx.apiEnviroment
-        sitTest()
-        prdTest()
-        ctx.apiEnviroment = previousEnv
-        return [
-            "sit": sitInfo,
-            "prd": prdInfo
-        ]
-    }
-    /// 根据当前环境显示当前登录信息
-    static func showCurrentCtxInfo() {
-        let ctx = CTAppContext.sharedInstance()!
-        let gStore = DJStoreManager.sharedInstance()
-        if ctx.apiEnviroment == .develop {
-            let sit = [
-                "memberMobilePhoneNumber": ctx.memberMobilePhoneNumber,
-                "memberToken": ctx.memberToken,
-                "shopName": gStore.storeModel.shopName,
-                "shopId": gStore.storeModel.shopId,
-            ]
-            dlog("-->Current Info[SIT]: \(sit)")
-        }
-        if ctx.apiEnviroment == .release {
-            let prd = [
-                "memberMobilePhoneNumber": ctx.memberMobilePhoneNumber,
-                "memberToken": ctx.memberToken,
-                "shopName": gStore.storeModel.shopName,
-                "shopId": gStore.storeModel.shopId,
-            ]
-            dlog("-->Current Info[PRD]: \(prd)")
-        }
-    }
-    // static func () {}
-}
-// MARK: 👀全局门店信息备份 & 恢复
-public extension DJRouter {
-    static func getEnvLocalStorageKey() -> String {
-        let env = getCurrentEnv()
-        var key = "DJTest.gStore."
-        switch env {
-        case .develop:
-            key.append("develop")
-        case .preRelease:
-            key.append("beta")
-        default:
-            key.append("release")
-        }
-        return key
-    }
-    /// 将全局门店缓存到 NSUserDefaults
-    static func saveGStore() {
-        let gStore = DJStoreManager.sharedInstance()
-        let defaults = UserDefaults.standard
-        
-        let json = gStore.yy_modelToJSONObject()
-        let key = getEnvLocalStorageKey()
-        defaults.set(json, forKey: key)
     }
     ///从 NSUserDefaults 中恢复全局门店
     static func backupGStore() {
-        let defaults = UserDefaults.standard
+        let ctx = CTAppContext.sharedInstance()!
         let gStore = DJStoreManager.sharedInstance()
+        let currentEnv = ctx.apiEnviroment
 
-        let key = getEnvLocalStorageKey()
-        guard let jsonString = defaults.value(forKey: key),
+        let storeInfo: DJSavedData = .storeInfo
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+
+        guard let jsonString = storeInfo.getDictionary(currentEnv),
               let model = DJStoreManager.yy_model(withJSON: jsonString) else { return }
         if gStore.storeModel.isValid() {
             checkEqual(gStore: gStore, model: model)
@@ -444,6 +407,82 @@ public extension DJRouter {
     }
     // static func () {}
 }
-
-// MARK: 🔐Private Actions
-private extension DJRouter {}
+// MARK: - 👀
+extension CTServiceAPIEnviroment {
+    var title: String {
+        switch self {
+        case .develop:
+            return "develop"
+        case .preRelease:
+            return "beta"
+        default:
+            return "release"
+        }
+    }
+}
+// MARK: 🔐keychain action
+// private extension DJRouter {
+    enum DJSavedData {
+        static let keychain = Keychain(service: "com.lx.bl", accessGroup: "group.com.lx.ble")
+        case userInfo
+        case plusInfo
+        case storeInfo
+    }
+// }
+private extension DJSavedData {
+    func getKey(_ env: CTServiceAPIEnviroment) -> String {
+        switch self {
+        case .userInfo:
+            return "DJTest.\(env.title).userInfo"
+        case .plusInfo:
+            return "DJTest.\(env.title).plusInfo"
+        case .storeInfo:
+            return "DJTest.\(env.title).storeInfo"
+        }
+    }
+    func updateValue(_ env: CTServiceAPIEnviroment, value: String) {
+        DJSavedData.saveAt(key: getKey(env), value: value)
+    }
+    func updateDictionary(_ env: CTServiceAPIEnviroment, value: [String: Any]?) {
+        let json = value?.jsonString() ?? "{}"
+        updateValue(env, value: json)
+    }
+    func getValue(_ env: CTServiceAPIEnviroment) -> String {
+        return DJSavedData.getValue(key: getKey(env)) ?? ""
+    }
+    func getDictionary(_ env: CTServiceAPIEnviroment) -> [String: Any]? {
+        return DJSavedData.getDictionary(key: getKey(env))
+    }
+}
+private extension DJSavedData {
+    static func saveAt(key: String, value: String) {
+        do {
+            try keychain.set(value, key: key)
+            dlog("-->保存 \(key) 成功")
+        } catch {
+            dlog("-->保存 \(key) 失败: \(error)")
+        }
+    }
+    static func getValue(key: String) -> String? {
+        var result: String?
+        do {
+            result = try keychain.getString(key)
+            dlog("-->读取 \(key): \(result ?? "--")")
+        } catch {
+            dlog("-->读取 \(key) 失败: \(error)")
+        }
+        return result
+    }
+    static func getDictionary(key: String) -> [String: Any]? {
+        var result: [String: Any]?
+        do {
+            if let string = getValue(key: key),
+               let data = string.data(using: .utf8) {
+                result = try JSONSerialization.jsonObject(with: data) as? [String : Any]
+            }
+        } catch {
+            dlog("-->读取 \(key) 失败[序列化]: \(error)")
+        }
+        return result
+    }
+}

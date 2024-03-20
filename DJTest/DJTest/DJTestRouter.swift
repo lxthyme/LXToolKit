@@ -130,7 +130,7 @@ public struct DJTestRouter {
             .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
                 let vc = DJRouter.getMain()!
                 return DJTestRouter.createNav(rootVC: vc) {
-                    DJRouter.saveGStore()
+                    DJSavedData.saveGStore()
                 }
             }, transition: .alert)),
             .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
@@ -139,7 +139,7 @@ public struct DJTestRouter {
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
             .subitem(.section(title: "[All Env]show current login & gStore info"), scene: .vc(provider: {
-                let result = DJRouter.showCurrentLocalStorageInfo()
+                let result = DJSavedData.showCurrentLocalInfo()
                 let info = [
                     "info": result.jsonString()
                 ]
@@ -149,7 +149,7 @@ public struct DJTestRouter {
             .subitem(.section(title: "backup login & gStore info"), scene: .vc(provider: {
                 let json: String? = nil
                 if let json {
-                    DJRouter.backupToLocalStorage(localInfo: json)
+                    DJSavedData.backupToLocalStorage(localInfo: json)
                     dlog("--->json: \(json)")
                 } else {
                     dlog("--> 请先手动设置 json")
@@ -157,7 +157,7 @@ public struct DJTestRouter {
                 return nil
             })),
             .subitem(.section(title: "show current context"), scene: .vc(provider: {
-                DJRouter.showCurrentCtxInfo()
+                DJSavedData.showCurrentContextInfo()
                 return nil
             })),
         ])
