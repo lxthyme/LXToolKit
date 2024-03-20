@@ -62,11 +62,6 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-// + (CTServiceAPIEnviroment)getCurrentEnv {
-//     CTAppContext *ctx = [CTAppContext sharedInstance];
-//     return ctx.apiEnviroment;
-// }
-
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];
 }
