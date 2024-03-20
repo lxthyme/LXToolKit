@@ -17,7 +17,8 @@ class AppDelegate: FlutterAppDelegate {
         // Use the Firebase library to configure APIs.
         LXLibManager.setupLibs()
         /// 从 localStorage 中恢复登录信息
-        DJRouter.backupAllInfo()
+        DJSavedData.backupGStore()
+        DJSavedData.backupLogInfo()
         DJRouterObjc.registerApp(launchOptions)
         IQKeyboardManager.shared.enable = true
         // FlutterManager.shared.register()

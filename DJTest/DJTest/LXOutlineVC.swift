@@ -289,13 +289,11 @@ private extension LXOutlineVC {
         }
         let cellParamRegistration = UICollectionView.CellRegistration<LXOutlineParamCell, LXOutlineOpt> { (cell, indexPath, item) in
             // Populate the cell with our item description.
-            // cell.label.text = "\(<#item#>)"
             let tmp = item.section.title.components(separatedBy: ":")
-            // let env = DJRouter.getCurrentEnv()
             let mockList: [String]? = tmp[safe: 2]?
                 .components(separatedBy: ",")
             let defaultValue = mockList?
-                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnvEnum().rawValue })
+                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title2 })
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
@@ -507,7 +505,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
             let scene: Navigator.Scene = .vc(provider: {
                 let vc = DJRouter.getMain(storeCode: storeCode, storeType: storeType)!
                 let nav = DJTestRouter.createNav(rootVC: vc) {
-                    DJRouter.saveGStore()
+                    DJSavedData.saveGStore()
                 }
                 return nav
             }, transition: .alert)

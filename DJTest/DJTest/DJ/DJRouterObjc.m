@@ -62,11 +62,6 @@
 
 #pragma mark -
 #pragma mark - 👀Public Actions
-+ (CTServiceAPIEnviroment)getCurrentEnv {
-    CTAppContext *ctx = [CTAppContext sharedInstance];
-    return ctx.apiEnviroment;
-}
-
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];
 }
@@ -111,34 +106,8 @@
     Method method10 = class_getInstanceMethod([self class], @selector(xl_cleanUserInfo));
     method_exchangeImplementations(method9, method10);
 }
-- (NSString *)getLoginLocalStorageKey {
-    CTServiceAPIEnviroment env = [DJRouterObjc getCurrentEnv];
-    NSMutableString *key = [@"DJTest.gStore." mutableCopy];
-    switch(env) {
-    case CTServiceAPIEnviromentDevelop: {
-        [key appendString:@"develop"];
-    } break;
-    case CTServiceAPIEnviromentPreRelease: {
-        [key appendString:@"beta"];
-    } break;
-    default: {
-        [key appendString:@"release"];
-    } break;
-    }
-    return key;
-}
-/// kBaiLianCTAppContextKeyPlusInfo
-- (NSString *)getPlusLocalStorageKey {
-    NSString *key = [self getLoginLocalStorageKey];
-    return [NSString stringWithFormat:@"%@.plus", key];
-}
-/// kCTAppContextUserDefaultKeyUserInfo
-- (NSString *)getUserInfoLocalStorageKey {
-    NSString *key = [self getLoginLocalStorageKey];
-    return [NSString stringWithFormat:@"%@.userInfo", key];
-}
 
-- (void)xl_updatePlusInfo:(NSDictionary *)plusInfo {
+- (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo {
     self.plusInfo = plusInfo;
     NSLog(@"-->[CTAppContext]更新 plus 信息");
     NSString *key = [self getPlusLocalStorageKey];
@@ -155,7 +124,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)xl_updateUserInfo:(NSDictionary *)userInfo {
+- (void)xl_updateUserInfo:(NSDictionary * _Nullable)userInfo {
     self.userInfo = userInfo;
     NSLog(@"-->[CTAppContext]更新用户信息");
     NSString *key = [self getUserInfoLocalStorageKey];
