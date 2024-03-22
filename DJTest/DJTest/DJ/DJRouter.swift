@@ -32,6 +32,20 @@ public extension DJRouter {
     static func getQuickHome() -> UIViewController {
         return DJRouterObjc.getQuickHome()
     }
+    static func getGoodsDetail(storeCode: String, storeType: String, merchantId: String, goodsId: String, tdType: String) -> UIViewController {
+        guard let vc = BLMediator.sharedInstance().djBusinessModule_DJProductDetailViewController(withParams: [
+            "storeCode": storeCode,
+            "storeType": storeType,
+            "merchantId": merchantId,
+            "tdType": tdType,
+            "goodsId": goodsId,
+        ]) else {
+            let vc = LXSampleTextViewVC()
+            vc.dataFillUnSupport(content: "goGoodsDetail failed!")
+            return vc
+        }
+        return vc
+    }
 }
 
 /// Api 环境
@@ -83,7 +97,7 @@ extension DJSavedData {
         if let userInfoJson = ctx.userInfo.jsonString() {
             userInfo.updateValue(currentEnv, value: userInfoJson)
 
-            let plusInfoJson = ctx.plusInfo.jsonString() ?? ""
+            let plusInfoJson = ctx.plusInfo?.jsonString() ?? ""
             plusInfo.updateValue(currentEnv, value: plusInfoJson)
         }
     }

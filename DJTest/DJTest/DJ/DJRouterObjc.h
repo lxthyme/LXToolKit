@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions;
 
 + (UIViewController *)getQuickHome;
+/// 全局门店
++ (DJStoreModel *)gStore;
 
 @end
 

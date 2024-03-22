@@ -65,6 +65,9 @@
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];
 }
++ (DJStoreModel *)gStore {
+    return [DJStoreManager sharedInstance].storeModel;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions

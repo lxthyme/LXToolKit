@@ -21,6 +21,7 @@ class LXOutlineParamCell: UICollectionViewListCell {
     private lazy var tfTextField: UITextField = {
         let v = UITextField()
         v.placeholder = ""
+        v.backgroundColor = .white
         v.font = .systemFont(ofSize: 16)
         v.textColor = .black
         v.textAlignment = .left
@@ -52,21 +53,32 @@ class LXOutlineParamCell: UICollectionViewListCell {
 extension LXOutlineParamCell {
     func dataFill(title: String, placeholder: String?, mockList: [String]? = nil, defaultValue: String? = nil) {
         btnTitle.setTitle(title, for: .normal)
-        tfTextField.placeholder = placeholder
+        // tfTextField.placeholder = placeholder
+        if let placeholder {
+            tfTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+                .foregroundColor: UIColor.systemGray,
+            ])
+        }
         tfTextField.text = defaultValue
         currentSelected = defaultValue ?? ""
         if #available(iOS 15.0, *),
            let mockList,
            mockList.isNotEmpty {
-            configBtn(title: title, mockList: mockList)
+            configBtn(title: title, mockList: mockList, placeholder: placeholder)
         }
     }
     @available(iOS 15.0, *)
-    func configBtn(title: String, mockList: [String]) {
-        let subitems = mockList
+    func configBtn(title: String, mockList: [String], placeholder: String?) {
+         var tmp = mockList
+        if let placeholder {
+            tmp.append(placeholder)
+        }
+        let subitems = tmp
             .map {[weak self] item in
                 let prefix = item.components(separatedBy: "/").first?.trimmed
-                let isActionEnabled = (prefix?.isEmpty ?? false) || prefix == DJRouter.getCurrentEnv().title2
+                let isActionEnabled = (prefix?.isEmpty ?? false) ||
+                prefix == "env" ||
+                prefix == DJRouter.getCurrentEnv().title2
                 let action = UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
                     if !isActionEnabled {
                         return

@@ -292,6 +292,8 @@ private extension LXOutlineVC {
             let tmp = item.section.title.components(separatedBy: ":")
             let mockList: [String]? = tmp[safe: 2]?
                 .components(separatedBy: ",")
+                .map { $0.trimmed }
+                .filter { $0.isNotEmpty }
             let defaultValue = mockList?
                 .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title2 })
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
@@ -494,8 +496,9 @@ extension LXOutlineVC: UICollectionViewDelegate {
             return
         }
         let tmp = menuItem.section.title.components(separatedBy: ":")
-        switch tmp.first ?? "" {
-        case DJRouterPath.getMain.title:
+        guard let path = DJRouterPath.from(tmp.first) else { return }
+        switch path {
+        case .getMain:
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")
             guard let storeCode = param[safe: 1],
@@ -510,7 +513,28 @@ extension LXOutlineVC: UICollectionViewDelegate {
                 return nav
             }, transition: .alert)
             Navigator.default.show(segue: scene, sender: self)
-        default: break
+        case .goodsDetail:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
+            let param = cell.currentValue.components(separatedBy: "/")
+            let gStore = DJRouterObjc.gStore()
+            guard let storeCode = param[safe: 2],
+                  gStore.shopId == storeCode,
+                  let goodsId = param[safe: 3],
+                  let tdType = param[safe: 4] else {
+                return
+            }
+            let scene: Navigator.Scene = .vc(provider: {
+                let vc = DJRouter.getGoodsDetail(storeCode: gStore.shopId,
+                                                 storeType: gStore.shopType,
+                                                 merchantId: gStore.merchantId,
+                                                 goodsId: goodsId,
+                                                 tdType: tdType)
+                let nav = DJTestRouter.createNav(rootVC: vc) {
+                    DJSavedData.saveGStore()
+                }
+                return nav
+            }, transition: .alert)
+            Navigator.default.show(segue: scene, sender: self)
         }
 
     }

@@ -122,6 +122,21 @@ public struct DJTestRouter {
         })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
+        let shopList = [
+        "env, storeCode, storeType:",
+        "///",
+        "sit/007780/2020",
+        "prd/004517/2010",
+        "prd/003754/2010",
+        ].joined(separator:", ")
+        let goodDetailList = [
+            "env, 特征, storeCode, goodsId, tdType:",
+            "sit/单菜谱/007780/1365613/0",
+            "sit/多菜谱/007780/168251/0",
+            "sit/搭配购/007780/68171/0",
+            "sit/单菜谱/007780/3364200/2",
+            "prd/test/007780/3364200/2",
+        ].joined(separator:", ")
         return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))"), subitems: [
             .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
                 DJRouter.toggleEnv();
@@ -134,7 +149,8 @@ public struct DJTestRouter {
                     DJSavedData.saveLoginInfo()
                 }
             }, transition: .alert)),
-            .subitem(.section(title: "\(DJRouterPath.getMain.title):storeCode,storeType://, sit/007780/2020, prd/004517/2010, prd/003754/2010")),
+            .subitem(.section(title: "\(DJRouterPath.getMain.title):\(shopList)")),
+            .outline(.section(title: "Page List"), subitems: [
             .subitem(.section(title: "DJQuickHomeVC"), scene: .vc(provider: {
                 let vc = DJRouterObjc.getQuickHome()
                 return DJTestRouter.createNav(rootVC: vc) {
@@ -142,6 +158,8 @@ public struct DJTestRouter {
                     DJSavedData.saveLoginInfo()
                 }
             }, transition: .alert)),
+            .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList)")),
+            ]),
             .subitem(.section(title: "save login & gStore info to local"), scene: .vc(provider: {
                 DJSavedData.saveGStore()
                 DJSavedData.saveLoginInfo()
