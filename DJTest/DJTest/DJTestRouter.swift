@@ -23,7 +23,7 @@ public struct DJTestRouter {
         DJTestRouter.routerDJTest,
         DJTestRouter.routerFlutter,
     ]
-    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1 - 1"))
+    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1: - 1"))
     static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
         .subitem(.section(title: "Item 1 - 1")),
         .outline(.section(title: "Section 2"), subitems: [

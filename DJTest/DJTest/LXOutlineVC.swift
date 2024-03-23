@@ -26,6 +26,11 @@ class LXOutlineVC: LXBaseVC {
         return btn
     }()
     private var collectionView: UICollectionView!
+    private var expandedSectionList: [LXOutlineOpt] = [] {
+        didSet {
+            self.refreshCollectionView()
+        }
+    }
     // MARK: 🔗Vaiables
     private static let sectionHeaderElementKind = "sectionHeaderElementKind"
     private static let sectionFooterElementKind = "sectionFooterElementKind"
@@ -152,6 +157,7 @@ private extension LXOutlineVC {
         }
         var router1VC: UIViewController?
         if let scene = router1Menu.scene {
+            self.expandedSectionList.append(router1Menu)
             router1VC = Navigator.default.show(segue: scene, sender: self)
             router1VC?.title = router1Menu.section.title
         }
@@ -206,7 +212,7 @@ private extension LXOutlineVC {
             // config.backgroundColor = .white
 
             let bgDecoration = NSCollectionLayoutDecorationItem.background(elementKind: LXOutlineVC.sectionBackgroundDecorationElementKind)
-            bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            bgDecoration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
 
             // layout.register(LXSectionBgDecorationView.self, forDecorationViewOfKind: LXSectionDecorationVC.sectionBackgroundDecorationElementKind)
 
@@ -221,7 +227,7 @@ private extension LXOutlineVC {
                                                                             elementKind: LXOutlineVC.sectionFooterElementKind,
                                                                             alignment: .bottomTrailing)
             let section: NSCollectionLayoutSection
-            if case .subitem = self.menuItems[sectionIdx] {
+            // if case .subitem = self.menuItems[sectionIdx] {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                       heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -231,12 +237,13 @@ private extension LXOutlineVC {
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                subitems: [item])
                 // <#group#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
+                group.contentInsets = .zero
                 section = NSCollectionLayoutSection(group: group)
-            } else {
-                section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
-            }
+            // } else {
+            //     section = NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
+            // }
             // section.contentInsets = .zero
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10.0, leading: 10, bottom: 10, trailing: 10)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 5.0, leading: 10, bottom: 5, trailing: 10)
             // sectionHeader.pinToVisibleBounds = true
             // sectionHeader.zIndex = 2
             section.decorationItems = [bgDecoration]
@@ -385,15 +392,16 @@ private extension LXOutlineVC {
     func generateMultiSnapshot() {
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
             for menuItem in menuItems {
+                snapshot.append([menuItem], to: parent)
                 switch menuItem {
                 case .outline(_, _, let subitems):
-                    if !snapshot.contains(menuItem) {
-                        snapshot.append([menuItem], to: parent)
-                    }
+                    // if !snapshot.contains(menuItem) {
+                    //     snapshot.append([menuItem], to: parent)
+                    // }
                     addItems(&snapshot, menuItems: subitems, to: menuItem)
                     // snapshot.append(subitems, to: parent)
                 case .subitem:
-                    snapshot.append([menuItem], to: parent)
+                    // snapshot.append([menuItem], to: parent)
                     break
                 }
             }
@@ -403,9 +411,10 @@ private extension LXOutlineVC {
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
         var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
         for menuItem in self.menuItems {
+            snapshot.appendItems([menuItem], toSection: menuItem)
             switch menuItem {
             case .outline(_, _, let subitems):
-                snapshot.appendItems([menuItem], toSection: menuItem)
+                // snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
                 snapshot2.append([menuItem])
@@ -413,14 +422,25 @@ private extension LXOutlineVC {
                 addItems(&snapshot2, menuItems: subitems, to: menuItem)
                 if DJTestRouter.expandedSectionList.contains([menuItem]) {
                     expandList[menuItem] = snapshot2
+                    snapshot2.expand([menuItem])
+                } else if self.expandedSectionList.contains([menuItem]) {
+                    snapshot2.expand([menuItem])
+                    expandList[menuItem] = snapshot2
                 }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
             case .subitem:
-                snapshot.appendItems([menuItem])
+                // snapshot.appendItems([menuItem], toSection: menuItem)
                 break
             }
         }
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
+            guard let self else { return }
+            // if let lastItem = self.expandedSectionList.last,
+            //    let lastIp = self.dataSource.indexPath(for: lastItem) {
+            //     dlog("-->scroll to: \(lastIp)")
+            //     self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
+            // }
+        }
         for (key, value) in expandList {
             var tmp = value
             tmp.expand([key])
