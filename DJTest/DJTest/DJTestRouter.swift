@@ -120,6 +120,16 @@ public struct DJTestRouter {
             vc.dataFill(list: exContent)
             return vc
         })),
+        .subitem(.section(title: "LXTableTest202403VC"), scene: .vc(provider: {
+            if #available(iOS 14.0, *) {
+                return LXTableTest202403VC()
+            } else {
+                // Fallback on earlier versions
+                let vc = LXSampleTextViewVC()
+                vc.dataFillUnSupport(content: "UnSupport Diffable DataSource")
+                return vc
+            }
+        })),
     ])
     static let routerDJ: () -> LXOutlineOpt = {
         let shopList = [
