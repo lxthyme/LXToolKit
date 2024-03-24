@@ -26,8 +26,9 @@ class LXOutlineVC: LXBaseVC {
         return btn
     }()
     private var collectionView: UICollectionView!
-    private var expandedSectionList: [LXOutlineOpt] = [] {
+    private var expandedSectionList: Set<LXOutlineItem> = [] {
         didSet {
+            dlog("-->expandedSectionList: \(self.expandedSectionList.map({ $0.opt.section.title }))")
             self.refreshCollectionView()
         }
     }
@@ -36,8 +37,8 @@ class LXOutlineVC: LXBaseVC {
     private static let sectionFooterElementKind = "sectionFooterElementKind"
     private static let sectionBackgroundDecorationElementKind = "sectionBackgroundDecorationElementKind"
     private var isFirstAppearing = true
-    private var dataSource: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
-    private lazy var menuItems: [LXOutlineOpt] = {
+    private var dataSource: UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>!
+    private lazy var menuItems: [LXOutlineItem] = {
         return [
             LXOutlineOpt.subitem(.section(title: "AcknowListViewController"), scene: .vc(provider: {
                 let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
@@ -59,7 +60,7 @@ class LXOutlineVC: LXBaseVC {
             /// Others
             DJTestRouter.routerDJSwiftModule,
             DJTestRouter.routerDynamicIsland,
-        ]
+        ].map { DJTestRouter.makeRouterItem(from: $0) }
     }()
     // @available(iOS 13.0, *)
     // private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
@@ -129,37 +130,39 @@ private extension LXOutlineVC {
 // MARK: - 🔐
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
-    func gotoScene(by menuItem: LXOutlineOpt) {
-        guard let scene = menuItem.scene,
+    func gotoScene(by menuItem: LXOutlineItem) {
+        guard let scene = menuItem.opt.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
-            if menuItem.section.title.hasPrefix("Section ") ||
-                menuItem.section.title.hasPrefix("Item ") {
-    
+            if menuItem.opt.section.title.hasPrefix("Section ") ||
+                menuItem.opt.section.title.hasPrefix("Item ") {
+                DJAutoRouter.router1.updateRouter(section: menuItem.opt.section)
+                self.expandedSectionList.insert(menuItem)
                 Navigator.default.show(segue: .vc(provider: {
                     let vc = LXSampleTextViewVC()
-                    vc.title = menuItem.section.title
-                    vc.dataFillUnSupport(content: menuItem.section.title)
+                    vc.title = menuItem.opt.section.title
+                    vc.dataFillUnSupport(content: menuItem.opt.section.title)
                     return vc
                 }), sender: self)
             }
             return
         }
-        vc.title = menuItem.section.title
-        DJAutoRouter.router1.updateRouter(section: menuItem.section)
+        vc.title = menuItem.opt.section.title
+        DJAutoRouter.router1.updateRouter(section: menuItem.opt.section)
+        self.expandedSectionList.insert(menuItem)
     }
     func gotoAutoJumpRouteScene() {
         guard let router1 = DJAutoRouter.router1.getDefaultsValue(),
-              let router1Menu = try? self.menuItems.xl_first(where: { $0.section.title == router1 }) else {
+              let router1Menu = try? self.menuItems.xl_first(where: { $0.opt.section.title == router1 }) else {
                   return
         }
-        if(router1Menu.section.title == LXOutlineVC.XL.typeNameString) {
+        if(router1Menu.opt.section.title == LXOutlineVC.XL.typeNameString) {
             return
         }
         var router1VC: UIViewController?
-        if let scene = router1Menu.scene {
-            self.expandedSectionList.append(router1Menu)
+        if let scene = router1Menu.opt.scene {
+            self.expandedSectionList.insert(router1Menu)
             router1VC = Navigator.default.show(segue: scene, sender: self)
-            router1VC?.title = router1Menu.section.title
+            router1VC?.title = router1Menu.opt.section.title
         }
         /// LXToolKitObjCTestVC 跳转二级页面使用 String -> Class 方式, 如果 dataList 包含 router2, 则设置 autoJumpRoute 即可自动跳转
         if let vc = router1VC as? LXToolKitObjCTestVC,
@@ -169,12 +172,12 @@ private extension LXOutlineVC {
             return
         }
         guard let router2 = DJAutoRouter.router2.getDefaultsValue(),
-              let router2Menu = try? self.menuItems.xl_first(where: { $0.section.title == router2 }) else {
+              let router2Menu = try? self.menuItems.xl_first(where: { $0.opt.section.title == router2 }) else {
             return
         }
-        if let scene = router2Menu.scene {
+        if let scene = router2Menu.opt.scene {
             let vc = Navigator.default.show(segue: scene, sender: self)
-            vc?.title = router1Menu.section.title
+            vc?.title = router1Menu.opt.section.title
         }
     }
 }
@@ -196,6 +199,14 @@ private extension LXOutlineVC {
         // let img = UIImage(data: set.bitmapRepresentation)
         dlog("set: \(desc ?? "--")")
     }
+    func testM() {
+        for idx in 0...3 {
+        }
+        for idx in (0...3) {
+        }
+        for idx in [0...3] {
+        }
+    }
 }
 
 // MARK: 🔐Private Actions
@@ -205,7 +216,7 @@ private extension LXOutlineVC {
         let sectionProvider = {[weak self] (sectionIdx: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             // guard let sectionKind = Section(rawValue: sectionIdx) else { return nil }
             guard let self else { return nil }
-            dlog("-->sectionIdx: \(sectionIdx)")
+            // dlog("-->sectionIdx: \(sectionIdx)")
             var config = UICollectionLayoutListConfiguration(appearance: self.appearance)
             config.headerMode = .firstItemInSection
             // config.footerMode = .supplementary
@@ -261,11 +272,11 @@ private extension LXOutlineVC {
         // cv.backgroundColor = .white
         return cv
     }
-    func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt> {
-        let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, menuItem in
+    func generateDataSource() -> UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem> {
+        let outlineRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineItem> { cell, indexPath, menuItem in
             // cell.labTitle.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = "\(menuItem.section.title)."
+            contentConfig.text = "\(menuItem.opt.section.title)."
             // contentConfig.textProperties.color = .black
             // contentConfig.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfig
@@ -278,12 +289,12 @@ private extension LXOutlineVC {
             let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> {[weak self] (cell, indexPath, menuItem) in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineItem> {[weak self] (cell, indexPath, menuItem) in
             guard let self else { return }
             // Populate the cell with our item description.
             // cell.label.text = "\(<#item#>)"
             var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = menuItem.section.title
+            contentConfig.text = menuItem.opt.section.title
             // contentConfig.textProperties.color = .black
             cell.contentConfiguration = contentConfig
 
@@ -294,9 +305,9 @@ private extension LXOutlineVC {
             let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
-        let cellParamRegistration = UICollectionView.CellRegistration<LXOutlineParamCell, LXOutlineOpt> { (cell, indexPath, item) in
+        let cellParamRegistration = UICollectionView.CellRegistration<LXOutlineParamCell, LXOutlineItem> { (cell, indexPath, item) in
             // Populate the cell with our item description.
-            let tmp = item.section.title.components(separatedBy: ":")
+            let tmp = item.opt.section.title.components(separatedBy: ":")
             let mockList: [String]? = tmp[safe: 2]?
                 .components(separatedBy: ",")
                 .map { $0.trimmed }
@@ -311,34 +322,42 @@ private extension LXOutlineVC {
             let bgConfig = UIBackgroundConfiguration.clear()
             cell.backgroundConfiguration = bgConfig
         }
-        let dataSource = UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, item in
-            switch item {
+        let dataSource = UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>(collectionView: collectionView) { collectionView, indexPath, item in
+            switch item.opt {
             case .outline:
                 return collectionView.dequeueConfiguredReusableCell(using: outlineRegistration, for: indexPath, item: item)
             case .subitem:
-                if item.section.title.contains("👉") {
+                if item.opt.section.title.contains("👉") {
                     return collectionView.dequeueConfiguredReusableCell(using: cellParamRegistration, for: indexPath, item: item)
                 } else {
                     return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
                 }
             }
         }
-        dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
-            return !DJTestRouter.expandedSectionList.contains([opt])
-        }
+        // dataSource.sectionSnapshotHandlers.shouldCollapseItem = { opt in
+        //     return !DJTestRouter.expandedSectionListItem.contains([opt])
+        // }
         // dataSource.sectionSnapshotHandlers.willExpandItem = {[weak self] opt in
-        //     self?.gotoScene(by: opt.scene)
+        //     // self?.gotoScene(by: opt.scene)
+        //     dlog("-->willExpandItem: \(opt.opt.section.title)")
+        //     // self?.expandedSectionList.insert(opt)
         // }
         // dataSource.sectionSnapshotHandlers.willCollapseItem = {[weak self] opt in
-        //     self?.gotoScene(by: opt.scene)
+        //     // self?.gotoScene(by: opt.scene)
+        //     dlog("-->willCollapseItem: \(opt.opt.section.title)")
+        //     // self?.expandedSectionList.remove(opt)
+        // }
+        // dataSource.sectionSnapshotHandlers.snapshotForExpandingParent = {(item, snapshot) in
+        //     dlog("-->snapshotForExpandingParent[\(item.opt.section.title)]: \(snapshot)")
+        //     return snapshot
         // }
         let headerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionHeaderElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.section.title) - header")
+            supplementaryView.dataFill("\(model.opt.section.title) - header")
         }
         let footerRegistration = UICollectionView.SupplementaryRegistration<LXCollectionHeaderFooterView>(elementKind: LXOutlineVC.sectionFooterElementKind) {[weak self] supplementaryView, elementKind, indexPath in
             guard let model = self?.dataSource.itemIdentifier(for: indexPath) else { return }
-            supplementaryView.dataFill("\(model.section.title) - footer")
+            supplementaryView.dataFill("\(model.opt.section.title) - footer")
         }
         dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
             dlog("-->elementKind: \(elementKind)")
@@ -346,36 +365,36 @@ private extension LXOutlineVC {
         }
         return dataSource
     }
-    func generateSnapshot() -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
-        var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
-
-        func addItems(_ menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
-            snapshot.append(menuItems, to: parent)
-
-            // for menuItem in menuItems where menuItem.subitems.isNotEmpty {
-            //     addItems(menuItem.subitems, to: menuItem)
-            // }
-            for menuItem in menuItems {
-                switch menuItem {
-                case .outline(_, _, let subitems):
-                    addItems(subitems, to: menuItem)
-                case .subitem:
-                    break
-                }
-            }
-        }
-
-        for menuItem in self.menuItems {
-            snapshot.append([menuItem], to: nil)
-            switch menuItem {
-            case .outline(_, _, let subitems):
-                addItems(subitems, to: menuItem)
-            case .subitem:
-                break
-            }
-        }
-        return snapshot
-    }
+    // func generateSnapshot() -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
+    //     var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+    // 
+    //     func addItems(_ menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
+    //         snapshot.append(menuItems, to: parent)
+    // 
+    //         // for menuItem in menuItems where menuItem.subitems.isNotEmpty {
+    //         //     addItems(menuItem.subitems, to: menuItem)
+    //         // }
+    //         for menuItem in menuItems {
+    //             switch menuItem {
+    //             case .outline(_, _, let subitems):
+    //                 addItems(subitems, to: menuItem)
+    //             case .subitem:
+    //                 break
+    //             }
+    //         }
+    //     }
+    // 
+    //     for menuItem in self.menuItems {
+    //         snapshot.append([menuItem], to: nil)
+    //         switch menuItem {
+    //         case .outline(_, _, let subitems):
+    //             addItems(subitems, to: menuItem)
+    //         case .subitem:
+    //             break
+    //         }
+    //     }
+    //     return snapshot
+    // }
     // func initialSnapshot(outline: [LXOutlineOpt]) -> NSDiffableDataSourceSectionSnapshot<LXOutlineOpt> {
     //     var snapshot = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
     //
@@ -390,15 +409,18 @@ private extension LXOutlineVC {
     //     return snapshot
     // }
     func generateMultiSnapshot() {
-        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>, menuItems: [LXOutlineOpt], to parent: LXOutlineOpt?) {
+        func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
-                switch menuItem {
+                switch menuItem.opt {
                 case .outline(_, _, let subitems):
                     // if !snapshot.contains(menuItem) {
                     //     snapshot.append([menuItem], to: parent)
                     // }
-                    addItems(&snapshot, menuItems: subitems, to: menuItem)
+                    if let _ = menuItem.subitems?.first(where: { $0.isExpanded }) {
+                        snapshot.expand([menuItem])
+                    }
+                    addItems(&snapshot, menuItems: menuItem.subitems ?? [], to: menuItem)
                     // snapshot.append(subitems, to: parent)
                 case .subitem:
                     // snapshot.append([menuItem], to: parent)
@@ -406,27 +428,33 @@ private extension LXOutlineVC {
                 }
             }
         }
-        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineOpt, LXOutlineOpt>()
+        var snapshot = NSDiffableDataSourceSnapshot<LXOutlineItem, LXOutlineItem>()
         snapshot.appendSections(self.menuItems)
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
-        var expandList: [LXOutlineOpt: NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>] = [:]
+        var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         for menuItem in self.menuItems {
             snapshot.appendItems([menuItem], toSection: menuItem)
-            switch menuItem {
-            case .outline(_, _, let subitems):
+            switch menuItem.opt {
+            case .outline(_, _, _):
                 // snapshot.appendItems([menuItem], toSection: menuItem)
 
-                var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineOpt>()
+                var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
-                addItems(&snapshot2, menuItems: subitems, to: menuItem)
-                if DJTestRouter.expandedSectionList.contains([menuItem]) {
-                    expandList[menuItem] = snapshot2
+                if let _ = menuItem.subitems?.first(where: { $0.isExpanded }) {
                     snapshot2.expand([menuItem])
-                } else if self.expandedSectionList.contains([menuItem]) {
-                    snapshot2.expand([menuItem])
-                    expandList[menuItem] = snapshot2
                 }
+                addItems(&snapshot2, menuItems: menuItem.subitems ?? [], to: menuItem)
+                // if DJTestRouter.expandedSectionListItem.contains([menuItem]) {
+                //     expandList[menuItem] = snapshot2
+                //     snapshot2.expand([menuItem])
+                // } else if self.expandedSectionList.contains([menuItem]) {
+                //     snapshot2.expand([menuItem])
+                //     expandList[menuItem] = snapshot2
+                // }
+                // if Set(menuItem.subitems ?? []).intersection(self.expandedSectionList).count > 0 {
+                //     snapshot2.expand([menuItem])
+                // }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
             case .subitem:
                 // snapshot.appendItems([menuItem], toSection: menuItem)
@@ -435,11 +463,11 @@ private extension LXOutlineVC {
         }
         dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
             guard let self else { return }
-            // if let lastItem = self.expandedSectionList.last,
-            //    let lastIp = self.dataSource.indexPath(for: lastItem) {
-            //     dlog("-->scroll to: \(lastIp)")
-            //     self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
-            // }
+            if let lastItem = self.expandedSectionList.first,
+               let lastIp = self.dataSource.indexPath(for: lastItem) {
+                dlog("-->scroll to: \(lastIp)")
+                self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
+            }
         }
         for (key, value) in expandList {
             var tmp = value
@@ -457,6 +485,9 @@ private extension LXOutlineVC {
     }
     func generateNavRightItems() -> [UIBarButtonItem] {
         let subItems = [
+            UIAction(title: "test", handler: {[weak self] _ in
+                self?.test233()
+            }),
             UIAction(title: "plain", state: self.appearance == .plain ? .on : .off, handler: {[weak self] _ in
                 self?.appearance = .plain
                 self?.refreshCollectionView()
@@ -502,20 +533,86 @@ extension LXOutlineVC: UICollectionViewDelegate {
     //     }
     //     return false
     // }
+    func test233() {
+        refreshCollectionView()
+        // let section = menuItems[1]
+        // expandItem(item: section)
+        // let ip = self.dataSource.indexPath(for: section)
+        // dlog("-->ip: \(ip)")
+        // self.dataSource.snapshot(for: section).expand([section)]
+        // self.dataSource.snapshot().reloadSections(<#T##identifiers: [LXOutlineOpt]##[LXOutlineOpt]#>)
+        // dlog("------------")
+        // if let item = section.subitems?.first {
+        //     expandItem(item: item)
+        // }
+    }
+    func expandItem(item: LXOutlineItem) {
+        let snapshot = self.dataSource.snapshot(for: item)
+        logSnapshot(snapshot)
+        dlog("-->tmp0: \(self.dataSource.sectionSnapshotHandlers.snapshotForExpandingParent)")
+        dlog("-->tmp1: \(self.dataSource.sectionSnapshotHandlers.willExpandItem)")
+        dlog("-->tmp2: \(self.dataSource.sectionSnapshotHandlers.willCollapseItem)")
+        dlog("-->tmp3: \(self.dataSource.sectionSnapshotHandlers.shouldExpandItem)")
+        dlog("-->tmp4: \(self.dataSource.sectionSnapshotHandlers.shouldCollapseItem)")
+        let result = self.dataSource.sectionSnapshotHandlers.snapshotForExpandingParent?(item, snapshot)
+        let result2 = self.dataSource.sectionSnapshotHandlers.willExpandItem?(item)
+        dlog("-->result: \(result)")
+        dlog("-->result2: \(result2)")
+        logSnapshot(result)
+    }
+    func logSnapshot(_ snapshot: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>?) {
+        guard let snapshot else {
+            dlog("-->snapshot: nil")
+            return
+        }
+        let t1 = snapshot.rootItems.map { $0.opt.section.title }
+        let t2 = snapshot.items.map { $0.opt.section.title }
+        // dlog("-->snapshot: \(snapshot.visualDescription())")
+        dlog("-->rootItems: \(t1)")
+        dlog("-->items: \(t2)")
+    }
+    func test234() {
+        let snapshot = self.dataSource.snapshot()
+        // let t1 = snapshot.itemIdentifiers
+        // let t2 = snapshot.sectionIdentifiers
+        // dlog("-->t1: \(t1.map({ $0.section.title }))")
+        // dlog("-->t2: \(t2.map({ $0.section.title }))")
+        guard let item = expandedSectionList.first else { return }
+        // let t = self.dataSource.sectionSnapshotHandlers.willCollapseItem?(item)
+        // dlog("-->t: \(t)")
+        // for item in expandedSectionList {
+            for sectionItem in snapshot.sectionIdentifiers {
+                let section = self.dataSource.snapshot(for: sectionItem)
+                var p = section
+                var subitem: LXOutlineItem? = item
+                while let subitem2 = subitem,
+                      p.contains(subitem2) {
+                    let level = section.level(of: subitem2)
+                    p.expand([subitem2])
+                    self.dataSource.apply(p, to: subitem2)
+                    dlog("-->level[\(level)]: \(subitem2.opt.section.title)")
+                    // p = p.snapshot(of: subitem2)
+                    subitem = p.parent(of: subitem2)
+                    p = self.dataSource.snapshot(for: subitem2)
+                }
+            }
+        // }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        guard let menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        guard var menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
         // let random = Int.random(in: 0...10)
         // assert(random != 5, "test assert: \(random) at \(Date())")
         // if random == 6 {
         //     fatalError("test assert: \(random) at \(Date())")
         // }
-        guard menuItem.section.title.contains("👉") else {
+        menuItem.isExpanded = true
+        guard menuItem.opt.section.title.contains("👉") else {
             gotoScene(by: menuItem)
             return
         }
-        let tmp = menuItem.section.title.components(separatedBy: ":")
+        let tmp = menuItem.opt.section.title.components(separatedBy: ":")
         guard let path = DJRouterPath.from(tmp.first) else { return }
         switch path {
         case .getMain:

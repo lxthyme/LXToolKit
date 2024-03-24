@@ -36,6 +36,31 @@ extension LXSection: Hashable {
         }
     }
 }
+public typealias LXOutlineItem = LXSectionOpt<String>
+
+public struct LXSectionOpt<Item> {
+    // associatedtype Item
+    public let opt: LXOutlineOpt
+    public var subitems: [LXSectionOpt]?
+    public var isExpanded: Bool
+    public let data: Item?
+    public init(opt: LXOutlineOpt, subitems: [LXSectionOpt]? = nil, isExpanded: Bool = false, data: Item? = "") {
+        self.opt = opt
+        self.subitems = subitems
+        self.isExpanded = isExpanded
+        self.data = data
+    }
+    // public func insert(_ item: LXSectionOpt) {}
+}
+// MARK: - 👀
+extension LXSectionOpt: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(opt.hashValue)
+    }
+    public static func == (lhs: LXSectionOpt<Item>, rhs: LXSectionOpt<Item>) -> Bool {
+        return lhs.opt == rhs.opt
+    }
+}
 
 public enum LXOutlineOpt {
     case outline(_ section: LXSection, scene: Navigator.Scene? = nil, subitems: [LXOutlineOpt])
@@ -81,6 +106,18 @@ extension LXOutlineOpt: Hashable {
 }
 
 // MARK: - 👀
+public extension Array where Element == LXOutlineItem {
+    func xl_first(where predicate: (LXOutlineItem) throws -> Bool) throws -> LXOutlineItem? {
+        for item in self {
+            if let result = try? item.xl_first(where: predicate) {
+                return result
+            }
+        }
+        return nil
+    }
+}
+
+// MARK: - 👀
 public extension Array where Element == LXOutlineOpt {
     func xl_first(where predicate: (LXOutlineOpt) throws -> Bool) throws -> LXOutlineOpt? {
         for item in self {
@@ -89,6 +126,34 @@ public extension Array where Element == LXOutlineOpt {
             }
         }
         return nil
+    }
+}
+
+// MARK: - 👀
+public extension LXSectionOpt {
+    func xl_first(where predicate: (LXSectionOpt) throws -> Bool) throws -> LXSectionOpt {
+        func first2(from opt: LXSectionOpt, where predicate: (LXSectionOpt) throws -> Bool) throws -> LXSectionOpt? {
+            switch opt.opt {
+            case .outline(_, _, _):
+                if try predicate(opt) {
+                    return opt
+                }
+                for tmp in opt.subitems ?? [] {
+                    if let item = try first2(from: tmp, where: predicate) {
+                        return item
+                    }
+                }
+            case .subitem:
+                if try predicate(opt) {
+                    return opt
+                }
+            }
+            return nil
+        }
+        if let item = try first2(from: self, where: predicate) {
+            return item
+        }
+        throw "Error[1.]: Not Found!"
     }
 }
 
