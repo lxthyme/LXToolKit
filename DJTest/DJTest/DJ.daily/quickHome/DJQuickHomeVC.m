@@ -10,9 +10,24 @@
 
 #define kDJClassifyModuleSection 2
 
+@interface DJClassifyQuicklyListLeftMainTableView : UITableView<UIGestureRecognizerDelegate> {
+}
+@end
+@implementation DJClassifyQuicklyListLeftMainTableView
+// - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//     return YES;
+// }
+// - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//     return YES;
+// }
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return NO;
+}
+@end
+
 @interface DJQuickHomeVC()<UITableViewDelegate, UITableViewDataSource> {
 }
-@property(nonatomic, strong)UITableView *table;
+@property(nonatomic, strong)DJClassifyQuicklyListLeftMainTableView *table;
 @property(nonatomic, strong)DJModuleClassifyO2OCell *classifyView;
 
 @end
@@ -84,6 +99,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+// - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//     CGFloat offsetY = scrollView.contentOffset.y;
+//     CGFloat fitOffsetY = scrollView.contentSize.height - SCREEN_HEIGHT;
+//     NSLog(@"-->offsetY[%f]: %f", fitOffsetY, offsetY);
+//     if(offsetY >= fitOffsetY) {
+//         CGPoint offset = CGPointMake(0, fitOffsetY);
+//         scrollView.contentOffset = offset;
+//     }
+// }
+
 #pragma mark -
 #pragma mark - 🍺UI Prepare & Masonry
 - (void)prepareUI {
@@ -104,9 +129,9 @@
 }
 
 #pragma mark Lazy Property
-- (UITableView *)table {
+- (DJClassifyQuicklyListLeftMainTableView *)table {
     if(!_table) {
-        UITableView *t = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        DJClassifyQuicklyListLeftMainTableView *t = [[DJClassifyQuicklyListLeftMainTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         t.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         t.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
         // t.backgroundColor = [UIColor <#whiteColor#>];

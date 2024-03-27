@@ -41,10 +41,19 @@ public typealias LXOutlineItem = LXSectionOpt<String>
 public struct LXSectionOpt<Item> {
     // associatedtype Item
     public let opt: LXOutlineOpt
-    public var subitems: [LXSectionOpt]?
-    public var isExpanded: Bool
-    public let data: Item?
-    public init(opt: LXOutlineOpt, subitems: [LXSectionOpt]? = nil, isExpanded: Bool = false, data: Item? = "") {
+    // public let section: LXSection
+    // public let scene: Navigator.Scene? = nil
+    public var subitems: [LXSectionOpt]? = nil
+    public var isExpanded: Bool = false
+    public let data: Item
+    public init(// section: LXSection,
+                opt: LXOutlineOpt,
+                scene: Navigator.Scene? = nil,
+                subitems: [LXSectionOpt]? = nil, 
+                isExpanded: Bool = false,
+                data: Item = "") {
+        // self.section = section
+        // self.scene = scene
         self.opt = opt
         self.subitems = subitems
         self.isExpanded = isExpanded

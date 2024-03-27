@@ -413,13 +413,13 @@ private extension LXOutlineVC {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
                 switch menuItem.opt {
-                case .outline(_, _, let subitems):
+                case .outline(_, _, _):
                     // if !snapshot.contains(menuItem) {
                     //     snapshot.append([menuItem], to: parent)
                     // }
-                    if let _ = menuItem.subitems?.first(where: { $0.isExpanded }) {
-                        snapshot.expand([menuItem])
-                    }
+                    // if menuItem.isExpanded {
+                    //     snapshot.expand([menuItem])
+                    // }
                     addItems(&snapshot, menuItems: menuItem.subitems ?? [], to: menuItem)
                     // snapshot.append(subitems, to: parent)
                 case .subitem:
@@ -441,9 +441,6 @@ private extension LXOutlineVC {
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()
                 snapshot2.append([menuItem])
                 // snapshot2.append(subitems, to: menuItem)
-                if let _ = menuItem.subitems?.first(where: { $0.isExpanded }) {
-                    snapshot2.expand([menuItem])
-                }
                 addItems(&snapshot2, menuItems: menuItem.subitems ?? [], to: menuItem)
                 // if DJTestRouter.expandedSectionListItem.contains([menuItem]) {
                 //     expandList[menuItem] = snapshot2
@@ -453,6 +450,9 @@ private extension LXOutlineVC {
                 //     expandList[menuItem] = snapshot2
                 // }
                 // if Set(menuItem.subitems ?? []).intersection(self.expandedSectionList).count > 0 {
+                //     snapshot2.expand([menuItem])
+                // }
+                // if menuItem.isExpanded {
                 //     snapshot2.expand([menuItem])
                 // }
                 dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
@@ -598,6 +598,47 @@ extension LXOutlineVC: UICollectionViewDelegate {
             }
         // }
     }
+    func fbs(list: [LXOutlineItem], dest: LXOutlineItem, isExist: inout Bool) {
+        for subItem in list {
+            if subItem.opt.section == dest.opt.section {
+                isExist = true
+                // break
+            }
+            if subItem.subitems?.isNotEmpty ?? false {
+                dlog("-->section in[\(isExist)]: \(subItem.opt.section.title)")
+            }
+            guard let list2 = subItem.subitems, list2.isNotEmpty else { continue }
+            fbs(list: list2, dest: dest, isExist: &isExist)
+            // isExist = false
+            dlog("-->section out[\(isExist)]: \(subItem.opt.section.title)")
+        }
+    }
+    func checkAll(_ item: LXOutlineItem) {
+        var isExist = false
+        for subItem in self.menuItems {
+            if let list = subItem.subitems, list.isNotEmpty {
+                fbs(list: list, dest: item, isExist: &isExist)
+            }
+        }
+        // var snapshot = self.dataSource.snapshot()
+        // for sectionItem in snapshot.sectionIdentifiers {
+        //     let section = self.dataSource.snapshot(for: sectionItem)
+        //     var p = section
+        //     var subitem: LXOutlineItem? = item
+        //     repeat {
+        //         guard var subitem2 = subitem else { return }
+        //         dlog("-->item: \(subitem2.opt.section.title)")
+        //         subitem2.isExpanded = true
+        //         guard p.contains(subitem2) else { return }
+        //         let level = section.level(of: subitem2)
+        //         // self.dataSource.apply(p, to: subitem2)
+        //         dlog("-->level[\(level)]: \(subitem2.opt.section.title)")
+        //         // p = p.snapshot(of: subitem2)
+        //         subitem = p.parent(of: subitem2)
+        //         p = self.dataSource.snapshot(for: subitem2)
+        //     } while 1 == 1
+        // }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard var menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
@@ -607,7 +648,8 @@ extension LXOutlineVC: UICollectionViewDelegate {
         // if random == 6 {
         //     fatalError("test assert: \(random) at \(Date())")
         // }
-        menuItem.isExpanded = true
+        // checkAll(menuItem)
+        // return
         guard menuItem.opt.section.title.contains("👉") else {
             gotoScene(by: menuItem)
             return
