@@ -409,6 +409,14 @@ private extension LXOutlineVC {
     //     return snapshot
     // }
     func generateMultiSnapshot() {
+        var exList: [LXOutlineItem] = []
+        if menuItems.count > 6 {
+            let dj1 = menuItems[6]
+            let dj2 = dj1.subitems![3]
+            let dj3 = dj2.subitems![1]
+            exList = [dj1, dj2, dj3]
+        }
+        var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
@@ -421,6 +429,10 @@ private extension LXOutlineVC {
                     //     snapshot.expand([menuItem])
                     // }
                     addItems(&snapshot, menuItems: menuItem.subitems ?? [], to: menuItem)
+                    if exList.contains(menuItem) {
+                        snapshot.expand([menuItem])
+                        expandList[menuItem] = snapshot
+                    }
                     // snapshot.append(subitems, to: parent)
                 case .subitem:
                     // snapshot.append([menuItem], to: parent)
@@ -430,18 +442,25 @@ private extension LXOutlineVC {
         }
         var snapshot = NSDiffableDataSourceSnapshot<LXOutlineItem, LXOutlineItem>()
         snapshot.appendSections(self.menuItems)
+        dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
+            guard let self else { return }
+            if let lastItem = self.expandedSectionList.first,
+               let lastIp = self.dataSource.indexPath(for: lastItem) {
+                dlog("-->scroll to: \(lastIp)")
+                self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
+            }
+        }
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
-        var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
-        for menuItem in self.menuItems {
-            snapshot.appendItems([menuItem], toSection: menuItem)
-            switch menuItem.opt {
+        for section in self.menuItems {
+            // snapshot.appendItems([section], toSection: section)
+            switch section.opt {
             case .outline(_, _, _):
                 // snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()
-                snapshot2.append([menuItem])
+                snapshot2.append([section])
                 // snapshot2.append(subitems, to: menuItem)
-                addItems(&snapshot2, menuItems: menuItem.subitems ?? [], to: menuItem)
+                addItems(&snapshot2, menuItems: section.subitems ?? [], to: section)
                 // if DJTestRouter.expandedSectionListItem.contains([menuItem]) {
                 //     expandList[menuItem] = snapshot2
                 //     snapshot2.expand([menuItem])
@@ -455,25 +474,21 @@ private extension LXOutlineVC {
                 // if menuItem.isExpanded {
                 //     snapshot2.expand([menuItem])
                 // }
-                dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
+                if exList.contains(section) {
+                    snapshot2.expand([section])
+                    expandList[section] = snapshot2
+                }
+                dataSource.apply(snapshot2, to: section, animatingDifferences: true)
             case .subitem:
                 // snapshot.appendItems([menuItem], toSection: menuItem)
                 break
             }
         }
-        dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
-            guard let self else { return }
-            if let lastItem = self.expandedSectionList.first,
-               let lastIp = self.dataSource.indexPath(for: lastItem) {
-                dlog("-->scroll to: \(lastIp)")
-                self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
-            }
-        }
-        for (key, value) in expandList {
-            var tmp = value
-            tmp.expand([key])
-            dataSource.apply(tmp, to: key, animatingDifferences: true)
-        }
+        // for (key, value) in expandList {
+        //     var tmp = value
+        //     tmp.expand([key])
+        //     dataSource.apply(tmp, to: key, animatingDifferences: true)
+        // }
     }
     func refreshCollectionView() {
         // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first
@@ -486,7 +501,8 @@ private extension LXOutlineVC {
     func generateNavRightItems() -> [UIBarButtonItem] {
         let subItems = [
             UIAction(title: "test", handler: {[weak self] _ in
-                self?.test233()
+                // self?.test233()
+                self?.test235()
             }),
             UIAction(title: "plain", state: self.appearance == .plain ? .on : .off, handler: {[weak self] _ in
                 self?.appearance = .plain
@@ -598,26 +614,38 @@ extension LXOutlineVC: UICollectionViewDelegate {
             }
         // }
     }
-    func fbs(list: [LXOutlineItem], dest: LXOutlineItem, isExist: inout Bool) {
-        for subItem in list {
-            if subItem.opt.section == dest.opt.section {
-                isExist = true
-                // break
-            }
-            if subItem.subitems?.isNotEmpty ?? false {
-                dlog("-->section in[\(isExist)]: \(subItem.opt.section.title)")
-            }
-            guard let list2 = subItem.subitems, list2.isNotEmpty else { continue }
-            fbs(list: list2, dest: dest, isExist: &isExist)
-            // isExist = false
-            dlog("-->section out[\(isExist)]: \(subItem.opt.section.title)")
-        }
+    func test235() {
+        let d1 = self.menuItems[0]
+        let d2 = d1.subitems![1]
+        let d3 = d2.subitems![3]
+        let d4 = d3.subitems![1]
+        let d5 = d3.subitems![1]
+        let result = checkAll(d5)
+        dlog("-->result: \(result.map({ $0.opt.section.title }))")
     }
-    func checkAll(_ item: LXOutlineItem) {
+    func checkAll(_ item: LXOutlineItem) -> [LXOutlineItem] {
+        var destList: [LXOutlineItem] = []
         var isExist = false
+        func fbs(list: [LXOutlineItem], dest: LXOutlineItem) {
+            for subItem in list {
+                // if subItem.subitems?.isNotEmpty ?? false {
+                    dlog("-->section in[\(isExist)]: \(subItem.opt.section.title)")
+                // }
+                if subItem.opt.section.title == dest.opt.section.title {
+                    isExist = true
+                    destList.append(subItem)
+                }
+                guard let list2 = subItem.subitems, list2.isNotEmpty else { continue }
+                fbs(list: list2, dest: dest)
+                // isExist = false
+                // isExist = false
+                dlog("-->section out[\(isExist)]: \(subItem.opt.section.title)")
+            }
+        }
         for subItem in self.menuItems {
             if let list = subItem.subitems, list.isNotEmpty {
-                fbs(list: list, dest: item, isExist: &isExist)
+                isExist = false
+                fbs(list: list, dest: item)
             }
         }
         // var snapshot = self.dataSource.snapshot()
@@ -638,6 +666,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
         //         p = self.dataSource.snapshot(for: subitem2)
         //     } while 1 == 1
         // }
+        return destList
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
