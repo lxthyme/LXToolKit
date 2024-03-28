@@ -18,6 +18,27 @@ import FloatingPanel_Stocks
 import RxNetworks_Ex
 import LXFlutterKit
 
+// MARK: - 👀
+public extension DJTestRouter {
+    static let routerDJTestItem = makeRouterItem(from: DJTestRouter.routerDJTest)
+    static let routerFlutterItem = makeRouterItem(from: DJTestRouter.routerFlutter)
+    static let expandedSectionListItem: [LXOutlineItem] = [
+        DJTestRouter.routerDJTestItem,
+        DJTestRouter.routerFlutterItem,
+    ]
+    static func makeRouterItem(from opt: LXOutlineOpt) -> LXOutlineItem {
+        var outlineItem = LXOutlineItem(opt: opt)
+        switch opt {
+        case .outline( _, _, let subitems):
+            let tmp = subitems.map { makeRouterItem(from: $0) }
+            outlineItem.subitems = tmp
+        case .subitem:
+            break
+        }
+        return outlineItem
+    }
+}
+
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineOpt] = [
         DJTestRouter.routerDJTest,
@@ -35,6 +56,14 @@ public struct DJTestRouter {
                     .subitem(.section(title: "Item 4 - 2")),
                 ]),
                 .subitem(.section(title: "Item 3 - 2")),
+            ]),
+            .outline(.section(title: "Section 3.2"), subitems: [
+                .subitem(.section(title: "Item 3.2 - 1")),
+                .outline(.section(title: "Section 4.2"), subitems: [
+                    .subitem(.section(title: "Item 4.2 - 1")),
+                    .subitem(.section(title: "Item 4.2 - 2")),
+                ]),
+                .subitem(.section(title: "Item 3.2 - 2")),
             ]),
             .subitem(.section(title: "Item 2 - 2")),
         ]),

@@ -409,6 +409,11 @@ private extension LXOutlineVC {
     //     return snapshot
     // }
     func generateMultiSnapshot() {
+        let dj1 = menuItems[6]
+        let dj2 = dj1.subitems![3]
+        let dj3 = dj2.subitems![1]
+        let exList = [dj1, dj2, dj3]
+        var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
@@ -421,6 +426,10 @@ private extension LXOutlineVC {
                     //     snapshot.expand([menuItem])
                     // }
                     addItems(&snapshot, menuItems: menuItem.subitems ?? [], to: menuItem)
+                    if exList.contains(menuItem) {
+                        snapshot.expand([menuItem])
+                        expandList[menuItem] = snapshot
+                    }
                     // snapshot.append(subitems, to: parent)
                 case .subitem:
                     // snapshot.append([menuItem], to: parent)
@@ -430,18 +439,25 @@ private extension LXOutlineVC {
         }
         var snapshot = NSDiffableDataSourceSnapshot<LXOutlineItem, LXOutlineItem>()
         snapshot.appendSections(self.menuItems)
+        dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
+            guard let self else { return }
+            if let lastItem = self.expandedSectionList.first,
+               let lastIp = self.dataSource.indexPath(for: lastItem) {
+                dlog("-->scroll to: \(lastIp)")
+                self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
+            }
+        }
         // snapshot.appendItems([DJTestRouter.routerDynamicIsland])
-        var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
-        for menuItem in self.menuItems {
-            snapshot.appendItems([menuItem], toSection: menuItem)
-            switch menuItem.opt {
+        for section in self.menuItems {
+            // snapshot.appendItems([section], toSection: section)
+            switch section.opt {
             case .outline(_, _, _):
                 // snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()
-                snapshot2.append([menuItem])
+                snapshot2.append([section])
                 // snapshot2.append(subitems, to: menuItem)
-                addItems(&snapshot2, menuItems: menuItem.subitems ?? [], to: menuItem)
+                addItems(&snapshot2, menuItems: section.subitems ?? [], to: section)
                 // if DJTestRouter.expandedSectionListItem.contains([menuItem]) {
                 //     expandList[menuItem] = snapshot2
                 //     snapshot2.expand([menuItem])
@@ -455,25 +471,21 @@ private extension LXOutlineVC {
                 // if menuItem.isExpanded {
                 //     snapshot2.expand([menuItem])
                 // }
-                dataSource.apply(snapshot2, to: menuItem, animatingDifferences: true)
+                if exList.contains(section) {
+                    snapshot2.expand([section])
+                    expandList[section] = snapshot2
+                }
+                dataSource.apply(snapshot2, to: section, animatingDifferences: true)
             case .subitem:
                 // snapshot.appendItems([menuItem], toSection: menuItem)
                 break
             }
         }
-        dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
-            guard let self else { return }
-            if let lastItem = self.expandedSectionList.first,
-               let lastIp = self.dataSource.indexPath(for: lastItem) {
-                dlog("-->scroll to: \(lastIp)")
-                self.collectionView.scrollToItem(at: lastIp, at: .centeredVertically, animated: true)
-            }
-        }
-        for (key, value) in expandList {
-            var tmp = value
-            tmp.expand([key])
-            dataSource.apply(tmp, to: key, animatingDifferences: true)
-        }
+        // for (key, value) in expandList {
+        //     var tmp = value
+        //     tmp.expand([key])
+        //     dataSource.apply(tmp, to: key, animatingDifferences: true)
+        // }
     }
     func refreshCollectionView() {
         // let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first

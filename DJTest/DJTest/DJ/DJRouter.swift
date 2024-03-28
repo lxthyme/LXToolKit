@@ -484,14 +484,18 @@ private extension DJSavedData {
     }
     static func getDictionary(key: String) -> [String: Any]? {
         var result: [String: Any]?
+        guard let string = getValue(key: key), string.isNotEmpty else { return nil }
         do {
-            if let string = getValue(key: key),
-               let data = string.data(using: .utf8) {
+            if let data = string.data(using: .utf8) {
                 result = try JSONSerialization.jsonObject(with: data) as? [String : Any]
                 // dlog("-->读取 \(key): \(result ?? [:])")
             }
         } catch {
-            dlog("-->读取 \(key) 失败[序列化]: \(error)")
+            dlog("""
+                 -->读取 \(key) 失败[序列化]: 
+                 value: \(string)
+                 error: \(error)
+                 """)
         }
         return result
     }
