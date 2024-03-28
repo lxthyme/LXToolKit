@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 👀保存多环境登录信息
 @interface CTAppContext (BaiLianTest)
 
-- (NSString *)getUserInfoLocalStorageKey;
-- (NSString *)getPlusLocalStorageKey;
+// - (NSString *)getUserInfoLocalStorageKey;
+// - (NSString *)getPlusLocalStorageKey;
 
 - (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo;
 - (void)xl_cleanPlusInfo;

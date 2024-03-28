@@ -57,6 +57,7 @@ public struct DJTestRouter {
                 ]),
                 .subitem(.section(title: "Item 3 - 2")),
             ]),
+            .subitem(.section(title: "Item 2 - 2")),
             .outline(.section(title: "Section 3.2"), subitems: [
                 .subitem(.section(title: "Item 3.2 - 1")),
                 .outline(.section(title: "Section 4.2"), subitems: [
@@ -65,7 +66,7 @@ public struct DJTestRouter {
                 ]),
                 .subitem(.section(title: "Item 3.2 - 2")),
             ]),
-            .subitem(.section(title: "Item 2 - 2")),
+            .subitem(.section(title: "Item 2 - 3")),
         ]),
         .subitem(.section(title: "Item 1 - 2")),
     ])
