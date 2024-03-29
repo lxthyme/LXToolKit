@@ -408,13 +408,15 @@ private extension LXOutlineVC {
     //     addItems(outline, to: nil)
     //     return snapshot
     // }
-    func generateMultiSnapshot() {
-        var exList: [LXOutlineItem] = []
-        if menuItems.count > 6 {
-            let dj1 = menuItems[6]
-            let dj2 = dj1.subitems![3]
-            let dj3 = dj2.subitems![1]
-            exList = [dj1, dj2, dj3]
+    func generateMultiSnapshot(_ exList2: [LXOutlineItem] = []) {
+        var exList = exList2
+        if exList.isEmpty {
+            if menuItems.count > 6 {
+                let dj1 = menuItems[6]
+                let dj2 = dj1.subitems![3]
+                let dj3 = dj2.subitems![1]
+                exList = [dj1, dj2, dj3]
+            }
         }
         var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
@@ -615,12 +617,15 @@ extension LXOutlineVC: UICollectionViewDelegate {
         // }
     }
     func test235() {
-        let d1 = self.menuItems[0]
+        let d1 = self.menuItems[1]
         let d2 = d1.subitems![1]
         let d3 = d2.subitems![3]
         let d4 = d3.subitems![1]
-        let d5 = d3.subitems![1]
-        let result = checkAll(d5)
+        let d5 = d4.subitems![1]
+        let result =
+        // checkAll(d5)
+        getDepth(dest: d5)
+        generateMultiSnapshot(result)
         dlog("-->result: \(result.map({ $0.opt.section.title }))")
     }
     func checkAll(_ item: LXOutlineItem) -> [LXOutlineItem] {
@@ -667,6 +672,24 @@ extension LXOutlineVC: UICollectionViewDelegate {
         //     } while 1 == 1
         // }
         return destList
+    }
+    func getDepth(dest: LXOutlineItem) -> [LXOutlineItem] {
+        var depth: [LXOutlineItem] = [dest]
+        for item in self.menuItems {
+            let section = self.dataSource.snapshot(for: item)
+            if !section.contains(dest) {
+                continue
+            }
+            var level = section.level(of: dest)
+            var parent = section.parent(of: dest)
+            while level >= 0, let p = parent {
+                dlog("-->level[\(level)]: \(p)")
+                depth.append(p)
+                parent = section.parent(of: p)
+                level = section.level(of: p)
+            }
+        }
+        return depth
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
