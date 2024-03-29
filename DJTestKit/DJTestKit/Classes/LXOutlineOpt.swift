@@ -43,13 +43,13 @@ public struct LXSectionOpt<Item> {
     public let opt: LXOutlineOpt
     // public let section: LXSection
     public let scene: Navigator.Scene?
-    public var subitems: [LXSectionOpt]? = nil
+    public var subitems: [LXSectionOpt<Item>]? = nil
     public var isExpanded: Bool = false
     public let data: Item
     public init(// section: LXSection,
                 opt: LXOutlineOpt,
                 scene: Navigator.Scene? = nil,
-                subitems: [LXSectionOpt]? = nil, 
+                subitems: [LXSectionOpt<Item>]? = nil,
                 isExpanded: Bool = false,
                 data: Item = "") {
         // self.section = section
@@ -60,6 +60,20 @@ public struct LXSectionOpt<Item> {
         self.data = data
     }
     // public func insert(_ item: LXSectionOpt) {}
+}
+
+// MARK: - 👀
+extension LXSectionOpt: CustomStringConvertible {
+    public var description: String {
+        var desc = ""
+        switch opt {
+        case .outline(let section):
+            desc += ".outline(\(section.title))"
+        case .subitem(let section):
+            desc += ".subitem(\(section.title))"
+        }
+        return desc
+    }
 }
 // MARK: - 👀
 extension LXSectionOpt: Hashable {

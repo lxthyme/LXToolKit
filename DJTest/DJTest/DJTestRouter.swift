@@ -18,27 +18,6 @@ import FloatingPanel_Stocks
 import RxNetworks_Ex
 import LXFlutterKit
 
-// MARK: - 👀
-public extension DJTestRouter {
-    // static let routerDJTestItem = makeRouterItem(from: DJTestRouter.routerDJTest)
-    // static let routerFlutterItem = makeRouterItem(from: DJTestRouter.routerFlutter)
-    // static let expandedSectionListItem: [LXOutlineItem] = [
-    //     DJTestRouter.routerDJTestItem,
-    //     DJTestRouter.routerFlutterItem,
-    // ]
-    // static func makeRouterItem(from opt: LXOutlineOpt) -> LXOutlineItem {
-    //     var outlineItem = LXOutlineItem(opt: opt)
-    //     switch opt {
-    //     case .outline( _, _, let subitems):
-    //         let tmp = subitems.map { makeRouterItem(from: $0) }
-    //         outlineItem.subitems = tmp
-    //     case .subitem:
-    //         break
-    //     }
-    //     return outlineItem
-    // }
-}
-
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineItem] = [
         DJTestRouter.routerDJTest,
@@ -150,16 +129,16 @@ public struct DJTestRouter {
             vc.dataFill(list: exContent)
             return vc
         })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXTableTest202403VC")), scene: .vc(provider: {
-            if #available(iOS 14.0, *) {
-                return LXTableTest202403VC()
-            } else {
-                // Fallback on earlier versions
-                let vc = LXSampleTextViewVC()
-                vc.dataFillUnSupport(content: "UnSupport Diffable DataSource")
-                return vc
-            }
-        })),
+        // LXOutlineItem(opt: .subitem(.section(title: "LXTableTest202403VC")), scene: .vc(provider: {
+        //     if #available(iOS 14.0, *) {
+        //         return LXTableTest202403VC()
+        //     } else {
+        //         // Fallback on earlier versions
+        //         let vc = LXSampleTextViewVC()
+        //         vc.dataFillUnSupport(content: "UnSupport Diffable DataSource")
+        //         return vc
+        //     }
+        // })),
     ])
     static let routerDJ: () -> LXOutlineItem = {
         let shopList = [
