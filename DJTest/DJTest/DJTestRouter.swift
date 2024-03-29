@@ -20,65 +20,65 @@ import LXFlutterKit
 
 // MARK: - 👀
 public extension DJTestRouter {
-    static let routerDJTestItem = makeRouterItem(from: DJTestRouter.routerDJTest)
-    static let routerFlutterItem = makeRouterItem(from: DJTestRouter.routerFlutter)
-    static let expandedSectionListItem: [LXOutlineItem] = [
-        DJTestRouter.routerDJTestItem,
-        DJTestRouter.routerFlutterItem,
-    ]
-    static func makeRouterItem(from opt: LXOutlineOpt) -> LXOutlineItem {
-        var outlineItem = LXOutlineItem(opt: opt)
-        switch opt {
-        case .outline( _, _, let subitems):
-            let tmp = subitems.map { makeRouterItem(from: $0) }
-            outlineItem.subitems = tmp
-        case .subitem:
-            break
-        }
-        return outlineItem
-    }
+    // static let routerDJTestItem = makeRouterItem(from: DJTestRouter.routerDJTest)
+    // static let routerFlutterItem = makeRouterItem(from: DJTestRouter.routerFlutter)
+    // static let expandedSectionListItem: [LXOutlineItem] = [
+    //     DJTestRouter.routerDJTestItem,
+    //     DJTestRouter.routerFlutterItem,
+    // ]
+    // static func makeRouterItem(from opt: LXOutlineOpt) -> LXOutlineItem {
+    //     var outlineItem = LXOutlineItem(opt: opt)
+    //     switch opt {
+    //     case .outline( _, _, let subitems):
+    //         let tmp = subitems.map { makeRouterItem(from: $0) }
+    //         outlineItem.subitems = tmp
+    //     case .subitem:
+    //         break
+    //     }
+    //     return outlineItem
+    // }
 }
 
 public struct DJTestRouter {
-    static let expandedSectionList: [LXOutlineOpt] = [
+    static let expandedSectionList: [LXOutlineItem] = [
         DJTestRouter.routerDJTest,
         DJTestRouter.routerFlutter,
     ]
-    static let routerItem: LXOutlineOpt = .subitem(.section(title: "Item 1: - 1"))
-    static let router233: LXOutlineOpt = .outline(.section(title: "Section 1"), subitems: [
-        .subitem(.section(title: "Item 1 - 1")),
-        .outline(.section(title: "Section 2"), subitems: [
-            .subitem(.section(title: "Item 2 - 1")),
-            .outline(.section(title: "Section 3"), subitems: [
-                .subitem(.section(title: "Item 3 - 1")),
-                .outline(.section(title: "Section 4"), subitems: [
-                    .subitem(.section(title: "Item 4 - 1")),
-                    .subitem(.section(title: "Item 4 - 2")),
+    static let routerItem: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "Item 1: - 1")))
+    static let router233: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "Section 1")), subitems: [
+        LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 1"))),
+        LXOutlineItem(opt: .outline(.section(title: "Section 2")), subitems: [
+            LXOutlineItem(opt: .subitem(.section(title: "Item 2 - 1"))),
+            LXOutlineItem(opt: .outline(.section(title: "Section 3")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "Item 3 - 1"))),
+                LXOutlineItem(opt: .outline(.section(title: "Section 4")), subitems: [
+                    LXOutlineItem(opt: .subitem(.section(title: "Item 4 - 1"))),
+                    LXOutlineItem(opt: .subitem(.section(title: "Item 4 - 2"))),
                 ]),
-                .subitem(.section(title: "Item 3 - 2")),
+                LXOutlineItem(opt: .subitem(.section(title: "Item 3 - 2"))),
             ]),
-            .subitem(.section(title: "Item 2 - 2")),
-            .outline(.section(title: "Section 3.2"), subitems: [
-                .subitem(.section(title: "Item 3.2 - 1")),
-                .outline(.section(title: "Section 4.2"), subitems: [
-                    .subitem(.section(title: "Item 4.2 - 1")),
-                    .subitem(.section(title: "Item 4.2 - 2")),
+            LXOutlineItem(opt: .subitem(.section(title: "Item 2 - 2"))),
+            LXOutlineItem(opt: .outline(.section(title: "Section 3.2")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "Item 3.2 - 1"))),
+                LXOutlineItem(opt: .outline(.section(title: "Section 4.2")), subitems: [
+                    LXOutlineItem(opt: .subitem(.section(title: "Item 4.2 - 1"))),
+                    LXOutlineItem(opt: .subitem(.section(title: "Item 4.2 - 2"))),
                 ]),
-                .subitem(.section(title: "Item 3.2 - 2")),
+                LXOutlineItem(opt: .subitem(.section(title: "Item 3.2 - 2"))),
             ]),
-            .subitem(.section(title: "Item 2 - 3")),
+            LXOutlineItem(opt: .subitem(.section(title: "Item 2 - 3"))),
         ]),
-        .subitem(.section(title: "Item 1 - 2")),
+        LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 2"))),
     ])
-    static let routerDJSwiftModule: LXOutlineOpt = .subitem(.section(title: "DJSwiftModule"), scene: .vc(provider: {
+    static let routerDJSwiftModule: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "DJSwiftModule")), scene: .vc(provider: {
         DJAutoRouter.router1.updateRouter(section: .section(title: "DJSwiftModule"))
         DJAutoRouter.router2.clearRouter()
         let window = UIApplication.XL.keyWindow
         Application.shared.presentInitialScreen(in: window)
         return nil
     }))
-    static let routerDynamicIsland: LXOutlineOpt = .outline(.section(title: "Dynamic Island"), subitems: [
-        .subitem(.section(title: "dynamicIsland"), scene: .vc(provider: {
+    static let routerDynamicIsland: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "Dynamic Island")), subitems: [
+        LXOutlineItem(opt: .subitem(.section(title: "dynamicIsland")), scene: .vc(provider: {
         if #available(iOS 16.2, *) {
             return UIHostingController(rootView: EmojiRangersView())
         } else {
@@ -88,7 +88,7 @@ public struct DJTestRouter {
             return vc
         }
     })),
-        .subitem(.section(title: "LXDynamicLandVC"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "LXDynamicLandVC")), scene: .vc(provider: {
             guard #available(iOS 16.2, *) else {
                 let vc = LXSampleTextViewVC()
                 vc.dataFillUnSupport(content: "iOS 14.0 Dynamic Land Extension Demo VC")
@@ -97,9 +97,9 @@ public struct DJTestRouter {
             return LXDynamicLandVC()
         })),
     ])
-    static let routerDJTest: LXOutlineOpt = .outline(.section(title: "DJTest"), subitems: [
-        .subitem(.section(title: "LXAMapTestVC"), scene: .vc(provider: { LXAMapTestVC() })),
-        .subitem(.section(title: "LXOutlineVC"), scene: .vc(provider: {
+    static let routerDJTest: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "DJTest")), subitems: [
+        LXOutlineItem(opt: .subitem(.section(title: "LXAMapTestVC")), scene: .vc(provider: { LXAMapTestVC() })),
+        LXOutlineItem(opt: .subitem(.section(title: "LXOutlineVC")), scene: .vc(provider: {
             if #available(iOS 14.0, *) {
                 LXOutlineVC()
             } else {
@@ -107,7 +107,7 @@ public struct DJTestRouter {
                 nil
             }
         })),
-        .subitem(.section(title: "UIListContentConfiguration.Ex.allCases"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "UIListContentConfiguration.Ex.allCases")), scene: .vc(provider: {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exContent = UIListContentConfiguration.Ex.allCases
@@ -119,7 +119,7 @@ public struct DJTestRouter {
             }
             return vc
         })),
-        .subitem(.section(title: "UIBackgroundConfiguration.Ex.allCases"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "UIBackgroundConfiguration.Ex.allCases")), scene: .vc(provider: {
             let vc = LXSampleListVC()
             if #available(iOS 14.0, *) {
                 let exBg = UIBackgroundConfiguration.Ex.allCases
@@ -131,7 +131,7 @@ public struct DJTestRouter {
             }
             return vc
         })),
-        .subitem(.section(title: "CharacterSet.Ex.allCases"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "CharacterSet.Ex.allCases")), scene: .vc(provider: {
             let exContent = CharacterSet.Ex
                 .allCases
                 // .urlSet
@@ -150,7 +150,7 @@ public struct DJTestRouter {
             vc.dataFill(list: exContent)
             return vc
         })),
-        .subitem(.section(title: "LXTableTest202403VC"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "LXTableTest202403VC")), scene: .vc(provider: {
             if #available(iOS 14.0, *) {
                 return LXTableTest202403VC()
             } else {
@@ -161,7 +161,7 @@ public struct DJTestRouter {
             }
         })),
     ])
-    static let routerDJ: () -> LXOutlineOpt = {
+    static let routerDJ: () -> LXOutlineItem = {
         let shopList = [
         "env, storeCode, storeType:",
         "///",
@@ -177,40 +177,40 @@ public struct DJTestRouter {
             "sit/单菜谱/007780/3364200/2",
             "prd/test/007780/3364200/2",
         ].joined(separator:", ")
-        return .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))"), subitems: [
-            .subitem(.section(title: "Toggle Env"), scene: .vc(provider: {
+        return LXOutlineItem(opt: .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))")), subitems: [
+            LXOutlineItem(opt: .subitem(.section(title: "Toggle Env")), scene: .vc(provider: {
                 DJRouter.toggleEnv();
                 return nil
             })),
-            .subitem(.section(title: "DJTabbarViewController"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "DJTabbarViewController")), scene: .vc(provider: {
                 let vc = DJRouter.getMain()!
                 return DJTestRouter.createNav(rootVC: vc) {
                     DJSavedData.saveGStore()
                     DJSavedData.saveLoginInfo()
                 }
             }, transition: .alert)),
-            .subitem(.section(title: "\(DJRouterPath.getMain.title):\(shopList)")),
-            .outline(.section(title: "Page List"), subitems: [
-            .subitem(.section(title: "DJQuickHomeVC"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(shopList)"))),
+            LXOutlineItem(opt: .outline(.section(title: "Page List")), subitems: [
+            LXOutlineItem(opt: .subitem(.section(title: "DJQuickHomeVC")), scene: .vc(provider: {
                 let vc = DJRouterObjc.getQuickHome()
                 return DJTestRouter.createNav(rootVC: vc) {
                     DJSavedData.saveGStore()
                     DJSavedData.saveLoginInfo()
                 }
             }, transition: .alert)),
-            .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList)")),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList)"))),
             ]),
-            .subitem(.section(title: "save login & gStore info to local"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "save login & gStore info to local")), scene: .vc(provider: {
                 DJSavedData.saveGStore()
                 DJSavedData.saveLoginInfo()
                 return nil
             })),
-            .subitem(.section(title: "backup login & gStore info from local"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "backup login & gStore info from local")), scene: .vc(provider: {
                 DJSavedData.backupGStore()
                 DJSavedData.backupLogInfo()
                 return nil
             })),
-            .subitem(.section(title: "backup login & gStore info from string"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "backup login & gStore info from string")), scene: .vc(provider: {
                 let json: String? = "{\"sit\":{\"gStore\":{\"djModuleType\":1,\"locationAdress\":\"友谊大厦\",\"inStoreStyle\":0,\"latitude\":\"0\",\"headType\":100,\"orderSourceCode\":\"1\",\"headerBgColorStr\":\"#FF774F\",\"isFirstShowClassify\":false,\"developerLatitude\":\"\",\"shopingCarCount\":\"0\",\"addressRawDic\":{},\"sourceValue\":\"1\",\"djHomeSearchStr\":\"\",\"sendType\":0,\"homeSelectTabType\":1,\"isChangeNet\":false,\"head4FCActiveColor\":\"#EA1616\",\"nearShopListArr\":[],\"longtitude\":\"0\",\"isDeveloper\":false,\"head4FCDefColor\":\"#221D1D\",\"isDaoJiaApp\":false,\"currentAddress\":\"\",\"leaveDJTimeStr\":0,\"djClassifyHeaderType\":1,\"developerLongtitude\":\"\",\"sceneId\":\"11000\",\"bl_ad\":\"\",\"classifyShowIndex\":0,\"labelColor\":\"#000000\",\"djHomeStyle\":0},\"userInfo\":{\"memberLevelCode\":\"40\",\"realNameLevel\":\"0\",\"pwdStrength\":\"1\",\"doudoulevel\":\"109\",\"rawDict\":{\"obj\":\"yB/uE8JBmqZn+yFZ10MU7weSHd8JT8xAGmzpJF87emdSXDsCICMykMpR47gTEWCgiLGjn7Y+UQrMXxa8UCRR8UL8C2Um6/J6BpWXUrYtH+rRTNsqDzUoJc7MX/uf/6gLj1/BAjAWEmcpW0MOJ5ot5cTEJ9rFvBow7q36z0Ld/YKq4Gk19IcAgaqsYxpmVPmMDVRBsTMkhfe7AumOre8009ZQleMSIPvevEHHxfEHPvLTPT1oFCe1MMa5m7+U5XhEEfIuKkeubyUX6Ibb9aPoFTzNtnxSaURAyzVPQkgJX7ZlPr/mV1nMCCeVaxq+x+gge39InDUDhGAP4MBKPFqGbCZ931gOaaPWYIzzKpZJikjeJJjcGZxw5ZtQSgKYlaE+09shLVrf2sAg++7V3XKWof9UKNWks6lWr//xnT8+NotEesSpn2Z1hjTKEGTiso/0Y0SWr/Or4PhrK7UFVHvlKSBgE17g7PoypnnjVClYNuiYy+IpxUzeSkOM43CZgPxFf5+ims4kkEcoFvZTDDHdNuDOF+rpPXJdK5Zhbl8TVaBxY2h49o96kPlQ06LEXO7rIMQOwVGFen+NIUl2FddkoSB8I6kd7J0t6qJzSmPqjyfYwmcCTc1K+XGeaXHPwJd1WqYvOEkWYIi7JD0RTdi0VxnnD3AXDh8GAeGSKHC8d9jNQ4DdMfh2mWWYNR2rRoVpiYGqjRPgu84z2mhXghQ+JaE1rU6Mlg4SBoaVYbgEC6Gh6Cr6uvAIcgrKU1h9CbuOdVeSSFlScSXhaEddXZKVgKfEGS1Qse0gp56N/HbLgGH0pOX8OyzSg/4ObaUt+XFg\",\"resCode\":\"00100000\"},\"memberLevel\":\"40\",\"registerTime\":1629094690237,\"member_id\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"expire_in\":\"2592000\",\"encode_mobile\":\"ENC.1(ljEbTJFSKR9E01tP1oIT5Q==)\",\"remain_times\":\"3\",\"mobile\":\"18521006314\",\"newRegFlag\":false,\"usable_stat\":\"0\",\"black_account\":false,\"need_complete\":false,\"idFlag\":\"0\",\"high_risk\":false,\"orgId\":\"3000\",\"encode_memberId\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"member_name\":\"185****6314\",\"error_times\":\"0\",\"member_token\":\"4acf40fa4a3f2a41c70c388b750379cdb9f97ea6250cbbaf56683da51e0a88d3\",\"isSalesman\":\"1\"}},\"prd\":{\"gStore\":{\"storeDictionary\":{\"provinceName\":\"上海市\",\"shopBeginTime\":\"08:30\",\"logo\":\"https://img20.iblimg.com/site-2/images/store/2019/07/939951626.jpg\",\"beginTime\":\"08:00\",\"storeId\":\"43f123a4f62647879b9c0af982ff7972\",\"sceneId\":\"11000\",\"orderTypes\":\"25,46,1\",\"state\":\"1\",\"cityCode\":\"867\",\"shopCode\":\"20100045171\",\"comSid\":\"2000\",\"longtitude\":\"121.384011\",\"districtCode\":\"873\",\"deliveryTip\":\"\",\"storeType\":\"2010\",\"orderAlias\":\"\",\"addr\":\"真光路1288号\",\"storeName\":\"世纪联华中环百联店\",\"showDistributeDesc\":\"可配送\",\"provinceCode\":\"866\",\"showSinceSupport\":\"1\",\"distanceDesc\":\"\",\"endTime\":\"21:00\",\"merchantId\":\"20100045171\",\"distance\":\"\",\"showNewDelTimeDesc\":\"最快半小时达\",\"shopType\":\"大卖场\",\"isDistributeSupport\":\"\",\"longitude\":\"\",\"fastHomeMap\":{\"OvernightAfterMessage\":\"欢迎光临，您的订单将在门店营业后即刻配送，由此给您造成的不便，敬请谅解！\",\"DailyStartTime\":\"0:00\",\"OvernightBeforeMessage\":\"欢迎光临，您的订单将在次日门店营业后即刻配送，由此给您造成的不便，敬请谅解！\",\"FreeLimit\":\"58\",\"LogisticsStartTime\":\"8:00\",\"DelTime\":\"1\",\"DailyEndTime\":\"23:59\",\"LogisticsEndTime\":\"22:30\"},\"cityName\":\"市辖区\",\"shopName\":\"世纪联华中环百联店\",\"storeCode\":\"004517\",\"showInvoice\":\"0\",\"districtName\":\"普陀区\",\"showFreeLimitDesc\":\"58免首重\",\"shopEndTime\":\"21:00\",\"showDistributeSupport\":\"1\",\"shopId\":\"004517\",\"isSelf\":\"1\",\"showSinceDesc\":\"可自提\",\"buttonDesc\":\"即时达·最快30分钟\",\"phone\":\"02161392180\",\"latitude\":\"31.246005\"},\"djClassifyHeaderType\":1,\"djModuleType\":1,\"isDeveloper\":false,\"developerLatitude\":\"\",\"head4FCActiveColor\":\"#FFFFFF\",\"addressRawDic\":{},\"tdStoreModel\":{\"bdStore\":\"\",\"bdStatus\":\"\"},\"headerBgColorStr\":\"#FFFFFF\",\"currentAddress\":\"真光路1288号\",\"sendType\":0,\"leaveDJTimeStr\":0,\"developerLongtitude\":\"\",\"isFirstShowClassify\":false,\"inStoreStyle\":0,\"shopingCarCount\":\"0\",\"headType\":5,\"bl_ad\":\"\",\"classifyShowIndex\":0,\"storeModel\":{\"storeType\":\"2010\",\"longtitude\":\"121.384011\",\"showDelTimeDesc\":\"\",\"orderTypes\":\"25,46,1\",\"showSinceDesc\":\"可自提\",\"storeCode\":\"004517\",\"sceneId\":\"11000\",\"f_cellWidth\":0,\"showInvoice\":0,\"shopCode\":\"20100045171\",\"provinceCode\":\"866\",\"deliveryTip\":\"\",\"distanceDesc\":\"\",\"comSid\":\"2000\",\"latitude\":\"31.246005\",\"showDistributeSupport\":\"1\",\"shopName\":\"世纪联华中环百联店\",\"showIndexDelTimeDesc\":\"\",\"showDistributeDesc\":\"可配送\",\"showSinceSupport\":\"1\",\"f_skuCount\":0,\"storeId\":\"43f123a4f62647879b9c0af982ff7972\",\"distance\":\"\",\"cityCode\":\"867\",\"districtCode\":\"873\",\"logo\":\"https://img20.iblimg.com/site-2/images/store/2019/07/939951626.jpg\",\"shopType\":\"大卖场\",\"addr\":\"真光路1288号\",\"showFreeLimitDesc\":\"58免首重\",\"showNewDelTimeDesc\":\"最快半小时达\",\"orderAlias\":\"\"},\"head4FCDefColor\":\"#881407\",\"orderSourceCode\":\"1\",\"locationAdress\":\"友谊大厦\",\"djHomeStyle\":2,\"isChangeNet\":false,\"isDaoJiaApp\":false,\"sceneId\":\"11000\",\"latitude\":\"31.246005\",\"labelColor\":\"#000000\",\"longtitude\":\"121.384011\",\"homeSelectTabType\":1,\"nearShopListArr\":[],\"djHomeSearchStr\":\"\",\"sourceValue\":\"1\"}}}"
                 if let json {
                     DJSavedData.backupToLocalStorage(localInfo: json)
@@ -220,24 +220,24 @@ public struct DJTestRouter {
                 }
                 return nil
             })),
-            .subitem(.section(title: "[All Env]show gStore info"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "[All Env]show gStore info")), scene: .vc(provider: {
                 DJSavedData.showCurrentLocalInfo()
                 return nil
             })),
-            .subitem(.section(title: "show current context"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "show current context")), scene: .vc(provider: {
                 DJSavedData.showCurrentContextInfo()
                 return nil
             })),
         ])
     }
-    static let router3rd: LXOutlineOpt = .outline(.section(title: "3rd"), subitems: [
-        .subitem(.section(title: "Fatal Error Test"), scene: .vc(provider: {
+    static let router3rd: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "3rd")), subitems: [
+        LXOutlineItem(opt: .subitem(.section(title: "Fatal Error Test")), scene: .vc(provider: {
             fatalError("test")
         })),
-        .subitem(.section(title: "FloatingPanel Maps"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FloatingPanel Maps")), scene: .vc(provider: {
             return MapsEntry.entryVC()
         })),
-        .subitem(.section(title: "FloatingPanel Maps-SwiftUI"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FloatingPanel Maps-SwiftUI")), scene: .vc(provider: {
             if #available(iOS 14.0, *) {
             let vc = UIHostingController(rootView: MapsSwiftUIEntry(), ignoresKeyboard: true)
             return vc
@@ -247,21 +247,21 @@ public struct DJTestRouter {
                 return vc
             }
         })),
-        .subitem(.section(title: "FloatingPanel Samples"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FloatingPanel Samples")), scene: .vc(provider: {
             return SamplesEntry.entryVC()
         })),
-        .subitem(.section(title: "FloatingPanel SamplesObjC"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FloatingPanel SamplesObjC")), scene: .vc(provider: {
             return SamplesObjCEntry.entryVC()
         })),
-        .subitem(.section(title: "FloatingPanel Stocks"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FloatingPanel Stocks")), scene: .vc(provider: {
             return StocksEntry.entryVC()
         })),
-        .subitem(.section(title: "RxNetworks"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "RxNetworks")), scene: .vc(provider: {
             return RxNetworksEntry.entryVC()
         })),
     ])
-    static let routerFlutter: LXOutlineOpt = .outline(.section(title: "Flutter"), subitems: [
-        // .subitem(.section(title: "Cookbook"), scene: .vc(provider: {
+    static let routerFlutter: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "Flutter")), subitems: [
+        // LXOutlineItem(opt: .subitem(.section(title: "Cookbook")), scene: .vc(provider: {
         //     // guard let flutterEngine = FlutterManager.shared.flutterEngine else { return nil }
         //     // CrashlyticsManager.setCustomKeysAndValues([
         //     //     "tips": "flutter 异常: \(flutterEngine)",
@@ -288,81 +288,81 @@ public struct DJTestRouter {
         // //     ]
         // //     return nav
         // }, transition: .alert)),
-        .subitem(.section(title: "default entrypoint"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "default entrypoint")), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .default, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .subitem(.section(title: "Gallery App"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "Gallery App")), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .galleryApp, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .subitem(.section(title: "GSY App"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "GSY App")), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyDefault, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .subitem(.section(title: "entry point switch"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "entry point switch")), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .switch, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .subitem(.section(title: "FlutterUnit"), scene: .vc(provider: {
+        LXOutlineItem(opt: .subitem(.section(title: "FlutterUnit")), scene: .vc(provider: {
             let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .flutterUnit, channelName: .default)
             return DJTestRouter.createNav(rootVC: vc)
         }, transition: .alert)),
-        .outline(.section(title: "GSY Pages"), subitems: [
-            .subitem(.section(title: "home"), scene: .vc(provider: {
+        LXOutlineItem(opt: .outline(.section(title: "GSY Pages")), subitems: [
+            LXOutlineItem(opt: .subitem(.section(title: "home")), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyHome, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
-            .subitem(.section(title: "login"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "login")), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyLogin, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
-            .subitem(.section(title: "asset test"), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: "asset test")), scene: .vc(provider: {
                 let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .gsyAssetTest, channelName: .default)
                 return DJTestRouter.createNav(rootVC: vc)
             }, transition: .alert)),
         ]),
-        .outline(.section(title: "Gallery Pages"), subitems: [
-            .outline(.section(title: "Daily"), subitems: [
-                .subitem(.section(title: "MyScaffold"), scene: .vc(provider: {
+        LXOutlineItem(opt: .outline(.section(title: "Gallery Pages")), subitems: [
+            LXOutlineItem(opt: .outline(.section(title: "Daily")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "MyScaffold")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyScaffold, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
-                .subitem(.section(title: "TutorialHome"), scene: .vc(provider: {
+                LXOutlineItem(opt: .subitem(.section(title: "TutorialHome")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_TutorialHome, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
-                .subitem(.section(title: "MyButton"), scene: .vc(provider: {
+                LXOutlineItem(opt: .subitem(.section(title: "MyButton")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MyButton, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
-                .subitem(.section(title: "Counter"), scene: .vc(provider: {
+                LXOutlineItem(opt: .subitem(.section(title: "Counter")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_Counter, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
-                .subitem(.section(title: "Multi Counter"), scene: .vc(provider: {
+                LXOutlineItem(opt: .subitem(.section(title: "Multi Counter")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .daily_MultiCounter, channelName: .multiCounter)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
             ]),
-            .outline(.section(title: "Material"), subitems: [
-                .subitem(.section(title: "应用栏"), scene: .vc(provider: {
+            LXOutlineItem(opt: .outline(.section(title: "Material")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "应用栏")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_app_bar, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
             ]),
-            .outline(.section(title: "Cupertino"), subitems: [
-                .subitem(.section(title: "活动指示器"), scene: .vc(provider: {
+            LXOutlineItem(opt: .outline(.section(title: "Cupertino")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "活动指示器")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_cupertino_activity_indicator, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
-                .subitem(.section(title: "提醒"), scene: .vc(provider: {
+                LXOutlineItem(opt: .subitem(.section(title: "提醒")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_cupertino_alert, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),
             ]),
-            .outline(.section(title: "样式演示和其他演示"), subitems: [
-                .subitem(.section(title: "TwoPane"), scene: .vc(provider: {
+            LXOutlineItem(opt: .outline(.section(title: "样式演示和其他演示")), subitems: [
+                LXOutlineItem(opt: .subitem(.section(title: "TwoPane")), scene: .vc(provider: {
                     let vc: LXFlutterSampleVC = .vcFrom(entrypoint: .demo_two_pane, channelName: .default)
                     return DJTestRouter.createNav(rootVC: vc)
                 }, transition: .alert)),

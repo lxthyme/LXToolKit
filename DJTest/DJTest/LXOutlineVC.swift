@@ -40,15 +40,15 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>!
     private lazy var menuItems: [LXOutlineItem] = {
         return [
-            LXOutlineOpt.subitem(.section(title: "AcknowListViewController"), scene: .vc(provider: {
-                let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
-                if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
-                    return AcknowListViewController(plistFileURL: url)
-                }
-                let vc = LXSampleTextViewVC()
-                vc.dataFillUnSupport(content: "Pods-acknowledgements.plist file not found!")
-                return vc
-            })),
+            // LXOutlineItem(opt: .subitem(.section(title: "AcknowListViewController")), scene: .vc(provider: {
+            //     let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
+            //     if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
+            //         return AcknowListViewController(plistFileURL: url)
+            //     }
+            //     let vc = LXSampleTextViewVC()
+            //     vc.dataFillUnSupport(content: "Pods-acknowledgements.plist file not found!")
+            //     return vc
+            // })),
             DJTestRouter.router233,
             DJTestRouter.routerItem,
             LXToolKitRouter.kitRouter,
@@ -60,7 +60,7 @@ class LXOutlineVC: LXBaseVC {
             /// Others
             DJTestRouter.routerDJSwiftModule,
             DJTestRouter.routerDynamicIsland,
-        ].map { DJTestRouter.makeRouterItem(from: $0) }
+        ]//.map { DJTestRouter.makeRouterItem(from: $0) }
     }()
     // @available(iOS 13.0, *)
     // private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
@@ -131,7 +131,7 @@ private extension LXOutlineVC {
 @available(iOS 14.0, *)
 private extension LXOutlineVC {
     func gotoScene(by menuItem: LXOutlineItem) {
-        guard let scene = menuItem.opt.scene,
+        guard let scene = menuItem.scene,
               let vc = Navigator.default.show(segue: scene, sender: self) else {
             if menuItem.opt.section.title.hasPrefix("Section ") ||
                 menuItem.opt.section.title.hasPrefix("Item ") {
@@ -159,7 +159,7 @@ private extension LXOutlineVC {
             return
         }
         var router1VC: UIViewController?
-        if let scene = router1Menu.opt.scene {
+        if let scene = router1Menu.scene {
             self.expandedSectionList.insert(router1Menu)
             router1VC = Navigator.default.show(segue: scene, sender: self)
             router1VC?.title = router1Menu.opt.section.title
@@ -175,7 +175,7 @@ private extension LXOutlineVC {
               let router2Menu = try? self.menuItems.xl_first(where: { $0.opt.section.title == router2 }) else {
             return
         }
-        if let scene = router2Menu.opt.scene {
+        if let scene = router2Menu.scene {
             let vc = Navigator.default.show(segue: scene, sender: self)
             vc?.title = router1Menu.opt.section.title
         }
@@ -423,7 +423,7 @@ private extension LXOutlineVC {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
                 switch menuItem.opt {
-                case .outline(_, _, _):
+                case .outline:
                     // if !snapshot.contains(menuItem) {
                     //     snapshot.append([menuItem], to: parent)
                     // }
@@ -456,7 +456,7 @@ private extension LXOutlineVC {
         for section in self.menuItems {
             // snapshot.appendItems([section], toSection: section)
             switch section.opt {
-            case .outline(_, _, _):
+            case .outline:
                 // snapshot.appendItems([menuItem], toSection: menuItem)
 
                 var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()

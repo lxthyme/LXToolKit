@@ -8,7 +8,7 @@ import UIKit
 import LXToolKit
 import DJTestKit
 
-class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
+class DataSource: UITableViewDiffableDataSource<String, LXOutlineItem> {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.snapshot().sectionIdentifiers[section]
     }
@@ -46,7 +46,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         let dataSource = DataSource.init(tableView: table) { tableView, indexPath, scene in
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.XL.reuseIdentifier, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = scene.section.title
+            content.text = scene.opt.section.title
             content.textProperties.color = .black
             // content.secondaryText = "\(scene.info.desc)"
             cell.contentConfiguration = content
@@ -59,8 +59,8 @@ open class LXToolKitTestVC: LXBaseTableVC {
     }
     private var _dataSnapshot: Any?
     @available(iOS 13.0, *)
-    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
-        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
+    private var dataSnapshot: NSDiffableDataSourceSnapshot<String, LXOutlineItem> {
+        if let ds = _dataSnapshot as? NSDiffableDataSourceSnapshot<String, LXOutlineItem> {
             return ds
         }
         // let staging = AppConfig.Network.useStaging
@@ -77,7 +77,7 @@ open class LXToolKitTestVC: LXBaseTableVC {
         //                        trendingGithubProvider: trendingGithubProvider,
         //                        codetabsProvider: codetabsProvider)
         let vm = LXBaseVM()
-        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineOpt>()
+        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineItem>()
         snapshot.appendSections([
             "Swift Daily",
             "2023",
@@ -184,13 +184,13 @@ private extension LXToolKitTestVC {
         goRouter()
         // testTaskGroup()
     }
-    func gotoScene(by outlineOpt: LXOutlineOpt?) {
+    func gotoScene(by outlineOpt: LXOutlineItem?) {
         let navigator = Navigator.default
         if let outlineOpt,
            let scene = outlineOpt.scene,
            let vc = navigator.show(segue: scene, sender: self) {
-            vc.title = outlineOpt.section.title
-            DJAutoRouter.router2.updateRouter(section: outlineOpt.section)
+            vc.title = outlineOpt.opt.section.title
+            DJAutoRouter.router2.updateRouter(section: outlineOpt.opt.section)
         }
     }
 }
