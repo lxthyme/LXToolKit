@@ -74,10 +74,7 @@ class LXOutlineVC: LXBaseVC {
     override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         if isFirstAppearing {
-            var result: [LXOutlineItem] = []
-            if let dest = gotoAutoJumpRouteScene() {
-                result = getDepth(dest: dest)
-            }
+            let result: [LXOutlineItem] = gotoAutoJumpRouteScene()
             generateMultiSnapshot(result)
         }
         isFirstAppearing = false
@@ -147,13 +144,13 @@ private extension LXOutlineVC {
         vc.title = menuItem.opt.section.title
         DJAutoRouter.router1.updateRouter(section: menuItem.opt.section)
     }
-    func gotoAutoJumpRouteScene() -> LXOutlineItem? {
+    func gotoAutoJumpRouteScene() -> [LXOutlineItem] {
         guard let router1 = DJAutoRouter.router1.getDefaultsValue(),
               let router1Menu = try? self.menuItems.xl_first(where: { $0.opt.section.title == router1 }) else {
-                  return nil
+                  return []
         }
         if(router1Menu.opt.section.title == LXOutlineVC.XL.typeNameString) {
-            return nil
+            return []
         }
         var router1VC: UIViewController?
         if let scene = router1Menu.scene {
@@ -169,13 +166,13 @@ private extension LXOutlineVC {
         }
         guard let router2 = DJAutoRouter.router2.getDefaultsValue(),
               let router2Menu = try? self.menuItems.xl_first(where: { $0.opt.section.title == router2 }) else {
-            return router1Menu
+            return [router1Menu]
         }
         if let scene = router2Menu.scene {
             let vc = Navigator.default.show(segue: scene, sender: self)
             vc?.title = router1Menu.opt.section.title
         }
-        return router1Menu;
+        return [router1Menu, router2Menu];
     }
     func getDepth(dest: LXOutlineItem) -> [LXOutlineItem] {
         var depth: [LXOutlineItem] = [dest]
@@ -380,15 +377,17 @@ private extension LXOutlineVC {
         }
         return dataSource
     }
-    func generateMultiSnapshot(_ exList2: [LXOutlineItem] = []) {
-        var exList = exList2
-        if exList.isEmpty {
-            if menuItems.count > 6 {
-                let dj1 = menuItems[6]
-                let dj2 = dj1.subitems![3]
-                let dj3 = dj2.subitems![1]
-                exList = [dj1, dj2, dj3]
-            }
+    func generateMultiSnapshot(_ dest: [LXOutlineItem] = []) {
+        var destList = dest
+        if destList.isEmpty {
+            destList = [
+                LXOutlineItem(opt: .outline(.section(title: "Page List")))
+            ]
+        }
+        var exList: [LXOutlineItem] = []
+        for item in destList {
+            let depth = getDepth(dest: item)
+            exList.append(contentsOf: depth)
         }
         var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
