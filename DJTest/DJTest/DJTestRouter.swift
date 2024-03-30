@@ -17,6 +17,7 @@ import FloatingPanel_SamplesObjC
 import FloatingPanel_Stocks
 import RxNetworks_Ex
 import LXFlutterKit
+import Hover
 
 public struct DJTestRouter {
     static let expandedSectionList: [LXOutlineItem] = [
@@ -362,25 +363,23 @@ extension DJTestRouter {
     //         // .disposed(by: rx.disposeBag)
     // }
     static func createNav(rootVC: UIViewController, dismiss:(() -> Void)? = nil) -> UINavigationController {
-        let btn = UIButton()
-        btn.backgroundColor = .XL.randomGolden
-        btn.layerCornerRadius = 8
-        btn.setTitle("Closed", for: .normal)
-        btn.setTitleColor(.XL.randomLight, for: .normal)
-        btn.frame = CGRect(x: 150, y: UIApplication.XL.keyWindow?.safeAreaInsets.top ?? 0, width: 80, height: 44)
-        // btn.frame = CGRect(x: 150, y: iPhoneX.safeareaInsets.top, width: 80, height: 44)
-        if #available(iOS 14.0, *) {
-            btn.addAction(UIAction(handler: { _ in
+        let config = HoverConfiguration(image: UIImage(named: "Hover"), color: .gradient(top: .blue, bottom: .cyan))
+        let menuList: [HoverItem] = [
+            HoverItem(image: UIImage(systemName: "xmark"), onTap: {
                 dismiss?()
                 let topVC = UIViewController.topViewController()
                 topVC?.dismiss(animated: true)
-            }), for: .touchUpInside)
-        }
+            })
+        ]
+        let hoverView = HoverView(with: config, items: menuList)
         let nav = UINavigationController(rootViewController: rootVC)
         nav.modalPresentationStyle = .fullScreen
         nav.isNavigationBarHidden = true
         nav.interactivePopGestureRecognizer?.isEnabled = true
-        nav.view.addSubview(btn)
+        nav.view.addSubview(hoverView)
+        hoverView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         return nav
     }
 }

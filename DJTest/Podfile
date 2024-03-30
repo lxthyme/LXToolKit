@@ -191,6 +191,10 @@ def pod_DJ
   # pod 'JXCategoryView', '1.3.12'
 end
 
+def pod_DJTest
+  pod 'Hover'
+end
+
 target 'DJTest' do
   inherit! :search_paths
   # workspace 'DJTest.xcworkspace'
@@ -203,6 +207,7 @@ target 'DJTest' do
   pod_flutter()
   pod_LXToolKit()
   pod_DJ()
+  pod_DJTest()
 
 
   # use_frameworks! :linkage => :dynamic
@@ -274,7 +279,7 @@ post_install do |installer|
         target.build_configurations.each do |config|
           if config.name == 'Debug'
               config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
-              puts("+++config.build_settings: #{config.build_settings}")
+              # puts("+++config.build_settings: #{config.build_settings}")
           end
         end
       end
@@ -456,7 +461,7 @@ end
 static_frameworks = [
 'DJRSwiftResource', 'FloatingPanel_Maps', 'FloatingPanel_Maps-SwiftUI', 'FloatingPanel_Samples', 'FloatingPanel_SamplesObjC', 'FloatingPanel_Stocks', 'DJTestKit', 'LXFlutterKit', 'LXToolKit', 'LXToolKit_Example', 'RxNetworks_Ex',
 'LXToolKitObjC', 'LXToolKitObjC_Example', 'IGListKit', 'UICollectionViewLeftAlignedLayout',
-'IGListDiffKit',
+'IGListDiffKit', 'Hover',
 'SnapKit', 'CryptoSwift', 'SDWebImage', 'CocoaLumberjack', 'SwifterSwift', 'Hero', 'DZNEmptyDataSet', 'R.swift', 'Localize-Swift', 'SVProgressHUD',
 'Firebase', 'FirebaseAnalytics', 'FirebaseCore', 'FirebaseABTesting', 'GoogleUtilities', 'PromisesObjC', 'FirebaseCoreInternal', 'FirebaseInstallations', 'nanopb', 'GoogleAppMeasurement', 'FirebaseCrashlytics', 'FirebaseSessions', 'FirebaseCoreExtension', 'GoogleDataTransport', 'PromisesSwift', 'HMSegmentedControl', 'ImageSlideshow', 'KafkaRefresh', 'Kingfisher', 'ObjectMapper', 'RxCocoa', 'RxRelay', 'RxGesture', 'RxOptional', 'NSObject+Rx', 'RxTheme', 'RxDataSources', 'Differentiator',
 'RxSwift','Moya-ObjectMapper', 'Alamofire', 'Moya', 'HandyJSON',
