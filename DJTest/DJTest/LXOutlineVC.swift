@@ -255,7 +255,7 @@ private extension LXOutlineVC {
             let section: NSCollectionLayoutSection
             // if case .subitem = self.menuItems[sectionIdx] {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalHeight(1.0))
+                                                      heightDimension: .estimated(44))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 // <#item#>.contentInsets = NSDirectionalEdgeInsets(top: <#10.0#>, leading: <#10.0#>, bottom: <#10.0#>, trailing: <#10.0#>)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -516,6 +516,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
             gotoScene(by: menuItem)
             return
         }
+        DJAutoRouter.router1.updateRouter(section: menuItem.opt.section)
         let tmp = menuItem.opt.section.title.components(separatedBy: ":")
         guard let path = DJRouterPath.from(tmp.first) else { return }
         switch path {
