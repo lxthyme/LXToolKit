@@ -191,8 +191,8 @@ public struct DJTestRouter {
                 return nil
             })),
             LXOutlineItem(opt: .subitem(.section(title: "backup login & gStore info from string")), scene: .vc(provider: {
-                let json: String? = "{\"sit\":{\"gStore\":{\"djModuleType\":1,\"locationAdress\":\"友谊大厦\",\"inStoreStyle\":0,\"latitude\":\"0\",\"headType\":100,\"orderSourceCode\":\"1\",\"headerBgColorStr\":\"#FF774F\",\"isFirstShowClassify\":false,\"developerLatitude\":\"\",\"shopingCarCount\":\"0\",\"addressRawDic\":{},\"sourceValue\":\"1\",\"djHomeSearchStr\":\"\",\"sendType\":0,\"homeSelectTabType\":1,\"isChangeNet\":false,\"head4FCActiveColor\":\"#EA1616\",\"nearShopListArr\":[],\"longtitude\":\"0\",\"isDeveloper\":false,\"head4FCDefColor\":\"#221D1D\",\"isDaoJiaApp\":false,\"currentAddress\":\"\",\"leaveDJTimeStr\":0,\"djClassifyHeaderType\":1,\"developerLongtitude\":\"\",\"sceneId\":\"11000\",\"bl_ad\":\"\",\"classifyShowIndex\":0,\"labelColor\":\"#000000\",\"djHomeStyle\":0},\"userInfo\":{\"memberLevelCode\":\"40\",\"realNameLevel\":\"0\",\"pwdStrength\":\"1\",\"doudoulevel\":\"109\",\"rawDict\":{\"obj\":\"yB/uE8JBmqZn+yFZ10MU7weSHd8JT8xAGmzpJF87emdSXDsCICMykMpR47gTEWCgiLGjn7Y+UQrMXxa8UCRR8UL8C2Um6/J6BpWXUrYtH+rRTNsqDzUoJc7MX/uf/6gLj1/BAjAWEmcpW0MOJ5ot5cTEJ9rFvBow7q36z0Ld/YKq4Gk19IcAgaqsYxpmVPmMDVRBsTMkhfe7AumOre8009ZQleMSIPvevEHHxfEHPvLTPT1oFCe1MMa5m7+U5XhEEfIuKkeubyUX6Ibb9aPoFTzNtnxSaURAyzVPQkgJX7ZlPr/mV1nMCCeVaxq+x+gge39InDUDhGAP4MBKPFqGbCZ931gOaaPWYIzzKpZJikjeJJjcGZxw5ZtQSgKYlaE+09shLVrf2sAg++7V3XKWof9UKNWks6lWr//xnT8+NotEesSpn2Z1hjTKEGTiso/0Y0SWr/Or4PhrK7UFVHvlKSBgE17g7PoypnnjVClYNuiYy+IpxUzeSkOM43CZgPxFf5+ims4kkEcoFvZTDDHdNuDOF+rpPXJdK5Zhbl8TVaBxY2h49o96kPlQ06LEXO7rIMQOwVGFen+NIUl2FddkoSB8I6kd7J0t6qJzSmPqjyfYwmcCTc1K+XGeaXHPwJd1WqYvOEkWYIi7JD0RTdi0VxnnD3AXDh8GAeGSKHC8d9jNQ4DdMfh2mWWYNR2rRoVpiYGqjRPgu84z2mhXghQ+JaE1rU6Mlg4SBoaVYbgEC6Gh6Cr6uvAIcgrKU1h9CbuOdVeSSFlScSXhaEddXZKVgKfEGS1Qse0gp56N/HbLgGH0pOX8OyzSg/4ObaUt+XFg\",\"resCode\":\"00100000\"},\"memberLevel\":\"40\",\"registerTime\":1629094690237,\"member_id\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"expire_in\":\"2592000\",\"encode_mobile\":\"ENC.1(ljEbTJFSKR9E01tP1oIT5Q==)\",\"remain_times\":\"3\",\"mobile\":\"18521006314\",\"newRegFlag\":false,\"usable_stat\":\"0\",\"black_account\":false,\"need_complete\":false,\"idFlag\":\"0\",\"high_risk\":false,\"orgId\":\"3000\",\"encode_memberId\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"member_name\":\"185****6314\",\"error_times\":\"0\",\"member_token\":\"4acf40fa4a3f2a41c70c388b750379cdb9f97ea6250cbbaf56683da51e0a88d3\",\"isSalesman\":\"1\"}},\"prd\":{\"gStore\":{\"storeDictionary\":{\"provinceName\":\"上海市\",\"shopBeginTime\":\"08:30\",\"logo\":\"https://img20.iblimg.com/site-2/images/store/2019/07/939951626.jpg\",\"beginTime\":\"08:00\",\"storeId\":\"43f123a4f62647879b9c0af982ff7972\",\"sceneId\":\"11000\",\"orderTypes\":\"25,46,1\",\"state\":\"1\",\"cityCode\":\"867\",\"shopCode\":\"20100045171\",\"comSid\":\"2000\",\"longtitude\":\"121.384011\",\"districtCode\":\"873\",\"deliveryTip\":\"\",\"storeType\":\"2010\",\"orderAlias\":\"\",\"addr\":\"真光路1288号\",\"storeName\":\"世纪联华中环百联店\",\"showDistributeDesc\":\"可配送\",\"provinceCode\":\"866\",\"showSinceSupport\":\"1\",\"distanceDesc\":\"\",\"endTime\":\"21:00\",\"merchantId\":\"20100045171\",\"distance\":\"\",\"showNewDelTimeDesc\":\"最快半小时达\",\"shopType\":\"大卖场\",\"isDistributeSupport\":\"\",\"longitude\":\"\",\"fastHomeMap\":{\"OvernightAfterMessage\":\"欢迎光临，您的订单将在门店营业后即刻配送，由此给您造成的不便，敬请谅解！\",\"DailyStartTime\":\"0:00\",\"OvernightBeforeMessage\":\"欢迎光临，您的订单将在次日门店营业后即刻配送，由此给您造成的不便，敬请谅解！\",\"FreeLimit\":\"58\",\"LogisticsStartTime\":\"8:00\",\"DelTime\":\"1\",\"DailyEndTime\":\"23:59\",\"LogisticsEndTime\":\"22:30\"},\"cityName\":\"市辖区\",\"shopName\":\"世纪联华中环百联店\",\"storeCode\":\"004517\",\"showInvoice\":\"0\",\"districtName\":\"普陀区\",\"showFreeLimitDesc\":\"58免首重\",\"shopEndTime\":\"21:00\",\"showDistributeSupport\":\"1\",\"shopId\":\"004517\",\"isSelf\":\"1\",\"showSinceDesc\":\"可自提\",\"buttonDesc\":\"即时达·最快30分钟\",\"phone\":\"02161392180\",\"latitude\":\"31.246005\"},\"djClassifyHeaderType\":1,\"djModuleType\":1,\"isDeveloper\":false,\"developerLatitude\":\"\",\"head4FCActiveColor\":\"#FFFFFF\",\"addressRawDic\":{},\"tdStoreModel\":{\"bdStore\":\"\",\"bdStatus\":\"\"},\"headerBgColorStr\":\"#FFFFFF\",\"currentAddress\":\"真光路1288号\",\"sendType\":0,\"leaveDJTimeStr\":0,\"developerLongtitude\":\"\",\"isFirstShowClassify\":false,\"inStoreStyle\":0,\"shopingCarCount\":\"0\",\"headType\":5,\"bl_ad\":\"\",\"classifyShowIndex\":0,\"storeModel\":{\"storeType\":\"2010\",\"longtitude\":\"121.384011\",\"showDelTimeDesc\":\"\",\"orderTypes\":\"25,46,1\",\"showSinceDesc\":\"可自提\",\"storeCode\":\"004517\",\"sceneId\":\"11000\",\"f_cellWidth\":0,\"showInvoice\":0,\"shopCode\":\"20100045171\",\"provinceCode\":\"866\",\"deliveryTip\":\"\",\"distanceDesc\":\"\",\"comSid\":\"2000\",\"latitude\":\"31.246005\",\"showDistributeSupport\":\"1\",\"shopName\":\"世纪联华中环百联店\",\"showIndexDelTimeDesc\":\"\",\"showDistributeDesc\":\"可配送\",\"showSinceSupport\":\"1\",\"f_skuCount\":0,\"storeId\":\"43f123a4f62647879b9c0af982ff7972\",\"distance\":\"\",\"cityCode\":\"867\",\"districtCode\":\"873\",\"logo\":\"https://img20.iblimg.com/site-2/images/store/2019/07/939951626.jpg\",\"shopType\":\"大卖场\",\"addr\":\"真光路1288号\",\"showFreeLimitDesc\":\"58免首重\",\"showNewDelTimeDesc\":\"最快半小时达\",\"orderAlias\":\"\"},\"head4FCDefColor\":\"#881407\",\"orderSourceCode\":\"1\",\"locationAdress\":\"友谊大厦\",\"djHomeStyle\":2,\"isChangeNet\":false,\"isDaoJiaApp\":false,\"sceneId\":\"11000\",\"latitude\":\"31.246005\",\"labelColor\":\"#000000\",\"longtitude\":\"121.384011\",\"homeSelectTabType\":1,\"nearShopListArr\":[],\"djHomeSearchStr\":\"\",\"sourceValue\":\"1\"}}}"
-                if let json {
+                let json = ""
+                if json.isNotEmpty {
                     DJSavedData.backupToLocalStorage(localInfo: json)
                     dlog("--->json: \(json)")
                 } else {
@@ -201,12 +201,31 @@ public struct DJTestRouter {
                 return nil
             })),
             LXOutlineItem(opt: .subitem(.section(title: "[All Env]show gStore info")), scene: .vc(provider: {
-                DJSavedData.showCurrentLocalInfo()
-                return nil
+                let obj = DJSavedData.showCurrentLocalInfo()
+                let sit: CTServiceAPIEnviroment = .develop
+                let prd: CTServiceAPIEnviroment = .release
+                let sitObj = obj[.develop]
+                let prdObj = obj[.release]
+                let sitUserInfoItem = LXSampleItem(title: "\(sit.title).userInfo", content: sitObj?.userInfo?.jsonString(prettify: true))
+                let sitPlusInfoItem = LXSampleItem(title: "\(sit.title).plusInfo", content: sitObj?.plusInfo?.jsonString(prettify: true))
+                let sitStoreInfoItem = LXSampleItem(title: "\(sit.title).storeInfo", content: sitObj?.storeInfo?.jsonString(prettify: true))
+                let prdUserInfoItem = LXSampleItem(title: "\(prd.title).userInfo", content: prdObj?.userInfo?.jsonString(prettify: true))
+                let prdPlusInfoItem = LXSampleItem(title: "\(prd.title).plusInfo", content: prdObj?.plusInfo?.jsonString(prettify: true))
+                let prdStoreInfoItem = LXSampleItem(title: "\(prd.title).storeInfo", content: prdObj?.storeInfo?.jsonString(prettify: true))
+                let vc = LXSampleListVC()
+                vc.dataFill(list: [
+                    sitUserInfoItem, sitPlusInfoItem, sitStoreInfoItem,
+                    prdUserInfoItem, prdPlusInfoItem, prdStoreInfoItem,
+                ])
+                return vc
             })),
-            LXOutlineItem(opt: .subitem(.section(title: "show current context")), scene: .vc(provider: {
-                DJSavedData.showCurrentContextInfo()
-                return nil
+            LXOutlineItem(opt: .subitem(.section(title: "show current login context")), scene: .vc(provider: {
+                let obj = DJSavedData.showCurrentContextInfo()
+                let sitItem = LXSampleItem(title: "sit", content: obj.sit.jsonString(prettify: true))
+                let prdItem = LXSampleItem(title: "prd", content: obj.prd.jsonString(prettify: true))
+                let vc = LXSampleListVC()
+                vc.dataFill(list: [sitItem, prdItem])
+                return vc
             })),
         ])
     }

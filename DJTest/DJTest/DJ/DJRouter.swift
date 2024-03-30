@@ -8,6 +8,30 @@ import UIKit
 import LXToolKit
 import KeychainAccess
 
+struct DJLocalInfo {
+    var userInfo: [String: Any]?
+    var plusInfo: [String: Any]?
+    var storeInfo: [String: Any]?
+    init(userInfo: [String : Any]? = nil,
+         plusInfo: [String : Any]? = nil,
+         storeInfo: [String : Any]? = nil) {
+        self.userInfo = userInfo
+        self.plusInfo = plusInfo
+        self.storeInfo = storeInfo
+    }
+    func jsonString() -> String {
+        let userInfo: DJSavedData = .userInfo
+        let plusInfo: DJSavedData = .plusInfo
+        let storeInfo: DJSavedData = .storeInfo
+        let info = [
+            userInfo.dictKey: self.userInfo,
+            plusInfo.dictKey: self.plusInfo,
+            storeInfo.dictKey: self.storeInfo,
+        ]
+        return info.jsonString(prettify: true) ?? "--"
+    }
+}
+
 open class DJRouter: NSObject {
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
@@ -106,28 +130,32 @@ extension DJSavedData {
 extension DJSavedData {
     /// [all env]显示当前缓存的登录信息 & 全局门店信息
     @discardableResult
-    static func showCurrentLocalInfo() -> [String: Any] {
+    static func showCurrentLocalInfo() -> [CTServiceAPIEnviroment: DJLocalInfo] {
         let userInfo: DJSavedData = .userInfo
         let plusInfo: DJSavedData = .plusInfo
         let storeInfo: DJSavedData = .storeInfo
-        var sit: [String: Any] = [:]
-        sit[userInfo.dictKey] = userInfo.getDictionary(.develop)
-        sit[plusInfo.dictKey] = plusInfo.getDictionary(.develop)
-        sit[storeInfo.dictKey] = storeInfo.getDictionary(.develop)
-        var prd: [String: Any] = [:]
-        prd[userInfo.dictKey] = userInfo.getDictionary(.develop)
-        prd[plusInfo.dictKey] = plusInfo.getDictionary(.develop)
-        prd[storeInfo.dictKey] = storeInfo.getDictionary(.develop)
+        var sit = DJLocalInfo()
+        sit.userInfo = userInfo.getDictionary(.develop)
+        sit.plusInfo = plusInfo.getDictionary(.develop)
+        sit.storeInfo = storeInfo.getDictionary(.develop)
+        var prd = DJLocalInfo()
+        prd.userInfo = userInfo.getDictionary(.develop)
+        prd.plusInfo = plusInfo.getDictionary(.develop)
+        prd.storeInfo = storeInfo.getDictionary(.develop)
         let info = ["sit": sit, "prd": prd]
-        dlog("-->sit:\(sit.keys.description), prd: \(prd.keys.description): \(info.jsonString(prettify:true) ?? "--")")
-        return info
+        dlog("-->Current Local Info: \(info.jsonString(prettify:true) ?? "--")")
+        return [
+            .develop: sit,
+            .release: prd
+        ]
     }
     /// [当前环境]显示当前登录信息
-    static func showCurrentContextInfo() {
+    @discardableResult
+    static func showCurrentContextInfo() -> (sit: [String: Any], prd: [String: Any]) {
         let ctx = CTAppContext.sharedInstance()!
         let gStore = DJStoreManager.sharedInstance()
+        var sit: [String: Any] = [:]
         if ctx.apiEnviroment == .develop {
-            var sit: [String: Any] = [:]
             if let tel = ctx.memberMobilePhoneNumber {
                 sit["memberMobilePhoneNumber"] = tel
             }
@@ -138,8 +166,8 @@ extension DJSavedData {
             sit["shopId"] = gStore.storeModel.shopId
             dlog("-->Current Info[SIT]: \(sit.jsonString(prettify:true) ?? "--")")
         }
+        var prd: [String: Any] = [:]
         if ctx.apiEnviroment == .release {
-            var prd: [String: Any] = [:]
             if let tel = ctx.memberMobilePhoneNumber {
                 prd["memberMobilePhoneNumber"] = tel
             }
@@ -150,6 +178,7 @@ extension DJSavedData {
             prd["shopId"] = gStore.storeModel.shopId
             dlog("-->Current Info[PRD]: \(prd.jsonString(prettify:true) ?? "--")")
         }
+        return (sit, prd)
     }
 }
 // MARK: 👀全局门店 & 用户信息恢复
