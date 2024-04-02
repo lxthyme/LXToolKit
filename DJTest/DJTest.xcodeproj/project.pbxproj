@@ -58,6 +58,7 @@
 		BE435ABA2AD794440076780C /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE435AB92AD794440076780C /* AppIntent.swift */; };
 		BE435ABC2AD794450076780C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE435ABB2AD794450076780C /* Assets.xcassets */; };
 		BE435AC02AD794450076780C /* LXToolKit_WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BE435AAD2AD794430076780C /* LXToolKit_WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE438D222BAE669900E194DC /* LXTableTest202403VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE438D212BAE669900E194DC /* LXTableTest202403VC.swift */; };
 		BE49D2662B51274F0001B3D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE5A3482AB974FB003339EB /* Assets.xcassets */; };
 		BE5267DB2B3F130200F1371C /* LXFlutterSampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5267DA2B3F130200F1371C /* LXFlutterSampleVC.swift */; };
 		BE56655F2B2C3CAD00D24B7C /* DJTestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE56655E2B2C3CAD00D24B7C /* DJTestRouter.swift */; };
@@ -217,6 +218,7 @@
 		BE435AB92AD794440076780C /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		BE435ABB2AD794450076780C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE435ABD2AD794450076780C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE438D212BAE669900E194DC /* LXTableTest202403VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTableTest202403VC.swift; sourceTree = "<group>"; };
 		BE4ADA5D2B298E5200254989 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		BE4ADA5F2B298E5200254989 /* API.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = API.xcconfig; sourceTree = "<group>"; };
 		BE4ADA602B298E5200254989 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 		BE438D202BAE666F00E194DC /* 03 */ = {
 			isa = PBXGroup;
 			children = (
+				BE438D212BAE669900E194DC /* LXTableTest202403VC.swift */,
 			);
 			path = 03;
 			sourceTree = "<group>";
@@ -991,6 +994,7 @@
 				BE41011F2B550D1600E260F7 /* LXFlutterVC.swift in Sources */,
 				BEF991152B9EAB1C00DB9692 /* DJRouter.swift in Sources */,
 				BE3069A22AE7AC4100E9577C /* EmojiRangersWidget.intentdefinition in Sources */,
+				BE438D222BAE669900E194DC /* LXTableTest202403VC.swift in Sources */,
 				BE720DA62AE68FAA00F016C5 /* AdventureAttributes.swift in Sources */,
 				BE3067B92AE7980700E9577C /* EmojiRangerSelection.swift in Sources */,
 				BE1FBD662BA4409300B9A7CB /* LXActivityAvatarView.swift in Sources */,

@@ -8,7 +8,7 @@ import UIKit
 import LXToolKit
 import DJTestKit
 
-class DataSource: UITableViewDiffableDataSource<String, LXOutlineItem> {
+class DataSource: UITableViewDiffableDataSource<String, LXOutlineOpt> {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.snapshot().sectionIdentifiers[section];
     }
@@ -19,7 +19,7 @@ open class LXToolKitObjCTestSwiftVC: LXBaseVC {
     private static let sectionHeaderElementKind = "sectionHeaderElementKind"
     private static let sectionFooterElementKind = "sectionFooterElementKind"
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<String, LXOutlineItem>!
+    private var dataSource: UICollectionViewDiffableDataSource<String, LXOutlineOpt>!
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
     open override func viewDidLoad() {
@@ -57,10 +57,10 @@ private extension LXToolKitObjCTestSwiftVC {
         cv.delegate = self
         return cv
     }
-    func generateDataSource() -> UICollectionViewDiffableDataSource<String, LXOutlineItem> {
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineItem> { cell, indexPath, opt in
+    func generateDataSource() -> UICollectionViewDiffableDataSource<String, LXOutlineOpt> {
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, LXOutlineOpt> { cell, indexPath, opt in
             var config = cell.defaultContentConfiguration()
-            config.text = opt.opt.section.title
+            config.text = opt.section.title
             cell.contentConfiguration = config
         }
         // collectionView.register(<#LXBadgeSupplementaryView#>.self, forSupplementaryViewOfKind: <#ViewController.sectionFooterElementKind#>, withReuseIdentifier: <#LXBadgeSupplementaryView#>.xl.xl_identifier)
@@ -69,7 +69,7 @@ private extension LXToolKitObjCTestSwiftVC {
             // supplementaryView.labTitle.text = "\(model.badgeCount)"
             supplementaryView.dataFill(elementKind)
         }
-        let dataSource = UICollectionViewDiffableDataSource<String, LXOutlineItem>(collectionView: collectionView) { collectionView, indexPath, opt in
+        let dataSource = UICollectionViewDiffableDataSource<String, LXOutlineOpt>(collectionView: collectionView) { collectionView, indexPath, opt in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: opt)
         }
         dataSource.supplementaryViewProvider = {[weak self] collectionView, elementKind, indexPath in
@@ -80,8 +80,8 @@ private extension LXToolKitObjCTestSwiftVC {
         }
         return dataSource
     }
-    func generateSnapshot() -> NSDiffableDataSourceSnapshot<String, LXOutlineItem> {
-        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineItem>()
+    func generateSnapshot() -> NSDiffableDataSourceSnapshot<String, LXOutlineOpt> {
+        var snapshot = NSDiffableDataSourceSnapshot<String, LXOutlineOpt>()
         snapshot.appendSections([
             "MVVM",
             "2023",
@@ -96,13 +96,13 @@ private extension LXToolKitObjCTestSwiftVC {
 
 // MARK: - 🔐Private Actions
 private extension LXToolKitObjCTestSwiftVC {
-    func gotoScene(by outlineOpt: LXOutlineItem?) {
+    func gotoScene(by outlineOpt: LXOutlineOpt?) {
         let navigator = Navigator.default
         if let outlineOpt,
            let scene = outlineOpt.scene {
             let vc = navigator.show(segue: scene, sender: self)
-            vc?.title = outlineOpt.opt.section.title
-            DJAutoRouter.router2.updateRouter(section: outlineOpt.opt.section)
+            vc?.title = outlineOpt.section.title
+            DJAutoRouter.router2.updateRouter(section: outlineOpt.section)
         }
     }
 }

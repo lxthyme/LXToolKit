@@ -15,9 +15,9 @@ public struct LXToolKitObjcRouter {}
 
 // MARK: - 👀
 public extension LXToolKitObjcRouter {
-    static let objcRouter: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "LXToolKitObjC_Example")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "LXToolKitObjC_Example(Swift)")), scene: .vc(provider: { LXToolKitObjCTestSwiftVC() })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXToolKitObjC_Example(Objc)")), scene: .vc(provider: { LXToolKitObjCTestVC() })),
+    static let objcRouter: LXOutlineOpt = .outline(.section(title: "LXToolKitObjC_Example"), subitems: [
+        .subitem(.section(title: "LXToolKitObjC_Example(Swift)"), scene: .vc(provider: { LXToolKitObjCTestSwiftVC() })),
+        .subitem(.section(title: "LXToolKitObjC_Example(Objc)"), scene: .vc(provider: { LXToolKitObjCTestVC() })),
         routerMVVM,
         router2024,
         router2023,
@@ -27,47 +27,47 @@ public extension LXToolKitObjcRouter {
 
 // MARK: - 🔐
 internal extension LXToolKitObjcRouter {
-    static let routerMVVM: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "MVVM")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "LXLoginVC")), scene: .vc(provider: { LXLoginVC()  })),
+    static let routerMVVM: LXOutlineOpt = .outline(.section(title: "MVVM"), subitems: [
+        .subitem(.section(title: "LXLoginVC"), scene: .vc(provider: { LXLoginVC()  })),
 
     ].reversed())
-    static let router2024: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2024")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "DJTestObjc01VC")), scene: .vc(provider: { DJTestObjc01VC()  })),
-                      LXOutlineItem(opt: .subitem(.section(title: "LXTable202403VC")), scene: .vc(provider: { LXTable202403VC()  })),
+    static let router2024: LXOutlineOpt = .outline(.section(title: "2024"), subitems: [
+        .subitem(.section(title: "DJTestObjc01VC"), scene: .vc(provider: { DJTestObjc01VC()  })),
+        .subitem(.section(title: "LXTable202403VC"), scene: .vc(provider: { LXTable202403VC()  })),
     ].reversed())
-    static let router2023: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2023")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "LXURLCompVC")), scene: .vc(provider: { LXURLCompVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXWebViewTestVC")), scene: .vc(provider: { LXWebViewTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "DJSearchResultVC")), scene: .vc(provider: { LXDJSearchResultVC()  })),
-        // LXOutlineItem(opt: .subitem(.section(title: "LXIGListKitTestVC")), scene: .vc(provider: { LXIGListKitTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXCollectionTestVC")), scene: .vc(provider: { LXCollectionTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXNumberFormatterVC")), scene: .vc(provider: { LXNumberFormatterVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXPopTestVC")), scene: .vc(provider: { LXPopTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXScrollVC")), scene: .vc(provider: { LXScrollVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXUpdateLayoutVC")), scene: .vc(provider: { LXUpdateLayoutVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXDJCommentVC")), scene: .vc(provider: { LXDJCommentVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXLabelTestVC")), scene: .vc(provider: { LXLabelTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXViewAnimationARCTestVC")), scene: .vc(provider: { LXViewAnimationARCTestVC()  })),
+    static let router2023: LXOutlineOpt = .outline(.section(title: "2023"), subitems: [
+        .subitem(.section(title: "LXURLCompVC"), scene: .vc(provider: { LXURLCompVC()  })),
+        .subitem(.section(title: "LXWebViewTestVC"), scene: .vc(provider: { LXWebViewTestVC()  })),
+        .subitem(.section(title: "DJSearchResultVC"), scene: .vc(provider: { LXDJSearchResultVC()  })),
+        // .subitem(.section(title: "LXIGListKitTestVC"), scene: .vc(provider: { LXIGListKitTestVC()  })),
+        .subitem(.section(title: "LXCollectionTestVC"), scene: .vc(provider: { LXCollectionTestVC()  })),
+        .subitem(.section(title: "LXNumberFormatterVC"), scene: .vc(provider: { LXNumberFormatterVC()  })),
+        .subitem(.section(title: "LXPopTestVC"), scene: .vc(provider: { LXPopTestVC()  })),
+        .subitem(.section(title: "LXScrollVC"), scene: .vc(provider: { LXScrollVC()  })),
+        .subitem(.section(title: "LXUpdateLayoutVC"), scene: .vc(provider: { LXUpdateLayoutVC()  })),
+        .subitem(.section(title: "LXDJCommentVC"), scene: .vc(provider: { LXDJCommentVC()  })),
+        .subitem(.section(title: "LXLabelTestVC"), scene: .vc(provider: { LXLabelTestVC()  })),
+        .subitem(.section(title: "LXViewAnimationARCTestVC"), scene: .vc(provider: { LXViewAnimationARCTestVC()  })),
     ].reversed())
-    static let router2022: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2022")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "LX0527VC")), scene: .vc(provider: { LX0527VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXCollectionVC")), scene: .vc(provider: { LXCollectionVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXListViewController")), scene: .vc(provider: { LXListViewController()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXPagingVC")), scene: .vc(provider: { LXPagingVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXNaHiddenVC")), scene: .vc(provider: { LXNaHiddenVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXNest5VC")), scene: .vc(provider: { LXNest5VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXTableVC")), scene: .vc(provider: { LXTableVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXNest6VC")), scene: .vc(provider: { LXNest6VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXList2VC")), scene: .vc(provider: { LXList2VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXNested2VC")), scene: .vc(provider: { LXNested2VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXPaging2VC")), scene: .vc(provider: { LXPaging2VC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXTestModelVC")), scene: .vc(provider: { LXTestModelVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXTestBorderVC")), scene: .vc(provider: { LXTestBorderVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXBannerTestVC")), scene: .vc(provider: { LXBannerTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXSubjectTestVC")), scene: .vc(provider: { LXSubjectTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "DJprepareForReuseSignalTestVC")), scene: .vc(provider: { DJprepareForReuseSignalTestVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXShadowVC")), scene: .vc(provider: { LXShadowVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXStackViewTestVC")), scene: .vc(provider: { LXStackViewTestVC()  })),
+    static let router2022: LXOutlineOpt = .outline(.section(title: "2022"), subitems: [
+        .subitem(.section(title: "LX0527VC"), scene: .vc(provider: { LX0527VC()  })),
+        .subitem(.section(title: "LXCollectionVC"), scene: .vc(provider: { LXCollectionVC()  })),
+        .subitem(.section(title: "LXListViewController"), scene: .vc(provider: { LXListViewController()  })),
+        .subitem(.section(title: "LXPagingVC"), scene: .vc(provider: { LXPagingVC()  })),
+        .subitem(.section(title: "LXNaHiddenVC"), scene: .vc(provider: { LXNaHiddenVC()  })),
+        .subitem(.section(title: "LXNest5VC"), scene: .vc(provider: { LXNest5VC()  })),
+        .subitem(.section(title: "LXTableVC"), scene: .vc(provider: { LXTableVC()  })),
+        .subitem(.section(title: "LXNest6VC"), scene: .vc(provider: { LXNest6VC()  })),
+        .subitem(.section(title: "LXList2VC"), scene: .vc(provider: { LXList2VC()  })),
+        .subitem(.section(title: "LXNested2VC"), scene: .vc(provider: { LXNested2VC()  })),
+        .subitem(.section(title: "LXPaging2VC"), scene: .vc(provider: { LXPaging2VC()  })),
+        .subitem(.section(title: "LXTestModelVC"), scene: .vc(provider: { LXTestModelVC()  })),
+        .subitem(.section(title: "LXTestBorderVC"), scene: .vc(provider: { LXTestBorderVC()  })),
+        .subitem(.section(title: "LXBannerTestVC"), scene: .vc(provider: { LXBannerTestVC()  })),
+        .subitem(.section(title: "LXSubjectTestVC"), scene: .vc(provider: { LXSubjectTestVC()  })),
+        .subitem(.section(title: "DJprepareForReuseSignalTestVC"), scene: .vc(provider: { DJprepareForReuseSignalTestVC()  })),
+        .subitem(.section(title: "LXShadowVC"), scene: .vc(provider: { LXShadowVC()  })),
+        .subitem(.section(title: "LXStackViewTestVC"), scene: .vc(provider: { LXStackViewTestVC()  })),
     ].reversed())
 }
 
