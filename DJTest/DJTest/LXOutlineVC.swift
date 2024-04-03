@@ -250,7 +250,7 @@ private extension LXOutlineVC {
                                                                             elementKind: LXOutlineVC.sectionFooterElementKind,
                                                                             alignment: .bottomTrailing)
             let section: NSCollectionLayoutSection
-            // if case .subitem = self.menuItems[sectionIdx] {
+            // if case .outline = self.menuItems[sectionIdx].opt {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                       heightDimension: .estimated(44))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -440,7 +440,9 @@ private extension LXOutlineVC {
                 }
                 dataSource.apply(snapshot2, to: section, animatingDifferences: true)
             case .subitem:
-                // snapshot.appendItems([menuItem], toSection: menuItem)
+                var snapshot2 = NSDiffableDataSourceSectionSnapshot<LXOutlineItem>()
+                snapshot2.append([section])
+                dataSource.apply(snapshot2, to: section, animatingDifferences: true)
                 break
             }
         }
@@ -504,6 +506,15 @@ extension LXOutlineVC: UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard var menuItem = self.dataSource.itemIdentifier(for: indexPath) else { return }
 
+        // let snapshot = self.dataSource.snapshot()
+        // let sectionList = snapshot.sectionIdentifiers;
+        // let idx = snapshot.indexOfItem(self.menuItems[0]) ?? -1
+        // let idx1 = snapshot.indexOfItem(self.menuItems[1]) ?? -1
+        // let section = snapshot.indexOfSection(self.menuItems[0]) ?? -1
+        // let section1 = snapshot.indexOfSection(self.menuItems[1]) ?? -1
+        // dlog("-->sectionList: \(sectionList.map({ $0.opt.section.title }))")
+        // dlog("-->idx: (\(idx), \(idx1)), section: (\(section), \(section1))")
+        // return
         // let random = Int.random(in: 0...10)
         // assert(random != 5, "test assert: \(random) at \(Date())")
         // if random == 6 {
