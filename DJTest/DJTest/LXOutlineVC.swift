@@ -379,10 +379,9 @@ private extension LXOutlineVC {
     }
     func generateMultiSnapshot(_ dest: [LXOutlineItem] = []) {
         var destList = dest
-        if destList.isEmpty {
-            destList = [
-                LXOutlineItem(opt: .outline(.section(title: "Page List")))
-            ]
+        if destList.isEmpty,
+           let djPage = try? self.menuItems.xl_first(where: { $0.opt.section.title == "Page List" }) {
+            destList = [djPage]
         }
         var exList: [LXOutlineItem] = []
         for item in destList {
