@@ -48,6 +48,16 @@
     </array>
     <key>FLTEnableImpeller</key>
     <false />
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.example.apple-samplecode.SuggestedSearch.mainRestored</string>
+		<string>com.example.apple-samplecode.SuggestedSearch.detailRestored</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>misans.ttf</string>
+		<string>impact.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

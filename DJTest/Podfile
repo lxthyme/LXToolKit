@@ -378,11 +378,11 @@ def generateConfig(target, config, project_deployment_version)
   config.build_settings['CODE_SIGN_IDENTITY'] = ''
   # config.build_settings['MODULE_VERIFIER_SUPPORTED_LANGUAGES'] = "objective-c objective-c++";
 	# config.build_settings['MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS'] = "gnu11 gnu++14";
-  if !$sandbox_list.include?(target.name)
-    config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'YES'
-  elsif !$static_objc_list.include?(target.name)
-    config.build_settings['ENABLE_MODULE_VERIFIER'] = 'NO'
-  end
+  # if $sandbox_list.include?(target.name)
+  #   config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
+  # elsif !$static_objc_list.include?(target.name)
+  #   config.build_settings['ENABLE_MODULE_VERIFIER'] = 'NO'
+  # end
   # config.build_settings['ENABLE_MODULE_VERIFIER'] = 'NO'
 end
 
