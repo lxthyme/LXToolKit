@@ -35,8 +35,7 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>!
     private lazy var menuItems: [LXOutlineItem] = {
         return [
-            DJTestRouter.routerViewController,
-            DJTestRouter.routerLXFirstVC,
+            DJTestRouter.routerDebug,
             LXOutlineItem(opt: .subitem(.section(title: "AcknowListViewController")), scene: .vc(provider: {
                 let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
                 if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {

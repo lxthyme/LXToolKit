@@ -51,8 +51,10 @@ public struct DJTestRouter {
         ]),
         LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 2"))),
     ])
-    static let routerViewController = LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
-    static let routerLXFirstVC = LXOutlineItem(opt: .subitem(.section(title: "LXFirstVC")), scene: .vc(provider: { UINavigationController(rootViewController: LXFirstVC()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
+    static let routerDebug = LXOutlineItem(opt: .outline(.section(title: "Debug")), subitems: [
+        LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! ))),
+        LXOutlineItem(opt: .subitem(.section(title: "LXFirstVC")), scene: .vc(provider: { UINavigationController(rootViewController: LXFirstVC()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
+    ])
     static let routerDJSwiftModule: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "DJSwiftModule")), scene: .vc(provider: {
         DJAutoRouter.router1.updateRouter(section: .section(title: "DJSwiftModule"))
         DJAutoRouter.router2.clearRouter()
