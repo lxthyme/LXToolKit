@@ -12,6 +12,7 @@ private let keychain = Keychain(service: "com.lx.bl", accessGroup: "group.com.lx
 private let userData: DJSavedData = .userInfo
 private let plusData: DJSavedData = .plusInfo
 private let storeData: DJSavedData = .storeInfo
+private let getSaveType: (_ fromDefaults: Bool) -> String = { fromDefaults in fromDefaults ? "UserDefaults" : "KeyChain" }
 
 enum DaoJiaConfig: String {
     case test
@@ -114,8 +115,8 @@ public extension DJRouter {
             return
         }
         ctx.apiEnviroment = env
-        DJSavedData.backupLogInfo()
-        DJSavedData.backupGStore()
+        DJSavedData.backupLogInfo(false)
+        DJSavedData.backupGStore(false)
     }
     // static func getMain(storeCode: String, storeType: String) -> UIViewController {}
     // static func getQuickHome() -> UIViewController {}
@@ -147,19 +148,20 @@ extension DJSavedData {
 
 }
 extension DJSavedData {
-    /// [all env]显示当前缓存的登录信息 & 全局门店信息
     @discardableResult
-    static func showCurrentLocalInfo() -> [CTServiceAPIEnviroment: DJLocalInfo] {
+    /// [all env]显示当前缓存的登录信息 & 全局门店信息
+    /// - Parameter fromDefaults: true: 从 UserDefaults 中恢复数据
+    static func showCurrentLocalInfo(_ fromDefaults: Bool) -> [CTServiceAPIEnviroment: DJLocalInfo] {
         var sit = DJLocalInfo()
-        sit.userInfo = userData.getDictionary(.develop)
-        sit.plusInfo = plusData.getDictionary(.develop)
-        sit.storeInfo = storeData.getDictionary(.develop)
+        sit.userInfo = userData.getDictionary(.develop, fromDefaults: fromDefaults)
+        sit.plusInfo = plusData.getDictionary(.develop, fromDefaults: fromDefaults)
+        sit.storeInfo = storeData.getDictionary(.develop, fromDefaults: fromDefaults)
         var prd = DJLocalInfo()
-        prd.userInfo = userData.getDictionary(.develop)
-        prd.plusInfo = plusData.getDictionary(.develop)
-        prd.storeInfo = storeData.getDictionary(.develop)
+        prd.userInfo = userData.getDictionary(.develop, fromDefaults: fromDefaults)
+        prd.plusInfo = plusData.getDictionary(.develop, fromDefaults: fromDefaults)
+        prd.storeInfo = storeData.getDictionary(.develop, fromDefaults: fromDefaults)
         let info = ["sit": sit.xl_jsonObject(), "prd": prd.xl_jsonObject()]
-        dlog("-->Current Local Info: \(info.jsonString(prettify:true) ?? "--")")
+        dlog("-->Current Local Info[\(getSaveType(fromDefaults))]: \(info.jsonString(prettify:true) ?? "--")")
         return [
             .develop: sit,
             .release: prd
@@ -200,8 +202,9 @@ extension DJSavedData {
 // MARK: 👀全局门店 & 用户信息恢复
 extension DJSavedData {
     /// [all env]从本地存储中恢复登录 & 全局门店信息
-    static func transferLoginInfo() {
-        let tmp = DJSavedData.showCurrentLocalInfo()
+    /// - Parameter fromDefaults: true: 从 UserDefaults 中恢复数据
+    static func transferLoginInfo(_ fromDefaults: Bool) {
+        let tmp = DJSavedData.showCurrentLocalInfo(fromDefaults)
         backupToLocalStorage(localInfo: tmp)
     }
     /// [all env]从给定的字符串中迁移登录信息 & 全局门店信息
@@ -247,22 +250,24 @@ extension DJSavedData {
         prdTest()
     }
     /// [当前环境]从 keychain 中恢复登录信息
-    static func backupLogInfo() {
+    /// - Parameter fromDefaults: true: 从 UserDefaults 中恢复数据
+    static func backupLogInfo(_ fromDefaults: Bool) {
         let ctx = CTAppContext.sharedInstance()!
         let currentEnv = ctx.apiEnviroment
 
-        if let userInfoJson = userData.getDictionary(currentEnv) {
+        if let userInfoJson = userData.getDictionary(currentEnv, fromDefaults: fromDefaults) {
             ctx.xl_updateUserInfo(userInfoJson)
-            ctx.xl_updatePlusInfo(plusInfo.getDictionary(currentEnv))
+            ctx.xl_updatePlusInfo(plusInfo.getDictionary(currentEnv, fromDefaults: fromDefaults))
         }
     }
     /// [当前环境]从 keychain 中恢复全局门店
-    static func backupGStore() {
+    /// - Parameter fromDefaults: true: 从 UserDefaults 中恢复数据
+    static func backupGStore(_ fromDefaults: Bool) {
         let ctx = CTAppContext.sharedInstance()!
         let gStore = DJStoreManager.sharedInstance()
         let currentEnv = ctx.apiEnviroment
 
-        guard let jsonString = storeInfo.getDictionary(currentEnv),
+        guard let jsonString = storeInfo.getDictionary(currentEnv, fromDefaults: fromDefaults),
               let model = DJStoreManager.yy_model(withJSON: jsonString) else { return }
         if gStore.storeModel.isValid() {
             checkEqual(gStore: gStore, model: model)
@@ -481,11 +486,11 @@ private extension DJSavedData {
             return "DJTest.\(env_t.title).storeInfo"
         }
     }
-    func getValue(_ env: CTServiceAPIEnviroment? = nil) -> String {
-        return DJSavedData.getValue(key: getKey(env)) ?? ""
+    func getValue(_ env: CTServiceAPIEnviroment? = nil, fromDefaults: Bool) -> String {
+        return DJSavedData.getValue(key: getKey(env), fromDefaults: fromDefaults) ?? ""
     }
-    func getDictionary(_ env: CTServiceAPIEnviroment? = nil) -> [String: Any]? {
-        return DJSavedData.getDictionary(key: getKey(env))
+    func getDictionary(_ env: CTServiceAPIEnviroment? = nil, fromDefaults: Bool) -> [String: Any]? {
+        return DJSavedData.getDictionary(key: getKey(env), fromDefaults: fromDefaults)
     }
     func updateValue(_ env: CTServiceAPIEnviroment? = nil, value: String?) {
         DJSavedData.saveAt(key: getKey(env), value: value)
@@ -513,27 +518,31 @@ private extension DJSavedData {
             dlog("-->保存 \(key) 失败: \(error)")
         }
     }
-    static func getValue(key: String) -> String? {
+    static func getValue(key: String, fromDefaults: Bool) -> String? {
         var result: String?
         do {
-            result = try keychain.getString(key)
-            // dlog("-->读取 \(key): \(result ?? "--")")
+            if fromDefaults {
+                result = UserDefaults.standard.string(forKey: key)
+            } else {
+                result = try keychain.getString(key)
+            }
+            // dlog("-->读取[\(getSaveType(fromDefaults))]\(key): \(result ?? "--")")
         } catch {
-            dlog("-->读取 \(key) 失败: \(error)")
+            dlog("-->读取[\(getSaveType(fromDefaults))]\(key) 失败: \(error)")
         }
         return result
     }
-    static func getDictionary(key: String) -> [String: Any]? {
+    static func getDictionary(key: String, fromDefaults: Bool) -> [String: Any]? {
         var result: [String: Any]?
-        guard let string = getValue(key: key), string.isNotEmpty else { return nil }
+        guard let string = getValue(key: key, fromDefaults: fromDefaults), string.isNotEmpty else { return nil }
         do {
             if let data = string.data(using: .utf8) {
                 result = try JSONSerialization.jsonObject(with: data) as? [String : Any]
-                // dlog("-->读取 \(key): \(result ?? [:])")
+                // dlog("-->读取[\(getSaveType(fromDefaults))]\(key): \(result ?? [:])")
             }
         } catch {
             dlog("""
-                 -->读取 \(key) 失败[序列化]: 
+                 -->读取[\(getSaveType(fromDefaults))]\(key) 失败[序列化]:
                  value: \(string)
                  error: \(error)
                  """)
