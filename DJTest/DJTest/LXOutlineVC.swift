@@ -378,7 +378,7 @@ private extension LXOutlineVC {
                 .map { $0.trimmed }
                 .filter { $0.isNotEmpty }
             let defaultValue = mockList?
-                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title2 })
+                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
@@ -578,7 +578,7 @@ extension LXOutlineVC: UICollectionViewDelegate {
         case .goodsDetail:
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")
-            let gStore = DJRouterObjc.gStore()
+            let gStore = DJStoreManager.sharedInstance().storeModel
             guard let storeCode = param[safe: 2],
                   gStore.shopId == storeCode,
                   let goodsId = param[safe: 3],

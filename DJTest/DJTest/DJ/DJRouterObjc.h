@@ -14,13 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 👀保存多环境登录信息
 @interface CTAppContext (BaiLianTest)
 
-// - (NSString *)getUserInfoLocalStorageKey;
-// - (NSString *)getPlusLocalStorageKey;
-
-- (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo;
-- (void)xl_cleanPlusInfo;
-- (void)xl_updateUserInfo:(NSDictionary * _Nullable)userInfo;
-- (void)xl_cleanUserInfo;
+// - (void)xl_updatePlusInfo2:(NSDictionary * _Nullable)plusInfo;
+// - (void)xl_cleanPlusInfo2;
+// - (void)xl_updateUserInfo2:(NSDictionary * _Nullable)userInfo;
+// - (void)xl_cleanUserInfo2;
 
 @end
 
@@ -30,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIViewController *)getQuickHome;
 /// 全局门店
-+ (DJStoreModel *)gStore;
+// + (DJStoreModel *)gStore;
 
 @end
 

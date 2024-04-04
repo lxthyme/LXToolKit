@@ -65,9 +65,9 @@
 + (UIViewController *)getQuickHome {
     return [[DJQuickHomeVC alloc]init];
 }
-+ (DJStoreModel *)gStore {
-    return [DJStoreManager sharedInstance].storeModel;
-}
+// + (DJStoreModel *)gStore {
+//     return [DJStoreManager sharedInstance].storeModel;
+// }
 
 #pragma mark -
 #pragma mark - 🔐Private Actions
@@ -110,56 +110,57 @@
     method_exchangeImplementations(method9, method10);
 }
 
-- (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo {
-    self.plusInfo = plusInfo;
-    NSLog(@"-->[CTAppContext]更新 plus 信息");
-    NSString *key = [self getLocalPlusInfoKey:self.apiEnviroment];
-    [[NSUserDefaults standardUserDefaults] setObject:plusInfo forKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+// - (void)xl_updatePlusInfo:(NSDictionary * _Nullable)plusInfo {
+//     self.plusInfo = plusInfo;
+//     NSLog(@"-->[CTAppContext]更新 plus 信息");
+//     NSString *key = [self getLocalPlusInfoKey:self.apiEnviroment];
+//     [[NSUserDefaults standardUserDefaults] setObject:plusInfo forKey:key];
+//     [[NSUserDefaults standardUserDefaults] synchronize];
+// 
+//     self.plusInfo = plusInfo;
+// }
+// - (void)xl_cleanPlusInfo {
+//     self.plusInfo = nil;
+//     NSLog(@"-->[CTAppContext]清空 plus 信息");
+//     NSString *key = [self getLocalPlusInfoKey:self.apiEnviroment];
+//     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+//     [[NSUserDefaults standardUserDefaults] synchronize];
+// }
+// 
+// - (void)xl_updateUserInfo:(NSDictionary * _Nullable)userInfo {
+//     self.userInfo = userInfo;
+//     NSLog(@"-->[CTAppContext]更新用户信息");
+//     NSString *key = [self getLocalUserInfoKey:self.apiEnviroment];
+//     [[NSUserDefaults standardUserDefaults] setObject:self.userInfo forKey:key];
+//     [[NSUserDefaults standardUserDefaults] synchronize];
+// }
+// 
+// - (void)xl_cleanUserInfo {
+//     self.userInfo = nil;
+//     NSLog(@"-->[CTAppContext]清空用户信息");
+//     NSString *key = [self getLocalUserInfoKey:self.apiEnviroment];
+//     [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+//     [[NSUserDefaults standardUserDefaults] synchronize];
+// }
+// 
+// - (NSString *)getLocalUserInfoKey:(CTServiceAPIEnviroment)env {
+//     return [self getLocalKey:env title:@"userInfo"];
+// }
+// - (NSString *)getLocalPlusInfoKey:(CTServiceAPIEnviroment)env {
+//     return [self getLocalKey:env title:@"plusInfo"];
+// }
+// - (NSString *)getLocalKey:(CTServiceAPIEnviroment)env title:(NSString *)title {
+//     NSString *envString = @"release";
+//     switch(env) {
+//     case CTServiceAPIEnviromentDevelop: {
+//         envString = @"title";
+//     } break;
+//     case CTServiceAPIEnviromentPreRelease: {
+//         envString = @"beta";
+//     }
+//     default: break;
+//     }
+//     return [NSString stringWithFormat:@"DJTest.%@.%@", envString, title];
+// }
 
-    self.plusInfo = plusInfo;
-}
-- (void)xl_cleanPlusInfo {
-    self.plusInfo = nil;
-    NSLog(@"-->[CTAppContext]清空 plus 信息");
-    NSString *key = [self getLocalPlusInfoKey:self.apiEnviroment];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)xl_updateUserInfo:(NSDictionary * _Nullable)userInfo {
-    self.userInfo = userInfo;
-    NSLog(@"-->[CTAppContext]更新用户信息");
-    NSString *key = [self getLocalUserInfoKey:self.apiEnviroment];
-    [[NSUserDefaults standardUserDefaults] setObject:self.userInfo forKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)xl_cleanUserInfo {
-    self.userInfo = nil;
-    NSLog(@"-->[CTAppContext]清空用户信息");
-    NSString *key = [self getLocalUserInfoKey:self.apiEnviroment];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString *)getLocalUserInfoKey:(CTServiceAPIEnviroment)env {
-    return [self getLocalKey:env title:@"userInfo"];
-}
-- (NSString *)getLocalPlusInfoKey:(CTServiceAPIEnviroment)env {
-    return [self getLocalKey:env title:@"plusInfo"];
-}
-- (NSString *)getLocalKey:(CTServiceAPIEnviroment)env title:(NSString *)title {
-    NSString *envString = @"release";
-    switch(env) {
-    case CTServiceAPIEnviromentDevelop: {
-        envString = @"title";
-    } break;
-    case CTServiceAPIEnviromentPreRelease: {
-        envString = @"beta";
-    }
-    default: break;
-    }
-    return [NSString stringWithFormat:@"DJTest.%@.%@", envString, title];
-}
 @end

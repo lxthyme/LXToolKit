@@ -78,7 +78,7 @@ extension LXOutlineParamCell {
                 let prefix = item.components(separatedBy: "/").first?.trimmed
                 let isActionEnabled = (prefix?.isEmpty ?? false) ||
                 prefix == "env" ||
-                prefix == DJRouter.getCurrentEnv().title2
+                prefix == DJRouter.getCurrentEnv().title
                 let action = UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
                     if !isActionEnabled {
                         return
