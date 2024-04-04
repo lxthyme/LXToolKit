@@ -13,7 +13,8 @@ build_version=$number_of_commits
 fi
 
 key_version='MARKETING_VERSION'
-file_config='bundle_identifier.xcconfig'
+# file_config='bundle_identifier.xcconfig'
+file_config='Common/bundle_identifier.xcconfig'
 previous_build_number=$(awk -F "=" '/'$key_version' = / {print $2}' $file_config | tr -d ' ')
 echo "-->build version[$CONFIGURATION]: $previous_build_number -> $build_version"
 
