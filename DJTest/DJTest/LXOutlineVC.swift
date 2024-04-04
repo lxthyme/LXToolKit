@@ -35,7 +35,7 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>!
     private lazy var menuItems: [LXOutlineItem] = {
         return [
-            DJTestRouter.routerDebug,
+            DJTestRouter.routerDebug(),
             LXOutlineItem(opt: .subitem(.section(title: "AcknowListViewController")), scene: .vc(provider: {
                 let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
                 if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
@@ -182,6 +182,15 @@ private extension LXOutlineVC {
             vc?.title = router1Menu.opt.section.title
         }
         return [router1Menu, router2Menu];
+    }
+    func getDefaultExpandSection() -> [LXOutlineItem] {
+        let autoPinned = DaoJiaConfig.LocalKey.autoPinnedDaoJiaSection
+        guard let local = autoPinned.getValue(),
+              local == "1",
+              let djPage = try? self.menuItems.xl_first(where: { $0.opt.section.title == "Page List" })  else {
+            return []
+        }
+        return [djPage]
     }
     func getDepth(destList: [LXOutlineItem]) -> [LXOutlineItem] {
         var depthList: [[LXOutlineItem]] = []
@@ -423,9 +432,8 @@ private extension LXOutlineVC {
     }
     func generateMultiSnapshot(_ dest: [LXOutlineItem] = []) {
         var destList = dest
-        if destList.isEmpty,
-           let djPage = try? self.menuItems.xl_first(where: { $0.opt.section.title == "Page List" }) {
-            destList = [djPage]
+        if destList.isEmpty {
+            destList = getDefaultExpandSection()
         }
         let exList = getDepth(destList: destList)
         var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]

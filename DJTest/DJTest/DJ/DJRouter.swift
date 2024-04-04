@@ -8,6 +8,25 @@ import UIKit
 import LXToolKit
 import KeychainAccess
 
+private let keychain = Keychain(service: "com.lx.bl", accessGroup: "group.com.lx.ble")
+
+enum DaoJiaConfig: String {
+    case test
+    enum LocalKey: String {
+        case autoPinnedDaoJiaSection
+    }
+}
+
+// MARK: - 👀
+extension DaoJiaConfig.LocalKey {
+    func getValue() -> String? {
+        return try? keychain.get(rawValue)
+    }
+    func setValue(_ value: String?) {
+        try? keychain.set(value ?? "", key: rawValue)
+    }
+}
+
 struct DJLocalInfo {
     var userInfo: [String: Any]?
     var plusInfo: [String: Any]?
@@ -451,7 +470,6 @@ extension CTServiceAPIEnviroment {
 // MARK: 🔐keychain action
 // private extension DJRouter {
     enum DJSavedData {
-        static let keychain = Keychain(service: "com.lx.bl", accessGroup: "group.com.lx.ble")
         case userInfo
         case plusInfo
         case storeInfo

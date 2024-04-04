@@ -51,10 +51,23 @@ public struct DJTestRouter {
         ]),
         LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 2"))),
     ])
-    static let routerDebug = LXOutlineItem(opt: .outline(.section(title: "Debug")), subitems: [
-        LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! ))),
-        LXOutlineItem(opt: .subitem(.section(title: "LXFirstVC")), scene: .vc(provider: { UINavigationController(rootViewController: LXFirstVC()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
-    ])
+    static let routerDebug: () -> LXOutlineItem = {
+        let autoPinned = DaoJiaConfig.LocalKey.autoPinnedDaoJiaSection
+        let local = autoPinned.getValue()
+        let title: (_ v: String?) -> String = { v in "Auto Pinned DaoJia Section[\(v == "1")]" }
+        return LXOutlineItem(opt: .outline(.section(title: "Debug")), subitems: [
+            LXOutlineItem(opt: .subitem(.section(title: title(local))), scene: .vc(provider: {
+                let local = autoPinned.getValue()
+                let tmp = local == "1" ? "0" : "1"
+                autoPinned.setValue(tmp)
+                UIViewController.getTopVC()?.view.makeToast(title(tmp))
+                return nil
+            })),
+            LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! ))),
+            LXOutlineItem(opt: .subitem(.section(title: "LXFirstVC")), scene: .vc(provider: { UINavigationController(rootViewController: LXFirstVC()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
+        ])
+    }
+
     static let routerDJSwiftModule: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "DJSwiftModule")), scene: .vc(provider: {
         DJAutoRouter.router1.updateRouter(section: .section(title: "DJSwiftModule"))
         DJAutoRouter.router2.clearRouter()
