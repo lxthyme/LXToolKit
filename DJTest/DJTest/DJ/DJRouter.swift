@@ -9,6 +9,9 @@ import LXToolKit
 import KeychainAccess
 
 private let keychain = Keychain(service: "com.lx.bl", accessGroup: "group.com.lx.ble")
+private let userData: DJSavedData = .userInfo
+private let plusData: DJSavedData = .plusInfo
+private let storeData: DJSavedData = .storeInfo
 
 enum DaoJiaConfig: String {
     case test
@@ -32,13 +35,9 @@ struct DJLocalInfo {
     var plusInfo: [String: Any]?
     var storeInfo: [String: Any]?
     init(localInfo: [String : Any]? = nil) {
-        let user: DJSavedData = .userInfo
-        let plus: DJSavedData = .plusInfo
-        let store: DJSavedData = .storeInfo
-
-        self.userInfo = localInfo?[user.dictKey] as? [String: Any]
-        self.plusInfo = localInfo?[plus.dictKey] as? [String: Any]
-        self.storeInfo = localInfo?[store.dictKey] as? [String: Any]
+        self.userInfo = localInfo?[userData.dictKey] as? [String: Any]
+        self.plusInfo = localInfo?[plusData.dictKey] as? [String: Any]
+        self.storeInfo = localInfo?[storeData.dictKey] as? [String: Any]
     }
     init(userInfo: [String : Any]? = nil,
          plusInfo: [String : Any]? = nil,
@@ -48,13 +47,10 @@ struct DJLocalInfo {
         self.storeInfo = storeInfo
     }
     func xl_jsonObject() -> [String: Any?] {
-        let userInfo: DJSavedData = .userInfo
-        let plusInfo: DJSavedData = .plusInfo
-        let storeInfo: DJSavedData = .storeInfo
         let info = [
-            userInfo.dictKey: self.userInfo,
-            plusInfo.dictKey: self.plusInfo,
-            storeInfo.dictKey: self.storeInfo,
+            userData.dictKey: self.userInfo,
+            plusData.dictKey: self.plusInfo,
+            storeData.dictKey: self.storeInfo,
         ]
         return info
     }
@@ -132,19 +128,14 @@ extension DJSavedData {
         let gStore = DJStoreManager.sharedInstance()
         let currentEnv = ctx.apiEnviroment
 
-        let storeInfo: DJSavedData = .storeInfo
-
         if let storeInfoJson = gStore.yy_modelToJSONString() {
-            storeInfo.updateValue(currentEnv, value: storeInfoJson)
+            storeData.updateValue(currentEnv, value: storeInfoJson)
         }
     }
     /// [当前环境]将登录信息缓存到 keychain & UserDefaults
     static func saveLoginInfo() {
         let ctx = CTAppContext.sharedInstance()!
         let currentEnv = ctx.apiEnviroment
-
-        let userInfo: DJSavedData = .userInfo
-        let plusInfo: DJSavedData = .plusInfo
 
         if let userInfoJson = ctx.userInfo.jsonString() {
             userInfo.updateValue(currentEnv, value: userInfoJson)
@@ -159,17 +150,14 @@ extension DJSavedData {
     /// [all env]显示当前缓存的登录信息 & 全局门店信息
     @discardableResult
     static func showCurrentLocalInfo() -> [CTServiceAPIEnviroment: DJLocalInfo] {
-        let userInfo: DJSavedData = .userInfo
-        let plusInfo: DJSavedData = .plusInfo
-        let storeInfo: DJSavedData = .storeInfo
         var sit = DJLocalInfo()
-        sit.userInfo = userInfo.getDictionary(.develop)
-        sit.plusInfo = plusInfo.getDictionary(.develop)
-        sit.storeInfo = storeInfo.getDictionary(.develop)
+        sit.userInfo = userData.getDictionary(.develop)
+        sit.plusInfo = plusData.getDictionary(.develop)
+        sit.storeInfo = storeData.getDictionary(.develop)
         var prd = DJLocalInfo()
-        prd.userInfo = userInfo.getDictionary(.develop)
-        prd.plusInfo = plusInfo.getDictionary(.develop)
-        prd.storeInfo = storeInfo.getDictionary(.develop)
+        prd.userInfo = userData.getDictionary(.develop)
+        prd.plusInfo = plusData.getDictionary(.develop)
+        prd.storeInfo = storeData.getDictionary(.develop)
         let info = ["sit": sit.xl_jsonObject(), "prd": prd.xl_jsonObject()]
         dlog("-->Current Local Info: \(info.jsonString(prettify:true) ?? "--")")
         return [
@@ -220,23 +208,20 @@ extension DJSavedData {
     static func backupToLocalStorage(localInfo: [CTServiceAPIEnviroment: DJLocalInfo]) {
         // guard let localObj = try? localInfo.data(using: .utf8)?.jsonObject() as? [String: Any] else { return }
 
-        let storeInfo: DJSavedData = .storeInfo
-        let userInfo: DJSavedData = .userInfo
-        let plusInfo: DJSavedData = .plusInfo
         let sitTest = {
             // let sitObj = localObj["sit"] as? [String: Any]
             let sitObj = localInfo[.develop]
             if let userInfoObj = sitObj?.userInfo,
                userInfoObj.isNotEmpty {
-                userInfo.updateDictionary(.develop, value: userInfoObj)
+                userData.updateDictionary(.develop, value: userInfoObj)
                 let plusInfoObj = sitObj?.plusInfo
-                plusInfo.updateDictionary(.develop, value: plusInfoObj)
+                plusData.updateDictionary(.develop, value: plusInfoObj)
             } else {
                 dlog("-->[SIT]登录信息为空, skipping...")
             }
             if let gStoreObj = sitObj?.storeInfo,
                gStoreObj.isNotEmpty {
-                storeInfo.updateDictionary(.develop, value: gStoreObj)
+                storeData.updateDictionary(.develop, value: gStoreObj)
             } else {
                 dlog("-->[SIT]全局门店信息为空, skipping...")
             }
@@ -245,15 +230,15 @@ extension DJSavedData {
             let prdObj = localInfo[.release]
             if let userInfoObj = prdObj?.userInfo,
                userInfoObj.isNotEmpty {
-                userInfo.updateDictionary(.release, value: userInfoObj)
+                userData.updateDictionary(.release, value: userInfoObj)
                 let plusInfoObj = prdObj?.plusInfo
-                plusInfo.updateDictionary(.release, value: plusInfoObj)
+                plusData.updateDictionary(.release, value: plusInfoObj)
             } else {
                 dlog("-->[SIT]登录信息为空, skipping...")
             }
             if let gStoreObj = prdObj?.storeInfo,
                gStoreObj.isNotEmpty {
-                storeInfo.updateDictionary(.develop, value: gStoreObj)
+                storeData.updateDictionary(.develop, value: gStoreObj)
             } else {
                 dlog("-->[SIT]全局门店信息为空, skipping...")
             }
@@ -266,9 +251,7 @@ extension DJSavedData {
         let ctx = CTAppContext.sharedInstance()!
         let currentEnv = ctx.apiEnviroment
 
-        let userInfo: DJSavedData = .userInfo
-        let plusInfo: DJSavedData = .plusInfo
-        if let userInfoJson = userInfo.getDictionary(currentEnv) {
+        if let userInfoJson = userData.getDictionary(currentEnv) {
             ctx.xl_updateUserInfo(userInfoJson)
             ctx.xl_updatePlusInfo(plusInfo.getDictionary(currentEnv))
         }
@@ -278,8 +261,6 @@ extension DJSavedData {
         let ctx = CTAppContext.sharedInstance()!
         let gStore = DJStoreManager.sharedInstance()
         let currentEnv = ctx.apiEnviroment
-
-        let storeInfo: DJSavedData = .storeInfo
 
         guard let jsonString = storeInfo.getDictionary(currentEnv),
               let model = DJStoreManager.yy_model(withJSON: jsonString) else { return }
@@ -567,21 +548,21 @@ extension CTAppContext {
     func xl_updatePlusInfo(_ plusInfo: [String: Any]?) {
         self.plusInfo = plusInfo
         dlog("-->[CTAppContext]更新 plus 信息")
-        DJSavedData.plusInfo.updateDictionary(value: plusInfo)
+        plusData.updateDictionary(value: plusInfo)
     }
     func xl_cleanPlusInfo() {
         self.plusInfo = nil
         dlog("-->[CTAppContext]清空 plus 信息")
-        DJSavedData.plusInfo.updateDictionary(value: nil)
+        plusData.updateDictionary(value: nil)
     }
     func xl_updateUserInfo(_ userInfo: [String: Any]?) {
         self.userInfo = userInfo
         dlog("-->[CTAppContext]更新用户信息")
-        DJSavedData.userInfo.updateDictionary(value: userInfo)
+        userData.updateDictionary(value: userInfo)
     }
     func xl_cleanUserInfo() {
         self.userInfo = nil
         dlog("-->[CTAppContext]清空用户信息")
-        DJSavedData.userInfo.updateDictionary(value: nil)
+        userData.updateDictionary(value: nil)
     }
 }
