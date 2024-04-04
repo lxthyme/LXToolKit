@@ -8,10 +8,10 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-// PRODUCT_MODULE_NAME = DJTest
+// PRODUCT_MODULE_NAME = LXTest
 // TARGET_NAME = $(PRODUCT_MODULE_NAME)
 // DISPLAY_NAME = $(PRODUCT_MODULE_NAME)
-// DISPLAY_NAME = DJTest
+// DISPLAY_NAME = LXTest
 // SWIFT_VERSION = 5
 // IPHONEOS_DEPLOYMENT_TARGET = 14.0
 

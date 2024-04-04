@@ -1,6 +1,6 @@
 //
 //  LXAMapTestVC.swift
-//  DJTest
+//  LXTest
 //
 //  Created by lxthyme on 2023/10/31.
 //
@@ -52,7 +52,7 @@ private extension LXAMapTestVC {
     @objc func btnAddMap(sender: UIButton) {
         // let mapView = makeMapView()
         // mapList.append(mapView)
-        // 
+        //
         // btnAddMap.setTitle("Create Map\(mapList.count)", for: .normal)
     }
     // func makeMapView() -> MAMapView {

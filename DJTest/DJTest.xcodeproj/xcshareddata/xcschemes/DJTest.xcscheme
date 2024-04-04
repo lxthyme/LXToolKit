@@ -15,9 +15,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-                     BuildableName = "DJTest.app"
-                     BlueprintName = "DJTest"
-                     ReferencedContainer = "container:DJTest.xcodeproj">
+                     BuildableName = "LXTest.app"
+                     BlueprintName = "LXTest"
+                     ReferencedContainer = "container:LXTest.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-               BuildableName = "DJTest.app"
-               BlueprintName = "DJTest"
-               ReferencedContainer = "container:DJTest.xcodeproj">
+               BuildableName = "LXTest.app"
+               BlueprintName = "LXTest"
+               ReferencedContainer = "container:LXTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest.app"
-            BlueprintName = "DJTest"
-            ReferencedContainer = "container:DJTest.xcodeproj">
+            BuildableName = "LXTest.app"
+            BlueprintName = "LXTest"
+            ReferencedContainer = "container:LXTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -92,9 +92,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest.app"
-            BlueprintName = "DJTest"
-            ReferencedContainer = "container:DJTest.xcodeproj">
+            BuildableName = "LXTest.app"
+            BlueprintName = "LXTest"
+            ReferencedContainer = "container:LXTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

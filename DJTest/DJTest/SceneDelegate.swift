@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  DJTest
+//  LXTest
 //
 //  Created by lxthyme on 2023/9/19.
 //

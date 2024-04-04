@@ -56,8 +56,8 @@ else
           # incremental_installation: true,
 end
 
-workspace 'DJTest.xcworkspace'
-project 'DJTest.xcodeproj'
+workspace 'LXTest.xcworkspace'
+project 'LXTest.xcodeproj'
 
 # plugin 'cocoapods-pod-linkage'
 
@@ -192,13 +192,13 @@ def pod_DJ
   # pod 'JXCategoryView', '1.3.12'
 end
 
-def pod_DJTest
+def pod_LXTest
   pod 'Hover'
 end
 
-target 'DJTest' do
+target 'LXTest' do
   inherit! :search_paths
-  # workspace 'DJTest.xcworkspace'
+  # workspace 'LXTest.xcworkspace'
 
   # script_phase :name => 'Automating Build Number Increments',
   # :shell_path => '/bin/sh',
@@ -208,7 +208,7 @@ target 'DJTest' do
   pod_flutter()
   pod_LXToolKit()
   pod_DJ()
-  pod_DJTest()
+  pod_LXTest()
 
 
   # use_frameworks! :linkage => :dynamic
@@ -244,7 +244,7 @@ post_install do |installer|
 
   # copy acknowledgments to settings.bundle
   # require 'fileutils'
-  FileUtils.cp_r('Pods/Target Support Files/Pods-DJTest/Pods-DJTest-acknowledgements.plist', 'DJTest/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
+  FileUtils.cp_r('Pods/Target Support Files/Pods-LXTest/Pods-LXTest-acknowledgements.plist', 'LXTest/Settings.bundle/Pods-acknowledgements.plist', :remove_destination => true)
 
   idx1=0
   idx2=0

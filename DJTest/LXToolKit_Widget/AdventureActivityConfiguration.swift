@@ -1,6 +1,6 @@
 //
 //  AdventureActivityConfiguration.swift
-//  DJTest
+//  LXTest
 //
 //  Created by lxthyme on 2023/10/24.
 //

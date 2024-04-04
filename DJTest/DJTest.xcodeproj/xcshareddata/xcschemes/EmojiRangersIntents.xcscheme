@@ -17,7 +17,7 @@
                BlueprintIdentifier = "BE3067C02AE79C4600E9577C"
                BuildableName = "EmojiRangersIntents.appex"
                BlueprintName = "EmojiRangersIntents"
-               ReferencedContainer = "container:DJTest.xcodeproj">
+               ReferencedContainer = "container:LXTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-               BuildableName = "DJTest.app"
-               BlueprintName = "DJTest"
-               ReferencedContainer = "container:DJTest.xcodeproj">
+               BuildableName = "LXTest.app"
+               BlueprintName = "LXTest"
+               ReferencedContainer = "container:LXTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,9 +60,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest.app"
-            BlueprintName = "DJTest"
-            ReferencedContainer = "container:DJTest.xcodeproj">
+            BuildableName = "LXTest.app"
+            BlueprintName = "LXTest"
+            ReferencedContainer = "container:LXTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -79,9 +79,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BEE5A33B2AB974FA003339EB"
-            BuildableName = "DJTest.app"
-            BlueprintName = "DJTest"
-            ReferencedContainer = "container:DJTest.xcodeproj">
+            BuildableName = "LXTest.app"
+            BlueprintName = "LXTest"
+            ReferencedContainer = "container:LXTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
