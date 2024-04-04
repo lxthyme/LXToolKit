@@ -7,7 +7,7 @@
 import UIKit
 import LXToolKit
 
-class LXFirstVC: UIViewController {
+class LXFirstVC: LXBaseVC {
     // MARK: 📌UI
     private lazy var btnGo: UIButton = {
         let btn = UIButton(type: .custom)

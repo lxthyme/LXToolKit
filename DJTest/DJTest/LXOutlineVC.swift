@@ -35,6 +35,8 @@ class LXOutlineVC: LXBaseVC {
     private var dataSource: UICollectionViewDiffableDataSource<LXOutlineItem, LXOutlineItem>!
     private lazy var menuItems: [LXOutlineItem] = {
         return [
+            DJTestRouter.routerViewController,
+            DJTestRouter.routerLXFirstVC,
             LXOutlineItem(opt: .subitem(.section(title: "AcknowListViewController")), scene: .vc(provider: {
                 let settingBundle = Bundle.XL.settingsBundle(for: LXOutlineVC.self)
                 if let url = settingBundle?.url(forResource: "Pods-acknowledgements", withExtension: "plist") {
@@ -55,10 +57,18 @@ class LXOutlineVC: LXBaseVC {
             /// Others
             DJTestRouter.routerDJSwiftModule,
             DJTestRouter.routerDynamicIsland,
-        ]//.map { DJTestRouter.makeRouterItem(from: $0) }
+            // DJTestRouter.routerItemCustom("1"),
+            // DJTestRouter.routerItemCustom("2"),
+            // DJTestRouter.routerItemCustom("3"),
+            // DJTestRouter.routerItemCustom("4"),
+            // DJTestRouter.routerItemCustom("5"),
+            // DJTestRouter.routerItemCustom("6"),
+            // DJTestRouter.routerItemCustom("7"),
+            // DJTestRouter.routerItemCustom("8"),
+            // DJTestRouter.routerItemCustom("9"),
+            // DJTestRouter.routerItemCustom("10"),
+        ]
     }()
-    // @available(iOS 13.0, *)
-    // private var dataSnapshot: UICollectionViewDiffableDataSource<LXOutlineOpt, LXOutlineOpt>!
     var appearance: UICollectionLayoutListConfiguration.Appearance = .plain
     // MARK: 🛠Life Cycle
     override func viewDidLoad() {
@@ -174,23 +184,58 @@ private extension LXOutlineVC {
         }
         return [router1Menu, router2Menu];
     }
-    func getDepth(dest: LXOutlineItem) -> [LXOutlineItem] {
-        var depth: [LXOutlineItem] = [dest]
-        for item in self.menuItems {
-            let section = self.dataSource.snapshot(for: item)
-            if !section.contains(dest) {
-                continue
+    func getDepth(destList: [LXOutlineItem]) -> [LXOutlineItem] {
+        var depthList: [[LXOutlineItem]] = []
+        for dest in destList {
+            var depth: [LXOutlineItem] = [dest]
+            for item in self.menuItems {
+                let section = self.dataSource.snapshot(for: item)
+                if !section.contains(dest) {
+                    continue
+                }
+                var level = section.level(of: dest)
+                var parent = section.parent(of: dest)
+                while level >= 0, let p = parent {
+                    // dlog("-->level[\(level)]: \(p)")
+                    depth.append(p)
+                    parent = section.parent(of: p)
+                    level = section.level(of: p)
+                }
             }
-            var level = section.level(of: dest)
-            var parent = section.parent(of: dest)
-            while level >= 0, let p = parent {
-                dlog("-->level[\(level)]: \(p)")
-                depth.append(p)
-                parent = section.parent(of: p)
-                level = section.level(of: p)
-            }
+            depthList.append(depth)
         }
-        return depth
+        let tmp = depthList.map { depth in
+            return depth.map { $0.opt.section.title }
+        }
+        dlog("-->depthList: \(tmp)")
+        return depthList.flatMap { $0 }
+    }
+    func getLastIndexPath(exList: [LXOutlineItem]) -> IndexPath? {
+        if let lastItem = exList
+            .first(where: {
+                if case .subitem = $0.opt {
+                    return true
+                } else {
+                    return false
+                }
+            }),
+           let ip = self.dataSource.indexPath(for: lastItem) {
+            dlog("-->lastItem[\(ip)]: \(lastItem)")
+            return ip
+        }
+        if let lastSection = exList
+            .first(where: {
+                if case .outline = $0.opt {
+                    return true
+                } else {
+                    return false
+                }
+            }),
+           let ip = self.dataSource.indexPath(for: lastSection) {
+            dlog("-->lastSection[\(ip)]: \(lastSection)")
+            return ip
+        }
+        return nil
     }
 }
 
@@ -383,23 +428,13 @@ private extension LXOutlineVC {
            let djPage = try? self.menuItems.xl_first(where: { $0.opt.section.title == "Page List" }) {
             destList = [djPage]
         }
-        var exList: [LXOutlineItem] = []
-        for item in destList {
-            let depth = getDepth(dest: item)
-            exList.append(contentsOf: depth)
-        }
+        let exList = getDepth(destList: destList)
         var expandList: [LXOutlineItem: NSDiffableDataSourceSectionSnapshot<LXOutlineItem>] = [:]
         func addItems(_ snapshot: inout NSDiffableDataSourceSectionSnapshot<LXOutlineItem>, menuItems: [LXOutlineItem], to parent: LXOutlineItem?) {
             for menuItem in menuItems {
                 snapshot.append([menuItem], to: parent)
                 switch menuItem.opt {
                 case .outline:
-                    // if !snapshot.contains(menuItem) {
-                    //     snapshot.append([menuItem], to: parent)
-                    // }
-                    // if menuItem.isExpanded {
-                    //     snapshot.expand([menuItem])
-                    // }
                     addItems(&snapshot, menuItems: menuItem.subitems ?? [], to: menuItem)
                     if exList.contains(menuItem) {
                         snapshot.expand([menuItem])
@@ -416,13 +451,7 @@ private extension LXOutlineVC {
         snapshot.appendSections(self.menuItems)
         dataSource.apply(snapshot, animatingDifferences: true) {[weak self] in
             guard let self else { return }
-            if let dest = exList.first(where: { if case .subitem = $0.opt {
-                true
-            } else {
-                false
-            }
-            }),
-               let ip = self.dataSource.indexPath(for: dest) {
+            if let ip = self.getLastIndexPath(exList: exList) {
                 self.collectionView.scrollToItem(at: ip, at: .centeredVertically, animated: true)
             }
         }
@@ -445,11 +474,6 @@ private extension LXOutlineVC {
                 break
             }
         }
-        // for (key, value) in expandList {
-        //     var tmp = value
-        //     tmp.expand([key])
-        //     dataSource.apply(tmp, to: key, animatingDifferences: true)
-        // }
     }
     func refreshCollectionView() {
         generateMultiSnapshot()

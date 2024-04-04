@@ -24,6 +24,7 @@ public struct DJTestRouter {
         DJTestRouter.routerDJTest,
         DJTestRouter.routerFlutter,
     ]
+    static let routerItemCustom: (_ title: String) -> LXOutlineItem = { title in LXOutlineItem(opt: .subitem(.section(title: "Item Custom \(title)"))) }
     static let routerItem: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "Item 1: - 1")))
     static let router233: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "Section 1")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 1"))),
@@ -50,6 +51,8 @@ public struct DJTestRouter {
         ]),
         LXOutlineItem(opt: .subitem(.section(title: "Item 1 - 2"))),
     ])
+    static let routerViewController = LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
+    static let routerLXFirstVC = LXOutlineItem(opt: .subitem(.section(title: "LXFirstVC")), scene: .vc(provider: { UINavigationController(rootViewController: LXFirstVC()) }, transition: .root(in: UIApplication.XL.keyWindow! )))
     static let routerDJSwiftModule: LXOutlineItem = LXOutlineItem(opt: .subitem(.section(title: "DJSwiftModule")), scene: .vc(provider: {
         DJAutoRouter.router1.updateRouter(section: .section(title: "DJSwiftModule"))
         DJAutoRouter.router2.clearRouter()
