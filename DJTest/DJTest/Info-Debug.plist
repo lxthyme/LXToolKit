@@ -17,6 +17,8 @@
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>local network tips</string>
+	<key>FLTEnableImpeller</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -46,8 +48,6 @@
         <string>com.example.apple-samplecode.SuggestedSearch.mainRestored</string>
         <string>com.example.apple-samplecode.SuggestedSearch.detailRestored</string>
     </array>
-    <key>FLTEnableImpeller</key>
-    <false />
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.example.apple-samplecode.SuggestedSearch.mainRestored</string>

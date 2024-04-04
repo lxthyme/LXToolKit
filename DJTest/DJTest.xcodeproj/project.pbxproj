@@ -1368,6 +1368,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(DISPLAY_NAME)";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "local network usage";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1408,6 +1412,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(INFOPLIST_FILE)";
 				INFOPLIST_KEY_CFBundleDisplayName = "$(DISPLAY_NAME)";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "local network usage";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
