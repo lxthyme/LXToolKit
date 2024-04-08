@@ -172,6 +172,7 @@ extension LogKit {
     }
     // MARK: 🛠Life Cycle
     public static func traceLifeCycle(_ prefix: LifeCycleStyle, typeName: String, type: LifeCycleType) {
+        guard prefix == .vc else { return }
         let msg = "----->>>\(prefix == .none ? "" : "「\(prefix)」"): \(typeName): \t\t\(type)"
         if #available(iOS 14.0, *) {
         loggerViewCycle.trace("\(msg)")
