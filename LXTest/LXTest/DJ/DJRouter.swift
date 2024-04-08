@@ -18,6 +18,7 @@ enum DaoJiaConfig: String {
     case test
     enum LocalKey: String {
         case autoPinnedDaoJiaSection
+        case previousSelectedGoodsId
     }
 }
 

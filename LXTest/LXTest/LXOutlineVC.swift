@@ -377,8 +377,16 @@ private extension LXOutlineVC {
                 .components(separatedBy: ",")
                 .map { $0.trimmed }
                 .filter { $0.isNotEmpty }
-            let defaultValue = mockList?
-                .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
+            var defaultValue: String? = ""
+            if let title = tmp[safe: 0],
+               title == DJRouterPath.goodsDetail.title,
+               let prevSelectedGoodsId = DaoJiaConfig.LocalKey.previousSelectedGoodsId.getValue() {
+                defaultValue = mockList?.first(where: { $0.contains(prevSelectedGoodsId) && $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
+            }
+            if defaultValue?.isEmpty ?? false {
+                defaultValue = mockList?
+                    .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
+            }
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
                 .disclosureIndicator()
@@ -583,8 +591,10 @@ extension LXOutlineVC: UICollectionViewDelegate {
                   gStore.shopId == storeCode,
                   let goodsId = param[safe: 3],
                   let tdType = param[safe: 4] else {
+                self.view.makeToast("商品信息缺失~~ storeCode: (\(param[safe: 2] ?? "--"), \(gStore.shopId)), goodsId: \(param[safe: 3] ?? "--")")
                 return
             }
+            DaoJiaConfig.LocalKey.previousSelectedGoodsId.setValue(goodsId)
             let scene: Navigator.Scene = .vc(provider: {
                 let vc = DJRouter.getGoodsDetail(storeCode: gStore.shopId,
                                                  storeType: gStore.shopType,
