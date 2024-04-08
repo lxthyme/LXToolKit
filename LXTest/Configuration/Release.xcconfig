@@ -1,0 +1,16 @@
+//
+//  API-Release.xcconfig
+//  LXTest
+//
+//  Created by LXThyme Jason on 2021/4/1.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-LXTest/Pods-LXTest.release.xcconfig"
+#include "Common/Common.xcconfig"
+#include "Common/bundle_identifier.xcconfig"
+#include "Common/Common.Release.xcconfig"
+// #include "Common/Combine.xcconfig"
+#include "API.xcconfig"
