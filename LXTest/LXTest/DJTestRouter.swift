@@ -180,8 +180,9 @@ public struct DJTestRouter {
         }
         let shopList = [
         "env, storeCode, storeType:",
-        "///",
+        "//",
         "sit/007780/2020",
+        "sit/001456/6010",
         "prd/004517/2010",
         "prd/003754/2010",
         ].joined(separator:", ")
@@ -191,6 +192,8 @@ public struct DJTestRouter {
             "sit/多菜谱/007780/168251/0",
             "sit/搭配购/007780/68171/0",
             "sit/单菜谱/007780/3364200/2",
+            "sit/搭配购/001456/3285071/0",
+            "sit/搭配购/007780/168251/0",
             "prd/test/007780/3364200/2",
         ].joined(separator:", ")
         return LXOutlineItem(opt: .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))")), subitems: [
