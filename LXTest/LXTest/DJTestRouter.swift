@@ -194,6 +194,8 @@ public struct DJTestRouter {
             "sit/单菜谱/007780/3364200/2",
             "sit/搭配购/001456/3285071/0",
             "sit/搭配购/007780/168251/0",
+            "sit/plus价/007780/65911/0",
+            "sit/限购/001100/3277292/0",
             "prd/test/007780/3364200/2",
         ].joined(separator:", ")
         return LXOutlineItem(opt: .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))")), subitems: [
@@ -209,6 +211,7 @@ public struct DJTestRouter {
                 }
             }, transition: .alert)),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(shopList)"))),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.firstMedicine.title)"))),
             LXOutlineItem(opt: .outline(.section(title: "Page List")), subitems: [
             LXOutlineItem(opt: .subitem(.section(title: "DJQuickHomeVC")), scene: .vc(provider: {
                 let vc = DJRouterObjc.getQuickHome()

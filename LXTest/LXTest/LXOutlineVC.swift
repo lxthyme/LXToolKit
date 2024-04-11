@@ -583,6 +583,15 @@ extension LXOutlineVC: UICollectionViewDelegate {
                 return nav
             }, transition: .alert)
             Navigator.default.show(segue: scene, sender: self)
+        case .firstMedicine:
+            let scene: Navigator.Scene = .vc(provider: {
+                let vc = DJRouter.getFirstMedicine()!
+                let nav = DJTestRouter.createNav(rootVC: vc) {
+                    DJSavedData.saveGStore()
+                }
+                return nav
+            }, transition: .alert)
+            Navigator.default.show(segue: scene, sender: self)
         case .goodsDetail:
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")

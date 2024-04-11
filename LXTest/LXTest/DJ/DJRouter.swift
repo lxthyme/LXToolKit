@@ -79,6 +79,12 @@ public extension DJRouter {
         let vc = BLMediator.sharedInstance().djBusinessModule_NewMain(params)
         return vc
     }
+    static func getFirstMedicine() -> UIViewController? {
+        let vc = BLMediator.sharedInstance().djBusinessModule_NewMain([
+            "url": "blmodule://quickHome/firstmedicine?sceneId=11003"
+        ])
+        return vc
+    }
     static func getQuickHome() -> UIViewController {
         return DJRouterObjc.getQuickHome()
     }
