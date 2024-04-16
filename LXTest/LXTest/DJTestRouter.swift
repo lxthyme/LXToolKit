@@ -53,14 +53,23 @@ public struct DJTestRouter {
     ])
     static let routerDebug: () -> LXOutlineItem = {
         let autoPinned = DaoJiaConfig.LocalKey.autoPinnedDaoJiaSection
-        let local = autoPinned.getValue()
-        let title: (_ v: String?) -> String = { v in "Auto Pinned DaoJia Section[\(v == "1")]" }
+        let goodsShowingType = DaoJiaConfig.LocalKey.goodsShowingType
+        let titleAutoPinned: (_ v: String?) -> String = { v in "Auto Pinned DaoJia Section[\(v == "1")]" }
+        let titleGoodsShowingType: (_ v: Int?) -> String = { v in "Goods Showing Type[\(DaoJiaConfig.LocalKey.GoodsShowingType(rawValue: v ?? 0) ?? .all)]" }
         return LXOutlineItem(opt: .outline(.section(title: "Debug")), subitems: [
-            LXOutlineItem(opt: .subitem(.section(title: title(local))), scene: .vc(provider: {
+            LXOutlineItem(opt: .subitem(.section(title: titleAutoPinned(autoPinned.getValue()))), scene: .vc(provider: {
                 let local = autoPinned.getValue()
                 let tmp = local == "1" ? "0" : "1"
                 autoPinned.setValue(tmp)
-                UIViewController.getTopVC()?.view.makeToast(title(tmp))
+                UIViewController.getTopVC()?.view.makeToast(titleAutoPinned(tmp))
+                return nil
+            })),
+            LXOutlineItem(opt: .subitem(.section(title: titleGoodsShowingType(goodsShowingType.getValue()?.int))), scene: .vc(provider: {
+                var local = goodsShowingType.getValue()?.int ?? 0
+                local += 1
+                local %= DaoJiaConfig.LocalKey.GoodsShowingType.allCases.count
+                goodsShowingType.setValue("\(local)")
+                UIViewController.getTopVC()?.view.makeToast(titleGoodsShowingType(local))
                 return nil
             })),
             LXOutlineItem(opt: .subitem(.section(title: "ViewController")), scene: .vc(provider: { UINavigationController(rootViewController: ViewController()) }, transition: .root(in: UIApplication.XL.keyWindow! ))),
@@ -178,49 +187,68 @@ public struct DJTestRouter {
             ])
             return vc
         }
-        let shopList = [
-        "env, storeCode, storeType:",
-        "//",
-        "sit/007780/2020",
-        "sit/001456/6010",
-        "prd/004517/2010",
-        "prd/003754/2010",
+        let daojiaList = [
+        "env, 门店名称, storeCode, storeType:",
+        "///",
+        "sit/武宁店/007780/2020",
+        "sit/世纪联华中环百联店/004517/2010",
+        "prd/世纪联华中环百联店/004517/2010",
+        "prd/世纪联华上海黄浦新苑店/003754/2010",
         ].joined(separator:", ")
-        let goodDetailList = [
-            "env, 特征, storeCode, goodsId, tdType:",
+        let firstMedicineList = [
+        "env, 门店名称, storeCode, storeType:",
+        "///",
+        "sit/第一医药金陵东路店即时达门店/001100/6020",
+        "sit/第一医药四川南路店/001456/6010",
+        ].joined(separator:", ")
+        var goodDetailList = [
+            /// 007780: 武宁店
             "sit/单菜谱/007780/1365613/0",
             "sit/多菜谱/007780/168251/0",
             "sit/搭配购/007780/68171/0",
             "sit/单菜谱/007780/3364200/2",
-            "sit/搭配购/001456/3285071/0",
             "sit/搭配购/007780/168251/0",
             "sit/plus价/007780/65911/0",
+            /// 001100: 第一医药金陵东路店即时达门店
             "sit/限购/001100/3277292/0",
-            "prd/test/007780/3364200/2",
-        ].joined(separator:", ")
+            "sit/预售/001100/3286624/0",
+            /// 001456: 第一医药四川南路店
+            "sit/搭配购/001456/3285071/0",
+        ]
+
+        let shopList = DJRouterPath.DJShopListType.allCases
+        let currentShopListType = {
+            let v = DaoJiaConfig.LocalKey.shopListType.getValue()
+            return DJRouterPath.DJShopListType(rawValue: v?.int ?? 0) ?? .daojia
+        }()
+
+        let goodsShowingType = DaoJiaConfig.LocalKey.goodsShowingType
+        let showingType = DaoJiaConfig.LocalKey.GoodsShowingType(rawValue: goodsShowingType.getValue()?.int ?? 0)
+        switch showingType {
+        case .onlyCurrentStore:
+            let gStore = DJStoreManager.sharedInstance().storeModel
+            if gStore.shopId.isNotEmpty {
+                goodDetailList = goodDetailList.filter { $0.components(separatedBy: "/")[safe: 2] == gStore.shopId }
+            }
+        case .onlyCurrentEnv:
+            let currentEnv = DJRouter.getCurrentEnv()
+            goodDetailList = goodDetailList.filter { $0.components(separatedBy: "/")[safe: 0] == currentEnv.title }
+        case .all, .none: break
+        }
+        goodDetailList.insert("env, 特征, storeCode, goodsId, tdType:", at: 0)
+
         return LXOutlineItem(opt: .outline(.section(title: "DJBusinessModule(\(DJRouter.getCurrentEnv().title))")), subitems: [
             LXOutlineItem(opt: .subitem(.section(title: "Toggle Env")), scene: .vc(provider: {
                 DJRouter.toggleEnv();
                 return nil
             })),
-            LXOutlineItem(opt: .subitem(.section(title: "DJTabbarViewController")), scene: .vc(provider: {
-                let vc = DJRouter.getMain()!
-                return DJTestRouter.createNav(rootVC: vc) {
-                    DJSavedData.saveGStore()
-                    DJSavedData.saveLoginInfo()
-                }
-            }, transition: .alert)),
-            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(shopList)"))),
-            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.firstMedicine.title)"))),
+            LXOutlineItem(opt: .subitem(.section(title: "DJTabbarViewController")), scene: DJRouter.getDaoJia()),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.shopList.title)::\(shopList.map({ $0.title }).joined(separator:", "))"))),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(daojiaList)"))),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.firstMedicine.title):\(firstMedicineList)"))),
             LXOutlineItem(opt: .outline(.section(title: "Page List")), subitems: [
-            LXOutlineItem(opt: .subitem(.section(title: "DJQuickHomeVC")), scene: .vc(provider: {
-                let vc = DJRouterObjc.getQuickHome()
-                return DJTestRouter.createNav(rootVC: vc) {
-                    DJSavedData.saveGStore()
-                    DJSavedData.saveLoginInfo()
-                }
-            }, transition: .alert)),
-            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList)"))),
+                LXOutlineItem(opt: .subitem(.section(title: "DJQuickHomeVC")), scene: DJRouter.getQuickHome()),
+            LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList.joined(separator:", "))"))),
             ]),
             LXOutlineItem(opt: .subitem(.section(title: "save login & gStore info to keychain & UserDefaults")), scene: .vc(provider: {
                 DJSavedData.saveGStore()
@@ -250,7 +278,7 @@ public struct DJTestRouter {
                 })),
             ]),
             LXOutlineItem(opt: .subitem(.section(title: "backup login & gStore info from string")), scene: .vc(provider: {
-                let json = "{\"sit\":{\"plusInfo\":null,\"userInfo\":{\"realNameLevel\":\"0\",\"isSalesman\":\"1\",\"loginCode\":\"\",\"registerTime\":1629094690237,\"expire_in\":\"2592000\",\"locked_reason\":\"\",\"mobile\":\"18521006314\",\"newRegFlag\":\"0\",\"encode_mobile\":\"ENC.1(ljEbTJFSKR9E01tP1oIT5Q==)\",\"groupIds\":\"\",\"avatarUrl\":\"\",\"member_id\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"orgId\":\"3000\",\"idFlag\":\"0\",\"memberLevel\":\"40\",\"nickName\":\"\",\"black_account\":\"0\",\"error_times\":\"0\",\"pwdStrength\":\"1\",\"passportId\":\"\",\"remain_times\":\"3\",\"rawDict\":{\"obj\":\"xtKm69AqR5e3\\/io0s\\/trCEl+VUGc8OHSthk54ChUqEQWEN65kB0YOAJ4+VZB sFTr8t4tQMr9GVYyVYHo\\/okf0P9K51jNp\\/G9QJzlrS2O7aqfCZEGbE2kS6ah 6Z4kbPkaxlYDIubiGiLS4mPvXBLuN8p1SB8CJRZS\\/j0gl953H1N41dcmGHNU \\/vHJNCoY5kuF+PG6JZkjnBAvJaC+tucL1mUgSjZqnZqwWegSLu\\/j4NQ3ZMp5 mrziIqcSf+1xsajOllla2NDsbxwy+Z0zlk0OzOF1JP4xiQjQMmXA++7P2ZXK FcAjv+b2ekUawdwD+ohfk\\/T2lHesZ7ZfUsPgpnZbQe6HxpaFMpymPhUdnnps 2VAFBKbid9V7BFYZF388PrxXfOn75zRJ1Ul5Eg3sUe+htj1HGXw1Rd34ecOD WsiEDg\\/zzDowJxfRMh3B0XFUl3SulwgFlN1LQzL1UfjeeYXEGxIsuj7TrvHa 9NcR25MH0PwoQ42\\/YVUkigcZQSoPntfB5jv+KfSDR\\/HRTmeTH5MYbdFImYUx D3NZvi6UPUk2xfG1oQfz8gz7AU2bGIYCV0dAmDa0HMgHjB9K+RSEMjZXXMe5 ctjLE30lQVDEJXn8dfg6vqwe4+TpPCo7anxmuoLzDox\\/gdlYsNYIofmr9l9S 5qYQi0J+n6sJem0\\/Oenjh4EfssJR8oo+9JAykWCN7FazguSrbakvVczBQvP0 JPh4zBvHyuEDB6HciEQxwKVU08lqfvS+a+0UKcNX92\\/kChjZnVKGk+tYdgzR mvy3AXpa9SrNfYyidQGMkYWkeUTyYSJK6sI2AzYA\\/ER4rwZyX1yt\",\"mobile\":\"18521006314\",\"resCode\":\"00100000\"},\"doudoulevel\":\"109\",\"member_name\":\"185****6314\",\"usable_stat\":\"0\",\"high_risk\":\"0\",\"member_token\":\"4acf40fa4a3f2a41bdcc99db69dd8206f057655e54aeeba4d40c90ad836754f8\",\"shellId\":\"\",\"memberLevelCode\":\"40\",\"encode_memberId\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"mediaCephUrl\":\"\",\"need_complete\":\"0\"},\"storeInfo\":{\"classifyShowIndex\":0,\"djHomeSearchStr\":\"\",\"labelColor\":\"#000000\",\"djHomeStyle\":2,\"headerBgColorStr\":\"#FFFFFF\",\"orderSourceCode\":\"1\",\"isChangeNet\":false,\"djModuleType\":1,\"longtitude\":\"121.489972\",\"locationCity\":\"\",\"shopCart_storeModel\":{\"provinceName\":\"\",\"shopBeginTime\":\"\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"beginTime\":\"\",\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"sceneId\":\"11000\",\"orderTypes\":\"25,46,1\",\"state\":\"\",\"cityCode\":\"867\",\"shopCode\":\"2020007780ENT23234\",\"districtCode\":\"868\",\"longtitude\":\"121.49\",\"comSid\":\"2000\",\"deliveryTip\":\"\",\"storeType\":\"2020\",\"orderAlias\":\"\",\"addr\":\"四川南路26号门店地址\",\"showDistributeDesc\":\"可配送\",\"merchantId\":\"2020007780ENT23234\",\"storeName\":\"\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"1\",\"endTime\":\"\",\"distance\":\"208\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"longitude\":\"\",\"isDistributeSupport\":\"\",\"shopType\":\"2020\",\"cityName\":\"\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"storeCode\":\"007780\",\"showInvoice\":\"1\",\"districtName\":\"\",\"showFreeLimitDesc\":\"58免首重\",\"shopEndTime\":\"\",\"showDistributeSupport\":\"1\",\"shopId\":\"007780\",\"isSelf\":\"\",\"showSinceDesc\":\"可自提\",\"buttonDesc\":\"\",\"phone\":\"\",\"latitude\":\"31.23\"},\"sendType\":0,\"storeDictionary\":{\"showIndexDelTimeDesc\":\"9:30送达\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"sceneId\":\"11000\",\"shopLatitude\":\"31.23\",\"orderTypes\":\"25,46,1\",\"cityCode\":\"867\",\"f_cellWidth\":165,\"shopCode\":\"2020007780ENT23234\",\"comSid\":\"2000\",\"shopLongitude\":\"121.49\",\"longtitude\":\"121.49\",\"deliveryTip\":\"\",\"orderAlias\":\"\",\"storeType\":\"2020\",\"districtCode\":\"868\",\"addr\":\"四川南路26号门店地址\",\"showDistributeDesc\":\"可配送\",\"merchantId\":\"2020007780ENT23234\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"1\",\"distance\":\"208\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"shopType\":\"2020\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"storeCode\":\"007780\",\"showInvoice\":1,\"showDelTimeDesc\":\"最快今日9:30送达\",\"showFreeLimitDesc\":\"58免首重\",\"showDistributeSupport\":\"1\",\"f_skuCount\":17,\"shopId\":\"007780\",\"showSinceDesc\":\"可自提\",\"latitude\":\"31.23\"},\"isFirstShowClassify\":false,\"bl_ad\":\"\",\"head4FCDefColor\":\"#221D1D\",\"latitude\":\"31.23187\",\"djClassifyHeaderType\":1,\"storeModel\":{\"orderAlias\":\"\",\"longtitude\":\"121.49\",\"showFreeLimitDesc\":\"58免首重\",\"shopType\":\"2020\",\"showSinceDesc\":\"可自提\",\"storeCode\":\"007780\",\"sceneId\":\"11000\",\"showInvoice\":1,\"provinceCode\":\"866\",\"shopCode\":\"2020007780ENT23234\",\"f_cellWidth\":165,\"showSinceSupport\":\"1\",\"distanceDesc\":\"\",\"deliveryTip\":\"\",\"latitude\":\"31.23\",\"comSid\":\"2000\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"showIndexDelTimeDesc\":\"9:30送达\",\"showDistributeDesc\":\"可配送\",\"showDistributeSupport\":\"1\",\"f_skuCount\":17,\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"distance\":\"208\",\"cityCode\":\"867\",\"districtCode\":\"868\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"addr\":\"四川南路26号门店地址\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"storeType\":\"2020\",\"showDelTimeDesc\":\"最快今日9:30送达\",\"orderTypes\":\"25,46,1\"},\"nearShopListArr\":[],\"isDeveloper\":false,\"sceneId\":\"11000\",\"locationAdress\":\"\",\"sourceValue\":\"1\",\"developerLongtitude\":\"\",\"headType\":1,\"developerLatitude\":\"\",\"currentAddress\":\"友谊大厦涉外商务楼\",\"isDaoJiaApp\":false,\"inStoreStyle\":0,\"shopingCarCount\":\"0\",\"head4FCActiveColor\":\"#EA1616\",\"addressRawDic\":{},\"leaveDJTimeStr\":1712161573.3638291,\"homeSelectTabType\":1,\"shopCart_tdStoreModel\":{\"storeInfo\":{\"provinceName\":\"上海市\",\"shopBeginTime\":\"8:00\",\"logo\":\"\",\"beginTime\":\"\",\"storeId\":\"3e6635bdb03a4745a19aad786872c963\",\"sceneId\":\"\",\"orderTypes\":\"\",\"state\":\"1\",\"cityCode\":\"867\",\"shopCode\":\"20402000211\",\"districtCode\":\"873\",\"longtitude\":\"121.382686\",\"comSid\":\"2000\",\"deliveryTip\":\"\",\"storeType\":\"2040\",\"orderAlias\":\"\",\"addr\":\"真光路1258号\",\"showDistributeDesc\":\"仅支持配送\",\"merchantId\":\"20402000211\",\"storeName\":\"联华云超\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"0\",\"endTime\":\"\",\"distance\":\"\",\"showNewDelTimeDesc\":\"疫情发货待定现场联华\",\"longitude\":\"\",\"isDistributeSupport\":\"\",\"shopType\":\"\",\"fastHomeMap\":{\"OvernightBeforeMessage\":\"\",\"FreeLimit\":\"\",\"DailyStartTime\":\"\",\"OvernightAfterMessage\":\"\",\"DailyEndTime\":\"\",\"LogisticsStartTime\":\"\",\"DelTime\":\"\",\"LogisticsEndTime\":\"\"},\"cityName\":\"市辖区\",\"shopName\":\"联华云超\",\"storeCode\":\"200021\",\"showInvoice\":\"\",\"districtName\":\"普陀区\",\"showFreeLimitDesc\":\"\",\"shopEndTime\":\"23:00\",\"showDistributeSupport\":\"1\",\"shopId\":\"200021\",\"isSelf\":\"0\",\"showSinceDesc\":\"\",\"buttonDesc\":\"\",\"phone\":\"18516042869\",\"latitude\":\"31.245041\"},\"bdStatus\":\"1\",\"shopCustomField\":{\"searchTabO2oLabel\":\"即时达\",\"searchTabB2cLabel\":\"全城配\",\"searchTabO2oUncheckedIcon\":\"https:\\/\\/Img.iblimg.com\\/resh5-1\\/h5resource\\/xcx\\/images\\/black-tab.png\",\"searchTabO2oDesc\":\"最快30分钟\",\"searchTabB2cDesc\":\"48H内发货\",\"searchTabO2oCheckedIcon\":\"https:\\/\\/Img.iblimg.com\\/resh5-1\\/h5resource\\/xcx\\/images\\/orange-tab.png\"},\"bdStore\":\"0\"}}},\"prd\":{\"userInfo\":{\"groupIds\":\"\",\"locked_reason\":\"\",\"expire_in\":\"2592000\",\"member_name\":\"185****6314\",\"error_times\":\"0\",\"orgId\":\"3000\",\"avatarUrl\":\"\",\"nickName\":\"\",\"doudoulevel\":\"109\",\"member_id\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"need_complete\":\"0\",\"realNameLevel\":\"0\",\"mobile\":\"18521006314\",\"black_account\":\"0\",\"encode_mobile\":\"ENC.1(ljEbTJFSKR9E01tP1oIT5Q==)\",\"rawDict\":{\"obj\":\"xtKm69AqR5e3\\/io0s\\/trCEl+VUGc8OHSthk54ChUqEQWEN65kB0YOAJ4+VZB sFTr8t4tQMr9GVYyVYHo\\/okf0P9K51jNp\\/G9QJzlrS2O7aqfCZEGbE2kS6ah 6Z4kbPkaxlYDIubiGiLS4mPvXBLuN8p1SB8CJRZS\\/j0gl953H1N41dcmGHNU \\/vHJNCoY5kuF+PG6JZkjnBAvJaC+tucL1mUgSjZqnZqwWegSLu\\/j4NQ3ZMp5 mrziIqcSf+1xsajOllla2NDsbxwy+Z0zlk0OzOF1JP4xiQjQMmXA++7P2ZXK FcAjv+b2ekUawdwD+ohfk\\/T2lHesZ7ZfUsPgpnZbQe6HxpaFMpymPhUdnnps 2VAFBKbid9V7BFYZF388PrxXfOn75zRJ1Ul5Eg3sUe+htj1HGXw1Rd34ecOD WsiEDg\\/zzDowJxfRMh3B0XFUl3SulwgFlN1LQzL1UfjeeYXEGxIsuj7TrvHa 9NcR25MH0PwoQ42\\/YVUkigcZQSoPntfB5jv+KfSDR\\/HRTmeTH5MYbdFImYUx D3NZvi6UPUk2xfG1oQfz8gz7AU2bGIYCV0dAmDa0HMgHjB9K+RSEMjZXXMe5 ctjLE30lQVDEJXn8dfg6vqwe4+TpPCo7anxmuoLzDox\\/gdlYsNYIofmr9l9S 5qYQi0J+n6sJem0\\/Oenjh4EfssJR8oo+9JAykWCN7FazguSrbakvVczBQvP0 JPh4zBvHyuEDB6HciEQxwKVU08lqfvS+a+0UKcNX92\\/kChjZnVKGk+tYdgzR mvy3AXpa9SrNfYyidQGMkYWkeUTyYSJK6sI2AzYA\\/ER4rwZyX1yt\",\"mobile\":\"18521006314\",\"resCode\":\"00100000\"},\"registerTime\":1629094690237,\"shellId\":\"\",\"passportId\":\"\",\"memberLevel\":\"40\",\"member_token\":\"4acf40fa4a3f2a41bdcc99db69dd8206f057655e54aeeba4d40c90ad836754f8\",\"remain_times\":\"3\",\"isSalesman\":\"1\",\"newRegFlag\":\"0\",\"high_risk\":\"0\",\"memberLevelCode\":\"40\",\"loginCode\":\"\",\"mediaCephUrl\":\"\",\"encode_memberId\":\"4a23420613f2a2b4f4fb2d12a6feabdd\",\"idFlag\":\"0\",\"pwdStrength\":\"1\",\"usable_stat\":\"0\"},\"plusInfo\":null,\"storeInfo\":{\"longtitude\":\"121.489972\",\"nearShopListArr\":[],\"head4FCActiveColor\":\"#EA1616\",\"shopCart_storeModel\":{\"provinceName\":\"\",\"shopBeginTime\":\"\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"beginTime\":\"\",\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"sceneId\":\"11000\",\"orderTypes\":\"25,46,1\",\"state\":\"\",\"cityCode\":\"867\",\"shopCode\":\"2020007780ENT23234\",\"districtCode\":\"868\",\"longtitude\":\"121.49\",\"comSid\":\"2000\",\"deliveryTip\":\"\",\"storeType\":\"2020\",\"orderAlias\":\"\",\"addr\":\"四川南路26号门店地址\",\"showDistributeDesc\":\"可配送\",\"merchantId\":\"2020007780ENT23234\",\"storeName\":\"\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"1\",\"endTime\":\"\",\"distance\":\"208\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"longitude\":\"\",\"isDistributeSupport\":\"\",\"shopType\":\"2020\",\"cityName\":\"\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"storeCode\":\"007780\",\"showInvoice\":\"1\",\"districtName\":\"\",\"showFreeLimitDesc\":\"58免首重\",\"shopEndTime\":\"\",\"showDistributeSupport\":\"1\",\"shopId\":\"007780\",\"isSelf\":\"\",\"showSinceDesc\":\"可自提\",\"buttonDesc\":\"\",\"phone\":\"\",\"latitude\":\"31.23\"},\"djHomeSearchStr\":\"\",\"currentAddress\":\"友谊大厦涉外商务楼\",\"addressRawDic\":{},\"djClassifyHeaderType\":1,\"developerLongtitude\":\"\",\"leaveDJTimeStr\":1712161573.3638291,\"storeModel\":{\"orderAlias\":\"\",\"longtitude\":\"121.49\",\"showFreeLimitDesc\":\"58免首重\",\"shopType\":\"2020\",\"showSinceDesc\":\"可自提\",\"storeCode\":\"007780\",\"sceneId\":\"11000\",\"showInvoice\":1,\"provinceCode\":\"866\",\"shopCode\":\"2020007780ENT23234\",\"f_cellWidth\":165,\"showSinceSupport\":\"1\",\"distanceDesc\":\"\",\"deliveryTip\":\"\",\"latitude\":\"31.23\",\"comSid\":\"2000\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"showIndexDelTimeDesc\":\"9:30送达\",\"showDistributeDesc\":\"可配送\",\"showDistributeSupport\":\"1\",\"f_skuCount\":17,\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"distance\":\"208\",\"cityCode\":\"867\",\"districtCode\":\"868\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"addr\":\"四川南路26号门店地址\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"storeType\":\"2020\",\"showDelTimeDesc\":\"最快今日9:30送达\",\"orderTypes\":\"25,46,1\"},\"sceneId\":\"11000\",\"orderSourceCode\":\"1\",\"isDaoJiaApp\":false,\"headerBgColorStr\":\"#FFFFFF\",\"sendType\":0,\"locationCity\":\"\",\"head4FCDefColor\":\"#221D1D\",\"bl_ad\":\"\",\"locationAdress\":\"\",\"classifyShowIndex\":0,\"isChangeNet\":false,\"latitude\":\"31.23187\",\"developerLatitude\":\"\",\"headType\":1,\"shopCart_tdStoreModel\":{\"storeInfo\":{\"provinceName\":\"上海市\",\"shopBeginTime\":\"8:00\",\"logo\":\"\",\"beginTime\":\"\",\"storeId\":\"3e6635bdb03a4745a19aad786872c963\",\"sceneId\":\"\",\"orderTypes\":\"\",\"state\":\"1\",\"cityCode\":\"867\",\"shopCode\":\"20402000211\",\"districtCode\":\"873\",\"longtitude\":\"121.382686\",\"comSid\":\"2000\",\"deliveryTip\":\"\",\"storeType\":\"2040\",\"orderAlias\":\"\",\"addr\":\"真光路1258号\",\"showDistributeDesc\":\"仅支持配送\",\"merchantId\":\"20402000211\",\"storeName\":\"联华云超\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"0\",\"endTime\":\"\",\"distance\":\"\",\"showNewDelTimeDesc\":\"疫情发货待定现场联华\",\"longitude\":\"\",\"isDistributeSupport\":\"\",\"shopType\":\"\",\"fastHomeMap\":{\"OvernightBeforeMessage\":\"\",\"FreeLimit\":\"\",\"DailyStartTime\":\"\",\"OvernightAfterMessage\":\"\",\"DailyEndTime\":\"\",\"LogisticsStartTime\":\"\",\"DelTime\":\"\",\"LogisticsEndTime\":\"\"},\"cityName\":\"市辖区\",\"shopName\":\"联华云超\",\"storeCode\":\"200021\",\"showInvoice\":\"\",\"districtName\":\"普陀区\",\"showFreeLimitDesc\":\"\",\"shopEndTime\":\"23:00\",\"showDistributeSupport\":\"1\",\"shopId\":\"200021\",\"isSelf\":\"0\",\"showSinceDesc\":\"\",\"buttonDesc\":\"\",\"phone\":\"18516042869\",\"latitude\":\"31.245041\"},\"bdStatus\":\"1\",\"shopCustomField\":{\"searchTabO2oLabel\":\"即时达\",\"searchTabB2cLabel\":\"全城配\",\"searchTabO2oUncheckedIcon\":\"https:\\/\\/Img.iblimg.com\\/resh5-1\\/h5resource\\/xcx\\/images\\/black-tab.png\",\"searchTabO2oDesc\":\"最快30分钟\",\"searchTabB2cDesc\":\"48H内发货\",\"searchTabO2oCheckedIcon\":\"https:\\/\\/Img.iblimg.com\\/resh5-1\\/h5resource\\/xcx\\/images\\/orange-tab.png\"},\"bdStore\":\"0\"},\"homeSelectTabType\":1,\"isFirstShowClassify\":false,\"djModuleType\":1,\"sourceValue\":\"1\",\"isDeveloper\":false,\"djHomeStyle\":2,\"inStoreStyle\":0,\"storeDictionary\":{\"showIndexDelTimeDesc\":\"9:30送达\",\"logo\":\"https:\\/\\/img21.st.iblimg.com\\/site-2\\/images\\/store\\/logo\\/2017\\/09\\/1601372813.png\",\"storeId\":\"a8dc67a568b64f4f8e43a767704c7999\",\"sceneId\":\"11000\",\"shopLatitude\":\"31.23\",\"orderTypes\":\"25,46,1\",\"cityCode\":\"867\",\"f_cellWidth\":165,\"shopCode\":\"2020007780ENT23234\",\"comSid\":\"2000\",\"shopLongitude\":\"121.49\",\"longtitude\":\"121.49\",\"deliveryTip\":\"\",\"orderAlias\":\"\",\"storeType\":\"2020\",\"districtCode\":\"868\",\"addr\":\"四川南路26号门店地址\",\"showDistributeDesc\":\"可配送\",\"merchantId\":\"2020007780ENT23234\",\"provinceCode\":\"866\",\"distanceDesc\":\"\",\"showSinceSupport\":\"1\",\"distance\":\"208\",\"showNewDelTimeDesc\":\"最快今日9:30送达\",\"shopType\":\"2020\",\"shopName\":\"联华超市武宁生活馆馆馆\",\"storeCode\":\"007780\",\"showInvoice\":1,\"showDelTimeDesc\":\"最快今日9:30送达\",\"showFreeLimitDesc\":\"58免首重\",\"showDistributeSupport\":\"1\",\"f_skuCount\":17,\"shopId\":\"007780\",\"showSinceDesc\":\"可自提\",\"latitude\":\"31.23\"},\"labelColor\":\"#000000\",\"shopingCarCount\":\"0\"}}}"
+                let json = ""
                 guard let data = json.data(using: .utf8),
                       let obj = try? JSONSerialization.jsonObject(with: data,
                                                                   options: [.fragmentsAllowed]) as? [String: Any] else {
@@ -439,7 +467,12 @@ extension DJTestRouter {
                 dismiss?()
                 let topVC = UIViewController.topViewController()
                 topVC?.dismiss(animated: true)
-            })
+            }),
+            HoverItem(title: "pop", image: nil, onTap: {
+                dismiss?()
+                let topVC = UIViewController.topViewController()
+                topVC?.navigationController?.popViewController()
+            }),
         ]
         let hoverView = HoverView(with: config, items: menuList)
         let nav = UINavigationController(rootViewController: rootVC)

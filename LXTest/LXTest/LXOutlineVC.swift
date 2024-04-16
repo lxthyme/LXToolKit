@@ -378,14 +378,19 @@ private extension LXOutlineVC {
                 .map { $0.trimmed }
                 .filter { $0.isNotEmpty }
             var defaultValue: String? = ""
-            if let title = tmp[safe: 0],
-               title == DJRouterPath.goodsDetail.title,
-               let prevSelectedGoodsId = DaoJiaConfig.LocalKey.previousSelectedGoodsId.getValue() {
-                defaultValue = mockList?.first(where: { $0.contains(prevSelectedGoodsId) && $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
-            }
-            if defaultValue?.isEmpty ?? false {
+            switch tmp[safe: 0] {
+            case DJRouterPath.goodsDetail.title:
+                if let prevSelectedGoodsId = DaoJiaConfig.LocalKey.previousSelectedGoodsId.getValue() {
+                    defaultValue = mockList?.first(where: { $0.contains(prevSelectedGoodsId) && $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
+                }
+            case DJRouterPath.getMain.title:
                 defaultValue = mockList?
                     .first(where: { $0.components(separatedBy: "/").first?.trimmed == DJRouter.getCurrentEnv().title })
+            case DJRouterPath.shopList.title:
+                if let prevSelectedIdx = DaoJiaConfig.LocalKey.shopListType.getValue()?.int {
+                    defaultValue = mockList?[safe: prevSelectedIdx]
+                }
+            default: break
             }
             cell.dataFill(title: tmp[safe: 0] ?? "", placeholder: tmp[safe: 1], mockList: mockList, defaultValue: defaultValue)
             cell.accessories = [
@@ -568,29 +573,34 @@ extension LXOutlineVC: UICollectionViewDelegate {
         let tmp = menuItem.opt.section.title.components(separatedBy: ":")
         guard let path = DJRouterPath.from(tmp.first) else { return }
         switch path {
+        case .shopList:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
+            let type = DJRouterPath.DJShopListType.from(string: cell.currentValue)
+            DaoJiaConfig.LocalKey.shopListType.setValue("\(type.rawValue)")
+            let scene: Navigator.Scene = .vc(provider: {
+                let vc = DJRouterObjc.getShopListVC(type.sceneId, complection: {[weak self] in
+                    guard let self else { return }
+                    let gStore = DJStoreManager.sharedInstance().storeModel;
+                    let scene = DJRouter.getDaoJia(storeCode: gStore.shopId, storeType: gStore.shopType)
+                    Navigator.default.show(segue: scene, sender: self)
+                })
+                // return DJTestRouter.createNav(rootVC: vc)
+                return vc
+            })
+            Navigator.default.show(segue: scene, sender: self)
         case .getMain:
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
             let param = cell.currentValue.components(separatedBy: "/")
-            guard let storeCode = param[safe: 1],
-                  let storeType = param[safe: 2] else {
-                return
-            }
-            let scene: Navigator.Scene = .vc(provider: {
-                let vc = DJRouter.getMain(storeCode: storeCode, storeType: storeType)!
-                let nav = DJTestRouter.createNav(rootVC: vc) {
-                    DJSavedData.saveGStore()
-                }
-                return nav
-            }, transition: .alert)
+            let storeCode = param[safe: 2]
+            let storeType = param[safe: 3]
+            let scene = DJRouter.getDaoJia(storeCode: storeCode, storeType: storeType)
             Navigator.default.show(segue: scene, sender: self)
         case .firstMedicine:
-            let scene: Navigator.Scene = .vc(provider: {
-                let vc = DJRouter.getFirstMedicine()!
-                let nav = DJTestRouter.createNav(rootVC: vc) {
-                    DJSavedData.saveGStore()
-                }
-                return nav
-            }, transition: .alert)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
+            let param = cell.currentValue.components(separatedBy: "/")
+            let storeCode = param[safe: 2]
+            let storeType = param[safe: 3]
+            let scene = DJRouter.getFirstMedicine(storeCode: storeCode, storeType: storeType)
             Navigator.default.show(segue: scene, sender: self)
         case .goodsDetail:
             guard let cell = collectionView.cellForItem(at: indexPath) as? LXOutlineParamCell else { return }
@@ -604,17 +614,11 @@ extension LXOutlineVC: UICollectionViewDelegate {
                 return
             }
             DaoJiaConfig.LocalKey.previousSelectedGoodsId.setValue(goodsId)
-            let scene: Navigator.Scene = .vc(provider: {
-                let vc = DJRouter.getGoodsDetail(storeCode: gStore.shopId,
-                                                 storeType: gStore.shopType,
-                                                 merchantId: gStore.merchantId,
-                                                 goodsId: goodsId,
-                                                 tdType: tdType)
-                let nav = DJTestRouter.createNav(rootVC: vc) {
-                    DJSavedData.saveGStore()
-                }
-                return nav
-            }, transition: .alert)
+            let scene = DJRouter.getGoodsDetail(storeCode: gStore.shopId,
+                                                storeType: gStore.shopType,
+                                                merchantId: gStore.merchantId,
+                                                goodsId: goodsId,
+                                                tdType: tdType)
             Navigator.default.show(segue: scene, sender: self)
         }
 

@@ -13,6 +13,7 @@
 #import <DJBusinessTools/DJBusinessTools.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <DJBusinessModule/DJTabbarViewController.h>
+#import <DJBusinessModule/DJNearStoresViewController.h>
 
 #import <SensorsAnalyticsSDK/SensorsAnalyticsSDK.h>
 #import <AvoidCrash/AvoidCrash.h>
@@ -68,6 +69,15 @@
 // + (DJStoreModel *)gStore {
 //     return [DJStoreManager sharedInstance].storeModel;
 // }
++ (UIViewController *)getShopListVC:(NSString *)sceneId 
+                        complection:(void(^)(void))complectionBlock {
+    [DJStoreManager sharedInstance].sceneId = sceneId;
+    DJNearStoresViewController *vc = [[DJNearStoresViewController alloc] init];
+    vc.changeHomePage = ^(NSDictionary *parames) {
+        !complectionBlock ?: complectionBlock();
+    };
+    return vc;
+}
 
 #pragma mark -
 #pragma mark - 🔐Private Actions

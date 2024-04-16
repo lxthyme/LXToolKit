@@ -54,7 +54,7 @@ extension LXOutlineParamCell {
     func dataFill(title: String, placeholder: String?, mockList: [String]? = nil, defaultValue: String? = nil) {
         btnTitle.setTitle(title, for: .normal)
         // tfTextField.placeholder = placeholder
-        if let placeholder {
+        if let placeholder, placeholder.isNotEmpty {
             tfTextField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
                 .foregroundColor: UIColor.systemGray,
             ])
@@ -70,20 +70,33 @@ extension LXOutlineParamCell {
     @available(iOS 15.0, *)
     func configBtn(title: String, mockList: [String], placeholder: String?) {
          var tmp = mockList
-        if let placeholder {
-            tmp.append(placeholder)
+        if let placeholder, placeholder.isNotEmpty {
+            tmp.insert(placeholder, at: 0)
         }
         let subitems = tmp
             .map {[weak self] item in
-                let prefix = item.components(separatedBy: "/").first?.trimmed
-                let isActionEnabled = (prefix?.isEmpty ?? false) ||
-                prefix == "env" ||
-                prefix == DJRouter.getCurrentEnv().title
+                var isActionEnabled = true
+                let tmp2 = item.components(separatedBy: "/")
+                if tmp2.count >= 2,
+                   let prefix = tmp2.first?.trimmed,
+                   prefix.isNotEmpty {
+                    isActionEnabled = // (prefix?.isEmpty ?? true) ||
+                    prefix == "env" ||
+                    prefix == DJRouter.getCurrentEnv().title
+                } else if item == placeholder {
+                    isActionEnabled = false
+                }
                 let action = UIAction(title: item, state: self?.currentSelected == item ? .on : .off) { _ in
                     if !isActionEnabled {
                         return
                     }
-                    self?.tfTextField.text = item
+                    if item.filter({ $0 != "/" }).count <= 0 {
+                        self?.tfTextField.isUserInteractionEnabled = true
+                        self?.tfTextField.text = ""
+                    } else {
+                        self?.tfTextField.isUserInteractionEnabled = false
+                        self?.tfTextField.text = item
+                    }
                 }
                 action.attributes = isActionEnabled ? [] : .disabled
                 return action

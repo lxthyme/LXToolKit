@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)registerApp:(NSDictionary * _Nullable)launchOptions;
 
 + (UIViewController *)getQuickHome;
++ (UIViewController *)getShopListVC:(NSString *)sceneId
+                        complection:(void(^)(void))complectionBlock;
 /// 全局门店
 // + (DJStoreModel *)gStore;
 
