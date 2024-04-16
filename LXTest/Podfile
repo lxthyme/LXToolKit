@@ -164,6 +164,7 @@ def pod_DJ
   pod 'BLCartService', :podspec => './'
   pod 'BLOrder', :podspec => './'
   pod 'BLMapModule', :podspec => './'
+  pod 'BLFlutterRouterManager'
   pod 'BLCashier'
   pod 'DJBusinessTools', :path=>"#{$DaoJiaPathFixed}/DJBusinessTools", :inhibit_warnings => false
   pod 'DJiOSAppImages', :path=>"#{$DaoJiaPathFixed}/DJiOSAppImages", :inhibit_warnings => false

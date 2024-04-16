@@ -36,6 +36,7 @@ internal extension LXToolKitRouter {
     static let router2024: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2024")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "LXTestVC202401")), scene: .vc(provider: { LXTestVC202401() })),
         LXOutlineItem(opt: .subitem(.section(title: "LXTestListCycleVC")), scene: .vc(provider: { LXTestListCycleVC() })),
+        LXOutlineItem(opt: .subitem(.section(title: "LXStackTest202404VC")), scene: .vc(provider: { LXStackTest202404VC() })),
     ]);
     static let router2023: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2023")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "LX03_08_03VC")), scene: .vc(provider: { LX03_08_03VC() })),

@@ -14,21 +14,113 @@ private let plusData: DJSavedData = .plusInfo
 private let storeData: DJSavedData = .storeInfo
 private let getSaveType: (_ fromDefaults: Bool) -> String = { fromDefaults in fromDefaults ? "UserDefaults" : "KeyChain" }
 
+// MARK: - 👀
+extension DJRouterPath {
+    enum  DJShopListType: Int, CaseIterable {
+        case daojia, firstMedicine
+
+        var title: String {
+            switch self {
+            case .daojia: return "百联到家"
+            case .firstMedicine: return "第一医药"
+            }
+        }
+        var sceneId: String {
+            switch self {
+            case .daojia: return "11000"
+            case .firstMedicine: return "11003"
+            }
+        }
+        static func from(string: String?) -> DJShopListType {
+            guard let string else { return .daojia }
+            switch string {
+            case "第一医药": return .firstMedicine
+            default: return .daojia
+            }
+        }
+    }
+}
+
+enum DJRouterPath {
+    case shopList
+    case getMain
+    case firstMedicine
+    case goodsDetail
+
+    var title: String {
+        var tmp = ""
+        switch self {
+        case .shopList: tmp = "门店列表"
+        case .getMain: tmp = "联华到家"
+        case .goodsDetail: tmp = "商详"
+        case .firstMedicine: tmp = "第一医药"
+        }
+        return "👉\(tmp)"
+    }
+    static func from(_ title: String?) -> DJRouterPath? {
+        guard let title else { return nil }
+        switch title {
+        case DJRouterPath.shopList.title:
+            return DJRouterPath.shopList
+        case DJRouterPath.getMain.title:
+            return DJRouterPath.getMain
+        case DJRouterPath.firstMedicine.title:
+            return DJRouterPath.firstMedicine;
+        case DJRouterPath.goodsDetail.title:
+            return DJRouterPath.goodsDetail;
+        default: return nil
+        }
+    }
+}
+
+
 enum DaoJiaConfig: String {
     case test
-    enum LocalKey: String {
+    enum LocalKey {
+        /// LXOutlineVC 没有选中任何项时, 默认定位到到家 section
         case autoPinnedDaoJiaSection
+        /// 上次选中商品的 goodsId
         case previousSelectedGoodsId
+        /// 商品列表中的商品类型
+        case goodsShowingType
+        /// 门店列表类型
+        case shopListType
+
+        var title: String {
+            switch self {
+            case .autoPinnedDaoJiaSection: return "autoPinnedDaoJiaSection"
+            case .previousSelectedGoodsId: return "previousSelectedGoodsId"
+            case .goodsShowingType: return "goodsShowingType"
+            case .shopListType: return "shopListType"
+            }
+        }
+    }
+}
+
+// MARK: - 👀
+extension DaoJiaConfig.LocalKey {
+    enum GoodsShowingType: Int, CaseIterable, CustomStringConvertible {
+        case all, onlyCurrentStore, onlyCurrentEnv
+
+        var description: String {
+            var desc = "GoodsShowingType"
+            switch self {
+            case .all: desc += ".all"
+            case .onlyCurrentStore: desc += ".onlyCurrentStore"
+            case .onlyCurrentEnv: desc += ".onlyCurrentEnv"
+            }
+            return desc
+        }
     }
 }
 
 // MARK: - 👀
 extension DaoJiaConfig.LocalKey {
     func getValue() -> String? {
-        return try? keychain.get(rawValue)
+        return try? keychain.get(title)
     }
     func setValue(_ value: String?) {
-        try? keychain.set(value ?? "", key: rawValue)
+        try? keychain.set(value ?? "", key: title)
     }
 }
 
@@ -68,33 +160,62 @@ open class DJRouter: NSObject {
 }
 
 public extension DJRouter {
-    static func getMain(storeCode: String? = nil, storeType: String? = nil) -> UIViewController? {
-        var params = [
-            "url": "blmodule://quickHome/home"
-        ]
+    private static func getScene(vcProvider: @escaping () -> UIViewController?) -> Navigator.Scene {
+        let scene: Navigator.Scene = .vc(provider: {
+            guard let vc = vcProvider() else {
+                return nil
+            }
+            let nav = DJTestRouter.createNav(rootVC: vc) {
+                DJSavedData.saveGStore()
+                DJSavedData.saveLoginInfo()
+            }
+            return nav
+        }, transition: .alert)
+        return scene
+    }
+    private static func getDaoJiaScene(params: [String: Any]) -> Navigator.Scene {
+        return getScene {
+            getDaoJiaVC(params: params)!
+        }
+    }
+    static func getDaoJiaVC(params: [String: Any]) -> UIViewController? {
+        return BLMediator.sharedInstance().djBusinessModule_NewMain(params)
+    }
+    static func getDaoJia(storeCode: String? = nil,
+                        storeType: String? = nil) -> Navigator.Scene {
+        var url = "blmodule://quickHome/home"
         if let storeCode, storeCode.isNotEmpty,
             let storeType, storeType.isNotEmpty {
-            params["url"] = "blmodule://quickHome/home?storeCode=\(storeCode)&storeType=\(storeType)"
+            url = "blmodule://quickHome/home?storeCode=\(storeCode)&storeType=\(storeType)&jumpStyle=1"
         }
-        let vc = BLMediator.sharedInstance().djBusinessModule_NewMain(params)
-        return vc
+        DJStoreManager.sharedInstance().djModuleType = .COMMONTYPE
+        return getDaoJiaScene(params: ["url": url])
     }
-    static func getQuickHome() -> UIViewController {
-        return DJRouterObjc.getQuickHome()
-    }
-    static func getGoodsDetail(storeCode: String, storeType: String, merchantId: String, goodsId: String, tdType: String) -> UIViewController {
-        guard let vc = BLMediator.sharedInstance().djBusinessModule_DJProductDetailViewController(withParams: [
-            "storeCode": storeCode,
-            "storeType": storeType,
-            "merchantId": merchantId,
-            "tdType": tdType,
-            "goodsId": goodsId,
-        ]) else {
-            let vc = LXSampleTextViewVC()
-            vc.dataFillUnSupport(content: "goGoodsDetail failed!")
-            return vc
+    static func getFirstMedicine(storeCode: String? = nil, storeType: String? = nil) -> Navigator.Scene {
+        guard let storeCode, storeCode.isNotEmpty,
+              let storeType, storeType.isNotEmpty else {
+            DJStoreManager.sharedInstance().djModuleType = .FIRSTMEDICINE
+            return getDaoJiaScene(params: ["url": "blmodule://quickHome/firstmedicine?sceneId=11003"])
         }
-        return vc
+        DJStoreManager.sharedInstance().djModuleType = .FIRSTMEDICINE
+        let url = "blmodule://quickHome/home?storeCode=\(storeCode)&storeType=\(storeType)"
+        return getDaoJiaScene(params: ["url": url])
+    }
+    static func getQuickHome() -> Navigator.Scene {
+        return getScene {
+            DJRouterObjc.getQuickHome()
+        }
+    }
+    static func getGoodsDetail(storeCode: String, storeType: String, merchantId: String, goodsId: String, tdType: String) -> Navigator.Scene {
+        return getScene {
+            BLMediator.sharedInstance().djBusinessModule_DJProductDetailViewController(withParams: [
+                "storeCode": storeCode,
+                "storeType": storeType,
+                "merchantId": merchantId,
+                "tdType": tdType,
+                "goodsId": goodsId,
+            ])
+        }
     }
 }
 

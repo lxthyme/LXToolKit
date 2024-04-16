@@ -13,30 +13,6 @@ import UIKit
 // import AMapLocationKit
 // import MAMapKit
 
-enum DJRouterPath {
-    case getMain
-    case goodsDetail
-
-    var title: String {
-        var tmp = ""
-        switch self {
-        case .getMain: tmp = "指定进店"
-        case .goodsDetail: tmp = "商详"
-        }
-        return "👉\(tmp)"
-    }
-    static func from(_ title: String?) -> DJRouterPath? {
-        guard let title else { return nil }
-        switch title {
-        case DJRouterPath.getMain.title:
-            return DJRouterPath.getMain
-        case DJRouterPath.goodsDetail.title:
-            return DJRouterPath.goodsDetail;
-        default: return nil
-        }
-    }
-}
-
 class DJLibsManager: NSObject {
     // MARK: 🔗Vaiables
     // MARK: 🛠Life Cycle
