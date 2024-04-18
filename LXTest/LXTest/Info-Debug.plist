@@ -36,6 +36,58 @@
 		<string>misans.ttf</string>
 		<string>impact.ttf</string>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>alipays</string>
+        <string>loongpayapp</string>
+        <string>secretfree</string>
+        <string>okpay</string>
+        <string>mbspay</string>
+        <string>weixinULAPI</string>
+        <string>riso</string>
+        <string>BestPay</string>
+        <string>bankabc</string>
+        <string>weixin</string>
+        <string>wechat</string>
+        <string>uppaysdk</string>
+        <string>uppaywallet</string>
+        <string>uppayx1</string>
+        <string>uppayx2</string>
+        <string>uppayx3</string>
+        <string>iosamap</string>
+        <string>blemall</string>
+        <string>alipay</string>
+        <string>baidumap</string>
+    </array>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>i百联需要您的同意才能使用蓝牙，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>i百联需要您的同意才能使用蓝牙，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>i百联需要使用您的日历为您提供定时提醒服务</string>
+    <key>NSCameraUsageDescription</key>
+    <string>"i百联"想访问您的相机，为了帮您扫描二维码或商品和互动等功能</string>
+    <key>NSContactsUsageDescription</key>
+    <string>i百联需要访问您的通讯录，以便您在购物时正常查阅、取用您的联系人信息</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+    <dict>
+        <key>purposeKey4changeInfo</key>
+        <string>用于向您推荐附近的商品、店铺及优惠资讯</string>
+    </dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>i百联需要获取您的位置信息，以便您及时获取附近商场的活动和优惠信息</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>i百联需要您的同意才能使用麦克风，以便您正常使用语音搜索功能</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>i百联需要访问您的相册，以便您正常使用扫一扫、评论晒照等服务</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>i百联需要访问您的相册，以便您正常使用扫一扫、评论晒照、保存发票等服务</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>i百联需要使用您的日历为您提供定时提醒服务</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

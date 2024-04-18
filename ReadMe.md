@@ -46,3 +46,10 @@ globals.logger.printStatus('-->iosDevelopmentTeam: $iosDevelopmentTeam', color: 
 ```sh
 /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/DJTest/Pods/FirebaseCrashlytics/upload-symbols -gsp /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/DJTest/DJTest/GoogleService-Info.plist -p ios /Users/lxthyme/Library/Developer/Xcode/DerivedData/DJTest-ekxswhvxomdrxxbpthvkqvexrvyt/Build/Products/Debug-iphoneos/DJTest.app.dSYM
 ```
+
+
+## 3rd
+```sh
+ln -s /Users/lxthyme/Desktop/Lucky/Swift/LXToolKit/3rd/BaiLianMobileAppEx/BaiLianMobileAppEx.podspec /Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia
+
+```

@@ -178,6 +178,37 @@ def pod_DJ
   # pod 'BLMapModule', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BLMapModule', :inhibit_warnings => false
   pod 'BLShoppingCartModule'
 
+  ################## BaiLianMobileApp 依赖项 ##################
+  pod 'BaiLianMobileAppEx', :path => '/Users/lxthyme/Desktop/Lucky/Work/BL/DaoJia/BaiLianMobileAppEx.podspec'
+  # BaiLianMobileApp 废弃文件列表
+  # Classes//ActionsBLExplosionCategory
+  # Classes/Common/GlobalShare
+  # Classes/Views/Category
+  # Classes/Views/couponViews
+  # Plugins/HttpCtrl/Extensions/NSData+Crypto
+  # Plugins/HttpCtrl/Extensions/NSDateUtilities
+  # Classes/IBLGlobalBuyCateViewController
+  # Classes/TagListView
+  # Classes/Controllers/OrderConfirm/OrderConfirmView/cell/addressCell
+  # Classes/Controllers/OrderConfirm/OrderConfirmView/cell/OrderConfirmNomalCell
+  # pod 'BLUITools'
+  # pod 'BLCartViewControllerContainer'
+  # pod 'BLActionSheetView'
+  # pod 'BLGuideModule'
+  # pod 'BL3DTouchModule'
+  # pod 'BLOrderConfirmCountDownView'
+  # pod 'BLSayToHimTableViewCell'
+  # pod 'BLGoodsDetail'
+  # pod 'BLOrderDatePickerView'
+  # pod 'BLNoticeView'
+  # pod 'BLWebSocketModule'
+  # pod 'tingyunApp', '2.17.1'
+  # pod 'TZImagePickerController'
+  # pod 'TMCache', '2.1.0'
+  # pod 'JSONModel', '1.1.2'
+  # pod 'JPush', '~> 4.3.0'
+  # pod 'PromiseKit', '1.7.7'
+
   pod 'SDWebImage', '5.9.2'
   pod 'MWPhotoBrowser', :podspec => './'
 
@@ -388,7 +419,8 @@ def generateConfig(target, config, project_deployment_version)
 end
 
 $daojia_list = [
-  'AFNetworking','AMap3DMap-NO-IDFA','AMapFoundation-NO-IDFA','AMapLocation-NO-IDFA','AMapSearch-NO-IDFA','AmapAPIManager','Aspects','AvoidCrash','BLAPIManagers','BLAPPInfoModule','BLAddressCRUD','BLAdvertResourceJumpManager','BLAreaManager','BLAutoScrollBannerHeaderView','BLBusinessCategoryAMapAPI','BLBusinessCategoryAddress','BLBusinessCategoryAdvertResource','BLBusinessCategoryBLStore','BLBusinessCategoryCheckRedCardInfo','BLBusinessCategoryCloudStore','BLBusinessCategoryCoupon','BLBusinessCategoryPagemanager','BLBusinessCategoryResourceRecorder','BLBusinessCategoryRouterCenter','BLBusinessCategorySensor','BLBusinessCategoryWebViewControllers','BLBusinessContext','BLCancelOrderView','BLCartService','BLCategories','BLCheckRedCardInfo','BLCollectionViewHeaderLayout','BLCountDownTool','BLCoupon','BLCouponCenterModule','BLCouponCommonComponents','BLDaoJiaAlertView','BLDragView','BLHomeDataSource','BLHomePageViewComponents','BLHorScrollGoodsDetailCell','BLImage','BLKeychainManager','BLLog','BLLoginRegister','BLMapModule','BLMediator','BLNetworking','BLNetworkingCategory','BLOrder','BLOrderConfirmBottomView','BLOrderConfirmCouponActionSheet','BLOrderConfirmNormalActionSheet','BLOrderConfirmRuleAlertView','BLOrderConfirmTableViewCells','BLOrderConfirmTableViewHeaderFooterViews','BLOrderUnavailableGoodsPopView','BLPagerListView','BLPagerView','BLPanicBuyEveryDay','BLPanicBuyViewComponents','BLPayCode','BLPaySuccessful','BLPopDownMenu','BLProtocolManager','BLRangeSlider','BLRawAPIManager','BLRealNameInformation','BLRefresh','BLSafeFetchDataFunctions','BLSearchBarContext','BLSecurePasswordAlertView','BLSecurePasswordView','BLSelectAddressViewController','BLSensorTrack','BLShare','BLShuMeiRisk','BLTabbar','BLTwoBallRotationView','BLUITools','BLViewDownloadsInvoice','BLWeChatSDK','BLWebViewControllers','BLiOSAppImages','CRRouter','CTAppContext','CTAppContext_BaiLian','CTHandyCategories','CTMediator','CTPersistance','CTVideoPlayerView','CTWKWebView','CTWebViewComponents','CTWebviewTarget','DACircularProgress','DJBusinessCategoryRouterCenter','DJBusinessModule','DJBusinessTools','DJGlobalStoreManager','DJiOSAppImages','FXBlurView','HTHorizontalSelectionList','HWPanModal','HandyFrame','IBLAddressSelectPickerView','IBLNavigationBar','IBLOrderConfirmAlertView','IBLPopDownMenu','IBLProgressHud','IBLTitleScrollView','IBLToastView','IQKeyboardManager','JSONKit','JhtMarquee','LinkedME_LinkAccount','M13BadgeView','MMPopupView','MWPhotoBrowser','RisoAppContext','SDCycleScrollView','SQLCipher','SensorsAnalyticsSDK','Toast','VerticalAlignmentLabel','WechatOpenSDK','YYCache','YYImage','YYWebImage','iCarousel', 'AlipaySDK-iOS',
+  'DJBusinessCategoryRouterCenter', 'DJBusinessModule', 'DJBusinessTools', 'DJGlobalStoreManager', 'DJiOSAppImages', 'BaiLianMobileAppEx',
+  'AFNetworking','AMap3DMap-NO-IDFA','AMapFoundation-NO-IDFA','AMapLocation-NO-IDFA','AMapSearch-NO-IDFA','AmapAPIManager','Aspects','AvoidCrash','BLAPIManagers','BLAPPInfoModule','BLAddressCRUD','BLAdvertResourceJumpManager','BLAreaManager','BLAutoScrollBannerHeaderView','BLBusinessCategoryAMapAPI','BLBusinessCategoryAddress','BLBusinessCategoryAdvertResource','BLBusinessCategoryBLStore','BLBusinessCategoryCheckRedCardInfo','BLBusinessCategoryCloudStore','BLBusinessCategoryCoupon','BLBusinessCategoryPagemanager','BLBusinessCategoryResourceRecorder','BLBusinessCategoryRouterCenter','BLBusinessCategorySensor','BLBusinessCategoryWebViewControllers','BLBusinessContext','BLCancelOrderView','BLCartService','BLCategories','BLCheckRedCardInfo','BLCollectionViewHeaderLayout','BLCountDownTool','BLCoupon','BLCouponCenterModule','BLCouponCommonComponents','BLDaoJiaAlertView','BLDragView','BLHomeDataSource','BLHomePageViewComponents','BLHorScrollGoodsDetailCell','BLImage','BLKeychainManager','BLLog','BLLoginRegister','BLMapModule','BLMediator','BLNetworking','BLNetworkingCategory','BLOrder','BLOrderConfirmBottomView','BLOrderConfirmCouponActionSheet','BLOrderConfirmNormalActionSheet','BLOrderConfirmRuleAlertView','BLOrderConfirmTableViewCells','BLOrderConfirmTableViewHeaderFooterViews','BLOrderUnavailableGoodsPopView','BLPagerListView','BLPagerView','BLPanicBuyEveryDay','BLPanicBuyViewComponents','BLPayCode','BLPaySuccessful','BLPopDownMenu','BLProtocolManager','BLRangeSlider','BLRawAPIManager','BLRealNameInformation','BLRefresh','BLSafeFetchDataFunctions','BLSearchBarContext','BLSecurePasswordAlertView','BLSecurePasswordView','BLSelectAddressViewController','BLSensorTrack','BLShare','BLShuMeiRisk','BLTabbar','BLTwoBallRotationView','BLUITools','BLViewDownloadsInvoice','BLWeChatSDK','BLWebViewControllers','BLiOSAppImages','CRRouter','CTAppContext','CTAppContext_BaiLian','CTHandyCategories','CTMediator','CTPersistance','CTVideoPlayerView','CTWKWebView','CTWebViewComponents','CTWebviewTarget','DACircularProgress','FXBlurView','HTHorizontalSelectionList','HWPanModal','HandyFrame','IBLAddressSelectPickerView','IBLNavigationBar','IBLOrderConfirmAlertView','IBLPopDownMenu','IBLProgressHud','IBLTitleScrollView','IBLToastView','IQKeyboardManager','JSONKit','JhtMarquee','LinkedME_LinkAccount','M13BadgeView','MMPopupView','MWPhotoBrowser','RisoAppContext','SDCycleScrollView','SQLCipher','SensorsAnalyticsSDK','Toast','VerticalAlignmentLabel','WechatOpenSDK','YYCache','YYImage','YYWebImage','iCarousel', 'AlipaySDK-iOS',
 ]
 def fix_deployment_target(target, config, project_deployment_version)
   # old_version = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
