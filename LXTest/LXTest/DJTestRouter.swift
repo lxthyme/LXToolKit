@@ -167,6 +167,7 @@ public struct DJTestRouter {
         //         return vc
         //     }
         // })),
+        LXOutlineItem(opt: .subitem(.section(title: "LXKeyboardTestVC")), scene: .vcString(vcString: "LXKeyboardTestVC")),
     ])
     static let routerDJ: () -> LXOutlineItem = {
         let getInfoVC: (_ obj: [CTServiceAPIEnviroment: DJLocalInfo]) -> UIViewController = { obj in

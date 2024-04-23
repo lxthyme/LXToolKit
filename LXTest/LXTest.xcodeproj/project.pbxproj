@@ -31,6 +31,7 @@
 		BE1FBD6C2BA4426B00B9A7CB /* ImageURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A72AE75D8C00E9577C /* ImageURLProtocol.swift */; };
 		BE1FBD6D2BA442B300B9A7CB /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
 		BE1FBD6E2BA46EFD00B9A7CB /* HealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */; };
+		BE2918862BD7A0CC00B5AABD /* LXKeyboardTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2918832BD7A0CC00B5AABD /* LXKeyboardTestVC.m */; };
 		BE29938C2AF0A29F00767EA0 /* LXLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */; };
 		BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A22AE75AB400E9577C /* GameColors.swift */; };
 		BE3067A52AE75AE600E9577C /* HealthLevelShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */; };
@@ -185,6 +186,8 @@
 		BE1FBD622BA4399700B9A7CB /* LXDynamicLandVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDynamicLandVC.swift; sourceTree = "<group>"; };
 		BE1FBD652BA4409300B9A7CB /* LXActivityAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXActivityAvatarView.swift; sourceTree = "<group>"; };
 		BE1FBD672BA440FC00B9A7CB /* LXAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXAvatarView.swift; sourceTree = "<group>"; };
+		BE2918822BD7A0CC00B5AABD /* LXKeyboardTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXKeyboardTestVC.h; sourceTree = "<group>"; };
+		BE2918832BD7A0CC00B5AABD /* LXKeyboardTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXKeyboardTestVC.m; sourceTree = "<group>"; };
 		BE29938B2AF0A29F00767EA0 /* LXLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXLibManager.swift; sourceTree = "<group>"; };
 		BE3067A22AE75AB400E9577C /* GameColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColors.swift; sourceTree = "<group>"; };
 		BE3067A42AE75AE600E9577C /* HealthLevelShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLevelShape.swift; sourceTree = "<group>"; };
@@ -359,6 +362,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE2918842BD7A0CC00B5AABD /* 04 */ = {
+			isa = PBXGroup;
+			children = (
+				BE2918822BD7A0CC00B5AABD /* LXKeyboardTestVC.h */,
+				BE2918832BD7A0CC00B5AABD /* LXKeyboardTestVC.m */,
+			);
+			path = 04;
+			sourceTree = "<group>";
+		};
+		BE2918852BD7A0CC00B5AABD /* 2024 */ = {
+			isa = PBXGroup;
+			children = (
+				BE2918842BD7A0CC00B5AABD /* 04 */,
+			);
+			path = 2024;
+			sourceTree = "<group>";
+		};
 		BE29938A2AF0A28D00767EA0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +516,7 @@
 		BE6D6CD52B6A2E02000700DF /* DJ.daily */ = {
 			isa = PBXGroup;
 			children = (
+				BE2918852BD7A0CC00B5AABD /* 2024 */,
 				BE6D6CD82B6A2E35000700DF /* quickHome */,
 			);
 			path = DJ.daily;
@@ -1013,6 +1034,7 @@
 				BEFA8E742AE90A8800933131 /* DetailView.swift in Sources */,
 				BEA850FA2B216B6100C6D019 /* LXFirstVC.swift in Sources */,
 				BE3067A32AE75AB400E9577C /* GameColors.swift in Sources */,
+				BE2918862BD7A0CC00B5AABD /* LXKeyboardTestVC.m in Sources */,
 				BE56655F2B2C3CAD00D24B7C /* DJTestRouter.swift in Sources */,
 				BEFA8DD42AE8EDC400933131 /* AdventureView.swift in Sources */,
 			);
