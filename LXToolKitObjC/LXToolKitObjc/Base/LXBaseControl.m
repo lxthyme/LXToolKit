@@ -16,7 +16,7 @@
 
 @implementation LXBaseControl
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[UIControl]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[UIControl]: %@", NSStringFromClass([self class]));
 }
 #pragma mark -
 #pragma mark - 🛠Life Cycle

@@ -15,7 +15,7 @@
 
 @implementation LXBaseTableViewHeaderFooterView
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[TableViewHeaderFooterView]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[TableViewHeaderFooterView]: %@", NSStringFromClass([self class]));
 }
 #pragma mark -
 #pragma mark - 🛠Life Cycle
