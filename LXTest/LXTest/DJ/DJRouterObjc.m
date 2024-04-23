@@ -13,6 +13,7 @@
 #import <DJBusinessTools/DJBusinessTools.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <DJBusinessModule/DJTabbarViewController.h>
+#import <DJBusinessModule/DJNewOrderListViewController.h>
 #import <DJBusinessModule/DJNearStoresViewController.h>
 
 #import <SensorsAnalyticsSDK/SensorsAnalyticsSDK.h>
@@ -76,6 +77,11 @@
     vc.changeHomePage = ^(NSDictionary *parames) {
         !complectionBlock ?: complectionBlock();
     };
+    return vc;
+}
++ (UIViewController *)getOrderListVC {
+    DJNewOrderListViewController *vc = [[DJNewOrderListViewController alloc]init];
+    vc.isMainToSanBarcodeList = NO;
     return vc;
 }
 

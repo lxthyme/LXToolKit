@@ -244,6 +244,13 @@ public struct DJTestRouter {
             })),
             LXOutlineItem(opt: .subitem(.section(title: "DJTabbarViewController")), scene: DJRouter.getDaoJia()),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.shopList.title)::\(shopList.map({ $0.title }).joined(separator:", "))"))),
+            LXOutlineItem(opt: .subitem(.section(title: "OrderList")), scene: .vc(provider: {
+                let vc = DJRouterObjc.getOrderListVC()
+                let nav = createNav(rootVC: vc)
+                nav.isNavigationBarHidden = true
+                return nav
+                }, transition: .alert)),
+            // })),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(daojiaList)"))),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.firstMedicine.title):\(firstMedicineList)"))),
             LXOutlineItem(opt: .outline(.section(title: "Page List")), subitems: [
@@ -477,7 +484,7 @@ extension DJTestRouter {
         let hoverView = HoverView(with: config, items: menuList)
         let nav = UINavigationController(rootViewController: rootVC)
         nav.modalPresentationStyle = .fullScreen
-        nav.isNavigationBarHidden = true
+        // nav.isNavigationBarHidden = true
         nav.interactivePopGestureRecognizer?.isEnabled = true
         nav.view.addSubview(hoverView)
         hoverView.snp.makeConstraints {
