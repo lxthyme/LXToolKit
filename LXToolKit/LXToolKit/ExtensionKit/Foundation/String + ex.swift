@@ -14,22 +14,33 @@ public extension Swifty where Base == String {
 // public extension Swifty where Base == String {
     /// 从字符串初始化一个 VC 实例
     /// - Returns: VC 实例
-    func getVCInstance<T: UIViewController>(expect: T.Type = UIViewController.self) -> T? {
-        return self.getInstance(expect: expect)
+    func getVCInstance<T: UIViewController>(expect: T.Type = UIViewController.self, forceSwift: Bool = false) -> T? {
+        return self.getInstance(expect: expect, forceSwift: forceSwift)
     }
-    func getVCCls<T: UIViewController>(expect: T.Type = UIViewController.self) -> T.Type? {
-        return self.getCls(expect: expect)
+    func getVCCls<T: UIViewController>(expect: T.Type = UIViewController.self, forceSwift: Bool = false) -> T.Type? {
+        return self.getCls(expect: expect, forceSwift: forceSwift)
     }
     /// 从字符串初始化一个 NSObject 实例
     /// - Returns: NSObject 实例
-    func getInstance<T: NSObject>(expect: T.Type) -> T? {
+    func getInstance<T: NSObject>(expect: T.Type, forceSwift: Bool = false) -> T? {
+        if !forceSwift,
+           let cls = NSClassFromString(base),
+           let objType = cls as? T.Type {
+            let instance = objType.init()
+            return instance
+        }
         guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String,
               let cls = NSClassFromString(nameSpace + "." + base),
               let objType = cls as? T.Type else { return nil }
         let instance = objType.init()
         return instance
     }
-    func getCls<T: NSObject>(expect: T.Type) -> T.Type? {
+    func getCls<T: NSObject>(expect: T.Type, forceSwift: Bool = false) -> T.Type? {
+        if !forceSwift,
+            let cls = NSClassFromString(base),
+           let objType = cls as? T.Type {
+            return objType
+        }
         guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String,
               let cls = NSClassFromString(nameSpace + "." + base),
               let objType = cls as? T.Type else { return nil }
