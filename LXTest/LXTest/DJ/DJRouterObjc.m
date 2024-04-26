@@ -26,6 +26,7 @@
 #import <BLNetworkingCategory/BLMediator+BLNetwoking.h>
 #import "DJQuickHomeVC.h"
 #import "SmAntiFraud.h"
+#import "DJOrderListPrepositionPaymentVC.h"
 
 @interface DJRouterObjc() {
 }
@@ -92,6 +93,11 @@
 + (UIViewController *)getOrderListVC {
     DJNewOrderListViewController *vc = [[DJNewOrderListViewController alloc]init];
     vc.isMainToSanBarcodeList = NO;
+    return vc;
+}
++ (UIViewController *)getPrepositionPaymentVC:(NSString *)parentOrderNo {
+    DJOrderListPrepositionPaymentVC *vc = [[DJOrderListPrepositionPaymentVC alloc]init];
+    vc.parentOrderNo = parentOrderNo;
     return vc;
 }
 

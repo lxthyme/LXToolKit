@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIViewController *)getShopListVC:(NSString *)sceneId
                         complection:(void(^)(void))complectionBlock;
 + (UIViewController *)getOrderListVC;
++ (UIViewController *)getPrepositionPaymentVC:(NSString *)parentOrderNo;
 /// 全局门店
 // + (DJStoreModel *)gStore;
 

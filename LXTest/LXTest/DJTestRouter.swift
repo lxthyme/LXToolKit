@@ -245,19 +245,22 @@ public struct DJTestRouter {
             })),
             LXOutlineItem(opt: .subitem(.section(title: "DJTabbarViewController")), scene: DJRouter.getDaoJia()),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.shopList.title)::\(shopList.map({ $0.title }).joined(separator:", "))"))),
-            LXOutlineItem(opt: .subitem(.section(title: "OrderList")), scene: .vc(provider: {
-                let vc = DJRouterObjc.getOrderListVC()
-                let nav = createNav(rootVC: vc)
-                nav.isNavigationBarHidden = true
-                return nav
-                }, transition: .alert)),
-            // })),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.getMain.title):\(daojiaList)"))),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.firstMedicine.title):\(firstMedicineList)"))),
             LXOutlineItem(opt: .outline(.section(title: "Page List")), subitems: [
                 LXOutlineItem(opt: .subitem(.section(title: "DJQuickHomeVC")), scene: DJRouter.getQuickHome()),
             LXOutlineItem(opt: .subitem(.section(title: "\(DJRouterPath.goodsDetail.title):\(goodDetailList.joined(separator:", "))"))),
             ]),
+            LXOutlineItem(opt: .subitem(.section(title: "OrderList")), scene: .vc(provider: {
+                let vc = DJRouterObjc.getOrderListVC()
+                let nav = createNav(rootVC: vc, isNavigationBarHidden: true)
+                return nav
+                }, transition: .alert)),
+            LXOutlineItem(opt: .subitem(.section(title: "先方后款")), scene: .vc(provider: {
+                let vc = DJRouterObjc.getPrepositionPaymentVC("SIT1272401737692")
+                let nav = createNav(rootVC: vc, isNavigationBarHidden: true)
+                return nav
+                }, transition: .alert)),
             LXOutlineItem(opt: .subitem(.section(title: "save login & gStore info to keychain & UserDefaults")), scene: .vc(provider: {
                 DJSavedData.saveGStore()
                 DJSavedData.saveLoginInfo()
@@ -468,7 +471,7 @@ extension DJTestRouter {
     //         }
     //         // .disposed(by: rx.disposeBag)
     // }
-    static func createNav(rootVC: UIViewController, dismiss:(() -> Void)? = nil) -> UINavigationController {
+    static func createNav(rootVC: UIViewController, isNavigationBarHidden: Bool = false, dismiss:(() -> Void)? = nil) -> UINavigationController {
         let config = HoverConfiguration(image: UIImage(named: "Hover"), color: .gradient(top: .blue, bottom: .cyan))
         let menuList: [HoverItem] = [
             HoverItem(image: UIImage(systemName: "xmark"), onTap: {
@@ -485,7 +488,7 @@ extension DJTestRouter {
         let hoverView = HoverView(with: config, items: menuList)
         let nav = UINavigationController(rootViewController: rootVC)
         nav.modalPresentationStyle = .fullScreen
-        // nav.isNavigationBarHidden = true
+        nav.isNavigationBarHidden = isNavigationBarHidden
         nav.interactivePopGestureRecognizer?.isEnabled = true
         nav.view.addSubview(hoverView)
         hoverView.snp.makeConstraints {
