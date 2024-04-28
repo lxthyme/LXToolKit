@@ -15,7 +15,7 @@
 
 @implementation LXBaseCollectionView
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[CollectionView]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[CollectionView]: %@", NSStringFromClass([self class]));
 }
 #pragma mark -
 #pragma mark - 🛠Life Cycle

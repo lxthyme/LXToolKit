@@ -80,5 +80,6 @@ TODO: Add long description of the pod here.
   s.dependency 'CHTCollectionViewWaterfallLayout/ObjC'
   s.dependency 'IGListKit'
   s.dependency 'UICollectionViewLeftAlignedLayout'
+  # s.dependency 'DJBusinessModule'
   # s.dependency ''
 end

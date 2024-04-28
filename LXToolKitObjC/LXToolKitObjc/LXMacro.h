@@ -29,6 +29,9 @@
 #endif
 
 #define kBOOLString(__bool__) ((__bool__) ? @"YES" : @"NO")
+#define kCGPointString(__point__) [NSString stringWithFormat:@"(x: %f, y: %f)", __point__.x, __point__.y]
+#define kCGSizeString(__size__) [NSString stringWithFormat:@"(width: %f, height: %f)", __size__.width, __size__.height]
+#define kCGRectString(__rect__) [NSString stringWithFormat:@"(x: %f, y: %f, width: %f, height: %f)", __rect__.origin.x, __rect__.origin.y, __rect__.size.width, __rect__.size.height]
 
 /// 像素对齐
 #define kFixed0_5 ([UIScreen mainScreen].scale >= 3 ? 0.75f : 0.5f)

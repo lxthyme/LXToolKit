@@ -15,7 +15,7 @@
 
 @implementation LXBaseView
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[View]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[View]: %@", NSStringFromClass([self class]));
 }
 #pragma mark -
 #pragma mark - 🛠Life Cycle

@@ -14,7 +14,7 @@
 
 @implementation LXBaseObject
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[NSObject]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[NSObject]: %@", NSStringFromClass([self class]));
 }
 
 @end

@@ -33,7 +33,8 @@ internal extension LXToolKitObjcRouter {
     ].reversed())
     static let router2024: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2024(objc)")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "DJTestObjc01VC")), scene: .vc(provider: { DJTestObjc01VC()  })),
-                      LXOutlineItem(opt: .subitem(.section(title: "LXTable202403VC")), scene: .vc(provider: { LXTable202403VC()  })),
+        LXOutlineItem(opt: .subitem(.section(title: "LXTable202403VC")), scene: .vc(provider: { LXTable202403VC()  })),
+        // LXOutlineItem(opt: .subitem(.section(title: "LXKeyboardTestVC")), scene: .vc(provider: { LXKeyboardTestVC()  })),
     ].reversed())
     static let router2023: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2023(objc)")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "LXURLCompVC")), scene: .vc(provider: { LXURLCompVC()  })),

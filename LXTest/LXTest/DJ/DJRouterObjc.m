@@ -13,6 +13,7 @@
 #import <DJBusinessTools/DJBusinessTools.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <DJBusinessModule/DJTabbarViewController.h>
+#import <DJBusinessModule/DJNewOrderListViewController.h>
 #import <DJBusinessModule/DJNearStoresViewController.h>
 
 #import <SensorsAnalyticsSDK/SensorsAnalyticsSDK.h>
@@ -24,6 +25,8 @@
 
 #import <BLNetworkingCategory/BLMediator+BLNetwoking.h>
 #import "DJQuickHomeVC.h"
+#import "SmAntiFraud.h"
+#import "DJOrderListPrepositionPaymentVC.h"
 
 @interface DJRouterObjc() {
 }
@@ -45,6 +48,15 @@
     /// 从 localStorage 中恢复登录信息
     // [DJRouterObjc backupAllInfo];
     [[BLMediator sharedInstance] BLNetworking_config];
+
+    /*
+     数美
+     */
+    SmOption *option = [[SmOption alloc] init];
+    [option setOrganization: @"niZzPzSqVrYmUv78jU0D"];
+    [option setAppId:@"default"];
+    [option setPublicKey:@"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHOh6HqQreWYb8eS8QZmy3+H2cbm7ZddIUcJ2wGiSS3FGyHfuraTA6HyI7DmbH9qfjasaJMseXBq2Dnau4v881acgag4IHxEjDQiJalic++Yp/MSTrmPsqVWNom/Myk7/77X1Zr9m2oF3JYFeRAGEsNNfbfttHlxEu64G1hIc9TwIDAQAB"];
+    [[SmAntiFraud shareInstance] create:option];
 
     NSString *sensorUrl = @"https://sensorsdata.bl.com/sa?project=default";
     SAConfigOptions *options = [[SAConfigOptions alloc]initWithServerURL:sensorUrl launchOptions:launchOptions];
@@ -76,6 +88,16 @@
     vc.changeHomePage = ^(NSDictionary *parames) {
         !complectionBlock ?: complectionBlock();
     };
+    return vc;
+}
++ (UIViewController *)getOrderListVC {
+    DJNewOrderListViewController *vc = [[DJNewOrderListViewController alloc]init];
+    vc.isMainToSanBarcodeList = NO;
+    return vc;
+}
++ (UIViewController *)getPrepositionPaymentVC:(NSString *)parentOrderNo {
+    DJOrderListPrepositionPaymentVC *vc = [[DJOrderListPrepositionPaymentVC alloc]init];
+    vc.parentOrderNo = parentOrderNo;
     return vc;
 }
 
@@ -173,4 +195,24 @@
 //     return [NSString stringWithFormat:@"DJTest.%@.%@", envString, title];
 // }
 
+@end
+
+@interface SmAntiFraud (BaiLianTest)
+
+// - (void)xl_updatePlusInfo2:(NSDictionary * _Nullable)plusInfo;
+// - (void)xl_cleanPlusInfo2;
+// - (void)xl_updateUserInfo2:(NSDictionary * _Nullable)userInfo;
+// - (void)xl_cleanUserInfo2;
+
+@end
+@implementation SmAntiFraud (BaiLianTest)
++(void)load {
+    Method method3 = class_getInstanceMethod([self class], @selector(getDeviceId));
+    Method method4 = class_getInstanceMethod([self class], @selector(xl_getDeviceId));
+    method_exchangeImplementations(method3, method4);
+}
+
+- (NSString* )xl_getDeviceId {
+    return @"BpCmSFzs52FUE/MUL/GnN1w6svbaXrBl3C0ZcTyU/ucxr8WBFnwOM/WMhvC9X0LBCPY3iTUgH+tIwirGfpwJndQ==";
+}
 @end

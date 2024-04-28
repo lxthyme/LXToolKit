@@ -15,7 +15,7 @@
 
 @implementation LXBaseTableViewCell
 - (void)dealloc {
-    commonlog(@"🛠DEALLOC[TableViewCell]: %@", NSStringFromClass([self class]));
+    // commonlog(@"🛠DEALLOC[TableViewCell]: %@", NSStringFromClass([self class]));
 }
 #pragma mark -
 #pragma mark - 🛠Life Cycle
