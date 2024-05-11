@@ -192,6 +192,8 @@ public struct DJTestRouter {
         "env, 门店名称, storeCode, storeType:",
         "///",
         "sit/武宁店/007780/2020",
+        "sit/世纪联华合肥杏花店/001004/2070",
+        "sit/阿炼的新标超数字化门店/000243/2020",
         "sit/世纪联华中环百联店/004517/2010",
         "prd/世纪联华中环百联店/004517/2010",
         "prd/世纪联华上海黄浦新苑店/003754/2010",
@@ -257,7 +259,9 @@ public struct DJTestRouter {
                 return nav
                 }, transition: .alert)),
             LXOutlineItem(opt: .subitem(.section(title: "先方后款")), scene: .vc(provider: {
-                let vc = DJRouterObjc.getPrepositionPaymentVC("SIT1272401737692")
+                var orderNo = "SIT1272401737692"
+                orderNo = "SIT1281101755106"
+                let vc = DJRouterObjc.getPrepositionPaymentVC(orderNo)
                 let nav = createNav(rootVC: vc, isNavigationBarHidden: true)
                 return nav
                 }, transition: .alert)),
