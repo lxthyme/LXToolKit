@@ -160,18 +160,19 @@ def pod_DJ
 
   source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
-  pod 'DJBusinessModule', :path => "#{$DaoJiaPathFixed}/DJBusinessModule"
+  $path = $DaoJiaPathFixed
+  pod 'DJBusinessModule', :path => "#{$path}/DJBusinessModule"
+  pod 'DJBusinessTools', :path=>"#{$path}/DJBusinessTools", :inhibit_warnings => false
+  pod 'DJiOSAppImages', :path=>"#{$path}/DJiOSAppImages", :inhibit_warnings => false
+  pod 'DJGlobalStoreManager', :path=>"#{$path}/DJGlobalStoreManager", :inhibit_warnings => false
+  pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
+  pod 'BLRawAPIManager', :path => "#{$path}/BLRawAPIManager"
   pod 'BLCartService', :podspec => './'
   pod 'BLOrder', :podspec => './'
   pod 'BLMapModule', :podspec => './'
   pod 'BLFlutterRouterManager'
   pod 'BLCashier'
-  pod 'DJBusinessTools', :path=>"#{$DaoJiaPathFixed}/DJBusinessTools", :inhibit_warnings => false
-  pod 'DJiOSAppImages', :path=>"#{$DaoJiaPathFixed}/DJiOSAppImages", :inhibit_warnings => false
-  pod 'DJGlobalStoreManager', :path=>"#{$DaoJiaPathFixed}/DJGlobalStoreManager", :inhibit_warnings => false
-  pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
   pod 'BLNetworking', :path => "#{$DaoJiaPath}/BLNetworking"
-  pod 'BLRawAPIManager', :path => "#{$DaoJiaPathFixed}/BLRawAPIManager"
   pod 'BLImage', :path => "#{$DaoJiaPath}/BLImage"
   pod 'IBLProgressHud', :path => "#{$DaoJiaPath}/IBLProgressHud"
   # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
