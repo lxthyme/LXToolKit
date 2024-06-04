@@ -305,7 +305,7 @@ post_install do |installer|
       # puts("-->[2-#{idx2}]:  #{target.name.red}")
       # puts("-->[2-#{idx2}]:  #{target.name.red}	#{target.build_configurations}")
       target.build_configurations.each do |config|
-        config.build_settings['OTHER_LDFLAGS'] ||= ['${inherited}', '-ld64']
+        config.build_settings['OTHER_LDFLAGS'] ||= ['${inherited}', '-ld_classic']
         generateConfig(target, config, project_deployment_version)
       end
       if target.name == 'LXToolKit' ||
