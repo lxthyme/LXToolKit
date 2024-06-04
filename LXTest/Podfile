@@ -167,9 +167,9 @@ def pod_DJ
   pod 'DJGlobalStoreManager', :path=>"#{$path}/DJGlobalStoreManager", :inhibit_warnings => false
   pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
   pod 'BLRawAPIManager', :path => "#{$path}/BLRawAPIManager"
-  pod 'BLCartService', :podspec => './'
-  pod 'BLOrder', :podspec => './'
-  pod 'BLMapModule', :podspec => './'
+  # pod 'BLCartService', :podspec => './'
+  # pod 'BLOrder', :podspec => './'
+  # pod 'BLMapModule', :podspec => './'
   pod 'BLFlutterRouterManager'
   pod 'BLCashier'
   pod 'BLNetworking', :path => "#{$DaoJiaPath}/BLNetworking"
