@@ -160,18 +160,19 @@ def pod_DJ
 
   source 'https://gitlab.bl.com/iOS/BLRepositories.git'
 
-  pod 'DJBusinessModule', :path => "#{$DaoJiaPathFixed}/DJBusinessModule"
-  pod 'BLCartService', :podspec => './'
-  pod 'BLOrder', :podspec => './'
-  pod 'BLMapModule', :podspec => './'
-  pod 'BLFlutterRouterManager'
-  pod 'BLCashier'
-  pod 'DJBusinessTools', :path=>"#{$DaoJiaPathFixed}/DJBusinessTools", :inhibit_warnings => false
-  pod 'DJiOSAppImages', :path=>"#{$DaoJiaPathFixed}/DJiOSAppImages", :inhibit_warnings => false
-  pod 'DJGlobalStoreManager', :path=>"#{$DaoJiaPathFixed}/DJGlobalStoreManager", :inhibit_warnings => false
+  $path = $DaoJiaPathFixed
+  pod 'DJBusinessModule', :path => "#{$path}/DJBusinessModule", :inhibit_warnings => false
+  pod 'DJBusinessTools', :path=>"#{$path}/DJBusinessTools", :inhibit_warnings => false
+  pod 'DJiOSAppImages', :path=>"#{$path}/DJiOSAppImages", :inhibit_warnings => false
+  pod 'DJGlobalStoreManager', :path=>"#{$path}/DJGlobalStoreManager", :inhibit_warnings => false
   pod 'DJBusinessCategoryRouterCenter', :path => "#{$DaoJiaPath}/DJBusinessCategoryRouterCenter", :inhibit_warnings => false
+  pod 'BLRawAPIManager', :path => "#{$path}/BLRawAPIManager", :inhibit_warnings => false
+  # pod 'BLCartService', :podspec => './'
+  # pod 'BLOrder', :podspec => './'
+  # pod 'BLMapModule', :podspec => './'
+  pod 'BLFlutterRouterManager'
+  # pod 'BLCashier'
   pod 'BLNetworking', :path => "#{$DaoJiaPath}/BLNetworking"
-  pod 'BLRawAPIManager', :path => "#{$DaoJiaPathFixed}/BLRawAPIManager"
   pod 'BLImage', :path => "#{$DaoJiaPath}/BLImage"
   pod 'IBLProgressHud', :path => "#{$DaoJiaPath}/IBLProgressHud"
   # pod 'BLCashier', :path => '$DaoJiaPath/BLCashier'
@@ -304,6 +305,7 @@ post_install do |installer|
       # puts("-->[2-#{idx2}]:  #{target.name.red}")
       # puts("-->[2-#{idx2}]:  #{target.name.red}	#{target.build_configurations}")
       target.build_configurations.each do |config|
+        config.build_settings['OTHER_LDFLAGS'] ||= ['${inherited}', '-ld_classic']
         generateConfig(target, config, project_deployment_version)
       end
       if target.name == 'LXToolKit' ||

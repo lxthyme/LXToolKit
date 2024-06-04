@@ -475,7 +475,7 @@ extension DJTestRouter {
     //         }
     //         // .disposed(by: rx.disposeBag)
     // }
-    static func createNav(rootVC: UIViewController, isNavigationBarHidden: Bool = false, dismiss:(() -> Void)? = nil) -> UINavigationController {
+    @MainActor static func createNav(rootVC: UIViewController, isNavigationBarHidden: Bool = false, dismiss:(() -> Void)? = nil) -> UINavigationController {
         let config = HoverConfiguration(image: UIImage(named: "Hover"), color: .gradient(top: .blue, bottom: .cyan))
         let menuList: [HoverItem] = [
             HoverItem(image: UIImage(systemName: "xmark"), onTap: {

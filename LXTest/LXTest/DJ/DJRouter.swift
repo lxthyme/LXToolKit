@@ -160,7 +160,7 @@ open class DJRouter: NSObject {
 }
 
 public extension DJRouter {
-    private static func getScene(vcProvider: @escaping () -> UIViewController?) -> Navigator.Scene {
+    @MainActor private static func getScene(vcProvider: @escaping () -> UIViewController?) -> Navigator.Scene {
         let scene: Navigator.Scene = .vc(provider: {
             guard let vc = vcProvider() else {
                 return nil
@@ -173,7 +173,7 @@ public extension DJRouter {
         }, transition: .alert)
         return scene
     }
-    private static func getDaoJiaScene(params: [String: Any]) -> Navigator.Scene {
+    @MainActor private static func getDaoJiaScene(params: [String: Any]) -> Navigator.Scene {
         return getScene {
             getDaoJiaVC(params: params)!
         }
@@ -181,7 +181,7 @@ public extension DJRouter {
     static func getDaoJiaVC(params: [String: Any]) -> UIViewController? {
         return BLMediator.sharedInstance().djBusinessModule_NewMain(params)
     }
-    static func getDaoJia(storeCode: String? = nil,
+    @MainActor static func getDaoJia(storeCode: String? = nil,
                         storeType: String? = nil) -> Navigator.Scene {
         var url = "blmodule://quickHome/home"
         if let storeCode, storeCode.isNotEmpty,
@@ -191,7 +191,7 @@ public extension DJRouter {
         DJStoreManager.sharedInstance().djModuleType = .COMMONTYPE
         return getDaoJiaScene(params: ["url": url])
     }
-    static func getFirstMedicine(storeCode: String? = nil, storeType: String? = nil) -> Navigator.Scene {
+    @MainActor static func getFirstMedicine(storeCode: String? = nil, storeType: String? = nil) -> Navigator.Scene {
         guard let storeCode, storeCode.isNotEmpty,
               let storeType, storeType.isNotEmpty else {
             DJStoreManager.sharedInstance().djModuleType = .FIRSTMEDICINE
@@ -201,12 +201,12 @@ public extension DJRouter {
         let url = "blmodule://quickHome/home?storeCode=\(storeCode)&storeType=\(storeType)"
         return getDaoJiaScene(params: ["url": url])
     }
-    static func getQuickHome() -> Navigator.Scene {
+    @MainActor static func getQuickHome() -> Navigator.Scene {
         return getScene {
             DJRouterObjc.getQuickHome()
         }
     }
-    static func getGoodsDetail(storeCode: String, storeType: String, merchantId: String, goodsId: String, tdType: String) -> Navigator.Scene {
+    @MainActor static func getGoodsDetail(storeCode: String, storeType: String, merchantId: String, goodsId: String, tdType: String) -> Navigator.Scene {
         return getScene {
             BLMediator.sharedInstance().djBusinessModule_DJProductDetailViewController(withParams: [
                 "storeCode": storeCode,
@@ -221,7 +221,7 @@ public extension DJRouter {
 
 /// Api 环境
 public extension DJRouter {
-    static func toggleEnv() {
+    @MainActor static func toggleEnv() {
         let ctx = CTAppContext.sharedInstance()!
         if(ctx.apiEnviroment == .release) {
             UIViewController.getTopVC()?.view.makeToast("已切换到 sit")
