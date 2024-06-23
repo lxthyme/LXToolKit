@@ -38,7 +38,7 @@ internal extension LXToolKitObjcRouter {
     ].reversed())
     static let router2023: LXOutlineItem = LXOutlineItem(opt: .outline(.section(title: "2023(objc)")), subitems: [
         LXOutlineItem(opt: .subitem(.section(title: "LXURLCompVC")), scene: .vc(provider: { LXURLCompVC()  })),
-        LXOutlineItem(opt: .subitem(.section(title: "LXWebViewTestVC")), scene: .vc(provider: { LXWebViewTestVC()  })),
+        LXOutlineItem(opt: .subitem(.section(title: "LXWebViewObjcTestVC")), scene: .vc(provider: { LXWebViewObjcTestVC()  })),
         LXOutlineItem(opt: .subitem(.section(title: "DJSearchResultVC")), scene: .vc(provider: { LXDJSearchResultVC()  })),
         // LXOutlineItem(opt: .subitem(.section(title: "LXIGListKitTestVC")), scene: .vc(provider: { LXIGListKitTestVC()  })),
         LXOutlineItem(opt: .subitem(.section(title: "LXCollectionTestVC")), scene: .vc(provider: { LXCollectionTestVC()  })),

@@ -1,5 +1,5 @@
 //
-//  LXWebViewTestVC.h
+//  LXWebViewObjcTestVC.h
 //  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2023/2/10.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXWebViewTestVC: UIViewController {
+@interface LXWebViewObjcTestVC: UIViewController {
 }
 
 @end

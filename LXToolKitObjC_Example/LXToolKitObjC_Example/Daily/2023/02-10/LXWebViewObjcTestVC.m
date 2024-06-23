@@ -1,23 +1,23 @@
 //
-//  LXWebViewTestVC.m
+//  LXWebViewObjcTestVC.m
 //  LXToolKitObjC_Example
 //
 //  Created by lxthyme on 2023/2/10.
 //  Copyright © 2023 lxthyme. All rights reserved.
 //
-#import "LXWebViewTestVC.h"
+#import "LXWebViewObjcTestVC.h"
 
 #import <Masonry/Masonry.h>
 #import <WebKit/WebKit.h>
 #import <SDWebImage/SDWebImageDownloader.h>
 
-@interface LXWebViewTestVC()<WKNavigationDelegate, UIGestureRecognizerDelegate> {
+@interface LXWebViewObjcTestVC()<WKNavigationDelegate, UIGestureRecognizerDelegate> {
 }
 @property(nonatomic, strong)WKWebView *webView;
 
 @end
 
-@implementation LXWebViewTestVC
+@implementation LXWebViewObjcTestVC
 - (void)dealloc {
     NSLog(@"🎷DEALLOC: %@", NSStringFromClass([self class]));
 }
@@ -53,6 +53,7 @@
     // [self asyncTest2];
     // [self asyncTest3];
     [self asyncTest4];
+    [self dataFill];
 }
 
 #pragma mark -
@@ -63,7 +64,12 @@
     urlString = @"https://juejin.cn/ios";
     urlString = @"https://www.google.com/search?q=233";
     urlString = @"https://promotion.bl.com/nc/APP_HDGL202302090000022065_22867.html?storeCode=012044&buid=2020&merchantId=20200120441&shopId=012044&bizId=2020&platform=iOS&bl_ad=6601_-_3744021_-_1&mId=e473cfd295d239cdbd91fbe5c29ce02f&market=AppStore&newversion=Y&newFrame=Y&isDJFlag=Y&tdType=1";
+    urlString = @"http://10.199.5.28:3003/lxthyme";// 👍
+    // urlString = @"http://localhost:3003/lxthyme";// ❌
+    // urlString = @"http://127.0.0.1:3003/lxthyme";// ❌
+    // urlString = @"http://0.0.0.0:3003/lxthyme";// ❌
     NSURL *url = [NSURL URLWithString:urlString];
+    NSLog(@"-->👉url: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 }

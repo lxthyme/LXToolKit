@@ -138,7 +138,7 @@
             @"LXShadowVC",
             @"LXStackViewTestVC",
             @"LXURLCompVC",
-            @"LXWebViewTestVC",
+            @"LXWebViewObjcTestVC",
             @"LXSwiftOCTestVC",
             @"LXDJSearchResultVC",
             @"LXUpdateLayoutVC",
